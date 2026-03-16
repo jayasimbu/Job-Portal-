@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EmbeddingRecord",
+  "type": "object",
+  "required": ["entity_type", "entity_id", "model", "vector", "created_at"],
+  "properties": {
+    "entity_type": {"type": "string", "enum": ["resume", "job"]},
+    "entity_id": {"type": "integer", "minimum": 1},
+    "model": {"type": "string"},
+    "vector": {"type": "array", "items": {"type": "number"}},
+    "created_at": {"type": "string", "format": "date-time"}
+  }
+}

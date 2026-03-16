@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JobPosting",
+  "type": "object",
+  "required": ["id", "employer_id", "title", "description", "required_skills"],
+  "properties": {
+    "id": {"type": "integer", "minimum": 1},
+    "employer_id": {"type": "integer", "minimum": 1},
+    "title": {"type": "string"},
+    "description": {"type": "string"},
+    "required_skills": {"type": "array", "items": {"type": "string"}},
+    "min_experience": {"type": "number", "minimum": 0},
+    "education_required": {"type": "string"},
+    "location": {"type": "string"},
+    "employment_type": {"type": "string"}
+  }
+}

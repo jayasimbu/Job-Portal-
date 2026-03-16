@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "User",
+  "type": "object",
+  "required": ["id", "email", "first_name", "last_name", "role", "is_active"],
+  "properties": {
+    "id": {"type": "integer", "minimum": 1},
+    "email": {"type": "string", "format": "email"},
+    "first_name": {"type": "string"},
+    "last_name": {"type": "string"},
+    "role": {"type": "string", "enum": ["jobseeker", "employer", "admin"]},
+    "is_active": {"type": "boolean"},
+    "is_verified": {"type": "boolean"},
+    "created_at": {"type": "string", "format": "date-time"}
+  }
+}

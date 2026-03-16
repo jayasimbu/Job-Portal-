@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ATSScore",
+  "type": "object",
+  "required": ["resume_id", "keyword_match", "skills_match", "experience_relevance", "education_match", "final_score"],
+  "properties": {
+    "resume_id": {"type": "integer", "minimum": 1},
+    "keyword_match": {"type": "number", "minimum": 0, "maximum": 100},
+    "skills_match": {"type": "number", "minimum": 0, "maximum": 100},
+    "experience_relevance": {"type": "number", "minimum": 0, "maximum": 100},
+    "education_match": {"type": "number", "minimum": 0, "maximum": 100},
+    "final_score": {"type": "number", "minimum": 0, "maximum": 100}
+  }
+}

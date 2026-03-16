@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CompanyProfile",
+  "type": "object",
+  "required": ["id", "user_id", "company_name", "verified"],
+  "properties": {
+    "id": {"type": "integer", "minimum": 1},
+    "user_id": {"type": "integer", "minimum": 1},
+    "company_name": {"type": "string"},
+    "website": {"type": "string"},
+    "description": {"type": "string"},
+    "verified": {"type": "boolean"}
+  }
+}
