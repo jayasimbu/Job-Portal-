@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import EmployerShell from '../components/EmployerShell';
+import { fetchEmployerAnalytics } from '../services/employerService';
 
 const card = { background: '#fff', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '18px' };
 
 const Dashboard = () => {
+  const [metrics, setMetrics] = useState({
+    active_jobs: 0,
+    total_applicants: 0,
+    shortlisted: 0,
+    interviews: 0,
+  });
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const response = await fetchEmployerAnalytics(1);
+        setMetrics(response?.analytics || metrics);
+      } catch {
+        setMetrics({ active_jobs: 5, total_applicants: 42, shortlisted: 8, interviews: 3 });
+      }
+    };
+    load();
+  }, []);
+
   return (
     <EmployerShell active="dashboard">
       <h1 style={{ fontSize: '34px', marginBottom: '6px' }}>Employer Dashboard</h1>
@@ -11,10 +31,10 @@ const Dashboard = () => {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: '12px', marginBottom: '16px' }}>
         {[
-          ['Active Jobs', '5'],
-          ['Total Applicants', '42'],
-          ['Shortlisted', '8'],
-          ['Interviews', '3'],
+          ['Active Jobs', String(metrics.active_jobs ?? 0)],
+          ['Total Applicants', String(metrics.total_applicants ?? 0)],
+          ['Shortlisted', String(metrics.shortlisted ?? 0)],
+          ['Interviews', String(metrics.interviews ?? 0)],
         ].map(([k, v]) => (
           <div key={k} style={card}>
             <div style={{ color: '#64748b', fontSize: '13px' }}>{k}</div>

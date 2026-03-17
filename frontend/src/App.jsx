@@ -5,6 +5,7 @@ import AuthRoutes from './modules/auth/authRoutes';
 import JobSeekerRoutes from './modules/jobseeker/jobseekerRoutes';
 import EmployerRoutes from './modules/employer/employerRoutes';
 import AdminRoutes from './modules/admin/adminRoutes';
+import PlatformRoutes from './modules/platform/platformRoutes';
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Route path="/jobseeker/*" element={<JobSeekerRoutes />} />
         <Route path="/employer/*" element={<EmployerRoutes />} />
         <Route path="/admin/*" element={<AdminRoutes />} />
-        <Route path="/" element={<Navigate to="/auth/login" replace />} />
+        <Route path="/platform/*" element={<PlatformRoutes />} />
+        <Route path="/" element={<Navigate to="/platform/home" replace />} />
       </Routes>
     </Router>
   );

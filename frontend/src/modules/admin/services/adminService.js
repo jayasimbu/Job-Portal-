@@ -14,3 +14,18 @@ export const fetchSystemHealth = async () => {
   const response = await apiClient.get('/admin/monitoring/health');
   return response.data;
 };
+
+export const fetchAdminUsers = async () => {
+  const response = await apiClient.get('/admin/users');
+  return response.data;
+};
+
+export const fetchAdminCompanies = async () => {
+  const response = await apiClient.get('/admin/companies');
+  return response.data;
+};
+
+export const fetchAdminJobs = async () => {
+  const response = await apiClient.get('/admin/jobs');
+  return response.data;
+};

@@ -12,6 +12,9 @@ export const ROUTES = {
     PROFILE: '/jobseeker/profile',
     JOBS: '/jobseeker/jobs',
     APPLICATIONS: '/jobseeker/applications',
+    INSIGHTS: '/jobseeker/insights',
+    LEARNING: '/jobseeker/learning',
+    NOTIFICATIONS: '/jobseeker/notifications',
   },
   
   // Employer routes
@@ -20,6 +23,9 @@ export const ROUTES = {
     PROFILE: '/employer/profile',
     POST_JOB: '/employer/post-job',
     CANDIDATES: '/employer/candidates',
+    ANALYTICS: '/employer/analytics',
+    HIRING_POLICY: '/employer/hiring-policy',
+    INTERVIEWS: '/employer/interviews',
   },
   
   // Admin routes
@@ -29,6 +35,7 @@ export const ROUTES = {
     COMPANIES: '/admin/companies',
     JOBS: '/admin/jobs',
     LOGS: '/admin/logs',
+    ANALYTICS: '/admin/analytics',
   },
 };
 

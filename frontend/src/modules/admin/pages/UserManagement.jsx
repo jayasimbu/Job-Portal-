@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminShell from '../components/AdminShell';
+import { fetchAdminUsers } from '../services/adminService';
 
-const users = [
+const fallbackUsers = [
   { name: 'Rahul Sharma', email: 'rahul@email.com', role: 'Job Seeker', status: 'Active' },
   { name: 'Priya Patel', email: 'priya@corp.com', role: 'Employer', status: 'Active' },
   { name: 'Michael Chen', email: 'm.chen@outlook.com', role: 'Job Seeker', status: 'Blocked' },
@@ -13,6 +14,28 @@ const status = {
 };
 
 const UserManagement = () => {
+  const [users, setUsers] = useState(fallbackUsers);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const response = await fetchAdminUsers();
+        const mapped = (response?.users || []).map((user) => ({
+          name: user.full_name || `User ${user.id}`,
+          email: user.email,
+          role: user.role || 'Job Seeker',
+          status: user.is_active ? 'Active' : 'Blocked',
+        }));
+        if (mapped.length > 0) {
+          setUsers(mapped);
+        }
+      } catch {
+        setUsers(fallbackUsers);
+      }
+    };
+    load();
+  }, []);
+
   return (
     <AdminShell active="users">
       <h1 style={{ fontSize: '34px', marginBottom: '6px' }}>User Management</h1>

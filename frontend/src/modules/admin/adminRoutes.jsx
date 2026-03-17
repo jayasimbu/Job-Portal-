@@ -5,6 +5,7 @@ import UserManagement from './pages/UserManagement';
 import CompanyManagement from './pages/CompanyManagement';
 import JobManagement from './pages/JobManagement';
 import SystemLogs from './pages/SystemLogs';
+import Analytics from './pages/Analytics';
 
 const AdminRoutes = () => {
   return (
@@ -15,12 +16,14 @@ const AdminRoutes = () => {
       <Route path="companies" element={<CompanyManagement />} />
       <Route path="jobs" element={<JobManagement />} />
       <Route path="logs" element={<SystemLogs />} />
+      <Route path="analytics" element={<Analytics />} />
 
       <Route path="pages/Dashboard" element={<Dashboard />} />
       <Route path="pages/UserManagement" element={<UserManagement />} />
       <Route path="pages/CompanyManagement" element={<CompanyManagement />} />
       <Route path="pages/JobManagement" element={<JobManagement />} />
       <Route path="pages/SystemLogs" element={<SystemLogs />} />
+      <Route path="pages/Analytics" element={<Analytics />} />
 
       <Route path="*" element={<Navigate to="dashboard" replace />} />
     </Routes>

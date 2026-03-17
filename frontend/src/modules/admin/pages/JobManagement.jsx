@@ -1,13 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminShell from '../components/AdminShell';
+import { fetchAdminJobs } from '../services/adminService';
 
-const jobs = [
+const fallbackJobs = [
   { title: 'Frontend Developer', company: 'ABC Tech', date: '10 Mar 2026', applicants: 23, status: 'Active' },
   { title: 'Backend Engineer', company: 'CloudScale', date: '08 Mar 2026', applicants: 15, status: 'Active' },
   { title: 'UI/UX Designer', company: 'Creative Hub', date: '05 Mar 2026', applicants: 42, status: 'Closed' },
 ];
 
 const JobManagement = () => {
+  const [jobs, setJobs] = useState(fallbackJobs);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const response = await fetchAdminJobs();
+        const mapped = (response?.jobs || []).map((job) => ({
+          title: job.title,
+          company: `Employer ${job.employer_id}`,
+          date: (job.created_at || '').slice(0, 10),
+          applicants: '-',
+          status: job.active ? 'Active' : 'Closed',
+        }));
+        if (mapped.length > 0) {
+          setJobs(mapped);
+        }
+      } catch {
+        setJobs(fallbackJobs);
+      }
+    };
+    load();
+  }, []);
+
   return (
     <AdminShell active="jobs">
       <h1 style={{ fontSize: '34px', marginBottom: '6px' }}>Job Management</h1>

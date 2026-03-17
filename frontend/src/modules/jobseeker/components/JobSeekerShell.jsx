@@ -43,6 +43,9 @@ const topLinks = [
   { key: 'dashboard', to: '/jobseeker/pages/Dashboard', label: 'Dashboard' },
   { key: 'jobs', to: '/jobseeker/pages/JobSearch', label: 'Jobs' },
   { key: 'applications', to: '/jobseeker/pages/Applications', label: 'Applications' },
+  { key: 'insights', to: '/jobseeker/pages/Insights', label: 'Insights' },
+  { key: 'learning', to: '/jobseeker/pages/Learning', label: 'Learning' },
+  { key: 'notifications', to: '/jobseeker/pages/Notifications', label: 'Alerts' },
   { key: 'profile', to: '/jobseeker/pages/Profile', label: 'Profile' },
 ];
 
@@ -50,6 +53,9 @@ const sideLinks = [
   { key: 'dashboard', to: '/jobseeker/pages/Dashboard', label: 'Dashboard' },
   { key: 'jobs', to: '/jobseeker/pages/JobSearch', label: 'Job Search' },
   { key: 'applications', to: '/jobseeker/pages/Applications', label: 'Applications' },
+  { key: 'insights', to: '/jobseeker/pages/Insights', label: 'Insights' },
+  { key: 'learning', to: '/jobseeker/pages/Learning', label: 'Learning' },
+  { key: 'notifications', to: '/jobseeker/pages/Notifications', label: 'Notifications' },
   { key: 'profile', to: '/jobseeker/pages/Profile', label: 'Profile' },
 ];
 

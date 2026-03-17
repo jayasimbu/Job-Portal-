@@ -4,6 +4,9 @@ import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import JobSearch from './pages/JobSearch';
 import Applications from './pages/Applications';
+import Insights from './pages/Insights';
+import Learning from './pages/Learning';
+import Notifications from './pages/Notifications';
 
 const JobSeekerRoutes = () => {
   return (
@@ -13,11 +16,17 @@ const JobSeekerRoutes = () => {
       <Route path="profile" element={<Profile />} />
       <Route path="jobs" element={<JobSearch />} />
       <Route path="applications" element={<Applications />} />
+      <Route path="insights" element={<Insights />} />
+      <Route path="learning" element={<Learning />} />
+      <Route path="notifications" element={<Notifications />} />
 
       <Route path="pages/Dashboard" element={<Dashboard />} />
       <Route path="pages/Profile" element={<Profile />} />
       <Route path="pages/JobSearch" element={<JobSearch />} />
       <Route path="pages/Applications" element={<Applications />} />
+      <Route path="pages/Insights" element={<Insights />} />
+      <Route path="pages/Learning" element={<Learning />} />
+      <Route path="pages/Notifications" element={<Notifications />} />
 
       <Route path="*" element={<Navigate to="dashboard" replace />} />
     </Routes>

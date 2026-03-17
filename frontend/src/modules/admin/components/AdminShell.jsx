@@ -34,6 +34,7 @@ const nav = [
   { key: 'users', to: '/admin/pages/UserManagement', label: 'Users' },
   { key: 'companies', to: '/admin/pages/CompanyManagement', label: 'Companies' },
   { key: 'jobs', to: '/admin/pages/JobManagement', label: 'Jobs' },
+  { key: 'analytics', to: '/admin/pages/Analytics', label: 'Analytics' },
   { key: 'logs', to: '/admin/pages/SystemLogs', label: 'System Logs' },
 ];
 

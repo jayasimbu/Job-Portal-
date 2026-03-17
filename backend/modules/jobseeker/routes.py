@@ -29,6 +29,16 @@ class ApplyPayload(BaseModel):
     job_id: int
 
 
+class ToggleBookmarkPayload(BaseModel):
+    user_id: int
+    job_id: int
+
+
+class SearchHistoryPayload(BaseModel):
+    user_id: int
+    query: str
+
+
 router = APIRouter()
 
 
@@ -94,3 +104,58 @@ async def verify_candidate_projects(
     github_url = profile.github_url if profile else None
     portfolio_url = profile.portfolio_url if profile else None
     return service.verify_projects(github_url=github_url, portfolio_url=portfolio_url)
+
+
+@router.get("/insights/{user_id}")
+async def get_insights(user_id: int, service: JobSeekerService = Depends(get_jobseeker_service)) -> Dict[str, Any]:
+    return {"insights": service.get_insights(user_id)}
+
+
+@router.get("/learning/{user_id}")
+async def get_learning_recommendations(
+    user_id: int,
+    service: JobSeekerService = Depends(get_jobseeker_service),
+) -> Dict[str, Any]:
+    return {"learning": service.get_learning_recommendations(user_id)}
+
+
+@router.get("/notifications/{user_id}")
+async def get_notifications(
+    user_id: int,
+    service: JobSeekerService = Depends(get_jobseeker_service),
+) -> Dict[str, Any]:
+    return {"notifications": service.get_notifications(user_id)}
+
+
+@router.get("/bookmarks/{user_id}")
+async def list_bookmarks(
+    user_id: int,
+    service: JobSeekerService = Depends(get_jobseeker_service),
+) -> Dict[str, Any]:
+    return {"bookmarks": service.list_bookmarks(user_id)}
+
+
+@router.post("/bookmarks/toggle")
+async def toggle_bookmark(
+    payload: ToggleBookmarkPayload,
+    service: JobSeekerService = Depends(get_jobseeker_service),
+) -> Dict[str, Any]:
+    bookmarks = service.toggle_bookmark(payload.user_id, payload.job_id)
+    return {"message": "bookmark updated", "bookmarks": bookmarks}
+
+
+@router.get("/search-history/{user_id}")
+async def list_search_history(
+    user_id: int,
+    service: JobSeekerService = Depends(get_jobseeker_service),
+) -> Dict[str, Any]:
+    return {"history": service.list_search_history(user_id)}
+
+
+@router.post("/search-history")
+async def add_search_history(
+    payload: SearchHistoryPayload,
+    service: JobSeekerService = Depends(get_jobseeker_service),
+) -> Dict[str, Any]:
+    history = service.add_search_history(payload.user_id, payload.query)
+    return {"message": "history updated", "history": history}

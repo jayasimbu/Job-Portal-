@@ -33,6 +33,9 @@ const nav = [
   { key: 'dashboard', to: '/employer/pages/Dashboard', label: 'Dashboard' },
   { key: 'post', to: '/employer/pages/PostJob', label: 'Post Job' },
   { key: 'candidates', to: '/employer/pages/Candidates', label: 'Candidates' },
+  { key: 'analytics', to: '/employer/pages/Analytics', label: 'Analytics' },
+  { key: 'policy', to: '/employer/pages/HiringPolicy', label: 'Hiring Policy' },
+  { key: 'interview', to: '/employer/pages/InterviewSchedule', label: 'Interviews' },
   { key: 'profile', to: '/employer/pages/CompanyProfile', label: 'Company Profile' },
 ];
 

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminShell from '../components/AdminShell';
+import { fetchSystemLogs } from '../services/adminService';
 
-const logs = [
+const fallbackLogs = [
   { time: '22:12:08', level: 'INFO', event: 'User login successful', source: 'auth-service' },
   { time: '22:11:01', level: 'WARN', event: 'Company verification pending review', source: 'admin-service' },
   { time: '22:10:16', level: 'ERROR', event: 'Failed background email retry', source: 'notification-worker' },
@@ -14,6 +15,28 @@ const levelColor = {
 };
 
 const SystemLogs = () => {
+  const [logs, setLogs] = useState(fallbackLogs);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const response = await fetchSystemLogs();
+        const mapped = (response?.logs || []).map((item) => ({
+          time: new Date(item.timestamp).toLocaleTimeString(),
+          level: item.level,
+          event: item.message,
+          source: 'backend',
+        }));
+        if (mapped.length > 0) {
+          setLogs(mapped);
+        }
+      } catch {
+        setLogs(fallbackLogs);
+      }
+    };
+    load();
+  }, []);
+
   return (
     <AdminShell active="logs">
       <h1 style={{ fontSize: '34px', marginBottom: '6px' }}>System Logs</h1>

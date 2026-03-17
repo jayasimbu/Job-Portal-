@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import EmployerShell from '../components/EmployerShell';
+import { fetchRankedCandidates, updateCandidateStatus } from '../services/employerService';
 
-const candidates = [
+const fallbackCandidates = [
   { name: 'Alex Rivera', exp: '5 years', score: '92%', status: 'Shortlisted' },
   { name: 'Sarah Chen', exp: '3 years', score: '78%', status: 'Under Review' },
   { name: 'James Wilson', exp: '8 years', score: '45%', status: 'Interview Scheduled' },
@@ -14,6 +15,37 @@ const badge = {
 };
 
 const Candidates = () => {
+  const [candidates, setCandidates] = useState(fallbackCandidates);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const response = await fetchRankedCandidates(1);
+        const ranked = (response?.ranked_candidates || []).map((c, idx) => ({
+          name: `Candidate ${c.user_id || idx + 1}`,
+          exp: `${Math.round(c.experience_years || 0)} years`,
+          score: `${Math.round(c.score || 0)}%`,
+          status: 'Under Review',
+          applicationId: c.application_id,
+        }));
+        if (ranked.length > 0) {
+          setCandidates(ranked);
+        }
+      } catch {
+        setCandidates(fallbackCandidates);
+      }
+    };
+    load();
+  }, []);
+
+  const shortlist = async (applicationId) => {
+    if (!applicationId) {
+      return;
+    }
+    await updateCandidateStatus(applicationId, 'shortlisted');
+    setCandidates((prev) => prev.map((item) => (item.applicationId === applicationId ? { ...item, status: 'Shortlisted' } : item)));
+  };
+
   return (
     <EmployerShell active="candidates">
       <h1 style={{ fontSize: '34px', marginBottom: '6px' }}>Refined Candidate Management</h1>
@@ -42,8 +74,8 @@ const Candidates = () => {
                   </span>
                 </td>
                 <td style={{ padding: '10px 6px', textAlign: 'right' }}>
-                  <button className="btn btn-primary" style={{ padding: '6px 12px' }}>
-                    View
+                  <button className="btn btn-primary" style={{ padding: '6px 12px' }} onClick={() => shortlist(item.applicationId)}>
+                    Shortlist
                   </button>
                 </td>
               </tr>
