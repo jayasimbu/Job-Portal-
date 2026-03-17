@@ -1,0 +1,9443 @@
+{
+  "AWS Certified Cloud Practitioner": {
+    "aliases": [
+      "AWS CCP",
+      "CLF-C02",
+      "AWS Foundation Cert",
+      "aws cloud practitioner certified"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Cloud Computing",
+      "AWS EC2",
+      "AWS S3"
+    ]
+  },
+  "AWS Certified Solutions Architect Associate": {
+    "aliases": [
+      "AWS SAA",
+      "SAA-C03",
+      "Solutions Architect Associate",
+      "aws solutions architect",
+      "aws certified sa associate"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Cloud Architecture",
+      "AWS EC2",
+      "AWS S3",
+      "AWS RDS",
+      "AWS VPC",
+      "AWS IAM"
+    ]
+  },
+  "AWS Certified Solutions Architect Professional": {
+    "aliases": [
+      "AWS SAP",
+      "SAP-C02",
+      "Solutions Architect Pro",
+      "aws certified sap"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Cloud Architecture",
+      "AWS Lambda",
+      "AWS EKS",
+      "AWS CloudFormation"
+    ]
+  },
+  "AWS Certified Developer Associate": {
+    "aliases": [
+      "AWS DVA",
+      "DVA-C02",
+      "aws developer associate",
+      "aws cert developer"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "AWS Lambda",
+      "AWS SDK",
+      "AWS DynamoDB",
+      "AWS API Gateway"
+    ]
+  },
+  "AWS Certified SysOps Administrator": {
+    "aliases": [
+      "AWS SOA",
+      "SOA-C02",
+      "sysops administrator aws"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "AWS CloudWatch",
+      "AWS EC2",
+      "AWS Auto Scaling",
+      "System Administration"
+    ]
+  },
+  "AWS Certified DevOps Engineer Professional": {
+    "aliases": [
+      "AWS DOP",
+      "DOP-C02",
+      "aws devops professional",
+      "aws cert devops"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "CI/CD",
+      "DevOps",
+      "AWS CodePipeline",
+      "Infrastructure as Code"
+    ]
+  },
+  "AWS Certified Machine Learning Specialty": {
+    "aliases": [
+      "AWS MLS",
+      "MLS-C01",
+      "aws ml specialty"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Amazon Web Services",
+      "SageMaker",
+      "Deep Learning"
+    ]
+  },
+  "AWS Certified Security Specialty": {
+    "aliases": [
+      "AWS SCS",
+      "SCS-C02",
+      "aws security specialty"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Amazon Web Services",
+      "AWS IAM",
+      "AWS KMS",
+      "Cloud Security"
+    ]
+  },
+  "AWS Certified Data Analytics Specialty": {
+    "aliases": [
+      "AWS DAS",
+      "DAS-C01",
+      "aws data analytics cert"
+    ],
+    "skills": [
+      "Data Engineering",
+      "AWS Athena",
+      "AWS Glue",
+      "Amazon Redshift",
+      "AWS Kinesis"
+    ]
+  },
+  "Google Cloud Associate Cloud Engineer": {
+    "aliases": [
+      "GCP ACE",
+      "google cloud ace",
+      "associate cloud engineer",
+      "gcp certified ace"
+    ],
+    "skills": [
+      "Google Cloud Platform",
+      "Cloud Computing",
+      "Kubernetes",
+      "Google Compute Engine"
+    ]
+  },
+  "Google Cloud Professional Cloud Architect": {
+    "aliases": [
+      "GCP PCA",
+      "professional cloud architect",
+      "google cloud architect"
+    ],
+    "skills": [
+      "Google Cloud Platform",
+      "Cloud Architecture",
+      "Google Kubernetes Engine",
+      "Google Cloud SQL"
+    ]
+  },
+  "Google Cloud Professional Data Engineer": {
+    "aliases": [
+      "GCP PDE",
+      "professional data engineer google",
+      "google data engineer cert"
+    ],
+    "skills": [
+      "Google Cloud Platform",
+      "BigQuery",
+      "Google Cloud Dataflow",
+      "Data Engineering"
+    ]
+  },
+  "Google Cloud Professional DevOps Engineer": {
+    "aliases": [
+      "GCP DevOps",
+      "google cloud devops cert",
+      "professional devops engineer google"
+    ],
+    "skills": [
+      "Google Cloud Platform",
+      "DevOps",
+      "CI/CD",
+      "Kubernetes"
+    ]
+  },
+  "Google Cloud Professional Machine Learning Engineer": {
+    "aliases": [
+      "GCP MLE",
+      "google ml engineer cert"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Google Cloud Platform",
+      "Vertex AI",
+      "TensorFlow"
+    ]
+  },
+  "Microsoft Certified Azure Fundamentals": {
+    "aliases": [
+      "AZ-900",
+      "azure fundamentals",
+      "azure basics cert",
+      "microsoft az900"
+    ],
+    "skills": [
+      "Microsoft Azure",
+      "Cloud Computing"
+    ]
+  },
+  "Microsoft Certified Azure Administrator": {
+    "aliases": [
+      "AZ-104",
+      "azure administrator associate",
+      "azure admin cert"
+    ],
+    "skills": [
+      "Microsoft Azure",
+      "Azure Active Directory",
+      "Azure Monitor",
+      "Azure Networking"
+    ]
+  },
+  "Microsoft Certified Azure Developer Associate": {
+    "aliases": [
+      "AZ-204",
+      "azure developer associate",
+      "azure dev cert"
+    ],
+    "skills": [
+      "Microsoft Azure",
+      "Azure Functions",
+      "Azure App Service",
+      "Azure DevOps"
+    ]
+  },
+  "Microsoft Certified Azure Solutions Architect": {
+    "aliases": [
+      "AZ-305",
+      "azure solutions architect expert",
+      "azure architect cert"
+    ],
+    "skills": [
+      "Microsoft Azure",
+      "Cloud Architecture",
+      "Azure Virtual Network",
+      "Azure Cosmos DB"
+    ]
+  },
+  "Microsoft Certified Azure DevOps Engineer": {
+    "aliases": [
+      "AZ-400",
+      "azure devops engineer expert",
+      "azure devops cert"
+    ],
+    "skills": [
+      "Microsoft Azure",
+      "Azure DevOps Pipelines",
+      "CI/CD",
+      "DevOps"
+    ]
+  },
+  "Microsoft Certified Azure Data Engineer": {
+    "aliases": [
+      "DP-203",
+      "azure data engineer associate",
+      "azure data cert"
+    ],
+    "skills": [
+      "Microsoft Azure",
+      "Azure Data Factory",
+      "Azure Synapse Analytics",
+      "Data Engineering"
+    ]
+  },
+  "Microsoft Certified Azure AI Engineer": {
+    "aliases": [
+      "AI-102",
+      "azure ai engineer associate",
+      "azure ai cert"
+    ],
+    "skills": [
+      "Microsoft Azure",
+      "Azure OpenAI",
+      "Machine Learning",
+      "Natural Language Processing"
+    ]
+  },
+  "Certified Kubernetes Administrator": {
+    "aliases": [
+      "CKA",
+      "cka certified",
+      "kubernetes admin cert",
+      "k8s administrator cert"
+    ],
+    "skills": [
+      "Kubernetes",
+      "Docker",
+      "Linux",
+      "DevOps",
+      "Cluster Management"
+    ]
+  },
+  "Certified Kubernetes Application Developer": {
+    "aliases": [
+      "CKAD",
+      "ckad certified",
+      "kubernetes developer cert",
+      "k8s developer cert"
+    ],
+    "skills": [
+      "Kubernetes",
+      "Docker",
+      "Microservices",
+      "Helm"
+    ]
+  },
+  "Certified Kubernetes Security Specialist": {
+    "aliases": [
+      "CKS",
+      "kubernetes security specialist",
+      "k8s security cert"
+    ],
+    "skills": [
+      "Kubernetes",
+      "Cybersecurity",
+      "Container Security",
+      "DevSecOps"
+    ]
+  },
+  "HashiCorp Certified Terraform Associate": {
+    "aliases": [
+      "Terraform Associate",
+      "terraform cert",
+      "hashicorp terraform certified"
+    ],
+    "skills": [
+      "Terraform",
+      "Infrastructure as Code",
+      "DevOps"
+    ]
+  },
+  "CompTIA Security+": {
+    "aliases": [
+      "Security Plus",
+      "SY0-701",
+      "comptia security plus",
+      "security+ cert"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Network Security",
+      "Cryptography",
+      "Risk Management"
+    ]
+  },
+  "CompTIA Network+": {
+    "aliases": [
+      "Network Plus",
+      "N10-008",
+      "comptia network plus"
+    ],
+    "skills": [
+      "Network Engineering",
+      "Routing Protocols",
+      "Switching",
+      "Network Security"
+    ]
+  },
+  "CompTIA A+": {
+    "aliases": [
+      "A Plus",
+      "comptia a plus",
+      "a+ certification"
+    ],
+    "skills": [
+      "IT Support",
+      "Hardware Troubleshooting",
+      "Windows",
+      "Linux"
+    ]
+  },
+  "CompTIA CySA+": {
+    "aliases": [
+      "CySA Plus",
+      "CS0-003",
+      "cybersecurity analyst cert"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Threat Detection",
+      "SIEM",
+      "Security Analytics"
+    ]
+  },
+  "CompTIA PenTest+": {
+    "aliases": [
+      "Pen Test Plus",
+      "PT0-002",
+      "pentest cert"
+    ],
+    "skills": [
+      "Penetration Testing",
+      "Ethical Hacking",
+      "Vulnerability Assessment"
+    ]
+  },
+  "CEH": {
+    "aliases": [
+      "Certified Ethical Hacker",
+      "ceh certified",
+      "ec-council ceh",
+      "ethical hacking cert"
+    ],
+    "skills": [
+      "Penetration Testing",
+      "Ethical Hacking",
+      "Cybersecurity",
+      "Network Security"
+    ]
+  },
+  "CISSP": {
+    "aliases": [
+      "Certified Information Systems Security Professional",
+      "cissp certified",
+      "isc2 cissp"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Security Architecture",
+      "Risk Management",
+      "Identity and Access Management"
+    ]
+  },
+  "CISM": {
+    "aliases": [
+      "Certified Information Security Manager",
+      "cism cert",
+      "isaca cism"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Security Management",
+      "Risk Management",
+      "Incident Management"
+    ]
+  },
+  "CISA": {
+    "aliases": [
+      "Certified Information Systems Auditor",
+      "cisa cert",
+      "isaca cisa"
+    ],
+    "skills": [
+      "Audit",
+      "Cybersecurity",
+      "Information Systems",
+      "Compliance"
+    ]
+  },
+  "OSCP": {
+    "aliases": [
+      "Offensive Security Certified Professional",
+      "oscp cert",
+      "offensive security cert"
+    ],
+    "skills": [
+      "Penetration Testing",
+      "Ethical Hacking",
+      "Linux",
+      "Network Security"
+    ]
+  },
+  "CCNA": {
+    "aliases": [
+      "Cisco Certified Network Associate",
+      "ccna certified",
+      "cisco ccna",
+      "ccna routing switching"
+    ],
+    "skills": [
+      "Cisco Networking",
+      "Routing Protocols",
+      "Switching",
+      "Network Engineering",
+      "VLAN"
+    ]
+  },
+  "CCNP": {
+    "aliases": [
+      "Cisco Certified Network Professional",
+      "ccnp certified",
+      "cisco ccnp",
+      "ccnp enterprise"
+    ],
+    "skills": [
+      "Cisco Networking",
+      "BGP",
+      "OSPF",
+      "SD-WAN",
+      "Network Engineering"
+    ]
+  },
+  "CCIE": {
+    "aliases": [
+      "Cisco Certified Internetwork Expert",
+      "ccie cert",
+      "cisco ccie"
+    ],
+    "skills": [
+      "Cisco Networking",
+      "Network Architecture",
+      "Routing Protocols",
+      "Complex Network Design"
+    ]
+  },
+  "PMP": {
+    "aliases": [
+      "Project Management Professional",
+      "pmp certified",
+      "pmi pmp",
+      "project management cert"
+    ],
+    "skills": [
+      "Project Management",
+      "Agile",
+      "Risk Management",
+      "Stakeholder Management",
+      "WBS"
+    ]
+  },
+  "PMI-ACP": {
+    "aliases": [
+      "PMI Agile Certified Practitioner",
+      "pmi-acp certified",
+      "agile pmi cert"
+    ],
+    "skills": [
+      "Agile",
+      "Scrum",
+      "Kanban",
+      "Project Management"
+    ]
+  },
+  "CAPM": {
+    "aliases": [
+      "Certified Associate in Project Management",
+      "capm cert",
+      "pmi capm"
+    ],
+    "skills": [
+      "Project Management",
+      "Risk Register",
+      "Project Charter"
+    ]
+  },
+  "PRINCE2": {
+    "aliases": [
+      "PRINCE2 Foundation",
+      "PRINCE2 Practitioner",
+      "prince2 certified"
+    ],
+    "skills": [
+      "Project Management",
+      "Stakeholder Management",
+      "Risk Management"
+    ]
+  },
+  "Certified Scrum Master": {
+    "aliases": [
+      "CSM",
+      "scrum master certified",
+      "scrumalliance csm",
+      "csm cert"
+    ],
+    "skills": [
+      "Scrum",
+      "Agile",
+      "Sprint Planning",
+      "Backlog Grooming"
+    ]
+  },
+  "Certified Scrum Product Owner": {
+    "aliases": [
+      "CSPO",
+      "product owner certified",
+      "scrumalliance cspo"
+    ],
+    "skills": [
+      "Agile",
+      "Scrum",
+      "Product Management",
+      "User Stories"
+    ]
+  },
+  "SAFe Agilist": {
+    "aliases": [
+      "SA cert",
+      "safe 6.0",
+      "scaled agile agilist",
+      "safe certification"
+    ],
+    "skills": [
+      "Scaled Agile",
+      "SAFe",
+      "PI Planning",
+      "Agile"
+    ]
+  },
+  "Agile Certified Practitioner": {
+    "aliases": [
+      "ICP-ACC",
+      "agile practitioner cert",
+      "agile coach cert"
+    ],
+    "skills": [
+      "Agile",
+      "Coaching",
+      "Facilitation",
+      "Scrum"
+    ]
+  },
+  "Google Data Analytics Certificate": {
+    "aliases": [
+      "google data analytics",
+      "coursera google data",
+      "data analytics google cert"
+    ],
+    "skills": [
+      "Data Science",
+      "SQL",
+      "Google Analytics",
+      "Tableau",
+      "R"
+    ]
+  },
+  "IBM Data Science Professional Certificate": {
+    "aliases": [
+      "IBM data science cert",
+      "ibm data science coursera",
+      "ibm ds cert"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Jupyter Notebook",
+      "SQL",
+      "Python",
+      "Pandas",
+      "Data Science"
+    ]
+  },
+  "TensorFlow Developer Certificate": {
+    "aliases": [
+      "tensorflow cert",
+      "google tensorflow cert",
+      "tensorflow cert google",
+      "tensorflow developer google cert"
+    ],
+    "skills": [
+      "Deep Learning",
+      "Computer Vision",
+      "Python",
+      "NLP",
+      "Neural Networks",
+      "TensorFlow"
+    ]
+  },
+  "Microsoft Certified AI Fundamentals": {
+    "aliases": [
+      "AI-900",
+      "azure ai fundamentals",
+      "microsoft ai fundamentals"
+    ],
+    "skills": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Microsoft Azure"
+    ]
+  },
+  "AWS Machine Learning Specialty": {
+    "aliases": [
+      "aws ml cert",
+      "MLS-C01"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Amazon Web Services",
+      "SageMaker"
+    ]
+  },
+  "Databricks Certified Associate Developer for Apache Spark": {
+    "aliases": [
+      "databricks spark cert",
+      "databricks associate cert"
+    ],
+    "skills": [
+      "Apache Spark",
+      "Databricks",
+      "PySpark",
+      "Data Engineering"
+    ]
+  },
+  "Snowflake SnowPro Core": {
+    "aliases": [
+      "snowpro core",
+      "snowflake core cert",
+      "snowflake certified"
+    ],
+    "skills": [
+      "Snowflake",
+      "SQL",
+      "Data Warehousing",
+      "Cloud Data"
+    ]
+  },
+  "Six Sigma Green Belt": {
+    "aliases": [
+      "SSGB",
+      "green belt six sigma",
+      "six sigma gb certified",
+      "ssbb"
+    ],
+    "skills": [
+      "Six Sigma",
+      "Lean Manufacturing",
+      "Statistical Analysis",
+      "Process Improvement"
+    ]
+  },
+  "Six Sigma Black Belt": {
+    "aliases": [
+      "SSBB",
+      "black belt six sigma",
+      "six sigma bb certified"
+    ],
+    "skills": [
+      "Six Sigma",
+      "Lean Manufacturing",
+      "Statistical Analysis",
+      "Quality Management"
+    ]
+  },
+  "Certified Quality Engineer": {
+    "aliases": [
+      "CQE",
+      "asq cqe",
+      "quality engineer cert"
+    ],
+    "skills": [
+      "Quality Management",
+      "Statistical Analysis",
+      "FMEA",
+      "Six Sigma"
+    ]
+  },
+  "Certified Quality Manager": {
+    "aliases": [
+      "CQM",
+      "asq cqm"
+    ],
+    "skills": [
+      "Quality Management",
+      "Total Quality Management",
+      "ISO 9001"
+    ]
+  },
+  "ISO 9001 Lead Auditor": {
+    "aliases": [
+      "iso 9001 auditor",
+      "qms lead auditor",
+      "iso 9001:2015 auditor"
+    ],
+    "skills": [
+      "ISO 9001",
+      "Quality Management",
+      "Audit"
+    ]
+  },
+  "ISO 14001 Lead Auditor": {
+    "aliases": [
+      "iso 14001 auditor",
+      "ems lead auditor"
+    ],
+    "skills": [
+      "ISO 14001",
+      "Environmental Management",
+      "EHS"
+    ]
+  },
+  "ISO 45001 Lead Auditor": {
+    "aliases": [
+      "iso 45001 auditor",
+      "ohsms auditor",
+      "safety management auditor"
+    ],
+    "skills": [
+      "OSHA",
+      "EHS",
+      "Workplace Safety",
+      "ISO Certification"
+    ]
+  },
+  "ITIL Foundation": {
+    "aliases": [
+      "ITIL v4 foundation",
+      "itil cert",
+      "it service management cert"
+    ],
+    "skills": [
+      "IT Service Management",
+      "ITSM",
+      "Change Management",
+      "Incident Management"
+    ]
+  },
+  "ITIL Practitioner": {
+    "aliases": [
+      "itil 4 practitioner",
+      "itil managing professional"
+    ],
+    "skills": [
+      "IT Service Management",
+      "ITSM",
+      "Service Design"
+    ]
+  },
+  "CPA": {
+    "aliases": [
+      "Certified Public Accountant",
+      "cpa certified",
+      "us cpa",
+      "aicpa cpa"
+    ],
+    "skills": [
+      "Accounting",
+      "GAAP",
+      "Audit",
+      "Tax",
+      "Financial Statements"
+    ]
+  },
+  "CFA": {
+    "aliases": [
+      "Chartered Financial Analyst",
+      "cfa certified",
+      "cfa level 1 2 3"
+    ],
+    "skills": [
+      "Financial Analysis",
+      "Investment Analysis",
+      "Portfolio Management",
+      "Financial Modeling"
+    ]
+  },
+  "CMA": {
+    "aliases": [
+      "Certified Management Accountant",
+      "cma cert",
+      "ima cma",
+      "management accountant cert"
+    ],
+    "skills": [
+      "Management Accounting",
+      "Financial Planning",
+      "Cost Accounting",
+      "Internal Control"
+    ]
+  },
+  "CA": {
+    "aliases": [
+      "Chartered Accountant",
+      "ca certified",
+      "icai ca",
+      "aca acca"
+    ],
+    "skills": [
+      "Accounting",
+      "Audit",
+      "Taxation",
+      "Financial Reporting",
+      "IFRS"
+    ]
+  },
+  "ACCA": {
+    "aliases": [
+      "Association of Chartered Certified Accountants",
+      "acca qualified",
+      "acca member"
+    ],
+    "skills": [
+      "Accounting",
+      "IFRS",
+      "Audit",
+      "Financial Reporting",
+      "Taxation"
+    ]
+  },
+  "CFA Level 1": {
+    "aliases": [
+      "cfa l1",
+      "cfa level 1 passed",
+      "cfa candidate level 1"
+    ],
+    "skills": [
+      "Financial Analysis",
+      "Economics",
+      "Portfolio Management"
+    ]
+  },
+  "FRM": {
+    "aliases": [
+      "Financial Risk Manager",
+      "frm certified",
+      "garp frm"
+    ],
+    "skills": [
+      "Risk Management",
+      "Financial Risk",
+      "Market Risk",
+      "Credit Risk"
+    ]
+  },
+  "CAIA": {
+    "aliases": [
+      "Chartered Alternative Investment Analyst",
+      "caia certified"
+    ],
+    "skills": [
+      "Investment Management",
+      "Hedge Funds",
+      "Private Equity"
+    ]
+  },
+  "SHRM-CP": {
+    "aliases": [
+      "SHRM Certified Professional",
+      "shrm cp cert",
+      "shrm certification"
+    ],
+    "skills": [
+      "Human Resources",
+      "Talent Acquisition",
+      "Employee Relations",
+      "HR Management"
+    ]
+  },
+  "SHRM-SCP": {
+    "aliases": [
+      "SHRM Senior Certified Professional",
+      "shrm scp cert"
+    ],
+    "skills": [
+      "Human Resources",
+      "Strategic HR",
+      "Organizational Development"
+    ]
+  },
+  "PHR": {
+    "aliases": [
+      "Professional in Human Resources",
+      "phr certified",
+      "hrci phr"
+    ],
+    "skills": [
+      "Human Resources",
+      "Talent Acquisition",
+      "Compensation and Benefits"
+    ]
+  },
+  "SPHR": {
+    "aliases": [
+      "Senior Professional in Human Resources",
+      "sphr cert",
+      "hrci sphr"
+    ],
+    "skills": [
+      "Human Resources",
+      "Strategic HR",
+      "Organizational Development"
+    ]
+  },
+  "Google Ads Certification": {
+    "aliases": [
+      "google ads certified",
+      "adwords cert",
+      "google ads search display",
+      "google skillshop ads"
+    ],
+    "skills": [
+      "Pay-Per-Click Advertising",
+      "Google Ads",
+      "Search Engine Marketing",
+      "Digital Marketing"
+    ]
+  },
+  "Google Analytics Certification": {
+    "aliases": [
+      "google analytics certified",
+      "ga4 certification",
+      "google skillshop analytics"
+    ],
+    "skills": [
+      "Google Analytics",
+      "Web Analytics",
+      "Data Analysis",
+      "Digital Marketing"
+    ]
+  },
+  "HubSpot Inbound Marketing Certification": {
+    "aliases": [
+      "hubspot inbound cert",
+      "hubspot certified",
+      "hubspot marketing cert"
+    ],
+    "skills": [
+      "Inbound Marketing",
+      "Content Marketing",
+      "HubSpot CRM",
+      "Email Marketing"
+    ]
+  },
+  "Meta Blueprint Certification": {
+    "aliases": [
+      "facebook meta certified",
+      "meta ads certified",
+      "facebook blueprint"
+    ],
+    "skills": [
+      "Social Media Marketing",
+      "Facebook Advertising",
+      "Instagram Marketing"
+    ]
+  },
+  "Hootsuite Social Media Certification": {
+    "aliases": [
+      "hootsuite certified",
+      "social media hootsuite cert"
+    ],
+    "skills": [
+      "Social Media Marketing",
+      "Hootsuite",
+      "Social Media Management"
+    ]
+  },
+  "SEMrush SEO Certification": {
+    "aliases": [
+      "semrush certified",
+      "seo toolkits cert"
+    ],
+    "skills": [
+      "Search Engine Optimization",
+      "SEO",
+      "Keyword Research",
+      "SEMrush"
+    ]
+  },
+  "Salesforce Certified Administrator": {
+    "aliases": [
+      "sfdc admin cert",
+      "salesforce admin certified"
+    ],
+    "skills": [
+      "Salesforce",
+      "Customer Relationship Management",
+      "CRM Administration"
+    ]
+  },
+  "Google UX Design Certificate": {
+    "aliases": [
+      "google ux cert",
+      "coursera ux google",
+      "google ux design coursera"
+    ],
+    "skills": [
+      "User Experience",
+      "Wireframing",
+      "Prototyping",
+      "Figma",
+      "User Research"
+    ]
+  },
+  "Adobe Certified Professional": {
+    "aliases": [
+      "adobe cert",
+      "acp photoshop",
+      "acp illustrator",
+      "adobe certified expert"
+    ],
+    "skills": [
+      "Adobe Photoshop",
+      "Adobe Illustrator",
+      "Adobe XD",
+      "Graphic Design"
+    ]
+  },
+  "IDEO Design Thinking Certificate": {
+    "aliases": [
+      "design thinking cert",
+      "ideo certified"
+    ],
+    "skills": [
+      "Design Thinking",
+      "User Research",
+      "Prototyping",
+      "Ideation"
+    ]
+  },
+  "Certified Electrical Safety Worker": {
+    "aliases": [
+      "nfpa 70e cert",
+      "electrical safety certified"
+    ],
+    "skills": [
+      "Electrical Work",
+      "Workplace Safety",
+      "EHS"
+    ]
+  },
+  "Certified Energy Manager": {
+    "aliases": [
+      "CEM",
+      "association of energy engineers",
+      "aee cem"
+    ],
+    "skills": [
+      "Energy Management",
+      "Power Systems",
+      "Electrical Engineering"
+    ]
+  },
+  "Professional Engineer": {
+    "aliases": [
+      "PE license",
+      "licensed professional engineer",
+      "pe exam"
+    ],
+    "skills": [
+      "Engineering",
+      "Mechanical Engineering",
+      "Electrical Engineering",
+      "Civil Engineering"
+    ]
+  },
+  "IEC 62443 Cybersecurity": {
+    "aliases": [
+      "ics cybersecurity cert",
+      "ot security cert"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "SCADA",
+      "Industrial Security"
+    ]
+  },
+  "Certified Manufacturing Engineer": {
+    "aliases": [
+      "CMfgE",
+      "sme manufacturing cert",
+      "manufacturing engineer cert"
+    ],
+    "skills": [
+      "Manufacturing Engineering",
+      "CNC Machining",
+      "Lean Manufacturing"
+    ]
+  },
+  "Six Sigma Master Black Belt": {
+    "aliases": [
+      "MBB",
+      "six sigma master bb"
+    ],
+    "skills": [
+      "Six Sigma",
+      "Quality Management",
+      "Statistical Analysis",
+      "Lean Manufacturing"
+    ]
+  },
+  "Lean Six Sigma Green Belt": {
+    "aliases": [
+      "LSSGB",
+      "lean green belt",
+      "lss green belt"
+    ],
+    "skills": [
+      "Lean Manufacturing",
+      "Six Sigma",
+      "Process Improvement"
+    ]
+  },
+  "Certified Reliability Engineer": {
+    "aliases": [
+      "CRE",
+      "reliability engineer cert",
+      "asq cre"
+    ],
+    "skills": [
+      "Reliability Engineering",
+      "FMEA",
+      "Failure Analysis"
+    ]
+  },
+  "SolidWorks Certified Professional": {
+    "aliases": [
+      "CSWP",
+      "solidworks professional cert",
+      "cswa solidworks"
+    ],
+    "skills": [
+      "SolidWorks",
+      "3D Modeling",
+      "CAD Design"
+    ]
+  },
+  "LEED Accredited Professional": {
+    "aliases": [
+      "LEED AP",
+      "leed green assoc",
+      "leed certified ap"
+    ],
+    "skills": [
+      "Green Building",
+      "Sustainable Design",
+      "LEED Certification",
+      "Architecture"
+    ]
+  },
+  "Project Management Professional Construction": {
+    "aliases": [
+      "PMC",
+      "construction pmp",
+      "pmp construction track"
+    ],
+    "skills": [
+      "Construction Management",
+      "Project Management",
+      "Cost Estimation"
+    ]
+  },
+  "Certified Construction Manager": {
+    "aliases": [
+      "CCM",
+      "cmit cert",
+      "construction manager certified"
+    ],
+    "skills": [
+      "Construction Management",
+      "Project Management",
+      "Cost Control"
+    ]
+  },
+  "OSHA 30-Hour": {
+    "aliases": [
+      "osha 30",
+      "osha 30 hour construction",
+      "osha 30 general industry"
+    ],
+    "skills": [
+      "OSHA",
+      "Workplace Safety",
+      "EHS",
+      "Safety Management"
+    ]
+  },
+  "OSHA 10-Hour": {
+    "aliases": [
+      "osha 10",
+      "osha 10 hour"
+    ],
+    "skills": [
+      "OSHA",
+      "Workplace Safety",
+      "EHS"
+    ]
+  },
+  "BLS Certification": {
+    "aliases": [
+      "Basic Life Support",
+      "bls certified",
+      "cpr bls",
+      "aha bls"
+    ],
+    "skills": [
+      "Nursing",
+      "Healthcare",
+      "Emergency Response",
+      "CPR"
+    ]
+  },
+  "ACLS Certification": {
+    "aliases": [
+      "Advanced Cardiac Life Support",
+      "acls certified",
+      "aha acls"
+    ],
+    "skills": [
+      "Nursing",
+      "ICU",
+      "Emergency Medicine",
+      "Cardiac Care"
+    ]
+  },
+  "CPC Medical Coding": {
+    "aliases": [
+      "Certified Professional Coder",
+      "cpc certified",
+      "aapc cpc"
+    ],
+    "skills": [
+      "Medical Coding",
+      "ICD-10",
+      "CPT Codes",
+      "Healthcare"
+    ]
+  },
+  "CPHIMS": {
+    "aliases": [
+      "health informatics cert",
+      "certified professional health informatics"
+    ],
+    "skills": [
+      "Health Information Systems",
+      "EHR",
+      "Healthcare IT"
+    ]
+  },
+  "Registered Nurse License": {
+    "aliases": [
+      "RN license",
+      "nclex rn",
+      "registered nurse nclex",
+      "nursing license"
+    ],
+    "skills": [
+      "Nursing",
+      "Patient Care",
+      "Clinical Assessment",
+      "Healthcare"
+    ]
+  },
+  "CSCP": {
+    "aliases": [
+      "Certified Supply Chain Professional",
+      "apics cscp",
+      "supply chain professional cert"
+    ],
+    "skills": [
+      "Supply Chain Management",
+      "Inventory Management",
+      "Demand Forecasting",
+      "Logistics"
+    ]
+  },
+  "CPIM": {
+    "aliases": [
+      "Certified in Planning and Inventory Management",
+      "apics cpim"
+    ],
+    "skills": [
+      "Inventory Management",
+      "Production Planning",
+      "Supply Chain Management"
+    ]
+  },
+  "CLTD": {
+    "aliases": [
+      "Certified in Logistics Transportation Distribution",
+      "apics cltd"
+    ],
+    "skills": [
+      "Logistics",
+      "Supply Chain Management",
+      "Freight Forwarding"
+    ]
+  },
+  "Lean Certification": {
+    "aliases": [
+      "lean practitioner cert",
+      "lean bronze silver gold cert"
+    ],
+    "skills": [
+      "Lean Manufacturing",
+      "Continuous Improvement",
+      "Waste Reduction"
+    ]
+  },
+  "CIPP": {
+    "aliases": [
+      "Certified Information Privacy Professional",
+      "cipp/us cipp/e",
+      "privacy professional cert"
+    ],
+    "skills": [
+      "GDPR",
+      "Data Protection Law",
+      "Privacy Compliance",
+      "HIPAA"
+    ]
+  },
+  "CRCM": {
+    "aliases": [
+      "Certified Regulatory Compliance Manager",
+      "banking compliance cert"
+    ],
+    "skills": [
+      "Compliance",
+      "Regulatory Compliance",
+      "Banking Regulations"
+    ]
+  },
+  "Certified Fraud Examiner": {
+    "aliases": [
+      "CFE",
+      "acfe cfe",
+      "fraud examiner cert"
+    ],
+    "skills": [
+      "Forensic Accounting",
+      "Fraud Detection",
+      "Audit",
+      "Compliance"
+    ]
+  },
+  "Microsoft Power BI Data Analyst": {
+    "aliases": [
+      "PL-300",
+      "power bi analyst cert",
+      "microsoft power bi certified"
+    ],
+    "skills": [
+      "Power BI",
+      "Data Analysis",
+      "DAX",
+      "Business Intelligence"
+    ]
+  },
+  "Tableau Desktop Specialist": {
+    "aliases": [
+      "tableau specialist",
+      "tableau certified",
+      "tableau desktop cert"
+    ],
+    "skills": [
+      "Tableau",
+      "Data Visualization",
+      "Business Intelligence"
+    ]
+  },
+  "Cloudera Certified Data Engineer": {
+    "aliases": [
+      "CDE cloudera",
+      "cloudera data eng cert"
+    ],
+    "skills": [
+      "Apache Spark",
+      "Hadoop",
+      "Data Engineering",
+      "Hive"
+    ]
+  },
+  "Docker Certified Associate": {
+    "aliases": [
+      "DCA",
+      "docker certified",
+      "docker associate cert"
+    ],
+    "skills": [
+      "Docker",
+      "Containerization",
+      "Microservices",
+      "DevOps"
+    ]
+  },
+  "Red Hat Certified Engineer": {
+    "aliases": [
+      "RHCE",
+      "red hat certified engineer",
+      "rhce exam"
+    ],
+    "skills": [
+      "Linux Administration",
+      "Red Hat Linux",
+      "Bash",
+      "DevOps"
+    ]
+  },
+  "Red Hat Certified System Administrator": {
+    "aliases": [
+      "RHCSA",
+      "red hat certified system admin",
+      "rhcsa exam"
+    ],
+    "skills": [
+      "Linux Administration",
+      "Red Hat Linux",
+      "System Administration"
+    ]
+  },
+  "GitLab Certified Associate": {
+    "aliases": [
+      "gitlab cert",
+      "gitlab ci cert"
+    ],
+    "skills": [
+      "GitLab CI",
+      "CI/CD",
+      "DevOps",
+      "Git"
+    ]
+  },
+  "Jenkins Certified Engineer": {
+    "aliases": [
+      "jenkins cert",
+      "certified jenkins engineer"
+    ],
+    "skills": [
+      "Jenkins",
+      "CI/CD",
+      "DevOps",
+      "Pipeline Automation"
+    ]
+  },
+  "Microsoft Office Specialist": {
+    "aliases": [
+      "MOS",
+      "mos excel",
+      "mos word",
+      "microsoft office certified",
+      "mos certification"
+    ],
+    "skills": [
+      "Microsoft Excel",
+      "Microsoft Office",
+      "Microsoft Word",
+      "Microsoft PowerPoint"
+    ]
+  },
+  "Microsoft Excel Expert": {
+    "aliases": [
+      "excel expert cert",
+      "excel mos expert",
+      "mos excel expert"
+    ],
+    "skills": [
+      "Microsoft Excel",
+      "Excel VBA",
+      "Excel Pivot Tables",
+      "Data Analysis"
+    ]
+  },
+  "CELTA": {
+    "aliases": [
+      "Certificate in English Language Teaching",
+      "celta teaching cert",
+      "english teaching cert"
+    ],
+    "skills": [
+      "Teaching",
+      "English Language Teaching",
+      "Education",
+      "Curriculum Development"
+    ]
+  },
+  "TESOL": {
+    "aliases": [
+      "Teaching English to Speakers of Other Languages",
+      "tesol cert"
+    ],
+    "skills": [
+      "English Language Teaching",
+      "Curriculum Development",
+      "ESL Teaching"
+    ]
+  },
+  "ATD Certified Professional in Talent Development": {
+    "aliases": [
+      "CPTD",
+      "atd cptd",
+      "talent development cert"
+    ],
+    "skills": [
+      "Learning and Development",
+      "Instructional Design",
+      "Training Delivery"
+    ]
+  },
+  "Commercial Pilot License": {
+    "aliases": [
+      "CPL",
+      "cpl certified pilot",
+      "dgca cpl"
+    ],
+    "skills": [
+      "Aviation",
+      "Pilot",
+      "Flight Operations",
+      "Air Traffic Control"
+    ]
+  },
+  "Airline Transport Pilot License": {
+    "aliases": [
+      "ATPL",
+      "airline pilot license",
+      "atpl certified"
+    ],
+    "skills": [
+      "Aviation",
+      "Pilot",
+      "Airline Operations"
+    ]
+  },
+  "AME License": {
+    "aliases": [
+      "Aircraft Maintenance Engineer License",
+      "ame cert",
+      "dgca ame"
+    ],
+    "skills": [
+      "Aviation Maintenance",
+      "Aircraft Systems",
+      "Avionics"
+    ]
+  },
+  "Real Estate Broker License": {
+    "aliases": [
+      "real estate license",
+      "property broker cert",
+      "rera certified agent"
+    ],
+    "skills": [
+      "Real Estate Sales",
+      "Property Management",
+      "Real Estate Law",
+      "RERA Compliance"
+    ]
+  },
+  "Certified Commercial Real Estate": {
+    "aliases": [
+      "ccim",
+      "commercial real estate cert"
+    ],
+    "skills": [
+      "Real Estate Development",
+      "Commercial Real Estate",
+      "Property Management"
+    ]
+  },
+  "Well Control Certification": {
+    "aliases": [
+      "IWCF",
+      "IADC well control",
+      "well control cert",
+      "blowout prevention cert"
+    ],
+    "skills": [
+      "Drilling Engineering",
+      "Well Completion",
+      "HSE Oil Gas",
+      "Petroleum Engineering"
+    ]
+  },
+  "NEBOSH International General Certificate": {
+    "aliases": [
+      "NEBOSH IGC",
+      "nebosh cert",
+      "nebosh general cert"
+    ],
+    "skills": [
+      "OSHA",
+      "EHS",
+      "Health and Safety",
+      "Risk Management"
+    ]
+  },
+  "Certified Product Manager": {
+    "aliases": [
+      "CPM product",
+      "aipmm cpm",
+      "product manager cert"
+    ],
+    "skills": [
+      "Product Management",
+      "Agile",
+      "Roadmapping",
+      "User Stories"
+    ]
+  },
+  "PSPO": {
+    "aliases": [
+      "Professional Scrum Product Owner",
+      "pspo cert",
+      "scrum.org pspo"
+    ],
+    "skills": [
+      "Product Management",
+      "Scrum",
+      "Agile",
+      "Backlog Grooming"
+    ]
+  },
+  "PSM": {
+    "aliases": [
+      "Professional Scrum Master",
+      "psm cert",
+      "scrum.org psm"
+    ],
+    "skills": [
+      "Scrum",
+      "Agile",
+      "Sprint Planning",
+      "Daily Standup"
+    ]
+  },
+  "DSDM Agile Practitioner": {
+    "aliases": [
+      "dsdm cert",
+      "dynamic systems development method"
+    ],
+    "skills": [
+      "Agile",
+      "Project Management"
+    ]
+  },
+  "Meta Front-End Developer Certificate": {
+    "aliases": [
+      "meta frontend cert",
+      "coursera meta frontend",
+      "facebook developer cert"
+    ],
+    "skills": [
+      "React",
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Version Control"
+    ]
+  },
+  "Meta Back-End Developer Certificate": {
+    "aliases": [
+      "meta backend cert",
+      "coursera meta backend"
+    ],
+    "skills": [
+      "Python",
+      "Django",
+      "REST API",
+      "MySQL",
+      "Version Control"
+    ]
+  },
+  "IBM Full Stack Software Developer": {
+    "aliases": [
+      "ibm full stack cert",
+      "ibm developer professional cert"
+    ],
+    "skills": [
+      "React",
+      "Node.js",
+      "Python",
+      "Cloud Computing",
+      "Docker"
+    ]
+  },
+  "DeepLearning.AI TensorFlow Developer": {
+    "aliases": [
+      "deeplearning.ai cert",
+      "tensorflow developer coursera"
+    ],
+    "skills": [
+      "TensorFlow",
+      "Deep Learning",
+      "Convolutional Neural Networks",
+      "NLP"
+    ]
+  },
+  "Udacity Nanodegree": {
+    "aliases": [
+      "udacity nanodegree graduate",
+      "nd cert udacity"
+    ],
+    "skills": [
+      "Data Science",
+      "Machine Learning",
+      "Deep Learning"
+    ]
+  },
+  "AWS Certified Advanced Networking Specialty": {
+    "aliases": [
+      "ANS-C01",
+      "aws networking specialty",
+      "aws advanced networking cert"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Network Engineering",
+      "AWS VPC",
+      "SD-WAN",
+      "BGP"
+    ]
+  },
+  "AWS Certified Database Specialty": {
+    "aliases": [
+      "DBS-C01",
+      "aws database specialty",
+      "aws db cert"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "AWS RDS",
+      "DynamoDB",
+      "AWS Redshift",
+      "Database Administration"
+    ]
+  },
+  "AWS Certified SAP on AWS Specialty": {
+    "aliases": [
+      "PAS-C01",
+      "aws sap specialty"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "SAP",
+      "Cloud Migration",
+      "SAP HANA"
+    ]
+  },
+  "AWS Certified Cloud Practitioner Foundational": {
+    "aliases": [
+      "clf-c01",
+      "aws clf",
+      "aws entry cert"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Cloud Computing"
+    ]
+  },
+  "AWS re/Start Graduate": {
+    "aliases": [
+      "aws restart",
+      "aws restart graduate",
+      "aws cloud skills"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Linux",
+      "Python",
+      "Networking",
+      "Cloud Computing"
+    ]
+  },
+  "Google Cloud Professional Cloud Network Engineer": {
+    "aliases": [
+      "GCP Network Eng",
+      "google cloud network cert"
+    ],
+    "skills": [
+      "Google Cloud Platform",
+      "Network Engineering",
+      "VPC",
+      "Cloud DNS"
+    ]
+  },
+  "Google Cloud Professional Cloud Security Engineer": {
+    "aliases": [
+      "GCP Security Eng",
+      "google cloud security cert"
+    ],
+    "skills": [
+      "Google Cloud Platform",
+      "Cybersecurity",
+      "IAM",
+      "Cloud Security"
+    ]
+  },
+  "Google Cloud Professional Cloud Database Engineer": {
+    "aliases": [
+      "GCP DB Eng",
+      "google cloud database cert"
+    ],
+    "skills": [
+      "Google Cloud Platform",
+      "Cloud SQL",
+      "BigQuery",
+      "Spanner",
+      "Database Engineering"
+    ]
+  },
+  "Google Cloud Digital Leader": {
+    "aliases": [
+      "google cloud digital",
+      "gcp digital leader cert",
+      "google cloud foundation"
+    ],
+    "skills": [
+      "Google Cloud Platform",
+      "Cloud Computing",
+      "Digital Transformation"
+    ]
+  },
+  "Google Workspace Administrator": {
+    "aliases": [
+      "gsuite admin cert",
+      "google workspace admin cert"
+    ],
+    "skills": [
+      "Google Workspace",
+      "G Suite",
+      "Email Administration",
+      "IT Support"
+    ]
+  },
+  "Microsoft Azure IoT Developer": {
+    "aliases": [
+      "AZ-220",
+      "azure iot cert",
+      "azure iot developer"
+    ],
+    "skills": [
+      "Internet of Things",
+      "Microsoft Azure",
+      "Azure IoT Hub",
+      "Edge Computing"
+    ]
+  },
+  "Microsoft Azure Database Administrator": {
+    "aliases": [
+      "DP-300",
+      "azure dba cert",
+      "azure database admin"
+    ],
+    "skills": [
+      "Microsoft Azure",
+      "SQL Server",
+      "Azure SQL",
+      "Database Administration"
+    ]
+  },
+  "Microsoft Azure Stack Hub Operator": {
+    "aliases": [
+      "AZ-600",
+      "azure stack cert"
+    ],
+    "skills": [
+      "Microsoft Azure",
+      "Hybrid Cloud",
+      "Infrastructure Management"
+    ]
+  },
+  "Microsoft 365 Fundamentals": {
+    "aliases": [
+      "MS-900",
+      "microsoft 365 fundamentals cert",
+      "m365 basics cert"
+    ],
+    "skills": [
+      "Microsoft Office",
+      "Microsoft Azure",
+      "Cloud Computing",
+      "Collaboration Tools"
+    ]
+  },
+  "Microsoft 365 Administrator Expert": {
+    "aliases": [
+      "MS-102",
+      "microsoft 365 admin",
+      "m365 enterprise admin"
+    ],
+    "skills": [
+      "Microsoft Office",
+      "Active Directory",
+      "Microsoft Azure",
+      "Identity Management"
+    ]
+  },
+  "Microsoft Power Platform Fundamentals": {
+    "aliases": [
+      "PL-900",
+      "power platform fundamentals",
+      "microsoft power platform cert"
+    ],
+    "skills": [
+      "Microsoft Power BI",
+      "Power Apps",
+      "Power Automate",
+      "Low-Code Development"
+    ]
+  },
+  "Microsoft Power Platform Developer": {
+    "aliases": [
+      "PL-400",
+      "power platform developer cert"
+    ],
+    "skills": [
+      "Power Apps",
+      "Power Automate",
+      "Microsoft Power BI",
+      "Dataverse"
+    ]
+  },
+  "Microsoft Dynamics 365 Fundamentals": {
+    "aliases": [
+      "MB-910",
+      "MB-920",
+      "dynamics 365 fundamentals cert"
+    ],
+    "skills": [
+      "Microsoft Dynamics 365",
+      "CRM",
+      "ERP",
+      "Business Applications"
+    ]
+  },
+  "Microsoft Azure Fundamentals": {
+    "aliases": [
+      "AZ-900 cert",
+      "azure az900"
+    ],
+    "skills": [
+      "Microsoft Azure",
+      "Cloud Computing",
+      "Azure Services"
+    ]
+  },
+  "Oracle Certified Professional Java Developer": {
+    "aliases": [
+      "OCP Java",
+      "oracle java certified professional",
+      "java 17 ocp",
+      "ocajp ocpjp"
+    ],
+    "skills": [
+      "Java",
+      "Object Oriented Programming",
+      "Spring Boot",
+      "JVM"
+    ]
+  },
+  "Oracle Certified Associate Java Developer": {
+    "aliases": [
+      "OCA Java",
+      "oracle java associate",
+      "java oca cert"
+    ],
+    "skills": [
+      "Java",
+      "Programming",
+      "Object Oriented Programming"
+    ]
+  },
+  "Oracle Database Administrator Certified Professional": {
+    "aliases": [
+      "Oracle DBA",
+      "oracle certified dba",
+      "ocp dba"
+    ],
+    "skills": [
+      "Oracle Database",
+      "SQL",
+      "Database Administration",
+      "PL/SQL"
+    ]
+  },
+  "Oracle Cloud Infrastructure Foundations Certified Associate": {
+    "aliases": [
+      "OCI foundations cert",
+      "oracle cloud foundations"
+    ],
+    "skills": [
+      "Oracle Cloud",
+      "Cloud Computing",
+      "Infrastructure Management"
+    ]
+  },
+  "Oracle Cloud Infrastructure Architect Associate": {
+    "aliases": [
+      "OCI architect cert",
+      "oracle cloud architect"
+    ],
+    "skills": [
+      "Oracle Cloud",
+      "Cloud Architecture",
+      "Infrastructure as Code"
+    ]
+  },
+  "SAP Certified Application Associate": {
+    "aliases": [
+      "SAP C_TERP10",
+      "sap application cert",
+      "sap associate cert",
+      "sap certification"
+    ],
+    "skills": [
+      "SAP",
+      "SAP FICO",
+      "SAP MM",
+      "SAP SD",
+      "ERP"
+    ]
+  },
+  "SAP Certified Development Associate ABAP": {
+    "aliases": [
+      "SAP ABAP cert",
+      "sap developer abap",
+      "abap sap certified"
+    ],
+    "skills": [
+      "SAP",
+      "ABAP Programming",
+      "SAP Development"
+    ]
+  },
+  "SAP Certified Technology Associate SAP HANA": {
+    "aliases": [
+      "sap hana cert",
+      "c_hanaimp",
+      "sap hana certified"
+    ],
+    "skills": [
+      "SAP HANA",
+      "SAP",
+      "Database Administration",
+      "In-Memory DB"
+    ]
+  },
+  "SAP SuccessFactors HCM Associate": {
+    "aliases": [
+      "sap successfactors cert",
+      "hcm sap cert"
+    ],
+    "skills": [
+      "SAP SuccessFactors",
+      "Human Resources",
+      "HCM",
+      "Talent Management"
+    ]
+  },
+  "GIAC Security Essentials": {
+    "aliases": [
+      "GSEC",
+      "giac gsec",
+      "security essentials sans"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Network Security",
+      "Security Operations"
+    ]
+  },
+  "GIAC Certified Incident Handler": {
+    "aliases": [
+      "GCIH",
+      "incident response cert",
+      "giac incident handler"
+    ],
+    "skills": [
+      "Incident Response",
+      "Threat Detection",
+      "Cybersecurity",
+      "SIEM"
+    ]
+  },
+  "GIAC Certified Enterprise Defender": {
+    "aliases": [
+      "GCED",
+      "enterprise defender cert"
+    ],
+    "skills": [
+      "Network Defense",
+      "Cybersecurity",
+      "Firewall Management"
+    ]
+  },
+  "Certified Cloud Security Professional": {
+    "aliases": [
+      "CCSP",
+      "isc2 ccsp",
+      "cloud security professional cert"
+    ],
+    "skills": [
+      "Cloud Security",
+      "Cybersecurity",
+      "DevSecOps",
+      "Compliance"
+    ]
+  },
+  "Certified in Risk and Information Systems Control": {
+    "aliases": [
+      "CRISC",
+      "isaca crisc",
+      "risk systems cert"
+    ],
+    "skills": [
+      "Risk Management",
+      "Information Systems",
+      "IT Risk",
+      "Compliance"
+    ]
+  },
+  "Certified Data Privacy Solutions Engineer": {
+    "aliases": [
+      "CDPSE",
+      "isaca cdpse",
+      "data privacy engineer cert"
+    ],
+    "skills": [
+      "Data Protection Law",
+      "GDPR",
+      "Privacy Engineering",
+      "Cybersecurity"
+    ]
+  },
+  "EC-Council Certified Network Defender": {
+    "aliases": [
+      "CND",
+      "network defender cert",
+      "ec council cnd"
+    ],
+    "skills": [
+      "Network Security",
+      "Firewall Management",
+      "Network Engineering",
+      "Cybersecurity"
+    ]
+  },
+  "EC-Council Certified Application Security Engineer": {
+    "aliases": [
+      "CASE",
+      "application security cert",
+      "ec council case"
+    ],
+    "skills": [
+      "Application Security",
+      "SAST",
+      "DAST",
+      "Secure Coding",
+      "DevSecOps"
+    ]
+  },
+  "Offensive Security Experienced Penetration Tester": {
+    "aliases": [
+      "OSEP",
+      "offensive security cert advanced",
+      "advanced pentest cert"
+    ],
+    "skills": [
+      "Penetration Testing",
+      "Ethical Hacking",
+      "Advanced Exploitation"
+    ]
+  },
+  "CompTIA Cloud+": {
+    "aliases": [
+      "Cloud Plus",
+      "CV0-004",
+      "comptia cloud plus"
+    ],
+    "skills": [
+      "Cloud Computing",
+      "Amazon Web Services",
+      "Microsoft Azure",
+      "Virtualization"
+    ]
+  },
+  "CompTIA Linux+": {
+    "aliases": [
+      "Linux Plus",
+      "XK0-005",
+      "comptia linux plus"
+    ],
+    "skills": [
+      "Linux Administration",
+      "Bash",
+      "System Administration"
+    ]
+  },
+  "CompTIA Data+": {
+    "aliases": [
+      "Data Plus",
+      "DA0-001",
+      "comptia data plus"
+    ],
+    "skills": [
+      "Data Analysis",
+      "SQL",
+      "Data Visualization",
+      "Business Intelligence"
+    ]
+  },
+  "CompTIA Server+": {
+    "aliases": [
+      "Server Plus",
+      "SK0-005",
+      "comptia server plus"
+    ],
+    "skills": [
+      "System Administration",
+      "Server Management",
+      "Hardware Troubleshooting"
+    ]
+  },
+  "Puppet Professional": {
+    "aliases": [
+      "puppet certified",
+      "puppet practitioner"
+    ],
+    "skills": [
+      "Puppet",
+      "Configuration Management",
+      "DevOps",
+      "Infrastructure as Code"
+    ]
+  },
+  "Chef Certified Developer": {
+    "aliases": [
+      "chef cert",
+      "chef developer certified"
+    ],
+    "skills": [
+      "Chef",
+      "Configuration Management",
+      "DevOps",
+      "Ruby"
+    ]
+  },
+  "Istio Certification": {
+    "aliases": [
+      "IASCA",
+      "istio service mesh cert"
+    ],
+    "skills": [
+      "Kubernetes",
+      "Service Mesh",
+      "Microservices",
+      "DevOps"
+    ]
+  },
+  "Prometheus Certified Associate": {
+    "aliases": [
+      "PCA cert",
+      "prometheus cert",
+      "cncf prometheus cert"
+    ],
+    "skills": [
+      "Prometheus",
+      "Monitoring",
+      "Grafana",
+      "Observability"
+    ]
+  },
+  "Argo CD Certified": {
+    "aliases": [
+      "argo cd cert",
+      "argocd gitops cert"
+    ],
+    "skills": [
+      "ArgoCD",
+      "GitOps",
+      "Kubernetes",
+      "CI/CD"
+    ]
+  },
+  "Linux Foundation Certified System Administrator": {
+    "aliases": [
+      "LFCS",
+      "linux foundation cert",
+      "lfcs cert"
+    ],
+    "skills": [
+      "Linux Administration",
+      "System Administration",
+      "Bash",
+      "Networking"
+    ]
+  },
+  "Linux Foundation Certified IT Associate": {
+    "aliases": [
+      "LFCA",
+      "linux foundation it associate"
+    ],
+    "skills": [
+      "Linux",
+      "Cloud Computing",
+      "IT Support",
+      "Networking"
+    ]
+  },
+  "OpenShift Certified Developer": {
+    "aliases": [
+      "EX288",
+      "openshift developer cert",
+      "red hat openshift dev"
+    ],
+    "skills": [
+      "OpenShift",
+      "Kubernetes",
+      "Docker",
+      "CI/CD"
+    ]
+  },
+  "Red Hat Certified OpenShift Administrator": {
+    "aliases": [
+      "EX280",
+      "openshift admin cert",
+      "red hat openshift admin"
+    ],
+    "skills": [
+      "OpenShift",
+      "Kubernetes",
+      "Linux Administration"
+    ]
+  },
+  "Splunk Core Certified User": {
+    "aliases": [
+      "splunk user cert",
+      "splunk certified"
+    ],
+    "skills": [
+      "Splunk",
+      "Log Management",
+      "SIEM",
+      "Security Operations"
+    ]
+  },
+  "Elastic Certified Engineer": {
+    "aliases": [
+      "elasticsearch cert",
+      "elastic engineer cert"
+    ],
+    "skills": [
+      "Elasticsearch",
+      "ELK Stack",
+      "Log Analysis",
+      "Search Engineering"
+    ]
+  },
+  "Datadog Certified Professional": {
+    "aliases": [
+      "datadog cert",
+      "datadog professional"
+    ],
+    "skills": [
+      "Datadog",
+      "Monitoring",
+      "Observability",
+      "APM"
+    ]
+  },
+  "Python Institute PCEP": {
+    "aliases": [
+      "PCEP cert",
+      "python entry cert",
+      "pcep python"
+    ],
+    "skills": [
+      "Python",
+      "Programming",
+      "Scripting"
+    ]
+  },
+  "Python Institute PCAP": {
+    "aliases": [
+      "PCAP cert",
+      "python associate cert",
+      "pcap python"
+    ],
+    "skills": [
+      "Python",
+      "OOP",
+      "Libraries",
+      "Data Structures"
+    ]
+  },
+  "Python Institute PCPP": {
+    "aliases": [
+      "PCPP cert",
+      "python professional cert"
+    ],
+    "skills": [
+      "Python",
+      "Advanced Python",
+      "Frameworks",
+      "APIs"
+    ]
+  },
+  "Microsoft Certified Python Developer": {
+    "aliases": [
+      "microsoft python cert",
+      "python 98-381"
+    ],
+    "skills": [
+      "Python",
+      "Programming",
+      "Scripting"
+    ]
+  },
+  "Go Developer Certification": {
+    "aliases": [
+      "golang cert",
+      "go certified developer"
+    ],
+    "skills": [
+      "Golang",
+      "Microservices",
+      "Backend Development"
+    ]
+  },
+  "Rust Certification": {
+    "aliases": [
+      "rust developer cert"
+    ],
+    "skills": [
+      "Rust",
+      "Systems Programming",
+      "Memory Management"
+    ]
+  },
+  "Scala Developer Certification": {
+    "aliases": [
+      "scala cert",
+      "lightbend scala"
+    ],
+    "skills": [
+      "Scala",
+      "Apache Spark",
+      "Functional Programming"
+    ]
+  },
+  "Kotlin Developer Certification": {
+    "aliases": [
+      "kotlin cert",
+      "jetbrains kotlin cert"
+    ],
+    "skills": [
+      "Kotlin",
+      "Android Development",
+      "JVM"
+    ]
+  },
+  "Swift Developer Certification": {
+    "aliases": [
+      "apple swift cert",
+      "ios swift cert"
+    ],
+    "skills": [
+      "Swift",
+      "iOS Development",
+      "Xcode"
+    ]
+  },
+  "Google Associate Android Developer": {
+    "aliases": [
+      "AAD cert",
+      "android developer cert",
+      "google android cert"
+    ],
+    "skills": [
+      "Android Development",
+      "Kotlin",
+      "Java",
+      "Android Studio"
+    ]
+  },
+  "Apple Certified iOS Developer": {
+    "aliases": [
+      "apple dev cert",
+      "ios developer cert",
+      "apple certified"
+    ],
+    "skills": [
+      "iOS Development",
+      "Swift",
+      "Xcode",
+      "UIKit",
+      "SwiftUI"
+    ]
+  },
+  "React Native Certification": {
+    "aliases": [
+      "react native cert",
+      "cross platform mobile cert"
+    ],
+    "skills": [
+      "React Native",
+      "Mobile Development",
+      "JavaScript",
+      "React"
+    ]
+  },
+  "Flutter Certification": {
+    "aliases": [
+      "flutter cert",
+      "dart flutter certified"
+    ],
+    "skills": [
+      "Flutter",
+      "Dart",
+      "Mobile Development",
+      "Cross-Platform"
+    ]
+  },
+  "Microsoft Certified Data Analyst Associate": {
+    "aliases": [
+      "DA-100",
+      "PL-300",
+      "power bi analyst",
+      "microsoft data analyst"
+    ],
+    "skills": [
+      "Power BI",
+      "DAX",
+      "Data Analysis",
+      "Business Intelligence"
+    ]
+  },
+  "Certified Analytics Professional": {
+    "aliases": [
+      "CAP cert",
+      "informs cap",
+      "analytics professional cert"
+    ],
+    "skills": [
+      "Data Science",
+      "Statistical Analysis",
+      "Machine Learning",
+      "Business Analytics"
+    ]
+  },
+  "SAS Certified Base Programmer": {
+    "aliases": [
+      "sas base programmer cert",
+      "sas programmer cert"
+    ],
+    "skills": [
+      "SAS",
+      "Data Analysis",
+      "Statistical Analysis"
+    ]
+  },
+  "SAS Certified Advanced Programmer": {
+    "aliases": [
+      "sas advanced programmer",
+      "sas adv cert"
+    ],
+    "skills": [
+      "SAS",
+      "Advanced Analytics",
+      "Macros",
+      "Statistical Modeling"
+    ]
+  },
+  "IBM Data Analyst Professional Certificate": {
+    "aliases": [
+      "ibm data analyst cert",
+      "ibm analytics cert",
+      "ibm data analyst coursera"
+    ],
+    "skills": [
+      "IBM Cognos",
+      "Excel",
+      "SQL",
+      "Python",
+      "Data Analysis",
+      "Visualization"
+    ]
+  },
+  "Cloudera CDP Administrator": {
+    "aliases": [
+      "cdp admin cert",
+      "cloudera admin cert"
+    ],
+    "skills": [
+      "Hadoop",
+      "Apache Spark",
+      "Data Engineering",
+      "Cloudera"
+    ]
+  },
+  "Qlik Sense Business Analyst": {
+    "aliases": [
+      "qlik sense cert",
+      "qlik certified"
+    ],
+    "skills": [
+      "Qlik Sense",
+      "Data Visualization",
+      "Business Intelligence"
+    ]
+  },
+  "DAMA Certified Data Management Professional": {
+    "aliases": [
+      "CDMP",
+      "data management cert",
+      "dama cdmp"
+    ],
+    "skills": [
+      "Data Governance",
+      "Data Management",
+      "Data Quality",
+      "Master Data"
+    ]
+  },
+  "NVIDIA Deep Learning Institute Certificate": {
+    "aliases": [
+      "nvidia dli cert",
+      "nvidia deep learning cert",
+      "dli certified"
+    ],
+    "skills": [
+      "Deep Learning",
+      "GPU Computing",
+      "CUDA",
+      "TensorFlow",
+      "PyTorch"
+    ]
+  },
+  "Certified Artificial Intelligence Practitioner": {
+    "aliases": [
+      "CAIP cert",
+      "certifAIed",
+      "ai practitioner cert"
+    ],
+    "skills": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "AI Ethics"
+    ]
+  },
+  "Professional Machine Learning Engineer Google": {
+    "aliases": [
+      "gcp ml cert",
+      "google ml professional",
+      "pmle cert"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Google Cloud Platform",
+      "Vertex AI",
+      "MLOps"
+    ]
+  },
+  "Azure AI Fundamentals": {
+    "aliases": [
+      "AI-900",
+      "azure ai basics",
+      "microsoft ai fundamentals cert"
+    ],
+    "skills": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Microsoft Azure"
+    ]
+  },
+  "IBM AI Engineering Professional Certificate": {
+    "aliases": [
+      "ibm ai engineering cert",
+      "ibm ai cert",
+      "ibm ai engineering cert coursera"
+    ],
+    "skills": [
+      "Scikit-learn",
+      "Machine Learning",
+      "Deep Learning",
+      "Keras",
+      "TensorFlow",
+      "PyTorch"
+    ]
+  },
+  "OpenAI API Developer Certification": {
+    "aliases": [
+      "openai cert",
+      "chatgpt api cert",
+      "openai developer"
+    ],
+    "skills": [
+      "Large Language Models",
+      "OpenAI API",
+      "Generative AI",
+      "Python"
+    ]
+  },
+  "Certified Agile Leadership": {
+    "aliases": [
+      "CAL cert",
+      "scrumalliance cal",
+      "agile leadership cert"
+    ],
+    "skills": [
+      "Agile",
+      "Leadership",
+      "Organizational Change",
+      "Coaching"
+    ]
+  },
+  "ICAgile Certified Professional": {
+    "aliases": [
+      "ICP cert",
+      "icagile icp"
+    ],
+    "skills": [
+      "Agile",
+      "Coaching",
+      "Facilitation",
+      "Team Dynamics"
+    ]
+  },
+  "DSDM Practitioner": {
+    "aliases": [
+      "dsdm cert",
+      "dynamic systems development practitioner"
+    ],
+    "skills": [
+      "Agile",
+      "Project Management",
+      "Agile Delivery"
+    ]
+  },
+  "Nexus Scaled Scrum Practitioner": {
+    "aliases": [
+      "nexus cert",
+      "scaled scrum cert"
+    ],
+    "skills": [
+      "Scaled Agile",
+      "Scrum",
+      "Multi-Team Coordination"
+    ]
+  },
+  "Certified LeSS Practitioner": {
+    "aliases": [
+      "CLP cert",
+      "less practitioner",
+      "large scale scrum cert"
+    ],
+    "skills": [
+      "Agile",
+      "Scrum",
+      "Scaled Delivery",
+      "LeSS"
+    ]
+  },
+  "Product Management Professional": {
+    "aliases": [
+      "PMP product",
+      "pdma certified",
+      "aipmm pm cert"
+    ],
+    "skills": [
+      "Product Management",
+      "Roadmapping",
+      "User Stories",
+      "Market Research"
+    ]
+  },
+  "Certified OKR Practitioner": {
+    "aliases": [
+      "OKR cert",
+      "okr practitioner cert"
+    ],
+    "skills": [
+      "OKRs",
+      "Goal Setting",
+      "Performance Management",
+      "Agile"
+    ]
+  },
+  "ITIL 4 Leader Digital and IT Strategy": {
+    "aliases": [
+      "ITIL DITS cert",
+      "itil 4 leader cert",
+      "itil digital strategy"
+    ],
+    "skills": [
+      "IT Service Management",
+      "Digital Strategy",
+      "IT Leadership"
+    ]
+  },
+  "ITIL 4 Specialist Create Deliver Support": {
+    "aliases": [
+      "ITIL CDS cert",
+      "itil create deliver cert"
+    ],
+    "skills": [
+      "IT Service Management",
+      "Service Delivery",
+      "Service Desk"
+    ]
+  },
+  "ISO 20000 Lead Auditor": {
+    "aliases": [
+      "ISO 20000 cert",
+      "it service management audit"
+    ],
+    "skills": [
+      "IT Service Management",
+      "Audit",
+      "ITSM",
+      "Process Improvement"
+    ]
+  },
+  "Certified IT Infrastructure Library Expert": {
+    "aliases": [
+      "ITIL Expert",
+      "itil expert cert"
+    ],
+    "skills": [
+      "IT Service Management",
+      "ITSM",
+      "ITIL Lifecycle"
+    ]
+  },
+  "ServiceNow Certified System Administrator": {
+    "aliases": [
+      "servicenow admin",
+      "snow cert",
+      "servicenow csa"
+    ],
+    "skills": [
+      "ServiceNow",
+      "IT Service Management",
+      "ITSM",
+      "Workflow Automation"
+    ]
+  },
+  "ServiceNow Certified Application Developer": {
+    "aliases": [
+      "servicenow developer cert",
+      "snow developer cert"
+    ],
+    "skills": [
+      "ServiceNow",
+      "JavaScript",
+      "ITSM",
+      "Application Development"
+    ]
+  },
+  "BMC Certified Associate": {
+    "aliases": [
+      "bmc remedy cert",
+      "bmc itsm cert"
+    ],
+    "skills": [
+      "ITSM",
+      "BMC Remedy",
+      "IT Service Management"
+    ]
+  },
+  "Multi-Cloud Architect Certification": {
+    "aliases": [
+      "multi cloud cert",
+      "hybrid cloud architect",
+      "cloud agnostic cert"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Microsoft Azure",
+      "Google Cloud Platform",
+      "Cloud Architecture"
+    ]
+  },
+  "FinOps Certified Practitioner": {
+    "aliases": [
+      "FOCP cert",
+      "finops cert",
+      "cloud cost optimization cert"
+    ],
+    "skills": [
+      "Cloud Computing",
+      "Cost Management",
+      "FinOps",
+      "Cloud Governance"
+    ]
+  },
+  "TOGAF 9 Certified": {
+    "aliases": [
+      "TOGAF cert",
+      "togaf 9.2",
+      "enterprise architecture cert",
+      "open group togaf"
+    ],
+    "skills": [
+      "Enterprise Architecture",
+      "IT Architecture",
+      "System Design",
+      "Cloud Architecture"
+    ]
+  },
+  "Zachman Framework Certification": {
+    "aliases": [
+      "zachman cert",
+      "enterprise framework cert"
+    ],
+    "skills": [
+      "Enterprise Architecture",
+      "System Design",
+      "IT Architecture"
+    ]
+  },
+  "Workday HCM Functional Consultant": {
+    "aliases": [
+      "workday cert",
+      "workday hcm cert",
+      "workday functional"
+    ],
+    "skills": [
+      "Workday",
+      "Human Resources",
+      "HCM",
+      "Payroll Management"
+    ]
+  },
+  "SAP HCM Certified": {
+    "aliases": [
+      "sap hr cert",
+      "sap human capital cert"
+    ],
+    "skills": [
+      "SAP",
+      "HR Management",
+      "Payroll",
+      "Talent Management"
+    ]
+  },
+  "ATD Master Trainer": {
+    "aliases": [
+      "atd trainer cert",
+      "master trainer cert"
+    ],
+    "skills": [
+      "Learning and Development",
+      "Training Delivery",
+      "Instructional Design"
+    ]
+  },
+  "Certified Compensation Professional": {
+    "aliases": [
+      "CCP worldatwork",
+      "compensation cert",
+      "total rewards cert"
+    ],
+    "skills": [
+      "Compensation and Benefits",
+      "Job Analysis",
+      "Salary Benchmarking"
+    ]
+  },
+  "Certified Benefits Professional": {
+    "aliases": [
+      "CBP worldatwork",
+      "benefits professional cert"
+    ],
+    "skills": [
+      "Compensation and Benefits",
+      "Employee Benefits",
+      "HR Management"
+    ]
+  },
+  "Lean HR Practitioner": {
+    "aliases": [
+      "lean hr cert"
+    ],
+    "skills": [
+      "Lean Manufacturing",
+      "Process Improvement",
+      "HR Operations"
+    ]
+  },
+  "Chartered Financial Planner": {
+    "aliases": [
+      "CFP cert",
+      "certified financial planner cert",
+      "cfp board"
+    ],
+    "skills": [
+      "Financial Planning",
+      "Investment Management",
+      "Retirement Planning",
+      "Tax Planning"
+    ]
+  },
+  "Chartered Accountant India ICAI": {
+    "aliases": [
+      "CA ICAI",
+      "ca india",
+      "ipcc ca",
+      "ca foundation inter final"
+    ],
+    "skills": [
+      "Accounting",
+      "GAAP",
+      "Indian Accounting Standards",
+      "Taxation",
+      "Audit"
+    ]
+  },
+  "CFA Institute Investment Foundations": {
+    "aliases": [
+      "CFA foundations cert",
+      "investment foundations cert"
+    ],
+    "skills": [
+      "Finance",
+      "Investment Analysis",
+      "Financial Markets"
+    ]
+  },
+  "Certified Treasury Professional": {
+    "aliases": [
+      "CTP cert",
+      "treasury professional cert",
+      "afp ctp"
+    ],
+    "skills": [
+      "Corporate Finance",
+      "Cash Management",
+      "Treasury Operations"
+    ]
+  },
+  "Certified Internal Auditor": {
+    "aliases": [
+      "CIA cert",
+      "iia cia",
+      "internal auditor cert"
+    ],
+    "skills": [
+      "Audit",
+      "Internal Audit",
+      "Risk Management",
+      "Compliance"
+    ]
+  },
+  "ACCA Diploma in IFRS": {
+    "aliases": [
+      "DipIFR",
+      "ifrs diploma",
+      "acca ifrs cert"
+    ],
+    "skills": [
+      "IFRS",
+      "Financial Reporting",
+      "Accounting"
+    ]
+  },
+  "Bloomberg Market Concepts": {
+    "aliases": [
+      "BMC cert",
+      "bloomberg cert",
+      "bloomberg market cert"
+    ],
+    "skills": [
+      "Financial Markets",
+      "Bloomberg Terminal",
+      "Economics",
+      "Financial Analysis"
+    ]
+  },
+  "Certified Credit Analyst": {
+    "aliases": [
+      "CCA cert",
+      "moody's credit cert",
+      "credit analysis cert"
+    ],
+    "skills": [
+      "Credit Analysis",
+      "Financial Analysis",
+      "Risk Management",
+      "Banking"
+    ]
+  },
+  "HubSpot Marketing Hub Certification": {
+    "aliases": [
+      "hubspot marketing cert",
+      "hubspot certified marketer"
+    ],
+    "skills": [
+      "Content Marketing",
+      "Email Marketing",
+      "HubSpot CRM",
+      "Inbound Marketing"
+    ]
+  },
+  "Digital Marketing Institute Certification": {
+    "aliases": [
+      "DMI cert",
+      "dmi professional diploma",
+      "digital marketing diploma"
+    ],
+    "skills": [
+      "Digital Marketing",
+      "Social Media Marketing",
+      "SEO",
+      "Email Marketing"
+    ]
+  },
+  "Facebook Blueprint Certification": {
+    "aliases": [
+      "facebook blueprint",
+      "meta blueprint cert",
+      "facebook ads cert"
+    ],
+    "skills": [
+      "Social Media Marketing",
+      "Facebook Advertising",
+      "Digital Marketing"
+    ]
+  },
+  "Google Digital Marketing and E-commerce Certificate": {
+    "aliases": [
+      "google digital marketing cert",
+      "coursera google marketing"
+    ],
+    "skills": [
+      "Digital Marketing",
+      "Google Analytics",
+      "E-Commerce",
+      "SEO"
+    ]
+  },
+  "LinkedIn Marketing Labs Certification": {
+    "aliases": [
+      "linkedin marketing cert",
+      "linkedin ads cert"
+    ],
+    "skills": [
+      "LinkedIn Advertising",
+      "B2B Marketing",
+      "Social Media Marketing"
+    ]
+  },
+  "Content Marketing Certification": {
+    "aliases": [
+      "content marketing cert",
+      "copyblogger cert"
+    ],
+    "skills": [
+      "Content Marketing",
+      "Blogging",
+      "SEO",
+      "Content Strategy"
+    ]
+  },
+  "Email Marketing Certification": {
+    "aliases": [
+      "mailchimp cert",
+      "klaviyo certification",
+      "email cert"
+    ],
+    "skills": [
+      "Email Marketing",
+      "Marketing Automation",
+      "A/B Testing"
+    ]
+  },
+  "Salesforce Marketing Cloud Email Specialist": {
+    "aliases": [
+      "sfmc email cert",
+      "marketing cloud email cert"
+    ],
+    "skills": [
+      "Salesforce",
+      "Email Marketing",
+      "Marketing Automation",
+      "CRM"
+    ]
+  },
+  "Salesforce Certified Pardot Specialist": {
+    "aliases": [
+      "pardot cert",
+      "salesforce pardot marketing"
+    ],
+    "skills": [
+      "Marketing Automation",
+      "Salesforce",
+      "Lead Generation",
+      "B2B Marketing"
+    ]
+  },
+  "Certified Planning and Inventory Management": {
+    "aliases": [
+      "CPIM cert",
+      "apics cpim cert"
+    ],
+    "skills": [
+      "Inventory Management",
+      "Production Planning",
+      "Supply Chain Management"
+    ]
+  },
+  "Six Sigma for Supply Chain": {
+    "aliases": [
+      "supply chain six sigma",
+      "lean sigma supply chain"
+    ],
+    "skills": [
+      "Six Sigma",
+      "Supply Chain Management",
+      "Process Improvement"
+    ]
+  },
+  "Chartered Institute of Procurement and Supply": {
+    "aliases": [
+      "CIPS cert",
+      "cips level 4 5 6",
+      "procurement cips"
+    ],
+    "skills": [
+      "Procurement",
+      "Supply Chain Management",
+      "Contract Management"
+    ]
+  },
+  "IATA Dangerous Goods Regulation": {
+    "aliases": [
+      "iata dgr cert",
+      "dangerous goods cert",
+      "dg regulations cert"
+    ],
+    "skills": [
+      "Logistics",
+      "Aviation",
+      "Supply Chain Management",
+      "Compliance"
+    ]
+  },
+  "Certified Purchasing Manager": {
+    "aliases": [
+      "CPM cert",
+      "iism purchasing cert",
+      "purchasing manager cert"
+    ],
+    "skills": [
+      "Procurement",
+      "Vendor Management",
+      "Supply Chain Management"
+    ]
+  },
+  "Supply Chain Management Professional": {
+    "aliases": [
+      "SCMP cert",
+      "supply chain pro cert"
+    ],
+    "skills": [
+      "Supply Chain Management",
+      "Logistics",
+      "Demand Forecasting"
+    ]
+  },
+  "Certified Healthcare Financial Professional": {
+    "aliases": [
+      "CHFP cert",
+      "hfma cert",
+      "healthcare finance cert"
+    ],
+    "skills": [
+      "Healthcare",
+      "Finance",
+      "Medical Billing",
+      "Revenue Cycle"
+    ]
+  },
+  "Certified Medical Coder": {
+    "aliases": [
+      "CPC-A",
+      "aapc coder",
+      "medical coding cert"
+    ],
+    "skills": [
+      "Medical Coding",
+      "ICD-10",
+      "CPT Codes",
+      "Healthcare"
+    ]
+  },
+  "Certified Nurse Assistant": {
+    "aliases": [
+      "CNA cert",
+      "nursing assistant cert"
+    ],
+    "skills": [
+      "Nursing",
+      "Patient Care",
+      "Healthcare",
+      "Healthcare Assistance"
+    ]
+  },
+  "Certified Pharmacy Technician": {
+    "aliases": [
+      "CPhT",
+      "ptcb cert",
+      "pharmacy tech cert"
+    ],
+    "skills": [
+      "Pharmacy",
+      "Drug Dispensing",
+      "Healthcare"
+    ]
+  },
+  "HIPAA Compliance Certification": {
+    "aliases": [
+      "hipaa certified",
+      "healthcare privacy cert",
+      "hipaa training cert"
+    ],
+    "skills": [
+      "HIPAA",
+      "Healthcare",
+      "Data Protection Law",
+      "Compliance"
+    ]
+  },
+  "Health IT Certification": {
+    "aliases": [
+      "ANCC health it",
+      "health informatics cert"
+    ],
+    "skills": [
+      "Healthcare IT",
+      "EHR",
+      "HIPAA",
+      "Health Information Systems"
+    ]
+  },
+  "LLM": {
+    "aliases": [
+      "Master of Laws",
+      "llm degree",
+      "legal postgraduate",
+      "llm law"
+    ],
+    "skills": [
+      "Contract Drafting",
+      "Legal Research",
+      "Employment Law",
+      "Corporate Law"
+    ]
+  },
+  "Bar Council Enrollment": {
+    "aliases": [
+      "bar exam qualified",
+      "bar council member",
+      "barrister qualification"
+    ],
+    "skills": [
+      "Litigation",
+      "Legal Drafting",
+      "Contract Law",
+      "Advocacy"
+    ]
+  },
+  "CIPP/E Privacy Certification": {
+    "aliases": [
+      "iapp cippe",
+      "eu privacy cert",
+      "european privacy cert"
+    ],
+    "skills": [
+      "GDPR",
+      "Data Protection Law",
+      "Privacy Law",
+      "Compliance"
+    ]
+  },
+  "CIPP/US Privacy Certification": {
+    "aliases": [
+      "iapp cipp us",
+      "us privacy cert"
+    ],
+    "skills": [
+      "Data Protection Law",
+      "CCPA",
+      "Privacy Law",
+      "Compliance"
+    ]
+  },
+  "GDPR Practitioner Certificate": {
+    "aliases": [
+      "bcs gdpr cert",
+      "gdpr practitioner cert"
+    ],
+    "skills": [
+      "GDPR",
+      "Data Protection",
+      "Privacy Compliance"
+    ]
+  },
+  "Compliance and Ethics Professional": {
+    "aliases": [
+      "CCEP cert",
+      "scce compliance cert"
+    ],
+    "skills": [
+      "Compliance",
+      "Ethics",
+      "Regulatory Compliance"
+    ]
+  },
+  "Certified Systems Engineering Professional": {
+    "aliases": [
+      "CSEP cert",
+      "incose csep",
+      "systems engineering cert"
+    ],
+    "skills": [
+      "System Design",
+      "Systems Engineering",
+      "Requirements Engineering"
+    ]
+  },
+  "Project Management Institute Risk Management": {
+    "aliases": [
+      "PMI-RMP cert",
+      "risk management cert",
+      "pmi rmp"
+    ],
+    "skills": [
+      "Risk Management",
+      "Project Management",
+      "Risk Assessment"
+    ]
+  },
+  "Certified Energy Auditor": {
+    "aliases": [
+      "CEA cert",
+      "energy audit cert",
+      "aee cea"
+    ],
+    "skills": [
+      "Energy Management",
+      "Electrical Engineering",
+      "Sustainability"
+    ]
+  },
+  "ASHRAE Certification": {
+    "aliases": [
+      "ashrae energy cert",
+      "be engineer cert"
+    ],
+    "skills": [
+      "HVAC",
+      "Building Engineering",
+      "Energy Efficiency"
+    ]
+  },
+  "Autodesk Certified Professional": {
+    "aliases": [
+      "ACP autocad",
+      "revit autodesk cert",
+      "autocad professional cert"
+    ],
+    "skills": [
+      "AutoCAD",
+      "Revit",
+      "BIM",
+      "3D Modeling"
+    ]
+  },
+  "Autodesk Certified Instructor": {
+    "aliases": [
+      "ACI cert",
+      "autocad instructor cert"
+    ],
+    "skills": [
+      "AutoCAD",
+      "Teaching",
+      "CAD Design"
+    ]
+  },
+  "ANSYS Certified Professional": {
+    "aliases": [
+      "ansys cert",
+      "fea cert"
+    ],
+    "skills": [
+      "ANSYS",
+      "FEA",
+      "CFD",
+      "Simulation"
+    ]
+  },
+  "Certified Professional in Talent Development": {
+    "aliases": [
+      "CPTD cert",
+      "atd talent cert"
+    ],
+    "skills": [
+      "Learning and Development",
+      "Training Delivery",
+      "Instructional Design"
+    ]
+  },
+  "Associate Professional in Talent Development": {
+    "aliases": [
+      "APTD cert",
+      "atd aptd"
+    ],
+    "skills": [
+      "Learning and Development",
+      "Training",
+      "E-Learning Design"
+    ]
+  },
+  "Certified Online Learning Facilitator": {
+    "aliases": [
+      "online facilitator cert",
+      "virtual trainer cert"
+    ],
+    "skills": [
+      "E-Learning Design",
+      "Online Teaching",
+      "Moodle",
+      "Google Classroom"
+    ]
+  },
+  "Google Certified Educator": {
+    "aliases": [
+      "google educator cert",
+      "google trainer cert",
+      "GCE level 1 2"
+    ],
+    "skills": [
+      "Google Workspace",
+      "Educational Technology",
+      "Google Classroom"
+    ]
+  },
+  "Microsoft Certified Educator": {
+    "aliases": [
+      "MCE cert",
+      "microsoft educator cert"
+    ],
+    "skills": [
+      "Microsoft Office",
+      "Educational Technology",
+      "Teams for Education"
+    ]
+  },
+  "Interaction Design Foundation Certificate": {
+    "aliases": [
+      "IDF cert",
+      "ux ixdf cert",
+      "interaction design cert"
+    ],
+    "skills": [
+      "User Experience",
+      "Interaction Design",
+      "User Research",
+      "Wireframing"
+    ]
+  },
+  "Nielsen Norman Group UX Certification": {
+    "aliases": [
+      "NN/g UX cert",
+      "nngroup cert",
+      "ux specialist cert"
+    ],
+    "skills": [
+      "User Experience",
+      "Usability Testing",
+      "User Research",
+      "Interaction Design"
+    ]
+  },
+  "Figma Professional Designer Certification": {
+    "aliases": [
+      "figma cert",
+      "figma professional",
+      "figma certified designer"
+    ],
+    "skills": [
+      "Figma",
+      "User Interface",
+      "Prototyping",
+      "Wireframing"
+    ]
+  },
+  "Certified in Art Direction": {
+    "aliases": [
+      "art director cert",
+      "creative director cert"
+    ],
+    "skills": [
+      "Graphic Design",
+      "Art Direction",
+      "Brand Management",
+      "Adobe Illustrator"
+    ]
+  },
+  "Certified Residential Specialist": {
+    "aliases": [
+      "CRS cert",
+      "residential specialist cert"
+    ],
+    "skills": [
+      "Real Estate Sales",
+      "Property Management",
+      "Real Estate Law"
+    ]
+  },
+  "Accredited Buyer's Representative": {
+    "aliases": [
+      "ABR cert",
+      "buyer rep cert",
+      "nar abr"
+    ],
+    "skills": [
+      "Real Estate Sales",
+      "Client Management",
+      "Negotiation"
+    ]
+  },
+  "Chartered Surveyor": {
+    "aliases": [
+      "MRICS cert",
+      "rics surveyor",
+      "chartered surveyor cert"
+    ],
+    "skills": [
+      "Property Valuation",
+      "Real Estate Appraisal",
+      "Structural Surveying"
+    ]
+  },
+  "RERA Real Estate Agent Certification": {
+    "aliases": [
+      "rera cert india",
+      "rera registered agent",
+      "rera dealer cert"
+    ],
+    "skills": [
+      "Real Estate Sales",
+      "RERA Compliance",
+      "Property Management"
+    ]
+  },
+  "Certified Hotel Administrator": {
+    "aliases": [
+      "CHA cert",
+      "ahla cha",
+      "hotel admin cert"
+    ],
+    "skills": [
+      "Hotel Management",
+      "Revenue Management",
+      "Operations Management"
+    ]
+  },
+  "Certified Food and Beverage Executive": {
+    "aliases": [
+      "CFBE cert",
+      "fb manager cert"
+    ],
+    "skills": [
+      "Food and Beverage Management",
+      "Hotel Management",
+      "Cost Control"
+    ]
+  },
+  "WSET Wine and Spirit Education": {
+    "aliases": [
+      "WSET cert",
+      "wine cert",
+      "wset level 1 2 3 4"
+    ],
+    "skills": [
+      "Food and Beverage Management",
+      "Wine Knowledge",
+      "Hospitality"
+    ]
+  },
+  "ServSafe Food Handler": {
+    "aliases": [
+      "servsafe cert",
+      "food handler cert",
+      "food safety cert"
+    ],
+    "skills": [
+      "HACCP",
+      "Food Safety",
+      "Culinary Arts",
+      "Kitchen Management"
+    ]
+  },
+  "ISO 14001 Environmental Management": {
+    "aliases": [
+      "iso 14001 cert",
+      "ems certified",
+      "environmental management cert"
+    ],
+    "skills": [
+      "ISO 14001",
+      "Environmental Management",
+      "EHS",
+      "Sustainability"
+    ]
+  },
+  "GRI Sustainability Reporting Standards": {
+    "aliases": [
+      "GRI cert",
+      "sustainability reporting cert",
+      "esg reporting cert"
+    ],
+    "skills": [
+      "Sustainability Reporting",
+      "ESG",
+      "Environmental Management"
+    ]
+  },
+  "Sustainability and ESG Analyst": {
+    "aliases": [
+      "ESG analyst cert",
+      "sfaf esg cert",
+      "sustainability analyst cert"
+    ],
+    "skills": [
+      "ESG",
+      "Sustainability",
+      "Environmental Management",
+      "Financial Analysis"
+    ]
+  },
+  "Carbon Footprint Management Certification": {
+    "aliases": [
+      "carbon cert",
+      "carbon footprint cert"
+    ],
+    "skills": [
+      "Carbon Footprint Analysis",
+      "Environmental Science",
+      "Sustainability"
+    ]
+  },
+  "NEBOSH Environmental Diploma": {
+    "aliases": [
+      "nebosh env cert",
+      "environmental health safety cert"
+    ],
+    "skills": [
+      "EHS",
+      "Environmental Management",
+      "ISO 14001",
+      "Compliance"
+    ]
+  },
+  "Certified in Transportation and Logistics": {
+    "aliases": [
+      "CTL cert",
+      "transportation cert",
+      "logistics certified"
+    ],
+    "skills": [
+      "Logistics",
+      "Transportation Management",
+      "Supply Chain Management"
+    ]
+  },
+  "IATA Foundation Diploma": {
+    "aliases": [
+      "iata diploma",
+      "iata cert",
+      "aviation logistics cert"
+    ],
+    "skills": [
+      "Aviation",
+      "Freight Forwarding",
+      "Logistics",
+      "IATA Regulations"
+    ]
+  },
+  "Certified Logistics Professional": {
+    "aliases": [
+      "CLP logistics",
+      "logistics pro cert"
+    ],
+    "skills": [
+      "Logistics",
+      "Warehouse Management System",
+      "Supply Chain Management"
+    ]
+  },
+  "Certified Social Worker": {
+    "aliases": [
+      "CSW cert",
+      "licensed social worker lsw",
+      "clinical social worker lcsw"
+    ],
+    "skills": [
+      "Social Work",
+      "Community Development",
+      "Case Management"
+    ]
+  },
+  "Project Management for NGOs": {
+    "aliases": [
+      "pm4ngos cert",
+      "ngo project management"
+    ],
+    "skills": [
+      "Non-Profit Management",
+      "Project Management",
+      "Community Development"
+    ]
+  },
+  "Certified Fund Raising Executive": {
+    "aliases": [
+      "CFRE cert",
+      "fundraising cert",
+      "cfre international"
+    ],
+    "skills": [
+      "Grant Writing",
+      "Non-Profit Management",
+      "Community Development"
+    ]
+  },
+  "ASE Automotive Service Excellence": {
+    "aliases": [
+      "ASE certified",
+      "ase mechanic cert",
+      "automotive service cert"
+    ],
+    "skills": [
+      "Automotive Engineering",
+      "Vehicle Diagnostics",
+      "Workshop Management"
+    ]
+  },
+  "ISO 26262 Functional Safety": {
+    "aliases": [
+      "iso 26262 cert",
+      "automotive safety cert",
+      "fusa cert"
+    ],
+    "skills": [
+      "Automotive Engineering",
+      "AUTOSAR",
+      "Safety Engineering"
+    ]
+  },
+  "Automotive SPICE": {
+    "aliases": [
+      "ASPICE cert",
+      "a-spice process cert"
+    ],
+    "skills": [
+      "Automotive Engineering",
+      "Software Development",
+      "Quality Management"
+    ]
+  },
+  "Certified Blockchain Developer": {
+    "aliases": [
+      "CBD cert",
+      "ec council blockchain cert",
+      "blockchain dev cert"
+    ],
+    "skills": [
+      "Blockchain",
+      "Solidity",
+      "Ethereum",
+      "Smart Contracts"
+    ]
+  },
+  "Certified Bitcoin Professional": {
+    "aliases": [
+      "CBP cert",
+      "crypto currency institute cert"
+    ],
+    "skills": [
+      "Blockchain",
+      "Bitcoin",
+      "Cryptocurrency",
+      "Decentralized Finance"
+    ]
+  },
+  "Ethereum Developer Certification": {
+    "aliases": [
+      "ethereum cert",
+      "solidity developer cert"
+    ],
+    "skills": [
+      "Ethereum",
+      "Solidity",
+      "Web3.js",
+      "Smart Contracts",
+      "DeFi"
+    ]
+  },
+  "ConsenSys Academy Developer Bootcamp": {
+    "aliases": [
+      "consensys cert",
+      "ethereum bootcamp cert"
+    ],
+    "skills": [
+      "Ethereum",
+      "Solidity",
+      "Web3.js",
+      "DeFi",
+      "IPFS"
+    ]
+  },
+  "Journalism Certificate": {
+    "aliases": [
+      "print journalism cert",
+      "broadcast journalism cert",
+      "media cert"
+    ],
+    "skills": [
+      "Journalism",
+      "Content Writing",
+      "Public Relations",
+      "Media Planning"
+    ]
+  },
+  "Social Media Management Certification": {
+    "aliases": [
+      "hootsuite social cert",
+      "social media manager cert"
+    ],
+    "skills": [
+      "Social Media Marketing",
+      "Content Creation",
+      "Brand Communications"
+    ]
+  },
+  "Adobe Certified Video Professional": {
+    "aliases": [
+      "adobe premiere cert",
+      "after effects cert",
+      "adobe video cert"
+    ],
+    "skills": [
+      "Video Editing",
+      "Motion Design",
+      "Adobe Premiere",
+      "Adobe After Effects"
+    ]
+  },
+  "NASM Certified Personal Trainer": {
+    "aliases": [
+      "NASM CPT",
+      "personal trainer cert nasm",
+      "nasm cert"
+    ],
+    "skills": [
+      "Personal Training",
+      "Sports Science",
+      "Fitness",
+      "Strength Training"
+    ]
+  },
+  "ACE Fitness Certification": {
+    "aliases": [
+      "ACE CPT",
+      "ace certified",
+      "american council exercise cert"
+    ],
+    "skills": [
+      "Personal Training",
+      "Fitness",
+      "Exercise Physiology"
+    ]
+  },
+  "Certified Strength and Conditioning Specialist": {
+    "aliases": [
+      "CSCS cert",
+      "nsca cscs",
+      "strength conditioning cert"
+    ],
+    "skills": [
+      "Strength Training",
+      "Sports Science",
+      "Athletic Training",
+      "Sports Medicine"
+    ]
+  },
+  "Yoga Alliance Certification": {
+    "aliases": [
+      "RYT 200 500",
+      "yoga teacher cert",
+      "ryt certified"
+    ],
+    "skills": [
+      "Yoga Instructor",
+      "Wellness Coaching",
+      "Mindfulness"
+    ]
+  },
+  "Certified Athletic Trainer": {
+    "aliases": [
+      "ATC cert",
+      "nata certified",
+      "athletic trainer cert"
+    ],
+    "skills": [
+      "Sports Medicine",
+      "Rehabilitation",
+      "Injury Prevention"
+    ]
+  },
+  "Certified Digital Forensics Examiner": {
+    "aliases": [
+      "CDFE cert",
+      "digital forensics cert",
+      "miiis cdfe"
+    ],
+    "skills": [
+      "Digital Forensics",
+      "Cybersecurity",
+      "Evidence Recovery"
+    ]
+  },
+  "SANS GIAC Forensics Certification": {
+    "aliases": [
+      "GCFE cert",
+      "GCFA cert",
+      "sans forensics cert"
+    ],
+    "skills": [
+      "Digital Forensics",
+      "Incident Response",
+      "Cybersecurity"
+    ]
+  },
+  "IELTS": {
+    "aliases": [
+      "ielts academic",
+      "ielts general",
+      "ielts score 7 8 9",
+      "british council ielts"
+    ],
+    "skills": [
+      "Communication",
+      "English Language",
+      "Writing",
+      "Presentation Skills"
+    ]
+  },
+  "TOEFL iBT": {
+    "aliases": [
+      "toefl cert",
+      "ets toefl",
+      "toefl score"
+    ],
+    "skills": [
+      "Communication",
+      "English Language",
+      "Academic Writing"
+    ]
+  },
+  "TOEIC": {
+    "aliases": [
+      "toeic business english",
+      "toeic cert"
+    ],
+    "skills": [
+      "Communication",
+      "English Language",
+      "Business Communication"
+    ]
+  },
+  "DELF/DALF French": {
+    "aliases": [
+      "delf cert",
+      "dalf cert",
+      "french proficiency cert"
+    ],
+    "skills": [
+      "French Language",
+      "Communication"
+    ]
+  },
+  "Goethe Institute German": {
+    "aliases": [
+      "goethe cert",
+      "german proficiency cert",
+      "a1 a2 b1 b2 c1 c2 german"
+    ],
+    "skills": [
+      "German Language",
+      "Communication"
+    ]
+  },
+  "SOA Actuarial Exams": {
+    "aliases": [
+      "SOA P FM IFM",
+      "society of actuaries exam",
+      "actuarial exam passed"
+    ],
+    "skills": [
+      "Actuarial Science",
+      "Probability",
+      "Statistics",
+      "Financial Modeling"
+    ]
+  },
+  "CAS Casualty Actuarial Society": {
+    "aliases": [
+      "CAS exams",
+      "casualty actuarial cert",
+      "p&c actuarial"
+    ],
+    "skills": [
+      "Actuarial Science",
+      "General Insurance Actuarial",
+      "Risk Management"
+    ]
+  },
+  "Google IT Support Professional Certificate": {
+    "aliases": [
+      "google it support cert",
+      "coursera google it support",
+      "google it professional coursera",
+      "it support google cert"
+    ],
+    "skills": [
+      "IT Support",
+      "Networking",
+      "Linux",
+      "System Administration",
+      "Cybersecurity"
+    ]
+  },
+  "Google IT Automation with Python Certificate": {
+    "aliases": [
+      "google python automation cert",
+      "coursera google python",
+      "it automation python google"
+    ],
+    "skills": [
+      "Python",
+      "Scripting",
+      "Automation",
+      "Linux",
+      "Cloud Computing"
+    ]
+  },
+  "Google Project Management Certificate": {
+    "aliases": [
+      "google pm cert",
+      "coursera google project management",
+      "google project manager cert"
+    ],
+    "skills": [
+      "Project Management",
+      "Agile",
+      "Scrum",
+      "Stakeholder Management",
+      "Risk Management"
+    ]
+  },
+  "Google Data Analytics Professional Certificate": {
+    "aliases": [
+      "google data analytics cert",
+      "coursera google data analytics",
+      "google data cert"
+    ],
+    "skills": [
+      "Data Analysis",
+      "SQL",
+      "R",
+      "Tableau",
+      "Data Visualization",
+      "Google Analytics"
+    ]
+  },
+  "Google Business Intelligence Certificate": {
+    "aliases": [
+      "google bi cert",
+      "coursera google bi",
+      "google business intelligence"
+    ],
+    "skills": [
+      "Business Intelligence",
+      "Looker",
+      "SQL",
+      "Data Warehousing",
+      "Dashboards"
+    ]
+  },
+  "Google Advanced Data Analytics Certificate": {
+    "aliases": [
+      "google advanced data cert",
+      "coursera google advanced analytics"
+    ],
+    "skills": [
+      "Python",
+      "Machine Learning",
+      "Statistical Analysis",
+      "Data Science",
+      "Regression"
+    ]
+  },
+  "Google Cybersecurity Certificate": {
+    "aliases": [
+      "google cybersecurity cert",
+      "coursera google cybersecurity",
+      "google security cert"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "SIEM",
+      "Network Security",
+      "Linux",
+      "Python",
+      "SQL"
+    ]
+  },
+  "Google UX Design Professional Certificate": {
+    "aliases": [
+      "google ux cert",
+      "coursera google ux design",
+      "google ux design professional"
+    ],
+    "skills": [
+      "User Experience",
+      "Wireframing",
+      "Figma",
+      "Prototyping",
+      "User Research"
+    ]
+  },
+  "Google Digital Marketing & E-commerce Certificate": {
+    "aliases": [
+      "google digital marketing cert coursera",
+      "google ecommerce cert",
+      "google marketing cert"
+    ],
+    "skills": [
+      "Digital Marketing",
+      "SEO",
+      "E-Commerce",
+      "Google Analytics",
+      "Email Marketing"
+    ]
+  },
+  "Meta Front-End Developer Professional Certificate": {
+    "aliases": [
+      "meta frontend cert coursera",
+      "meta frontend developer cert",
+      "facebook frontend cert"
+    ],
+    "skills": [
+      "React",
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Git",
+      "UI Design"
+    ]
+  },
+  "Meta Back-End Developer Professional Certificate": {
+    "aliases": [
+      "meta backend cert coursera",
+      "meta backend developer cert"
+    ],
+    "skills": [
+      "Python",
+      "Django",
+      "REST API",
+      "MySQL",
+      "APIs",
+      "Version Control"
+    ]
+  },
+  "Meta Database Engineer Professional Certificate": {
+    "aliases": [
+      "meta database cert",
+      "meta db engineer cert coursera"
+    ],
+    "skills": [
+      "MySQL",
+      "SQL",
+      "Database Design",
+      "Python",
+      "Django"
+    ]
+  },
+  "Meta iOS Developer Professional Certificate": {
+    "aliases": [
+      "meta ios cert",
+      "ios developer coursera meta"
+    ],
+    "skills": [
+      "Swift",
+      "iOS Development",
+      "Xcode",
+      "UIKit",
+      "SwiftUI"
+    ]
+  },
+  "Meta Android Developer Professional Certificate": {
+    "aliases": [
+      "meta android cert",
+      "android developer coursera meta"
+    ],
+    "skills": [
+      "Android Development",
+      "Kotlin",
+      "Android Studio",
+      "REST APIs"
+    ]
+  },
+  "Meta Social Media Marketing Certificate": {
+    "aliases": [
+      "meta social media cert",
+      "meta social marketing coursera"
+    ],
+    "skills": [
+      "Social Media Marketing",
+      "Facebook Advertising",
+      "Instagram Marketing",
+      "Content Creation"
+    ]
+  },
+  "Meta Marketing Analytics Certificate": {
+    "aliases": [
+      "meta analytics cert",
+      "meta marketing analytics coursera"
+    ],
+    "skills": [
+      "Marketing Analytics",
+      "Data Analysis",
+      "Facebook Ads",
+      "A/B Testing"
+    ]
+  },
+  "IBM Full Stack Software Developer Certificate": {
+    "aliases": [
+      "ibm full stack cert coursera",
+      "ibm full stack developer cert"
+    ],
+    "skills": [
+      "React",
+      "Node.js",
+      "Python",
+      "Docker",
+      "Kubernetes",
+      "Cloud Computing"
+    ]
+  },
+  "IBM DevOps and Software Engineering Certificate": {
+    "aliases": [
+      "ibm devops cert",
+      "ibm devops coursera"
+    ],
+    "skills": [
+      "DevOps",
+      "CI/CD",
+      "Docker",
+      "Kubernetes",
+      "Agile",
+      "TDD"
+    ]
+  },
+  "IBM Data Engineering Professional Certificate": {
+    "aliases": [
+      "ibm data engineer cert",
+      "ibm de cert coursera"
+    ],
+    "skills": [
+      "Data Engineering",
+      "SQL",
+      "NoSQL",
+      "Apache Spark",
+      "Kafka",
+      "ETL"
+    ]
+  },
+  "IBM Machine Learning Professional Certificate": {
+    "aliases": [
+      "ibm ml cert",
+      "ibm machine learning coursera"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Scikit-learn",
+      "Python",
+      "Regression",
+      "Clustering"
+    ]
+  },
+  "IBM Applied AI Professional Certificate": {
+    "aliases": [
+      "ibm applied ai cert",
+      "ibm ai coursera"
+    ],
+    "skills": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Watson AI",
+      "Python"
+    ]
+  },
+  "IBM Cybersecurity Analyst Professional Certificate": {
+    "aliases": [
+      "ibm cybersecurity cert",
+      "ibm security analyst coursera"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "SIEM",
+      "Threat Detection",
+      "Penetration Testing",
+      "Compliance"
+    ]
+  },
+  "IBM Project Manager Professional Certificate": {
+    "aliases": [
+      "ibm pm cert",
+      "ibm project manager coursera"
+    ],
+    "skills": [
+      "Project Management",
+      "Agile",
+      "Scrum",
+      "Stakeholder Management"
+    ]
+  },
+  "Deep Learning Specialization": {
+    "aliases": [
+      "deeplearning.ai specialization",
+      "andrew ng deep learning",
+      "dl specialization coursera"
+    ],
+    "skills": [
+      "Deep Learning",
+      "Neural Networks",
+      "TensorFlow",
+      "Python",
+      "Convolutional Neural Networks"
+    ]
+  },
+  "DeepLearning.AI TensorFlow Developer Certificate": {
+    "aliases": [
+      "tensorflow developer cert",
+      "deeplearning tensorflow cert",
+      "andrew ng tensorflow"
+    ],
+    "skills": [
+      "TensorFlow",
+      "Deep Learning",
+      "Computer Vision",
+      "NLP",
+      "Python"
+    ]
+  },
+  "Machine Learning Specialization Andrew Ng": {
+    "aliases": [
+      "andrew ng ml coursera",
+      "machine learning coursera stanford",
+      "ml specialization coursera"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Python",
+      "Supervised Learning",
+      "Unsupervised Learning",
+      "Neural Networks"
+    ]
+  },
+  "Natural Language Processing Specialization": {
+    "aliases": [
+      "deeplearning nlp cert",
+      "nlp specialization coursera"
+    ],
+    "skills": [
+      "Natural Language Processing",
+      "Deep Learning",
+      "Transformers",
+      "BERT",
+      "Python"
+    ]
+  },
+  "MLOps Specialization": {
+    "aliases": [
+      "deeplearning mlops cert",
+      "mlops coursera",
+      "machine learning operations cert"
+    ],
+    "skills": [
+      "MLOps",
+      "Machine Learning",
+      "Docker",
+      "Kubernetes",
+      "Model Deployment"
+    ]
+  },
+  "AI for Everyone Andrew Ng": {
+    "aliases": [
+      "ai for everyone cert",
+      "andrew ng ai course",
+      "ai everyone coursera"
+    ],
+    "skills": [
+      "Artificial Intelligence",
+      "AI Strategy",
+      "AI Ethics",
+      "Business Applications of AI"
+    ]
+  },
+  "Generative AI with Large Language Models": {
+    "aliases": [
+      "llm coursera cert",
+      "generative ai coursera",
+      "deeplearning llm cert"
+    ],
+    "skills": [
+      "Large Language Models",
+      "Generative AI",
+      "Transformer Models",
+      "Fine-Tuning LLMs"
+    ]
+  },
+  "Prompt Engineering for ChatGPT": {
+    "aliases": [
+      "prompt engineering cert",
+      "chatgpt prompt cert",
+      "vanderbilt prompt eng"
+    ],
+    "skills": [
+      "Prompt Engineering",
+      "OpenAI API",
+      "Large Language Models",
+      "Generative AI"
+    ]
+  },
+  "Data Science Specialization Johns Hopkins": {
+    "aliases": [
+      "jhu data science cert",
+      "johns hopkins data science coursera",
+      "jhu ds specialization"
+    ],
+    "skills": [
+      "Data Science",
+      "R",
+      "Statistical Analysis",
+      "Machine Learning",
+      "Shiny"
+    ]
+  },
+  "Genomic Data Science Specialization": {
+    "aliases": [
+      "genomics coursera cert",
+      "jhu genomics cert",
+      "bioinformatics cert"
+    ],
+    "skills": [
+      "Bioinformatics",
+      "Genomics",
+      "R",
+      "Python",
+      "Statistical Analysis"
+    ]
+  },
+  "Epidemiology Specialization Johns Hopkins": {
+    "aliases": [
+      "epidemiology cert coursera",
+      "jhu epidemiology cert"
+    ],
+    "skills": [
+      "Epidemiology",
+      "Public Health",
+      "Statistics",
+      "Research Methods"
+    ]
+  },
+  "Stanford Machine Learning Specialization": {
+    "aliases": [
+      "stanford ml cert",
+      "stanford coursera ml",
+      "andrew ng stanford cert"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Python",
+      "Neural Networks",
+      "Supervised Learning"
+    ]
+  },
+  "Python for Everybody Specialization Michigan": {
+    "aliases": [
+      "python for everybody cert",
+      "umich python coursera",
+      "dr chuck python cert"
+    ],
+    "skills": [
+      "Python",
+      "Web Scraping",
+      "SQL",
+      "Data Structures"
+    ]
+  },
+  "Django for Everybody Specialization": {
+    "aliases": [
+      "django for everybody cert",
+      "umich django coursera"
+    ],
+    "skills": [
+      "Django",
+      "Python",
+      "Web Development",
+      "REST API",
+      "SQL"
+    ]
+  },
+  "Web Design for Everybody Michigan": {
+    "aliases": [
+      "web design cert coursera",
+      "umich web cert",
+      "web design everybody"
+    ],
+    "skills": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Bootstrap",
+      "Web Design"
+    ]
+  },
+  "Duke Data Science for Business": {
+    "aliases": [
+      "duke data science cert",
+      "data science business coursera duke"
+    ],
+    "skills": [
+      "Data Science",
+      "R",
+      "Business Analytics",
+      "Statistical Analysis"
+    ]
+  },
+  "Biostatistics Specialization Johns Hopkins": {
+    "aliases": [
+      "biostatistics cert coursera",
+      "jhu biostatistics"
+    ],
+    "skills": [
+      "Statistics",
+      "R",
+      "Public Health",
+      "Research Methods"
+    ]
+  },
+  "Cloud Engineering with Google Cloud Specialization": {
+    "aliases": [
+      "gcp cloud engineer coursera",
+      "google cloud engineering cert"
+    ],
+    "skills": [
+      "Google Cloud Platform",
+      "Kubernetes",
+      "Cloud Architecture",
+      "DevOps"
+    ]
+  },
+  "Preparing for Google Cloud Architect Exam": {
+    "aliases": [
+      "gcp architect prep cert",
+      "google cloud architect coursera"
+    ],
+    "skills": [
+      "Google Cloud Platform",
+      "Cloud Architecture",
+      "BigQuery"
+    ]
+  },
+  "IBM Cloud Computing Fundamentals": {
+    "aliases": [
+      "ibm cloud cert",
+      "cloud computing ibm coursera"
+    ],
+    "skills": [
+      "Cloud Computing",
+      "IBM Cloud",
+      "DevOps",
+      "Microservices"
+    ]
+  },
+  "AWS Fundamentals Specialization": {
+    "aliases": [
+      "aws fundamentals coursera",
+      "aws specialization coursera",
+      "amazon aws cert coursera"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Cloud Computing",
+      "AWS EC2",
+      "AWS S3"
+    ]
+  },
+  "Building Cloud Services with Java Spring": {
+    "aliases": [
+      "spring cloud cert",
+      "spring coursera cert"
+    ],
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Cloud Computing",
+      "Microservices",
+      "REST API"
+    ]
+  },
+  "MicroMasters in Data Science": {
+    "aliases": [
+      "edx data science micromasters",
+      "columbia data science edx",
+      "micromasters ds cert"
+    ],
+    "skills": [
+      "Data Science",
+      "Python",
+      "Machine Learning",
+      "Statistical Analysis"
+    ]
+  },
+  "MicroMasters in Artificial Intelligence": {
+    "aliases": [
+      "edx ai micromasters",
+      "columbia ai edx"
+    ],
+    "skills": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Python",
+      "Deep Learning"
+    ]
+  },
+  "MicroMasters in Cybersecurity": {
+    "aliases": [
+      "edx cybersecurity micromasters",
+      "rit cybersecurity edx"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Network Security",
+      "Penetration Testing",
+      "Cryptography"
+    ]
+  },
+  "MicroMasters in Cloud Computing": {
+    "aliases": [
+      "edx cloud computing micromasters",
+      "usmx cloud cert ed"
+    ],
+    "skills": [
+      "Cloud Computing",
+      "Amazon Web Services",
+      "Cloud Architecture"
+    ]
+  },
+  "MicroMasters in Business Analytics": {
+    "aliases": [
+      "edx business analytics micromasters",
+      "columbia business analytics edx"
+    ],
+    "skills": [
+      "Business Analytics",
+      "Data Science",
+      "SQL",
+      "Statistical Analysis"
+    ]
+  },
+  "MicroMasters in Supply Chain Management": {
+    "aliases": [
+      "edx supply chain micromasters",
+      "mit supply chain edx"
+    ],
+    "skills": [
+      "Supply Chain Management",
+      "Logistics",
+      "Operations Management"
+    ]
+  },
+  "Professional Certificate in Data Science HarvardX": {
+    "aliases": [
+      "harvard data science cert",
+      "harvardx ds cert",
+      "edx harvard data science"
+    ],
+    "skills": [
+      "R",
+      "Data Science",
+      "Machine Learning",
+      "Visualization",
+      "Statistics"
+    ]
+  },
+  "MIT MicroMasters in Statistics and Data Science": {
+    "aliases": [
+      "mit data science micromasters",
+      "mit statistics edx"
+    ],
+    "skills": [
+      "Statistics",
+      "Data Science",
+      "Machine Learning",
+      "R",
+      "Python"
+    ]
+  },
+  "Professional Certificate in Computer Science for Artificial Intelligence": {
+    "aliases": [
+      "harvardx cs50 ai cert",
+      "cs50 artificial intelligence edx"
+    ],
+    "skills": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Python",
+      "Algorithms"
+    ]
+  },
+  "CS50 Introduction to Computer Science Harvard": {
+    "aliases": [
+      "cs50 cert",
+      "cs50x cert",
+      "harvard cs50 certificate",
+      "cs50 harvard edx"
+    ],
+    "skills": [
+      "C Programming",
+      "Python",
+      "Web Development",
+      "Algorithms",
+      "Data Structures"
+    ]
+  },
+  "CS50 Python Harvard": {
+    "aliases": [
+      "cs50p cert",
+      "cs50 python cert",
+      "harvard python cert"
+    ],
+    "skills": [
+      "Python",
+      "Object Oriented Programming",
+      "File I/O",
+      "Libraries"
+    ]
+  },
+  "CS50 Web Programming Harvard": {
+    "aliases": [
+      "cs50w cert",
+      "cs50 web cert",
+      "harvard web programming cert"
+    ],
+    "skills": [
+      "Django",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "SQL",
+      "Git"
+    ]
+  },
+  "Microsoft Professional Program Data Science": {
+    "aliases": [
+      "microsoft edx data science",
+      "mpp data science cert"
+    ],
+    "skills": [
+      "Data Science",
+      "Python",
+      "R",
+      "Machine Learning",
+      "Azure"
+    ]
+  },
+  "AWS Academy Cloud Foundations": {
+    "aliases": [
+      "aws academy foundations",
+      "aws academy cert",
+      "aws school cert"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Cloud Computing",
+      "AWS Services"
+    ]
+  },
+  "AWS Academy Machine Learning Foundations": {
+    "aliases": [
+      "aws academy ml cert",
+      "aws ml foundations"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Amazon Web Services",
+      "SageMaker"
+    ]
+  },
+  "AWS Academy Cloud Developing": {
+    "aliases": [
+      "aws academy dev cert",
+      "aws cloud developer training"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Python",
+      "AWS SDK",
+      "Lambda",
+      "DynamoDB"
+    ]
+  },
+  "AWS Academy Cloud Architecting": {
+    "aliases": [
+      "aws academy architect",
+      "aws cloud architect training"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Cloud Architecture",
+      "AWS VPC",
+      "AWS EC2"
+    ]
+  },
+  "AWS Academy Data Engineering": {
+    "aliases": [
+      "aws academy data eng",
+      "aws data engineering training"
+    ],
+    "skills": [
+      "Data Engineering",
+      "Amazon Web Services",
+      "AWS Glue",
+      "S3",
+      "Redshift"
+    ]
+  },
+  "AWS Skillbuilder Cloud Practitioner": {
+    "aliases": [
+      "aws skill builder cert",
+      "aws online training cert"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Cloud Computing"
+    ]
+  },
+  "LinkedIn Learning Web Development Cert": {
+    "aliases": [
+      "linkedin web dev cert",
+      "lynda web development cert"
+    ],
+    "skills": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "React",
+      "Web Development"
+    ]
+  },
+  "LinkedIn Learning Python Essential Training": {
+    "aliases": [
+      "linkedin python cert",
+      "lynda python cert"
+    ],
+    "skills": [
+      "Python",
+      "Programming",
+      "Scripting"
+    ]
+  },
+  "LinkedIn Learning Data Science": {
+    "aliases": [
+      "linkedin data science cert",
+      "lynda data science cert"
+    ],
+    "skills": [
+      "Data Science",
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ]
+  },
+  "LinkedIn Learning Project Management": {
+    "aliases": [
+      "linkedin pm cert",
+      "lynda project management cert"
+    ],
+    "skills": [
+      "Project Management",
+      "Agile",
+      "Scrum",
+      "Leadership"
+    ]
+  },
+  "LinkedIn Learning Machine Learning": {
+    "aliases": [
+      "linkedin ml cert",
+      "linkedin machine learning cert"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Python",
+      "Scikit-learn",
+      "Neural Networks"
+    ]
+  },
+  "LinkedIn Learning Cybersecurity": {
+    "aliases": [
+      "linkedin cybersecurity cert",
+      "linkedin security cert"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Network Security",
+      "Ethical Hacking"
+    ]
+  },
+  "LinkedIn Learning Java": {
+    "aliases": [
+      "linkedin java cert",
+      "lynda java cert"
+    ],
+    "skills": [
+      "Java",
+      "OOP",
+      "Spring Boot",
+      "Maven"
+    ]
+  },
+  "LinkedIn Learning Excel": {
+    "aliases": [
+      "linkedin excel cert",
+      "lynda excel cert",
+      "linkedin excel training"
+    ],
+    "skills": [
+      "Microsoft Excel",
+      "Data Analysis",
+      "Formulas",
+      "Pivot Tables"
+    ]
+  },
+  "LinkedIn Learning SQL": {
+    "aliases": [
+      "linkedin sql cert",
+      "lynda sql cert"
+    ],
+    "skills": [
+      "SQL",
+      "Database Management",
+      "Queries"
+    ]
+  },
+  "LinkedIn Learning Digital Marketing": {
+    "aliases": [
+      "linkedin digital marketing cert",
+      "lynda digital marketing cert"
+    ],
+    "skills": [
+      "Digital Marketing",
+      "SEO",
+      "Content Marketing",
+      "Social Media Marketing"
+    ]
+  },
+  "LinkedIn Learning Leadership and Management": {
+    "aliases": [
+      "linkedin management cert",
+      "linkedin leadership cert"
+    ],
+    "skills": [
+      "Leadership",
+      "Team Management",
+      "Organizational Behavior",
+      "Communication"
+    ]
+  },
+  "LinkedIn Learning Graphic Design": {
+    "aliases": [
+      "linkedin graphic design cert",
+      "linkedin design cert"
+    ],
+    "skills": [
+      "Graphic Design",
+      "Adobe Photoshop",
+      "Adobe Illustrator",
+      "Typography"
+    ]
+  },
+  "LinkedIn Learning DevOps Foundations": {
+    "aliases": [
+      "linkedin devops cert",
+      "linkedin devops foundations"
+    ],
+    "skills": [
+      "DevOps",
+      "CI/CD",
+      "Docker",
+      "Jenkins"
+    ]
+  },
+  "LinkedIn Learning Cloud Computing": {
+    "aliases": [
+      "linkedin cloud cert",
+      "linkedin cloud computing cert"
+    ],
+    "skills": [
+      "Cloud Computing",
+      "Amazon Web Services",
+      "Microsoft Azure",
+      "Google Cloud Platform"
+    ]
+  },
+  "The Complete Web Developer Bootcamp Udemy": {
+    "aliases": [
+      "udemy web developer bootcamp",
+      "udemy web dev cert",
+      "angela yu web dev",
+      "complete web dev udemy"
+    ],
+    "skills": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Node.js",
+      "React",
+      "MongoDB",
+      "REST API"
+    ]
+  },
+  "The Complete JavaScript Course Udemy": {
+    "aliases": [
+      "udemy javascript cert",
+      "jonas schmedtmann js",
+      "complete javascript udemy"
+    ],
+    "skills": [
+      "JavaScript",
+      "ES6",
+      "OOP",
+      "DOM Manipulation",
+      "Async JavaScript"
+    ]
+  },
+  "The Complete Python Bootcamp Udemy": {
+    "aliases": [
+      "udemy python bootcamp",
+      "python zero to hero udemy",
+      "jose portilla python cert"
+    ],
+    "skills": [
+      "Python",
+      "OOP",
+      "Libraries",
+      "Web Scraping",
+      "Automation"
+    ]
+  },
+  "100 Days of Code Python Bootcamp Udemy": {
+    "aliases": [
+      "100 days python udemy",
+      "angela yu python",
+      "100 days of code cert"
+    ],
+    "skills": [
+      "Python",
+      "Web Development",
+      "Flask",
+      "APIs",
+      "Data Science",
+      "Automation"
+    ]
+  },
+  "Machine Learning AZ Udemy": {
+    "aliases": [
+      "udemy ml az",
+      "machine learning a to z udemy",
+      "kirill eremenko ml cert"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Python",
+      "R",
+      "Scikit-learn",
+      "Neural Networks"
+    ]
+  },
+  "Deep Learning AZ Udemy": {
+    "aliases": [
+      "udemy deep learning az",
+      "deep learning a to z udemy",
+      "kirill eremenko dl"
+    ],
+    "skills": [
+      "Deep Learning",
+      "TensorFlow",
+      "Keras",
+      "Python",
+      "Neural Networks"
+    ]
+  },
+  "The Complete React Developer Udemy": {
+    "aliases": [
+      "udemy react cert",
+      "complete react developer udemy",
+      "andrei neagoie react"
+    ],
+    "skills": [
+      "React",
+      "JavaScript",
+      "Redux",
+      "Hooks",
+      "REST APIs"
+    ]
+  },
+  "NodeJS The Complete Guide Udemy": {
+    "aliases": [
+      "udemy nodejs cert",
+      "node complete guide udemy",
+      "maximilian schwarzmuller node"
+    ],
+    "skills": [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST API",
+      "GraphQL"
+    ]
+  },
+  "React and Redux Udemy": {
+    "aliases": [
+      "udemy react redux cert",
+      "stephen grider react redux cert"
+    ],
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "APIs"
+    ]
+  },
+  "The Complete SQL Bootcamp Udemy": {
+    "aliases": [
+      "udemy sql cert",
+      "sql bootcamp udemy",
+      "jose portilla sql cert"
+    ],
+    "skills": [
+      "SQL",
+      "PostgreSQL",
+      "Database Management",
+      "Queries"
+    ]
+  },
+  "Django Rest Framework Udemy": {
+    "aliases": [
+      "udemy drf cert",
+      "django rest udemy",
+      "django api cert"
+    ],
+    "skills": [
+      "Django",
+      "REST API",
+      "Python",
+      "Backend Development"
+    ]
+  },
+  "Docker and Kubernetes Udemy": {
+    "aliases": [
+      "udemy docker cert",
+      "bret fisher docker udemy",
+      "docker k8s udemy cert"
+    ],
+    "skills": [
+      "Docker",
+      "Kubernetes",
+      "DevOps",
+      "Containerization"
+    ]
+  },
+  "AWS Certified Solutions Architect Udemy": {
+    "aliases": [
+      "udemy aws saa cert",
+      "stephane maarek aws cert",
+      "ryan kroonenburg aws udemy"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Cloud Architecture",
+      "AWS EC2",
+      "AWS S3"
+    ]
+  },
+  "Terraform on AWS Udemy": {
+    "aliases": [
+      "udemy terraform cert",
+      "terraform aws udemy"
+    ],
+    "skills": [
+      "Terraform",
+      "Infrastructure as Code",
+      "Amazon Web Services"
+    ]
+  },
+  "The Git and GitHub Bootcamp Udemy": {
+    "aliases": [
+      "udemy git cert",
+      "git bootcamp udemy",
+      "colt steele git cert"
+    ],
+    "skills": [
+      "Git",
+      "GitHub",
+      "Version Control",
+      "Collaboration"
+    ]
+  },
+  "Data Science and Machine Learning Bootcamp Udemy": {
+    "aliases": [
+      "udemy data science bootcamp",
+      "data science udemy jose portilla"
+    ],
+    "skills": [
+      "Data Science",
+      "Python",
+      "Machine Learning",
+      "Pandas",
+      "NumPy"
+    ]
+  },
+  "Tableau Desktop Udemy": {
+    "aliases": [
+      "udemy tableau cert",
+      "tableau udemy kirill"
+    ],
+    "skills": [
+      "Tableau",
+      "Data Visualization",
+      "Business Intelligence"
+    ]
+  },
+  "Power BI Desktop Udemy": {
+    "aliases": [
+      "udemy power bi cert",
+      "power bi udemy"
+    ],
+    "skills": [
+      "Power BI",
+      "DAX",
+      "Business Intelligence",
+      "Data Visualization"
+    ]
+  },
+  "The Complete Ethical Hacking Course Udemy": {
+    "aliases": [
+      "udemy hacking cert",
+      "ethical hacking udemy",
+      "complete ethical hacking udemy"
+    ],
+    "skills": [
+      "Penetration Testing",
+      "Ethical Hacking",
+      "Kali Linux",
+      "Network Security"
+    ]
+  },
+  "Cybersecurity Bootcamp Udemy": {
+    "aliases": [
+      "udemy cybersecurity cert",
+      "cybersecurity udemy bootcamp"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Network Security",
+      "Ethical Hacking",
+      "SIEM"
+    ]
+  },
+  "iOS and Swift Bootcamp Udemy": {
+    "aliases": [
+      "udemy ios cert",
+      "ios swift udemy",
+      "angela yu ios cert"
+    ],
+    "skills": [
+      "iOS Development",
+      "Swift",
+      "Xcode",
+      "UIKit",
+      "SwiftUI"
+    ]
+  },
+  "Android Development Masterclass Udemy": {
+    "aliases": [
+      "udemy android cert",
+      "android masterclass udemy",
+      "tim buchalka android cert"
+    ],
+    "skills": [
+      "Android Development",
+      "Kotlin",
+      "Java",
+      "Android Studio"
+    ]
+  },
+  "Flutter and Dart Udemy": {
+    "aliases": [
+      "udemy flutter cert",
+      "flutter dart udemy",
+      "angela yu flutter cert"
+    ],
+    "skills": [
+      "Flutter",
+      "Dart",
+      "Mobile Development",
+      "Cross-Platform"
+    ]
+  },
+  "PHP Laravel Udemy": {
+    "aliases": [
+      "udemy laravel cert",
+      "php laravel udemy cert"
+    ],
+    "skills": [
+      "PHP",
+      "Laravel",
+      "MySQL",
+      "REST API",
+      "Backend Development"
+    ]
+  },
+  "Spring Boot Microservices Udemy": {
+    "aliases": [
+      "udemy spring boot cert",
+      "spring microservices udemy",
+      "java spring udemy cert"
+    ],
+    "skills": [
+      "Spring Boot",
+      "Java",
+      "Microservices",
+      "REST API",
+      "Docker"
+    ]
+  },
+  "Rust Programming Udemy": {
+    "aliases": [
+      "udemy rust cert",
+      "rust programming udemy"
+    ],
+    "skills": [
+      "Rust",
+      "Systems Programming",
+      "Memory Management"
+    ]
+  },
+  "Golang Udemy": {
+    "aliases": [
+      "udemy golang cert",
+      "go programming udemy cert",
+      "go lang udemy"
+    ],
+    "skills": [
+      "Golang",
+      "Backend Development",
+      "Microservices"
+    ]
+  },
+  "C++ Programming Udemy": {
+    "aliases": [
+      "udemy cpp cert",
+      "c++ udemy cert",
+      "beginning c++ programming udemy"
+    ],
+    "skills": [
+      "C++",
+      "OOP",
+      "Data Structures",
+      "Systems Programming"
+    ]
+  },
+  "Unity Game Development Udemy": {
+    "aliases": [
+      "udemy unity cert",
+      "unity 3d udemy cert",
+      "game dev udemy"
+    ],
+    "skills": [
+      "Unity",
+      "C#",
+      "Game Development",
+      "3D Modeling"
+    ]
+  },
+  "Unreal Engine Udemy": {
+    "aliases": [
+      "udemy unreal cert",
+      "unreal engine ue udemy"
+    ],
+    "skills": [
+      "Unreal Engine",
+      "C++",
+      "Game Development",
+      "3D Design"
+    ]
+  },
+  "Excel PowerPivot Udemy": {
+    "aliases": [
+      "udemy excel cert",
+      "excel mastery udemy",
+      "excel powerpivot udemy"
+    ],
+    "skills": [
+      "Microsoft Excel",
+      "Power Pivot",
+      "VBA",
+      "Data Analysis"
+    ]
+  },
+  "SAP S4 HANA Udemy": {
+    "aliases": [
+      "udemy sap cert",
+      "sap s4 udemy cert",
+      "sap hana udemy"
+    ],
+    "skills": [
+      "SAP",
+      "SAP HANA",
+      "ERP",
+      "SAP FICO"
+    ]
+  },
+  "Digital Marketing Masterclass Udemy": {
+    "aliases": [
+      "udemy digital marketing cert",
+      "digital marketing masterclass udemy"
+    ],
+    "skills": [
+      "Digital Marketing",
+      "SEO",
+      "Google Ads",
+      "Social Media Marketing",
+      "Email Marketing"
+    ]
+  },
+  "Graphic Design Masterclass Udemy": {
+    "aliases": [
+      "udemy graphic design cert",
+      "graphic design masterclass udemy"
+    ],
+    "skills": [
+      "Graphic Design",
+      "Adobe Photoshop",
+      "Adobe Illustrator",
+      "Canva"
+    ]
+  },
+  "Codecademy Full Stack Engineer Career Path": {
+    "aliases": [
+      "codecademy full stack cert",
+      "codecademy full stack path",
+      "cc full stack"
+    ],
+    "skills": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "React",
+      "Node.js",
+      "SQL",
+      "Git"
+    ]
+  },
+  "Codecademy Front End Engineer Career Path": {
+    "aliases": [
+      "codecademy frontend cert",
+      "codecademy frontend path"
+    ],
+    "skills": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "React",
+      "Responsive Design"
+    ]
+  },
+  "Codecademy Back End Engineer Career Path": {
+    "aliases": [
+      "codecademy backend cert",
+      "codecademy backend path"
+    ],
+    "skills": [
+      "Node.js",
+      "Express.js",
+      "PostgreSQL",
+      "REST API",
+      "Authentication"
+    ]
+  },
+  "Codecademy Data Science Career Path": {
+    "aliases": [
+      "codecademy data science cert",
+      "codecademy ds path"
+    ],
+    "skills": [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "Matplotlib",
+      "SQL",
+      "Machine Learning"
+    ]
+  },
+  "Codecademy Machine Learning AI Path": {
+    "aliases": [
+      "codecademy ml cert",
+      "codecademy ai ml path"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Python",
+      "Scikit-learn",
+      "Deep Learning"
+    ]
+  },
+  "Codecademy Python 3 Course": {
+    "aliases": [
+      "codecademy python cert",
+      "cc python cert",
+      "codecademy learn python"
+    ],
+    "skills": [
+      "Python",
+      "OOP",
+      "Data Structures",
+      "Scripting"
+    ]
+  },
+  "Codecademy Java Course": {
+    "aliases": [
+      "codecademy java cert",
+      "cc java cert"
+    ],
+    "skills": [
+      "Java",
+      "OOP",
+      "Data Structures"
+    ]
+  },
+  "Codecademy JavaScript Course": {
+    "aliases": [
+      "codecademy js cert",
+      "cc javascript cert"
+    ],
+    "skills": [
+      "JavaScript",
+      "ES6",
+      "DOM",
+      "Async JavaScript"
+    ]
+  },
+  "Codecademy SQL Course": {
+    "aliases": [
+      "codecademy sql cert",
+      "cc sql cert"
+    ],
+    "skills": [
+      "SQL",
+      "Database Management",
+      "Queries"
+    ]
+  },
+  "Codecademy Data Analysis with Python": {
+    "aliases": [
+      "codecademy data analysis cert",
+      "cc data analysis python"
+    ],
+    "skills": [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "Data Analysis"
+    ]
+  },
+  "Codecademy Cybersecurity Path": {
+    "aliases": [
+      "codecademy cybersecurity cert",
+      "cc cybersecurity path"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Network Security",
+      "Linux",
+      "Python"
+    ]
+  },
+  "Codecademy DevOps Engineer Path": {
+    "aliases": [
+      "codecademy devops cert",
+      "cc devops path"
+    ],
+    "skills": [
+      "DevOps",
+      "Linux",
+      "Docker",
+      "CI/CD",
+      "Bash"
+    ]
+  },
+  "Codecademy Kotlin Course": {
+    "aliases": [
+      "codecademy kotlin cert",
+      "cc kotlin cert"
+    ],
+    "skills": [
+      "Kotlin",
+      "Android Development",
+      "OOP"
+    ]
+  },
+  "Codecademy Swift Course": {
+    "aliases": [
+      "codecademy swift cert",
+      "cc swift cert"
+    ],
+    "skills": [
+      "Swift",
+      "iOS Development",
+      "OOP"
+    ]
+  },
+  "Codecademy Data Visualization with Python": {
+    "aliases": [
+      "codecademy data viz cert",
+      "cc data visualization cert"
+    ],
+    "skills": [
+      "Python",
+      "Matplotlib",
+      "Seaborn",
+      "Data Visualization"
+    ]
+  },
+  "Codecademy Web Scraping with Python": {
+    "aliases": [
+      "codecademy web scraping cert"
+    ],
+    "skills": [
+      "Python",
+      "BeautifulSoup",
+      "Selenium",
+      "Web Scraping"
+    ]
+  },
+  "freeCodeCamp Responsive Web Design Certification": {
+    "aliases": [
+      "freecodecamp rwd cert",
+      "fcc responsive web design",
+      "freecodecamp html css cert"
+    ],
+    "skills": [
+      "HTML5",
+      "CSS3",
+      "Responsive Design",
+      "Flexbox",
+      "CSS Grid"
+    ]
+  },
+  "freeCodeCamp JavaScript Algorithms and Data Structures": {
+    "aliases": [
+      "freecodecamp js cert",
+      "fcc js algorithms",
+      "freecodecamp javascript cert"
+    ],
+    "skills": [
+      "JavaScript",
+      "Algorithms",
+      "Data Structures",
+      "ES6"
+    ]
+  },
+  "freeCodeCamp Front End Development Libraries": {
+    "aliases": [
+      "freecodecamp frontend libraries cert",
+      "fcc frontend cert"
+    ],
+    "skills": [
+      "React",
+      "Redux",
+      "Bootstrap",
+      "jQuery",
+      "SASS"
+    ]
+  },
+  "freeCodeCamp Data Visualization Certification": {
+    "aliases": [
+      "freecodecamp data viz cert",
+      "fcc data visualization"
+    ],
+    "skills": [
+      "D3.js",
+      "Data Visualization",
+      "JavaScript",
+      "SVG"
+    ]
+  },
+  "freeCodeCamp Back End Development and APIs": {
+    "aliases": [
+      "freecodecamp backend cert",
+      "fcc backend cert",
+      "freecodecamp apis cert"
+    ],
+    "skills": [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST API",
+      "JSON"
+    ]
+  },
+  "freeCodeCamp Quality Assurance Certification": {
+    "aliases": [
+      "freecodecamp qa cert",
+      "fcc quality assurance"
+    ],
+    "skills": [
+      "Testing",
+      "Chai",
+      "Mocha",
+      "Node.js",
+      "Test-Driven Development"
+    ]
+  },
+  "freeCodeCamp Scientific Computing with Python": {
+    "aliases": [
+      "freecodecamp python cert",
+      "fcc python cert",
+      "fcc scientific computing"
+    ],
+    "skills": [
+      "Python",
+      "Data Structures",
+      "Algorithms",
+      "OOP"
+    ]
+  },
+  "freeCodeCamp Data Analysis with Python": {
+    "aliases": [
+      "freecodecamp data analysis cert",
+      "fcc data analysis python"
+    ],
+    "skills": [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "Matplotlib",
+      "Data Analysis"
+    ]
+  },
+  "freeCodeCamp Machine Learning with Python": {
+    "aliases": [
+      "freecodecamp ml cert",
+      "fcc machine learning python"
+    ],
+    "skills": [
+      "Machine Learning",
+      "TensorFlow",
+      "Python",
+      "Neural Networks"
+    ]
+  },
+  "freeCodeCamp Relational Database Certification": {
+    "aliases": [
+      "freecodecamp sql cert",
+      "fcc relational database",
+      "freecodecamp postgresql cert"
+    ],
+    "skills": [
+      "SQL",
+      "PostgreSQL",
+      "Bash",
+      "Linux"
+    ]
+  },
+  "freeCodeCamp Information Security Certification": {
+    "aliases": [
+      "freecodecamp security cert",
+      "fcc information security"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Cryptography",
+      "Penetration Testing",
+      "HelmetJS"
+    ]
+  },
+  "DataCamp Data Scientist with Python Career Track": {
+    "aliases": [
+      "datacamp data scientist cert",
+      "datacamp ds python track",
+      "datacamp python ds"
+    ],
+    "skills": [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "Machine Learning",
+      "Scikit-learn",
+      "Data Science"
+    ]
+  },
+  "DataCamp Data Analyst with Python Career Track": {
+    "aliases": [
+      "datacamp data analyst cert",
+      "datacamp da python track"
+    ],
+    "skills": [
+      "Python",
+      "Pandas",
+      "Matplotlib",
+      "SQL",
+      "Data Analysis"
+    ]
+  },
+  "DataCamp Data Analyst with SQL Career Track": {
+    "aliases": [
+      "datacamp sql cert",
+      "datacamp sql analyst",
+      "datacamp sql track"
+    ],
+    "skills": [
+      "SQL",
+      "PostgreSQL",
+      "Data Analysis",
+      "Reporting"
+    ]
+  },
+  "DataCamp Data Engineer Career Track": {
+    "aliases": [
+      "datacamp data engineer cert",
+      "datacamp de track"
+    ],
+    "skills": [
+      "Python",
+      "SQL",
+      "Apache Airflow",
+      "ETL",
+      "Data Engineering"
+    ]
+  },
+  "DataCamp Machine Learning Scientist Career Track": {
+    "aliases": [
+      "datacamp ml cert",
+      "datacamp machine learning track"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Python",
+      "Scikit-learn",
+      "NLP",
+      "Deep Learning"
+    ]
+  },
+  "DataCamp Data Scientist with R Career Track": {
+    "aliases": [
+      "datacamp r cert",
+      "datacamp r data scientist"
+    ],
+    "skills": [
+      "R",
+      "ggplot2",
+      "Data Science",
+      "Statistical Analysis",
+      "Machine Learning"
+    ]
+  },
+  "DataCamp Python Programmer Career Track": {
+    "aliases": [
+      "datacamp python programmer cert",
+      "datacamp python track"
+    ],
+    "skills": [
+      "Python",
+      "OOP",
+      "Testing",
+      "Scripting"
+    ]
+  },
+  "DataCamp Statistician with R": {
+    "aliases": [
+      "datacamp statistician cert",
+      "datacamp r statistician"
+    ],
+    "skills": [
+      "R",
+      "Statistics",
+      "Statistical Modeling",
+      "Data Analysis"
+    ]
+  },
+  "DataCamp Tableau Fundamentals": {
+    "aliases": [
+      "datacamp tableau cert",
+      "datacamp tableau fundamentals"
+    ],
+    "skills": [
+      "Tableau",
+      "Data Visualization",
+      "Business Intelligence"
+    ]
+  },
+  "DataCamp Power BI Fundamentals": {
+    "aliases": [
+      "datacamp power bi cert",
+      "datacamp powerbi"
+    ],
+    "skills": [
+      "Power BI",
+      "DAX",
+      "Business Intelligence",
+      "Data Visualization"
+    ]
+  },
+  "DataCamp Spark with Python": {
+    "aliases": [
+      "datacamp spark cert",
+      "datacamp pyspark",
+      "datacamp apache spark"
+    ],
+    "skills": [
+      "Apache Spark",
+      "PySpark",
+      "Big Data",
+      "Python"
+    ]
+  },
+  "DataCamp Deep Learning with Python": {
+    "aliases": [
+      "datacamp deep learning cert",
+      "datacamp dl cert"
+    ],
+    "skills": [
+      "Deep Learning",
+      "PyTorch",
+      "Keras",
+      "Neural Networks",
+      "Python"
+    ]
+  },
+  "DataCamp NLP in Python": {
+    "aliases": [
+      "datacamp nlp cert",
+      "datacamp natural language processing"
+    ],
+    "skills": [
+      "NLP",
+      "Python",
+      "SpaCy",
+      "NLTK",
+      "Text Processing"
+    ]
+  },
+  "DataCamp Time Series Analysis": {
+    "aliases": [
+      "datacamp time series cert",
+      "datacamp ts cert"
+    ],
+    "skills": [
+      "Time Series Analysis",
+      "Python",
+      "Statistics",
+      "Forecasting"
+    ]
+  },
+  "DataCamp Data Visualization with Python": {
+    "aliases": [
+      "datacamp viz cert",
+      "datacamp data visualization python"
+    ],
+    "skills": [
+      "Matplotlib",
+      "Seaborn",
+      "Plotly",
+      "Python",
+      "Data Visualization"
+    ]
+  },
+  "DataCamp Network Analysis with Python": {
+    "aliases": [
+      "datacamp network cert",
+      "datacamp networkx cert"
+    ],
+    "skills": [
+      "Network Analysis",
+      "Python",
+      "NetworkX",
+      "Graph Theory"
+    ]
+  },
+  "DataCamp AWS Cloud Technology Consultant": {
+    "aliases": [
+      "datacamp aws cert",
+      "datacamp aws consultant"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Cloud Computing",
+      "AWS Solutions"
+    ]
+  },
+  "Kaggle Python Certification": {
+    "aliases": [
+      "kaggle python cert",
+      "kaggle learn python"
+    ],
+    "skills": [
+      "Python",
+      "Data Science",
+      "Pandas",
+      "NumPy"
+    ]
+  },
+  "Kaggle Machine Learning Certification": {
+    "aliases": [
+      "kaggle ml cert",
+      "kaggle learn machine learning"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Python",
+      "Scikit-learn",
+      "Decision Trees"
+    ]
+  },
+  "Kaggle Deep Learning Certification": {
+    "aliases": [
+      "kaggle dl cert",
+      "kaggle learn deep learning"
+    ],
+    "skills": [
+      "Deep Learning",
+      "TensorFlow",
+      "Keras",
+      "Python"
+    ]
+  },
+  "Kaggle Data Visualization Certification": {
+    "aliases": [
+      "kaggle data viz cert",
+      "kaggle learn data visualization"
+    ],
+    "skills": [
+      "Data Visualization",
+      "Python",
+      "Seaborn",
+      "Matplotlib"
+    ]
+  },
+  "Kaggle Pandas Certification": {
+    "aliases": [
+      "kaggle pandas cert",
+      "kaggle learn pandas"
+    ],
+    "skills": [
+      "Pandas",
+      "Data Analysis",
+      "Python",
+      "Data Manipulation"
+    ]
+  },
+  "Kaggle Feature Engineering Certification": {
+    "aliases": [
+      "kaggle feature eng cert",
+      "kaggle learn feature engineering"
+    ],
+    "skills": [
+      "Feature Engineering",
+      "Machine Learning",
+      "Python",
+      "Scikit-learn"
+    ]
+  },
+  "Kaggle SQL Certification": {
+    "aliases": [
+      "kaggle sql cert",
+      "kaggle learn sql"
+    ],
+    "skills": [
+      "SQL",
+      "BigQuery",
+      "Database Management",
+      "Queries"
+    ]
+  },
+  "Kaggle Intro to AI Ethics": {
+    "aliases": [
+      "kaggle ai ethics cert",
+      "kaggle learn ethics"
+    ],
+    "skills": [
+      "AI Ethics",
+      "Responsible AI",
+      "Fairness",
+      "Machine Learning"
+    ]
+  },
+  "Kaggle Geospatial Analysis Certification": {
+    "aliases": [
+      "kaggle geospatial cert",
+      "kaggle learn geospatial"
+    ],
+    "skills": [
+      "Geospatial Analysis",
+      "Python",
+      "GIS",
+      "Folium"
+    ]
+  },
+  "Kaggle Natural Language Processing": {
+    "aliases": [
+      "kaggle nlp cert",
+      "kaggle learn nlp"
+    ],
+    "skills": [
+      "NLP",
+      "Python",
+      "SpaCy",
+      "Text Classification"
+    ]
+  },
+  "Kaggle Computer Vision Certification": {
+    "aliases": [
+      "kaggle cv cert",
+      "kaggle learn computer vision"
+    ],
+    "skills": [
+      "Computer Vision",
+      "Python",
+      "TensorFlow",
+      "Image Recognition"
+    ]
+  },
+  "Kaggle Time Series Certification": {
+    "aliases": [
+      "kaggle time series cert",
+      "kaggle learn time series"
+    ],
+    "skills": [
+      "Time Series Analysis",
+      "Python",
+      "Forecasting"
+    ]
+  },
+  "Kaggle Intro to Game AI and Reinforcement Learning": {
+    "aliases": [
+      "kaggle game ai cert",
+      "kaggle rl cert"
+    ],
+    "skills": [
+      "Reinforcement Learning",
+      "Python",
+      "Game AI"
+    ]
+  },
+  "HackerRank Python Certificate": {
+    "aliases": [
+      "hackerrank python cert",
+      "hr python certified",
+      "hackerrank python basic",
+      "hackerrank python advanced"
+    ],
+    "skills": [
+      "Python",
+      "Algorithms",
+      "Data Structures",
+      "OOP"
+    ]
+  },
+  "HackerRank JavaScript Certificate": {
+    "aliases": [
+      "hackerrank js cert",
+      "hr javascript certified",
+      "hackerrank js basic intermediate"
+    ],
+    "skills": [
+      "JavaScript",
+      "ES6",
+      "DOM",
+      "Algorithms"
+    ]
+  },
+  "HackerRank SQL Certificate": {
+    "aliases": [
+      "hackerrank sql cert",
+      "hr sql certified",
+      "hackerrank sql basic advanced"
+    ],
+    "skills": [
+      "SQL",
+      "Queries",
+      "Joins",
+      "Database Management"
+    ]
+  },
+  "HackerRank React Certificate": {
+    "aliases": [
+      "hackerrank react cert",
+      "hr react certified"
+    ],
+    "skills": [
+      "React",
+      "JavaScript",
+      "Hooks",
+      "Components"
+    ]
+  },
+  "HackerRank Node.js Certificate": {
+    "aliases": [
+      "hackerrank node cert",
+      "hr nodejs certified"
+    ],
+    "skills": [
+      "Node.js",
+      "Express.js",
+      "REST API",
+      "JavaScript"
+    ]
+  },
+  "HackerRank Java Certificate": {
+    "aliases": [
+      "hackerrank java cert",
+      "hr java certified",
+      "hackerrank java basic"
+    ],
+    "skills": [
+      "Java",
+      "OOP",
+      "Algorithms",
+      "Data Structures"
+    ]
+  },
+  "HackerRank C# Certificate": {
+    "aliases": [
+      "hackerrank csharp cert",
+      "hr c# certified",
+      "hackerrank dot net cert"
+    ],
+    "skills": [
+      "C#",
+      ".NET",
+      "OOP",
+      "ASP.NET"
+    ]
+  },
+  "HackerRank Data Structures Certificate": {
+    "aliases": [
+      "hackerrank ds cert",
+      "hr data structures cert"
+    ],
+    "skills": [
+      "Data Structures",
+      "Algorithms",
+      "Coding"
+    ]
+  },
+  "HackerRank Problem Solving Certificate": {
+    "aliases": [
+      "hackerrank ps cert",
+      "hr problem solving certified"
+    ],
+    "skills": [
+      "Algorithms",
+      "Problem Solving",
+      "Data Structures",
+      "Coding"
+    ]
+  },
+  "HackerRank REST API Certificate": {
+    "aliases": [
+      "hackerrank rest api cert",
+      "hr rest api certified"
+    ],
+    "skills": [
+      "REST API",
+      "API Testing",
+      "JSON",
+      "HTTP"
+    ]
+  },
+  "HackerRank Frontend Developer React": {
+    "aliases": [
+      "hackerrank frontend cert",
+      "hr frontend developer cert"
+    ],
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3"
+    ]
+  },
+  "HackerRank Software Engineer Intern": {
+    "aliases": [
+      "hackerrank swe intern cert",
+      "hr software engineer cert"
+    ],
+    "skills": [
+      "Algorithms",
+      "OOP",
+      "Data Structures",
+      "System Design"
+    ]
+  },
+  "Pluralsight IQ Skill Assessment Python": {
+    "aliases": [
+      "pluralsight python iq",
+      "pluralsight python assessment",
+      "pluralsight python skill"
+    ],
+    "skills": [
+      "Python",
+      "OOP",
+      "Data Structures",
+      "Flask"
+    ]
+  },
+  "Pluralsight IQ Skill Assessment JavaScript": {
+    "aliases": [
+      "pluralsight js iq",
+      "pluralsight javascript assessment"
+    ],
+    "skills": [
+      "JavaScript",
+      "ES6",
+      "Frontend Development"
+    ]
+  },
+  "Pluralsight IQ Skill Assessment Java": {
+    "aliases": [
+      "pluralsight java iq",
+      "pluralsight java assessment"
+    ],
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "OOP"
+    ]
+  },
+  "Pluralsight IQ Skill Assessment AWS": {
+    "aliases": [
+      "pluralsight aws iq",
+      "pluralsight aws assessment"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Cloud Architecture"
+    ]
+  },
+  "Pluralsight IQ Skill Assessment Azure": {
+    "aliases": [
+      "pluralsight azure iq",
+      "pluralsight azure assessment"
+    ],
+    "skills": [
+      "Microsoft Azure",
+      "Cloud Computing"
+    ]
+  },
+  "Pluralsight IQ Skill Assessment Docker": {
+    "aliases": [
+      "pluralsight docker iq",
+      "pluralsight docker assessment"
+    ],
+    "skills": [
+      "Docker",
+      "Containerization",
+      "DevOps"
+    ]
+  },
+  "Pluralsight IQ Skill Assessment Machine Learning": {
+    "aliases": [
+      "pluralsight ml iq",
+      "pluralsight machine learning skill"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Python",
+      "Scikit-learn"
+    ]
+  },
+  "Pluralsight IQ Skill Assessment SQL": {
+    "aliases": [
+      "pluralsight sql iq",
+      "pluralsight sql skill assessment"
+    ],
+    "skills": [
+      "SQL",
+      "Database Management"
+    ]
+  },
+  "Pluralsight IQ Skill Assessment Kubernetes": {
+    "aliases": [
+      "pluralsight k8s iq",
+      "pluralsight kubernetes skill"
+    ],
+    "skills": [
+      "Kubernetes",
+      "Docker",
+      "DevOps"
+    ]
+  },
+  "Pluralsight IQ Skill Assessment React": {
+    "aliases": [
+      "pluralsight react iq",
+      "pluralsight react skill"
+    ],
+    "skills": [
+      "React",
+      "JavaScript",
+      "Hooks",
+      "State Management"
+    ]
+  },
+  "Pluralsight IQ Skill Assessment Angular": {
+    "aliases": [
+      "pluralsight angular iq",
+      "pluralsight angular skill"
+    ],
+    "skills": [
+      "Angular",
+      "TypeScript",
+      "Frontend Development"
+    ]
+  },
+  "Pluralsight IQ Skill Assessment Cybersecurity": {
+    "aliases": [
+      "pluralsight security iq",
+      "pluralsight cybersecurity skill"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Network Security"
+    ]
+  },
+  "Salesforce Trailhead Superbadge Admin": {
+    "aliases": [
+      "salesforce admin superbadge",
+      "trailhead admin cert",
+      "salesforce trailhead cert"
+    ],
+    "skills": [
+      "Salesforce",
+      "CRM",
+      "Salesforce Administration",
+      "Business Automation"
+    ]
+  },
+  "Salesforce Certified Platform Developer I": {
+    "aliases": [
+      "pd1 cert",
+      "salesforce platform dev 1",
+      "sfdc pd1"
+    ],
+    "skills": [
+      "Salesforce",
+      "Apex",
+      "Visualforce",
+      "SOQL",
+      "LWC"
+    ]
+  },
+  "Salesforce Certified Platform Developer II": {
+    "aliases": [
+      "pd2 cert",
+      "salesforce platform dev 2"
+    ],
+    "skills": [
+      "Salesforce",
+      "Advanced Apex",
+      "Integration Patterns",
+      "LWC"
+    ]
+  },
+  "Salesforce Certified Business Analyst": {
+    "aliases": [
+      "sfdc ba cert",
+      "salesforce business analyst cert"
+    ],
+    "skills": [
+      "Salesforce",
+      "Business Analysis",
+      "CRM",
+      "Requirements Gathering"
+    ]
+  },
+  "Salesforce Certified OmniStudio Developer": {
+    "aliases": [
+      "omnistudio cert",
+      "salesforce vlocity cert"
+    ],
+    "skills": [
+      "Salesforce",
+      "OmniStudio",
+      "Vlocity",
+      "Digital Engagement"
+    ]
+  },
+  "Salesforce Certified Service Cloud Consultant": {
+    "aliases": [
+      "service cloud cert",
+      "salesforce service cloud"
+    ],
+    "skills": [
+      "Salesforce",
+      "Service Cloud",
+      "Customer Service",
+      "CRM"
+    ]
+  },
+  "Salesforce Certified Sales Cloud Consultant": {
+    "aliases": [
+      "sales cloud cert",
+      "salesforce sales cloud"
+    ],
+    "skills": [
+      "Salesforce",
+      "Sales Cloud",
+      "CRM",
+      "Sales Operations"
+    ]
+  },
+  "Salesforce Certified Experience Cloud Consultant": {
+    "aliases": [
+      "experience cloud cert",
+      "salesforce community cloud cert"
+    ],
+    "skills": [
+      "Salesforce",
+      "Experience Cloud",
+      "Portal Development"
+    ]
+  },
+  "Salesforce Certified Data Architect": {
+    "aliases": [
+      "sfdc data architect cert",
+      "salesforce data architecture"
+    ],
+    "skills": [
+      "Salesforce",
+      "Data Modeling",
+      "Database Design",
+      "MDM"
+    ]
+  },
+  "Salesforce Certified Integration Architect": {
+    "aliases": [
+      "sfdc integration architect cert",
+      "salesforce integration cert"
+    ],
+    "skills": [
+      "Salesforce",
+      "API Integration",
+      "MuleSoft",
+      "REST API"
+    ]
+  },
+  "NPTEL Programming in Python": {
+    "aliases": [
+      "nptel python cert",
+      "nptel python course cert",
+      "swayam python cert"
+    ],
+    "skills": [
+      "Python",
+      "OOP",
+      "Data Structures",
+      "File Handling"
+    ]
+  },
+  "NPTEL Data Science for Engineers": {
+    "aliases": [
+      "nptel data science cert",
+      "swayam data science cert"
+    ],
+    "skills": [
+      "Data Science",
+      "Python",
+      "Machine Learning",
+      "Statistical Analysis"
+    ]
+  },
+  "NPTEL Machine Learning": {
+    "aliases": [
+      "nptel ml cert",
+      "nptel machine learning cert"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Python",
+      "Algorithms",
+      "Statistical Learning"
+    ]
+  },
+  "NPTEL Deep Learning": {
+    "aliases": [
+      "nptel deep learning cert",
+      "swayam dl cert"
+    ],
+    "skills": [
+      "Deep Learning",
+      "Neural Networks",
+      "TensorFlow",
+      "Python"
+    ]
+  },
+  "NPTEL Database Management System": {
+    "aliases": [
+      "nptel dbms cert",
+      "nptel database cert",
+      "swayam database cert"
+    ],
+    "skills": [
+      "Database Management",
+      "SQL",
+      "ER Diagrams",
+      "Normalization"
+    ]
+  },
+  "NPTEL Cloud Computing": {
+    "aliases": [
+      "nptel cloud cert",
+      "swayam cloud computing cert"
+    ],
+    "skills": [
+      "Cloud Computing",
+      "Virtualization",
+      "Amazon Web Services"
+    ]
+  },
+  "NPTEL Computer Networks": {
+    "aliases": [
+      "nptel networks cert",
+      "swayam computer networks cert"
+    ],
+    "skills": [
+      "Network Engineering",
+      "TCP/IP",
+      "Routing Protocols",
+      "OSI Model"
+    ]
+  },
+  "NPTEL Cybersecurity": {
+    "aliases": [
+      "nptel security cert",
+      "swayam cybersecurity cert"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Cryptography",
+      "Network Security"
+    ]
+  },
+  "NPTEL Artificial Intelligence": {
+    "aliases": [
+      "nptel ai cert",
+      "swayam artificial intelligence cert"
+    ],
+    "skills": [
+      "Artificial Intelligence",
+      "Algorithms",
+      "Machine Learning",
+      "Python"
+    ]
+  },
+  "NPTEL Digital Marketing": {
+    "aliases": [
+      "nptel digital marketing cert",
+      "swayam marketing cert"
+    ],
+    "skills": [
+      "Digital Marketing",
+      "SEO",
+      "Content Marketing",
+      "Analytics"
+    ]
+  },
+  "NPTEL Project Management": {
+    "aliases": [
+      "nptel pm cert",
+      "swayam project management cert"
+    ],
+    "skills": [
+      "Project Management",
+      "Agile",
+      "Risk Management",
+      "Scheduling"
+    ]
+  },
+  "NPTEL Software Engineering": {
+    "aliases": [
+      "nptel software eng cert",
+      "swayam software engineering"
+    ],
+    "skills": [
+      "Software Engineering",
+      "SDLC",
+      "Agile",
+      "Design Patterns"
+    ]
+  },
+  "NPTEL Operations Research": {
+    "aliases": [
+      "nptel or cert",
+      "swayam operations research cert"
+    ],
+    "skills": [
+      "Operations Research",
+      "Linear Programming",
+      "Optimization",
+      "Supply Chain"
+    ]
+  },
+  "NPTEL Blockchain Technology": {
+    "aliases": [
+      "nptel blockchain cert",
+      "swayam blockchain cert"
+    ],
+    "skills": [
+      "Blockchain",
+      "Distributed Systems",
+      "Cryptography",
+      "Ethereum"
+    ]
+  },
+  "NPTEL Internet of Things": {
+    "aliases": [
+      "nptel iot cert",
+      "swayam iot cert"
+    ],
+    "skills": [
+      "Internet of Things",
+      "Arduino",
+      "Raspberry Pi",
+      "Embedded Systems"
+    ]
+  },
+  "Simplilearn Post Graduate Program Data Science": {
+    "aliases": [
+      "simplilearn data science cert",
+      "simplilearn pg data science",
+      "simplilearn ds cert"
+    ],
+    "skills": [
+      "Data Science",
+      "Python",
+      "Machine Learning",
+      "Deep Learning",
+      "NLP"
+    ]
+  },
+  "Simplilearn Post Graduate Program AI ML": {
+    "aliases": [
+      "simplilearn ai ml cert",
+      "simplilearn pg ai ml"
+    ],
+    "skills": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "TensorFlow",
+      "Python"
+    ]
+  },
+  "Simplilearn Full Stack Java Developer": {
+    "aliases": [
+      "simplilearn java full stack cert",
+      "simplilearn java cert"
+    ],
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "React",
+      "MySQL",
+      "REST API"
+    ]
+  },
+  "Simplilearn DevOps Engineer Master's Program": {
+    "aliases": [
+      "simplilearn devops cert",
+      "simplilearn devops master"
+    ],
+    "skills": [
+      "DevOps",
+      "Jenkins",
+      "Docker",
+      "Kubernetes",
+      "Ansible"
+    ]
+  },
+  "Simplilearn Cyber Security Expert": {
+    "aliases": [
+      "simplilearn security cert",
+      "simplilearn cybersecurity expert"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "CEH",
+      "CISSP",
+      "Penetration Testing",
+      "SIEM"
+    ]
+  },
+  "Simplilearn Data Engineering": {
+    "aliases": [
+      "simplilearn data eng cert",
+      "simplilearn de cert"
+    ],
+    "skills": [
+      "Data Engineering",
+      "Apache Spark",
+      "Hadoop",
+      "Kafka",
+      "SQL"
+    ]
+  },
+  "Simplilearn Cloud Computing": {
+    "aliases": [
+      "simplilearn cloud cert",
+      "simplilearn aws cert"
+    ],
+    "skills": [
+      "Cloud Computing",
+      "Amazon Web Services",
+      "Azure",
+      "Google Cloud Platform"
+    ]
+  },
+  "Great Learning Data Science": {
+    "aliases": [
+      "great learning ds cert",
+      "gl data science cert"
+    ],
+    "skills": [
+      "Data Science",
+      "Python",
+      "Machine Learning",
+      "Statistics"
+    ]
+  },
+  "Great Learning AI ML": {
+    "aliases": [
+      "great learning ai cert",
+      "gl ai ml cert"
+    ],
+    "skills": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Python",
+      "Deep Learning"
+    ]
+  },
+  "Great Learning Full Stack Development": {
+    "aliases": [
+      "great learning full stack cert",
+      "gl full stack cert"
+    ],
+    "skills": [
+      "Full Stack Development",
+      "React",
+      "Node.js",
+      "MongoDB",
+      "REST API"
+    ]
+  },
+  "Intellipaat Data Science Master's Program": {
+    "aliases": [
+      "intellipaat ds cert",
+      "intellipaat data science"
+    ],
+    "skills": [
+      "Data Science",
+      "Python",
+      "Machine Learning",
+      "Power BI",
+      "Tableau"
+    ]
+  },
+  "Intellipaat Python Certification": {
+    "aliases": [
+      "intellipaat python cert"
+    ],
+    "skills": [
+      "Python",
+      "OOP",
+      "Libraries",
+      "Django"
+    ]
+  },
+  "Intellipaat DevOps Certification": {
+    "aliases": [
+      "intellipaat devops cert"
+    ],
+    "skills": [
+      "DevOps",
+      "Docker",
+      "Kubernetes",
+      "Jenkins",
+      "Ansible"
+    ]
+  },
+  "Alison Free Diploma in Web Development": {
+    "aliases": [
+      "alison web dev cert",
+      "alison web development diploma",
+      "alison html cert"
+    ],
+    "skills": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Web Development"
+    ]
+  },
+  "Alison Free Diploma in Python": {
+    "aliases": [
+      "alison python cert",
+      "alison python diploma"
+    ],
+    "skills": [
+      "Python",
+      "Programming",
+      "Data Structures"
+    ]
+  },
+  "Alison Free Diploma in Project Management": {
+    "aliases": [
+      "alison pm cert",
+      "alison project management diploma"
+    ],
+    "skills": [
+      "Project Management",
+      "Agile",
+      "Scrum",
+      "Risk Management"
+    ]
+  },
+  "Alison Free Diploma in Digital Marketing": {
+    "aliases": [
+      "alison digital marketing cert",
+      "alison marketing diploma"
+    ],
+    "skills": [
+      "Digital Marketing",
+      "SEO",
+      "Social Media Marketing",
+      "Email Marketing"
+    ]
+  },
+  "Alison Free Certificate in HR Management": {
+    "aliases": [
+      "alison hr cert",
+      "alison human resources cert"
+    ],
+    "skills": [
+      "Human Resources",
+      "Recruitment",
+      "Employee Relations"
+    ]
+  },
+  "Alison Free Diploma in Cybersecurity": {
+    "aliases": [
+      "alison cybersecurity cert",
+      "alison security diploma"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Network Security",
+      "Ethical Hacking"
+    ]
+  },
+  "Microsoft Learn Applied Skills Data Analysis": {
+    "aliases": [
+      "microsoft learn data analysis",
+      "ms learn data cert"
+    ],
+    "skills": [
+      "Data Analysis",
+      "Power BI",
+      "SQL",
+      "Excel"
+    ]
+  },
+  "Microsoft Learn Azure AI Fundamentals Path": {
+    "aliases": [
+      "ms learn azure ai path",
+      "microsoft learn ai cert"
+    ],
+    "skills": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Microsoft Azure"
+    ]
+  },
+  "Microsoft Learn GitHub Foundations": {
+    "aliases": [
+      "github foundations cert",
+      "microsoft github cert",
+      "github cert"
+    ],
+    "skills": [
+      "GitHub",
+      "Git",
+      "Version Control",
+      "Collaboration",
+      "CI/CD"
+    ]
+  },
+  "Microsoft Learn GitHub Actions": {
+    "aliases": [
+      "github actions cert",
+      "ms github actions cert"
+    ],
+    "skills": [
+      "GitHub Actions",
+      "CI/CD",
+      "DevOps",
+      "Automation"
+    ]
+  },
+  "Microsoft Learn GitHub Advanced Security": {
+    "aliases": [
+      "github advanced security cert",
+      "ghas cert"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "DevSecOps",
+      "Code Scanning",
+      "GitHub"
+    ]
+  },
+  "Microsoft Learn Power Platform": {
+    "aliases": [
+      "ms power platform cert",
+      "microsoft power platform learn"
+    ],
+    "skills": [
+      "Power Apps",
+      "Power Automate",
+      "Power BI",
+      "Microsoft 365"
+    ]
+  },
+  "AWS Cloud Quest Cloud Practitioner Badge": {
+    "aliases": [
+      "aws cloud quest cert",
+      "aws cloud quest badge"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Cloud Computing",
+      "AWS EC2",
+      "AWS S3"
+    ]
+  },
+  "AWS Cloud Quest Solutions Architect Badge": {
+    "aliases": [
+      "aws cloud quest sa badge",
+      "aws cloud quest architect"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Cloud Architecture",
+      "VPC",
+      "IAM"
+    ]
+  },
+  "AWS Cloud Quest Machine Learning Badge": {
+    "aliases": [
+      "aws cloud quest ml badge",
+      "aws machine learning quest"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Amazon Web Services",
+      "SageMaker"
+    ]
+  },
+  "AWS Cloud Quest Data Analytics Badge": {
+    "aliases": [
+      "aws cloud quest data badge",
+      "aws data analytics quest"
+    ],
+    "skills": [
+      "Data Engineering",
+      "AWS Athena",
+      "AWS Glue",
+      "Amazon Redshift"
+    ]
+  },
+  "AWS Cloud Quest Serverless Developer Badge": {
+    "aliases": [
+      "aws serverless badge",
+      "aws cloud quest serverless"
+    ],
+    "skills": [
+      "AWS Lambda",
+      "Serverless Architecture",
+      "API Gateway",
+      "Amazon Web Services"
+    ]
+  },
+  "AWS Cloud Quest Security Badge": {
+    "aliases": [
+      "aws cloud quest security badge",
+      "aws security quest"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Amazon Web Services",
+      "IAM",
+      "Cloud Security"
+    ]
+  },
+  "AWS Partner Accreditation": {
+    "aliases": [
+      "aws partner cert",
+      "aws partner network cert",
+      "aws apn accreditation"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Cloud Computing",
+      "Partner Sales"
+    ]
+  },
+  "Udacity Data Scientist Nanodegree": {
+    "aliases": [
+      "udacity data scientist nd",
+      "udacity data science cert"
+    ],
+    "skills": [
+      "Data Science",
+      "Python",
+      "Machine Learning",
+      "Statistical Analysis",
+      "SQL"
+    ]
+  },
+  "Udacity Machine Learning Engineer Nanodegree": {
+    "aliases": [
+      "udacity ml nanodegree",
+      "udacity ml cert"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Python",
+      "Deep Learning",
+      "Scikit-learn",
+      "Deployment"
+    ]
+  },
+  "Udacity AI Programming with Python Nanodegree": {
+    "aliases": [
+      "udacity ai python nd",
+      "udacity ai programming cert"
+    ],
+    "skills": [
+      "Python",
+      "NumPy",
+      "Pandas",
+      "Matplotlib",
+      "PyTorch",
+      "Neural Networks"
+    ]
+  },
+  "Udacity Full Stack Web Developer Nanodegree": {
+    "aliases": [
+      "udacity full stack nd",
+      "udacity web developer cert"
+    ],
+    "skills": [
+      "Python",
+      "Flask",
+      "PostgreSQL",
+      "REST API",
+      "Linux"
+    ]
+  },
+  "Udacity Front End Web Developer Nanodegree": {
+    "aliases": [
+      "udacity frontend nd",
+      "udacity frontend cert"
+    ],
+    "skills": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Asynchronous Programming",
+      "React"
+    ]
+  },
+  "Udacity React Nanodegree": {
+    "aliases": [
+      "udacity react nd",
+      "udacity react cert"
+    ],
+    "skills": [
+      "React",
+      "Redux",
+      "JavaScript",
+      "React Native"
+    ]
+  },
+  "Udacity Cloud Developer Nanodegree": {
+    "aliases": [
+      "udacity cloud developer nd",
+      "udacity cloud dev cert"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Microservices",
+      "Kubernetes",
+      "Serverless",
+      "CI/CD"
+    ]
+  },
+  "Udacity Data Analyst Nanodegree": {
+    "aliases": [
+      "udacity data analyst nd",
+      "udacity data analyst cert"
+    ],
+    "skills": [
+      "Data Analysis",
+      "Python",
+      "R",
+      "Statistics",
+      "SQL",
+      "Visualization"
+    ]
+  },
+  "Udacity Business Analytics Nanodegree": {
+    "aliases": [
+      "udacity business analytics nd",
+      "udacity ba cert"
+    ],
+    "skills": [
+      "Business Analytics",
+      "SQL",
+      "Excel",
+      "Tableau",
+      "Statistics"
+    ]
+  },
+  "Udacity Predictive Analytics Nanodegree": {
+    "aliases": [
+      "udacity predictive analytics nd"
+    ],
+    "skills": [
+      "Predictive Analytics",
+      "Data Science",
+      "Machine Learning",
+      "Python"
+    ]
+  },
+  "Udacity Data Engineering Nanodegree": {
+    "aliases": [
+      "udacity data engineering nd",
+      "udacity de cert"
+    ],
+    "skills": [
+      "Data Engineering",
+      "Python",
+      "Spark",
+      "Airflow",
+      "Data Warehousing"
+    ]
+  },
+  "Udacity AWS Machine Learning Engineer Nanodegree": {
+    "aliases": [
+      "udacity aws ml nd",
+      "udacity aws ml engineer cert"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Machine Learning",
+      "SageMaker",
+      "MLOps"
+    ]
+  },
+  "Udacity Cybersecurity Nanodegree": {
+    "aliases": [
+      "udacity cybersecurity nd",
+      "udacity security cert"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Ethical Hacking",
+      "Network Defense",
+      "Incident Response"
+    ]
+  },
+  "Udacity Self Driving Car Engineer": {
+    "aliases": [
+      "udacity sdc nd",
+      "self driving car nanodegree"
+    ],
+    "skills": [
+      "Autonomous Systems",
+      "Computer Vision",
+      "Deep Learning",
+      "C++",
+      "ROS"
+    ]
+  },
+  "Udacity Android Developer Nanodegree": {
+    "aliases": [
+      "udacity android nd",
+      "udacity android cert"
+    ],
+    "skills": [
+      "Android Development",
+      "Kotlin",
+      "Android Studio",
+      "Firebase"
+    ]
+  },
+  "Udacity iOS Developer Nanodegree": {
+    "aliases": [
+      "udacity ios nd",
+      "udacity ios cert"
+    ],
+    "skills": [
+      "Swift",
+      "iOS Development",
+      "Xcode",
+      "UIKit"
+    ]
+  },
+  "Udacity Product Manager Nanodegree": {
+    "aliases": [
+      "udacity product manager nd",
+      "udacity pm cert"
+    ],
+    "skills": [
+      "Product Management",
+      "User Research",
+      "Roadmapping",
+      "Wireframing"
+    ]
+  },
+  "Udacity Digital Marketing Nanodegree": {
+    "aliases": [
+      "udacity digital marketing nd",
+      "udacity marketing cert"
+    ],
+    "skills": [
+      "Digital Marketing",
+      "SEO",
+      "Social Media Marketing",
+      "Analytics"
+    ]
+  },
+  "Udacity Embedded Systems Engineer Nanodegree": {
+    "aliases": [
+      "udacity embedded nd",
+      "udacity embedded systems cert"
+    ],
+    "skills": [
+      "Embedded Systems",
+      "C",
+      "C++",
+      "Microcontrollers",
+      "RTOS"
+    ]
+  },
+  "Udacity Robotics Software Engineer Nanodegree": {
+    "aliases": [
+      "udacity robotics nd",
+      "udacity robotics cert"
+    ],
+    "skills": [
+      "Robotics",
+      "ROS",
+      "C++",
+      "Computer Vision",
+      "Autonomous Navigation"
+    ]
+  },
+  "Associate Android Developer Certification": {
+    "aliases": [
+      "AAD google cert",
+      "google android developer cert",
+      "google aad cert"
+    ],
+    "skills": [
+      "Android Development",
+      "Kotlin",
+      "Android Studio",
+      "Material Design"
+    ]
+  },
+  "Google Cloud Certified Professional Collaboration Engineer": {
+    "aliases": [
+      "google collab engineer cert",
+      "gcp collaboration cert"
+    ],
+    "skills": [
+      "Google Workspace",
+      "G Suite",
+      "Collaboration Tools",
+      "Google Meet"
+    ]
+  },
+  "Google Mobile Web Specialist": {
+    "aliases": [
+      "google mws cert",
+      "mobile web specialist cert"
+    ],
+    "skills": [
+      "Progressive Web Apps",
+      "JavaScript",
+      "Performance Optimization",
+      "Web APIs"
+    ]
+  },
+  "Fast.AI Practical Deep Learning": {
+    "aliases": [
+      "fastai cert",
+      "fast ai deep learning cert",
+      "practical deep learning fastai"
+    ],
+    "skills": [
+      "Deep Learning",
+      "PyTorch",
+      "Computer Vision",
+      "NLP",
+      "Python"
+    ]
+  },
+  "Hugging Face NLP Course Certificate": {
+    "aliases": [
+      "hugging face cert",
+      "hf nlp cert",
+      "transformers certificate"
+    ],
+    "skills": [
+      "NLP",
+      "Transformers",
+      "Hugging Face",
+      "BERT",
+      "Python"
+    ]
+  },
+  "Hugging Face Deep Reinforcement Learning Certificate": {
+    "aliases": [
+      "hugging face rl cert",
+      "deep rl hugging face cert"
+    ],
+    "skills": [
+      "Reinforcement Learning",
+      "Deep Learning",
+      "Python"
+    ]
+  },
+  "LangChain Developer Certificate": {
+    "aliases": [
+      "langchain cert",
+      "llm developer cert",
+      "langchain ai cert"
+    ],
+    "skills": [
+      "LangChain",
+      "Large Language Models",
+      "Python",
+      "Generative AI"
+    ]
+  },
+  "Credly Digital Badge Verification": {
+    "aliases": [
+      "credly badge",
+      "digital badge verified"
+    ],
+    "skills": [
+      "Certification",
+      "Professional Development"
+    ]
+  },
+  "Oracle University Learning Subscription": {
+    "aliases": [
+      "oracle learning cert",
+      "oracle university cert"
+    ],
+    "skills": [
+      "Oracle Database",
+      "Java",
+      "Oracle Cloud"
+    ]
+  },
+  "VMware Certified Professional": {
+    "aliases": [
+      "VCP cert",
+      "vmware vcp",
+      "vmware certified professional"
+    ],
+    "skills": [
+      "VMware",
+      "Virtualization",
+      "vSphere",
+      "vCenter",
+      "System Administration"
+    ]
+  },
+  "VMware Certified Advanced Professional": {
+    "aliases": [
+      "VCAP cert",
+      "vmware vcap",
+      "vcap cert"
+    ],
+    "skills": [
+      "VMware",
+      "vSphere",
+      "NSX",
+      "vSAN",
+      "Cloud Infrastructure"
+    ]
+  },
+  "VMware Certified Design Expert": {
+    "aliases": [
+      "VCDX cert",
+      "vmware vcdx"
+    ],
+    "skills": [
+      "VMware",
+      "Cloud Architecture",
+      "vSphere Design"
+    ]
+  },
+  "Nutanix Certified Associate": {
+    "aliases": [
+      "NCA cert",
+      "nutanix cert",
+      "nutanix certified"
+    ],
+    "skills": [
+      "Nutanix",
+      "Hyper-Converged Infrastructure",
+      "Virtualization",
+      "Cloud"
+    ]
+  },
+  "Pure Storage FlashArray Certified": {
+    "aliases": [
+      "pure storage cert",
+      "flasharray cert"
+    ],
+    "skills": [
+      "Storage Administration",
+      "SAN",
+      "FlashArray",
+      "System Administration"
+    ]
+  },
+  "NetApp Certified Data Administrator": {
+    "aliases": [
+      "NCDA cert",
+      "netapp certified",
+      "netapp data admin"
+    ],
+    "skills": [
+      "Storage Administration",
+      "NetApp",
+      "SAN",
+      "NAS"
+    ]
+  },
+  "Palo Alto Networks Certified Network Security Engineer": {
+    "aliases": [
+      "PCNSE cert",
+      "palo alto cert",
+      "pan cert"
+    ],
+    "skills": [
+      "Network Security",
+      "Firewall Management",
+      "Palo Alto Networks",
+      "NGFW"
+    ]
+  },
+  "Palo Alto Networks Certified Cybersecurity Associate": {
+    "aliases": [
+      "PCCSA cert",
+      "palo alto associate cert"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Network Security",
+      "Palo Alto Networks"
+    ]
+  },
+  "Fortinet Network Security Expert": {
+    "aliases": [
+      "NSE cert",
+      "fortinet NSE 1 2 3 4 5 6 7 8",
+      "fortinet cert"
+    ],
+    "skills": [
+      "Network Security",
+      "Fortinet",
+      "FortiGate",
+      "Firewall Management"
+    ]
+  },
+  "Juniper Networks Certified Associate": {
+    "aliases": [
+      "JNCIA cert",
+      "juniper cert",
+      "juniper associate cert",
+      "jncia-junos"
+    ],
+    "skills": [
+      "Juniper Networks",
+      "Routing Protocols",
+      "Network Engineering"
+    ]
+  },
+  "F5 Certified BIG-IP Administrator": {
+    "aliases": [
+      "F5 cert",
+      "bigip cert",
+      "f5 administrator cert"
+    ],
+    "skills": [
+      "Load Balancing",
+      "Network Engineering",
+      "F5 BIG-IP",
+      "Application Delivery"
+    ]
+  },
+  "Checkpoint Certified Security Administrator": {
+    "aliases": [
+      "CCSA cert",
+      "checkpoint cert",
+      "check point admin cert"
+    ],
+    "skills": [
+      "Network Security",
+      "Checkpoint Firewall",
+      "VPN",
+      "Cybersecurity"
+    ]
+  },
+  "Atlassian Certified Jira Administrator": {
+    "aliases": [
+      "jira admin cert",
+      "atlassian jira cert",
+      "atlassian certified"
+    ],
+    "skills": [
+      "Jira",
+      "Project Management",
+      "Agile",
+      "Scrum"
+    ]
+  },
+  "Atlassian Certified Confluence Administrator": {
+    "aliases": [
+      "confluence cert",
+      "atlassian confluence cert"
+    ],
+    "skills": [
+      "Confluence",
+      "Documentation",
+      "Project Management",
+      "Collaboration"
+    ]
+  },
+  "Atlassian Certified in Managing Jira Projects": {
+    "aliases": [
+      "jira project cert",
+      "atlassian project management cert"
+    ],
+    "skills": [
+      "Jira",
+      "Agile",
+      "Scrum",
+      "Project Management"
+    ]
+  },
+  "Applied Data Science Specialization University of Michigan": {
+    "aliases": [
+      "umich applied ds cert",
+      "applied data science michigan coursera"
+    ],
+    "skills": [
+      "Python",
+      "pandas",
+      "NumPy",
+      "Data Science",
+      "Machine Learning",
+      "Matplotlib"
+    ]
+  },
+  "IBM Applied DevOps Engineering Specialization": {
+    "aliases": [
+      "ibm applied devops cert",
+      "ibm devops engineering coursera"
+    ],
+    "skills": [
+      "DevOps",
+      "CI/CD",
+      "Docker",
+      "Kubernetes",
+      "Test-Driven Development"
+    ]
+  },
+  "Google Cloud Fundamentals Core Infrastructure": {
+    "aliases": [
+      "gcp core infrastructure cert",
+      "google cloud fundamentals coursera"
+    ],
+    "skills": [
+      "Google Cloud Platform",
+      "Cloud Computing",
+      "Kubernetes",
+      "GCP Storage"
+    ]
+  },
+  "DevOps on AWS Specialization": {
+    "aliases": [
+      "aws devops specialization coursera",
+      "devops aws cert"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "DevOps",
+      "CI/CD",
+      "Infrastructure as Code"
+    ]
+  },
+  "Blockchain Specialization University at Buffalo": {
+    "aliases": [
+      "ub blockchain cert",
+      "blockchain specialization coursera"
+    ],
+    "skills": [
+      "Blockchain",
+      "Solidity",
+      "Ethereum",
+      "Smart Contracts",
+      "Decentralized Applications"
+    ]
+  },
+  "Cybersecurity Specialization University of Maryland": {
+    "aliases": [
+      "umd cybersecurity cert",
+      "cybersecurity specialization coursera umd"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Cryptography",
+      "Software Security",
+      "Network Security"
+    ]
+  },
+  "Cloud Computing Specialization University of Illinois": {
+    "aliases": [
+      "uiuc cloud cert",
+      "cloud computing specialization coursera"
+    ],
+    "skills": [
+      "Cloud Computing",
+      "Distributed Systems",
+      "MapReduce",
+      "Kubernetes"
+    ]
+  },
+  "Algorithms Specialization Stanford": {
+    "aliases": [
+      "stanford algorithms cert",
+      "algorithms stanford coursera"
+    ],
+    "skills": [
+      "Algorithms",
+      "Data Structures",
+      "Divide and Conquer",
+      "Graph Algorithms"
+    ]
+  },
+  "Introduction to Mathematical Thinking Stanford": {
+    "aliases": [
+      "mathematical thinking cert stanford",
+      "math thinking coursera"
+    ],
+    "skills": [
+      "Mathematical Reasoning",
+      "Discrete Mathematics",
+      "Logic"
+    ]
+  },
+  "Full Stack Web Development Hong Kong University": {
+    "aliases": [
+      "hkust full stack cert",
+      "hong kong full stack coursera"
+    ],
+    "skills": [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Bootstrap",
+      "Angular"
+    ]
+  },
+  "Data Structures and Algorithms Specialization UC San Diego": {
+    "aliases": [
+      "ucsd dsa cert",
+      "dsa specialization coursera ucsd"
+    ],
+    "skills": [
+      "Data Structures",
+      "Algorithms",
+      "Python",
+      "Dynamic Programming",
+      "Graph Algorithms"
+    ]
+  },
+  "Advanced Machine Learning Specialization HSE": {
+    "aliases": [
+      "hse ml cert",
+      "advanced ml russia coursera",
+      "yandex ml cert"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Deep Learning",
+      "Python",
+      "NLP",
+      "Computer Vision"
+    ]
+  },
+  "Robotics Specialization University of Pennsylvania": {
+    "aliases": [
+      "upenn robotics cert",
+      "robotics specialization coursera"
+    ],
+    "skills": [
+      "Robotics",
+      "Computer Vision",
+      "MATLAB",
+      "Aerial Robotics",
+      "Motion Planning"
+    ]
+  },
+  "Executive Data Science Johns Hopkins": {
+    "aliases": [
+      "jhu executive data science",
+      "executive data science coursera"
+    ],
+    "skills": [
+      "Data Science",
+      "Leadership",
+      "Statistical Analysis",
+      "Machine Learning"
+    ]
+  },
+  "Accounting Data Analytics Specialization": {
+    "aliases": [
+      "accounting analytics cert",
+      "corporate finance analytics coursera"
+    ],
+    "skills": [
+      "Accounting",
+      "Data Analysis",
+      "Excel",
+      "SQL",
+      "Financial Analysis"
+    ]
+  },
+  "Adobe Certified Expert Photoshop": {
+    "aliases": [
+      "ACE Photoshop",
+      "adobe photoshop cert",
+      "adobe certified photoshop expert"
+    ],
+    "skills": [
+      "Adobe Photoshop",
+      "Photo Editing",
+      "Graphic Design",
+      "Retouching"
+    ]
+  },
+  "Adobe Certified Expert Illustrator": {
+    "aliases": [
+      "ACE Illustrator",
+      "adobe illustrator cert",
+      "adobe certified illustrator"
+    ],
+    "skills": [
+      "Adobe Illustrator",
+      "Vector Graphics",
+      "Graphic Design",
+      "Logo Design"
+    ]
+  },
+  "Adobe Certified Expert InDesign": {
+    "aliases": [
+      "ACE InDesign",
+      "adobe indesign cert"
+    ],
+    "skills": [
+      "Adobe InDesign",
+      "Graphic Design",
+      "Print Design",
+      "Publishing"
+    ]
+  },
+  "Adobe Certified Expert Premiere Pro": {
+    "aliases": [
+      "ACE Premiere Pro",
+      "adobe premiere cert",
+      "adobe certified video editor"
+    ],
+    "skills": [
+      "Adobe Premiere Pro",
+      "Video Editing",
+      "Post Production",
+      "Color Grading"
+    ]
+  },
+  "Adobe Certified Expert After Effects": {
+    "aliases": [
+      "ACE After Effects",
+      "adobe after effects cert",
+      "motion graphics cert"
+    ],
+    "skills": [
+      "Adobe After Effects",
+      "Motion Design",
+      "Visual Effects",
+      "Animation"
+    ]
+  },
+  "Adobe XD Certified": {
+    "aliases": [
+      "adobe xd cert",
+      "adobe certified xd"
+    ],
+    "skills": [
+      "Adobe XD",
+      "User Experience",
+      "Prototyping",
+      "Wireframing"
+    ]
+  },
+  "Adobe Certified Expert Lightroom": {
+    "aliases": [
+      "ACE Lightroom",
+      "adobe lightroom cert"
+    ],
+    "skills": [
+      "Adobe Lightroom",
+      "Photography",
+      "Photo Editing",
+      "Color Correction"
+    ]
+  },
+  "Adobe Certified Instructor": {
+    "aliases": [
+      "ACI cert",
+      "adobe certified instructor"
+    ],
+    "skills": [
+      "Graphic Design",
+      "Teaching",
+      "Adobe Creative Suite"
+    ]
+  },
+  "Adobe Substance 3D Certified": {
+    "aliases": [
+      "adobe substance cert",
+      "substance 3d cert"
+    ],
+    "skills": [
+      "3D Design",
+      "Texturing",
+      "Adobe Substance 3D",
+      "Game Design"
+    ]
+  },
+  "Apple iOS App Development Certification": {
+    "aliases": [
+      "apple swift cert",
+      "apple ios developer cert",
+      "apple developer cert"
+    ],
+    "skills": [
+      "Swift",
+      "iOS Development",
+      "Xcode",
+      "SwiftUI",
+      "UIKit"
+    ]
+  },
+  "Apple macOS Developer Certification": {
+    "aliases": [
+      "apple macos cert",
+      "macOS developer cert"
+    ],
+    "skills": [
+      "Swift",
+      "macOS Development",
+      "AppKit",
+      "Xcode"
+    ]
+  },
+  "Apple Core ML Certification": {
+    "aliases": [
+      "apple coreml cert",
+      "core ml developer cert"
+    ],
+    "skills": [
+      "Machine Learning",
+      "Swift",
+      "iOS Development",
+      "On-Device AI"
+    ]
+  },
+  "Apple Teacher Certification": {
+    "aliases": [
+      "apple teacher cert",
+      "apple teacher program"
+    ],
+    "skills": [
+      "Teaching",
+      "Educational Technology",
+      "iPad Education"
+    ]
+  },
+  "Cisco DevNet Associate": {
+    "aliases": [
+      "devnet associate cert",
+      "cisco devnet assoc",
+      "200-901 cert"
+    ],
+    "skills": [
+      "Python",
+      "REST API",
+      "Network Automation",
+      "Cisco Networking",
+      "DevOps"
+    ]
+  },
+  "Cisco DevNet Professional": {
+    "aliases": [
+      "devnet professional cert",
+      "cisco devnet pro cert"
+    ],
+    "skills": [
+      "Network Automation",
+      "Python",
+      "Ansible",
+      "Git",
+      "REST API",
+      "Kubernetes"
+    ]
+  },
+  "Cisco DevNet Expert": {
+    "aliases": [
+      "devnet expert cert",
+      "cisco devnet exp"
+    ],
+    "skills": [
+      "Network Automation",
+      "Advanced Python",
+      "Architecture Design",
+      "CI/CD"
+    ]
+  },
+  "Cisco CyberOps Associate": {
+    "aliases": [
+      "cyberops associate cert",
+      "cisco security ops cert",
+      "200-201 cert"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "SIEM",
+      "Threat Analysis",
+      "Network Security"
+    ]
+  },
+  "Cisco CyberOps Professional": {
+    "aliases": [
+      "cyberops professional cert",
+      "cisco security ops professional"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Threat Hunting",
+      "Incident Response",
+      "SOAR"
+    ]
+  },
+  "Cisco CCNA 200-301": {
+    "aliases": [
+      "200-301 cert",
+      "ccna 200-301 cert"
+    ],
+    "skills": [
+      "Cisco Networking",
+      "Routing Protocols",
+      "Switching",
+      "Network Security",
+      "Automation"
+    ]
+  },
+  "Microsoft Technology Associate Security": {
+    "aliases": [
+      "MTA security cert",
+      "microsoft security fundamentals cert"
+    ],
+    "skills": [
+      "Cybersecurity",
+      "Network Security",
+      "Security Operations"
+    ]
+  },
+  "Microsoft Technology Associate Database": {
+    "aliases": [
+      "MTA database cert",
+      "microsoft database fundamentals cert"
+    ],
+    "skills": [
+      "SQL Server",
+      "Database Management",
+      "SQL",
+      "T-SQL"
+    ]
+  },
+  "Microsoft Technology Associate Networking": {
+    "aliases": [
+      "MTA networking cert",
+      "microsoft networking fundamentals cert"
+    ],
+    "skills": [
+      "Network Engineering",
+      "TCP/IP",
+      "Subnetting"
+    ]
+  },
+  "Microsoft Technology Associate Software Development": {
+    "aliases": [
+      "MTA software cert",
+      "microsoft software dev cert"
+    ],
+    "skills": [
+      "Programming",
+      "C#",
+      "JavaScript",
+      "OOP"
+    ]
+  },
+  "MongoDB Certified Developer Associate": {
+    "aliases": [
+      "mongodb dev cert",
+      "mongodb associate developer cert",
+      "mdb dev cert"
+    ],
+    "skills": [
+      "MongoDB",
+      "NoSQL",
+      "CRUD Operations",
+      "Aggregation Framework",
+      "Python"
+    ]
+  },
+  "MongoDB Certified Database Administrator": {
+    "aliases": [
+      "mongodb dba cert",
+      "mongodb admin cert",
+      "mdb dba cert"
+    ],
+    "skills": [
+      "MongoDB",
+      "Database Administration",
+      "Replication",
+      "Sharding"
+    ]
+  },
+  "Elastic Certified Analyst": {
+    "aliases": [
+      "elastic analyst cert",
+      "elasticsearch analyst cert"
+    ],
+    "skills": [
+      "Elasticsearch",
+      "Kibana",
+      "Log Analysis",
+      "Security Analytics"
+    ]
+  },
+  "Elastic Certified Observability Enginer": {
+    "aliases": [
+      "elastic observability cert",
+      "elasticsearch observability"
+    ],
+    "skills": [
+      "Elasticsearch",
+      "Kibana",
+      "Monitoring",
+      "APM",
+      "Observability"
+    ]
+  },
+  "Databricks Certified Machine Learning Professional": {
+    "aliases": [
+      "databricks ml professional cert",
+      "databricks ml cert"
+    ],
+    "skills": [
+      "Machine Learning",
+      "MLflow",
+      "Apache Spark",
+      "Databricks",
+      "Python"
+    ]
+  },
+  "Databricks Certified Data Engineer Professional": {
+    "aliases": [
+      "databricks data engineer cert",
+      "databricks de professional"
+    ],
+    "skills": [
+      "Data Engineering",
+      "Apache Spark",
+      "Delta Lake",
+      "ETL",
+      "Python"
+    ]
+  },
+  "Databricks Certified Generative AI Engineer": {
+    "aliases": [
+      "databricks genai cert",
+      "databricks llm cert"
+    ],
+    "skills": [
+      "Generative AI",
+      "Large Language Models",
+      "LangChain",
+      "Python"
+    ]
+  },
+  "Confluent Certified Developer for Apache Kafka": {
+    "aliases": [
+      "confluent kafka dev cert",
+      "kafka developer cert"
+    ],
+    "skills": [
+      "Apache Kafka",
+      "Event Streaming",
+      "Microservices",
+      "Java",
+      "Python"
+    ]
+  },
+  "Confluent Certified Administrator for Apache Kafka": {
+    "aliases": [
+      "confluent kafka admin cert",
+      "kafka admin cert"
+    ],
+    "skills": [
+      "Apache Kafka",
+      "Data Engineering",
+      "Streaming Architecture"
+    ]
+  },
+  "dbt Analytics Engineering Certification": {
+    "aliases": [
+      "dbt cert",
+      "analytics engineering cert",
+      "dbt cloud cert"
+    ],
+    "skills": [
+      "dbt",
+      "SQL",
+      "Data Modeling",
+      "Data Engineering",
+      "Analytics Engineering"
+    ]
+  },
+  "AWS Certified IoT Specialty": {
+    "aliases": [
+      "aws iot cert",
+      "aws iot specialty cert"
+    ],
+    "skills": [
+      "Internet of Things",
+      "Amazon Web Services",
+      "AWS IoT Core",
+      "Edge Computing"
+    ]
+  },
+  "AWS Partner Sales Accreditation": {
+    "aliases": [
+      "aws partner sales cert",
+      "aws sales cert"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Cloud Sales",
+      "Cloud Computing"
+    ]
+  },
+  "AWS Well-Architected Framework": {
+    "aliases": [
+      "aws well architected cert",
+      "aws waf certification"
+    ],
+    "skills": [
+      "Amazon Web Services",
+      "Cloud Architecture",
+      "Best Practices"
+    ]
+  },
+  "Microsoft Certified Power Apps Developer": {
+    "aliases": [
+      "power apps cert",
+      "ms power apps developer cert"
+    ],
+    "skills": [
+      "Power Apps",
+      "Low-Code Development",
+      "Microsoft 365",
+      "Dataverse"
+    ]
+  },
+  "Microsoft Certified Power Automate RPA": {
+    "aliases": [
+      "power automate cert",
+      "rpa power automate cert"
+    ],
+    "skills": [
+      "Power Automate",
+      "Robotic Process Automation",
+      "Automation",
+      "Microsoft 365"
+    ]
+  },
+  "Dynamics 365 Field Service Functional Consultant": {
+    "aliases": [
+      "MB-240",
+      "dynamics field service cert"
+    ],
+    "skills": [
+      "Microsoft Dynamics 365",
+      "Field Service",
+      "CRM",
+      "IoT"
+    ]
+  },
+  "Dynamics 365 Customer Insights Data Specialist": {
+    "aliases": [
+      "MB-260",
+      "dynamics customer insights cert"
+    ],
+    "skills": [
+      "Microsoft Dynamics 365",
+      "Customer Data Platform",
+      "Data Analysis"
+    ]
+  },
+  "Google Generative AI Learning Path": {
+    "aliases": [
+      "google genai cert",
+      "google ai learning badge",
+      "generative ai google cert"
+    ],
+    "skills": [
+      "Generative AI",
+      "Large Language Models",
+      "Vertex AI",
+      "Google Cloud Platform"
+    ]
+  },
+  "Coursera Generative AI for Everyone": {
+    "aliases": [
+      "genai for everyone cert",
+      "andrew ng genai coursera"
+    ],
+    "skills": [
+      "Generative AI",
+      "Prompt Engineering",
+      "AI Ethics",
+      "Large Language Models"
+    ]
+  },
+  "AWS Generative AI": {
+    "aliases": [
+      "aws gen ai cert",
+      "aws generative ai learning badge"
+    ],
+    "skills": [
+      "Generative AI",
+      "Amazon Bedrock",
+      "Amazon Web Services",
+      "Large Language Models"
+    ]
+  },
+  "Microsoft Generative AI Fundamentals": {
+    "aliases": [
+      "microsoft gen ai cert",
+      "azure generative ai cert"
+    ],
+    "skills": [
+      "Generative AI",
+      "Microsoft Azure",
+      "Azure OpenAI",
+      "Prompt Engineering"
+    ]
+  },
+  "Prompt Engineering for Developers": {
+    "aliases": [
+      "deeplearning prompt cert",
+      "prompt eng developer cert"
+    ],
+    "skills": [
+      "Prompt Engineering",
+      "OpenAI API",
+      "Large Language Models",
+      "Python"
+    ]
+  },
+  "Building LLM Applications with LangChain": {
+    "aliases": [
+      "langchain applications cert",
+      "llm apps langchain cert"
+    ],
+    "skills": [
+      "LangChain",
+      "Large Language Models",
+      "Python",
+      "Vector Databases"
+    ]
+  },
+  "Professional Agile Leadership": {
+    "aliases": [
+      "PAL cert",
+      "scrum.org pal cert",
+      "agile leadership scrum org"
+    ],
+    "skills": [
+      "Agile",
+      "Leadership",
+      "Scrum",
+      "Organizational Change"
+    ]
+  },
+  "Professional Scrum with Kanban": {
+    "aliases": [
+      "PSK cert",
+      "scrum kanban cert",
+      "scrum.org psk"
+    ],
+    "skills": [
+      "Scrum",
+      "Kanban",
+      "Agile",
+      "Flow Management"
+    ]
+  },
+  "Professional Scrum Developer": {
+    "aliases": [
+      "PSD cert",
+      "scrum developer cert",
+      "scrum.org psd"
+    ],
+    "skills": [
+      "Scrum",
+      "Test-Driven Development",
+      "Agile",
+      "Software Engineering"
+    ]
+  },
+  "Certified Data Governance Professional": {
+    "aliases": [
+      "CDGP cert",
+      "data governance cert",
+      "dataversity cert"
+    ],
+    "skills": [
+      "Data Governance",
+      "Data Quality",
+      "Metadata Management",
+      "MDM"
+    ]
+  },
+  "Certified Information Privacy Manager": {
+    "aliases": [
+      "CIPM cert",
+      "iapp cipm",
+      "privacy manager cert"
+    ],
+    "skills": [
+      "Privacy Management",
+      "GDPR",
+      "Data Protection Program",
+      "Compliance"
+    ]
+  },
+  "FedRAMP Certification": {
+    "aliases": [
+      "fedramp cert",
+      "federal risk authorization cert"
+    ],
+    "skills": [
+      "Cloud Security",
+      "Compliance",
+      "Risk Management",
+      "Government Cloud"
+    ]
+  },
+  "SOC 2 Auditor Certification": {
+    "aliases": [
+      "soc 2 cert",
+      "soc auditor cert",
+      "aicpa soc2"
+    ],
+    "skills": [
+      "Audit",
+      "Compliance",
+      "SaaS Security",
+      "Risk Management"
+    ]
+  },
+  "SAP Certified Solution Architect": {
+    "aliases": [
+      "sap solution architect cert",
+      "sap technical architect cert"
+    ],
+    "skills": [
+      "SAP",
+      "Enterprise Architecture",
+      "SAP S/4HANA",
+      "Integration Design"
+    ]
+  },
+  "Oracle Financial Cloud Certified Implementation Specialist": {
+    "aliases": [
+      "oracle financials cloud cert",
+      "oracle erp cloud cert"
+    ],
+    "skills": [
+      "Oracle ERP",
+      "Financial Management",
+      "Oracle Cloud",
+      "Accounting"
+    ]
+  },
+  "Microsoft Dynamics 365 Finance Functional Consultant": {
+    "aliases": [
+      "MB-310",
+      "dynamics finance cert"
+    ],
+    "skills": [
+      "Microsoft Dynamics 365",
+      "Finance",
+      "ERP",
+      "Accounting"
+    ]
+  },
+  "Epicor ERP Certified": {
+    "aliases": [
+      "epicor cert",
+      "epicor erp cert"
+    ],
+    "skills": [
+      "Epicor ERP",
+      "Manufacturing",
+      "Supply Chain Management",
+      "ERP"
+    ]
+  },
+  "Infor ERP Certified": {
+    "aliases": [
+      "infor cert",
+      "infor erp cert"
+    ],
+    "skills": [
+      "Infor ERP",
+      "Manufacturing",
+      "Supply Chain Management"
+    ]
+  },
+  "ISTQB Foundation Level": {
+    "aliases": [
+      "ISTQB FL",
+      "istqb certified tester",
+      "ctfl cert",
+      "software testing cert istqb"
+    ],
+    "skills": [
+      "Software Testing",
+      "Test Planning",
+      "Bug Tracking",
+      "QA Engineering"
+    ]
+  },
+  "ISTQB Advanced Level Test Manager": {
+    "aliases": [
+      "ISTQB TM",
+      "istqb advanced cert",
+      "ctal-tm cert"
+    ],
+    "skills": [
+      "Test Management",
+      "QA Engineering",
+      "Testing Strategy"
+    ]
+  },
+  "Agile Testing Certification": {
+    "aliases": [
+      "agile tester cert",
+      "agile testing cert",
+      "iist agile testing"
+    ],
+    "skills": [
+      "Agile Testing",
+      "Test-Driven Development",
+      "BDD",
+      "Selenium"
+    ]
+  },
+  "Selenium WebDriver Certification": {
+    "aliases": [
+      "selenium cert",
+      "selenium webdriver cert",
+      "selenium testing cert"
+    ],
+    "skills": [
+      "Selenium",
+      "Test Automation",
+      "Java",
+      "Python",
+      "QA Engineering"
+    ]
+  },
+  "Postman API Fundamentals Expert": {
+    "aliases": [
+      "postman cert",
+      "postman api cert",
+      "api testing postman cert"
+    ],
+    "skills": [
+      "API Testing",
+      "REST API",
+      "Postman",
+      "Software Testing"
+    ]
+  },
+  "Cypress Test Automation": {
+    "aliases": [
+      "cypress cert",
+      "cypress automation cert"
+    ],
+    "skills": [
+      "Cypress",
+      "Test Automation",
+      "JavaScript",
+      "End-to-End Testing"
+    ]
+  },
+  "Appium Mobile Testing": {
+    "aliases": [
+      "appium cert",
+      "mobile testing appium cert"
+    ],
+    "skills": [
+      "Appium",
+      "Mobile Testing",
+      "Test Automation",
+      "Java",
+      "Python"
+    ]
+  },
+  "LoadRunner Performance Testing": {
+    "aliases": [
+      "loadrunner cert",
+      "performance testing cert"
+    ],
+    "skills": [
+      "Performance Testing",
+      "LoadRunner",
+      "Load Testing",
+      "QA Engineering"
+    ]
+  },
+  "JMeter Performance Testing": {
+    "aliases": [
+      "jmeter cert",
+      "apache jmeter cert"
+    ],
+    "skills": [
+      "JMeter",
+      "Performance Testing",
+      "Load Testing"
+    ]
+  },
+  "CSTE Certified Software Test Engineer": {
+    "aliases": [
+      "CSTE cert",
+      "software test engineer cert",
+      "qai cste"
+    ],
+    "skills": [
+      "Software Testing",
+      "QA Engineering",
+      "Test Management"
+    ]
+  },
+  "Scrimba Frontend Developer Career Path": {
+    "aliases": [
+      "scrimba frontend cert",
+      "scrimba career path cert"
+    ],
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "TypeScript"
+    ]
+  },
+  "The Odin Project Full Stack": {
+    "aliases": [
+      "odin project cert",
+      "odin project full stack"
+    ],
+    "skills": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Ruby on Rails",
+      "Node.js",
+      "Git"
+    ]
+  },
+  "TestDome Programming Test": {
+    "aliases": [
+      "testdome cert",
+      "testdome developer test"
+    ],
+    "skills": [
+      "Programming",
+      "Algorithms",
+      "SQL",
+      "Data Structures"
+    ]
+  },
+  "Codility Developer Certificate": {
+    "aliases": [
+      "codility cert",
+      "codility gold cert"
+    ],
+    "skills": [
+      "Algorithms",
+      "Data Structures",
+      "Coding",
+      "Problem Solving"
+    ]
+  },
+  "LeetCode Certificate of Completion": {
+    "aliases": [
+      "leetcode cert",
+      "leetcode study plan cert"
+    ],
+    "skills": [
+      "Algorithms",
+      "Data Structures",
+      "Coding Interviews",
+      "Dynamic Programming"
+    ]
+  },
+  "AlgoExpert Certificate": {
+    "aliases": [
+      "algoexpert cert",
+      "algo expert cert"
+    ],
+    "skills": [
+      "Algorithms",
+      "Data Structures",
+      "Coding Interviews",
+      "System Design"
+    ]
+  },
+  "Exercism Proficiency": {
+    "aliases": [
+      "exercism cert",
+      "exercism track completion"
+    ],
+    "skills": [
+      "Programming",
+      "Python",
+      "JavaScript",
+      "Go",
+      "Rust",
+      "Functional Programming"
+    ]
+  },
+  "CodeSignal General Coding Score": {
+    "aliases": [
+      "codesignal skill cert",
+      "codesignal assessment cert"
+    ],
+    "skills": [
+      "Programming",
+      "Algorithms",
+      "Data Structures"
+    ]
+  },
+  "Qualified.io Developer Assessment": {
+    "aliases": [
+      "qualified io cert",
+      "developer assessment qualify"
+    ],
+    "skills": [
+      "Programming",
+      "JavaScript",
+      "Python",
+      "Algorithms"
+    ]
+  },
+  "Emotional Intelligence Certification": {
+    "aliases": [
+      "EQ cert",
+      "emotional intelligence cert",
+      "eq practitioner cert"
+    ],
+    "skills": [
+      "Emotional Intelligence",
+      "Leadership",
+      "Communication",
+      "Team Management"
+    ]
+  },
+  "Certified Business Coach": {
+    "aliases": [
+      "CBC cert",
+      "business coach cert",
+      "ICF coaching cert"
+    ],
+    "skills": [
+      "Coaching",
+      "Leadership",
+      "Business Strategy",
+      "Communication"
+    ]
+  },
+  "Executive Coaching Certification": {
+    "aliases": [
+      "executive coach cert",
+      "icf pcc cert",
+      "coaching cert icf"
+    ],
+    "skills": [
+      "Executive Coaching",
+      "Leadership",
+      "Organizational Development"
+    ]
+  },
+  "Design Thinking Certificate": {
+    "aliases": [
+      "IDEO design thinking cert",
+      "stanford d.school cert",
+      "design thinking online cert"
+    ],
+    "skills": [
+      "Design Thinking",
+      "Innovation",
+      "User Research",
+      "Prototyping"
+    ]
+  },
+  "Certified NLP Practitioner": {
+    "aliases": [
+      "NLP practitioner cert",
+      "neuro linguistic programming cert"
+    ],
+    "skills": [
+      "Communication",
+      "Coaching",
+      "Behavioral Psychology",
+      "Leadership"
+    ]
+  },
+  "Diversity Equity Inclusion Certification": {
+    "aliases": [
+      "DEI cert",
+      "diversity equity inclusion cert",
+      "dei professional cert"
+    ],
+    "skills": [
+      "Diversity Management",
+      "HR Management",
+      "Organizational Behavior"
+    ]
+  },
+  "QuickBooks ProAdvisor Certification": {
+    "aliases": [
+      "quickbooks cert",
+      "intuit quickbooks cert",
+      "qbo proadvisor"
+    ],
+    "skills": [
+      "QuickBooks",
+      "Accounting",
+      "Bookkeeping",
+      "Financial Reporting"
+    ]
+  },
+  "Xero Advisor Certification": {
+    "aliases": [
+      "xero cert",
+      "xero partner cert",
+      "xero advisor cert"
+    ],
+    "skills": [
+      "Xero",
+      "Accounting",
+      "Bookkeeping",
+      "Cloud Accounting"
+    ]
+  },
+  "Tally Certification": {
+    "aliases": [
+      "tally erp cert",
+      "tally prime cert",
+      "tally certified",
+      "tally gst cert"
+    ],
+    "skills": [
+      "Tally ERP",
+      "Accounting",
+      "GST",
+      "Financial Reporting",
+      "Bookkeeping"
+    ]
+  },
+  "BUSY Accounting Software Certification": {
+    "aliases": [
+      "busy software cert",
+      "busy accounting cert"
+    ],
+    "skills": [
+      "Accounting",
+      "GST",
+      "Financial Reporting",
+      "Bookkeeping"
+    ]
+  },
+  "NIELIT A Level Certification": {
+    "aliases": [
+      "nielit a level cert",
+      "doeacc a level cert",
+      "a level nielit"
+    ],
+    "skills": [
+      "Programming",
+      "System Analysis",
+      "Database Management",
+      "Networking"
+    ]
+  },
+  "NIELIT B Level Certification": {
+    "aliases": [
+      "nielit b level cert",
+      "doeacc b level cert"
+    ],
+    "skills": [
+      "Software Engineering",
+      "Data Structures",
+      "Advanced Programming"
+    ]
+  },
+  "NIELIT O Level Certification": {
+    "aliases": [
+      "nielit o level cert",
+      "doeacc o level",
+      "o level computer cert"
+    ],
+    "skills": [
+      "IT Fundamentals",
+      "Programming",
+      "Web Design",
+      "Word Processing"
+    ]
+  },
+  "NASSCOM FutureSkills Certification": {
+    "aliases": [
+      "nasscom cert",
+      "nasscom ai ml cert",
+      "futureskills cert india"
+    ],
+    "skills": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Data Science",
+      "Cybersecurity"
+    ]
+  },
+  "Digital India Programme Certificate": {
+    "aliases": [
+      "digital india cert",
+      "pmgdisha cert"
+    ],
+    "skills": [
+      "Digital Literacy",
+      "MS Office",
+      "Internet Basics"
+    ]
+  },
+  "Railway RITES Certification": {
+    "aliases": [
+      "rites cert",
+      "railway technical cert"
+    ],
+    "skills": [
+      "Civil Engineering",
+      "Project Management",
+      "Infrastructure Development"
+    ]
+  },
+  "GD&T Certification": {
+    "aliases": [
+      "gdt cert",
+      "geometric dimensioning tolerancing cert",
+      "asme y14.5 cert"
+    ],
+    "skills": [
+      "GD&T",
+      "Mechanical Drawing",
+      "Manufacturing Engineering",
+      "Quality Control"
+    ]
+  },
+  "Lean Six Sigma Black Belt": {
+    "aliases": [
+      "LSSBB cert",
+      "lean six sigma bb cert",
+      "lean bb cert"
+    ],
+    "skills": [
+      "Lean Manufacturing",
+      "Six Sigma",
+      "Process Improvement",
+      "Statistical Analysis"
+    ]
+  },
+  "Certified Maintenance & Reliability Professional": {
+    "aliases": [
+      "CMRP cert",
+      "smrp cmrp",
+      "maintenance reliability cert"
+    ],
+    "skills": [
+      "Maintenance Engineering",
+      "Reliability Engineering",
+      "TPM",
+      "CMMS"
+    ]
+  },
+  "Certified Welding Inspector": {
+    "aliases": [
+      "CWI cert",
+      "aws cwi",
+      "welding inspector cert"
+    ],
+    "skills": [
+      "Welding",
+      "Quality Control",
+      "Non-Destructive Testing",
+      "Manufacturing"
+    ]
+  },
+  "NDT Level 1 2 Certification": {
+    "aliases": [
+      "ndt cert",
+      "non destructive testing cert",
+      "asnt ndt cert"
+    ],
+    "skills": [
+      "Non-Destructive Testing",
+      "NDT",
+      "Quality Control",
+      "Manufacturing"
+    ]
+  },
+  "Certified Safety Professional": {
+    "aliases": [
+      "CSP cert",
+      "bcsp csp",
+      "safety professional cert"
+    ],
+    "skills": [
+      "OSHA",
+      "EHS",
+      "Safety Management",
+      "Risk Assessment"
+    ]
+  },
+  "Associate Safety Professional": {
+    "aliases": [
+      "ASP cert",
+      "bcsp asp",
+      "associate safety cert"
+    ],
+    "skills": [
+      "Workplace Safety",
+      "EHS",
+      "Risk Management"
+    ]
+  },
+  "OSHA Hazwoper Certification": {
+    "aliases": [
+      "hazwoper cert",
+      "osha 29 cfr cert",
+      "hazardous waste cert"
+    ],
+    "skills": [
+      "Hazardous Materials",
+      "EHS",
+      "Emergency Response"
+    ]
+  },
+  "Environmental Health Safety Manager": {
+    "aliases": [
+      "EHS manager cert",
+      "environmental manager cert"
+    ],
+    "skills": [
+      "EHS",
+      "Environmental Management",
+      "Safety Management",
+      "Compliance"
+    ]
+  },
+  "IPMA Level C D Certification": {
+    "aliases": [
+      "IPMA cert",
+      "international pm cert",
+      "ipma level c d"
+    ],
+    "skills": [
+      "Project Management",
+      "Stakeholder Management",
+      "Risk Management"
+    ]
+  },
+  "AIPM Certified Practicing Project Manager": {
+    "aliases": [
+      "CPPM cert",
+      "aipm cert",
+      "australian pm cert"
+    ],
+    "skills": [
+      "Project Management",
+      "Agile",
+      "Risk Management"
+    ]
+  },
+  "Earned Value Management Certification": {
+    "aliases": [
+      "EVM cert",
+      "aacei evm cert"
+    ],
+    "skills": [
+      "Project Management",
+      "Cost Management",
+      "Schedule Management",
+      "Earned Value"
+    ]
+  },
+  "Certified Associate in Project Management CAPM": {
+    "aliases": [
+      "capm pmi cert",
+      "pmi entry cert",
+      "project management entry cert"
+    ],
+    "skills": [
+      "Project Management",
+      "Scheduling",
+      "Risk Management",
+      "Stakeholder Management"
+    ]
+  },
+  "Certified Web3 Developer": {
+    "aliases": [
+      "web3 developer cert",
+      "w3d cert"
+    ],
+    "skills": [
+      "Blockchain",
+      "Ethereum",
+      "Solidity",
+      "Web3.js",
+      "DeFi"
+    ]
+  },
+  "CoinMarketCap Crypto Fundamentals": {
+    "aliases": [
+      "cmc learn cert",
+      "crypto fundamentals cert",
+      "coinmarketcap cert"
+    ],
+    "skills": [
+      "Cryptocurrency",
+      "Blockchain",
+      "DeFi",
+      "NFT"
+    ]
+  },
+  "Binance Academy Certificate": {
+    "aliases": [
+      "binance cert",
+      "binance academy cert",
+      "crypto trading cert"
+    ],
+    "skills": [
+      "Cryptocurrency",
+      "Trading",
+      "Blockchain",
+      "DeFi"
+    ]
+  },
+  "GitHub Certified Engineer": {
+    "aliases": [
+      "github cert",
+      "github professional cert",
+      "github skills cert"
+    ],
+    "skills": [
+      "Git",
+      "GitHub",
+      "Version Control",
+      "Collaboration",
+      "CI/CD"
+    ]
+  }
+}

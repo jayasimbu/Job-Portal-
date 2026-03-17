@@ -1,0 +1,702 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Career Auto - AI-Powered Career Platform</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = { darkMode: "class" };
+    </script>
+    <script src="ai-powered_candidate_ranking.js"></script>
+    <script src="ai-powered_candidate_ranking_func.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Density Optimization */
+      html { font-size: 13.5px; }
+      body { line-height: 1.35; }
+      .p-6 { padding: 1.25rem !important; }
+      .p-8 { padding: 1.5rem !important; }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark min-h-screen font-display text-slate-900 dark:text-slate-100 transition-colors duration-200"
+  >
+    <!-- ── Role Guard: employer only ────────────────────────────── -->
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem("user");
+          if (!raw) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace(
+              "../../Platform/Auth/auth_center.html?tab=login",
+            );
+            return;
+          }
+          var user = JSON.parse(raw);
+          if (!(user && (user.email || user.googleId || user.name))) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace(
+              "../../Platform/Auth/auth_center.html?tab=login",
+            );
+            return;
+          }
+          var role = user.role || "jobseeker";
+          if (role !== "employer") {
+            window.location.replace(
+              "../../JobSeeker/Dashboard/job_seeker_dashboard_intelligence.html",
+            );
+          }
+        } catch (e) {
+          window.location.replace("../../Platform/Auth/auth_center.html?tab=login";
+        }
+      })();
+    </script>
+
+    <div class="flex h-screen w-full overflow-hidden">
+      <!-- Sidebar Navigation -->
+      <div id="sidebar-container"></div>
+      <script src="../../assets/js/render_employer_sidebar.js"></script>
+
+      <!-- Main Content Container -->
+      <div class="flex-1 flex flex-col h-full overflow-hidden">
+        <!-- Header Container (Injected) -->
+        <div id="header-container" class="hidden"></div>
+        <script src="../../assets/js/render_header.js"></script>
+
+        <!-- Main Workspace Section -->
+        <main class="flex-1 overflow-y-auto w-full">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Breadcrumbs -->
+            <div class="flex flex-wrap gap-2 px-4 mb-4">
+              <a
+                class="text-[#4c739a] hover:text-primary text-sm font-medium leading-normal transition-colors"
+                href="#"
+                >Jobs</a
+              >
+              <span class="text-[#4c739a] text-sm font-medium leading-normal"
+                >/</span
+              >
+              <a
+                class="text-[#4c739a] hover:text-primary text-sm font-medium leading-normal transition-colors"
+                href="#"
+                >Senior Product Designer #SPD-2024</a
+              >
+              <span class="text-[#4c739a] text-sm font-medium leading-normal"
+                >/</span
+              >
+              <span
+                class="text-[#0d141b] dark:text-slate-200 text-sm font-medium leading-normal"
+                >Candidate Ranking</span
+              >
+            </div>
+            <!-- Page Heading & Actions -->
+            <div
+              class="flex flex-col md:flex-row md:items-start justify-between gap-6 p-4"
+            >
+              <div class="flex flex-col gap-2">
+                <h1
+                  class="text-[#0d141b] dark:text-white text-3xl md:text-4xl font-extrabold leading-tight tracking-[-0.033em]"
+                >
+                  Candidate Ranking: Senior Product Designer
+                </h1>
+                <p
+                  class="text-[#4c739a] dark:text-slate-400 text-base font-normal leading-normal"
+                >
+                  #SPD-2024 • San Francisco, CA (Hybrid)
+                </p>
+              </div>
+              <div class="flex gap-3">
+                <button
+                  class="flex cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#0d141b] dark:text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
+                >
+                  <span class="truncate">Edit Criteria</span>
+                </button>
+                <button
+                  class="flex cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-6 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-blue-600 transition-colors shadow-md shadow-blue-200 dark:shadow-none"
+                >
+                  <span class="material-symbols-outlined text-[20px] mr-2"
+                    >add</span
+                  >
+                  <span class="truncate">Add Candidate</span>
+                </button>
+              </div>
+            </div>
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 mb-2">
+              <div
+                class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1a2632] shadow-sm border border-slate-100 dark:border-slate-800"
+              >
+                <div class="flex justify-between items-start">
+                  <p
+                    class="text-[#4c739a] dark:text-slate-400 text-sm font-medium leading-normal"
+                  >
+                    Total Applicants
+                  </p>
+                  <span
+                    class="material-symbols-outlined text-[#4c739a] text-[20px]"
+                    >groups</span
+                  >
+                </div>
+                <div class="flex items-baseline gap-2">
+                  <p
+                    class="text-[#0d141b] dark:text-white tracking-tight text-3xl font-bold leading-tight"
+                  >
+                    142
+                  </p>
+                  <span
+                    class="text-[#078838] bg-green-50 dark:bg-green-900/30 px-2 py-0.5 rounded-full text-xs font-bold leading-normal"
+                    >+12% this week</span
+                  >
+                </div>
+              </div>
+              <div
+                class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1a2632] shadow-sm border border-slate-100 dark:border-slate-800"
+              >
+                <div class="flex justify-between items-start">
+                  <p
+                    class="text-[#4c739a] dark:text-slate-400 text-sm font-medium leading-normal"
+                  >
+                    Top Tier Matches (&gt;85%)
+                  </p>
+                  <span
+                    class="material-symbols-outlined text-primary text-[20px]"
+                    >stars</span
+                  >
+                </div>
+                <div class="flex items-baseline gap-2">
+                  <p
+                    class="text-[#0d141b] dark:text-white tracking-tight text-3xl font-bold leading-tight"
+                  >
+                    12
+                  </p>
+                  <span
+                    class="text-[#078838] bg-green-50 dark:bg-green-900/30 px-2 py-0.5 rounded-full text-xs font-bold leading-normal"
+                    >+2 new</span
+                  >
+                </div>
+              </div>
+              <div
+                class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1a2632] shadow-sm border border-slate-100 dark:border-slate-800"
+              >
+                <div class="flex justify-between items-start">
+                  <p
+                    class="text-[#4c739a] dark:text-slate-400 text-sm font-medium leading-normal"
+                  >
+                    Avg. AI Fit Score
+                  </p>
+                  <span
+                    class="material-symbols-outlined text-primary text-[20px]"
+                    >analytics</span
+                  >
+                </div>
+                <div class="flex items-baseline gap-2">
+                  <p
+                    class="text-[#0d141b] dark:text-white tracking-tight text-3xl font-bold leading-tight"
+                  >
+                    78%
+                  </p>
+                  <span
+                    class="text-[#078838] bg-green-50 dark:bg-green-900/30 px-2 py-0.5 rounded-full text-xs font-bold leading-normal"
+                    >+5% vs avg</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Filters and Controls -->
+            <div
+              class="flex flex-col sm:flex-row justify-between items-center gap-4 px-4 py-2 mb-2"
+            >
+              <!-- Chips / Toggles -->
+              <div class="flex gap-3 flex-wrap w-full sm:w-auto">
+                <button
+                  class="group flex h-9 items-center justify-center gap-x-2 rounded-lg bg-primary text-white pl-3 pr-4 shadow-md shadow-blue-100 dark:shadow-none transition-all"
+                >
+                  <span class="material-symbols-outlined text-[18px]"
+                    >check</span
+                  >
+                  <span class="text-sm font-semibold leading-normal"
+                    >Top 10% Fit</span
+                  >
+                </button>
+                <button
+                  class="group flex h-9 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary/50 text-[#0d141b] dark:text-slate-300 pl-3 pr-4 transition-all"
+                >
+                  <span
+                    class="material-symbols-outlined text-[18px] text-[#4c739a]"
+                    >diversity_3</span
+                  >
+                  <span class="text-sm font-medium leading-normal"
+                    >Diversity Matches</span
+                  >
+                </button>
+                <button
+                  class="group flex h-9 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary/50 text-[#0d141b] dark:text-slate-300 pl-3 pr-4 transition-all"
+                >
+                  <span
+                    class="material-symbols-outlined text-[18px] text-[#4c739a]"
+                    >visibility_off</span
+                  >
+                  <span class="text-sm font-medium leading-normal"
+                    >Skill-Only (Bias Reduction)</span
+                  >
+                </button>
+              </div>
+              <!-- Sort Dropdown -->
+              <div class="relative flex items-center gap-2">
+                <span
+                  class="text-sm text-[#4c739a] dark:text-slate-400 hidden sm:block"
+                  >Sort by:</span
+                >
+                <div
+                  class="flex items-center gap-2 cursor-pointer bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm font-medium text-[#0d141b] dark:text-slate-200"
+                >
+                  Highest Fit Score
+                  <span class="material-symbols-outlined text-[20px]"
+                    >expand_more</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Main Candidate List -->
+            <div class="flex flex-col gap-4 p-4">
+              <!-- List Header (Desktop) -->
+              <div
+                class="hidden md:grid grid-cols-12 gap-4 px-6 py-2 text-sm font-medium text-[#4c739a] dark:text-slate-500 uppercase tracking-wider"
+              >
+                <div class="col-span-4">Candidate</div>
+                <div class="col-span-2">AI Fit Score</div>
+                <div class="col-span-3">Top Skills Match</div>
+                <div class="col-span-2">Growth Potential</div>
+                <div class="col-span-1 text-right">Actions</div>
+              </div>
+              <!-- Candidate Card 1 -->
+              <div
+                class="group relative flex flex-col md:grid md:grid-cols-12 gap-4 items-center p-5 rounded-xl bg-white dark:bg-[#1a2632] border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-blue-100 dark:hover:border-blue-900 transition-all cursor-pointer"
+              >
+                <!-- Name & Role -->
+                <div class="col-span-4 w-full flex items-center gap-4">
+                  <div class="relative">
+                    <div
+                      class="bg-center bg-no-repeat bg-cover rounded-full size-12 border-2 border-white dark:border-slate-700 shadow-sm"
+                      data-alt="Candidate Sarah Jenkins"
+                      style="
+                        background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCInLDq6552HLUOObJTpDZT89aimnxK8i-s1jDfglifwuw09kDbBFwgEsCeT48BrQ_UU72BygtAPyYuIHckgwOWzNjuKnNFJgVkQTnrbw42SGzPAUSq0Xsjsdx22Yw_8_mArltrBucFhFmz_eITATTAdXd6gZWxcfGLZxEWzOeyAfX4fAjnhbwTp9d7h6BfuOexAFa8dkDMX77v6qdceTuo-Mm40nBmV_gmgaUb01AtXAsHRpS1srx65hA6Hc5jOztDixSICdD9-f0P&quot;);
+                      "
+                    ></div>
+                    <div
+                      class="absolute -bottom-1 -right-1 bg-white dark:bg-slate-800 rounded-full p-0.5"
+                    >
+                      <span
+                        class="material-symbols-outlined text-green-600 text-[16px]"
+                        >check_circle</span
+                      >
+                    </div>
+                  </div>
+                  <div>
+                    <h3
+                      class="text-[#0d141b] dark:text-white text-base font-bold leading-tight group-hover:text-primary transition-colors"
+                    >
+                      Sarah Jenkins
+                    </h3>
+                    <p
+                      class="text-[#4c739a] dark:text-slate-400 text-sm font-normal"
+                    >
+                      Senior UX Lead at TechFlow
+                    </p>
+                  </div>
+                </div>
+                <!-- AI Score -->
+                <div class="col-span-2 w-full flex items-center gap-3">
+                  <div class="relative size-12">
+                    <svg
+                      class="size-full -rotate-90"
+                      viewbox="0 0 36 36"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        class="text-slate-100 dark:text-slate-700"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="3"
+                      ></path>
+                      <path
+                        class="text-primary"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-dasharray="98, 100"
+                        stroke-width="3"
+                      ></path>
+                    </svg>
+                    <div
+                      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-bold text-primary"
+                    >
+                      98%
+                    </div>
+                  </div>
+                  <div class="flex flex-col">
+                    <span
+                      class="text-xs font-bold text-[#0d141b] dark:text-white uppercase tracking-wide"
+                      >Excellent</span
+                    >
+                    <span class="text-xs text-[#4c739a] dark:text-slate-400"
+                      >Top 1% of applicants</span
+                    >
+                  </div>
+                </div>
+                <!-- Skills -->
+                <div
+                  class="col-span-3 w-full flex flex-col justify-center gap-2"
+                >
+                  <div
+                    class="flex justify-between text-xs font-medium text-[#4c739a] dark:text-slate-400"
+                  >
+                    <span>Figma, Research, Prototyping</span>
+                    <span class="text-[#0d141b] dark:text-white"
+                      >95% Match</span
+                    >
+                  </div>
+                  <div
+                    class="h-2 w-full rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden"
+                  >
+                    <div
+                      class="h-full bg-primary rounded-full"
+                      style="width: 95%"
+                    ></div>
+                  </div>
+                </div>
+                <!-- Growth Potential -->
+                <div class="col-span-2 w-full flex items-center gap-2">
+                  <div
+                    class="flex items-center justify-center size-8 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >trending_up</span
+                    >
+                  </div>
+                  <div class="flex flex-col">
+                    <span
+                      class="text-sm font-bold text-[#0d141b] dark:text-white"
+                      >High Potential</span
+                    >
+                    <span class="text-xs text-[#4c739a] dark:text-slate-400"
+                      >Fast learner detected</span
+                    >
+                  </div>
+                </div>
+                <!-- Actions -->
+                <div
+                  class="col-span-1 w-full flex items-center justify-end gap-2"
+                >
+                  <button
+                    class="size-8 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-[#4c739a] transition-colors"
+                    title="Shortlist"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >bookmark</span
+                    >
+                  </button>
+                  <button
+                    class="size-8 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-[#4c739a] transition-colors"
+                    title="More options"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >more_vert</span
+                    >
+                  </button>
+                </div>
+              </div>
+              <!-- Candidate Card 2 -->
+              <div
+                class="group relative flex flex-col md:grid md:grid-cols-12 gap-4 items-center p-5 rounded-xl bg-white dark:bg-[#1a2632] border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-blue-100 dark:hover:border-blue-900 transition-all cursor-pointer"
+              >
+                <!-- Name & Role -->
+                <div class="col-span-4 w-full flex items-center gap-4">
+                  <div class="relative">
+                    <div
+                      class="bg-center bg-no-repeat bg-cover rounded-full size-12 border-2 border-white dark:border-slate-700 shadow-sm"
+                      data-alt="Candidate Marcus Chen"
+                      style="
+                        background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuA0UxI1s0twYWl0pDc7omb-5-bX06eIHNx7XkytSLmfQydyvLz8W1Fl67TV0KrhlW_EFmkoxWNy-vg00MvK4S8bcLQBvHoWb3g4SeT_DcDR_Fu1tc5VOgpl91HhLMlC0zQt-RXDZY7SRL1EogVTEIkW32Z5YYox-YvBgew8pYEevA5F2KKwzNufj_u76zEj67ECdPyalSIe6nOSv1IcFdXfB_Pznd0TbhE4rg-jhOJZRvJcWLMvBuKfm8kEi4P_xVaW9yHOMi7ITMQ_&quot;);
+                      "
+                    ></div>
+                  </div>
+                  <div>
+                    <h3
+                      class="text-[#0d141b] dark:text-white text-base font-bold leading-tight group-hover:text-primary transition-colors"
+                    >
+                      Marcus Chen
+                    </h3>
+                    <p
+                      class="text-[#4c739a] dark:text-slate-400 text-sm font-normal"
+                    >
+                      Product Designer at CreativeInc
+                    </p>
+                  </div>
+                </div>
+                <!-- AI Score -->
+                <div class="col-span-2 w-full flex items-center gap-3">
+                  <div class="relative size-12">
+                    <svg
+                      class="size-full -rotate-90"
+                      viewbox="0 0 36 36"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        class="text-slate-100 dark:text-slate-700"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="3"
+                      ></path>
+                      <path
+                        class="text-primary"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-dasharray="92, 100"
+                        stroke-width="3"
+                      ></path>
+                    </svg>
+                    <div
+                      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-bold text-primary"
+                    >
+                      92%
+                    </div>
+                  </div>
+                  <div class="flex flex-col">
+                    <span
+                      class="text-xs font-bold text-[#0d141b] dark:text-white uppercase tracking-wide"
+                      >Strong</span
+                    >
+                    <span class="text-xs text-[#4c739a] dark:text-slate-400"
+                      >High skill overlap</span
+                    >
+                  </div>
+                </div>
+                <!-- Skills -->
+                <div
+                  class="col-span-3 w-full flex flex-col justify-center gap-2"
+                >
+                  <div
+                    class="flex justify-between text-xs font-medium text-[#4c739a] dark:text-slate-400"
+                  >
+                    <span>UI Design, Systems, Motion</span>
+                    <span class="text-[#0d141b] dark:text-white"
+                      >88% Match</span
+                    >
+                  </div>
+                  <div
+                    class="h-2 w-full rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden"
+                  >
+                    <div
+                      class="h-full bg-primary/80 rounded-full"
+                      style="width: 88%"
+                    ></div>
+                  </div>
+                </div>
+                <!-- Growth Potential -->
+                <div class="col-span-2 w-full flex items-center gap-2">
+                  <div
+                    class="flex items-center justify-center size-8 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-300"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >eco</span
+                    >
+                  </div>
+                  <div class="flex flex-col">
+                    <span
+                      class="text-sm font-bold text-[#0d141b] dark:text-white"
+                      >Steady Growth</span
+                    >
+                    <span class="text-xs text-[#4c739a] dark:text-slate-400"
+                      >Consistent performer</span
+                    >
+                  </div>
+                </div>
+                <!-- Actions -->
+                <div
+                  class="col-span-1 w-full flex items-center justify-end gap-2"
+                >
+                  <button
+                    class="size-8 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-[#4c739a] transition-colors"
+                    title="Shortlist"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >bookmark</span
+                    >
+                  </button>
+                  <button
+                    class="size-8 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-[#4c739a] transition-colors"
+                    title="More options"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >more_vert</span
+                    >
+                  </button>
+                </div>
+              </div>
+              <!-- Candidate Card 3 -->
+              <div
+                class="group relative flex flex-col md:grid md:grid-cols-12 gap-4 items-center p-5 rounded-xl bg-white dark:bg-[#1a2632] border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-blue-100 dark:hover:border-blue-900 transition-all cursor-pointer"
+              >
+                <!-- Name & Role -->
+                <div class="col-span-4 w-full flex items-center gap-4">
+                  <div class="relative">
+                    <div
+                      class="bg-center bg-no-repeat bg-cover rounded-full size-12 border-2 border-white dark:border-slate-700 shadow-sm"
+                      data-alt="Candidate Elena Rodriguez"
+                      style="
+                        background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuA1qylbxSDssg3ktFKpQ5HIrB1TZx950rLO2jniknP2zMDdY3s0DIUfrxeI6iVdYj7ve5WfHmNvhMBAdOrd2qjAlqFDcCCYsnNW6KwsF10UP_lo7Ni-4cZe72_28QD5WEnJm_HggH5oXkjAPq7rlT2szIcIkLl6une_VFj2u_mL4I9O4UBCSOT4TVX0UuU5MqRajtzaj9izC6XWJ2cZLF5I7YmEChGcCNCupJIoTgN6fp-ulob3cIxHHQaKjwl4b-mjVv6n8icq8xkh&quot;);
+                      "
+                    ></div>
+                  </div>
+                  <div>
+                    <h3
+                      class="text-[#0d141b] dark:text-white text-base font-bold leading-tight group-hover:text-primary transition-colors"
+                    >
+                      Elena Rodriguez
+                    </h3>
+                    <p
+                      class="text-[#4c739a] dark:text-slate-400 text-sm font-normal"
+                    >
+                      Freelance UI Designer
+                    </p>
+                  </div>
+                </div>
+                <!-- AI Score -->
+                <div class="col-span-2 w-full flex items-center gap-3">
+                  <div class="relative size-12">
+                    <svg
+                      class="size-full -rotate-90"
+                      viewbox="0 0 36 36"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        class="text-slate-100 dark:text-slate-700"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="3"
+                      ></path>
+                      <path
+                        class="text-primary"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-dasharray="85, 100"
+                        stroke-width="3"
+                      ></path>
+                    </svg>
+                    <div
+                      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-bold text-primary"
+                    >
+                      85%
+                    </div>
+                  </div>
+                  <div class="flex flex-col">
+                    <span
+                      class="text-xs font-bold text-[#0d141b] dark:text-white uppercase tracking-wide"
+                      >Good Fit</span
+                    >
+                    <span class="text-xs text-[#4c739a] dark:text-slate-400"
+                      >Culture match</span
+                    >
+                  </div>
+                </div>
+                <!-- Skills -->
+                <div
+                  class="col-span-3 w-full flex flex-col justify-center gap-2"
+                >
+                  <div
+                    class="flex justify-between text-xs font-medium text-[#4c739a] dark:text-slate-400"
+                  >
+                    <span>Visual Design, Branding</span>
+                    <span class="text-[#0d141b] dark:text-white"
+                      >82% Match</span
+                    >
+                  </div>
+                  <div
+                    class="h-2 w-full rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden"
+                  >
+                    <div
+                      class="h-full bg-primary/70 rounded-full"
+                      style="width: 82%"
+                    ></div>
+                  </div>
+                </div>
+                <!-- Growth Potential -->
+                <div class="col-span-2 w-full flex items-center gap-2">
+                  <div
+                    class="flex items-center justify-center size-8 rounded-full bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-300"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >bolt</span
+                    >
+                  </div>
+                  <div class="flex flex-col">
+                    <span
+                      class="text-sm font-bold text-[#0d141b] dark:text-white"
+                      >Emerging</span
+                    >
+                    <span class="text-xs text-[#4c739a] dark:text-slate-400"
+                      >Leadership potential</span
+                    >
+                  </div>
+                </div>
+                <!-- Actions -->
+                <div
+                  class="col-span-1 w-full flex items-center justify-end gap-2"
+                >
+                  <button
+                    class="size-8 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-[#4c739a] transition-colors"
+                    title="Shortlist"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >bookmark</span
+                    >
+                  </button>
+                  <button
+                    class="size-8 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-[#4c739a] transition-colors"
+                    title="More options"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >more_vert</span
+                    >
+                  </button>
+                </div>
+              </div>
+              <!-- Load More Button -->
+              <div class="flex justify-center mt-4">
+                <button
+                  class="flex items-center gap-2 px-6 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-sm font-bold text-[#0d141b] dark:text-white transition-colors"
+                >
+                  View 139 More Candidates
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../assets/js/navbar.js"></script>
+  </body>
+</html>

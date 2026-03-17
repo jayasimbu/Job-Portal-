@@ -1,0 +1,156 @@
+{
+  "account": {
+    "title": "Account Settings",
+    "faqs": [
+      {
+        "question": "How do I change my password?",
+        "answer": "To change your password, go to Account Settings > Security > Change Password. Enter your current password followed by your new password. We recommend using a strong password with at least 8 characters, including uppercase, lowercase, numbers, and symbols.",
+        "list": [
+          "Click on your profile picture",
+          "Navigate to Security tab",
+          "Click \"Change Password\"",
+          "Enter current and new password"
+        ]
+      },
+      {
+        "question": "Can I update my email address?",
+        "answer": "Yes, you can update your email address in Account Settings > Personal Information. For security reasons, you will receive a verification email at both your old and new email addresses to confirm the change."
+      },
+      {
+        "question": "How do I delete my account?",
+        "answer": "To delete your account, navigate to Account Settings > Privacy > Delete Account. Please note that this action is permanent and cannot be undone. All your data, including saved jobs and uploaded resumes, will be permanently removed from our servers within 30 days."
+      },
+      {
+        "question": "What are notification preferences?",
+        "answer": "You can customize which notifications you receive by going to Account Settings > Notifications. You can choose to receive email notifications for job recommendations, application status updates, messages from employers, and weekly job alerts tailored to your preferences."
+      },
+      {
+        "question": "How do I enable two-factor authentication?",
+        "answer": "Two-factor authentication (2FA) adds an extra layer of security to your account. Enable it in Account Settings > Security > Two-Factor Authentication. You can use an authenticator app or receive codes via SMS for additional protection."
+      }
+    ]
+  },
+  "resume": {
+    "title": "Resume Analysis",
+    "faqs": [
+      {
+        "question": "How does the AI analyze my resume?",
+        "answer": "Our AI system scans your resume for keywords, formatting structure, and relevant skills that match industry standards. It compares your profile against millions of job descriptions to provide a compatibility score.",
+        "list": [
+          "Keyword matching optimization",
+          "Formatting and layout check",
+          "Skills gap analysis"
+        ]
+      },
+      {
+        "question": "What file formats are supported for upload?",
+        "answer": "We currently support PDF, DOCX, and TXT files. For the best results with our analysis tool, we highly recommend uploading a clean, text-based PDF file under 5MB in size. Images or scanned PDFs may not be read accurately by the parser."
+      },
+      {
+        "question": "Why is my resume score lower than expected?",
+        "answer": "A low score often indicates missing keywords relevant to the specific job role you are targeting, or formatting issues that make it difficult for the system to parse your work history. Try using standard section headings (e.g., \"Work Experience\", \"Education\") and including measurable achievements."
+      },
+      {
+        "question": "Can I analyze multiple versions of my resume?",
+        "answer": "Yes! Basic accounts allow up to 3 resume analyses per month. Premium users enjoy unlimited analyses, allowing you to tailor different versions of your resume for specific job applications and compare their scores side-by-side."
+      },
+      {
+        "question": "Is my resume data kept private?",
+        "answer": "Absolutely. We take data privacy seriously. Your resume is only used for the analysis you request and is not shared with third-party recruiters without your explicit consent. You can delete your uploaded documents permanently from your dashboard at any time."
+      }
+    ]
+  },
+  "jobs": {
+    "title": "Job Matching",
+    "faqs": [
+      {
+        "question": "How does job matching work?",
+        "answer": "Our job matching algorithm analyzes your resume, skills, experience level, and job preferences to recommend positions that best fit your profile. The system learns from your interactions and improves recommendations over time.",
+        "list": [
+          "AI-powered skill matching",
+          "Location preference filtering",
+          "Salary range alignment",
+          "Company culture fit analysis"
+        ]
+      },
+      {
+        "question": "Can I set job search preferences?",
+        "answer": "Yes! You can customize your job search by setting preferences for job type (full-time, part-time, remote), industry, location, salary range, and company size. These preferences help us show you the most relevant opportunities."
+      },
+      {
+        "question": "How often are new jobs posted?",
+        "answer": "New jobs are posted daily by our partner companies. We recommend enabling job alerts so you can be notified immediately when positions matching your criteria become available. Early applications significantly increase your chances of getting noticed."
+      },
+      {
+        "question": "What does the match percentage mean?",
+        "answer": "The match percentage indicates how well your profile aligns with the job requirements. A score above 80% means you are highly qualified. Scores between 60-79% suggest you meet most requirements but may have some skill gaps. Below 60% indicates the role may be a stretch goal."
+      },
+      {
+        "question": "Can I save jobs for later?",
+        "answer": "Absolutely! Click the bookmark icon on any job listing to save it to your \"Saved Jobs\" collection. You can review, organize, and apply to saved jobs anytime from your dashboard. Saved jobs remain accessible for 90 days or until the position is filled."
+      }
+    ]
+  },
+  "employers": {
+    "title": "For Employers",
+    "faqs": [
+      {
+        "question": "How do I post a job opening?",
+        "answer": "To post a job, log in to your employer account and navigate to the \"Post Job\" section. Fill in the job details including title, description, requirements, salary range, and location. You can preview your listing before publishing it live.",
+        "list": [
+          "Create employer account",
+          "Click \"Post New Job\"",
+          "Fill in job details",
+          "Publish or save as draft"
+        ]
+      },
+      {
+        "question": "What are the pricing plans for employers?",
+        "answer": "We offer flexible pricing plans to suit businesses of all sizes. The Basic plan allows 3 job posts per month, the Professional plan includes 10 posts plus featured listings, and the Enterprise plan offers unlimited posts with priority candidate matching and dedicated support."
+      },
+      {
+        "question": "How can I find qualified candidates?",
+        "answer": "Our AI-powered candidate matching system automatically recommends qualified applicants based on your job requirements. You can also search our candidate database using filters like skills, experience, location, and education to find the perfect fit for your team."
+      },
+      {
+        "question": "Can I manage multiple job postings?",
+        "answer": "Yes! From your employer dashboard, you can view, edit, pause, or close multiple job postings. Track applications for each position, communicate with candidates, and manage your hiring pipeline all from one centralized location."
+      },
+      {
+        "question": "What analytics are available for job posts?",
+        "answer": "We provide comprehensive analytics including views, clicks, applications, and engagement metrics for each job posting. You can track where candidates are finding your jobs, average time-to-apply, and demographic insights to optimize your recruitment strategy."
+      }
+    ]
+  },
+  "billing": {
+    "title": "Billing & Subscription",
+    "faqs": [
+      {
+        "question": "What payment methods do you accept?",
+        "answer": "We accept all major credit cards (Visa, MasterCard, American Express), debit cards, and PayPal. For Enterprise plans, we also offer invoice billing with NET 30 payment terms. All transactions are securely processed and encrypted.",
+        "list": [
+          "Credit/Debit Cards",
+          "PayPal",
+          "Invoice billing (Enterprise)",
+          "Bank transfers (upon request)"
+        ]
+      },
+      {
+        "question": "How do I upgrade my subscription?",
+        "answer": "To upgrade, go to Account Settings > Billing > Change Plan. Select your desired plan and confirm. The upgrade takes effect immediately, and you will only be charged the prorated difference for the remainder of your current billing cycle."
+      },
+      {
+        "question": "Can I cancel my subscription anytime?",
+        "answer": "Yes, you can cancel your subscription at any time with no cancellation fees. Your premium features will remain active until the end of your current billing period. After cancellation, your account will revert to the free tier, and you will retain access to basic features."
+      },
+      {
+        "question": "What happens if my payment fails?",
+        "answer": "If a payment fails, we will attempt to process it again after 3 days. You will receive an email notification with instructions to update your payment method. If payment is not resolved within 7 days, your account will be downgraded to the free plan until the issue is resolved."
+      },
+      {
+        "question": "Do you offer refunds?",
+        "answer": "We offer a 14-day money-back guarantee for new subscribers. If you are not satisfied with your premium subscription within the first 14 days, contact our support team for a full refund. Refunds for subsequent billing cycles are evaluated on a case-by-case basis."
+      }
+    ]
+  }
+}

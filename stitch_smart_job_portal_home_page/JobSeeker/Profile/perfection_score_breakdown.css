@@ -1,0 +1,13 @@
+/* Custom Utilities if needed */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Chart Animations (Simple SVG dashoffset) */
+        @keyframes fillCircle {
+            from { stroke-dashoffset: 300; }
+            to { stroke-dashoffset: 0; }
+        }

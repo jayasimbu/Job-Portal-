@@ -1,0 +1,8 @@
+/* Custom styles for the radar chart animation */
+        .radar-poly {
+            transition: all 1s ease-out;
+            transform-origin: center;
+        }
+        .progress-circle {
+            transition: stroke-dashoffset 1s ease-in-out;
+        }

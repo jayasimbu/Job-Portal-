@@ -1,0 +1,596 @@
+﻿<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Career Auto - AI-Powered Career Platform</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+      };
+    </script>
+    <script src="smart_job_portal_home_page.js"></script>
+    <script src="smart_job_portal_home_page_func.js"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="smart_job_portal_home_page.css" />
+  </head>
+
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-[#0d141b] dark:text-slate-100 overflow-x-hidden"
+  >
+    <!-- TopNavBar -->
+    <!-- Shared Navigation Bar for Career Auto -->
+    <!-- This will be injected into all pages except login/registration pages -->
+
+    <!-- Header -->
+    <div id="header-container"></div>
+    <script src="../../assets/js/render_header.js"></script>
+
+    <!-- HeroSection -->
+    <section
+      class="relative flex w-full flex-col overflow-hidden bg-background-light dark:bg-background-dark py-12 md:py-20 lg:py-24"
+    >
+      <div class="layout-container flex h-full grow flex-col items-center">
+        <div class="px-4 md:px-10 flex w-full max-w-[1200px] flex-col">
+          <div class="@container">
+            <div class="flex flex-col gap-10 lg:flex-row lg:items-start">
+              <!-- Hero Content -->
+              <div class="flex flex-col gap-8 flex-1 lg:max-w-[600px]">
+                <div class="flex flex-col gap-4 text-left">
+                  <div
+                    class="inline-flex w-fit items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary dark:bg-primary/20"
+                  >
+                    <span class="material-symbols-outlined text-sm"
+                      >auto_awesome</span
+                    >
+                    <span>AI-Powered Career Growth</span>
+                  </div>
+                  <h1
+                    class="text-[#0d141b] dark:text-white text-3xl font-black leading-[1.1] tracking-[-0.033em] md:text-4xl lg:text-5xl"
+                  >
+                    Unlock Your Potential with AI-Driven Career Intelligence
+                  </h1>
+                  <h2
+                    class="text-slate-600 dark:text-slate-300 text-lg font-normal leading-relaxed"
+                  >
+                    Stop searching. Start matching. Our AI analyzes your profile
+                    against millions of data points to find the job you were
+                    meant for, faster than ever before.
+                  </h2>
+                </div>
+                <div class="flex flex-wrap gap-4">
+                  <button
+                    onclick="
+                      window.location.href =
+                        '../Search/advanced_job_search_&_filtering.html?tab=ai-matches'
+                    "
+                    class="flex h-12 min-w-[160px] cursor-pointer items-center justify-center rounded-lg px-6 bg-primary text-white text-base font-bold shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all hover:-translate-y-0.5"
+                  >
+                    <span>Find Your Match</span>
+                  </button>
+                  <button
+                    onclick="openDemoModal()"
+                    class="flex h-12 min-w-[160px] cursor-pointer items-center justify-center rounded-lg px-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#0d141b] dark:text-white text-base font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+                  >
+                    <span class="flex items-center gap-2">
+                      <span class="material-symbols-outlined text-xl"
+                        >play_circle</span
+                      >
+                      View Demo
+                    </span>
+                  </button>
+                </div>
+                <!-- Trust Indicators -->
+                <div class="flex flex-col gap-3 pt-4">
+                  <p
+                    class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400"
+                  >
+                    Trusted by innovators at
+                  </p>
+                  <div
+                    class="flex gap-6 opacity-60 grayscale transition-all hover:grayscale-0 hover:opacity-100"
+                  >
+                    <!-- Placeholder logos using text for simplicity but implying logos -->
+                    <div
+                      class="flex items-center gap-1 font-bold text-xl text-slate-800 dark:text-slate-200"
+                    >
+                      <span class="material-symbols-outlined">diamond</span>
+                      Acme
+                    </div>
+                    <div
+                      class="flex items-center gap-1 font-bold text-xl text-slate-800 dark:text-slate-200"
+                    >
+                      <span class="material-symbols-outlined"
+                        >rocket_launch</span
+                      >
+                      StarCorp
+                    </div>
+                    <div
+                      class="flex items-center gap-1 font-bold text-xl text-slate-800 dark:text-slate-200"
+                    >
+                      <span class="material-symbols-outlined">bolt</span>
+                      EnergyInc
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Hero Image -->
+              <div
+                class="flex-1 w-full lg:h-auto min-h-[400px] relative rounded-2xl overflow-hidden shadow-2xl bg-slate-900"
+              >
+                <div
+                  class="absolute inset-0 bg-cover bg-center opacity-80"
+                  data-alt="Abstract network of glowing blue nodes and connections representing AI intelligence"
+                  style="
+                    background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAjELA1NT791EiteASnrqk5xeXQ7XApmB60i2XkS_ZW1cI9iWW-3g0Ybv-LxiALcWwqZqE61nx8J9p6fReM8azMtsGmi7zcXhrgm570i1lpXmqgv-knTItMAGtbLYUJ1I-Z1_sEnw2A48iwDtRjqLP4Ub3-aRWpxjCkBHtUK7TF_Q4rX45m8vhJta_hJgFqllG1iDEoZkPsg1jizXACTG-q8njVBnueEO9fb0WOsXDmzDB_0W78_fEybuIJ1oDZqqvblAMc8yrK5HxK&quot;);
+                  "
+                ></div>
+                <!-- Floating Cards for visual interest -->
+                <div
+                  class="absolute top-[20%] left-[10%] bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-slate-100 dark:border-slate-700 max-w-[220px] animate-bounce-alternate-1"
+                >
+                  <div class="flex items-center gap-3 mb-2">
+                    <div
+                      class="size-8 rounded-full bg-green-100 flex items-center justify-center text-green-600"
+                    >
+                      <span class="material-symbols-outlined text-sm"
+                        >check_circle</span
+                      >
+                    </div>
+                    <div>
+                      <p class="text-xs text-slate-500">Match Score</p>
+                      <p
+                        class="text-sm font-bold text-slate-900 dark:text-white"
+                      >
+                        98% Compatible
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden"
+                  >
+                    <div class="h-full bg-green-500 w-[98%]"></div>
+                  </div>
+                </div>
+                <div
+                  class="absolute bottom-[20%] right-[10%] bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-slate-100 dark:border-slate-700 max-w-[200px] animate-bounce-alternate-2"
+                >
+                  <div class="flex items-center gap-3">
+                    <div
+                      class="size-10 rounded-full bg-blue-100 flex items-center justify-center text-primary"
+                    >
+                      <span class="material-symbols-outlined"
+                        >auto_awesome</span
+                      >
+                    </div>
+                    <div>
+                      <p class="text-xs text-slate-500">AI Analysis</p>
+                      <p
+                        class="text-sm font-bold text-slate-900 dark:text-white"
+                      >
+                        Skills Optimized
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Stats Banner -->
+    <div
+      class="w-full border-y border-[#cfdbe7] dark:border-[#2a3b4d] bg-white dark:bg-[#15202b]"
+    >
+      <div class="mx-auto max-w-[1200px] px-4 md:px-10 py-10">
+        <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+          <div class="flex flex-col items-center gap-1 md:items-start">
+            <p
+              class="text-4xl font-black tracking-tight text-[#0d141b] dark:text-white"
+            >
+              10k+
+            </p>
+            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">
+              Matches Made
+            </p>
+          </div>
+          <div class="flex flex-col items-center gap-1 md:items-start">
+            <p
+              class="text-4xl font-black tracking-tight text-[#0d141b] dark:text-white"
+            >
+              500+
+            </p>
+            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">
+              Partner Companies
+            </p>
+          </div>
+          <div class="flex flex-col items-center gap-1 md:items-start">
+            <p
+              class="text-4xl font-black tracking-tight text-[#0d141b] dark:text-white"
+            >
+              25k+
+            </p>
+            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">
+              Resumes Optimized
+            </p>
+          </div>
+          <div class="flex flex-col items-center gap-1 md:items-start">
+            <p
+              class="text-4xl font-black tracking-tight text-[#0d141b] dark:text-white"
+            >
+              98%
+            </p>
+            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">
+              Success Rate
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- How It Works Section -->
+    <section class="py-20 bg-background-light dark:bg-background-dark">
+      <div class="mx-auto flex max-w-[1200px] flex-col px-4 md:px-10">
+        <div class="mb-12 flex flex-col items-center text-center">
+          <h2
+            class="mb-4 max-w-[720px] text-3xl font-black tracking-tight text-[#0d141b] dark:text-white md:text-4xl"
+          >
+            How It Works
+          </h2>
+          <p class="max-w-[600px] text-lg text-slate-600 dark:text-slate-300">
+            Your journey to the perfect career in four simple steps, powered by
+            advanced algorithms.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <!-- Step 1 -->
+          <div
+            onclick="
+              window.location.href = '../Auth/auth_center.html?tab=role'
+            "
+            class="group flex flex-col rounded-xl bg-white dark:bg-[#1a2632] p-6 shadow-sm border border-transparent hover:border-primary/20 transition-all hover:shadow-lg dark:border-[#2a3b4d] cursor-pointer"
+          >
+            <div
+              class="mb-4 flex size-12 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors"
+            >
+              <span class="material-symbols-outlined text-2xl">person_add</span>
+            </div>
+            <div class="flex flex-col gap-2">
+              <span
+                class="text-xs font-bold uppercase tracking-wider text-slate-400"
+                >Step 1</span
+              >
+              <h3 class="text-xl font-bold text-[#0d141b] dark:text-white">
+                Register
+              </h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400">
+                Create your smart profile in seconds with social login.
+              </p>
+            </div>
+          </div>
+          <!-- Step 2 -->
+          <div
+            onclick="
+              window.location.href =
+                '../../JobSeeker/Profile/resume_upload_&_validation_center.html'
+            "
+            class="group flex flex-col rounded-xl bg-white dark:bg-[#1a2632] p-6 shadow-sm border border-transparent hover:border-primary/20 transition-all hover:shadow-lg dark:border-[#2a3b4d] cursor-pointer"
+          >
+            <div
+              class="mb-4 flex size-12 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors"
+            >
+              <span class="material-symbols-outlined text-2xl"
+                >upload_file</span
+              >
+            </div>
+            <div class="flex flex-col gap-2">
+              <span
+                class="text-xs font-bold uppercase tracking-wider text-slate-400"
+                >Step 2</span
+              >
+              <h3 class="text-xl font-bold text-[#0d141b] dark:text-white">
+                Upload
+              </h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400">
+                AI parses your resume instantly to extract key skills.
+              </p>
+            </div>
+          </div>
+          <!-- Step 3 -->
+          <div
+            onclick="
+              window.location.href =
+                '../Search/advanced_job_search_&_filtering.html?tab=ai-matches'
+            "
+            class="group flex flex-col rounded-xl bg-white dark:bg-[#1a2632] p-6 shadow-sm border border-transparent hover:border-primary/20 transition-all hover:shadow-lg dark:border-[#2a3b4d] cursor-pointer"
+          >
+            <div
+              class="mb-4 flex size-12 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors"
+            >
+              <span class="material-symbols-outlined text-2xl"
+                >auto_fix_high</span
+              >
+            </div>
+            <div class="flex flex-col gap-2">
+              <span
+                class="text-xs font-bold uppercase tracking-wider text-slate-400"
+                >Step 3</span
+              >
+              <h3 class="text-xl font-bold text-[#0d141b] dark:text-white">
+                Match
+              </h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400">
+                Get a personalized compatibility score for every job.
+              </p>
+            </div>
+          </div>
+          <!-- Step 4 -->
+          <div
+            onclick="
+              window.location.href =
+                '../../JobSeeker/Applications/application_tracking_&_status_timeline.html'
+            "
+            class="group flex flex-col rounded-xl bg-white dark:bg-[#1a2632] p-6 shadow-sm border border-transparent hover:border-primary/20 transition-all hover:shadow-lg dark:border-[#2a3b4d] cursor-pointer"
+          >
+            <div
+              class="mb-4 flex size-12 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors"
+            >
+              <span class="material-symbols-outlined text-2xl">send</span>
+            </div>
+            <div class="flex flex-col gap-2">
+              <span
+                class="text-xs font-bold uppercase tracking-wider text-slate-400"
+                >Step 4</span
+              >
+              <h3 class="text-xl font-bold text-[#0d141b] dark:text-white">
+                Apply
+              </h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400">
+                One-click application sent directly to hiring managers.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Key Features Section -->
+    <section class="py-20 bg-white dark:bg-[#15202b]">
+      <div class="mx-auto flex max-w-[1200px] flex-col px-4 md:px-10">
+        <div class="mb-12 flex flex-col items-start gap-4">
+          <div
+            class="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-700 px-3 py-1 text-xs font-bold text-slate-600 dark:text-slate-300"
+          >
+            <span class="material-symbols-outlined text-sm">stars</span>
+            <span>Premium Intelligence</span>
+          </div>
+          <h2
+            class="text-3xl font-black tracking-tight text-[#0d141b] dark:text-white md:text-4xl max-w-[720px]"
+          >
+            Everything you need to land your dream job
+          </h2>
+          <p class="text-lg text-slate-600 dark:text-slate-300 max-w-[720px]">
+            Our platform is powered by advanced artificial intelligence to give
+            you an unfair advantage in today's job market.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <!-- Feature 1 -->
+          <div
+            class="flex flex-col gap-4 cursor-pointer"
+            onclick="
+              window.location.href = '../../JobSeeker/Profile/resume_insights.html'
+            "
+          >
+            <div
+              class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 relative group shadow-md hover:shadow-xl transition-all"
+            >
+              <div
+                class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                data-alt="Data dashboard visualizing ATS scoring metrics"
+                style="
+                  background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBbOIXcmkWOpIT_ubTcAns8I-fNfDwAN4bvw5hWogTRpOEdizGezRqsd8zK5r3LItQOazZJiTEUw_rSgpaml4aZTKDsio3guWTz_FJOnMlIrh3D9EDilceW-otG-mQYwa7mn6loTqddhboeDOksBRBkj3NoGjh1A7F4GK8v--4yMkxGvdYMO42zwcqcMTSHveHcuuMywb0Qat6P3HWrHObpynBCuGThwrqzUg5uy74QqDNp78oWJgTlAcQSeQMXI1nnrhckzyHts5p_&quot;);
+                "
+              ></div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+              ></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <div
+                  class="flex size-10 items-center justify-center rounded-lg bg-white/20 backdrop-blur-md text-white mb-3"
+                >
+                  <span class="material-symbols-outlined">fact_check</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-[#0d141b] dark:text-white mb-2">
+                ATS Scoring
+              </h3>
+              <p class="text-slate-600 dark:text-slate-400">
+                Beat the bots with pre-application analysis to ensure your
+                resume gets seen by human eyes. We simulate top ATS systems.
+              </p>
+            </div>
+          </div>
+          <!-- Feature 2 -->
+          <div
+            class="flex flex-col gap-4 cursor-pointer"
+            onclick="
+              window.location.href = '../../JobSeeker/Profile/resume_insights.html'
+            "
+          >
+            <div
+              class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 relative group shadow-md hover:shadow-xl transition-all"
+            >
+              <div
+                class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                data-alt="Digital representation of a resume being evolved and upgraded"
+                style="
+                  background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDrn1sRsmiyDcuXWOQCdQUpkkaYWFcLWY6DXT15xoD0lpSh6gsM91W3feaYLnKqvwGPk4UUWsUyytiW07BRsa72OXX6JVAkgijXfn0LZkT5BNiAjUhpJ0awMEr4YxjAILpNf5wEROH8vsDJVWo9oiVoFekDttVZFxx5gNTQnwDI2gJ4S6lf4wxXrSz8kTV9nCKz350qAqJhdGEli3garpcjMCuL0or3PjJJUDoH98dgkcfmEDj7vzBNyby_kcgsHS4Q3AjmqZrmPMl7&quot;);
+                "
+              ></div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+              ></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <div
+                  class="flex size-10 items-center justify-center rounded-lg bg-white/20 backdrop-blur-md text-white mb-3"
+                >
+                  <span class="material-symbols-outlined">upgrade</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-[#0d141b] dark:text-white mb-2">
+                Resume Evolution
+              </h3>
+              <p class="text-slate-600 dark:text-slate-400">
+                Receive AI suggestions to improve your CV in real-time based on
+                job descriptions. Tailor your application instantly.
+              </p>
+            </div>
+          </div>
+          <!-- Feature 3 -->
+          <div
+            class="flex flex-col gap-4 cursor-pointer"
+            onclick="
+              window.location.href =
+                '../../Employer/HiringPolicy/bias-free_hiring_policy_configuration.html'
+            "
+          >
+            <div
+              class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 relative group shadow-md hover:shadow-xl transition-all"
+            >
+              <div
+                class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                data-alt="Diverse group of professionals in a meeting representing bias-free hiring"
+                style="
+                  background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBDUzYz-0cb7bxC3HiFvwcFPL7dBTq5l-HMcog5C-9Vn4hYh8CW65VR_is_tP8dYPx0hE4I4fSqAC2bJvlxiapAXsodyIbdPZEe3WnEAvxbwH8F5b3KxNOD9n3mjRYXEMg8AhYhoInWQnpejCO9St4e0E_vVBpXCkMTeiKjlNCj4vqNh25TH_zYvRx5uyJxYNRq3M6hv4DTd7H4BjobHr_2QepWQmXO0P0RMDW08xAKDEf4Y-zbga8lgrv4fLfZj2Gx4l7tF-WNmH3D&quot;);
+                "
+              ></div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+              ></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <div
+                  class="flex size-10 items-center justify-center rounded-lg bg-white/20 backdrop-blur-md text-white mb-3"
+                >
+                  <span class="material-symbols-outlined">groups</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-[#0d141b] dark:text-white mb-2">
+                Bias-Free Hiring
+              </h3>
+              <p class="text-slate-600 dark:text-slate-400">
+                Skills-first matching that ignores demographics for purely
+                merit-based hiring. Focus on what you can do.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+    <script src="../../assets/js/render_footer.js"></script>
+
+    <!-- Video Modal -->
+    <div
+      id="demo-modal"
+      class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm transition-opacity opacity-0 pointer-events-none"
+      aria-hidden="true"
+    >
+      <div
+        class="relative w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300"
+      >
+        <button
+          onclick="closeDemoModal()"
+          class="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full transition-colors"
+        >
+          <span class="material-symbols-outlined">close</span>
+        </button>
+        <div class="w-full h-full flex items-center justify-center text-white">
+          <iframe
+            class="w-full h-full"
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0"
+            title="Product Demo"
+            frameborder="0"
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+            "
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const modal = document.getElementById("demo-modal");
+
+      function openDemoModal() {
+        modal.classList.remove("hidden", "pointer-events-none");
+        // Small timeout to allow display:block to apply before opacity transition
+        setTimeout(() => {
+          modal.classList.remove("opacity-0");
+          modal.querySelector("div").classList.remove("scale-95");
+          modal.querySelector("div").classList.add("scale-100");
+        }, 10);
+        document.body.style.overflow = "hidden"; // Prevent scrolling
+      }
+
+      function closeDemoModal() {
+        modal.classList.add("opacity-0");
+        modal.querySelector("div").classList.remove("scale-100");
+        modal.querySelector("div").classList.add("scale-95");
+
+        setTimeout(() => {
+          modal.classList.add("hidden", "pointer-events-none");
+          // Stop video by resetting iframe src
+          const iframe = modal.querySelector("iframe");
+          const src = iframe.src;
+          iframe.src = src;
+        }, 300);
+        document.body.style.overflow = ""; // Restore scrolling
+      }
+
+      // Close on click outside
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          closeDemoModal();
+        }
+      });
+
+      // Close on Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+          closeDemoModal();
+        }
+      });
+    </script>
+    <script src="../../assets/js/navbar.js"></script>
+  </body>
+</html>

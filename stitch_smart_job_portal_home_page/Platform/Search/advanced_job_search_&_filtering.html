@@ -1,0 +1,1257 @@
+<!doctype html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Jobs & AI Matches — Career Auto</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+    };
+  </script>
+  <script src="advanced_job_search_&_filtering.js"></script>
+  <script src="ai_job_service.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="advanced_job_search_&_filtering.css" />
+
+  <style>
+    /* ── Page Tab Switcher ── */
+    .page-tab-btn {
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .page-tab-btn.active {
+      background: #2b8cee;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(43, 140, 238, 0.25);
+    }
+
+    .page-tab-btn:not(.active) {
+      color: #64748b;
+      background: transparent;
+    }
+
+    .page-tab-btn:not(.active):hover {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    /* Lock badge on AI tab when not logged in */
+    .tab-lock-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 10px;
+      padding: 1px 6px;
+      background: #fef3c7;
+      color: #d97706;
+      border-radius: 99px;
+      font-weight: 700;
+      margin-left: 6px;
+    }
+
+    /* ── AI Matches inner tab ── */
+    .ai-inner-tab {
+      transition: all 0.2s;
+    }
+
+    .ai-inner-tab.active {
+      background: #2b8cee;
+      color: #fff;
+    }
+
+    .ai-inner-tab:not(.active) {
+      color: #64748b;
+    }
+
+    .ai-inner-tab:not(.active):hover {
+      background: #f1f5f9;
+    }
+
+    .ai-tab-panel {
+      display: none;
+    }
+
+    .ai-tab-panel.active {
+      display: block;
+    }
+
+    /* Reasoning drawer */
+    #reasoning-drawer {
+      display: none;
+    }
+
+    #reasoning-drawer.open {
+      display: flex;
+    }
+
+    /* ── Auth Lock Overlay ── */
+    .auth-lock-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(248, 250, 252, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      border-radius: 16px;
+    }
+
+    .dark .auth-lock-overlay {
+      background: rgba(15, 23, 42, 0.88);
+    }
+
+    .auth-lock-box {
+      text-align: center;
+      padding: 40px 32px;
+      max-width: 380px;
+    }
+
+    .auth-lock-icon {
+      font-size: 48px;
+      color: #2b8cee;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .auth-lock-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #0d141b;
+      margin-bottom: 8px;
+    }
+
+    .dark .auth-lock-title {
+      color: #f8fafc;
+    }
+
+    .auth-lock-sub {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .auth-lock-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .auth-lock-btn-login {
+      padding: 10px 22px;
+      border: 2px solid #2b8cee;
+      color: #2b8cee;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: transparent;
+    }
+
+    .auth-lock-btn-login:hover {
+      background: #eff8ff;
+    }
+
+    .auth-lock-btn-signup {
+      padding: 10px 22px;
+      background: #2b8cee;
+      color: #fff;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid #2b8cee;
+      box-shadow: 0 4px 14px rgba(43, 140, 238, 0.3);
+    }
+
+    .auth-lock-btn-signup:hover {
+      background: #1a7cd8;
+    }
+
+    /* ── Salary Slider Enhancements ── */
+    #salary-range-slider, #ai-salary-filter, #ext-ai-eligibility-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 10px;
+      padding: 0;
+      background: #e2e8f0;
+      border-radius: 99px;
+      outline: none;
+      cursor: pointer;
+      margin: 15px 0; /* More space for fingers/click */
+    }
+
+    .dark #salary-range-slider, .dark #ai-salary-filter, .dark #ext-ai-eligibility-slider {
+      background: #334155;
+    }
+
+    #salary-range-slider::-webkit-slider-thumb, #ai-salary-filter::-webkit-slider-thumb, #ext-ai-eligibility-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 28px;
+      width: 28px;
+      border-radius: 99px;
+      background: #3b82f6;
+      border: 4px solid white;
+      box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    #salary-range-slider::-webkit-slider-thumb:hover, #ai-salary-filter::-webkit-slider-thumb:hover, #ext-ai-eligibility-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+      background: #2563eb;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-display">
+  <!-- Header -->
+  <div id="header-container"></div>
+  <script src="../../assets/js/auth_guard.js"></script>
+  <script src="../../assets/js/render_header.js"></script>
+
+  <main class="flex-1 flex flex-col max-w-[1440px] mx-auto w-full p-6 pb-20 gap-6">
+    <!-- ══ PAGE TABS ══════════════════════════════════════════════ -->
+    <div
+      class="flex gap-2 bg-white dark:bg-slate-900 rounded-2xl p-2 border border-slate-200 dark:border-slate-800 shadow-sm overflow-x-auto">
+      <button id="page-tab-browse"
+        class="page-tab-btn active flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap"
+        onclick="switchPageTab('browse')">
+        <span class="material-symbols-outlined text-base">search</span>
+        Browse Jobs
+      </button>
+      <button id="page-tab-ai"
+        class="page-tab-btn flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap"
+        onclick="handleAITabClick()">
+        <span class="material-symbols-outlined text-base">auto_awesome</span>
+        AI Matches
+        <span id="ai-tab-lock-badge" class="tab-lock-badge"><span class="material-symbols-outlined"
+            style="font-size: 11px">lock</span>Login</span>
+      </button>
+      <button id="page-tab-external"
+        class="page-tab-btn flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap"
+        onclick="handleExternalTabClick()">
+        <span class="material-symbols-outlined text-base">language</span>
+        External Jobs
+        <span id="ext-tab-lock-badge" class="tab-lock-badge"><span class="material-symbols-outlined"
+            style="font-size: 11px">lock</span>Login</span>
+      </button>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- TAB: BROWSE JOBS                                          -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <div id="page-panel-browse">
+      <!-- Search Section -->
+      <section
+        class="bg-surface-light dark:bg-surface-dark rounded-xl p-4 shadow-sm border border-slate-200 dark:border-slate-800 mb-6">
+        <div class="flex flex-col lg:flex-row gap-4">
+          <!-- Keyword Input -->
+          <div class="flex-1 relative group">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center">
+              <span id="main-job-search-icon"
+                class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-primary transition-colors">search</span>
+            </div>
+            <input id="job-search-input"
+              class="block w-full pl-10 pr-3 py-3 border-none rounded-lg bg-background-light dark:bg-background-dark text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-primary text-base"
+              placeholder="Job title, keywords, or company" type="text" />
+          </div>
+          <!-- Location Input -->
+          <div class="flex-1 relative group">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <span class="material-symbols-outlined text-slate-400">location_on</span>
+            </div>
+            <input id="location-search-input"
+              class="block w-full pl-10 pr-3 py-3 border-none rounded-lg bg-background-light dark:bg-background-dark text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-primary text-base"
+              placeholder='City, state, zip code, or "remote"' type="text" />
+          </div>
+          <!-- Search Button -->
+          <button id="search-button"
+            class="lg:w-auto w-full px-8 py-3 bg-primary hover:bg-blue-600 text-white font-bold rounded-lg flex items-center justify-center gap-2 transition-all shadow-md shadow-blue-500/20">
+            <span class="material-symbols-outlined">search</span>
+            <span>Search Jobs</span>
+          </button>
+        </div>
+      </section>
+
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Sidebar Filters -->
+        <aside class="w-full lg:w-80 flex-shrink-0 space-y-6">
+          <!-- AI Eligibility Card -->
+          <div class="relative">
+            <!-- Lock overlay shown for non-logged users -->
+            <div id="browse-ai-slider-lock" class="auth-lock-overlay" style="display: none; border-radius: 12px">
+              <div class="auth-lock-box">
+                <span class="material-symbols-outlined auth-lock-icon">lock</span>
+                <p class="auth-lock-title">AI Feature</p>
+                <p class="auth-lock-sub">
+                  Log in to use the AI Eligibility filter based on your
+                  resume's match score.
+                </p>
+                <div class="auth-lock-buttons">
+                  <button class="auth-lock-btn-login" onclick="
+                        window.location.href =
+                          '../Auth/auth_center.html?tab=login'
+                      ">
+                    Log In
+                  </button>
+                  <button class="auth-lock-btn-signup" onclick="
+                        window.location.href =
+                          '../Auth/auth_center.html?tab=signup'
+                      ">
+                    Sign Up
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-gradient-to-br from-indigo-900 to-slate-900 rounded-xl p-5 text-white shadow-lg relative overflow-hidden">
+              <div class="absolute top-0 right-0 p-3 opacity-10">
+                <span class="material-symbols-outlined text-8xl">auto_awesome</span>
+              </div>
+              <div class="relative z-10">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="material-symbols-outlined text-primary">auto_awesome</span>
+                  <h3 class="font-bold text-lg">AI Eligibility</h3>
+                </div>
+                <p class="text-sm text-slate-300 mb-6">
+                  Filter jobs based on your resume's match confidence.
+                </p>
+                <div class="mb-2 flex justify-between text-xs font-medium text-slate-300">
+                  <span>Broad</span>
+                  <span class="text-primary font-bold">High Match</span>
+                </div>
+                <input id="ai-eligibility-slider"
+                  class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer" max="100" min="0"
+                  type="range" value="0" />
+                <div id="ai-eligibility-label" class="mt-2 text-center text-sm font-semibold text-white">
+                  Min. 0% Match
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /AI Eligibility wrapper -->
+          <!-- Standard Filters -->
+          <div
+            class="bg-surface-light dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm space-y-6">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+              <h3 class="font-bold text-lg">Filters</h3>
+              <button id="clear-all-filters" class="text-sm text-primary font-medium hover:text-blue-600">
+                Clear All
+              </button>
+            </div>
+            <!-- Job Type -->
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <h4 class="font-semibold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                  Job Type
+                </h4>
+                <button id="clear-job-type" class="text-xs text-primary hover:underline hidden">
+                  Clear
+                </button>
+              </div>
+              <div id="job-type-filters" class="space-y-2">
+                <label class="flex items-center gap-3 cursor-pointer group"><input
+                    class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"
+                    value="Full-time" /><span
+                    class="text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Full-time</span><span
+                    class="ml-auto text-xs text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full job-count-full-time">0</span></label>
+                <label class="flex items-center gap-3 cursor-pointer group"><input
+                    class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"
+                    value="Contract" /><span
+                    class="text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Contract</span><span
+                    class="ml-auto text-xs text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full job-count-contract">0</span></label>
+                <label class="flex items-center gap-3 cursor-pointer group"><input
+                    class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"
+                    value="Part-time" /><span
+                    class="text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Part-time</span><span
+                    class="ml-auto text-xs text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full job-count-part-time">0</span></label>
+                <label class="flex items-center gap-3 cursor-pointer group"><input
+                    class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"
+                    value="Freelance" /><span
+                    class="text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Freelance</span><span
+                    class="ml-auto text-xs text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full job-count-freelance">0</span></label>
+                <label class="flex items-center gap-3 cursor-pointer group"><input
+                    class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"
+                    value="Internship" /><span
+                    class="text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Internship</span><span
+                    class="ml-auto text-xs text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full job-count-internship">0</span></label>
+              </div>
+            </div>
+            <!-- Salary Range -->
+            <div class="space-y-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+              <div class="flex items-center justify-between">
+                <h4 class="font-semibold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                  Salary Range
+                </h4>
+                <span id="salary-display" class="text-xs font-bold text-primary">$0k+</span>
+              </div>
+              <input id="salary-range-slider" class="w-full accent-primary mt-2" type="range" min="0" max="200"
+                step="10" value="0" />
+              <div class="flex justify-between text-xs text-slate-400">
+                <span>$0k</span><span>$200k+</span>
+              </div>
+            </div>
+            <!-- Industry -->
+            <div class="space-y-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+              <div class="flex items-center justify-between">
+                <h4 class="font-semibold text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                  Industry
+                </h4>
+                <button id="clear-industry" class="text-xs text-primary hover:underline hidden">
+                  Clear
+                </button>
+              </div>
+              <div id="industry-filters" class="space-y-2">
+                <label class="flex items-center gap-3 cursor-pointer group"><input
+                    class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"
+                    value="Technology" /><span
+                    class="text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Technology</span></label>
+                <label class="flex items-center gap-3 cursor-pointer group"><input
+                    class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"
+                    value="Finance" /><span
+                    class="text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Finance</span></label>
+                <label class="flex items-center gap-3 cursor-pointer group"><input
+                    class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"
+                    value="Healthcare" /><span
+                    class="text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Healthcare</span></label>
+                <div id="extra-industries" class="hidden space-y-2">
+                  <label class="flex items-center gap-3 cursor-pointer group"><input
+                      class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"
+                      value="Education" /><span
+                      class="text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Education</span></label>
+                  <label class="flex items-center gap-3 cursor-pointer group"><input
+                      class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"
+                      value="Retail" /><span
+                      class="text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Retail</span></label>
+                  <label class="flex items-center gap-3 cursor-pointer group"><input
+                      class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"
+                      value="Manufacturing" /><span
+                      class="text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Manufacturing</span></label>
+                  <label class="flex items-center gap-3 cursor-pointer group"><input
+                      class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"
+                      value="Marketing" /><span
+                      class="text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Marketing</span></label>
+                  <label class="flex items-center gap-3 cursor-pointer group"><input
+                      class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"
+                      value="Sales" /><span
+                      class="text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Sales</span></label>
+                  <label class="flex items-center gap-3 cursor-pointer group"><input
+                      class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"
+                      value="Engineering" /><span
+                      class="text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Engineering</span></label>
+                  <label class="flex items-center gap-3 cursor-pointer group"><input
+                      class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"
+                      value="Design" /><span
+                      class="text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Design</span></label>
+                </div>
+                <button id="show-more-industries"
+                  class="text-primary text-sm font-medium mt-1 flex items-center gap-1 hover:underline">
+                  Show more
+                  <span class="material-symbols-outlined text-sm">expand_more</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Results Area -->
+        <div class="flex-1 flex flex-col">
+          <!-- View Toggle & Count -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
+              <span class="text-slate-400 font-medium mr-2">Found</span>
+              <span id="total-jobs-count">0</span> Jobs
+            </h2>
+          </div>
+          <!-- Job Cards Feed -->
+          <div id="job-results-container" class="space-y-4">
+            <!-- Jobs injected via JS -->
+          </div>
+          <!-- Pagination -->
+          <div id="pagination-container" class="mt-8 flex justify-center"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- TAB: AI MATCHES (auth-gated)                              -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <div id="page-panel-ai" style="display: none; position: relative">
+      <!-- Page Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <h1 class="text-3xl font-black tracking-tight mb-1">
+            AI Job Matches
+          </h1>
+          <p class="text-slate-500 dark:text-slate-400 flex items-center gap-2">
+            <span class="material-symbols-outlined text-base text-blue-500">auto_awesome</span>
+            Based on your profile — personalised and ranked by AI.
+          </p>
+        </div>
+        <div class="flex gap-3">
+          <button id="ai-refresh-button" onclick="window.location.reload()"
+            class="flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-sm font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <span class="material-symbols-outlined text-lg">refresh</span>
+            Refresh
+          </button>
+        </div>
+      </div>
+
+      <!-- Inner Tabs for AI section -->
+      <div
+        class="flex gap-2 bg-white dark:bg-slate-900 rounded-2xl p-2 border border-slate-200 dark:border-slate-800 shadow-sm mb-6 overflow-x-auto">
+        <button
+          class="ai-inner-tab active flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap"
+          onclick="switchAITab(event, 'matches')">
+          <span class="material-symbols-outlined text-base">auto_awesome</span>
+          AI Recommendations
+        </button>
+        <button class="ai-inner-tab flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap"
+          onclick="switchAITab(event, 'eligibility')">
+          <span class="material-symbols-outlined text-base">fact_check</span>
+          Eligibility &amp; Gap Analysis
+        </button>
+      </div>
+
+      <!-- ── AI Inner Tab 1: Matches ── -->
+      <div id="ai-tab-matches" class="ai-tab-panel active">
+        <!-- Independent scrolling layout for large screens -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <!-- Left Filters Sidebar -->
+          <aside class="hidden lg:flex lg:col-span-3 flex-col gap-4 sticky top-24 pr-1 max-h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar">
+            <div
+              class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm shrink-0">
+              <div class="flex justify-between items-center mb-4">
+                <h2 class="font-bold">Filters</h2>
+                <button id="ai-clear-filters" class="text-xs text-primary hover:underline hidden">
+                  Clear
+                </button>
+              </div>
+              <div class="flex flex-col gap-4">
+                <div>
+                  <label class="block text-sm font-bold mb-2">Keywords</label>
+                  <div
+                    class="flex items-center gap-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all">
+                    <span id="ai-job-search-icon"
+                      class="material-symbols-outlined text-slate-400 text-base cursor-pointer hover:text-primary transition-colors">search</span>
+                    <input id="ai-job-search-input"
+                      class="bg-transparent text-sm flex-1 outline-none placeholder:text-slate-400"
+                      placeholder="Job title, skill, company" />
+                  </div>
+                </div>
+                <div>
+                  <p class="text-sm font-bold mb-3">Salary Range</p>
+                  <div class="relative h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mx-1">
+                    <input type="range" id="ai-salary-filter" class="w-full absolute inset-0 opacity-0 cursor-pointer"
+                      min="0" max="250" value="0" step="10" />
+                    <div class="absolute left-0 h-full bg-blue-500 rounded-full" id="ai-salary-progress"
+                      style="width: 0%"></div>
+                    <div
+                      class="absolute top-1/2 -translate-y-1/2 size-4 bg-white border-2 border-primary rounded-full shadow pointer-events-none"
+                      id="ai-salary-thumb" style="left: 0%"></div>
+                  </div>
+                  <div class="flex justify-between mt-3 text-xs font-medium text-slate-500">
+                    <span id="ai-salary-value">Any</span><span>$250k+</span>
+                  </div>
+                </div>
+                <div>
+                  <p class="text-sm font-bold mb-2">Work Mode</p>
+                  <div class="space-y-2" id="ai-job-type-filters">
+                    <label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" value="Remote"
+                        class="rounded accent-blue-600" /><span
+                        class="text-sm text-slate-700 dark:text-slate-300">Remote</span></label>
+                    <label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" value="Hybrid"
+                        class="rounded accent-blue-600" /><span
+                        class="text-sm text-slate-700 dark:text-slate-300">Hybrid</span></label>
+                    <label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" value="On-site"
+                        class="rounded accent-blue-600" /><span
+                        class="text-sm text-slate-700 dark:text-slate-300">On-site</span></label>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-bold mb-2">Location</label>
+                  <div
+                    class="flex items-center gap-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2">
+                    <span class="material-symbols-outlined text-slate-400 text-base">location_on</span>
+                    <input id="ai-location-filter"
+                      class="bg-transparent text-sm flex-1 outline-none placeholder:text-slate-400"
+                      placeholder="e.g. San Francisco" />
+                  </div>
+                </div>
+                <button id="ai-apply-filters-btn"
+                  class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-xl transition-colors">
+                  Apply Filters
+                </button>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Job Feed -->
+          <section class="col-span-1 lg:col-span-6 flex flex-col gap-4 pr-2">
+            <div id="ai-results-header" class="hidden flex justify-between items-center mb-2 px-1">
+              <h2 class="text-sm font-bold text-slate-500 uppercase tracking-wider">AI Matched Roles (Score ≥ 75%)</h2>
+              <button onclick="window.refreshAIMatches()" class="flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg border border-blue-100">
+                <span class="material-symbols-outlined text-sm">refresh</span>
+                Re-match AI
+              </button>
+            </div>
+            <div id="ai-job-results-container" class="space-y-4 pb-12">
+              <!-- AI Jobs injected via JS -->
+            </div>
+          </section>
+
+          <!-- Right: Reasoning Drawer -->
+          <aside id="reasoning-drawer" class="hidden lg:col-span-3 flex-col sticky top-24 max-h-[calc(100vh-8rem)]">
+            <div
+              class="bg-white dark:bg-slate-900 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 flex flex-col overflow-hidden h-full">
+              <div class="p-5 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
+                <div class="flex justify-between items-center mb-2">
+                  <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500">
+                    AI Match Insights
+                  </h2>
+                  <button class="text-slate-400 hover:text-slate-600" onclick="closeReasoning()">
+                    <span class="material-symbols-outlined">close</span>
+                  </button>
+                </div>
+                <h3 id="drawer-title" class="font-bold text-lg leading-tight">
+                  Senior Product Designer
+                </h3>
+                <p id="drawer-company" class="text-xs text-slate-500 mt-1">
+                  TechFlow Inc.
+                </p>
+              </div>
+              <div class="flex-1 overflow-y-auto p-5">
+                <div class="flex items-center gap-4 mb-6">
+                  <div class="size-16 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                    <span class="material-symbols-outlined text-3xl">auto_awesome</span>
+                  </div>
+                  <div>
+                    <p id="drawer-score" class="text-3xl font-black">94%</p>
+                    <p class="text-xs font-bold text-blue-600 uppercase tracking-wide">
+                      Excellent Match
+                    </p>
+                  </div>
+                </div>
+                <div class="mb-6" id="drawer-why-fit-container">
+                  <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                    <strong class="text-slate-900 dark:text-white">Why you're a fit:</strong>
+                    <span id="drawer-why-fit">Generating insights...</span>
+                  </p>
+                </div>
+                <div id="drawer-skill-analysis" class="space-y-4 mb-6">
+                  <h4 class="font-bold text-sm border-b border-slate-100 pb-2">
+                    Skill Analysis
+                  </h4>
+                  <!-- Dynamic skills injected here -->
+                </div>
+                <div class="p-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100">
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="material-symbols-outlined text-blue-500 text-base">trending_up</span>
+                    <p class="text-xs font-bold text-blue-600">
+                      Salary Insight
+                    </p>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-400">
+                    This offer is
+                    <strong class="text-slate-900 dark:text-white">15% higher</strong>
+                    than your estimated market average.
+                  </p>
+                </div>
+              </div>
+              <div class="p-5 border-t border-slate-100 dark:border-slate-800 shrink-0 bg-white dark:bg-slate-900">
+                <button id="drawer-apply-btn"
+                  class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-colors shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2"
+                  onclick="if(window.currentAIJobId) window.applyToAIJob(window.currentAIJobId, window.currentAIScore)">
+                  Apply for this job
+                  <span class="material-symbols-outlined text-base">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- ── AI Inner Tab 2: Eligibility & Gap ── -->
+      <div id="ai-tab-eligibility" class="ai-tab-panel">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Eligibility Card -->
+          <div
+            class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+            <h2 class="text-lg font-bold mb-2 flex items-center gap-2">
+              <span class="material-symbols-outlined text-blue-500">fact_check</span>
+              Eligibility Summary
+            </h2>
+            <p class="text-slate-500 text-sm mb-5">
+              For:
+              <strong id="gap-analysis-title">Senior Product Designer at TechFlow Inc.</strong>
+            </p>
+            <div id="gap-analysis-eligibility-rows" class="space-y-4">
+              <!-- Rows will be injected here dynamically -->
+            </div>
+          </div>
+          <!-- Gap Analysis + Guidance -->
+          <div class="flex flex-col gap-6">
+            <div
+              class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+              <h2 class="text-lg font-bold mb-4 flex items-center gap-2">
+                <span class="material-symbols-outlined text-rose-500">trending_down</span>
+                Gap Analysis
+              </h2>
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-sm mb-1">
+                    <span class="font-medium">Keyword Match</span><span id="gap-keyword-match-text"
+                      class="font-bold text-amber-600">65%</span>
+                  </div>
+                  <div class="w-full bg-slate-100 h-2 rounded-full">
+                    <div id="gap-keyword-match-bar" class="bg-amber-500 h-2 rounded-full transition-all duration-1000"
+                      style="width: 65%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1">
+                    <span class="font-medium">Skill Coverage</span><span id="gap-skill-coverage-text"
+                      class="font-bold text-blue-600">80%</span>
+                  </div>
+                  <div class="w-full bg-slate-100 h-2 rounded-full">
+                    <div id="gap-skill-coverage-bar" class="bg-blue-500 h-2 rounded-full transition-all duration-1000"
+                      style="width: 80%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1">
+                    <span class="font-medium">Experience Fit</span><span id="gap-experience-fit-text"
+                      class="font-bold text-emerald-600">100%</span>
+                  </div>
+                  <div class="w-full bg-slate-100 h-2 rounded-full">
+                    <div id="gap-experience-fit-bar"
+                      class="bg-emerald-500 h-2 rounded-full transition-all duration-1000" style="width: 100%"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 p-3 bg-blue-50 rounded-xl border border-blue-100">
+                <p id="gap-ai-verdict" class="text-sm text-slate-700 dark:text-slate-300">
+                  <strong>AI Verdict:</strong> Apply confidently. Your overall
+                  profile is strong. Mention cloud familiarity in your cover
+                  letter to offset the AWS gap.
+                </p>
+              </div>
+            </div>
+            <div
+              class="bg-gradient-to-r from-blue-600 to-blue-500 rounded-2xl p-6 text-white shadow-lg shadow-blue-500/20">
+              <h3 class="font-bold text-lg mb-4">What to do next</h3>
+              <div class="space-y-3">
+                <button
+                  class="w-full flex items-center gap-3 bg-white/15 hover:bg-white/25 rounded-xl p-3 text-left transition-colors">
+                  <span class="material-symbols-outlined">send</span><span class="text-sm font-bold">Apply Now — Your
+                    profile is ready</span>
+                </button>
+                <a href="../../JobSeeker/Profile/resume_insights.html"
+                  class="w-full flex items-center gap-3 bg-white/10 hover:bg-white/20 rounded-xl p-3 transition-colors"><span
+                    class="material-symbols-outlined">analytics</span><span class="text-sm font-bold">Boost Resume Score
+                    First</span></a>
+                <a href="../../JobSeeker/Learning/candidate_growth_&_learning_insights.html"
+                  class="w-full flex items-center gap-3 bg-white/10 hover:bg-white/20 rounded-xl p-3 transition-colors"><span
+                    class="material-symbols-outlined">school</span><span class="text-sm font-bold">Fill Skill Gap with
+                    AWS Course</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /page-panel-ai -->
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- TAB: EXTERNAL JOBS                                         -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <div id="page-panel-external" style="display: none">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- External Filters Sidebar -->
+        <aside class="hidden lg:flex lg:col-span-3 flex-col gap-4 sticky top-24">
+          <!-- AI Eligibility for External Jobs -->
+          <div
+            class="bg-gradient-to-br from-indigo-900 to-slate-900 rounded-xl p-5 text-white shadow-lg relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-3 opacity-10">
+              <span class="material-symbols-outlined text-8xl">auto_awesome</span>
+            </div>
+            <div class="relative z-10">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="material-symbols-outlined text-primary">auto_awesome</span>
+                <h3 class="font-bold text-lg">AI Eligibility</h3>
+              </div>
+              <p class="text-sm text-slate-300 mb-6">
+                Filter jobs based on your resume's match confidence.
+              </p>
+              <div class="mb-2 flex justify-between text-xs font-medium text-slate-300">
+                <span>Broad</span>
+                <span class="text-primary font-bold">High Match</span>
+              </div>
+              <input id="ext-ai-eligibility-slider"
+                class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer" max="100" min="0" type="range"
+                value="0" />
+              <div id="ext-ai-eligibility-label" class="mt-2 text-center text-sm font-semibold text-white">
+                Min. 0% Match
+              </div>
+            </div>
+          </div>
+
+          <!-- Standard Filters -->
+          <div
+            class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h2 class="font-bold mb-4">External Filters</h2>
+            <div class="flex flex-col gap-4">
+              <!-- Keywords -->
+              <div>
+                <label class="block text-sm font-bold mb-2">Keywords</label>
+                <div
+                  class="flex items-center gap-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all">
+                  <span id="ext-job-search-icon"
+                    class="material-symbols-outlined text-slate-400 text-base cursor-pointer hover:text-primary transition-colors">search</span>
+                  <input id="ext-job-search-input"
+                    class="bg-transparent text-sm flex-1 outline-none placeholder:text-slate-400"
+                    placeholder="Job title, skill, company" />
+                </div>
+              </div>
+
+              <!-- Location -->
+              <div>
+                <label class="block text-sm font-bold mb-2">Location</label>
+                <div
+                  class="flex items-center gap-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all">
+                  <span class="material-symbols-outlined text-slate-400 text-base">location_on</span>
+                  <input id="ext-location-filter"
+                    class="bg-transparent text-sm flex-1 outline-none placeholder:text-slate-400"
+                    placeholder="City, state, remote" />
+                </div>
+              </div>
+
+              <!-- Job Type -->
+              <div>
+                <label class="block text-sm font-bold mb-2">Job Type</label>
+                <div class="space-y-2" id="ext-job-type-filters">
+                  <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" value="Full-time"
+                      class="rounded border-slate-300 text-primary" /><span
+                      class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Full-time</span></label>
+                  <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" value="Contract"
+                      class="rounded border-slate-300 text-primary" /><span
+                      class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Contract</span></label>
+                  <label class="flex items-center gap-3 cursor-pointer group"><input type="checkbox" value="Remote"
+                      class="rounded border-slate-300 text-primary" /><span
+                      class="text-sm text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Remote</span></label>
+                </div>
+              </div>
+
+              <div class="border-t border-slate-100 dark:border-slate-800 pt-4"></div>
+
+              <!-- Platform Filter -->
+              <div>
+                <p class="text-sm font-bold mb-2">Platform Source</p>
+                <div class="space-y-2">
+                  <label class="flex items-center gap-3 cursor-pointer group">
+                    <input checked class="rounded border-slate-300 text-primary" type="checkbox" value="All Platforms"
+                      id="ext-filter-all" />
+                    <span class="text-sm text-slate-700 dark:text-slate-300">All Platforms</span>
+                  </label>
+                  <label class="flex items-center gap-3 cursor-pointer group">
+                    <input class="rounded border-slate-300 text-primary" type="checkbox" value="LinkedIn"
+                      id="ext-filter-linkedin" />
+                    <span class="text-sm text-slate-700 dark:text-slate-300">LinkedIn</span>
+                  </label>
+                  <label class="flex items-center gap-3 cursor-pointer group">
+                    <input class="rounded border-slate-300 text-primary" type="checkbox" value="Indeed"
+                      id="ext-filter-indeed" />
+                    <span class="text-sm text-slate-700 dark:text-slate-300">Indeed</span>
+                  </label>
+                  <label class="flex items-center gap-3 cursor-pointer group">
+                    <input class="rounded border-slate-300 text-primary" type="checkbox" value="Naukri"
+                      id="ext-filter-naukri" />
+                    <span class="text-sm text-slate-700 dark:text-slate-300">Naukri</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Results Area -->
+        <div class="flex-1 lg:col-span-9 flex flex-col">
+          <div class="flex flex-col gap-3 mb-6">
+            <div class="flex justify-between items-start">
+              <div>
+                <h1 class="text-slate-900 dark:text-white text-3xl font-extrabold leading-tight flex items-center mb-2">
+                  External Opportunities
+                </h1>
+                <p class="text-slate-500 dark:text-slate-400 text-base font-normal mt-2 max-w-2xl">
+                  Browse aggregated jobs from trusted top platforms like
+                  LinkedIn, Naukri, and Indeed directly from our centralized
+                  hub.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Job Cards Grid -->
+          <div id="external-job-results-container" class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+            <!-- Jobs injected via JS -->
+          </div>
+
+          <!-- External Pagination -->
+          <div
+            class="w-full flex items-center justify-center gap-2 mt-8 pt-6 border-t border-slate-200 dark:border-slate-800"
+            id="ext-pagination-container">
+            <!-- Pagination buttons injected via JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /page-panel-external -->
+  </main>
+
+  <!-- Redirection Consent Modal -->
+  <div
+    class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 dark:bg-black/70 backdrop-blur-sm opacity-0 invisible transition-all duration-200"
+    id="redirect-modal">
+    <div
+      class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl p-6 w-full max-w-md relative m-4 transform scale-95 transition-transform"
+      id="redirect-modal-content">
+      <button class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+        onclick="closeRedirectModal()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <div class="flex flex-col items-center text-center gap-4">
+        <div class="size-16 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center mb-2">
+          <span class="material-symbols-outlined text-primary text-[32px]">link</span>
+        </div>
+        <div class="space-y-2">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">
+            You are leaving CareerPortal
+          </h3>
+          <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed" id="redirect-modal-text">
+            This application is hosted on an external platform. We will
+            redirect you to their site to complete the application process.
+          </p>
+        </div>
+        <!-- ... spinner visually ... -->
+        <div
+          class="w-full h-12 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 flex items-center px-4 gap-3 mt-2">
+          <div class="size-2 bg-green-500 rounded-full animate-pulse"></div>
+          <p class="text-xs text-slate-500 font-medium">
+            Redirecting is safe and secure
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-3 w-full mt-2">
+          <button
+            class="flex items-center justify-center h-12 rounded-xl border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 font-semibold text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+            onclick="closeRedirectModal()">
+            Cancel
+          </button>
+          <button
+            class="flex items-center justify-center h-12 rounded-xl bg-primary text-white font-semibold text-sm hover:bg-primary/90 shadow-lg shadow-blue-500/20 transition-all"
+            onclick="proceedExternalRedirect()">
+            Continue
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <!-- Footer Container -->
+  <div id="footer-container"></div>
+  <script src="../../assets/js/render_footer.js"></script>
+
+  <script src="../../assets/js/navbar.js"></script>
+  <script src="../../assets/js/bookmark_service.js"></script>
+  <script src="advanced_job_search_&_filtering_func.js?v=3"></script>
+  <script>
+    // ════════════════════════════════════════════════════════════
+    // PAGE TAB MANAGEMENT
+    // ════════════════════════════════════════════════════════════
+
+    function switchPageTab(tab) {
+      // Update buttons
+      document
+        .getElementById("page-tab-browse")
+        .classList.toggle("active", tab === "browse");
+      document
+        .getElementById("page-tab-ai")
+        .classList.toggle("active", tab === "ai");
+      const extTab = document.getElementById("page-tab-external");
+      if (extTab) extTab.classList.toggle("active", tab === "external");
+
+      // Show/hide panels
+      document.getElementById("page-panel-browse").style.display =
+        tab === "browse" ? "" : "none";
+      document.getElementById("page-panel-ai").style.display =
+        tab === "ai" ? "" : "none";
+      const extPanel = document.getElementById("page-panel-external");
+      if (extPanel) extPanel.style.display = tab === "external" ? "" : "none";
+
+      // Trigger re-render if switching to external
+      if (tab === "external" && typeof renderExternalJobs === "function") {
+        renderExternalJobs();
+      }
+    }
+
+    function openRedirectModal(platform) {
+      const modal = document.getElementById("redirect-modal");
+      const content = document.getElementById("redirect-modal-content");
+      const text = document.getElementById("redirect-modal-text");
+      if (modal && content) {
+        if (text)
+          text.innerHTML = `This application is hosted on <strong>${platform}</strong>. We will redirect you to their site.`;
+        modal.classList.remove("opacity-0", "invisible");
+        setTimeout(() => {
+          content.classList.remove("scale-95");
+          content.classList.add("scale-100");
+        }, 10);
+      }
+    }
+
+    function closeRedirectModal() {
+      const modal = document.getElementById("redirect-modal");
+      const content = document.getElementById("redirect-modal-content");
+      if (modal && content) {
+        content.classList.remove("scale-100");
+        content.classList.add("scale-95");
+        setTimeout(() => {
+          modal.classList.add("opacity-0", "invisible");
+        }, 200);
+      }
+    }
+
+    function proceedExternalRedirect() {
+      const recent = localStorage.getItem('recent_job_view');
+      if (recent) {
+        try {
+          const job = JSON.parse(recent);
+          if (job.url) {
+            closeRedirectModal();
+            showToast("Redirecting to " + (job.platform || "external site") + "...", "success");
+            setTimeout(() => {
+              window.open(job.url, '_blank');
+            }, 800);
+            return;
+          }
+        } catch(e) { console.error(e); }
+      }
+      
+      closeRedirectModal();
+      showToast("Redirecting to external platform...", "success");
+    }
+
+    async function handleAITabClick(forceRefresh = false) {
+      switchPageTab("ai");
+      // Check if logged in
+      if (!AuthGuard.isLoggedIn()) {
+        sessionStorage.setItem("redirectAfterLogin", window.location.href + "?tab=ai-matches");
+        window.location.href = "../Auth/auth_center.html?tab=login";
+        return;
+      }
+
+      try {
+        if (forceRefresh) {
+            const advState = window.AdvancedJobSearch?.getState();
+            if (advState) advState.isAIMatchLoaded = false;
+        }
+
+        if (typeof window.AdvancedJobSearch?.initAIMatchTab === "function") {
+            await window.AdvancedJobSearch.initAIMatchTab();
+        } else {
+            console.warn("[AI Tab] initAIMatchTab not ready");
+        }
+      } catch(e) {
+        console.error("[AI Tab] Error:", e);
+      }
+    }
+
+    async function handleExternalTabClick() {
+      switchPageTab("external");
+      // Check if logged in
+      if (!AuthGuard.isLoggedIn()) {
+        sessionStorage.setItem("redirectAfterLogin", window.location.href + "?tab=external");
+        window.location.href = "../Auth/auth_center.html?tab=login";
+        return;
+      }
+
+      try {
+        if (typeof window.initExternalJobsTab === "function") {
+            await window.initExternalJobsTab();
+        } else {
+            console.warn("[External Tab] initExternalJobsTab not ready");
+        }
+      } catch(e) {
+        console.error("[External Tab] Error:", e);
+      }
+    }
+
+    // ════════════════════════════════════════════════════════════
+    // AI INNER TAB MANAGEMENT (Matches / Eligibility)
+    // ════════════════════════════════════════════════════════════
+
+    function switchAITab(e, tab) {
+      document
+        .querySelectorAll(".ai-inner-tab")
+        .forEach((b) => b.classList.remove("active"));
+      document
+        .querySelectorAll(".ai-tab-panel")
+        .forEach((p) => p.classList.remove("active"));
+      document.getElementById("ai-tab-" + tab).classList.add("active");
+      if (e && e.currentTarget) {
+        e.currentTarget.classList.add("active");
+      } else {
+        // fallback if event isn't passed -> find the button parsing the tab
+        const btn = document.querySelector(
+          `.ai-inner-tab[onclick*="${tab}"]`,
+        );
+        if (btn) btn.classList.add("active");
+      }
+    }
+
+    // ════════════════════════════════════════════════════════════
+    // AI REASONING DRAWER
+    // ════════════════════════════════════════════════════════════
+
+    function openReasoning(company, title, score, jobId) {
+      document.getElementById("drawer-company").textContent = company;
+      document.getElementById("drawer-title").textContent = title;
+      document.getElementById("drawer-score").textContent = score + "%";
+      window.currentAIJobId = jobId;
+      window.currentAIScore = score;
+      const drawer = document.getElementById("reasoning-drawer");
+      drawer.classList.add("open");
+      drawer.style.display = "flex";
+    }
+
+    function closeReasoning() {
+      const drawer = document.getElementById("reasoning-drawer");
+      drawer.classList.remove("open");
+      drawer.style.display = "none";
+    }
+
+    // ════════════════════════════════════════════════════════════
+    // ON PAGE LOAD — handle ?tab=ai-matches URL param
+    // and update lock badge based on login state
+    // ════════════════════════════════════════════════════════════
+    document.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get("tab");
+
+      const isLoggedIn = AuthGuard.isLoggedIn();
+
+      // Update the AI tab lock badge
+      const badge = document.getElementById("ai-tab-lock-badge");
+      if (isLoggedIn) {
+        if (badge) badge.style.display = "none";
+      }
+
+      // Update the External tab lock badge
+      const extBadge = document.getElementById("ext-tab-lock-badge");
+      if (isLoggedIn) {
+        if (extBadge) extBadge.style.display = "none";
+      }
+
+      // Show/hide Browse AI slider lock overlay
+      const browseAiLock = document.getElementById("browse-ai-slider-lock");
+      if (browseAiLock) {
+        browseAiLock.style.display = isLoggedIn ? "none" : "flex";
+      }
+      // Disable the slider itself for non-logged users
+      const aiSliderEl = document.getElementById("ai-eligibility-slider");
+      if (aiSliderEl) {
+        aiSliderEl.disabled = !isLoggedIn;
+      }
+
+      // Auto-activate tab if URL says so AND user is logged in
+      if (tab === "ai-matches") {
+        if (isLoggedIn) {
+          switchPageTab("ai");
+          // Load real resume-based AI matches
+          setTimeout(function () {
+            if (
+              window.AdvancedJobSearch &&
+              window.AdvancedJobSearch.initAIMatchTab
+            ) {
+              window.AdvancedJobSearch.initAIMatchTab();
+            } else {
+              handleAITabClick();
+            }
+          }, 400);
+          const drawer = document.getElementById("reasoning-drawer");
+          if (drawer) drawer.style.display = "flex";
+        } else {
+          sessionStorage.setItem("redirectAfterLogin", window.location.href);
+          window.location.href = "../Auth/auth_center.html?tab=login";
+        }
+      } else if (tab === "external") {
+        if (isLoggedIn) {
+          switchPageTab("external");
+        } else {
+          sessionStorage.setItem("redirectAfterLogin", window.location.href);
+          window.location.href = "../Auth/auth_center.html?tab=login";
+        }
+      } else {
+        // Default: Browse Jobs tab
+        switchPageTab("browse");
+      }
+    });
+  </script>
+
+  <!-- Floating Action Bar for Comparison -->
+  <div id="compare-action-bar"
+    class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 border border-slate-700 shadow-2xl rounded-full px-6 py-3 flex items-center gap-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="text-white font-medium text-sm flex items-center gap-2">
+      <span id="compare-count"
+        class="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold">0</span>
+      <span>Jobs Selected</span>
+    </div>
+    <button id="btn-compare-jobs"
+      class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2 rounded-full font-bold text-sm transition-colors flex items-center gap-2 pointer-events-auto">
+      Compare Now <span class="material-symbols-outlined text-[18px]">compare_arrows</span>
+    </button>
+  </div>
+
+  <!-- Job Comparison Modal -->
+  <div id="comparison-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeComparisonModal()"></div>
+    <div
+      class="relative w-full max-w-6xl max-h-[90vh] bg-white dark:bg-slate-900 rounded-3xl shadow-2xl flex flex-col border border-slate-200 dark:border-slate-800 overflow-hidden transform scale-95 opacity-0 transition-all duration-300"
+      id="comparison-modal-content">
+      <div class="flex items-center justify-between p-6 border-b border-slate-100 dark:border-slate-800">
+        <h2 class="text-xl font-black text-slate-800 dark:text-white flex items-center gap-2">
+          <span class="material-symbols-outlined text-blue-600">auto_awesome</span>
+          AI Job Comparison
+        </h2>
+        <button onclick="closeComparisonModal()"
+          class="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-800 dark:hover:text-white transition-colors">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="p-6 flex-1 overflow-y-auto text-slate-700 dark:text-slate-300" id="comparison-modal-body">
+        <!-- Content injected here -->
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

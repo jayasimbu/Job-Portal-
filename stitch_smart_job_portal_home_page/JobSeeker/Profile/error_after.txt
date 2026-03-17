@@ -1,0 +1,10 @@
+Script 4 error:
+C:\Users\chenn\AppData\Local\Temp\tmpd3k8hnff.js:722
+           formatBarsWrap.innerHTML = \`
+                                      ^
+
+SyntaxError: Invalid or unexpected token
+    at wrapSafe (node:internal/modules/cjs/loader:1662:18)
+    at checkSyntax (node:internal/main/check_syntax:78:3)
+
+Node.js v22.16.0

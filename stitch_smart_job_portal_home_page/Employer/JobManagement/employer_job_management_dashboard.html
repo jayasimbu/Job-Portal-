@@ -1,0 +1,468 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Career Auto - AI-Powered Career Platform</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Material Symbols -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+      };
+    </script>
+    <script src="employer_job_management_dashboard.js"></script>
+    <script src="employer_job_management_dashboard_func.js"></script>
+    <!-- Tailwind Config -->
+
+    <link rel="stylesheet" href="employer_job_management_dashboard.css" />
+    <style>
+      /* Density Optimization */
+      html { font-size: 13.5px; }
+      body { line-height: 1.35; }
+      .p-10 { padding: 1.5rem !important; }
+      .p-6 { padding: 1rem !important; }
+      .gap-8 { gap: 1.25rem !important; }
+      .text-3xl { font-size: 1.25rem !important; }
+      .text-4xl { font-size: 1.5rem !important; }
+    </style>
+  </head>
+
+  <body
+    class="bg-background-light dark:bg-background-dark text-[#0d141b] dark:text-white"
+  >
+    <!-- ── Role Guard: employer only ────────────────────────────── -->
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem("user");
+          if (!raw) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace(
+              "../../Platform/Auth/auth_center.html?tab=login",
+            );
+            return;
+          }
+          var user = JSON.parse(raw);
+          if (!(user && (user.email || user.googleId || user.name))) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace(
+              "../../Platform/Auth/auth_center.html?tab=login",
+            );
+            return;
+          }
+          var role = user.role || "jobseeker";
+          if (role !== "employer") {
+            window.location.replace(
+              "../../JobSeeker/Dashboard/job_seeker_dashboard_intelligence.html",
+            );
+          }
+        } catch (e) {
+          window.location.replace("../../Platform/Auth/auth_center.html?tab=login";
+        }
+      })();
+    </script>
+
+    <div class="flex h-screen w-full overflow-hidden">
+      <!-- Side Navigation -->
+      <div id="sidebar-container"></div>
+      <script src="../../assets/js/render_employer_sidebar.js"></script>
+
+      <!-- Main Content -->
+      <div class="flex-1 flex flex-col h-full overflow-hidden">
+        <div id="header-container" class="hidden"></div>
+        <script src="../../assets/js/auth_guard.js"></script>
+        <script src="../../assets/js/render_header.js"></script>
+        
+        <div class="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark">
+          <div
+            class="layout-container flex flex-col p-6 md:p-10 max-w-[1400px] mx-auto w-full gap-8"
+          >
+          <!-- Page Heading -->
+          <div class="flex flex-wrap justify-between items-end gap-4">
+            <div class="flex flex-col gap-2">
+              <h1
+                class="text-[#0d141b] dark:text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]"
+              >
+                Job Management
+              </h1>
+              <p class="text-[#4c739a] text-base font-normal leading-normal">
+                Manage your active listings and track hiring progress.
+              </p>
+            </div>
+            <button
+              class="flex items-center justify-center gap-2 rounded-xl h-12 px-6 bg-primary hover:bg-blue-600 text-white text-sm font-bold leading-normal transition-all shadow-md shadow-blue-500/20"
+            >
+              <span class="material-symbols-outlined text-xl">add</span>
+              <span class="truncate">Post New Job</span>
+            </button>
+          </div>
+          <!-- Stats Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div
+              class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1A2633] border border-[#cfdbe7] dark:border-gray-800 shadow-sm"
+            >
+              <div class="flex items-center justify-between">
+                <p class="text-[#4c739a] text-sm font-medium leading-normal">
+                  Active Jobs
+                </p>
+                <span class="material-symbols-outlined text-primary text-2xl"
+                  >work_outline</span
+                >
+              </div>
+              <div class="flex items-end gap-3">
+                <p
+                  class="text-[#0d141b] dark:text-white tracking-tight text-3xl font-bold leading-tight"
+                >
+                  12
+                </p>
+                <span
+                  class="text-[#078838] bg-[#078838]/10 px-2 py-0.5 rounded text-xs font-bold mb-1"
+                  >+2 this week</span
+                >
+              </div>
+            </div>
+            <div
+              class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1A2633] border border-[#cfdbe7] dark:border-gray-800 shadow-sm"
+            >
+              <div class="flex items-center justify-between">
+                <p class="text-[#4c739a] text-sm font-medium leading-normal">
+                  Total Candidates
+                </p>
+                <span class="material-symbols-outlined text-primary text-2xl"
+                  >groups</span
+                >
+              </div>
+              <div class="flex items-end gap-3">
+                <p
+                  class="text-[#0d141b] dark:text-white tracking-tight text-3xl font-bold leading-tight"
+                >
+                  486
+                </p>
+                <span
+                  class="text-[#078838] bg-[#078838]/10 px-2 py-0.5 rounded text-xs font-bold mb-1"
+                  >+15% vs last mo</span
+                >
+              </div>
+            </div>
+            <div
+              class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1A2633] border border-[#cfdbe7] dark:border-gray-800 shadow-sm"
+            >
+              <div class="flex items-center justify-between">
+                <p class="text-[#4c739a] text-sm font-medium leading-normal">
+                  Interviews
+                </p>
+                <span class="material-symbols-outlined text-primary text-2xl"
+                  >calendar_month</span
+                >
+              </div>
+              <div class="flex items-end gap-3">
+                <p
+                  class="text-[#0d141b] dark:text-white tracking-tight text-3xl font-bold leading-tight"
+                >
+                  24
+                </p>
+                <span
+                  class="text-orange-500 bg-orange-500/10 px-2 py-0.5 rounded text-xs font-bold mb-1"
+                  >Coming up</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Toolbar (Search & Filters) -->
+          <div
+            class="flex flex-col md:flex-row gap-4 bg-white dark:bg-[#1A2633] p-4 rounded-xl border border-[#cfdbe7] dark:border-gray-800 shadow-sm items-center"
+          >
+            <!-- Search -->
+            <div class="flex-1 w-full md:w-auto relative">
+              <div
+                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+              >
+                <span class="material-symbols-outlined text-[#4c739a]"
+                  >search</span
+                >
+              </div>
+              <input
+                class="block w-full pl-10 pr-3 py-3 border-none rounded-xl bg-[#f6f7f8] dark:bg-gray-800 text-[#0d141b] dark:text-white placeholder-[#4c739a] focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm font-medium"
+                placeholder="Search by job title or keyword..."
+                type="text"
+              />
+            </div>
+            <!-- Filters Group -->
+            <div class="flex w-full md:w-auto gap-3">
+              <!-- Status Filter -->
+              <div class="relative w-full md:w-48">
+                <select
+                  class="block w-full pl-3 pr-10 py-3 text-base border-none focus:outline-none focus:ring-2 focus:ring-primary/50 sm:text-sm rounded-xl bg-[#f6f7f8] dark:bg-gray-800 text-[#0d141b] dark:text-white appearance-none cursor-pointer"
+                >
+                  <option>All Statuses</option>
+                  <option>Active</option>
+                  <option>Draft</option>
+                  <option>Closed</option>
+                </select>
+                <div
+                  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-[#4c739a]"
+                >
+                  <span class="material-symbols-outlined">expand_more</span>
+                </div>
+              </div>
+              <!-- Sort By -->
+              <div class="relative w-full md:w-48">
+                <select
+                  class="block w-full pl-3 pr-10 py-3 text-base border-none focus:outline-none focus:ring-2 focus:ring-primary/50 sm:text-sm rounded-xl bg-[#f6f7f8] dark:bg-gray-800 text-[#0d141b] dark:text-white appearance-none cursor-pointer"
+                >
+                  <option>Sort by: Date</option>
+                  <option>Sort by: Applicants</option>
+                  <option>Sort by: Title</option>
+                </select>
+                <div
+                  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-[#4c739a]"
+                >
+                  <span class="material-symbols-outlined">sort</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Job Data Table -->
+          <div
+            class="flex flex-col rounded-xl border border-[#cfdbe7] dark:border-gray-800 bg-white dark:bg-[#1A2633] shadow-sm overflow-hidden"
+          >
+            <div class="overflow-x-auto custom-scrollbar">
+              <table
+                class="min-w-full divide-y divide-[#cfdbe7] dark:divide-gray-800"
+              >
+                <thead class="bg-[#f8f9fa] dark:bg-gray-900/50">
+                  <tr>
+                    <th
+                      class="px-6 py-4 text-left text-xs font-semibold text-[#4c739a] uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Job Title
+                    </th>
+                    <th
+                      class="px-6 py-4 text-left text-xs font-semibold text-[#4c739a] uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Posted Date
+                    </th>
+                    <th
+                      class="px-6 py-4 text-left text-xs font-semibold text-[#4c739a] uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Applicants
+                    </th>
+                    <th
+                      class="px-6 py-4 text-left text-xs font-semibold text-[#4c739a] uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Top AI Matches
+                    </th>
+                    <th
+                      class="px-6 py-4 text-left text-xs font-semibold text-[#4c739a] uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Status
+                    </th>
+                    <th
+                      class="px-6 py-4 text-right text-xs font-semibold text-[#4c739a] uppercase tracking-wider"
+                      scope="col"
+                    >
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  id="jobs-tbody"
+                  class="divide-y divide-[#cfdbe7] dark:divide-gray-800 bg-white dark:bg-[#1A2633]"
+                >
+                      >
+                        0
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <span class="text-xs text-gray-400 italic"
+                        >No matches yet</span
+                      >
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <span
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400"
+                      >
+                        <span
+                          class="h-1.5 w-1.5 rounded-full bg-yellow-500"
+                        ></span>
+                        Draft
+                      </span>
+                    </td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+                    >
+                      <div class="flex items-center justify-end gap-2">
+                        <button
+                          class="text-[#4c739a] hover:text-[#0d141b] dark:hover:text-white p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                        >
+                          <span class="material-symbols-outlined text-xl"
+                            >edit</span
+                          >
+                        </button>
+                        <button
+                          class="text-red-500 hover:text-red-700 p-1.5 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                        >
+                          <span class="material-symbols-outlined text-xl"
+                            >delete</span
+                          >
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row 4 -->
+                  <tr
+                    class="hover:bg-slate-50 dark:hover:bg-gray-800/50 transition-colors opacity-70"
+                  >
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="flex flex-col">
+                        <div
+                          class="text-sm font-bold text-[#0d141b] dark:text-white"
+                        >
+                          Marketing Specialist
+                        </div>
+                        <div class="text-xs text-[#4c739a]">
+                          Marketing • Remote
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="text-sm text-[#0d141b] dark:text-gray-300">
+                        Sep 15, 2023
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div
+                        class="text-sm font-medium text-[#0d141b] dark:text-white"
+                      >
+                        85
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="flex items-center -space-x-2 overflow-hidden">
+                        <img
+                          alt=""
+                          class="inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-[#1A2633] grayscale"
+                          data-alt="Candidate Avatar 6"
+                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYrtyqSib3VedGy2gC52rWUtwpsP3BmfmFZUoVUXSOETAgYC72QC907VZ0HLOSMG4CXea2ZA7NneDyKsJB0Jb22i1rKFjoOP2LabMPJB51vBcPxADooce5LrGde_tvd6t_v8TzwMKmkjm_G5qijMmZrZQ-x1BSD3JZrfTwbJ_YqSuxGjr_ZopKZJTqsBDwBmWZrxBBqewRKaGD0ph5kKg-pl26EpXbl_fQ_8YdLdCfjEJncNDu8lJ7sLDgLqaavP3dKOopu3zGfRtM"
+                        />
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <span
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300"
+                      >
+                        <span
+                          class="h-1.5 w-1.5 rounded-full bg-gray-500"
+                        ></span>
+                        Closed
+                      </span>
+                    </td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+                    >
+                      <div class="flex items-center justify-end gap-2">
+                        <button
+                          class="text-[#4c739a] hover:text-[#0d141b] dark:hover:text-white p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                        >
+                          <span class="material-symbols-outlined text-xl"
+                            >visibility</span
+                          >
+                        </button>
+                        <button
+                          class="text-[#4c739a] hover:text-[#0d141b] dark:hover:text-white p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                        >
+                          <span class="material-symbols-outlined text-xl"
+                            >archive</span
+                          >
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- Table Footer / Pagination -->
+            <div
+              class="flex items-center justify-between px-6 py-4 bg-[#f8f9fa] dark:bg-gray-900/30 border-t border-[#cfdbe7] dark:border-gray-800"
+            >
+              <div class="text-sm text-[#4c739a]">
+                Showing
+                <span class="font-medium text-[#0d141b] dark:text-white"
+                  >1</span
+                >
+                to
+                <span class="font-medium text-[#0d141b] dark:text-white"
+                  >4</span
+                >
+                of
+                <span class="font-medium text-[#0d141b] dark:text-white"
+                  >12</span
+                >
+                results
+              </div>
+              <div class="flex items-center gap-2">
+                <button
+                  class="p-2 rounded-lg bg-white dark:bg-gray-800 border border-[#cfdbe7] dark:border-gray-700 text-[#4c739a] hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span class="material-symbols-outlined text-sm"
+                    >chevron_left</span
+                  >
+                </button>
+                <button
+                  class="px-3 py-1.5 rounded-lg bg-primary text-white text-sm font-bold shadow-sm"
+                >
+                  1
+                </button>
+                <button
+                  class="px-3 py-1.5 rounded-lg bg-white dark:bg-gray-800 border border-[#cfdbe7] dark:border-gray-700 text-[#0d141b] dark:text-white text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700"
+                >
+                  2
+                </button>
+                <button
+                  class="px-3 py-1.5 rounded-lg bg-white dark:bg-gray-800 border border-[#cfdbe7] dark:border-gray-700 text-[#0d141b] dark:text-white text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700"
+                >
+                  3
+                </button>
+                <button
+                  class="p-2 rounded-lg bg-white dark:bg-gray-800 border border-[#cfdbe7] dark:border-gray-700 text-[#4c739a] hover:bg-gray-50 dark:hover:bg-gray-700"
+                >
+                  <span class="material-symbols-outlined text-sm"
+                    >chevron_right</span
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="../../assets/js/navbar.js"></script>
+    <script src="../../assets/js/navbar.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,559 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Employer Hub — Career Auto</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = { darkMode: "class" };
+    </script>
+    <script src="employer_dashboard_overview.js"></script>
+    <script src="employer_dashboard_overview_func.js"></script>
+    <style>
+      body {
+        font-family: "Manrope", sans-serif;
+      }
+
+      .tab-btn {
+        transition: all 0.2s;
+      }
+
+      .tab-btn.active {
+        background: #2b8cee;
+        color: #fff;
+      }
+
+      .tab-btn:not(.active) {
+        color: #64748b;
+      }
+
+      .tab-btn:not(.active):hover {
+        background: #f1f5f9;
+      }
+
+      .tab-panel {
+        display: none;
+      }
+
+      .tab-panel.active {
+        display: block;
+      }
+
+      .sidebar-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        transition: all 0.2s;
+        font-size: 14px;
+        font-weight: 500;
+        color: #64748b;
+        text-decoration: none;
+      }
+
+      .sidebar-link:hover {
+        background: #f1f5f9;
+        color: #0f172a;
+      }
+
+      .sidebar-link.active {
+        background: rgba(43, 140, 238, 0.1);
+        color: #2b8cee;
+        font-weight: 600;
+      }
+
+      /* Density Optimization */
+      html { font-size: 13.5px; }
+      body { line-height: 1.35; }
+      .p-8 { padding: 1.5rem !important; }
+      .p-6 { padding: 1rem !important; }
+      .p-5 { padding: 0.75rem !important; }
+      .p-4 { padding: 0.5rem !important; }
+      .mb-8 { margin-bottom: 1.5rem !important; }
+      .mb-6 { margin-bottom: 0.75rem !important; }
+      .mb-5 { margin-bottom: 0.5rem !important; }
+      .gap-8 { gap: 1.5rem !important; }
+      .gap-6 { gap: 0.75rem !important; }
+      .gap-4 { gap: 0.5rem !important; }
+      h1, h2, h3 { letter-spacing: -0.01em !important; }
+      .text-2xl { font-size: 1.15rem !important; }
+      .text-3xl { font-size: 1.35rem !important; }
+      .text-4xl { font-size: 1.6rem !important; }
+
+    </style>
+  </head>
+
+  <body
+    class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white min-h-screen overflow-x-hidden"
+  >
+    <!-- ── Role Guard: employer only ────────────────────────────── -->
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem("user");
+          if (!raw) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace(
+              "../../Platform/Auth/auth_center.html?tab=login",
+            );
+            return;
+          }
+          var user = JSON.parse(raw);
+          if (!(user && (user.email || user.googleId || user.name))) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace(
+              "../../Platform/Auth/auth_center.html?tab=login",
+            );
+            return;
+          }
+          var role = user.role || "jobseeker";
+          if (role !== "employer") {
+            window.location.replace(
+              "../../JobSeeker/Dashboard/job_seeker_dashboard_intelligence.html",
+            );
+          }
+        } catch (e) {
+          window.location.replace("../../Platform/Auth/auth_center.html?tab=login";
+        }
+      })();
+    </script>
+
+    <div class="flex h-screen w-full overflow-hidden">
+      <div id="sidebar-container"></div>
+      <script src="../../assets/js/render_employer_sidebar.js"></script>
+
+        <!-- Main Content -->
+      <main class="flex-1 flex flex-col overflow-hidden">
+        <!-- Top Header Hidden (Using Sidebar branding) -->
+        <div id="header-container" class="hidden"></div>
+        <script src="../../assets/js/auth_guard.js"></script>
+        <script src="../../assets/js/render_header.js"></script>
+
+        <!-- Scrollable body -->
+        <div class="flex-1 overflow-y-auto p-6 bg-slate-50 dark:bg-slate-950">
+          <!-- No tab pills needed since we have separate pages now -->
+
+          <!-- ===== TAB: DASHBOARD ===== -->
+          <div id="tab-dashboard" class="tab-panel active">
+            <!-- Welcome -->
+            <div class="mb-6">
+              <h2 id="welcome-message" class="text-2xl font-black mb-1">
+                Welcome back, Team 👋
+              </h2>
+              <p class="text-slate-500">
+                Here's what's happening with your job postings today.
+              </p>
+            </div>
+            <!-- Stats -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              <div
+                class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm"
+              >
+                <div class="flex items-center justify-between mb-4">
+                  <div
+                    class="size-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center"
+                  >
+                    <span class="material-symbols-outlined">auto_awesome</span>
+                  </div>
+                  <span
+                    class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full flex items-center gap-1"
+                    ><span class="material-symbols-outlined text-xs"
+                      >trending_up</span
+                    >+2</span
+                  >
+                </div>
+                <p class="text-sm text-slate-500">Active Jobs</p>
+                <p id="stat-active-jobs" class="text-3xl font-black">12</p>
+              </div>
+              <div
+                class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm"
+              >
+                <div class="flex items-center justify-between mb-4">
+                  <div
+                    class="size-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center"
+                  >
+                    <span class="material-symbols-outlined">group</span>
+                  </div>
+                  <span
+                    class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full"
+                    >+12%</span
+                  >
+                </div>
+                <p class="text-sm text-slate-500">Total Applicants</p>
+                <p id="stat-total-applicants" class="text-3xl font-black">1,450</p>
+                <p class="text-xs text-blue-600 mt-1 font-medium">
+                  320 AI Recommended
+                </p>
+              </div>
+              <div
+                class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm"
+              >
+                <div class="flex items-center justify-between mb-4">
+                  <div
+                    class="size-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center"
+                  >
+                    <span class="material-symbols-outlined"
+                      >calendar_month</span
+                    >
+                  </div>
+                  <span
+                    class="text-xs text-slate-400 bg-slate-100 px-2 py-1 rounded-full"
+                    >Today</span
+                  >
+                </div>
+                <p class="text-sm text-slate-500">Interviews Scheduled</p>
+                <p id="stat-interviews-scheduled" class="text-3xl font-black">8</p>
+                <p class="text-xs text-slate-400 mt-1">3 upcoming today</p>
+              </div>
+              <div
+                class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm"
+              >
+                <div class="flex items-center justify-between mb-4">
+                  <div
+                    class="size-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center"
+                  >
+                    <span class="material-symbols-outlined">timelapse</span>
+                  </div>
+                  <span
+                    class="text-xs font-bold text-orange-600 bg-orange-50 px-2 py-1 rounded-full"
+                    >-2 days</span
+                  >
+                </div>
+                <p class="text-sm text-slate-500">Avg Time to Hire</p>
+                <p id="stat-avg-time-to-hire" class="text-3xl font-black">14d</p>
+              </div>
+            </div>
+            <!-- Job Postings Table + Top Candidates -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <!-- Jobs table -->
+              <div class="lg:col-span-2">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="font-bold text-lg">Recent Job Postings</h3>
+                  <a
+                    href="../JobManagement/employer_job_management_dashboard.html"
+                    class="text-sm font-bold text-blue-600 hover:underline"
+                    >View All</a
+                  >
+                </div>
+                <div
+                  class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden"
+                >
+                  <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left">
+                      <thead
+                        class="bg-slate-50 dark:bg-slate-800 text-xs uppercase text-slate-500"
+                      >
+                        <tr>
+                          <th class="px-5 py-3 font-semibold">Job Title</th>
+                          <th class="px-5 py-3 font-semibold">Applicants</th>
+                          <th class="px-5 py-3 font-semibold">Status</th>
+                          <th class="px-5 py-3 text-right font-semibold">
+                            Action
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody id="recent-jobs-tbody"
+                        class="divide-y divide-slate-100 dark:divide-slate-800"
+                      >
+                        <tr
+                          class="hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                        >
+                          <td class="px-5 py-4 font-medium">
+                            <div>
+                              <div class="font-bold">Senior UX Designer</div>
+                              <div class="text-xs text-slate-400">
+                                Posted Oct 24
+                              </div>
+                            </div>
+                          </td>
+                          <td class="px-5 py-4">
+                            <span class="text-blue-600 font-bold text-sm"
+                              >44 total</span
+                            >
+                            <span class="text-xs text-blue-400 ml-1"
+                              >12 New</span
+                            >
+                          </td>
+                          <td class="px-5 py-4">
+                            <span
+                              class="bg-emerald-50 text-emerald-700 text-xs font-bold px-2.5 py-1 rounded-full"
+                              >Active</span
+                            >
+                          </td>
+                          <td class="px-5 py-4 text-right">
+                            <button
+                              class="text-slate-400 hover:text-blue-600 transition-colors"
+                            >
+                              <span class="material-symbols-outlined text-xl"
+                                >visibility</span
+                              >
+                            </button>
+                          </td>
+                        </tr>
+                        <tr
+                          class="hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                        >
+                          <td class="px-5 py-4 font-medium">
+                            <div>
+                              <div class="font-bold">Frontend Developer</div>
+                              <div class="text-xs text-slate-400">
+                                Posted Oct 22
+                              </div>
+                            </div>
+                          </td>
+                          <td class="px-5 py-4">
+                            <span class="text-slate-600 font-medium"
+                              >121 total</span
+                            >
+                          </td>
+                          <td class="px-5 py-4">
+                            <span
+                              class="bg-emerald-50 text-emerald-700 text-xs font-bold px-2.5 py-1 rounded-full"
+                              >Active</span
+                            >
+                          </td>
+                          <td class="px-5 py-4 text-right">
+                            <button
+                              class="text-slate-400 hover:text-blue-600 transition-colors"
+                            >
+                              <span class="material-symbols-outlined text-xl"
+                                >visibility</span
+                              >
+                            </button>
+                          </td>
+                        </tr>
+                        <tr
+                          class="hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                        >
+                          <td class="px-5 py-4 font-medium">
+                            <div>
+                              <div class="font-bold">Product Manager</div>
+                              <div class="text-xs text-slate-400">
+                                Posted Oct 15
+                              </div>
+                            </div>
+                          </td>
+                          <td class="px-5 py-4">
+                            <span class="text-slate-600 font-medium"
+                              >12 total</span
+                            >
+                          </td>
+                          <td class="px-5 py-4">
+                            <span
+                              class="bg-amber-50 text-amber-700 text-xs font-bold px-2.5 py-1 rounded-full"
+                              >Closing Soon</span
+                            >
+                          </td>
+                          <td class="px-5 py-4 text-right">
+                            <button
+                              class="text-slate-400 hover:text-blue-600 transition-colors"
+                            >
+                              <span class="material-symbols-outlined text-xl"
+                                >visibility</span
+                              >
+                            </button>
+                          </td>
+                        </tr>
+                        <tr
+                          class="hover:bg-slate-50 dark:hover:bg-slate-800/50 opacity-60"
+                        >
+                          <td class="px-5 py-4 font-medium">
+                            <div>
+                              <div class="font-bold">Data Scientist</div>
+                              <div class="text-xs text-slate-400">
+                                Posted Oct 10
+                              </div>
+                            </div>
+                          </td>
+                          <td class="px-5 py-4">
+                            <span class="text-slate-600 font-medium"
+                              >85 total</span
+                            >
+                          </td>
+                          <td class="px-5 py-4">
+                            <span
+                              class="bg-slate-100 text-slate-500 text-xs font-bold px-2.5 py-1 rounded-full"
+                              >Closed</span
+                            >
+                          </td>
+                          <td class="px-5 py-4 text-right">
+                            <button
+                              class="text-slate-400 hover:text-blue-600 transition-colors"
+                            >
+                              <span class="material-symbols-outlined text-xl"
+                                >visibility</span
+                              >
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <!-- Top candidates -->
+              <div>
+                <div class="flex items-center gap-2 mb-3">
+                  <h3 class="font-bold text-lg">Top Candidates</h3>
+                  <span
+                    class="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full font-bold"
+                    >AI Match</span
+                  >
+                </div>
+                <div
+                  class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-4"
+                >
+                  <div id="top-candidates-list" class="divide-y divide-slate-100 dark:divide-slate-800">
+                    <div class="flex items-center justify-between py-3">
+                      <div class="flex items-center gap-3">
+                        <div
+                          class="size-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-black text-xs shrink-0"
+                        >
+                          SJ
+                        </div>
+                        <div>
+                          <p class="font-bold text-sm">Sarah Jenkins</p>
+                          <p class="text-xs text-slate-500">
+                            Senior UX Designer
+                          </p>
+                        </div>
+                      </div>
+                      <div class="flex flex-col items-end gap-1">
+                        <span class="text-sm font-black text-blue-600"
+                          >98%</span
+                        >
+                        <div class="w-16 h-1.5 rounded-full bg-slate-100">
+                          <div
+                            class="h-1.5 rounded-full bg-blue-600"
+                            style="width: 98%"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex items-center justify-between py-3">
+                      <div class="flex items-center gap-3">
+                        <div
+                          class="size-10 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white font-black text-xs shrink-0"
+                        >
+                          MC
+                        </div>
+                        <div>
+                          <p class="font-bold text-sm">Michael Chen</p>
+                          <p class="text-xs text-slate-500">Frontend Dev</p>
+                        </div>
+                      </div>
+                      <div class="flex flex-col items-end gap-1">
+                        <span class="text-sm font-black text-blue-600"
+                          >94%</span
+                        >
+                        <div class="w-16 h-1.5 rounded-full bg-slate-100">
+                          <div
+                            class="h-1.5 rounded-full bg-blue-600"
+                            style="width: 94%"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex items-center justify-between py-3">
+                      <div class="flex items-center gap-3">
+                        <div
+                          class="size-10 rounded-full bg-gradient-to-br from-rose-400 to-orange-400 flex items-center justify-center text-white font-black text-xs shrink-0"
+                        >
+                          ER
+                        </div>
+                        <div>
+                          <p class="font-bold text-sm">Emily Ross</p>
+                          <p class="text-xs text-slate-500">Product Manager</p>
+                        </div>
+                      </div>
+                      <div class="flex flex-col items-end gap-1">
+                        <span class="text-sm font-black text-slate-600"
+                          >88%</span
+                        >
+                        <div class="w-16 h-1.5 rounded-full bg-slate-100">
+                          <div
+                            class="h-1.5 rounded-full bg-slate-400"
+                            style="width: 88%"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex items-center justify-between py-3">
+                      <div class="flex items-center gap-3">
+                        <div
+                          class="size-10 rounded-full bg-gradient-to-br from-amber-400 to-yellow-500 flex items-center justify-center text-white font-black text-xs shrink-0"
+                        >
+                          DK
+                        </div>
+                        <div>
+                          <p class="font-bold text-sm">David Kim</p>
+                          <p class="text-xs text-slate-500">Frontend Dev</p>
+                        </div>
+                      </div>
+                      <div class="flex flex-col items-end gap-1">
+                        <span class="text-sm font-black text-slate-600"
+                          >85%</span
+                        >
+                        <div class="w-16 h-1.5 rounded-full bg-slate-100">
+                          <div
+                            class="h-1.5 rounded-full bg-slate-400"
+                            style="width: 85%"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pt-3 border-t border-slate-100 mt-1">
+                    <a
+                      href="../Candidates/ai-powered_candidate_ranking.html"
+                      class="w-full block text-center py-2 text-sm font-bold text-slate-600 bg-slate-50 hover:bg-slate-100 rounded-xl transition-colors"
+                      >View All Candidates</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </main>
+    </div>
+
+    <script src="../../assets/js/navbar.js"></script>
+    <script>
+      function switchTab(tab) {
+        document
+          .querySelectorAll(".tab-btn")
+          .forEach((b) => b.classList.remove("active"));
+        document
+          .querySelectorAll(".tab-panel")
+          .forEach((p) => p.classList.remove("active"));
+        document.getElementById("tab-" + tab).classList.add("active");
+        event.currentTarget.classList.add("active");
+      }
+
+      function activateTab(tab) {
+        document
+          .querySelectorAll(".tab-panel")
+          .forEach((p) => p.classList.remove("active"));
+        document
+          .querySelectorAll(".sidebar-link")
+          .forEach((l) => l.classList.remove("active"));
+        document.getElementById("tab-" + tab).classList.add("active");
+        event.currentTarget.classList.add("active");
+      }
+
+    </script>
+  </body>
+</html>

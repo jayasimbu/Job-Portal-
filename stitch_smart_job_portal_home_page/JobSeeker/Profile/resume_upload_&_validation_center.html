@@ -1,0 +1,414 @@
+﻿<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Upload Resume — Career Auto</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = { darkMode: "class" };
+    </script>
+    <script src="resume_upload_&_validation_center.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+      // Configure PDF.js worker
+      if (typeof pdfjsLib !== "undefined") {
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+          "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+      }
+    </script>
+    <script src="resume_upload_&_validation_center_func.js"></script>
+
+    <link rel="stylesheet" href="resume_upload_&_validation_center.css" />
+  </head>
+
+  <body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-200"
+  >
+    <!-- ── Role Guard: jobseeker only ────────────────────────────── -->
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem("user");
+          if (!raw) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace(
+              "../../Platform/Auth/auth_center.html?tab=login",
+            );
+            return;
+          }
+          var user = JSON.parse(raw);
+          if (!(user && (user.email || user.googleId || user.name))) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace(
+              "../../Platform/Auth/auth_center.html?tab=login",
+            );
+            return;
+          }
+          var role = user.role || "jobseeker";
+          if (role !== "jobseeker") {
+            window.location.replace(
+              "../../Employer/Dashboard/employer_dashboard_overview.html",
+            );
+          }
+        } catch (e) {
+          window.location.replace("../../Platform/Auth/auth_center.html?tab=login";
+        }
+      })();
+    </script>
+
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+      <!-- Top Navigation Bar -->
+      <!-- Shared Navigation Bar for Career Auto -->
+      <!-- This will be injected into all pages except login/registration pages -->
+      <!-- Top Navigation Bar -->
+      <div id="header-container"></div>
+      <script src="../../assets/js/auth_guard.js"></script>
+      <script src="../../assets/js/render_header.js"></script>
+
+      <!-- Sidebar -->
+      <div id="sidebar-container"></div>
+      <script src="../../assets/js/render_sidebar.js"></script>
+
+      <!-- ===== AI CONSENT MODAL ===== -->
+      <div
+        id="ai-consent-modal"
+        class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+      >
+        <div
+          class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-[480px] w-full border border-slate-200 dark:border-slate-800"
+        >
+          <div
+            class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center gap-3"
+          >
+            <div
+              class="size-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0"
+            >
+              <span class="material-symbols-outlined">auto_awesome</span>
+            </div>
+            <div>
+              <h2 class="font-black text-lg">AI Analysis Consent</h2>
+              <p class="text-sm text-slate-500">
+                Before we analyse your resume with AI
+              </p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+              By proceeding, you agree to let Career Auto's AI systems process
+              your resume to provide personalised insights. Here's what we do:
+            </p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-start gap-2 text-sm">
+                <span
+                  class="material-symbols-outlined text-emerald-500 text-base mt-0.5"
+                  >check_circle</span
+                >
+                <span
+                  >Parse and extract your skills, experience, and
+                  education</span
+                >
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <span
+                  class="material-symbols-outlined text-emerald-500 text-base mt-0.5"
+                  >check_circle</span
+                >
+                <span
+                  >Score your ATS compatibility and identify skill gaps</span
+                >
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <span
+                  class="material-symbols-outlined text-emerald-500 text-base mt-0.5"
+                  >check_circle</span
+                >
+                <span
+                  >Your data is encrypted and never sold to third parties</span
+                >
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <span
+                  class="material-symbols-outlined text-blue-500 text-base mt-0.5"
+                  >info</span
+                >
+                <span
+                  >You can request deletion of your resume data at any time from
+                  Account Settings</span
+                >
+              </li>
+            </ul>
+            <label class="flex items-start gap-3 mb-6 cursor-pointer">
+              <input
+                type="checkbox"
+                id="consent-checkbox"
+                class="mt-0.5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+              />
+              <span class="text-sm text-slate-700 dark:text-slate-300"
+                >I have read and agree to Career Auto's
+                <a
+                  href="../../Platform/Intelligence/about_the_intelligence_platform.html#privacy"
+                  class="text-blue-600 hover:underline"
+                  >Privacy Policy</a
+                >
+                and
+                <a
+                  href="../../Platform/Intelligence/about_the_intelligence_platform.html#terms"
+                  class="text-blue-600 hover:underline"
+                  >Terms of Service</a
+                >, and consent to AI processing of my resume.</span
+              >
+            </label>
+            <div class="flex gap-3">
+              <button
+                onclick="closeConsentModal()"
+                class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm font-bold hover:bg-slate-50 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onclick="acceptConsent()"
+                id="consent-proceed-btn"
+                disabled
+                class="flex-1 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                Proceed with AI Analysis
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <input
+        type="file"
+        id="file-upload"
+        class="hidden"
+        accept=".pdf,.docx,.doc"
+      />
+      <main
+        class="overflow-y-auto flex-1 flex flex-col items-center py-8 px-4 sm:px-6 lg:px-8"
+      >
+        <div class="w-full max-w-[800px] flex flex-col gap-6">
+          <!-- Page Heading -->
+          <div class="flex flex-col gap-2 text-center sm:text-left">
+            <h1
+              class="text-slate-900 dark:text-white text-2xl sm:text-3xl font-black leading-tight tracking-[-0.033em]"
+            >
+              Let's Optimize Your Career
+            </h1>
+            <p
+              class="text-slate-500 dark:text-slate-400 text-sm sm:text-base font-normal leading-normal max-w-2xl"
+            >
+              Upload your resume to check for parsing errors and get AI-powered
+              feedback.
+            </p>
+          </div>
+          <!-- Upload Area (Empty State) -->
+          <div class="flex flex-col">
+            <div
+              class="relative group cursor-pointer flex flex-col items-center justify-center gap-4 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-primary hover:bg-primary/5 dark:hover:border-primary dark:hover:bg-primary/5 transition-all duration-300 px-6 py-8 sm:py-10"
+            >
+              <!-- Upload Icon -->
+              <div
+                class="size-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 group-hover:text-primary group-hover:scale-110 transition-all duration-300 shadow-sm"
+              >
+                <span class="material-symbols-outlined text-[24px]"
+                  >cloud_upload</span
+                >
+              </div>
+              <div class="flex flex-col items-center gap-1 text-center">
+                <p
+                  class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight"
+                >
+                  Drag &amp; drop or browse files
+                </p>
+                <p
+                  class="text-slate-500 dark:text-slate-400 text-xs font-medium"
+                >
+                  Supports PDF &amp; DOCX up to 10MB
+                </p>
+              </div>
+              <button
+                class="relative overflow-hidden rounded-lg bg-primary text-white text-xs font-bold h-9 px-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-[16px]"
+                  >folder_open</span
+                >
+                <span>Choose File</span>
+              </button>
+            </div>
+            <!-- Meta Text -->
+            <div class="flex items-center justify-center gap-2 pt-3 opacity-70">
+              <span class="material-symbols-outlined text-slate-400 text-[14px]"
+                >lock</span
+              >
+              <p
+                class="text-slate-500 dark:text-slate-400 text-[10px] font-medium"
+              >
+                Your data is encrypted and private
+              </p>
+            </div>
+          </div>
+          <!-- Validation Status Section -->
+          <div
+            class="flex flex-col bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden"
+          >
+            <!-- File Info Header -->
+            <div
+              class="flex items-center justify-between p-5 border-b border-slate-100 dark:border-slate-700"
+            >
+              <div class="flex items-center gap-4">
+                <div
+                  class="size-10 rounded bg-red-50 text-red-500 dark:bg-red-500/20 dark:text-red-400 flex items-center justify-center"
+                >
+                  <span class="material-symbols-outlined">picture_as_pdf</span>
+                </div>
+                <div>
+                  <h3 class="text-sm font-bold text-slate-900 dark:text-white">
+                    Senior_Product_Designer_Resume.pdf
+                  </h3>
+                  <p class="text-xs text-slate-500 dark:text-slate-400">
+                    2.4 MB • Uploaded just now
+                  </p>
+                </div>
+              </div>
+              <button
+                class="text-slate-400 hover:text-red-500 dark:hover:text-red-400 transition-colors"
+              >
+                <span class="material-symbols-outlined">delete</span>
+              </button>
+            </div>
+            <div class="p-6 space-y-6">
+              <h4 class="text-slate-900 dark:text-white text-lg font-bold">
+                Validation Status
+              </h4>
+              <div class="space-y-4">
+                <!-- Check Item 1: Success -->
+                <div class="flex items-start gap-4">
+                  <div
+                    class="mt-0.5 size-5 rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400 flex items-center justify-center shrink-0"
+                  >
+                    <span
+                      class="material-symbols-outlined text-[14px] font-bold"
+                      >check</span
+                    >
+                  </div>
+                  <div class="flex-1">
+                    <p class="text-sm font-bold text-slate-900 dark:text-white">
+                      File Size Check
+                    </p>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">
+                      File is within the 10MB limit.
+                    </p>
+                  </div>
+                </div>
+                <!-- Check Item 2: Success -->
+                <div class="flex items-start gap-4">
+                  <div
+                    class="mt-0.5 size-5 rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400 flex items-center justify-center shrink-0"
+                  >
+                    <span
+                      class="material-symbols-outlined text-[14px] font-bold"
+                      >check</span
+                    >
+                  </div>
+                  <div class="flex-1">
+                    <p class="text-sm font-bold text-slate-900 dark:text-white">
+                      File Format Verification
+                    </p>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">
+                      PDF format is supported.
+                    </p>
+                  </div>
+                </div>
+                <!-- Check Item 3: Warning/Processing -->
+                <div class="flex items-start gap-4">
+                  <div
+                    class="mt-0.5 size-5 rounded-full bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400 flex items-center justify-center shrink-0 animate-pulse"
+                  >
+                    <span
+                      class="material-symbols-outlined text-[14px] font-bold"
+                      >hourglass_empty</span
+                    >
+                  </div>
+                  <div class="flex-1">
+                    <p class="text-sm font-bold text-slate-900 dark:text-white">
+                      ATS Parsing Compatibility
+                    </p>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">
+                      Analyzing structure and keywords...
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <hr class="border-slate-100 dark:border-slate-700" />
+              <!-- AI Toggle & Actions -->
+              <div
+                class="flex flex-col sm:flex-row sm:items-center justify-end gap-6"
+              >
+                <!-- CTA -->
+                <button
+                  onclick="openConsentModal()"
+                  class="flex items-center justify-center gap-2 bg-primary hover:bg-blue-600 text-white font-bold py-2.5 px-6 rounded-lg shadow-lg shadow-primary/20 transition-all duration-200 w-full sm:w-auto"
+                >
+                  <span>Process Resume</span>
+                  <span class="material-symbols-outlined text-[18px]"
+                    >arrow_forward</span
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!-- Footer Container -->
+      <div id="footer-container"></div>
+      <script src="../../assets/js/render_footer.js"></script>
+    </div>
+
+    <script src="../../assets/js/navbar.js"></script>
+    <script>
+      function openConsentModal() {
+        document.getElementById("ai-consent-modal").classList.remove("hidden");
+      }
+
+      function closeConsentModal() {
+        document.getElementById("ai-consent-modal").classList.add("hidden");
+        document.getElementById("consent-checkbox").checked = false;
+        document.getElementById("consent-proceed-btn").disabled = true;
+      }
+
+      function acceptConsent() {
+        closeConsentModal();
+        // ✅ Save resume to localStorage + DB, THEN redirect
+        if (typeof window.saveCurrentResumeAndProceed === "function") {
+          window.saveCurrentResumeAndProceed();
+        } else {
+          window.location.href = "../Profile/resume_insights.html";
+        }
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        document
+          .getElementById("consent-checkbox")
+          .addEventListener("change", (e) => {
+            document.getElementById("consent-proceed-btn").disabled =
+              !e.target.checked;
+          });
+      });
+    </script>
+  </body>
+</html>

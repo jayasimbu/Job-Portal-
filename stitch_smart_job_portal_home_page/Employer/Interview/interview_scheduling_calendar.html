@@ -1,0 +1,434 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Career Auto - AI-Powered Career Platform</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = { darkMode: "class" };
+    </script>
+    <script src="interview_scheduling_calendar.js"></script>
+    <script src="interview_scheduling_calendar_func.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="interview_scheduling_calendar.css" />
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-[#0d141b] overflow-hidden h-screen flex flex-col"
+  >
+    <!-- ── Role Guard: jobseeker only ────────────────────────────── -->
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem("user");
+          if (!raw) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace(
+              "../../Platform/Auth/auth_center.html?tab=login",
+            );
+            return;
+          }
+          var user = JSON.parse(raw);
+          if (!(user && (user.email || user.googleId || user.name))) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace(
+              "../../Platform/Auth/auth_center.html?tab=login",
+            );
+            return;
+          }
+          var role = user.role || "jobseeker";
+          if (role !== "employer") {
+            window.location.replace(
+              "../../JobSeeker/Dashboard/job_seeker_dashboard_intelligence.html",
+            );
+          }
+        } catch (e) {
+          window.location.replace("../../Platform/Auth/auth_center.html?tab=login";
+        }
+      })();
+    </script>
+
+    <div class="flex h-screen w-full overflow-hidden">
+      <div id="sidebar-container"></div>
+      <script src="../../assets/js/render_employer_sidebar.js"></script>
+
+      <!-- Main Content Container -->
+      <div class="flex-1 flex flex-row h-full overflow-hidden">
+        <!-- Header Container (Injected) -->
+        <div id="header-container" class="hidden"></div>
+        <script src="../../assets/js/render_header.js"></script>
+
+      <!-- Left Sidebar: Candidate Queue -->
+      <aside
+        class="w-72 flex flex-col border-r border-[#e7edf3] dark:border-slate-800 bg-white dark:bg-[#1a2632] shrink-0 z-10"
+      >
+        <div class="p-5 border-b border-[#e7edf3] dark:border-slate-800">
+          <h3
+            class="text-[#0d141b] dark:text-white text-lg font-bold leading-tight"
+          >
+            Candidates Queue
+          </h3>
+          <div class="flex gap-2 mt-4 overflow-x-auto no-scrollbar pb-1">
+            <button
+              class="flex h-7 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#e7edf3] dark:bg-slate-700 px-3 hover:bg-primary/20 hover:text-primary transition-colors"
+            >
+              <p class="text-[#0d141b] dark:text-white text-xs font-bold">
+                All
+              </p>
+            </button>
+            <button
+              class="flex h-7 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary text-white px-3 shadow-sm shadow-primary/30"
+            >
+              <p class="text-xs font-bold">Product</p>
+            </button>
+            <button
+              class="flex h-7 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-[#e7edf3] dark:bg-slate-700 px-3 hover:bg-primary/20 hover:text-primary transition-colors"
+            >
+              <p class="text-[#0d141b] dark:text-white text-xs font-bold">
+                Eng
+              </p>
+            </button>
+          </div>
+        </div>
+        <div id="candidate-queue-container" class="flex-1 overflow-y-auto p-4 space-y-3">
+          <div class="flex items-center justify-center h-40 text-slate-400">
+            <i class="fas fa-spinner fa-spin mr-2"></i> Loading candidates...
+          </div>
+        </div>
+        <div class="p-4 border-t border-[#e7edf3] dark:border-slate-800">
+          <button
+            class="w-full flex items-center justify-center gap-2 rounded-xl bg-[#f0f4f8] dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 h-10 text-sm font-bold text-[#0d141b] dark:text-white transition-colors"
+          >
+            <span class="material-symbols-outlined text-[18px]">add</span>
+            Add External Candidate
+          </button>
+        </div>
+      </aside>
+      <!-- Main Content: Calendar -->
+      <main
+        class="flex-1 flex flex-col bg-white dark:bg-[#101922] relative overflow-hidden"
+      >
+        <!-- Calendar Header -->
+        <div
+          class="flex items-center justify-between p-6 border-b border-[#e7edf3] dark:border-slate-800"
+        >
+          <div>
+            <h1 class="text-2xl font-bold text-[#0d141b] dark:text-white">
+              October 2023
+            </h1>
+            <div class="flex items-center gap-2 mt-1 text-[#64748b] text-sm">
+              <span class="material-symbols-outlined text-[16px]">public</span>
+              <span>Eastern Standard Time (GMT-5)</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="flex bg-[#f0f4f8] dark:bg-slate-800 rounded-lg p-1">
+              <button
+                class="px-3 py-1.5 rounded-md text-sm font-medium bg-white dark:bg-[#1a2632] text-[#0d141b] dark:text-white shadow-sm"
+              >
+                Week
+              </button>
+              <button
+                class="px-3 py-1.5 rounded-md text-sm font-medium text-[#64748b] hover:text-[#0d141b] dark:hover:text-white"
+              >
+                Day
+              </button>
+            </div>
+            <div class="flex gap-1">
+              <button
+                class="size-8 flex items-center justify-center rounded-lg hover:bg-[#f0f4f8] dark:hover:bg-slate-800 text-[#0d141b] dark:text-white"
+              >
+                <span class="material-symbols-outlined">chevron_left</span>
+              </button>
+              <button
+                class="size-8 flex items-center justify-center rounded-lg hover:bg-[#f0f4f8] dark:hover:bg-slate-800 text-[#0d141b] dark:text-white"
+              >
+                <span class="material-symbols-outlined">chevron_right</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Calendar Grid -->
+        <div class="flex-1 overflow-y-auto relative bg-white dark:bg-[#101922]">
+          <!-- Time Labels Column -->
+          <div
+            class="absolute left-0 top-0 w-14 border-r border-[#e7edf3] dark:border-slate-800 h-full bg-white dark:bg-[#101922] z-10 pt-10"
+          >
+            <div class="h-20 text-xs text-[#64748b] text-right pr-2 -mt-2.5">
+              09:00
+            </div>
+            <div class="h-20 text-xs text-[#64748b] text-right pr-2 -mt-2.5">
+              10:00
+            </div>
+            <div class="h-20 text-xs text-[#64748b] text-right pr-2 -mt-2.5">
+              11:00
+            </div>
+            <div class="h-20 text-xs text-[#64748b] text-right pr-2 -mt-2.5">
+              12:00
+            </div>
+            <div class="h-20 text-xs text-[#64748b] text-right pr-2 -mt-2.5">
+              13:00
+            </div>
+            <div class="h-20 text-xs text-[#64748b] text-right pr-2 -mt-2.5">
+              14:00
+            </div>
+            <div class="h-20 text-xs text-[#64748b] text-right pr-2 -mt-2.5">
+              15:00
+            </div>
+            <div class="h-20 text-xs text-[#64748b] text-right pr-2 -mt-2.5">
+              16:00
+            </div>
+          </div>
+          <!-- Days Header (sticky) -->
+          <div
+            class="sticky top-0 z-20 flex pl-14 bg-white dark:bg-[#101922] border-b border-[#e7edf3] dark:border-slate-800"
+          >
+            <div
+              class="flex-1 py-3 text-center border-r border-[#e7edf3] dark:border-slate-800 last:border-r-0"
+            >
+              <div class="text-xs text-[#64748b] font-medium uppercase">
+                Mon
+              </div>
+              <div class="text-lg font-bold text-[#0d141b] dark:text-white">
+                16
+              </div>
+            </div>
+            <div
+              class="flex-1 py-3 text-center border-r border-[#e7edf3] dark:border-slate-800 last:border-r-0"
+            >
+              <div class="text-xs text-[#64748b] font-medium uppercase">
+                Tue
+              </div>
+              <div class="text-lg font-bold text-[#0d141b] dark:text-white">
+                17
+              </div>
+            </div>
+            <div
+              class="flex-1 py-3 text-center border-r border-[#e7edf3] dark:border-slate-800 last:border-r-0 bg-primary/5"
+            >
+              <div class="text-xs text-primary font-bold uppercase">Wed</div>
+              <div class="text-lg font-bold text-primary">18</div>
+            </div>
+            <div
+              class="flex-1 py-3 text-center border-r border-[#e7edf3] dark:border-slate-800 last:border-r-0"
+            >
+              <div class="text-xs text-[#64748b] font-medium uppercase">
+                Thu
+              </div>
+              <div class="text-lg font-bold text-[#0d141b] dark:text-white">
+                19
+              </div>
+            </div>
+            <div
+              class="flex-1 py-3 text-center border-r border-[#e7edf3] dark:border-slate-800 last:border-r-0"
+            >
+              <div class="text-xs text-[#64748b] font-medium uppercase">
+                Fri
+              </div>
+              <div class="text-lg font-bold text-[#0d141b] dark:text-white">
+                20
+              </div>
+            </div>
+          </div>
+          <!-- Calendar Slots -->
+          <div class="flex pl-14 h-[640px]">
+            <!-- 8 hours * 80px -->
+            <!-- Mon -->
+            <div
+              class="flex-1 border-r border-[#e7edf3] dark:border-slate-800 relative bg-[linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:100%_80px]"
+            >
+              <!-- Existing Event -->
+              <div
+                class="absolute top-[80px] left-1 right-1 h-[78px] rounded-lg bg-orange-100 dark:bg-orange-900/40 border-l-4 border-orange-500 p-2 text-xs"
+              >
+                <span
+                  class="font-bold text-orange-900 dark:text-orange-100 block"
+                  >Team Standup</span
+                >
+                <span class="text-orange-700 dark:text-orange-200"
+                  >10:00 - 11:00</span
+                >
+              </div>
+            </div>
+            <!-- Tue -->
+            <div
+              class="flex-1 border-r border-[#e7edf3] dark:border-slate-800 relative bg-[linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:100%_80px]"
+            >
+              <!-- Busy Block -->
+              <div
+                class="absolute top-[240px] left-0 right-0 h-[160px] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZjFmNWY5Ii8+CjxwYXRoIGQ9Ik0tMSwxIGwyLC0yCiAgICAgICAgICAgTTAsNCBsNCwtNAogICAgICAgICAgIE0zLDUgbDIsLTIiIHN0cm9rZT0iI2cbdjhiIiBzdHJva2Utd2lkdGg9IjEiLz4KPC9zdmc+')] opacity-50"
+              ></div>
+            </div>
+            <!-- Wed (Selected) -->
+            <div
+              class="flex-1 border-r border-[#e7edf3] dark:border-slate-800 relative bg-[linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:100%_80px] bg-primary/5"
+            >
+              <!-- Suggested Slot Highlight -->
+              <div
+                class="absolute top-[400px] left-1 right-1 h-[78px] rounded-lg border-2 border-dashed border-primary bg-white/50 dark:bg-slate-800/50 flex items-center justify-center cursor-pointer group hover:bg-primary hover:border-solid hover:shadow-lg transition-all"
+              >
+                <span
+                  class="text-primary font-bold group-hover:text-white flex items-center gap-1"
+                >
+                  <span class="material-symbols-outlined text-sm">add</span>
+                  2:00 PM
+                </span>
+              </div>
+            </div>
+            <!-- Thu -->
+            <div
+              class="flex-1 border-r border-[#e7edf3] dark:border-slate-800 relative bg-[linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:100%_80px]"
+            >
+              <div
+                class="absolute top-[160px] left-1 right-1 h-[118px] rounded-lg bg-blue-100 dark:bg-blue-900/40 border-l-4 border-blue-500 p-2 text-xs"
+              >
+                <span class="font-bold text-blue-900 dark:text-blue-100 block"
+                  >Candidate Review</span
+                >
+                <span class="text-blue-700 dark:text-blue-200"
+                  >11:00 - 12:30</span
+                >
+              </div>
+            </div>
+            <!-- Fri -->
+            <div
+              class="flex-1 border-r border-[#e7edf3] dark:border-slate-800 relative bg-[linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:100%_80px]"
+            ></div>
+          </div>
+        </div>
+        <!-- Current Time Indicator Line (Absolute) -->
+        <div
+          class="absolute left-14 right-0 top-[260px] z-30 border-t-2 border-red-500 pointer-events-none"
+        >
+          <div
+            class="absolute -top-2.5 -left-1.5 size-3 rounded-full bg-red-500"
+          ></div>
+        </div>
+      </main>
+      <!-- Right Sidebar: Smart Suggestions & Config -->
+      <aside
+        class="w-[360px] flex flex-col border-l border-[#e7edf3] dark:border-slate-800 bg-white dark:bg-[#1a2632] shrink-0 z-10 overflow-y-auto"
+      >
+        <!-- Smart Suggestions Card -->
+        <div class="p-6">
+          <div
+            class="bg-gradient-to-br from-[#eff6ff] to-[#f8fafc] dark:from-[#1e293b] dark:to-[#0f172a] rounded-2xl p-4 border border-primary/20 shadow-sm"
+          >
+            <div class="flex items-center gap-2 mb-3">
+              <span class="material-symbols-outlined text-primary"
+                >auto_awesome</span
+              >
+              <h3 class="text-sm font-bold text-[#0d141b] dark:text-white">
+                Smart Suggestions
+              </h3>
+            </div>
+            <p class="text-xs text-[#64748b] mb-3">
+              Based on availability and your calendar.
+            </p>
+            <div id="smart-suggestions-container" class="space-y-2">
+               <!-- suggestions load here -->
+               <div class="text-center py-4 text-slate-400 text-xs">
+                 <i class="fas fa-magic fa-spin mr-2"></i> Analyzing...
+               </div>
+            </div>
+          </div>
+        </div>
+        <!-- Event Details Form -->
+        <div class="px-6 pb-6 flex-1 flex flex-col gap-5">
+          <h3 class="text-sm font-bold uppercase text-[#64748b] tracking-wider">
+            Event Details
+          </h3>
+          <!-- Interview Type -->
+          <div class="flex bg-[#f0f4f8] dark:bg-slate-800 p-1 rounded-xl">
+            <button
+              class="flex-1 flex items-center justify-center gap-2 py-2 rounded-lg bg-white dark:bg-[#1a2632] text-[#0d141b] dark:text-white shadow-sm text-sm font-bold"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >videocam</span
+              >
+              Virtual
+            </button>
+            <button
+              class="flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-[#64748b] hover:text-[#0d141b] dark:hover:text-white text-sm font-medium"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >apartment</span
+              >
+              In-Person
+            </button>
+          </div>
+          <!-- Meeting Platform -->
+          <div>
+            <label
+              class="text-xs font-bold text-[#0d141b] dark:text-white mb-2 block"
+              >Conferencing</label
+            >
+            <div class="relative">
+              <select
+                class="w-full bg-[#f0f4f8] dark:bg-slate-800 border-none rounded-xl py-3 pl-10 pr-4 text-sm font-medium text-[#0d141b] dark:text-white focus:ring-2 focus:ring-primary"
+              >
+                <option>Google Meet</option>
+                <option>Zoom</option>
+                <option>Microsoft Teams</option>
+              </select>
+              <div class="absolute left-3 top-3 text-[#4c739a]">
+                <span class="material-symbols-outlined text-[20px]">link</span>
+              </div>
+              <div class="absolute right-3 top-3 pointer-events-none">
+                <span
+                  class="material-symbols-outlined text-[20px] text-[#4c739a]"
+                  >expand_more</span
+                >
+              </div>
+            </div>
+            <p class="text-[11px] text-[#64748b] mt-1.5 ml-1">
+              Link will be auto-generated upon scheduling.
+            </p>
+          </div>
+          <!-- Instructions -->
+          <div>
+            <label
+              class="text-xs font-bold text-[#0d141b] dark:text-white mb-2 block"
+              >Notes for Candidate</label
+            >
+            <textarea
+              class="w-full bg-[#f0f4f8] dark:bg-slate-800 border-none rounded-xl p-3 text-sm text-[#0d141b] dark:text-white focus:ring-2 focus:ring-primary min-h-[100px] resize-none"
+              placeholder="Enter instructions, agenda, or topics to prepare..."
+            ></textarea>
+          </div>
+          <!-- Footer Action -->
+          <div
+            class="mt-auto pt-4 border-t border-[#e7edf3] dark:border-slate-800"
+          >
+            <button
+              class="w-full bg-primary hover:bg-blue-600 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-blue-500/30 flex items-center justify-center gap-2 transition-all transform active:scale-95"
+            >
+              <span>Send Invite</span>
+              <span class="material-symbols-outlined text-[20px]">send</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+      </div>
+    </div>
+
+
+  </body>
+</html>

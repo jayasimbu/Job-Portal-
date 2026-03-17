@@ -1,0 +1,591 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Career Auto - AI-Powered Career Platform</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Material Symbols -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = { darkMode: "class" };
+    </script>
+    <script src="bias-free_job_requirement_definition.js"></script>
+    <script src="bias-free_job_requirement_definition_func.js"></script>
+    <!-- Theme Configuration -->
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-display antialiased min-h-screen flex flex-col text-slate-900 dark:text-white transition-colors duration-200"
+  >
+    <!-- ── Role Guard: employer only ────────────────────────────── -->
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem("user");
+          if (!raw) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace(
+              "../../Platform/Auth/auth_center.html?tab=login",
+            );
+            return;
+          }
+          var user = JSON.parse(raw);
+          if (!(user && (user.email || user.googleId || user.name))) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace(
+              "../../Platform/Auth/auth_center.html?tab=login",
+            );
+            return;
+          }
+          var role = user.role || "jobseeker";
+          if (role !== "employer") {
+            window.location.replace(
+              "../../JobSeeker/Dashboard/job_seeker_dashboard_intelligence.html",
+            );
+          }
+        } catch (e) {
+          window.location.replace("../../Platform/Auth/auth_center.html?tab=login";
+        }
+      })();
+    </script>
+
+    <!-- Top Navigation Bar -->
+    <!-- Shared Navigation Bar for Career Auto -->
+    <!-- This will be injected into all pages except login/registration pages -->
+
+    <div class="flex h-screen w-full overflow-hidden text-slate-900 dark:text-white bg-background-light dark:bg-background-dark transition-colors duration-200">
+      <div id="sidebar-container"></div>
+      <script src="../../assets/js/render_employer_sidebar.js"></script>
+
+      <!-- Main Content Container -->
+      <div class="flex-1 flex flex-col h-full overflow-hidden">
+        <!-- Header Container (Injected) -->
+        <div id="header-container" class="hidden"></div>
+        <script src="../../assets/js/render_header.js"></script>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-10">
+          <div class="w-full max-w-[1440px] mx-auto flex flex-col lg:flex-row gap-8">
+      <!-- Left Column: Main Form -->
+      <main class="flex-1 flex flex-col gap-6 min-w-0">
+        <!-- Breadcrumbs / Stepper -->
+        <nav class="flex flex-wrap items-center gap-2 mb-2">
+          <a
+            class="flex items-center gap-2 text-slate-500 dark:text-slate-400 font-medium text-sm hover:text-primary transition-colors"
+            href="#"
+          >
+            <span
+              class="flex items-center justify-center size-6 rounded-full border border-slate-300 dark:border-slate-600 text-xs"
+              >1</span
+            >
+            Role Basics
+          </a>
+          <span class="material-symbols-outlined text-slate-400 text-sm"
+            >chevron_right</span
+          >
+          <div class="flex items-center gap-2 text-primary font-bold text-sm">
+            <span
+              class="flex items-center justify-center size-6 rounded-full bg-primary text-white text-xs"
+              >2</span
+            >
+            Requirements
+          </div>
+          <span class="material-symbols-outlined text-slate-400 text-sm"
+            >chevron_right</span
+          >
+          <div
+            class="flex items-center gap-2 text-slate-400 dark:text-slate-500 font-medium text-sm"
+          >
+            <span
+              class="flex items-center justify-center size-6 rounded-full border border-slate-200 dark:border-slate-700 text-xs"
+              >3</span
+            >
+            Review
+          </div>
+        </nav>
+        <!-- Page Heading -->
+        <div>
+          <h1
+            class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-2"
+          >
+            Define Role Requirements
+          </h1>
+          <p class="text-slate-500 dark:text-slate-400 text-base max-w-2xl">
+            Focus on competencies to build a diverse team. Our AI will help you
+            select skills that reduce bias.
+          </p>
+        </div>
+        <!-- Form Content -->
+        <div
+          class="flex flex-col gap-8 bg-white dark:bg-slate-800 rounded-xl p-6 sm:p-8 shadow-sm border border-slate-100 dark:border-slate-700"
+        >
+          <!-- Job Title Input -->
+          <div class="flex flex-col gap-2">
+            <label
+              class="text-sm font-semibold text-slate-700 dark:text-slate-200 flex items-center justify-between"
+            >
+              Job Title
+              <span class="text-xs font-normal text-slate-400"
+                >Used for AI suggestions</span
+              >
+            </label>
+            <div class="relative">
+              <input
+                class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all font-medium"
+                type="text"
+                value="Senior Product Designer"
+              />
+              <span
+                class="absolute right-4 top-1/2 -translate-y-1/2 text-primary material-symbols-outlined cursor-pointer hover:scale-110 transition-transform"
+                title="Regenerate suggestions"
+                >auto_awesome</span
+              >
+            </div>
+          </div>
+          <!-- Must-Have Skills -->
+          <div class="flex flex-col gap-3">
+            <div class="flex items-center justify-between">
+              <label
+                class="text-sm font-semibold text-slate-700 dark:text-slate-200"
+                >Must-Have Skills</label
+              >
+              <button class="text-xs text-primary font-medium hover:underline">
+                Import from template
+              </button>
+            </div>
+            <div
+              class="flex flex-wrap gap-2 p-4 min-h-[100px] bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg focus-within:ring-2 focus-within:ring-primary focus-within:border-transparent transition-all"
+            >
+              <!-- Chips -->
+              <div
+                class="inline-flex items-center gap-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 px-3 py-1.5 rounded-full text-sm font-medium shadow-sm group animate-fadeIn"
+              >
+                Figma
+                <button
+                  class="text-slate-400 hover:text-red-500 transition-colors flex items-center"
+                >
+                  <span class="material-symbols-outlined text-[16px]"
+                    >close</span
+                  >
+                </button>
+              </div>
+              <div
+                class="inline-flex items-center gap-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 px-3 py-1.5 rounded-full text-sm font-medium shadow-sm group"
+              >
+                Prototyping
+                <button
+                  class="text-slate-400 hover:text-red-500 transition-colors flex items-center"
+                >
+                  <span class="material-symbols-outlined text-[16px]"
+                    >close</span
+                  >
+                </button>
+              </div>
+              <div
+                class="inline-flex items-center gap-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 px-3 py-1.5 rounded-full text-sm font-medium shadow-sm group"
+              >
+                User Research
+                <button
+                  class="text-slate-400 hover:text-red-500 transition-colors flex items-center"
+                >
+                  <span class="material-symbols-outlined text-[16px]"
+                    >close</span
+                  >
+                </button>
+              </div>
+              <input
+                class="bg-transparent border-none outline-none text-slate-900 dark:text-white placeholder:text-slate-400 flex-1 min-w-[150px] py-1"
+                placeholder="Type a skill and press Enter..."
+                type="text"
+              />
+            </div>
+            <!-- AI Suggestions -->
+            <div class="flex flex-wrap gap-2 items-center">
+              <span
+                class="text-xs font-semibold text-primary flex items-center gap-1"
+              >
+                <span class="material-symbols-outlined text-[16px]"
+                  >auto_awesome</span
+                >
+                Suggested:
+              </span>
+              <button
+                class="text-xs bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 px-3 py-1 rounded-full transition-colors flex items-center gap-1"
+              >
+                <span class="material-symbols-outlined text-[14px]">add</span>
+                Design Systems
+              </button>
+              <button
+                class="text-xs bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 px-3 py-1 rounded-full transition-colors flex items-center gap-1"
+              >
+                <span class="material-symbols-outlined text-[14px]">add</span>
+                Accessibility
+              </button>
+              <button
+                class="text-xs bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 px-3 py-1 rounded-full transition-colors flex items-center gap-1"
+              >
+                <span class="material-symbols-outlined text-[14px]">add</span>
+                UI Design
+              </button>
+            </div>
+          </div>
+          <!-- Nice-to-Have Skills -->
+          <div class="flex flex-col gap-3">
+            <label
+              class="text-sm font-semibold text-slate-700 dark:text-slate-200"
+              >Nice-to-Have Skills</label
+            >
+            <div
+              class="flex flex-wrap gap-2 p-3 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg focus-within:ring-2 focus-within:ring-primary focus-within:border-transparent transition-all"
+            >
+              <div
+                class="inline-flex items-center gap-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 px-3 py-1.5 rounded-full text-sm font-medium shadow-sm group"
+              >
+                HTML/CSS
+                <button
+                  class="text-slate-400 hover:text-red-500 transition-colors flex items-center"
+                >
+                  <span class="material-symbols-outlined text-[16px]"
+                    >close</span
+                  >
+                </button>
+              </div>
+              <input
+                class="bg-transparent border-none outline-none text-slate-900 dark:text-white placeholder:text-slate-400 flex-1 min-w-[150px] py-1"
+                placeholder="Add optional skills..."
+                type="text"
+              />
+            </div>
+          </div>
+          <!-- Proficiency Level -->
+          <div class="flex flex-col gap-3">
+            <label
+              class="text-sm font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2"
+            >
+              Proficiency Level
+              <span
+                class="material-symbols-outlined text-slate-400 text-[18px] cursor-help"
+                title="We use competency-based levels instead of years of experience to reduce age bias."
+                >info</span
+              >
+            </label>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <!-- Level 1 -->
+              <label class="relative group cursor-pointer">
+                <input class="peer sr-only" name="proficiency" type="radio" />
+                <div
+                  class="h-full p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 peer-checked:bg-primary/5 peer-checked:border-primary peer-checked:ring-1 peer-checked:ring-primary hover:border-primary/50 transition-all flex flex-col gap-2"
+                >
+                  <div
+                    class="size-5 rounded-full border-2 border-slate-300 dark:border-slate-600 peer-checked:border-primary peer-checked:bg-primary mb-1 flex items-center justify-center"
+                  >
+                    <div
+                      class="size-2 rounded-full bg-white opacity-0 peer-checked:opacity-100"
+                    ></div>
+                  </div>
+                  <span class="font-bold text-slate-900 dark:text-white"
+                    >Foundational</span
+                  >
+                  <span
+                    class="text-xs text-slate-500 dark:text-slate-400 leading-normal"
+                    >Basic understanding, needs supervision.</span
+                  >
+                </div>
+              </label>
+              <!-- Level 2 -->
+              <label class="relative group cursor-pointer">
+                <input
+                  checked=""
+                  class="peer sr-only"
+                  name="proficiency"
+                  type="radio"
+                />
+                <div
+                  class="h-full p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 peer-checked:bg-primary/5 peer-checked:border-primary peer-checked:ring-1 peer-checked:ring-primary hover:border-primary/50 transition-all flex flex-col gap-2"
+                >
+                  <div
+                    class="size-5 rounded-full border-2 border-slate-300 dark:border-slate-600 peer-checked:border-primary peer-checked:bg-primary mb-1 flex items-center justify-center"
+                  >
+                    <div
+                      class="size-2 rounded-full bg-white opacity-0 peer-checked:opacity-100"
+                    ></div>
+                  </div>
+                  <span class="font-bold text-slate-900 dark:text-white"
+                    >Proficient</span
+                  >
+                  <span
+                    class="text-xs text-slate-500 dark:text-slate-400 leading-normal"
+                    >Can work independently on core tasks.</span
+                  >
+                </div>
+              </label>
+              <!-- Level 3 -->
+              <label class="relative group cursor-pointer">
+                <input class="peer sr-only" name="proficiency" type="radio" />
+                <div
+                  class="h-full p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 peer-checked:bg-primary/5 peer-checked:border-primary peer-checked:ring-1 peer-checked:ring-primary hover:border-primary/50 transition-all flex flex-col gap-2"
+                >
+                  <div
+                    class="size-5 rounded-full border-2 border-slate-300 dark:border-slate-600 peer-checked:border-primary peer-checked:bg-primary mb-1 flex items-center justify-center"
+                  >
+                    <div
+                      class="size-2 rounded-full bg-white opacity-0 peer-checked:opacity-100"
+                    ></div>
+                  </div>
+                  <span class="font-bold text-slate-900 dark:text-white"
+                    >Advanced</span
+                  >
+                  <span
+                    class="text-xs text-slate-500 dark:text-slate-400 leading-normal"
+                    >Can lead projects and mentor others.</span
+                  >
+                </div>
+              </label>
+              <!-- Level 4 -->
+              <label class="relative group cursor-pointer">
+                <input class="peer sr-only" name="proficiency" type="radio" />
+                <div
+                  class="h-full p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 peer-checked:bg-primary/5 peer-checked:border-primary peer-checked:ring-1 peer-checked:ring-primary hover:border-primary/50 transition-all flex flex-col gap-2"
+                >
+                  <div
+                    class="size-5 rounded-full border-2 border-slate-300 dark:border-slate-600 peer-checked:border-primary peer-checked:bg-primary mb-1 flex items-center justify-center"
+                  >
+                    <div
+                      class="size-2 rounded-full bg-white opacity-0 peer-checked:opacity-100"
+                    ></div>
+                  </div>
+                  <span class="font-bold text-slate-900 dark:text-white"
+                    >Expert</span
+                  >
+                  <span
+                    class="text-xs text-slate-500 dark:text-slate-400 leading-normal"
+                    >Thought leader, defines strategy.</span
+                  >
+                </div>
+              </label>
+            </div>
+          </div>
+          <!-- Footer Actions -->
+          <div
+            class="flex items-center justify-between pt-6 border-t border-slate-100 dark:border-slate-700 mt-2"
+          >
+            <button
+              class="px-6 py-3 rounded-lg text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+            >
+              Save Draft
+            </button>
+            <div class="flex gap-4">
+              <button
+                class="px-6 py-3 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+              >
+                Back
+              </button>
+              <button
+                class="px-6 py-3 rounded-lg bg-primary text-white font-bold text-sm hover:bg-blue-600 transition-colors shadow-md shadow-primary/20"
+              >
+                Next: Review
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!-- Right Column: Sidebar (Bias Check) -->
+      <aside class="w-full lg:w-[360px] flex flex-col gap-6 shrink-0">
+        <!-- Overall Score Card -->
+        <div
+          class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 sticky top-24"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <h3
+              class="font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2"
+            >
+              <span class="material-symbols-outlined text-primary"
+                >analytics</span
+              >
+              Bias Check
+            </h3>
+            <span
+              class="bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 text-xs font-bold px-2 py-1 rounded-md uppercase tracking-wider"
+              >Good</span
+            >
+          </div>
+          <!-- Score Gauge -->
+          <div class="flex items-center gap-6 mb-6">
+            <div class="relative size-24 shrink-0">
+              <!-- SVG Gauge Background -->
+              <svg class="size-full -rotate-90" viewbox="0 0 36 36">
+                <path
+                  class="text-slate-100 dark:text-slate-700"
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                ></path>
+                <!-- SVG Gauge Value (85%) -->
+                <path
+                  class="text-primary drop-shadow-[0_0_10px_rgba(43,140,238,0.5)]"
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-dasharray="85, 100"
+                  stroke-width="3"
+                ></path>
+              </svg>
+              <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center"
+              >
+                <span class="text-2xl font-bold text-slate-900 dark:text-white"
+                  >85</span
+                >
+                <span class="text-[10px] text-slate-400 font-bold uppercase"
+                  >Score</span
+                >
+              </div>
+            </div>
+            <div class="flex flex-col gap-1">
+              <p class="text-sm font-medium text-slate-900 dark:text-white">
+                Your job post is inclusive.
+              </p>
+              <p class="text-xs text-slate-500 dark:text-slate-400">
+                Great job focusing on skills. A few minor tweaks could perfect
+                it.
+              </p>
+            </div>
+          </div>
+          <!-- Alerts List -->
+          <div class="flex flex-col gap-4">
+            <h4
+              class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1"
+            >
+              Real-time Alerts
+            </h4>
+            <!-- Alert Item 1 -->
+            <div
+              class="p-3 bg-orange-50 dark:bg-orange-900/10 border border-orange-100 dark:border-orange-900/30 rounded-lg flex gap-3"
+            >
+              <span
+                class="material-symbols-outlined text-orange-500 shrink-0 text-xl mt-0.5"
+                >warning</span
+              >
+              <div class="flex flex-col gap-1">
+                <p class="text-sm text-slate-800 dark:text-slate-200">
+                  <span class="font-bold text-orange-600 dark:text-orange-400"
+                    >"Energetic"</span
+                  >
+                  can imply age bias.
+                </p>
+                <div class="flex items-center gap-2 mt-1">
+                  <span class="text-xs text-slate-500 dark:text-slate-400"
+                    >Try:</span
+                  >
+                  <button
+                    class="text-xs font-semibold text-primary bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-1 rounded shadow-sm hover:shadow hover:text-blue-600 transition-all"
+                  >
+                    Proactive
+                  </button>
+                  <button
+                    class="text-xs font-semibold text-primary bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-1 rounded shadow-sm hover:shadow hover:text-blue-600 transition-all"
+                  >
+                    Driven
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Alert Item 2 -->
+            <div
+              class="p-3 bg-slate-50 dark:bg-slate-700/30 border border-slate-100 dark:border-slate-700 rounded-lg flex gap-3"
+            >
+              <span
+                class="material-symbols-outlined text-primary shrink-0 text-xl mt-0.5"
+                >lightbulb</span
+              >
+              <div class="flex flex-col gap-1">
+                <p class="text-sm text-slate-800 dark:text-slate-200">
+                  60% of candidates for this role have
+                  <span class="font-semibold">User Research</span> skills.
+                </p>
+                <button
+                  class="text-xs text-left text-primary font-bold mt-1 hover:underline"
+                >
+                  Add to Nice-to-haves
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Competency Heatmap (Abstract Visualization) -->
+          <div
+            class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700"
+          >
+            <h4
+              class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3"
+            >
+              Focus Balance
+            </h4>
+            <div class="flex flex-col gap-2">
+              <div
+                class="flex justify-between text-xs font-medium text-slate-600 dark:text-slate-300"
+              >
+                <span>Hard Skills</span>
+                <span>Soft Skills</span>
+              </div>
+              <div
+                class="h-2 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden flex"
+              >
+                <div class="h-full bg-blue-500 w-[70%]"></div>
+                <div class="h-full bg-purple-400 w-[30%]"></div>
+              </div>
+              <p class="text-[10px] text-slate-400 text-right mt-1">
+                Currently heavy on technical competencies.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Help Card -->
+        <div
+          class="bg-gradient-to-br from-primary to-blue-600 rounded-xl p-6 text-white shadow-lg relative overflow-hidden group cursor-pointer"
+        >
+          <div
+            class="absolute -right-4 -top-4 bg-white/10 size-24 rounded-full blur-xl group-hover:bg-white/20 transition-all"
+          ></div>
+          <div class="relative z-10 flex flex-col gap-2">
+            <div
+              class="size-10 bg-white/20 rounded-full flex items-center justify-center mb-2 backdrop-blur-sm"
+            >
+              <span class="material-symbols-outlined">menu_book</span>
+            </div>
+            <h3 class="font-bold text-lg">Inclusive Hiring Guide</h3>
+            <p class="text-sm text-blue-100 mb-2">
+              Learn how to write descriptions that attract 2x more diverse
+              candidates.
+            </p>
+            <span
+              class="text-xs font-bold uppercase tracking-wider flex items-center gap-1 group-hover:gap-2 transition-all"
+              >Read Guide
+              <span class="material-symbols-outlined text-sm"
+                >arrow_forward</span
+              ></span
+            >
+          </div>
+        </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

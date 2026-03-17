@@ -1,0 +1,115 @@
+{
+  "last_updated": "2026-03-11T10:28:23.565260+00:00",
+  "ttl_hours": 6,
+  "sources": [
+    "Naukri",
+    "Internshala",
+    "Wellfound",
+    "IndeedRSS",
+    "Enriched/Fallback"
+  ],
+  "jobs": [
+    {
+      "id": "ext_internshala_0_1773203148",
+      "platform": "Internshala",
+      "title": "Business Development (Sales)",
+      "company": "FirstOn (CCSN Technology Private Limited)",
+      "location": "Work from home",
+      "url": "https://internshala.com",
+      "description": "Business Development (Sales) at FirstOn (CCSN Technology Private Limited)",
+      "tags": [],
+      "skills_set": [],
+      "posted_at": "Active",
+      "crawled_at": "2026-03-11T04:25:48.140595+00:00",
+      "salary": "₹ 5,500 - 15,000 /month"
+    },
+    {
+      "id": "ext_internshala_2_1773203148",
+      "platform": "Internshala",
+      "title": "Video Editing/Making",
+      "company": "Eminence Studios",
+      "location": "Work from home",
+      "url": "https://internshala.com",
+      "description": "Video Editing/Making at Eminence Studios",
+      "tags": [
+        "ios"
+      ],
+      "skills_set": [
+        "ios"
+      ],
+      "posted_at": "Active",
+      "crawled_at": "2026-03-11T04:25:48.144172+00:00",
+      "salary": "₹ 5,000 - 10,000 /month"
+    },
+    {
+      "id": "ext_internshala_4_1773203148",
+      "platform": "Internshala",
+      "title": "EV Homologation Engineer",
+      "company": "Gray Mobility",
+      "location": "Pune",
+      "url": "https://internshala.com",
+      "description": "EV Homologation Engineer at Gray Mobility",
+      "tags": [],
+      "skills_set": [],
+      "posted_at": "Active",
+      "crawled_at": "2026-03-11T04:25:48.147329+00:00",
+      "salary": "₹ 8,000 - 12,000 /month"
+    },
+    {
+      "id": "ext_internshala_6_1773203148",
+      "platform": "Internshala",
+      "title": "Business Development Executive (Sales) (Female)",
+      "company": "Quality Zone InfoTech",
+      "location": "Delhi, Ghaziabad, Greater Noida, Noida, Gurgaon",
+      "url": "https://internshala.com",
+      "description": "Business Development Executive (Sales) (Female) at Quality Zone InfoTech",
+      "tags": [],
+      "skills_set": [],
+      "posted_at": "Active",
+      "crawled_at": "2026-03-11T04:25:48.151006+00:00",
+      "salary": "₹ 15,000 - 21,000 /month"
+    },
+    {
+      "id": "ext_internshala_8_1773203148",
+      "platform": "Internshala",
+      "title": "City Growth & Fulfilment – Foodwalas (FD Fulfilled Program)",
+      "company": "Foodwalas",
+      "location": "Work from home",
+      "url": "https://internshala.com",
+      "description": "City Growth & Fulfilment – Foodwalas (FD Fulfilled Program) at Foodwalas",
+      "tags": [],
+      "skills_set": [],
+      "posted_at": "Active",
+      "crawled_at": "2026-03-11T04:25:48.156189+00:00",
+      "salary": "₹ 7,500 - 15,000 /month"
+    },
+    {
+      "id": "ext_internshala_10_1773203148",
+      "platform": "Internshala",
+      "title": "Accounts",
+      "company": "Xtreme Coolers Private Limited",
+      "location": "Delhi",
+      "url": "https://internshala.com",
+      "description": "Accounts at Xtreme Coolers Private Limited",
+      "tags": [],
+      "skills_set": [],
+      "posted_at": "Active",
+      "crawled_at": "2026-03-11T04:25:48.159189+00:00",
+      "salary": "₹ 6,000 - 7,000 /month"
+    },
+    {
+      "id": "ext_internshala_10_1773206479",
+      "platform": "Internshala",
+      "title": "Field Sales",
+      "company": "Tyoharwale",
+      "location": "Pune",
+      "url": "https://internshala.com",
+      "description": "Field Sales at Tyoharwale",
+      "tags": [],
+      "skills_set": [],
+      "posted_at": "Active",
+      "crawled_at": "2026-03-11T05:21:19.177284+00:00",
+      "salary": "₹ 10,000 - 15,000 /month"
+    }
+  ]
+}

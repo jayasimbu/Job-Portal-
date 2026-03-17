@@ -1,0 +1,58 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="refresh"
+      content="0; url=../../Platform/Search/advanced_job_search_&_filtering.html?tab=ai-matches"
+    />
+    <title>Redirecting — Career Auto</title>
+    <script>
+      window.location.replace(
+        "../../Platform/Search/advanced_job_search_&_filtering.html?tab=ai-matches",
+      );
+    </script>
+  </head>
+
+  <body>
+    <!-- ── Role Guard: jobseeker only ────────────────────────────── -->
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem("user");
+          if (!raw) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace(
+              "../../Platform/Auth/auth_center.html?tab=login",
+            );
+            return;
+          }
+          var user = JSON.parse(raw);
+          if (!(user && (user.email || user.googleId || user.name))) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace(
+              "../../Platform/Auth/auth_center.html?tab=login",
+            );
+            return;
+          }
+          var role = user.role || "jobseeker";
+          if (role !== "jobseeker") {
+            window.location.replace(
+              "../../Employer/Dashboard/employer_dashboard_overview.html",
+            );
+          }
+        } catch (e) {
+          window.location.replace("../../Platform/Auth/auth_center.html?tab=login";
+        }
+      })();
+    </script>
+
+    <p>
+      Redirecting to
+      <a
+        href="../../Platform/Search/advanced_job_search_&_filtering.html?tab=ai-matches"
+        >Jobs & AI Matches</a
+      >…
+    </p>
+  </body>
+</html>

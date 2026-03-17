@@ -1,0 +1,3776 @@
+<!doctype html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Resume Insights &amp; History - Career Auto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = { darkMode: "class" };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    window._isPrefilledAnalysis = false;
+    // Configure PDF.js worker
+    if (typeof pdfjsLib !== "undefined") {
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    }
+  </script>
+  <style>
+    body {
+      font-family: "Manrope", sans-serif;
+    }
+
+    .tab-btn {
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: #2b8cee;
+      color: white;
+    }
+
+    .tab-btn:not(.active) {
+      color: #64748b;
+    }
+
+    .tab-btn:not(.active):hover {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    .tab-panel:not(.active) {
+      display: none !important;
+    }
+
+    .progress-ring {
+      transform: rotate(-90deg);
+    }
+
+    details>summary {
+      list-style: none;
+    }
+
+    details>summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .toggle-checkbox:checked {
+      right: 0;
+      border-color: #2b8cee;
+    }
+
+    .toggle-checkbox:checked+.toggle-label {
+      background-color: #2b8cee;
+    }
+  </style>
+  <script src="../../Platform/Search/ai_job_service.js"></script>
+</head>
+
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white min-h-screen flex flex-col overflow-x-hidden">
+  <!-- Role Guard -->
+  <script>
+    (function () {
+      try {
+        var raw = localStorage.getItem("user");
+        if (!raw) {
+          sessionStorage.setItem("redirectAfterLogin", window.location.href);
+          window.location.replace(
+            "../../Platform/Auth/auth_center.html?tab=login",
+          );
+          return;
+        }
+        var user = JSON.parse(raw);
+        if (!(user && (user.email || user.googleId || user.name))) {
+          sessionStorage.setItem("redirectAfterLogin", window.location.href);
+          window.location.replace(
+            "../../Platform/Auth/auth_center.html?tab=login",
+          );
+          return;
+        }
+        var role = user.role || "jobseeker";
+        if (role !== "jobseeker") {
+          window.location.replace(
+            "../../Employer/Dashboard/employer_dashboard_overview.html",
+          );
+        }
+      } catch (e) {
+        window.location.replace("../../Platform/Auth/auth_center.html?tab=login";
+      }
+    })();
+  </script>
+
+  <!-- Header -->
+  <div id="header-container"></div>
+  <script src="../../assets/js/auth_guard.js"></script>
+  <script src="../../assets/js/render_header.js"></script>
+
+  <!-- Sidebar -->
+  <div id="sidebar-container"></div>
+  <script src="../../assets/js/render_sidebar.js"></script>
+
+  <div class="max-w-[1200px] mx-auto w-full px-4 md:px-8 py-6 flex-1">
+    <!-- Breadcrumb -->
+    <div class="flex items-center gap-2 text-sm text-slate-500 mb-4">
+      <a href="../../Platform/Home/smart_job_portal_home_page.html"
+        class="hover:text-blue-600 transition-colors">Home</a>
+      <span>/</span>
+      <a href="../resume_upload_&amp;_validation_center/resume_upload_&amp;_validation_center.html"
+        class="hover:text-blue-600 transition-colors">Resume Upload</a>
+      <span>/</span>
+      <span class="text-slate-900 dark:text-white font-medium">Resume Insights</span>
+    </div>
+
+    <!-- Hero Header -->
+    <div class="mb-4">
+      <h1 class="text-2xl font-black text-slate-900 dark:text-white mb-1">
+        Resume Insights & History
+      </h1>
+      <p class="text-slate-500 dark:text-slate-400 font-medium flex items-center gap-2 text-sm">
+        <span class="material-symbols-outlined text-[16px] text-blue-500">auto_awesome</span>
+        ATS Analysis, Skill Gaps, Evolution & Version History
+      </p>
+    </div>
+
+    <!-- Resume Management Section (Vault) -->
+    <div class="mb-6 flex flex-col gap-4">
+      <div
+        class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-700 pb-3">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white">
+            Uploaded Resumes
+          </h2>
+          <p class="text-xs text-slate-500">
+            Select which resume is 'Active' to automatically sync its targeted
+            skills across your Job Dashboard.
+          </p>
+        </div>
+      </div>
+
+      <!-- Resume List Container -->
+      <div id="resume-list-container" class="flex flex-col gap-3">
+        <div class="text-center py-4 text-slate-500 text-sm italic">
+          No resumes uploaded yet. Go to Upload Resume to get started.
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Summary Cards -->
+    <div class="flex flex-wrap gap-2 mb-6">
+      <a href="../resume_upload_&amp;_validation_center/resume_upload_&amp;_validation_center.html"
+        class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-colors shadow-lg shadow-blue-500/20">
+        <span class="material-symbols-outlined text-base">upload_file</span>
+        Upload New Version
+      </a>
+    </div>
+
+    <!-- Score Summary Hero Bar (DYNAMIC) -->
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
+      <!-- ATS Score ring -->
+      <div
+        class="bg-white dark:bg-slate-900 rounded-2xl p-3 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col items-center text-center">
+        <div class="relative size-12 mb-1">
+          <svg class="progress-ring size-full" viewBox="0 0 36 36">
+            <path class="text-slate-100 dark:text-slate-800"
+              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none"
+              stroke="currentColor" stroke-width="3" />
+            <path id="stat-ats-ring" class="text-blue-500"
+              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none"
+              stroke="currentColor" stroke-dasharray="0, 100" stroke-linecap="round" stroke-width="3" />
+          </svg>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <span id="stat-ats-score" class="text-base font-black">0</span>
+          </div>
+        </div>
+        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-tight">
+          <span id="stat-ats-label">ATS Score</span>
+        </p>
+        <span id="stat-ats-badge"
+          class="mt-1 text-[10px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full font-bold uppercase">No
+          Resume</span>
+      </div>
+      <!-- Current Score -->
+      <div
+        class="bg-white dark:bg-slate-900 rounded-2xl p-3 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col items-center text-center">
+        <div id="stat-current-score" class="text-lg font-black text-slate-900 dark:text-white mb-1">
+          —
+        </div>
+        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-tight">
+          Current Score
+        </p>
+        <span id="stat-current-badge"
+          class="mt-1 text-[10px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full font-bold uppercase">No
+          data</span>
+      </div>
+      <!-- Pending Fixes -->
+      <div
+        class="bg-white dark:bg-slate-900 rounded-2xl p-3 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col items-center text-center">
+        <div id="stat-pending-fixes" class="text-lg font-black text-amber-500 mb-1">
+          0
+        </div>
+        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-tight">
+          Pending Fixes
+        </p>
+        <span id="stat-fixes-badge"
+          class="mt-1 text-[10px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full font-bold uppercase">Upload
+          resume</span>
+      </div>
+      <!-- Resume Versions -->
+      <div
+        class="bg-white dark:bg-slate-900 rounded-2xl p-3 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col items-center text-center">
+        <div id="stat-versions" class="text-lg font-black text-slate-900 dark:text-white mb-1">
+          0
+        </div>
+        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-tight">
+          Resume Versions
+        </p>
+        <span id="stat-versions-badge"
+          class="mt-1 text-[10px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full font-bold uppercase">None
+          yet</span>
+      </div>
+      <!-- Potential Score -->
+      <div
+        class="bg-white dark:bg-slate-900 rounded-2xl p-3 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col items-center text-center">
+        <div id="stat-potential-score" class="text-lg font-black text-emerald-500 mb-1">
+          —
+        </div>
+        <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-tight">
+          Potential Score
+        </p>
+        <span id="stat-potential-badge"
+          class="mt-1 text-[10px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full font-bold uppercase">Run
+          analysis</span>
+      </div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div
+      class="flex gap-2 bg-white dark:bg-slate-900 rounded-2xl p-1.5 border border-slate-200 dark:border-slate-800 shadow-sm mb-4 overflow-x-auto">
+      <button class="tab-btn active flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap"
+        onclick="switchTab(this, 'ats')">
+        <span class="material-symbols-outlined text-base">analytics</span> ATS
+        Score
+      </button>
+      <button class="tab-btn flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap"
+        onclick="switchTab(this, 'analysis')">
+        <span class="material-symbols-outlined text-base">description</span>
+        Details
+      </button>
+      <button class="tab-btn flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap"
+        onclick="switchTab(this, 'suggestions')">
+        <span class="material-symbols-outlined text-base">edit_document</span>
+        Suggestions
+      </button>
+      <button class="tab-btn flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap"
+        onclick="switchTab(this, 'breakdown')">
+        <span class="material-symbols-outlined text-base">insert_chart</span>
+        Breakdown
+      </button>
+      <button class="tab-btn flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap"
+        onclick="switchTab(this, 'score-history')">
+        <span class="material-symbols-outlined text-base">history</span>
+        Score History
+      </button>
+    </div>
+
+    <!-- TAB 1: ATS SCORE & SKILL GAP — DUAL MODE (Normal + JD-Targeted) -->
+    <div id="tab-ats" class="tab-panel active">
+
+
+      <!-- ═══════════════════════════════════════════════════════════
+             SECTION A — RESUME FORMAT ANALYSIS (Normal ATS, Auto-Run)
+             ═══════════════════════════════════════════════════════════ -->
+      <div id="normal-ats-section" class="mb-2">
+        <!-- Section Header -->
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="size-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-[18px]">description</span>
+          </div>
+          <div>
+            <h2 class="text-base font-bold text-slate-900 dark:text-white">
+              📄 Resume Format Analysis
+            </h2>
+            <p class="text-xs text-slate-500">
+              Auto-scored from your resume alone — no job description needed
+            </p>
+          </div>
+          <span id="normal-ats-badge"
+            class="ml-auto text-xs font-bold px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hidden"></span>
+        </div>
+
+        <!-- No Resume State -->
+        <div id="normal-ats-no-resume"
+          class="bg-slate-50 dark:bg-slate-800/50 border border-dashed border-slate-300 dark:border-slate-700 rounded-2xl p-8 text-center">
+          <span class="material-symbols-outlined text-slate-300 text-5xl mb-2 block">upload_file</span>
+          <h3 class="font-bold text-lg text-slate-500 mb-1">
+            No Resume Uploaded
+          </h3>
+          <p class="text-sm text-slate-400 mb-4">
+            Upload a resume to see your format score and skill analysis.
+          </p>
+          <a href="../Profile/resume_upload_&_validation_center.html"
+            class="inline-flex items-center gap-2 bg-blue-600 text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:bg-blue-700 transition-colors">
+            <span class="material-symbols-outlined text-lg">upload_file</span>Upload Resume
+          </a>
+        </div>
+
+        <!-- Normal ATS Data Panel (shown after analysis) -->
+        <div id="normal-ats-data-panel" class="grid grid-cols-1 lg:grid-cols-12 gap-6 hidden">
+          <!-- Score Ring -->
+          <div class="lg:col-span-4 flex flex-col gap-6">
+            <div
+              class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm relative overflow-hidden">
+              <div class="flex items-center justify-between w-full mb-4">
+                <h2 class="text-lg font-bold">Overall Format Score</h2>
+                <span id="normal-format-score-badge"
+                  class="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-500">—</span>
+              </div>
+              <div class="relative size-48 mx-auto mb-4">
+                <svg class="progress-ring size-full" viewBox="0 0 36 36">
+                  <path class="text-slate-100 dark:text-slate-800"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none"
+                    stroke="currentColor" stroke-width="3" />
+                  <path id="normal-format-ring" class="text-slate-500"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none"
+                    stroke="currentColor" stroke-dasharray="0, 100" stroke-linecap="round" stroke-width="3" />
+                </svg>
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                  <span id="normal-format-score-number" class="text-5xl font-black tracking-tighter">0</span>
+                  <span class="text-slate-400 text-sm">out of 100</span>
+                </div>
+              </div>
+              <p id="normal-format-score-summary" class="text-center text-slate-600 dark:text-slate-300 text-sm"></p>
+              <!-- Mini breakdown bars -->
+              <div id="normal-section-bars" class="mt-5 flex flex-col gap-2"></div>
+            </div>
+          </div>
+          <!-- Skills Found in Resume -->
+          <div class="lg:col-span-8 flex flex-col gap-6">
+            <div
+              class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm h-full flex flex-col">
+              <h2 class="text-lg font-bold mb-1">
+                Skills Detected in Resume
+              </h2>
+              <p class="text-sm text-slate-500 mb-4">
+                All keywords found in your resume by the AI parser.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6" id="normal-skills-container"></div>
+
+              <h3 class="font-bold text-sm uppercase tracking-wide mb-2 flex items-center gap-2">
+                <span class="material-symbols-outlined text-emerald-500 text-base">check_circle</span>
+                Format Strengths
+              </h3>
+              <div id="normal-strengths-container" class="flex flex-col gap-2 mb-4"></div>
+
+              <h3 class="font-bold text-sm uppercase tracking-wide mb-2 flex items-center gap-2">
+                <span class="material-symbols-outlined text-amber-500 text-base">warning</span>
+                Format Improvements
+              </h3>
+              <div id="normal-improvements-container" class="flex flex-col gap-2"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading state for Normal ATS -->
+        <div id="normal-ats-loading"
+          class="hidden bg-blue-50 dark:bg-blue-900/20 border border-blue-100 rounded-2xl p-8 text-center">
+          <div class="flex flex-col items-center gap-3">
+            <span class="material-symbols-outlined text-blue-400 text-4xl animate-spin">refresh</span>
+            <p class="font-bold text-slate-700 dark:text-white">
+              Analyzing Resume Format...
+            </p>
+            <p class="text-sm text-slate-500">
+              AI is scoring your resume structure and keyword density
+            </p>
+          </div>
+        </div>
+
+        <!-- Analyze Format button (shown when resume exists but no normal ATS yet) -->
+        <div id="normal-ats-pending"
+          class="hidden bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 flex items-center justify-between gap-4 flex-wrap">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-slate-400 text-3xl">analytics</span>
+            <div>
+              <p class="font-bold text-slate-700 dark:text-slate-200">
+                Resume uploaded — format not analyzed yet
+              </p>
+              <p class="text-sm text-slate-500">
+                Click to run AI format analysis on your resume
+              </p>
+            </div>
+          </div>
+          <button onclick="runNormalATSAnalysis()"
+            class="bg-slate-700 hover:bg-slate-900 text-white font-bold py-2.5 px-6 rounded-xl transition-colors flex items-center gap-2 shrink-0">
+            <span class="material-symbols-outlined text-lg">analytics</span>
+            Analyze Format
+          </button>
+        </div>
+      </div>
+
+      <!-- ─────────────────── SECTION DIVIDER ─────────────────────── -->
+      <div class="relative my-8" id="ats-section-divider">
+        <div class="absolute inset-0 flex items-center">
+          <hr class="w-full border-slate-200 dark:border-slate-700" />
+        </div>
+        <div class="relative flex justify-center">
+          <span
+            class="bg-slate-50 dark:bg-slate-950 px-4 py-1 text-xs font-semibold text-slate-400 uppercase tracking-widest rounded-full border border-slate-200 dark:border-slate-700">
+            🎯 JD-Targeted Analysis Below
+          </span>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════
+             SECTION B — JD-TARGETED ANALYSIS (Existing ATS Flow)
+             ═══════════════════════════════════════════════════════ -->
+      <div id="jd-ats-section" class="hidden">
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="size-8 rounded-lg bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-[18px]">work_history</span>
+          </div>
+          <div>
+            <h2 class="text-base font-bold text-slate-900 dark:text-white">
+              🎯 JD-Targeted Analysis
+            </h2>
+            <p class="text-xs text-slate-500">
+              Paste a job description to get a tailored ATS match score and
+              skill gap
+            </p>
+          </div>
+        </div>
+
+        <!-- ATS Analysis panel: shown when analysis exists, hidden otherwise -->
+        <div id="ats-no-data-panel"
+          class="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-2xl p-6 mb-4 text-center relative overflow-hidden">
+          
+          <!-- Banner for Analysis Status -->
+          <div id="ats-analysis-status-banner" class="hidden absolute top-0 left-0 right-0 bg-blue-600 text-white py-1 px-4 text-xs font-bold flex items-center justify-center gap-2 animate-pulse">
+            <span class="material-symbols-outlined text-sm animate-spin">sync</span>
+            <span class="tracking-widest uppercase">Analysis in progress</span>
+          </div>
+
+          <span class="material-symbols-outlined text-blue-400 text-5xl mb-2 block">analytics</span>
+          <h3 class="font-bold text-lg text-slate-800 dark:text-white mb-1">
+            JD Analyzer
+          </h3>
+          <p class="text-sm text-slate-500 mb-4">
+            Analysis is performed against the active resume and the provided job description.
+          </p>
+          <div class="max-w-lg mx-auto flex flex-col gap-3">
+            <div id="jd-display-container" class="hidden w-full text-left text-sm border border-slate-200 dark:border-slate-700 rounded-xl p-4 bg-white dark:bg-slate-800 max-h-40 overflow-y-auto mb-2 shadow-inner">
+              <p class="text-xs font-bold text-blue-600 uppercase mb-1">Target Job Description</p>
+              <div id="jd-display-content" class="text-slate-600 dark:text-slate-300 whitespace-pre-wrap"></div>
+            </div>
+            <textarea id="ats-job-desc-input" rows="4" placeholder="Paste the job description here..."
+              class="w-full text-sm border border-slate-300 dark:border-slate-600 rounded-xl p-3 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-blue-400 outline-none resize-none"></textarea>
+            <button id="run-ats-btn" onclick="runATSAnalysis()"
+              class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded-xl transition-colors flex items-center gap-2 justify-center">
+              <span class="material-symbols-outlined text-lg">auto_awesome</span>
+              Run Analysis
+            </button>
+            <div id="ats-loading" class="hidden text-sm text-slate-500 animate-pulse">
+              ⏳ Analyzing with AI... this may take a few seconds...
+            </div>
+            <div id="ats-error" class="hidden text-sm text-red-500 bg-red-50 border border-red-200 rounded-xl p-3">
+            </div>
+          </div>
+        </div>
+
+        <div id="ats-no-resume-panel"
+          class="hidden bg-slate-50 dark:bg-slate-800/50 border border-dashed border-slate-300 dark:border-slate-700 rounded-2xl p-8 text-center">
+          <span class="material-symbols-outlined text-slate-300 text-5xl mb-2 block">upload_file</span>
+          <h3 class="font-bold text-lg text-slate-500 mb-1">
+            No Resume Uploaded
+          </h3>
+          <p class="text-sm text-slate-400 mb-4">
+            Upload a resume to see your ATS score and skill analysis.
+          </p>
+          <a href="../Profile/resume_upload_&_validation_center.html"
+            class="inline-flex items-center gap-2 bg-blue-600 text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:bg-blue-700 transition-colors">
+            <span class="material-symbols-outlined text-lg">upload_file</span>
+            Upload Resume
+          </a>
+        </div>
+
+        <div id="ats-data-panel" class="grid grid-cols-1 lg:grid-cols-12 gap-6 hidden">
+          <!-- Score Card -->
+          <div class="lg:col-span-4 flex flex-col gap-6">
+            <div
+              class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm relative overflow-hidden">
+              <div class="flex items-center justify-between w-full mb-4">
+                <h2 class="text-lg font-bold">Overall Format Score</h2>
+                <span id="format-score-badge"
+                  class="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-500">—</span>
+              </div>
+              <div class="relative size-48 mx-auto mb-4">
+                <svg class="progress-ring size-full" viewBox="0 0 36 36">
+                  <path class="text-slate-100 dark:text-slate-800"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none"
+                    stroke="currentColor" stroke-width="3" />
+                  <path id="format-ring" class="text-blue-500"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none"
+                    stroke="currentColor" stroke-dasharray="0, 100" stroke-linecap="round" stroke-width="3" />
+                </svg>
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                  <span id="format-score-number" class="text-5xl font-black tracking-tighter">0</span>
+                  <span class="text-slate-400 text-sm">out of 100</span>
+                </div>
+              </div>
+              <p id="format-score-summary" class="text-center text-slate-600 dark:text-slate-300 text-sm">
+                Upload a resume to see your score.
+              </p>
+              <div class="mt-4">
+                <button onclick="showJobDescInput()" class="w-full text-xs text-blue-600 font-semibold hover:underline">
+                  ↻ Run analysis against a different job
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Skill Gaps -->
+          <div class="lg:col-span-8 flex flex-col gap-6">
+            <div
+              class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm h-full flex flex-col">
+              <h2 class="text-lg font-bold mb-1">
+                Targeted Skill Gap Analysis
+              </h2>
+              <p class="text-sm text-slate-500 mb-6" id="gap-analysis-subtitle">
+                Comparing your resume against the job description.
+              </p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8 flex-1">
+                <div class="flex flex-col gap-4">
+                  <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-emerald-500">check_circle</span>
+                    <h3 class="font-bold text-sm uppercase tracking-wide">
+                      Matched Skills
+                    </h3>
+                  </div>
+                  <div class="flex flex-wrap gap-2" id="found-skills-container"></div>
+                </div>
+                <div class="flex flex-col gap-4">
+                  <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-rose-500">cancel</span>
+                    <h3 id="missing-skills-label" class="font-bold text-sm uppercase tracking-wide">
+                      Missing / Critical
+                    </h3>
+                  </div>
+                  <p class="text-xs text-slate-500">
+                    AI-identified specific skills you need for this role —
+                    with priority and learning tips.
+                  </p>
+                  <div class="flex flex-wrap gap-2" id="missing-skills-container"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: RESUME DETAILS (unchanged) -->
+    <div id="tab-analysis" class="tab-panel">
+      <div
+        class="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-2xl p-5 flex items-center justify-between mb-6 shadow-sm flex-wrap gap-4">
+        <div class="flex items-start gap-4">
+          <div class="size-10 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 text-emerald-600">
+            <span class="material-symbols-outlined">check_circle</span>
+          </div>
+          <div>
+            <p class="font-bold">Resume Extraction Details</p>
+            <p class="text-sm text-slate-500">
+              Review and edit the extracted fields for accuracy.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 flex-wrap">
+          <!-- Manual Extract Button -->
+          <button id="manual-extract-btn" onclick="triggerManualExtraction()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl text-sm transition-colors flex items-center gap-2 shadow-sm">
+            <span class="material-symbols-outlined text-sm">auto_awesome</span> Extract Details
+          </button>
+          
+          <!-- Auto Fill Toggle -->
+          <div
+            class="flex items-center gap-3 bg-white dark:bg-slate-800 py-2 px-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+            <label class="flex flex-col cursor-pointer" for="auto-fill-toggle">
+              <span class="text-sm font-bold text-slate-900 dark:text-white">Auto-Fill Details</span>
+              <span class="text-xs text-slate-500">From Active Resume</span>
+            </label>
+            <div class="relative inline-block w-10 align-middle select-none transition duration-200 ease-in mt-1">
+              <input type="checkbox" name="toggle" id="auto-fill-toggle"
+                class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-slate-300 checked:border-blue-600 transition-all duration-300"
+                onchange="toggleAutoFill(this.checked, false)" />
+            <label
+              class="toggle-label block overflow-hidden h-5 rounded-full bg-slate-200 dark:bg-slate-600 cursor-pointer transition-colors duration-300"
+              for="auto-fill-toggle"></label>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6" id="resume-details-grid">
+        <!-- Left: Personal + Skills -->
+        <div class="lg:col-span-1 flex flex-col gap-6">
+          <div
+            class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 p-5 shadow-sm">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-bold text-lg flex items-center gap-2">
+                <span class="material-symbols-outlined text-blue-500">person</span>
+                Personal Details
+              </h3>
+              <button class="text-slate-400 hover:text-blue-500" onclick="editPersonalDetails()">
+                <span class="material-symbols-outlined text-xl">edit</span>
+              </button>
+            </div>
+            <div class="flex flex-col gap-3" id="personal-details-container">
+              <div>
+                <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Full Name</label>
+                <p class="text-sm font-medium" id="pd-name">-</p>
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Email</label>
+                <p class="text-sm font-medium" id="pd-email">-</p>
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Phone</label>
+                <p class="text-sm font-medium" id="pd-phone">-</p>
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Location</label>
+                <p class="text-sm font-medium" id="pd-location">-</p>
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Links</label>
+                <div class="flex flex-col gap-1 mt-1" id="pd-links">
+                  <span class="text-sm text-slate-400 italic">No links extracted</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 p-5 shadow-sm">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-bold text-lg flex items-center gap-2">
+                <span class="material-symbols-outlined text-blue-500">verified</span>
+                Extracted Skills
+              </h3>
+              <button class="text-slate-400 hover:text-blue-500" onclick="addSkill()">
+                <span class="material-symbols-outlined text-xl">add_circle</span>
+              </button>
+            </div>
+            <div class="flex flex-wrap gap-2" id="skills-list">
+              <span class="text-sm text-slate-400 italic">No skills extracted</span>
+              <span
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-slate-100 text-slate-500 border border-dashed border-slate-300 cursor-pointer hover:border-blue-500 hover:text-blue-500 transition-colors mt-1"
+                onclick="addSkill()">+ Add Skill</span>
+            </div>
+          </div>
+        </div>
+        <!-- Right: Experience + Education -->
+        <div class="lg:col-span-2 flex flex-col gap-6">
+          <div
+            class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 p-5 shadow-sm">
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="font-bold text-lg flex items-center gap-2">
+                <span class="material-symbols-outlined text-blue-500">work_history</span>
+                Experience Summary
+              </h3>
+              <button
+                class="flex items-center gap-1 text-sm font-medium text-blue-600 hover:bg-blue-50 px-3 py-1.5 rounded-lg transition-colors"
+                onclick="addPosition()">
+                <span class="material-symbols-outlined text-lg">add</span> Add
+                Position
+              </button>
+            </div>
+            <div class="flex flex-col gap-5 relative" id="experience-list">
+              <div class="absolute left-[19px] top-4 bottom-4 w-0.5 bg-slate-100 dark:bg-slate-800"></div>
+              <div class="text-center py-6 text-slate-400 italic text-sm" id="experience-empty-state">
+                No experience records extracted from active resume.
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 p-5 shadow-sm">
+            <h3 class="font-bold text-lg flex items-center gap-2 mb-4">
+              <span class="material-symbols-outlined text-blue-500">school</span>
+              Education Verification
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="education-list">
+              <div
+                class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center text-center italic text-slate-400 text-sm hidden"
+                id="education-empty-state">
+                No education records extracted.
+              </div>
+              <div
+                class="p-4 rounded-xl border-2 border-dashed border-slate-300 flex flex-col items-center justify-center text-center gap-2 min-h-[100px] cursor-pointer hover:border-blue-400 hover:bg-blue-50/50 transition-colors"
+                onclick="addEducation()" id="add-education-btn">
+                <span class="material-symbols-outlined text-slate-400">add_circle</span>
+                <p class="text-xs font-medium text-slate-600">
+                  Add Education / Certification
+                </p>
+                <button class="text-xs font-bold text-blue-600 hover:underline">
+                  Manually Add Section
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Certificates Verification Section -->
+          <div
+            class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 p-5 shadow-sm mt-6">
+            <h3 class="font-bold text-lg flex items-center gap-2 mb-4">
+              <span class="material-symbols-outlined text-blue-500">workspace_premium</span>
+              Certificates tracking
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="certificates-list">
+              <div
+                class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center text-center italic text-slate-400 text-sm hidden"
+                id="certificates-empty-state">
+                No certificates extracted.
+              </div>
+              <div
+                class="p-4 rounded-xl border-2 border-dashed border-slate-300 flex flex-col items-center justify-center text-center gap-2 min-h-[100px] cursor-pointer hover:border-blue-400 hover:bg-blue-50/50 transition-colors"
+                onclick="addCertificate()" id="add-certificate-btn">
+                <span class="material-symbols-outlined text-slate-400">add_circle</span>
+                <p class="text-xs font-medium text-slate-600">
+                  Add Certification
+                </p>
+                <button class="text-xs font-bold text-blue-600 hover:underline">
+                  Manually Add Section
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Save Details Button -->
+      <div class="flex justify-end mt-6">
+        <button id="save-resume-details-btn" onclick="saveResumeDetails()"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-8 rounded-xl transition-colors shadow-lg shadow-blue-500/20 flex items-center gap-2">
+          <span class="material-symbols-outlined">save</span>
+          Save Details
+        </button>
+      </div>
+    </div>
+
+    <!-- TAB 3: IMPROVEMENT SUGGESTIONS -->
+    <div id="tab-suggestions" class="tab-panel">
+      <!-- JD-Targeted Suggestions -->
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="size-8 rounded-lg bg-blue-100 dark:bg-blue-900 text-blue-600 flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-[18px]">work_history</span>
+          </div>
+          <h2 class="text-base font-bold">🎯 JD-Targeted Suggestions</h2>
+        </div>
+        <div id="ai-suggestions-list" class="flex flex-col gap-4">
+          <!-- AI Suggestions injected dynamically here -->
+          <div
+            class="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-2xl p-6 text-center text-slate-400 italic text-sm">
+            Paste a job description and run ATS analysis to see tailored
+            suggestions.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="tab-breakdown" class="tab-panel">
+      <!-- ═════════ Section A: Resume Format Breakdown ═════════ -->
+      <div class="mb-2">
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="size-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-[18px]">description</span>
+          </div>
+          <h2 class="text-base font-bold">
+            📄 Resume Format Score Breakdown
+          </h2>
+        </div>
+        <div id="normal-breakdown-section" class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          <!-- Normal ATS 5-axis bars -->
+          <div
+            class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col gap-4"
+            id="normal-breakdown-bars-wrap">
+            <h3 class="font-bold text-base mb-2">Format Axes</h3>
+            <div id="normal-breakdown-bars" class="flex flex-col gap-3">
+              <div class="text-sm text-slate-400 italic text-center py-4">
+                Run Format Analysis to see breakdown
+              </div>
+            </div>
+          </div>
+          <!-- Normal ATS summary card -->
+          <div
+            class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+            <h3 class="font-bold text-base mb-3">Format Score Summary</h3>
+            <div class="flex flex-col items-center gap-4">
+              <div class="relative size-40">
+                <svg class="progress-ring size-full" viewBox="0 0 36 36">
+                  <path class="text-slate-100 dark:text-slate-800"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none"
+                    stroke="currentColor" stroke-width="3" />
+                  <path id="bd-normal-ring" class="text-slate-500"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none"
+                    stroke="currentColor" stroke-dasharray="0, 100" stroke-linecap="round" stroke-width="3" />
+                </svg>
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                  <span id="bd-normal-score" class="text-4xl font-black">—</span>
+                  <span class="text-slate-400 text-xs">Format</span>
+                </div>
+              </div>
+              <p id="bd-normal-summary" class="text-sm text-slate-500 text-center">
+                Run Resume Format Analysis to populate this section.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="relative my-8">
+        <div class="absolute inset-0 flex items-center">
+          <hr class="w-full border-slate-200 dark:border-slate-700" />
+        </div>
+        <div class="relative flex justify-center">
+          <span
+            class="bg-slate-50 dark:bg-slate-950 px-4 py-1 text-xs font-semibold text-slate-400 uppercase tracking-widest rounded-full border border-slate-200 dark:border-slate-700">🎯
+            JD-Targeted Breakdown Below</span>
+        </div>
+      </div>
+
+      <!-- ═════════ Section B: JD-Targeted Breakdown (original) ═════════ -->
+      <div class="flex items-center gap-3 mb-4">
+        <div
+          class="size-8 rounded-lg bg-blue-100 dark:bg-blue-900 text-blue-600 flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-[18px]">work_history</span>
+        </div>
+        <h2 class="text-base font-bold">🎯 JD-Targeted Score Breakdown</h2>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        <!-- Donut Chart -->
+        <div
+          class="bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-center relative overflow-hidden">
+          <div
+            class="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -z-10 translate-x-1/3 -translate-y-1/3">
+          </div>
+          <h2 class="text-xl font-bold mb-6 self-start">
+            Overall Perfection Score
+          </h2>
+          <div class="relative size-64">
+            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+              <!-- Background track -->
+              <circle cx="50" cy="50" fill="none" r="45" stroke="#e2e8f0" stroke-width="6" />
+              <!-- Resume circle -->
+              <circle id="donut-resume-circle" cx="50" cy="50" fill="none" r="45" stroke="#2b8cee"
+                stroke-dasharray="283" stroke-dashoffset="28" stroke-linecap="round" stroke-width="6"
+                class="transition-all duration-1000" />
+              <!-- Skills circle -->
+              <circle id="donut-skills-circle" cx="50" cy="50" fill="none" r="35" stroke="#60a5fa"
+                stroke-dasharray="220" stroke-dashoffset="44" stroke-linecap="round" stroke-width="6"
+                class="transition-all duration-1000" />
+              <!-- Learning circle -->
+              <circle id="donut-learning-circle" cx="50" cy="50" fill="none" r="25" stroke="#93c5fd"
+                stroke-dasharray="157" stroke-dashoffset="63" stroke-linecap="round" stroke-width="6"
+                class="transition-all duration-1000" />
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
+              <span id="donut-total-score"
+                class="text-5xl font-black text-slate-900 dark:text-white tracking-tighter">0</span>
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Total</span>
+            </div>
+          </div>
+          <div class="flex gap-6 text-sm mt-6">
+            <div class="flex items-center gap-2">
+              <div class="size-3 rounded-full bg-blue-500"></div>
+              <span class="text-slate-600 font-medium">Resume</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="size-3 rounded-full bg-blue-400"></div>
+              <span class="text-slate-600 font-medium">Skills</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="size-3 rounded-full bg-blue-300"></div>
+              <span class="text-slate-600 font-medium">Learning</span>
+            </div>
+          </div>
+          <!-- Leaderboard teaser -->
+          <div
+            class="w-full mt-6 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-yellow-500">trophy</span>
+              <div>
+                <p class="text-sm font-bold">Leaderboard Rank</p>
+                <p class="text-xs text-slate-500">Top 12% in your domain</p>
+              </div>
+            </div>
+            <span class="text-2xl font-black text-blue-600">#---</span>
+          </div>
+        </div>
+        <!-- Category Cards -->
+        <div class="flex flex-col gap-4">
+          <div
+            class="bg-white dark:bg-slate-900 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row gap-5 items-start md:items-center hover:border-blue-200 transition-all group">
+            <div class="bg-blue-100 p-3 rounded-xl text-blue-600 shrink-0">
+              <span class="material-symbols-outlined text-[28px]">description</span>
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-between items-center w-full mb-1">
+                <h3 class="font-bold text-lg">Resume Score</h3>
+                <span id="breakdown-resume-val"
+                  class="text-blue-600 font-bold bg-blue-50 px-2 py-1 rounded text-sm">0/100</span>
+              </div>
+              <p id="breakdown-resume-msg" class="text-slate-500 text-sm mb-2">
+                Analyzing structure for ATS systems...
+              </p>
+              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                <div id="breakdown-resume-bar" class="bg-blue-600 h-full rounded-full transition-all duration-1000"
+                  style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-white dark:bg-slate-900 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row gap-5 items-start md:items-center hover:border-blue-200 transition-all group">
+            <div class="bg-blue-50 p-3 rounded-xl text-blue-400 shrink-0">
+              <span class="material-symbols-outlined text-[28px]">verified</span>
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-between items-center w-full mb-1">
+                <h3 class="font-bold text-lg">Skill Breadth</h3>
+                <span id="breakdown-skill-val"
+                  class="text-blue-400 font-bold bg-blue-50 px-2 py-1 rounded text-sm">0/15</span>
+              </div>
+              <p id="breakdown-skill-msg" class="text-slate-500 text-sm mb-2">
+                Analyzing verified skills coverage...
+              </p>
+              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                <div id="breakdown-skill-bar" class="bg-blue-400 h-full rounded-full transition-all duration-1000"
+                  style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-white dark:bg-slate-900 rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row gap-5 items-start md:items-center hover:border-blue-200 transition-all group">
+            <div class="bg-blue-50 p-3 rounded-xl text-blue-300 shrink-0">
+              <span class="material-symbols-outlined text-[28px]">school</span>
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-between items-center w-full mb-1">
+                <h3 class="font-bold text-lg">Learning Consistency</h3>
+                <span id="breakdown-learning-val" class="text-blue-300 font-bold bg-blue-50 px-2 py-1 rounded text-sm">0
+                  Day</span>
+              </div>
+              <p id="breakdown-learning-msg" class="text-slate-500 text-sm mb-2">
+                Analyzing learning engagement...
+              </p>
+              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                <div id="breakdown-learning-bar" class="bg-blue-300 h-full rounded-full transition-all duration-1000"
+                  style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-gradient-to-r from-blue-600 to-blue-500 rounded-2xl p-5 text-white flex items-center justify-between shadow-lg shadow-blue-500/20">
+            <div>
+              <p class="font-bold text-lg">Potential Score</p>
+              <p class="text-blue-100 text-sm">
+                Fix all high-impact issues to reach
+              </p>
+            </div>
+            <div class="text-right">
+              <div id="breakdown-potential-score" class="text-5xl font-black">
+                0
+              </div>
+              <div id="breakdown-potential-boost" class="text-blue-200 text-sm">
+                ...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: SCORE HISTORY (MERGED EVOLUTION + COMPARISON) -->
+    <div id="tab-score-history" class="tab-panel">
+      <div
+        class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm mb-6">
+        <h2 id="evolution-chart-heading" class="text-lg font-bold mb-1">
+          ATS Score History
+        </h2>
+        <p class="text-xs text-slate-500 mb-4">
+          Every time you run ATS analysis, the score is saved here. Multiple
+          resume versions in the same group are stacked as separate bars.
+        </p>
+        <div id="evolution-chart-container"
+          class="w-full flex justify-between items-end border-b border-slate-200 pb-2 px-4 h-48 relative overflow-x-auto gap-4">
+          <!-- dynamically generated bars will go here -->
+        </div>
+      </div>
+      <div
+        class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm mb-6">
+        <h2 class="text-lg font-bold mb-2">ATS Run Comparison</h2>
+        <p class="text-xs text-slate-500 mb-4">
+          Compare the latest ATS analysis with the previous run. Highlights
+          newly matched and dropped skills.
+        </p>
+        <div id="comparison-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+          <!-- dynamic comparison cards will go here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+  <script src="../../assets/js/render_footer.js"></script>
+
+  <script src="../../assets/js/navbar.js"></script>
+  <script>
+    // ── Simple text hash for re-upload detection ──────────────────────────
+    function simpleHash(str) {
+      let hash = 0;
+      for (let i = 0; i < (str || '').length; i++) {
+        const ch = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + ch;
+        hash |= 0; // Convert to 32bit integer
+      }
+      return hash.toString(36);
+    }
+
+    // ── AI Busy Lock ─────────────────────────────────────────────────────────
+    window._isAIWorking = false;
+
+    function _lockAI(msg) {
+      window._isAIWorking = true;
+      // Visually mark all tab buttons as disabled
+      document.querySelectorAll(".tab-btn").forEach((b) => {
+        b.setAttribute("data-ai-locked", "true");
+        b.style.opacity = "0.5";
+        b.style.cursor = "not-allowed";
+        b.style.pointerEvents = "none";
+      });
+      // Show a sticky "AI busy" toast
+      let t = document.getElementById("_ai-busy-toast");
+      if (!t) {
+        t = document.createElement("div");
+        t.id = "_ai-busy-toast";
+        t.style.cssText =
+          "position:fixed;bottom:80px;left:50%;transform:translateX(-50%);" +
+          "z-index:9999;background:#1e40af;color:#fff;padding:9px 20px;" +
+          "border-radius:999px;font-size:13px;font-weight:700;box-shadow:0 4px 20px rgba(0,0,0,.25);" +
+          "display:flex;align-items:center;gap:8px;white-space:nowrap;pointer-events:none;";
+        t.innerHTML =
+          '<span style="display:inline-block;animation:spin 1s linear infinite;font-size:16px">⏳</span> ' +
+          (msg || "AI is working… please wait");
+        document.body.appendChild(t);
+      } else {
+        t.querySelector("span + *") &&
+          (t.lastChild.textContent =
+            " " + (msg || "AI is working… please wait"));
+        t.style.display = "flex";
+      }
+    }
+
+    function _unlockAI() {
+      window._isAIWorking = false;
+      document.querySelectorAll(".tab-btn").forEach((b) => {
+        b.removeAttribute("data-ai-locked");
+        b.style.opacity = "";
+        b.style.cursor = "";
+        b.style.pointerEvents = "";
+      });
+      const t = document.getElementById("_ai-busy-toast");
+      if (t) t.remove();
+    }
+
+    // ── Tab Switcher ────────────────────────────────────────────────────────
+    function switchTab(btn, tabId) {
+      if (window._isAIWorking) {
+        // Show a brief warning instead of switching
+        let warn = document.getElementById("_tab-switch-warn");
+        if (!warn) {
+          warn = document.createElement("div");
+          warn.id = "_tab-switch-warn";
+          warn.style.cssText =
+            "position:fixed;bottom:130px;left:50%;transform:translateX(-50%);" +
+            "z-index:9999;background:#dc2626;color:#fff;padding:9px 20px;" +
+            "border-radius:999px;font-size:13px;font-weight:700;box-shadow:0 4px 20px rgba(0,0,0,.25);" +
+            "pointer-events:none;white-space:nowrap;";
+          warn.textContent =
+            "⚠️ Please wait for AI analysis to finish before switching tabs.";
+          document.body.appendChild(warn);
+          setTimeout(() => warn && warn.remove(), 2500);
+        }
+        return;
+      }
+      document
+        .querySelectorAll(".tab-btn")
+        .forEach((b) => b.classList.remove("active"));
+      document
+        .querySelectorAll(".tab-panel")
+        .forEach((p) => p.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("tab-" + tabId).classList.add("active");
+    }
+
+    window.syncToDB = function (u) {
+      if (u.email) {
+        fetch("http://localhost:5000/update_user_data", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: u.email,
+            uploadedResumes: u.uploadedResumes,
+            activeResumeId: u.activeResumeId,
+            autoFillDetails: u.autoFillDetails
+          }),
+        }).catch(() => { });
+      }
+    };
+
+    // ── Helpers ─────────────────────────────────────────────────────────────
+    function getUser() {
+      try {
+        return JSON.parse(localStorage.getItem("user") || "{}");
+      } catch (e) {
+        return {};
+      }
+    }
+    function saveUser(u) {
+      localStorage.setItem("user", JSON.stringify(u));
+    }
+
+    async function fetchUserResumesFromDB() {
+      const u = getUser();
+      if (!u.email) return;
+      try {
+        const response = await fetch(`http://localhost:5000/get_user_data?email=${u.email}`);
+        const data = await response.json();
+        if (data.success && data.user) {
+          // Merge server data with local data (server is source of truth for resumes)
+          u.uploadedResumes = data.user.uploadedResumes || [];
+          u.activeResumeId = data.user.activeResumeId || u.activeResumeId;
+          u.personalDetails = data.user.personalDetails || u.personalDetails;
+          u.skills = data.user.skills || u.skills;
+          u.certificates = data.user.certificates || u.certificates;
+          u.autoFillDetails = data.user.autoFillDetails !== undefined ? data.user.autoFillDetails : u.autoFillDetails;
+          saveUser(u);
+        }
+      } catch (e) {
+        console.error("Failed to fetch user data from DB:", e);
+      }
+    }
+
+    function scoreLabel(n) {
+      if (n >= 85)
+        return { text: "Excellent", cls: "bg-emerald-100 text-emerald-700" };
+      if (n >= 70) return { text: "Good", cls: "bg-blue-100 text-blue-700" };
+      if (n >= 50)
+        return { text: "Fair", cls: "bg-amber-100 text-amber-700" };
+      return { text: "Needs Work", cls: "bg-rose-100 text-rose-700" };
+    }
+
+    function showNoProvidersAlert() {
+      // Show a persistent top-of-page banner when NO AI providers are available
+      let banner = document.getElementById("_no-providers-banner");
+      if (!banner) {
+        banner = document.createElement("div");
+        banner.id = "_no-providers-banner";
+        banner.className =
+          "fixed top-0 left-0 right-0 z-[9999] flex items-center gap-3 px-6 py-3 bg-rose-600 text-white text-sm font-semibold shadow-lg";
+        banner.innerHTML = `
+            <span class="material-symbols-outlined text-[20px] shrink-0">warning</span>
+            <span class="flex-1">No AI providers available.
+              Install <a href="https://ollama.com" target="_blank" class="underline font-bold">Ollama</a> locally
+              or add API keys to <code class="bg-rose-700 px-1 rounded">backend/.env</code>.
+            </span>
+            <button onclick="this.parentElement.remove()" class="ml-4 text-white/80 hover:text-white text-xl leading-none">&times;</button>
+          `;
+        document.body.prepend(banner);
+      }
+    }
+
+    function setRing(id, score) {
+      const el = document.getElementById(id);
+      if (el) el.setAttribute("stroke-dasharray", score + ", 100");
+    }
+
+    function getEnrichedResumes(u) {
+      const rawResumes = u.uploadedResumes || [];
+      const groups = {};
+      const groupOrder = [];
+
+      rawResumes.forEach((r) => {
+        let gid = r.resumeGroupId || r.id;
+        // Legacy check: if gid is numeric '1', treat it as unique unless it's genuinely grouped
+        if (gid === 1 || gid === "1") gid = r.id;
+
+        if (!groups[gid]) {
+          groups[gid] = [];
+          groupOrder.push(gid);
+        }
+        groups[gid].push(r);
+      });
+
+      return rawResumes.map((r) => {
+        let gid = r.resumeGroupId || r.id;
+        if (gid === 1 || gid === "1") gid = r.id;
+
+        const groupNumericIndex = groupOrder.indexOf(gid) + 1;
+        const indexInGroup = groups[gid].indexOf(r);
+        const minor = r.versionMinor || indexInGroup + 1;
+        const versionLabel = groupNumericIndex + "." + minor;
+
+        return Object.assign({}, r, {
+          computedGroupId: gid,
+          computedGroupIndex: groupNumericIndex,
+          computedMinor: minor,
+          computedVersionLabel: versionLabel,
+        });
+      });
+    }
+
+    async function fetchAIMissingSkills(matchedSkills, jobDesc, containerEl) {
+      if (!containerEl) return;
+
+      // If no job description captured, fall back to empty state
+      if (!jobDesc || jobDesc.trim().length < 20) {
+        containerEl.innerHTML =
+          '<span class="text-xs text-slate-400 italic">Paste a job description and re-run analysis to see AI skill gap recommendations.</span>';
+        return;
+      }
+
+      try {
+        const res = await fetch(
+          "http://localhost:5000/api/ats/missing_skills",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              matched_skills: matchedSkills,
+              job_description: jobDesc,
+            }),
+          },
+        );
+        const data = await res.json();
+
+        if (!data.success) {
+          containerEl.innerHTML =
+            '<span class="text-xs text-slate-400 italic">AI skill gap analysis unavailable — check API keys.</span>';
+          return;
+        }
+
+        const skills = data.missing_skills || [];
+
+        if (skills.length === 0) {
+          containerEl.innerHTML =
+            '<span class="text-xs text-emerald-600 font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-base">check_circle</span>AI found no critical gaps — your skills match this role well! 🎉</span>';
+          return;
+        }
+
+        const priorityConfig = {
+          high: {
+            color: "bg-rose-50 border-rose-300 text-rose-700",
+            badge: "bg-rose-100 text-rose-700",
+            dot: "🔴",
+            label: "High",
+          },
+          medium: {
+            color: "bg-amber-50 border-amber-200 text-amber-700",
+            badge: "bg-amber-100 text-amber-700",
+            dot: "🟡",
+            label: "Medium",
+          },
+          low: {
+            color: "bg-slate-50 border-slate-200 text-slate-600",
+            badge: "bg-slate-100 text-slate-600",
+            dot: "🟢",
+            label: "Low",
+          },
+        };
+
+        containerEl.innerHTML = skills
+          .map((s) => {
+            const cfg = priorityConfig[s.priority] || priorityConfig.medium;
+            const tip = s.learn_tip ? `Learn: ${s.learn_tip}` : "";
+            const reason = s.reason || "";
+            const tooltip = [reason, tip].filter(Boolean).join(" | ");
+            return `<span
+              class="group relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-sm font-semibold border-2 cursor-help transition-all ${cfg.color}"
+              title="${tooltip.replace(/"/g, "&quot;")}"
+            >
+              <span class="text-xs">${cfg.dot}</span>
+              ${s.skill}
+              <span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full ml-1 ${cfg.badge}">${cfg.label}</span>
+              ${tip ? `<span class="absolute bottom-full left-0 mb-2 z-20 bg-slate-800 text-white text-xs rounded-xl px-3 py-2 max-w-[260px] whitespace-normal shadow-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">${tooltip}</span>` : ""}
+            </span>`;
+          })
+          .join("");
+      } catch (e) {
+        containerEl.innerHTML =
+          '<span class="text-xs text-slate-400 italic">Could not fetch AI skill gap analysis.</span>';
+      }
+    }
+
+    function _fmtTimestamp(iso) {
+      try {
+        const d = new Date(iso);
+        return (
+          d.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          }) +
+          " · " +
+          d.toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+        );
+      } catch (e) {
+        return iso || "";
+      }
+    }
+
+    // ── Score History (Merged Evolution + Comparison) ───────────────
+    function renderEvolutionTab() {
+      const user = getUser();
+      const resumes = getEnrichedResumes(user);
+      const activeId = user.activeResumeId || resumes[0]?.id || null;
+      const container = document.getElementById("evolution-chart-container");
+      const headingEl = document.getElementById("evolution-chart-heading");
+      if (!container) return;
+
+      const activeResume = (resumes || []).find((r) => r.id === activeId);
+
+      // Update heading
+      if (headingEl && activeResume) {
+        const baseName =
+          activeResume.filename.length > 30
+            ? "..." + activeResume.filename.slice(-28)
+            : activeResume.filename;
+        headingEl.textContent = `ATS Score History — ${baseName}`;
+      }
+
+      const jdHistory = (activeResume?.atsHistory || []).map((h) => ({
+        ...h,
+        _type: "jd",
+      }));
+      const normalHistory = (activeResume?.normalATSHistory || []).map(
+        (h) => ({ ...h, _type: "normal" }),
+      );
+
+      const combinedHistory = [...jdHistory, ...normalHistory].sort(
+        (a, b) => new Date(a.timestamp) - new Date(b.timestamp),
+      );
+
+      if (combinedHistory.length > 0) {
+        container.innerHTML = combinedHistory
+          .map((entry) => {
+            let score = 0;
+            let colorClass = "";
+            let titleText = "";
+            let pillClass = "";
+
+            if (entry._type === "jd") {
+              score = entry.ats_score || 0;
+              colorClass =
+                score >= 85
+                  ? "bg-emerald-400"
+                  : score >= 70
+                    ? "bg-blue-400"
+                    : score >= 50
+                      ? "bg-amber-400"
+                      : "bg-rose-400";
+              titleText =
+                (entry.jobDesc
+                  ? entry.jobDesc.slice(0, 40) + "…"
+                  : "JD ATS") +
+                ": " +
+                score +
+                "%";
+              pillClass =
+                "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20";
+            } else {
+              score = entry.format_score || 0;
+              colorClass = "bg-slate-400 dark:bg-slate-600";
+              titleText = "Resume Format: " + score;
+              pillClass =
+                "text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800";
+            }
+
+            const heightPct = Math.max(10, score);
+            const label = _fmtTimestamp(entry.timestamp);
+
+            return `<div class="flex flex-col items-center justify-end gap-1 flex-1 min-w-[52px] max-w-[100px] h-full group relative">
+              <div class="w-full ${colorClass} rounded-t-lg transition-all duration-500 hover:opacity-80 cursor-pointer relative" style="height:${heightPct}%" title="${titleText}">
+                <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] font-bold px-2 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">${score}</div>
+              </div>
+              <span class="text-[10px] font-bold px-1.5 py-0.5 rounded ${pillClass}">${entry._type === "jd" ? "JD " : "FMT "}${score}</span>
+              <span class="text-[9px] text-slate-400 text-center leading-tight max-w-[90px] truncate" title="${label}">${label}</span>
+            </div>`;
+          })
+          .join("");
+
+        // After rendering the chart, render the comparison cards below it
+        renderCompareTab();
+        return;
+      }
+
+      container.innerHTML =
+        '<div class="w-full text-center text-slate-500 italic flex text-sm flex-col items-center justify-center h-full px-4 gap-2"><span class="material-symbols-outlined text-3xl opacity-50">show_chart</span><p>Run ATS analysis to start tracking your score history here.</p></div>';
+      
+      // Clear comparison container if no history
+      const compContainer = document.getElementById("comparison-container");
+      if (compContainer) compContainer.innerHTML = '';
+    }
+
+    function renderCompareTab() {
+      const user = getUser();
+      const resumes = getEnrichedResumes(user);
+      const activeId =
+        user.activeResumeId || (resumes[0] ? resumes[0].id : null);
+      const container = document.getElementById("comparison-container");
+      if (!container) return;
+
+      const activeResume = resumes.find((r) => r.id === activeId);
+      if (!activeResume) {
+        container.innerHTML =
+          '<div class="col-span-2 text-center text-slate-500 italic py-8">Upload a resume first to enable comparison.</div>';
+        return;
+      }
+
+      const jdHistory = (activeResume.atsHistory || [])
+        .slice()
+        .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      const fmtHistory = (activeResume.normalATSHistory || [])
+        .slice()
+        .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+      let htmlBlocks = [];
+
+      // JD Comparison logic (if at least 2 runs)
+      if (jdHistory.length >= 2) {
+        const cur = jdHistory[0];
+        const prev = jdHistory[1];
+        const curSkills = cur.matched_keywords || [];
+        const prevSkills = prev.matched_keywords || [];
+        const addedSkills = curSkills.filter((s) => !prevSkills.includes(s));
+        const keptSkills = curSkills.filter((s) => prevSkills.includes(s));
+        const droppedSkills = prevSkills.filter(
+          (s) => !curSkills.includes(s),
+        );
+        const scoreDiff = cur.ats_score - prev.ats_score;
+        const diffBadge =
+          scoreDiff > 0
+            ? `<span class="ml-2 text-emerald-600 font-bold text-xs">▲ +${scoreDiff}</span>`
+            : scoreDiff < 0
+              ? `<span class="ml-2 text-rose-500 font-bold text-xs">▼ ${scoreDiff}</span>`
+              : `<span class="ml-2 text-slate-500 font-bold text-xs">↔ No change</span>`;
+
+        htmlBlocks.push(`
+            <div class="col-span-1 border-2 border-blue-400 rounded-2xl p-5 shadow-sm relative">
+               <span class="absolute top-0 right-0 bg-blue-500 text-white text-[10px] uppercase font-bold px-2 py-0.5 rounded-bl-lg rounded-tr-xl">JD-TARGETED</span>
+               <h3 class="font-bold text-sm mb-2 text-blue-600">Latest JD Comparision</h3>
+               <div class="flex items-center justify-between mb-2">
+                 <p class="text-xs text-slate-500">${_fmtTimestamp(prev.timestamp)} → ${_fmtTimestamp(cur.timestamp)}</p>
+                 <div class="flex items-center">
+                   <span class="text-xs font-black ${cur.ats_score >= prev.ats_score ? "text-emerald-600 bg-emerald-50" : "text-rose-600 bg-rose-50"} px-2 py-1 rounded">${prev.ats_score}% → ${cur.ats_score}%</span>
+                   ${diffBadge}
+                 </div>
+               </div>
+               <p class="text-xs text-slate-400 italic mb-2 truncate">JD: ${cur.jobDesc || "N/A"}</p>
+               <div class="flex flex-wrap gap-1 mt-2">
+                 ${addedSkills
+            .slice(0, 5)
+            .map(
+              (s) =>
+                `<span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">+ ${s}</span>`,
+            )
+            .join("")}
+                 ${droppedSkills
+            .slice(0, 5)
+            .map(
+              (s) =>
+                `<span class="px-1.5 py-0.5 rounded bg-rose-50 text-rose-600 text-[10px] line-through">- ${s}</span>`,
+            )
+            .join("")}
+                 ${addedSkills.length === 0 && droppedSkills.length === 0 ? '<span class="text-[10px] text-slate-400">No skill changes.</span>' : ""}
+                 ${addedSkills.length + droppedSkills.length > 10 ? '<span class="text-[10px] text-slate-400">...</span>' : ""}
+               </div>
+            </div>
+          `);
+      }
+
+      if (fmtHistory.length >= 2) {
+        const cur = fmtHistory[0];
+        const prev = fmtHistory[1];
+        const scoreDiff = (cur.format_score || 0) - (prev.format_score || 0);
+        const diffBadge =
+          scoreDiff > 0
+            ? `<span class="ml-2 text-emerald-600 font-bold text-xs">▲ +${scoreDiff}</span>`
+            : scoreDiff < 0
+              ? `<span class="ml-2 text-rose-500 font-bold text-xs">▼ ${scoreDiff}</span>`
+              : `<span class="ml-2 text-slate-500 font-bold text-xs">↔ No change</span>`;
+
+        htmlBlocks.push(`
+            <div class="col-span-1 border-2 border-slate-300 dark:border-slate-700 rounded-2xl p-5 shadow-sm relative">
+               <span class="absolute top-0 right-0 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-[10px] uppercase font-bold px-2 py-0.5 rounded-bl-lg rounded-tr-xl">NORMAL FORMAT</span>
+               <h3 class="font-bold text-sm mb-2 text-slate-700 dark:text-slate-300">Latest Format Comparision</h3>
+               <div class="flex items-center justify-between mb-2">
+                 <p class="text-xs text-slate-500">${_fmtTimestamp(prev.timestamp)} → ${_fmtTimestamp(cur.timestamp)}</p>
+                 <div class="flex items-center">
+                   <span class="text-xs font-black px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">${prev.format_score || 0} → ${cur.format_score || 0}</span>
+                   ${diffBadge}
+                 </div>
+               </div>
+               <p class="text-[11px] text-slate-500 mt-2">${cur.format_score > prev.format_score ? "You improved the format of your resume!" : scoreDiff < 0 ? "Format score dropped since last edit." : "No change in format score."}</p>
+            </div>
+          `);
+      }
+
+      if (htmlBlocks.length > 0) {
+        container.innerHTML = htmlBlocks.join("");
+      } else {
+        container.innerHTML =
+          '<div class="col-span-2 text-center text-slate-500 italic py-10 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-2xl flex flex-col items-center justify-center"><span class="material-symbols-outlined text-4xl mb-3 opacity-50">compare</span><p class="text-sm font-medium text-slate-600 dark:text-slate-400">Run ATS analysis at least twice to compare results.</p></div>';
+      }
+    }
+
+    // ── Update all dynamic UI from analysis data ─────────────────────────
+    function applyAnalysis(analysis, resumeCount, activeIndex) {
+      if (!analysis) return;
+
+      const score = analysis.ats_score || 0;
+      const formatScore =
+        analysis.section_scores?.format_ats_friendliness || score;
+      const potential = Math.min(
+        100,
+        score + (analysis.missing_keywords?.length || 0) * 2 + 5,
+      );
+      const pendingFixes =
+        (analysis.improvements || []).length +
+        (analysis.missing_keywords || []).length;
+      const lbl = scoreLabel(score);
+
+      // ── Stat Cards ──────────────────────────────────────────────────────
+      document.getElementById("stat-ats-score").textContent = score;
+      setRing("stat-ats-ring", score);
+      const atsLabel = document.getElementById("stat-ats-label");
+      if (atsLabel) atsLabel.textContent = "JD Match Score";
+      const atsBadge = document.getElementById("stat-ats-badge");
+      atsBadge.textContent = lbl.text;
+      atsBadge.className =
+        "mt-1 text-[10px] px-2 py-0.5 rounded-full font-bold uppercase " + lbl.cls;
+
+      document.getElementById("stat-current-score").textContent = score + "%";
+      const curLbl = scoreLabel(score);
+      const curBadge = document.getElementById("stat-current-badge");
+      curBadge.textContent = "\u2191 " + score + "% ATS";
+      curBadge.className =
+        "mt-1 text-xs px-2 py-0.5 rounded-full font-bold " + curLbl.cls;
+
+      document.getElementById("stat-pending-fixes").textContent =
+        pendingFixes;
+      const fixBadge = document.getElementById("stat-fixes-badge");
+      const highPriority = (analysis.improvements || []).slice(0, 3).length;
+      fixBadge.textContent = highPriority + " High Priority";
+      fixBadge.className =
+        "mt-1 text-xs px-2 py-0.5 rounded-full font-bold " +
+        (pendingFixes > 0
+          ? "bg-amber-100 text-amber-700"
+          : "bg-emerald-100 text-emerald-700");
+
+      document.getElementById("stat-versions").textContent = resumeCount;
+      const verBadge = document.getElementById("stat-versions-badge");
+      verBadge.textContent = "V" + activeIndex + " Active";
+      verBadge.className =
+        "mt-1 text-xs px-2 py-0.5 rounded-full font-bold bg-blue-100 text-blue-700";
+
+      document.getElementById("stat-potential-score").textContent = potential;
+      const potBadge = document.getElementById("stat-potential-badge");
+      potBadge.textContent = "+" + (potential - score) + " pts boost";
+      potBadge.className =
+        "mt-1 text-xs px-2 py-0.5 rounded-full font-bold bg-emerald-100 text-emerald-700";
+
+      // ── SCORE BREAKDOWN TAB LOGIC ────────────────────────────────────────
+      if (analysis) {
+        const totalScore = analysis.ats_score || 0;
+        // Fallback if breakdown object is missing
+        const breakdown = analysis.breakdown || {};
+        const resume_score =
+          breakdown.resume_score ||
+          analysis.section_scores?.format_ats_friendliness ||
+          totalScore;
+        const skill_breadth =
+          breakdown.skill_breadth ||
+          Math.min(15, analysis.matched_keywords?.length || 0);
+        const learning_consistency = breakdown.learning_consistency || 3;
+
+        // Text values
+        document.getElementById("donut-total-score").textContent = totalScore;
+        document.getElementById("breakdown-resume-val").textContent =
+          resume_score + "/100";
+        document.getElementById("breakdown-skill-val").textContent =
+          skill_breadth + "/15";
+        document.getElementById("breakdown-learning-val").textContent =
+          learning_consistency + " Day Streak";
+
+        // Progress bars
+        const breakdownResumeBar = document.getElementById(
+          "breakdown-resume-bar",
+        );
+        if (breakdownResumeBar)
+          breakdownResumeBar.style.width = resume_score + "%";
+
+        const breakdownSkillBar = document.getElementById(
+          "breakdown-skill-bar",
+        );
+        if (breakdownSkillBar)
+          breakdownSkillBar.style.width =
+            Math.min((skill_breadth / 15) * 100, 100) + "%";
+
+        const breakdownLearningBar = document.getElementById(
+          "breakdown-learning-bar",
+        );
+        // Assuming 30 days is 100% just for visualization
+        if (breakdownLearningBar)
+          breakdownLearningBar.style.width =
+            Math.min((learning_consistency / 30) * 100, 100) + "%";
+
+        // Potential boost simple placeholder logic
+        const potentialBoost = Math.max(0, 100 - totalScore);
+        document.getElementById("breakdown-potential-score").textContent =
+          totalScore + potentialBoost;
+        document.getElementById("breakdown-potential-boost").textContent =
+          `+${potentialBoost} pts boost`;
+
+        // SVG Donut Logic
+        // Resume Circle: r=45, circumference = 2 * PI * 45 ≈ 283
+        if (document.getElementById("donut-resume-circle")) {
+          const circResume = 283;
+          document.getElementById(
+            "donut-resume-circle",
+          ).style.strokeDashoffset =
+            circResume - (resume_score / 100) * circResume;
+        }
+        // Skills Circle: r=35, circumference = 2 * PI * 35 ≈ 220
+        if (document.getElementById("donut-skills-circle")) {
+          const circSkills = 220;
+          document.getElementById(
+            "donut-skills-circle",
+          ).style.strokeDashoffset =
+            circSkills - (skill_breadth / 15) * circSkills;
+        }
+        // Learning Circle: r=25, circumference = 2 * PI * 25 ≈ 157
+        if (document.getElementById("donut-learning-circle")) {
+          const circLearning = 157;
+          document.getElementById(
+            "donut-learning-circle",
+          ).style.strokeDashoffset =
+            circLearning - (learning_consistency / 30) * circLearning;
+        }
+      }
+
+      // ── Format Score Ring ────────────────────────────────────────────────
+      document.getElementById("format-score-number").textContent =
+        formatScore;
+      setRing("format-ring", formatScore);
+      const fmtLbl = scoreLabel(formatScore);
+      const fmtBadge = document.getElementById("format-score-badge");
+      fmtBadge.textContent = fmtLbl.text;
+      fmtBadge.className =
+        "text-xs font-bold px-3 py-1 rounded-full " + fmtLbl.cls;
+      document.getElementById("format-score-summary").textContent =
+        analysis.summary || "Analysis complete.";
+
+      // ── Skill Gap Chips ──────────────────────────────────────────────────
+      const found = document.getElementById("found-skills-container");
+      const missing = document.getElementById("missing-skills-container");
+      const missingLabel = document.getElementById("missing-skills-label");
+
+      found.innerHTML =
+        (analysis.matched_keywords || [])
+          .map(
+            (k) =>
+              `<span class="bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 px-3 py-1.5 rounded-full text-sm font-medium border border-emerald-100">${k}</span>`,
+          )
+          .join("") ||
+        '<span class="text-xs text-slate-400 italic">No matches found</span>';
+
+      // Show AI-powered loading state for missing skills
+      missing.innerHTML = `
+          <div class="flex items-center gap-2 text-sm text-slate-500 animate-pulse col-span-2">
+            <span class="material-symbols-outlined text-blue-400 text-lg">smart_toy</span>
+            <span>AI is analyzing your specific skill gaps...</span>
+          </div>`;
+      if (missingLabel)
+        missingLabel.textContent = "Missing / Critical (AI Analysis)";
+
+      // Store job description for the AI call
+      window._lastJobDesc = window._lastJobDesc || "";
+
+      // Trigger AI missing skills analysis asynchronously
+      const matchedKws = analysis.matched_keywords || [];
+      fetchAIMissingSkills(matchedKws, window._lastJobDesc, missing);
+
+      // ── Render AI Suggestions ───────────────────────────────────────────
+      const suggestionsContainer = document.getElementById(
+        "ai-suggestions-list",
+      );
+      if (suggestionsContainer) {
+        if (analysis.improvements && analysis.improvements.length > 0) {
+          suggestionsContainer.innerHTML = analysis.improvements
+            .map(
+              (imp, idx) => `
+              <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-5 flex gap-4 items-start hover:border-blue-200 transition-colors">
+                <div class="size-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 mt-1">
+                  <span class="material-symbols-outlined text-lg">auto_awesome</span>
+                </div>
+                <div>
+                   <h3 class="font-bold text-slate-800 dark:text-white mb-2">Suggestion ${idx + 1}</h3>
+                   <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${imp}</p>
+                </div>
+              </div>
+            `,
+            )
+            .join("");
+        } else {
+          suggestionsContainer.innerHTML = `<div class="p-8 text-center text-slate-500 italic bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800">No specific improvements suggested by ATS. Your resume looks great!</div>`;
+        }
+      }
+
+      // Show the data panel
+      const normalAtsSection = document.getElementById("normal-ats-section");
+      const atsDivider = document.getElementById("ats-section-divider");
+      if (normalAtsSection) normalAtsSection.classList.remove("hidden");
+      if (atsDivider) atsDivider.classList.remove("hidden");
+
+      document.getElementById("ats-no-resume-panel").classList.add("hidden");
+      document.getElementById("ats-data-panel").classList.remove("hidden");
+
+      // NEW: keep the input box visible below by showing the panel but hiding its title
+      const atsInputPanel = document.getElementById("ats-no-data-panel");
+      
+      // If this was a prefilled analysis from a job role, we hide the "Run Another Analysis" section as requested.
+      if (window._isPrefilledAnalysis) {
+        atsInputPanel.classList.add("hidden");
+        return; 
+      }
+
+      atsInputPanel.classList.remove("hidden");
+      const icon = atsInputPanel.querySelector(
+        "span.material-symbols-outlined",
+      );
+      if (icon) icon.classList.add("hidden");
+      const heading = document.querySelector("#ats-no-data-panel h3");
+      if (heading) heading.textContent = "Run Another Analysis";
+      const msg = document.querySelector("#ats-no-data-panel p");
+      if (msg)
+        msg.textContent =
+          "Paste a new job description below to re-evaluate your resume.";
+
+      // Move it down naturally in the UI flow by placing it after ats-data-panel within tab-ats
+      const tabAts = document.getElementById("tab-ats");
+      tabAts.appendChild(atsInputPanel);
+
+      // Update Tab 5 and 6
+      renderEvolutionTab();
+      renderCompareTab();
+    }
+
+    function showNoResumesState() {
+      document
+        .getElementById("ats-no-resume-panel")
+        .classList.remove("hidden");
+
+      const normalAtsSection = document.getElementById("normal-ats-section");
+      const atsDivider = document.getElementById("ats-section-divider");
+      if (normalAtsSection) normalAtsSection.classList.add("hidden");
+      if (atsDivider) atsDivider.classList.add("hidden");
+
+      // Also show normal-resume-panel's "no resume" state
+      const np = document.getElementById("normal-ats-no-resume");
+      if (np) np.classList.remove("hidden");
+      const dp = document.getElementById("normal-ats-data-panel");
+      if (dp) dp.classList.add("hidden");
+      const pend = document.getElementById("normal-ats-pending");
+      if (pend) pend.classList.add("hidden");
+
+      document.getElementById("ats-no-data-panel").classList.add("hidden");
+      document.getElementById("ats-data-panel").classList.add("hidden");
+    }
+
+    function showNoAnalysisState() {
+      const normalAtsSection = document.getElementById("normal-ats-section");
+      const atsDivider = document.getElementById("ats-section-divider");
+      if (normalAtsSection) normalAtsSection.classList.remove("hidden");
+      if (atsDivider) atsDivider.classList.remove("hidden");
+
+      document.getElementById("ats-no-resume-panel").classList.add("hidden");
+      // We do NOT hide the entire tab's content anymore, just the JD section
+      const atsInputPanel = document.getElementById("ats-no-data-panel");
+      atsInputPanel.classList.remove("hidden");
+      const icon = atsInputPanel.querySelector(
+        "span.material-symbols-outlined",
+      );
+      if (icon) icon.classList.remove("hidden");
+      const heading = document.querySelector("#ats-no-data-panel h3");
+      if (heading) heading.textContent = "No JD-Targeted Analysis Yet";
+      const msg = document.querySelector("#ats-no-data-panel p");
+      if (msg)
+        msg.textContent =
+          "Paste a job description to get your targeted ATS match score and skill gaps.";
+
+      document.getElementById("ats-data-panel").classList.add("hidden");
+    }
+
+    // ── ATS Analysis call ────────────────────────────────────────────────
+    window.showJobDescInput = function () {
+      document
+        .getElementById("ats-no-data-panel")
+        .scrollIntoView({ behavior: "smooth" });
+    };
+
+    // ── Standalone extraction (used by re-upload flow) ───────────────────
+    window.runExtractionOnly = async function (resumeId, resumeText) {
+      _lockAI("Extracting resume details…");
+      let extractionSuccess = false;
+      try {
+        const res = await fetch("http://localhost:5000/api/ats/extract", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ resume_text: resumeText }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          const u = getUser();
+          const idx = (u.uploadedResumes || []).findIndex(
+            (r) => r.id === resumeId,
+          );
+          if (idx !== -1) {
+            u.uploadedResumes[idx].extractedDetails = data.data;
+            saveUser(u);
+          }
+          // Refresh details tab if this is the active resume
+          if (
+            u.activeResumeId === resumeId &&
+            typeof window.populateResumeDetailsFromActiveResume === "function"
+          ) {
+            window.populateResumeDetailsFromActiveResume();
+          }
+
+          // Auto sync profile if enabled in Profile settings
+          try {
+            const _su = JSON.parse(localStorage.getItem("user") || "{}");
+            const _sKey = "autoSyncProfile_" + (_su.email || "guest");
+            const _syncEnabled = localStorage.getItem(_sKey) === "true";
+            if (_syncEnabled && typeof syncProfile === "function") {
+              await syncProfile(resumeId);
+            }
+          } catch (_e) { }
+          extractionSuccess = true;
+        }
+      } catch (e) {
+        console.error("Extraction failed:", e);
+      } finally {
+        _unlockAI();
+      }
+
+      // Auto run Normal ATS now that extraction is done (will lock again inside)
+      if (extractionSuccess) {
+        const currentUserInfo = getUser();
+        if (currentUserInfo.activeResumeId === resumeId) {
+          // ── CRITICAL: Clear stale ATS results on re-upload ──────────────
+          // When resume text changes (re-upload), clear old analysis results
+          // so the runNormalATSAnalysis guard does not block.
+          // Old scores are already preserved in normalATSHistory / atsHistory.
+          const rIdx = (currentUserInfo.uploadedResumes || []).findIndex(
+            (r) => r.id === resumeId,
+          );
+          if (rIdx !== -1) {
+            // Save old normal ATS to history before clearing
+            const oldNormal = currentUserInfo.uploadedResumes[rIdx].normalATS;
+            if (oldNormal) {
+              if (!Array.isArray(currentUserInfo.uploadedResumes[rIdx].normalATSHistory)) {
+                currentUserInfo.uploadedResumes[rIdx].normalATSHistory = [];
+              }
+              currentUserInfo.uploadedResumes[rIdx].normalATSHistory.push({
+                format_score: oldNormal.score || oldNormal.format_score || 0,
+                timestamp: new Date().toISOString(),
+                note: 'pre-reupload'
+              });
+            }
+            // Clear stale results so fresh analysis runs
+            delete currentUserInfo.uploadedResumes[rIdx].normalATS;
+            delete currentUserInfo.uploadedResumes[rIdx].atsAnalysis;
+            saveUser(currentUserInfo);
+          }
+          window.runNormalATSAnalysis();
+        }
+      }
+    };
+
+    // ── Normal ATS (Resume Format Only) ───────────────────────────────────
+    window.runNormalATSAnalysis = async function () {
+      if (window._isAIWorking) return; // Prevent concurrent AI tasks
+      const user = getUser();
+      let resumes = getEnrichedResumes(user);
+      let activeId = user.activeResumeId || resumes[0]?.id;
+      const activeResume = resumes.find((r) => r.id === activeId);
+
+      if (!activeResume || !activeResume.extractedText) return;
+      // Allow re-analysis: skip only if normalATS exists AND extractedText hasn't changed
+      if (activeResume.normalATS && activeResume.normalATS._analyzedTextHash === simpleHash(activeResume.extractedText)) return;
+
+      _lockAI("AI is analyzing resume format…");
+
+      // UI state: analyzing format
+      const noRes = document.getElementById("normal-ats-no-resume");
+      const pend = document.getElementById("normal-ats-pending");
+      if (noRes) noRes.classList.add("hidden");
+      if (pend) pend.classList.add("hidden");
+      const loadingEl = document.getElementById("normal-ats-loading");
+      if (loadingEl) loadingEl.classList.remove("hidden");
+      const btn = document.getElementById("run-normal-ats-btn");
+      if (btn) btn.disabled = true;
+
+      try {
+        const res = await fetch(
+          "http://localhost:5000/api/ats/analyze-normal",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ resume_text: activeResume.extractedText }),
+          },
+        );
+        const data = await res.json();
+        if (res.status === 503 || data.error_code === "no_providers") {
+          showNoProvidersAlert();
+          const pendNP = document.getElementById("normal-ats-pending");
+          if (pendNP) {
+            pendNP.classList.remove("hidden");
+            pendNP.innerHTML = `<span class="text-rose-500 font-semibold">⚠️ No AI available.
+                Install <a href='https://ollama.com' target='_blank' class='underline'>Ollama</a>
+                or add keys to backend/.env.</span>`;
+          }
+          return;
+        }
+        if (data.success) {
+          const idx = user.uploadedResumes.findIndex(
+            (r) => r.id === activeId,
+          );
+          if (idx !== -1) {
+            user.uploadedResumes[idx].normalATS = data.data;
+            // Store hash of the text that was analyzed for re-upload detection
+            user.uploadedResumes[idx].normalATS._analyzedTextHash = simpleHash(activeResume.extractedText);
+            if (!Array.isArray(user.uploadedResumes[idx].normalATSHistory)) {
+              user.uploadedResumes[idx].normalATSHistory = [];
+            }
+            if (data.data.history_record) {
+              user.uploadedResumes[idx].normalATSHistory.push(
+                data.data.history_record,
+              );
+              if (user.uploadedResumes[idx].normalATSHistory.length > 50) {
+                user.uploadedResumes[idx].normalATSHistory =
+                  user.uploadedResumes[idx].normalATSHistory.slice(-50);
+              }
+            }
+            saveUser(user);
+            syncToDB(user);
+            
+            // clear the old AI match data so new skills will force the CTA to reappear
+            // Trigger AI Match pre-calculation so it's ready when user visits Jobs page
+            if (window.AIJobService) {
+                console.log('[ResumeInsights] Triggering AI match pre-calculation for resume:', activeId);
+                // We clear cache explicitly first if needed, but loadSemanticMatches will handle it if we tell it to
+                // For now, let's just clear it and call it.
+                localStorage.removeItem('ai_match_cache_' + activeId);
+                window.AIJobService.loadSemanticMatches().then(res => {
+                    console.log('[ResumeInsights] AI match pre-calculation finished:', res.success);
+                    if (res.success) {
+                        showSyncToast("AI Matches updated for this resume!");
+                    }
+                });
+            }
+
+            // Apply immediately to UI
+            resumes = getEnrichedResumes(user);
+            applyNormalAnalysis(
+              resumes.find((r) => r.id === activeId)?.normalATS,
+            );
+            if (typeof renderEvolutionTab === "function")
+              renderEvolutionTab();
+            if (typeof renderCompareTab === "function") renderCompareTab();
+          }
+        }
+      } catch (e) {
+        console.error("Normal ATS error", e);
+        const pendErr = document.getElementById("normal-ats-pending");
+        if (pendErr) {
+          pendErr.classList.remove("hidden");
+          pendErr.innerHTML = `<span class="text-rose-500 font-semibold">⚠️ AI Analysis Failed. Please try again or check backend logs.</span>`;
+        }
+      } finally {
+        if (loadingEl) loadingEl.classList.add("hidden");
+        if (btn) btn.disabled = false;
+        _unlockAI();
+      }
+    };
+
+    function applyNormalAnalysis(data) {
+      if (document.getElementById("normal-ats-no-resume"))
+        document
+          .getElementById("normal-ats-no-resume")
+          .classList.add("hidden");
+
+      if (!data) {
+        const pend = document.getElementById("normal-pending");
+        const dataPanel = document.getElementById("normal-data-panel");
+        if (dataPanel) dataPanel.classList.add("hidden");
+        if (pend) pend.classList.remove("hidden");
+        return;
+      }
+
+      // Show data panel
+      const normLoading2 = document.getElementById("normal-ats-loading");
+      if (normLoading2) normLoading2.classList.add("hidden");
+      const normPending2 = document.getElementById("normal-ats-pending");
+      if (normPending2) normPending2.classList.add("hidden");
+
+      const dataPanel = document.getElementById("normal-ats-data-panel");
+      if (dataPanel) dataPanel.classList.remove("hidden");
+
+      // Update normal format scores (inside normal ATS section)
+      const normScoreNumEl = document.getElementById(
+        "normal-format-score-number",
+      );
+      if (normScoreNumEl)
+        normScoreNumEl.textContent = data.overall_score || 0;
+      setRing("normal-format-ring", data.overall_score || 0);
+      const lNorm = scoreLabel(data.overall_score || 0);
+      const fbNorm = document.getElementById("normal-format-score-badge");
+      if (fbNorm) {
+        fbNorm.textContent = lNorm.text;
+        fbNorm.className =
+          "text-xs font-bold px-3 py-1 rounded-full " + lNorm.cls;
+      }
+      const normFormatSummary = document.getElementById(
+        "normal-format-score-summary",
+      );
+      if (normFormatSummary)
+        normFormatSummary.textContent = data.summary || "Analysis complete.";
+
+      // Update Tab 4 Breakdown Format bars
+      const bdScore = document.getElementById("bd-normal-score");
+      if (bdScore) bdScore.textContent = data.overall_score || 0;
+      setRing("bd-normal-ring", data.overall_score || 0);
+
+      const formatBarsWrap = document.getElementById("normal-breakdown-bars");
+      if (formatBarsWrap) {
+        const sFormatting = data.section_scores?.format_ats_friendliness || 0;
+        const sExperience = data.section_scores?.experience_quality || 0;
+        const sCompleteness = data.section_scores?.completeness || 0;
+
+        formatBarsWrap.innerHTML = `
+              <div class="flex justify-between text-sm mb-1"><span class="font-medium text-slate-700 dark:text-slate-300">Structure & Formatting</span><span class="font-bold text-blue-600">${sFormatting}/100</span></div>
+              <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 mb-4"><div class="bg-blue-500 h-2 rounded-full transition-all duration-1000" style="width: ${sFormatting}%"></div></div>
+
+              <div class="flex justify-between text-sm mb-1"><span class="font-medium text-slate-700 dark:text-slate-300">Experience Clarity</span><span class="font-bold text-emerald-600">${sExperience}/100</span></div>
+              <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 mb-4"><div class="bg-emerald-500 h-2 rounded-full transition-all duration-1000" style="width: ${sExperience}%"></div></div>
+
+              <div class="flex justify-between text-sm mb-1"><span class="font-medium text-slate-700 dark:text-slate-300">Completeness & Language</span><span class="font-bold text-purple-600">${sCompleteness}/100</span></div>
+              <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2"><div class="bg-purple-500 h-2 rounded-full transition-all duration-1000" style="width: ${sCompleteness}%"></div></div>
+           `;
+      }
+
+      const bdSummary = document.getElementById("bd-normal-summary");
+      if (bdSummary) {
+        bdSummary.textContent =
+          data.summary ||
+          (data.strengths && data.strengths[0]) ||
+          "Format analysis complete.";
+      }
+
+      // ────────────────── NEW: Update Suggestions Tab ──────────────────
+      const suggestionsContainer = document.getElementById("ai-suggestions-list");
+      if (suggestionsContainer) {
+        if (data.improvements && data.improvements.length > 0) {
+          suggestionsContainer.innerHTML = data.improvements
+            .map(
+              (imp, idx) => `
+              <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-5 flex gap-4 items-start hover:border-blue-200 transition-colors">
+                <div class="size-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center shrink-0 mt-1">
+                  <span class="material-symbols-outlined text-lg">format_paint</span>
+                </div>
+                <div>
+                   <h3 class="font-bold text-slate-800 dark:text-white mb-2">Format Suggestion ${idx + 1}</h3>
+                   <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${imp}</p>
+                </div>
+              </div>
+            `,
+            )
+            .join("");
+        } else {
+          suggestionsContainer.innerHTML = `<div class="p-8 text-center text-slate-500 italic bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800">No format improvements needed. Your layout is ATS-friendly!</div>`;
+        }
+      }
+
+      // ────────────────── NEW: Update Breakdown Donut & Cards Tab ──────────────────
+      const donutTotal = document.getElementById("donut-total-score");
+      if (donutTotal) donutTotal.textContent = data.overall_score || 0;
+      setRing("donut-resume-circle", data.overall_score || 0);
+
+      // Update the 3 cards in the Breakdown tab if no JD analysis
+      const bdResumeVal = document.getElementById("breakdown-resume-val");
+      if (bdResumeVal) bdResumeVal.textContent = (data.overall_score || 0) + "/100";
+      const bdResumeBar = document.getElementById("breakdown-resume-bar");
+      if (bdResumeBar) bdResumeBar.style.width = (data.overall_score || 0) + "%";
+      const bdResumeMsg = document.getElementById("breakdown-resume-msg");
+      if (bdResumeMsg) bdResumeMsg.textContent = "Your resume format is " + (data.overall_score >= 80 ? "excellent!" : "being analyzed.");
+
+      // Potential Score in Breakdown
+      const bdPotScore = document.getElementById("breakdown-potential-score");
+      if (bdPotScore) bdPotScore.textContent = Math.min(100, (data.overall_score || 0) + (data.improvements?.length || 0) * 5);
+
+
+      // Update top summary cards IF there is no JD targeted analysis present
+      const currentUserData =
+        typeof getUser === "function" ? getUser() : null;
+      if (currentUserData) {
+        const cResume = (currentUserData.uploadedResumes || []).find(
+          (r) => r.id === currentUserData.activeResumeId,
+        );
+        if (cResume && !cResume.atsAnalysis) {
+          const oScore = data.overall_score || 0;
+          const imps = (data.improvements || []).length;
+
+          // ATS Score Ring
+          const atsScoreEl = document.getElementById("stat-ats-score");
+          if (atsScoreEl) atsScoreEl.textContent = oScore;
+          if (typeof setRing === "function") setRing("stat-ats-ring", oScore);
+          const atsLabel = document.getElementById("stat-ats-label");
+          if (atsLabel) atsLabel.textContent = "Format Score";
+          const atsBadge = document.getElementById("stat-ats-badge");
+          if (atsBadge) {
+            const sl = typeof scoreLabel === "function" ? scoreLabel(oScore) : { text: "Analyzed", cls: "bg-blue-100 text-blue-700" };
+            atsBadge.textContent = sl.text;
+            atsBadge.className =
+              "mt-1 text-[10px] px-2 py-0.5 rounded-full font-bold uppercase " + sl.cls;
+          }
+
+          // Current Score
+          const curScoreEl = document.getElementById("stat-current-score");
+          if (curScoreEl) curScoreEl.textContent = oScore + "%";
+          const curBadge = document.getElementById("stat-current-badge");
+          if (curBadge) {
+            const sl =
+              typeof scoreLabel === "function"
+                ? scoreLabel(oScore)
+                : { cls: "bg-slate-100 text-slate-500" };
+            curBadge.textContent = "Resume Format";
+            curBadge.className =
+              "mt-1 text-xs px-2 py-0.5 rounded-full font-bold " + sl.cls;
+          }
+
+          // Pending Fixes
+          const fixesEl = document.getElementById("stat-pending-fixes");
+          if (fixesEl) fixesEl.textContent = imps;
+          const fixesBadge = document.getElementById("stat-fixes-badge");
+          if (fixesBadge) {
+            fixesBadge.textContent =
+              imps > 0 ? "Format Fixes" : "Perfect Format";
+            fixesBadge.className =
+              "mt-1 text-xs px-2 py-0.5 rounded-full font-bold " +
+              (imps > 0
+                ? "bg-amber-100 text-amber-700"
+                : "bg-emerald-100 text-emerald-700");
+          }
+
+          // Potential Score
+          const potScoreEl = document.getElementById("stat-potential-score");
+          if (potScoreEl)
+            potScoreEl.textContent = Math.min(100, oScore + imps * 5);
+          const potBadge = document.getElementById("stat-potential-badge");
+          if (potBadge) {
+            potBadge.textContent = "Potential Score";
+            potBadge.className =
+              "mt-1 text-xs px-2 py-0.5 rounded-full font-bold bg-emerald-100 text-emerald-700";
+          }
+        }
+      }
+
+      // Skills chips — HTML uses id="normal-skills-container"
+      const skillsWrap = document.getElementById("normal-skills-container");
+      if (skillsWrap) {
+        skillsWrap.innerHTML = (data.skills || [])
+          .map(
+            (s) =>
+              `<span class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-full text-xs font-bold border border-slate-200 dark:border-slate-700">${s}</span>`,
+          )
+          .join("");
+        if (!data.skills?.length)
+          skillsWrap.innerHTML =
+            '<span class="text-xs italic text-slate-400">No skills detected</span>';
+      }
+
+      // Strengths — HTML uses id="normal-strengths-container"
+      const strengthsWrap = document.getElementById(
+        "normal-strengths-container",
+      );
+      if (strengthsWrap) {
+        strengthsWrap.innerHTML =
+          (data.strengths || [])
+            .map(
+              (s) =>
+                `<div class="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400 mb-2"><span class="material-symbols-outlined text-emerald-500 text-base shrink-0 mt-0.5">check_circle</span><span>${s}</span></div>`,
+            )
+            .join("") ||
+          '<span class="text-xs italic text-slate-400">No strengths found</span>';
+      }
+
+      // Improvements — HTML uses id="normal-improvements-container"
+      const impWrap = document.getElementById(
+        "normal-improvements-container",
+      );
+      if (impWrap) {
+        impWrap.innerHTML =
+          (data.improvements || [])
+            .map(
+              (s) =>
+                `<div class="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400 mb-2"><span class="material-symbols-outlined text-amber-500 text-base shrink-0 mt-0.5">warning</span><span>${s}</span></div>`,
+            )
+            .join("") ||
+          '<span class="text-xs italic text-slate-400">No improvements found</span>';
+      }
+    }
+
+    window.runATSAnalysis = async function () {
+      const user = getUser();
+      let resumes = user.uploadedResumes || [];
+      let activeId = user.activeResumeId || resumes[0]?.id;
+      const activeResume = resumes.find((r) => r.id === activeId);
+      const jobDescInput = document.getElementById("ats-job-desc-input");
+      const jobDesc = (jobDescInput?.value || "").trim();
+
+      if (!activeResume) {
+        alert("Please upload a resume first.");
+        return;
+      }
+      if (!jobDesc) {
+        alert("Please paste a job description first.");
+        return;
+      }
+
+      // Store globally so AI missing skills call can reference it
+      window._lastJobDesc = jobDesc;
+
+      // UI Indicators
+      const banner = document.getElementById("ats-analysis-status-banner");
+      if (banner) banner.classList.remove("hidden");
+      
+      _lockAI("AI is scoring your resume vs. the job description…");
+
+      const resumeText = activeResume.extractedText || activeResume.filename;
+      const loading = document.getElementById("ats-loading");
+      const errEl = document.getElementById("ats-error");
+      const btn = document.getElementById("run-ats-btn");
+
+      loading.classList.remove("hidden");
+      loading.textContent = "⏳ Analyse is running... comparing with active resume...";
+      errEl.classList.add("hidden");
+      btn.disabled = true;
+      btn.innerHTML =
+        '<span class="material-symbols-outlined text-lg">hourglass_top</span> Analyzing...';
+
+      try {
+        // ── Fire ATS scoring AND THEN content extraction sequentially ──────────
+        const atsRes = await fetch("http://localhost:5000/api/ats/analyze", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            resume_text: resumeText,
+            job_description: jobDesc,
+            email: user.email || "",
+          }),
+        });
+        const atsData = await atsRes.json();
+
+        let extractData = { success: false, data: null };
+        if (!activeResume.extractedDetails) {
+          loading.textContent =
+            "⏳ Scoring complete! Now extracting full resume details...";
+          const extractRes = await fetch(
+            "http://localhost:5000/api/ats/extract",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                resume_text: resumeText,
+                email: user.email || "",
+                resume_id: activeId,
+              }),
+            },
+          );
+          extractData = await extractRes.json();
+        } else {
+          console.log(
+            "Details already extracted, skipping redundant API call.",
+          );
+        }
+
+        // ── Handle ATS analysis result ────────────────────────────────────
+        if (atsData.success) {
+          const idx = resumes.findIndex((r) => r.id === activeId);
+          if (idx !== -1) {
+            user.uploadedResumes[idx].atsAnalysis = atsData.data;
+            user.uploadedResumes[idx].atsJobDesc = jobDesc;
+            // ── Save ATS history entry with timestamp ──────────────────────────
+            if (!Array.isArray(user.uploadedResumes[idx].atsHistory)) {
+              user.uploadedResumes[idx].atsHistory = [];
+            }
+            user.uploadedResumes[idx].atsHistory.push({
+              timestamp: new Date().toISOString(),
+              ats_score: atsData.data.ats_score || 0,
+              jobDesc: jobDesc.slice(0, 200),
+              matched_keywords: atsData.data.matched_keywords || [],
+              candidate_type: atsData.data.candidate_type || "fresher",
+            });
+            // Keep max 50 history entries per resume
+            if (user.uploadedResumes[idx].atsHistory.length > 50) {
+              user.uploadedResumes[idx].atsHistory =
+                user.uploadedResumes[idx].atsHistory.slice(-50);
+            }
+          }
+          const activeIdx = resumes.findIndex((r) => r.id === activeId) + 1;
+          applyAnalysis(atsData.data, resumes.length, activeIdx);
+        } else {
+          errEl.textContent =
+            atsData.error || "ATS analysis failed. Try adding more API keys.";
+          errEl.classList.remove("hidden");
+        }
+
+        // ── Handle extraction result ──────────────────────────────────────
+        if (extractData.success) {
+          const idx = user.uploadedResumes.findIndex(
+            (r) => r.id === activeId,
+          );
+          if (idx !== -1) {
+            user.uploadedResumes[idx].extractedDetails = extractData.data;
+          }
+          console.log("[extract] Extraction data saved:", extractData.data);
+        } else {
+          console.warn("[extract] Extraction failed:", extractData.error);
+        }
+
+        // CRITICAL: Save results to localStorage BEFORE calling applyAnalysis/render functions
+        saveUser(user);
+        if (user.email) {
+          fetch("http://localhost:5000/update_user_data", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: user.email,
+              uploadedResumes: user.uploadedResumes,
+              activeResumeId: user.activeResumeId,
+            }),
+          }).catch((err) => console.error("History sync failed:", err));
+        }
+
+        // Update global state variables used by other functions
+        resumes = getEnrichedResumes(user);
+        activeId = user.activeResumeId || resumes[0]?.id || null;
+
+        if (atsData.success) {
+          const currentEnriched = resumes.find((r) => r.id === activeId);
+          const activeIdx = resumes.findIndex((r) => r.id === activeId) + 1;
+          applyAnalysis(atsData.data, resumes.length, activeIdx);
+          if (typeof window.renderAll === "function") window.renderAll(); // Refresh sidebar to show new score
+        }
+
+        // Auto-trigger the Resume Details tab auto-fill after both calls
+        if (atsData.success || extractData.success) {
+          if (
+            typeof window.populateResumeDetailsFromActiveResume === "function"
+          ) {
+            window.populateResumeDetailsFromActiveResume();
+          }
+
+          // Auto sync profile if enabled in Profile settings
+          try {
+            const _su = JSON.parse(localStorage.getItem("user") || "{}");
+            const _sKey = "autoSyncProfile_" + (_su.email || "guest");
+            const _syncEnabled = localStorage.getItem(_sKey) === "true";
+            if (_syncEnabled && typeof syncProfile === "function") {
+              syncProfile(activeId);
+            }
+          } catch (_e) { }
+        }
+      } catch (e) {
+        console.error("ATS UI error or Fetch error:", e);
+        errEl.textContent = "Error: " + e.message;
+        errEl.classList.remove("hidden");
+      } finally {
+        loading.classList.add("hidden");
+        const banner = document.getElementById("ats-analysis-status-banner");
+        if (banner) banner.classList.add("hidden");
+        // Remove the JD prefill "Analysis in progress" banner if it exists
+        const prefillBanner = document.getElementById("jd-prefill-banner");
+        if (prefillBanner) prefillBanner.remove();
+        btn.disabled = false;
+        btn.innerHTML =
+          '<span class="material-symbols-outlined text-lg">auto_awesome</span> Run Analysis';
+        _unlockAI();
+      }
+    };
+
+    // ── Resume List Rendering ────────────────────────────────────────────
+    window.addEventListener("DOMContentLoaded", function () {
+      // Handle URL tab param
+      var params = new URLSearchParams(window.location.search);
+      var tab = params.get("tab") || window.location.hash.replace("#", "");
+      if (tab) {
+        var btn = document.querySelector('.tab-btn[onclick*="' + tab + '"]');
+        if (btn) btn.click();
+      }
+
+      const syncToggle = document.getElementById("sync-profile-toggle");
+      const container = document.getElementById("resume-list-container");
+
+      // ── Load state from user object (correct source) ───────────────────
+      let user = getUser();
+      let resumes = getEnrichedResumes(user);
+      let activeId = user.activeResumeId || resumes[0]?.id || null;
+
+      // ── MANUAL EXTRACTION ─────────────────────────────────────────
+      window.triggerManualExtraction = function() {
+        if (!activeId) {
+          alert("Please upload and select a resume first.");
+          return;
+        }
+        const activeRes = resumes.find((r) => r.id === activeId);
+        if (!activeRes || !activeRes.extractedText) {
+          alert("Resume text not found. Please re-upload your resume.");
+          return;
+        }
+
+        if (activeRes.extractedDetails) {
+          if (!confirm("Details have already been extracted. Extract again and overwrite?")) {
+            return;
+          }
+        }
+
+        console.log("[Manual-Extract] Triggering extraction for active resume...");
+
+        const extractToast = document.createElement("div");
+        extractToast.className =
+          "fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 bg-blue-600 text-white text-sm font-bold px-5 py-3 rounded-2xl shadow-xl transition-all duration-300";
+        extractToast.innerHTML =
+          '<span class="material-symbols-outlined animate-spin">sync</span> AI is extracting resume details...';
+        document.body.appendChild(extractToast);
+        
+        const extractBtn = document.getElementById("manual-extract-btn");
+        if (extractBtn) {
+          extractBtn.disabled = true;
+          extractBtn.innerHTML = '<span class="material-symbols-outlined text-sm animate-spin">sync</span> Extracting...';
+        }
+
+        fetch("http://localhost:5000/api/ats/extract", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            resume_text: activeRes.extractedText,
+            email: user.email || "",
+            resume_id: activeId,
+          }),
+        })
+          .then((r) => r.json())
+          .then((data) => {
+            if (data.success && data.data) {
+              let currentUser = getUser();
+              const idx = (currentUser.uploadedResumes || []).findIndex(
+                (r) => r.id === activeId,
+              );
+              if (idx !== -1) {
+                currentUser.uploadedResumes[idx].extractedDetails = data.data;
+
+                // Populate quick-access fields
+                const skills = data.data.skills || [];
+                if (skills.length)
+                  currentUser.uploadedResumes[idx].extractedSkills = skills;
+                const firstExp = data.data.experience && data.data.experience[0];
+                const firstEdu = data.data.education && data.data.education[0];
+                currentUser.uploadedResumes[idx].extractedHeadline =
+                  (firstExp && firstExp.role) || (firstEdu && firstEdu.degree) || "Professional";
+
+                saveUser(currentUser);
+                syncToDB(currentUser); // Persist extraction results to DB
+
+                // Refresh local state
+                user = currentUser;
+                resumes = getEnrichedResumes(user);
+
+                extractToast.innerHTML = '<span class="material-symbols-outlined">check</span> Details extracted successfully';
+                extractToast.classList.replace("bg-blue-600", "bg-emerald-600");
+
+                // Check auto-fill toggle and run it
+                const autoFillToggle = document.getElementById("auto-fill-toggle");
+                if (autoFillToggle && !autoFillToggle.checked) {
+                   autoFillToggle.click(); // visually toggles and runs toggleAutoFill
+                } else if (typeof window.populateResumeDetailsFromActiveResume === "function") {
+                  window.populateResumeDetailsFromActiveResume();
+                }
+
+                // Auto sync profile if enabled
+                try {
+                  const _su = JSON.parse(localStorage.getItem("user") || "{}");
+                  const _sKey = "autoSyncProfile_" + (_su.email || "guest");
+                  const _syncEnabled = localStorage.getItem(_sKey) === "true";
+                  if (_syncEnabled && typeof syncProfile === "function") {
+                    syncProfile(activeId);
+                  }
+                } catch (_e) { }
+
+                setTimeout(() => extractToast.remove(), 3000);
+              }
+            } else {
+              extractToast.innerHTML = '<span class="material-symbols-outlined">warning</span> Extraction incomplete';
+              extractToast.classList.replace("bg-blue-600", "bg-amber-600");
+              setTimeout(() => extractToast.remove(), 3000);
+            }
+          })
+          .catch((err) => {
+            console.warn("[Manual-Extract] Failed:", err);
+            extractToast.innerHTML = '<span class="material-symbols-outlined">error</span> Extraction failed';
+            extractToast.classList.replace("bg-blue-600", "bg-red-600");
+            setTimeout(() => extractToast.remove(), 3000);
+          })
+          .finally(() => {
+             if (extractBtn) {
+               extractBtn.disabled = false;
+               extractBtn.innerHTML = '<span class="material-symbols-outlined text-sm">auto_awesome</span> Extract Details';
+             }
+          });
+      };
+
+      function syncToDB(u) {
+        if (u.email) {
+          fetch("http://localhost:5000/update_user_data", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: u.email,
+              uploadedResumes: u.uploadedResumes,
+              activeResumeId: u.activeResumeId,
+            }),
+          }).catch(() => { });
+        }
+      }
+
+      function showSyncToast(msg) {
+        let toast = document.getElementById("_sync-toast");
+        if (!toast) {
+          toast = document.createElement("div");
+          toast.id = "_sync-toast";
+          toast.className =
+            "fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 bg-emerald-600 text-white text-sm font-bold px-5 py-3 rounded-2xl shadow-xl transition-all duration-300 opacity-0 pointer-events-none";
+          document.body.appendChild(toast);
+        }
+        toast.textContent = msg;
+        toast.classList.remove("opacity-0");
+        toast.classList.add("opacity-100");
+        clearTimeout(toast._timer);
+        toast._timer = setTimeout(() => {
+          toast.classList.remove("opacity-100");
+          toast.classList.add("opacity-0");
+        }, 3500);
+      }
+
+      function syncProfile(id) {
+        const r = resumes.find((r) => r.id === id);
+        if (!r) return;
+        user = getUser();
+
+        // Use extractedDetails primarily, fallback to atsAnalysis
+        const details = r.extractedDetails || {};
+        const pd =
+          details.personal_info || r.atsAnalysis?.personal_info || {};
+
+        // Sync all available fields into user object (Profile Management reads from these)
+        if (pd.name) {
+          user.name = pd.name;
+          user.fullName = pd.name; // Keep for backward compatibility if any old code uses it
+        }
+        if (pd.phone) user.phone = pd.phone;
+        if (details.location) user.location = details.location;
+        if (details.about_me) user.about = details.about_me;
+
+        // Skills — prefer extractedDetails, fallback to matched_keywords
+        let skills = details.skills?.length
+          ? details.skills
+          : r.atsAnalysis?.matched_keywords || r.extractedSkills || [];
+        if (skills.length) user.skills = skills;
+
+        // Links
+        if (details.links?.length) user.links = details.links;
+
+        // Experience & Education for profile
+        if (details.experience?.length)
+          user.resumeExperience = details.experience;
+        if (details.education?.length)
+          user.resumeEducation = details.education;
+
+        // Headline: use first role from experience, or first education degree
+        const firstExp = details.experience?.[0];
+        const firstEdu = details.education?.[0];
+        user.headline =
+          firstExp?.role ||
+          firstEdu?.degree ||
+          r.extractedHeadline ||
+          "Professional";
+
+        saveUser(user);
+        showSyncToast("✓ Profile synced from active resume");
+      }
+
+      window.makeActiveResume = function (id) {
+        activeId = id;
+        user = getUser();
+        user.activeResumeId = id;
+        saveUser(user);
+        syncProfile(id);
+        syncToDB(user);
+        renderAll();
+        if (
+          typeof window.populateResumeDetailsFromActiveResume === "function"
+        ) {
+          window.populateResumeDetailsFromActiveResume();
+        }
+      };
+
+      window.deleteResume = function (id) {
+        if (!confirm("Remove this resume?")) return;
+        user = getUser();
+        const resumeToDelete = (user.uploadedResumes || []).find(
+          (r) => r.id === id,
+        );
+        const deletedGroupId = resumeToDelete
+          ? resumeToDelete.resumeGroupId || resumeToDelete.id
+          : null;
+
+        user.uploadedResumes = (user.uploadedResumes || []).filter(
+          (r) => r.id !== id,
+        );
+
+        // Re-sequence versionMinor within the affected group so gaps heal:
+        // e.g. deleting v1.1 means v1.2 → v1.1, v1.3 → v1.2, etc.
+        if (deletedGroupId) {
+          const groupMembers = (user.uploadedResumes || []).filter((r) => {
+            const gid = r.resumeGroupId || r.id;
+            // Handle legacy resumes where group id was set to 1
+            return (
+              gid === deletedGroupId ||
+              (deletedGroupId === 1 && r.id === resumeToDelete.id)
+            );
+          });
+          // Sort by uploadedAt ascending to ensure we assign chronologically
+          groupMembers.sort(
+            (a, b) => new Date(a.uploadedAt) - new Date(b.uploadedAt),
+          );
+          // Re-assign versionMinor sequentially 1, 2, 3...
+          groupMembers.forEach((r, i) => {
+            r.versionMinor = i + 1;
+          });
+        }
+
+        if (user.activeResumeId === id) {
+          user.activeResumeId = user.uploadedResumes[0]?.id || null;
+        }
+        saveUser(user);
+        syncToDB(user);
+        resumes = getEnrichedResumes(user);
+        activeId = user.activeResumeId;
+        renderAll();
+      };
+
+      window.reuploadResume = function (id) {
+        let riu = document.getElementById("_reupload-input");
+        if (!riu) {
+          riu = document.createElement("input");
+          riu.type = "file";
+          riu.accept = "application/pdf,.pdf,.doc,.docx,.txt";
+          riu.id = "_reupload-input";
+          riu.style.display = "none";
+          document.body.appendChild(riu);
+        }
+        // Remove old handler and attach fresh one
+        const fresh = riu.cloneNode(true);
+        riu.parentNode.replaceChild(fresh, riu);
+        fresh.addEventListener("change", function () {
+          const file = fresh.files[0];
+          if (!file) return;
+          user = getUser();
+          const idx = (user.uploadedResumes || []).findIndex(
+            (r) => r.id === id,
+          );
+          if (idx === -1) return;
+          const oldResume = user.uploadedResumes[idx];
+          let gid = oldResume.resumeGroupId || oldResume.id;
+          if (gid === 1 || gid === "1") gid = oldResume.id; // Correct legacy group id 1
+
+          // Find max versionMinor in the same group by re-simulating the enrichment
+          const groupVersions = (user.uploadedResumes || []).filter((r) => {
+            let rGid = r.resumeGroupId || r.id;
+            if (rGid === 1 || rGid === "1") rGid = r.id;
+            return rGid === gid;
+          });
+          const maxMinor = Math.max(
+            ...groupVersions.map((r, i) => r.versionMinor || i + 1),
+          );
+          const newMinor = maxMinor + 1;
+          // Create the new resume entry (inherits group, new version)
+          const newId =
+            "r_" + Date.now() + "_" + Math.random().toString(36).slice(2, 7);
+
+          // Read file text using PDF.js to capture hyperlinks too
+          async function extractReuploadedText(file) {
+            if (
+              file.name.toLowerCase().endsWith(".pdf") ||
+              file.type === "application/pdf"
+            ) {
+              if (typeof pdfjsLib !== "undefined") {
+                try {
+                  const arrayBuffer = await file.arrayBuffer();
+                  const pdf = await pdfjsLib.getDocument({
+                    data: arrayBuffer,
+                  }).promise;
+                  let fullText = "";
+                  let embeddedLinks = new Set();
+
+                  for (
+                    let pageNum = 1;
+                    pageNum <= Math.min(pdf.numPages, 10);
+                    pageNum++
+                  ) {
+                    const page = await pdf.getPage(pageNum);
+                    const content = await page.getTextContent();
+                    const pageText = content.items
+                      .map((item) => item.str)
+                      .join(" ");
+                    fullText += pageText + "\n";
+
+                    try {
+                      const annotations = await page.getAnnotations();
+                      annotations.forEach((anno) => {
+                        if (anno.subtype === "Link" && anno.url) {
+                          embeddedLinks.add(anno.url);
+                        }
+                      });
+                    } catch (e) {
+                      console.warn("Failed annotation extraction", e);
+                    }
+                  }
+
+                  if (embeddedLinks.size > 0) {
+                    fullText += "\n\n--- Embedded PDF Links ---\n";
+                    embeddedLinks.forEach((url) => {
+                      fullText += url + "\n";
+                    });
+                  }
+                  return fullText.trim() || file.name;
+                } catch (e) {
+                  console.error("PDF extraction failed", e);
+                  return file.name;
+                }
+              }
+            }
+            // Fallback for txt/docx
+            return new Promise((resolve) => {
+              const reader = new FileReader();
+              reader.onload = (e) => resolve(e.target.result || file.name);
+              reader.onerror = () => resolve(file.name);
+              reader.readAsText(file);
+            });
+          }
+
+          _lockAI("Reading new resume file...");
+          extractReuploadedText(file)
+            .then((text) => {
+              const newResume = {
+                id: newId,
+                filename: file.name,
+                size: (file.size / 1024).toFixed(2) + " KB",
+                date: new Date().toLocaleDateString(),
+                resumeGroupId: gid,
+                versionMinor: newMinor,
+                extractedText: text,
+                atsAnalysis: null,
+                extractedDetails: null,
+              };
+              user.uploadedResumes.push(newResume);
+              user.activeResumeId = newId;
+              saveUser(user);
+              syncToDB(user);
+              resumes = getEnrichedResumes(user); // Re-enrich on new resume
+              activeId = newId;
+
+              _unlockAI();
+              renderAll();
+
+              // Immediately trigger extraction on the new resume
+              if (text && text.length > 50) {
+                runExtractionOnly(newId, text);
+              } else {
+                alert(
+                  "Parsed text is too short. AI features might be limited.",
+                );
+              }
+            })
+            .catch((e) => {
+              console.error("Reupload parsing failed:", e);
+              _unlockAI();
+              alert("Failed to read the file. Please try again.");
+            });
+        });
+        fresh.click();
+      };
+
+      window.renderResumeList = function renderResumeList() {
+        if (!container) return;
+        if (!resumes.length) {
+          container.innerHTML =
+            '<div class="text-center py-8 text-slate-500 text-sm italic border border-dashed border-slate-300 dark:border-slate-700 rounded-xl">No resumes uploaded yet. Go to <a href="../Profile/resume_upload_&_validation_center.html" class="text-blue-600 hover:underline">Upload Resume</a> to get started.</div>';
+          return;
+        }
+        // Map group structure based on computedGroupId
+        const groupMap = {};
+        resumes.forEach((r) => {
+          const gid = r.computedGroupId;
+          if (!groupMap[gid]) groupMap[gid] = [];
+          groupMap[gid].push(r);
+        });
+
+        container.innerHTML = resumes
+          .map((r, i) => {
+            const isActive = r.id === activeId;
+            const hasAnalysis = !!r.atsAnalysis;
+            const verLabel = r.computedVersionLabel || "1.1";
+            return `<div class="flex items-center justify-between p-4 bg-white dark:bg-slate-800 rounded-xl border ${isActive ? "border-blue-500 bg-blue-50/30" : "border-slate-200 dark:border-slate-700 hover:border-slate-300"} transition-all">
+              <div class="flex items-center gap-4 flex-1 cursor-pointer" onclick="makeActiveResume('${r.id}')">
+                <div class="size-10 rounded-lg ${isActive ? "bg-blue-600 text-white" : "bg-red-50 text-red-500"} flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined">picture_as_pdf</span>
+                </div>
+                <div>
+                  <p class="text-sm font-bold ${isActive ? "text-blue-700" : "text-slate-900 dark:text-white"}">${r.filename}</p>
+                  <p class="text-xs text-slate-500">${r.size || ""} • ${r.date || ""}
+                    <span class="ml-1 text-[10px] font-bold text-violet-600 bg-violet-100 px-1.5 py-0.5 rounded">v${verLabel}</span>
+                    ${isActive ? '<span class="ml-1 font-bold text-blue-600 text-[10px] uppercase bg-blue-100 px-1.5 py-0.5 rounded">Active</span>' : ""}
+                    ${hasAnalysis ? '<span class="ml-1 text-[10px] font-bold text-emerald-600 bg-emerald-100 px-1.5 py-0.5 rounded">ATS: ' + r.atsAnalysis.ats_score + "</span>" : ""}
+                  </p>
+                </div>
+              </div>
+              <div class="flex gap-2 items-center shrink-0">
+                ${!isActive ? `<button onclick="makeActiveResume('${r.id}')" class="text-xs px-3 py-1.5 rounded-lg bg-blue-600 text-white font-bold hover:bg-blue-700">Set Active</button>` : ""}
+                <button onclick="reuploadResume('${r.id}')" title="Re-upload this resume (creates a new version)" class="p-1.5 text-slate-400 hover:text-blue-500 transition-colors"><span class="material-symbols-outlined text-[20px]">upload_file</span></button>
+                <button onclick="deleteResume('${r.id}')" title="Delete this resume" class="p-1.5 text-slate-400 hover:text-red-500 transition-colors"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+              </div>
+            </div>`;
+          })
+          .join("");
+        // Hidden file input for re-uploading (reused)
+        let _riu = document.getElementById("_reupload-input");
+        if (!_riu) {
+          _riu = document.createElement("input");
+          _riu.type = "file";
+          _riu.accept = "application/pdf,.pdf,.doc,.docx,.txt";
+          _riu.id = "_reupload-input";
+          _riu.style.display = "none";
+          document.body.appendChild(_riu);
+        }
+      }
+
+      window.makeActiveResume = function (id) {
+        user = getUser();
+        user.activeResumeId = id;
+        saveUser(user);
+        syncToDB(user);
+        resumes = getEnrichedResumes(user); // RE-ENRICH HERE TO UPDATE ACTIVE ID
+        activeId = id;
+        renderAll();
+        if (
+          typeof window.populateResumeDetailsFromActiveResume === "function"
+        ) {
+          window.populateResumeDetailsFromActiveResume();
+        }
+      };
+
+      window.renderStats = function renderStats() {
+        user = getUser();
+        resumes = getEnrichedResumes(user);
+        activeId = user.activeResumeId || resumes[0]?.id || null;
+
+        document.getElementById("stat-versions").textContent = resumes.length;
+
+        if (!resumes.length) {
+          showNoResumesState();
+          return;
+        }
+
+        const activeResume = resumes.find((r) => r.id === activeId);
+        const activeIdx = resumes.findIndex((r) => r.id === activeId) + 1;
+
+        // JD-Targeted Analysis Logic
+        if (activeResume?.atsAnalysis) {
+          if (activeResume.atsJobDesc) {
+            window._lastJobDesc = activeResume.atsJobDesc;
+          }
+          applyAnalysis(activeResume.atsAnalysis, resumes.length, activeIdx);
+        } else {
+          showNoAnalysisState();
+          document.getElementById("stat-versions-badge").textContent =
+            "V" + activeIdx + " Resume";
+          document.getElementById("stat-versions-badge").className =
+            "mt-1 text-xs px-2 py-0.5 rounded-full font-bold bg-blue-100 text-blue-700";
+        }
+
+        // Normal format analysis Logic: Wait for user to run analysis if we have text but no format analysis yet.
+        if (activeResume) {
+          if (activeResume.normalATS) {
+            applyNormalAnalysis(activeResume.normalATS);
+          } else if (
+            activeResume.extractedText &&
+            activeResume.extractedDetails
+          ) {
+            // We have text and details, but no normal ATS.
+            applyNormalAnalysis(null); // Show pending state
+          } else {
+            // No text/details means we can't run analysis yet (maybe extracting?)
+            applyNormalAnalysis(null); // Ensure pending state is shown
+            const pend = document.getElementById("normal-pending");
+            if (pend) {
+              pend.classList.remove("hidden");
+              const btnContainer = pend.querySelector("div.flex");
+              if (btnContainer) btnContainer.classList.add("hidden"); // Hide button during extraction
+
+              let pTag = pend.querySelector("p");
+              if (!pTag) {
+                pTag = document.createElement("p");
+                pend.insertBefore(pTag, pend.firstChild);
+              }
+              pTag.className = "text-sm text-slate-500 animate-pulse mb-4";
+              pTag.innerHTML = "⏳ Extracting text before analysis...";
+            }
+          }
+        }
+      }
+
+      window.renderAll = function renderAll() {
+        window.renderResumeList();
+        window.renderStats();
+        if (
+          typeof window.populateResumeDetailsFromActiveResume === "function"
+        ) {
+          window.populateResumeDetailsFromActiveResume();
+        }
+
+        // Render comparison tabs if resuming page session
+        renderEvolutionTab();
+        renderCompareTab();
+      };
+
+      // ── Init ────────────────────────────────────────────────────────────
+      // Clear any stale error from previous session
+      const _errEl = document.getElementById("ats-error");
+      if (_errEl) {
+        _errEl.textContent = "";
+        _errEl.classList.add("hidden");
+      }
+
+      // Restore Auto-Fill Toggle State on Page Load (Initial check)
+      const autoFillToggle = document.getElementById("auto-fill-toggle");
+      const userState = getUser();
+      if (autoFillToggle && userState.autoFillDetails) {
+          autoFillToggle.checked = true;
+      }
+
+      // Sync with DB before first render to ensure we have latest analysis
+      fetchUserResumesFromDB().then(() => {
+          renderAll();
+          // After renderAll (which populates UI), if auto-fill is on, run it
+          if (autoFillToggle && autoFillToggle.checked) {
+              window.toggleAutoFill(true);
+          }
+      });
+    });
+  </script>
+  <script>
+    // ── Resume Details Dynamic Handlers ──────────────────────────────
+    window.toggleAutoFill = async function (checked, silent = false) {
+      const currUser = getUser();
+      currUser.autoFillDetails = checked;
+      saveUser(currUser);
+      syncToDB(currUser);
+
+      if (!checked) {
+        document.getElementById("pd-name").textContent = "-";
+        document.getElementById("pd-email").textContent = "-";
+        document.getElementById("pd-phone").textContent = "-";
+        document.getElementById("pd-location").textContent = "-";
+        document.getElementById("pd-links").innerHTML = '<span class="text-sm text-slate-400 italic">No links extracted</span>';
+        document.getElementById("skills-list").innerHTML = '<span class="text-sm text-slate-400 italic">No skills extracted</span><span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-slate-100 text-slate-500 border border-dashed border-slate-300 cursor-pointer hover:border-blue-500 hover:text-blue-500 transition-colors mt-1" onclick="addSkill()">+ Add Skill</span>';
+
+        // Clear experience
+        const expList = document.getElementById("experience-list");
+        const expEmptyStatus = document.getElementById("experience-empty-state");
+        if (expEmptyStatus) expEmptyStatus.classList.remove("hidden");
+        Array.from(expList.children).forEach(child => {
+          if (child.id !== "experience-empty-state" && !child.classList.contains("w-0.5")) child.remove();
+        });
+
+        // Clear education
+        const eduList = document.getElementById("education-list");
+        const eduEmptyStatus = document.getElementById("education-empty-state");
+        if (eduEmptyStatus) eduEmptyStatus.classList.remove("hidden");
+        Array.from(eduList.children).forEach((child) => {
+          if (child.id !== "education-empty-state" && child.id !== "add-education-btn") {
+            child.remove();
+          }
+        });
+
+        // Clear certs
+        const certList = document.getElementById("certificates-list");
+        const certEmptyStatus = document.getElementById("certificates-empty-state");
+        if (certEmptyStatus) certEmptyStatus.classList.remove("hidden");
+        Array.from(certList.children).forEach((child) => {
+          if (child.id !== "certificates-empty-state" && child.id !== "add-certificate-btn") {
+            child.remove();
+          }
+        });
+        return;
+      }
+
+      // Fetch from Backend for source of truth
+      try {
+        const u = getUser();
+        if (!u.email) throw new Error("User email not found");
+
+        const resp = await fetch(`http://localhost:5000/api/user/active-resume?email=${encodeURIComponent(u.email)}`);
+        const data = await resp.json();
+
+        if (!data.success || !data.activeResume) {
+          throw new Error(data.error || "No active resume found in DB.");
+        }
+
+        const activeResume = data.activeResume;
+
+        if (!activeResume.atsAnalysis && !activeResume.extractedDetails && !activeResume.normalATS) {
+          if (!silent) {
+            alert("No extracted details found for this resume. Please run ATS Analysis first.");
+          }
+          document.getElementById("auto-fill-toggle").checked = false;
+          return;
+        }
+
+      // We use extractedDetails primarily, and fallback to atsAnalysis if missing
+      const details = activeResume.extractedDetails || {};
+      const pd =
+        details.personal_info ||
+        activeResume.atsAnalysis?.personal_info ||
+        activeResume.normalATS?.personal_info ||
+        {};
+
+      document.getElementById("pd-name").textContent =
+        pd.name || activeResume.name || "-";
+      document.getElementById("pd-email").textContent =
+        pd.email || activeResume.email || "-";
+      document.getElementById("pd-phone").textContent =
+        pd.phone || activeResume.phone || "-";
+
+      // Location from either deep extraction or shallow
+      document.getElementById("pd-location").textContent =
+        details.location || activeResume.location || "-";
+
+      // Links
+      const linksContainer = document.getElementById("pd-links");
+      let extractedLinks =
+        details.links || activeResume.atsAnalysis?.personal_info?.links || activeResume.normalATS?.personal_info?.links || [];
+
+      // Ensure no duplicates and formatted correctly
+      extractedLinks = [...new Set(extractedLinks)];
+
+      if (extractedLinks && extractedLinks.length > 0) {
+        linksContainer.innerHTML = extractedLinks
+          .map((link) => {
+            let finalUrl = link.trim();
+            if (!finalUrl.startsWith("http"))
+              finalUrl = "https://" + finalUrl;
+            return `<a class="flex items-center gap-2 text-sm text-blue-600 hover:underline mb-1 break-all" href="${finalUrl}" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined text-base shrink-0">link</span><span>${link}</span></a>`;
+          })
+          .join("");
+      } else {
+        linksContainer.innerHTML =
+          '<span class="text-sm text-slate-400 italic">No links extracted</span>';
+      }
+
+      // Skills logic: try extractedDetails.skills, then atsAnalysis.matched_keywords
+      const skillsList = document.getElementById("skills-list");
+      let skills = details.skills || [];
+      if (!skills || skills.length === 0) {
+        if (
+          activeResume.atsAnalysis &&
+          activeResume.atsAnalysis.matched_keywords
+        ) {
+          skills = activeResume.atsAnalysis.matched_keywords;
+        } else if (
+          activeResume.normalATS &&
+          activeResume.normalATS.skills
+        ) {
+          skills = activeResume.normalATS.skills;
+        } else if (activeResume.extractedSkills) {
+          skills = activeResume.extractedSkills;
+        }
+      }
+
+      if (skills && skills.length > 0) {
+        let html = "";
+        skills.forEach((s) => {
+          html += `<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-blue-50 text-blue-600 border border-blue-200">${s} <button class="hover:text-blue-800" onclick="removeSkill(this)"><span class="material-symbols-outlined text-sm">close</span></button></span>`;
+        });
+        html += `<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-slate-100 text-slate-500 border border-dashed border-slate-300 cursor-pointer hover:border-blue-500 hover:text-blue-500 transition-colors mt-1" onclick="addSkill()">+ Add Skill</span>`;
+        skillsList.innerHTML = html;
+      } else {
+        skillsList.innerHTML =
+          '<span class="text-sm text-slate-400 italic">No skills extracted</span><span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-slate-100 text-slate-500 border border-dashed border-slate-300 cursor-pointer hover:border-blue-500 hover:text-blue-500 transition-colors mt-1" onclick="addSkill()">+ Add Skill</span>';
+      }
+
+      // Experience
+      const expList = document.getElementById("experience-list");
+      const expEmptyStatus = document.getElementById(
+        "experience-empty-state",
+      );
+      const extractedExp =
+        details.experience ||
+        activeResume.atsAnalysis?.experience ||
+        activeResume.normalATS?.experience ||
+        activeResume.experience ||
+        [];
+      if (extractedExp && extractedExp.length > 0) {
+        if (expEmptyStatus) expEmptyStatus.classList.add("hidden");
+        // Clear existing non-empty-state elements
+        Array.from(expList.children).forEach((child) => {
+          if (
+            child.id !== "experience-empty-state" &&
+            !child.classList.contains("w-0.5")
+          ) {
+            child.remove();
+          }
+        });
+        extractedExp.forEach((exp) => {
+          const div = document.createElement("div");
+          div.className = "relative pl-10 group";
+          div.innerHTML = `
+                <div class="absolute left-0 top-1.5 size-10 rounded-full bg-white dark:bg-slate-800 border border-slate-200 flex items-center justify-center z-10">
+                  <div class="size-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                    <span class="material-symbols-outlined text-sm">business</span>
+                  </div>
+                </div>
+                <div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 border border-slate-100 dark:border-slate-800 hover:border-blue-200 transition-colors relative">
+                  <button class="absolute top-2 right-2 text-slate-400 hover:text-red-500 hidden group-hover:block" onclick="removePosition(this)">
+                    <span class="material-symbols-outlined text-sm">delete</span>
+                  </button>
+                  <div class="flex justify-between items-start mb-2 pr-6">
+                    <div>
+                      <h4 class="font-bold cursor-text w-full" contenteditable="true" aria-label="Job Title">${exp.title || exp.role || "Unknown Title"}</h4>
+                      <p class="text-sm text-blue-600 font-medium cursor-text" contenteditable="true" aria-label="Company">${exp.company || "Unknown Company"}</p>
+                    </div>
+                    <span class="text-xs font-semibold text-slate-500 bg-white dark:bg-slate-900 px-2 py-1 rounded border border-slate-200 cursor-text" contenteditable="true" aria-label="Dates">${exp.dates || exp.duration || exp.dateRange || ""}</span>
+                  </div>
+                  <p class="text-sm text-slate-600 dark:text-slate-300 italic cursor-text" contenteditable="true">${exp.description || "Click to edit description..."}</p>
+                </div>`;
+          expList.appendChild(div);
+        });
+      }
+
+      // Education
+      const eduList = document.getElementById("education-list");
+      const eduEmptyStatus = document.getElementById("education-empty-state");
+      const extractedEdu =
+        details.education ||
+        activeResume.atsAnalysis?.education ||
+        activeResume.normalATS?.education ||
+        activeResume.education ||
+        [];
+
+      if (extractedEdu && extractedEdu.length > 0) {
+        if (eduEmptyStatus) eduEmptyStatus.classList.add("hidden");
+        Array.from(eduList.children).forEach((child) => {
+          if (
+            child.id !== "education-empty-state" &&
+            child.id !== "add-education-btn"
+          ) {
+            child.remove();
+          }
+        });
+
+        const addBtn = document.getElementById("add-education-btn");
+        extractedEdu.forEach((edu) => {
+          const div = document.createElement("div");
+          div.className =
+            "p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 transition-colors relative group";
+          div.innerHTML = `
+                  <button class="absolute top-2 right-2 text-slate-400 hover:text-red-500 hidden group-hover:block" onclick="removeEducation(this)">
+                    <span class="material-symbols-outlined text-sm">delete</span>
+                  </button>
+                  <div class="flex items-center gap-3 mb-2">
+                    <div class="size-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
+                      <span class="material-symbols-outlined">account_balance</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-sm cursor-text" contenteditable="true">${edu.degree || edu.type || edu.title || edu.level || "Unknown Degree"}</h4>
+                      <p class="text-xs text-slate-500 cursor-text" contenteditable="true">${edu.institution || edu.school || "Unknown Institution"}</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2 text-xs text-slate-500 ml-13 cursor-text" contenteditable="true">
+                    <span class="material-symbols-outlined text-sm">calendar_today</span>
+                    ${edu.year || edu.dates || edu.dateRange || ""}
+                  </div>
+               `;
+          if (addBtn) {
+            eduList.insertBefore(div, addBtn);
+          } else {
+            eduList.appendChild(div);
+          }
+        });
+      }
+
+      // Certificates
+      const certList = document.getElementById("certificates-list");
+      const certEmptyStatus = document.getElementById(
+        "certificates-empty-state",
+      );
+      const extractedCert =
+        details.certificates ||
+        activeResume.atsAnalysis?.certificates ||
+        activeResume.normalATS?.certificates ||
+        activeResume.certificates ||
+        [];
+
+      if (extractedCert && extractedCert.length > 0) {
+        if (certEmptyStatus) certEmptyStatus.classList.add("hidden");
+        Array.from(certList.children).forEach((child) => {
+          if (
+            child.id !== "certificates-empty-state" &&
+            child.id !== "add-certificate-btn"
+          ) {
+            child.remove();
+          }
+        });
+
+        const addCertBtn = document.getElementById("add-certificate-btn");
+        extractedCert.forEach((cert) => {
+          const div = document.createElement("div");
+          div.className =
+            "p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 transition-colors relative group";
+          div.innerHTML = `
+            <button class="absolute top-2 right-2 text-slate-400 hover:text-red-500 hidden group-hover:block" onclick="removeCertificate(this)">
+              <span class="material-symbols-outlined text-sm">delete</span>
+            </button>
+            <div class="flex items-center gap-3 mb-2 pr-6">
+              <div class="size-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
+                <span class="material-symbols-outlined">workspace_premium</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-sm cursor-text" contenteditable="true">${cert.name || cert.title || "Unknown Certificate"}</h4>
+                <p class="text-xs text-slate-500 cursor-text" contenteditable="true">${cert.issuer || cert.organization || ""}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-500 ml-13 flex-col items-start cursor-text" contenteditable="true">
+              <div>
+                 <span class="material-symbols-outlined text-[10px] align-middle">calendar_today</span>
+                 ${cert.issue_date || cert.year || cert.date || ""}
+              </div>
+            </div>
+          `;
+          if (addCertBtn) {
+            certList.insertBefore(div, addCertBtn);
+          } else {
+            certList.appendChild(div);
+          }
+        });
+      }
+    } catch (err) {
+      console.error("[AutoFill] Error:", err);
+      alert("Failed to auto-fill details: " + err.message);
+      document.getElementById("auto-fill-toggle").checked = false;
+    }
+  };
+
+    window.populateResumeDetailsFromActiveResume = function () {
+      const toggle = document.getElementById("auto-fill-toggle");
+      const u = getUser();
+      if (toggle) {
+        // Default to OFF unless explicitly saved as true in ../../DB/localStorage
+        toggle.checked = u.autoFillDetails === true;
+        window.toggleAutoFill(toggle.checked, true);
+      }
+    };
+
+    // ── Modal Logic ──────────────────────────────────────────────
+    let modalAction = null;
+    window.openModal = function (title, fields, onSave) {
+      document.getElementById("custom-modal-title").textContent = title;
+      const body = document.getElementById("custom-modal-body");
+      body.innerHTML = fields
+        .map(
+          (f) => `
+          <div>
+            <label class="block text-xs font-bold text-slate-500 mb-1">${f.label}</label>
+            <input type="${f.type || "text"}" id="modal-input-${f.id}" value="${f.value || ""}" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:bg-slate-800 dark:border-slate-700 dark:text-white placeholder:text-slate-400">
+          </div>
+        `,
+        )
+        .join("");
+
+      modalAction = onSave;
+
+      const modal = document.getElementById("custom-modal");
+      const content = document.getElementById("custom-modal-content");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      setTimeout(() => {
+        content.classList.remove("scale-95", "opacity-0");
+        content.classList.add("scale-100", "opacity-100");
+      }, 10);
+    };
+
+    window.closeModal = function () {
+      const modal = document.getElementById("custom-modal");
+      const content = document.getElementById("custom-modal-content");
+      content.classList.remove("scale-100", "opacity-100");
+      content.classList.add("scale-95", "opacity-0");
+      setTimeout(() => {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      }, 200);
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document
+        .getElementById("custom-modal-save")
+        ?.addEventListener("click", () => {
+          if (typeof modalAction === "function") {
+            modalAction();
+          }
+          closeModal();
+        });
+
+      // Auto-Fill Details toggle – single handler, attached once on load
+      const autoFillToggle = document.getElementById("auto-fill-toggle");
+      if (autoFillToggle) {
+        autoFillToggle.addEventListener("change", async function () {
+          const isChecked = this.checked;
+          const u = getUser();
+          u.autoFillDetails = isChecked;
+          saveUser(u);
+          window.toggleAutoFill(isChecked);
+
+          if (u.email) {
+            await fetch("http://localhost:5000/update_user_data", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email: u.email, autoFillDetails: isChecked })
+            }).catch(() => { });
+          }
+        });
+      }
+    });
+
+    window.editPersonalDetails = function () {
+      const nameEl = document.getElementById("pd-name");
+      const emailEl = document.getElementById("pd-email");
+      const phoneEl = document.getElementById("pd-phone");
+      const locationEl = document.getElementById("pd-location");
+
+      openModal(
+        "Edit Personal Details",
+        [
+          { id: "name", label: "Full Name", value: nameEl.textContent },
+          { id: "email", label: "Email", value: emailEl.textContent },
+          { id: "phone", label: "Phone", value: phoneEl.textContent },
+          {
+            id: "location",
+            label: "Location",
+            value: locationEl.textContent,
+          },
+        ],
+        () => {
+          nameEl.textContent =
+            document.getElementById("modal-input-name").value;
+          emailEl.textContent =
+            document.getElementById("modal-input-email").value;
+          phoneEl.textContent =
+            document.getElementById("modal-input-phone").value;
+          locationEl.textContent = document.getElementById(
+            "modal-input-location",
+          ).value;
+        },
+      );
+    };
+
+    window.addSkill = function () {
+      openModal(
+        "Add Skill",
+        [{ id: "skill", label: "Skill Name", value: "" }],
+        () => {
+          const skill = document.getElementById("modal-input-skill").value;
+          if (!skill || !skill.trim()) return;
+          const skillsList = document.getElementById("skills-list");
+          const span = document.createElement("span");
+          span.className =
+            "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-blue-50 text-blue-600 border border-blue-200";
+          span.innerHTML = `${skill.trim()} <button class="hover:text-blue-800" onclick="removeSkill(this)"><span class="material-symbols-outlined text-sm">close</span></button>`;
+          skillsList.insertBefore(span, skillsList.lastElementChild);
+        },
+      );
+    };
+
+    window.removeSkill = function (btn) {
+      btn.parentElement.remove();
+    };
+
+    window.addPosition = function () {
+      openModal(
+        "Add Experience Position",
+        [
+          { id: "title", label: "Job Title", value: "" },
+          { id: "company", label: "Company", value: "" },
+          { id: "dates", label: "Date Range", value: "" },
+        ],
+        () => {
+          const title = document.getElementById("modal-input-title").value;
+          if (!title) return;
+          const company = document.getElementById(
+            "modal-input-company",
+          ).value;
+          const dates = document.getElementById("modal-input-dates").value;
+          const expList = document.getElementById("experience-list");
+
+          const div = document.createElement("div");
+          div.className = "relative pl-10 group";
+          div.innerHTML = `
+            <div class="absolute left-0 top-1.5 size-10 rounded-full bg-white dark:bg-slate-800 border border-slate-200 flex items-center justify-center z-10">
+              <div class="size-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                <span class="material-symbols-outlined text-sm">business</span>
+              </div>
+            </div>
+            <div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 border border-slate-100 dark:border-slate-800 hover:border-blue-200 transition-colors relative">
+              <button class="absolute top-2 right-2 text-slate-400 hover:text-red-500 hidden group-hover:block" onclick="removePosition(this)">
+                <span class="material-symbols-outlined text-sm">delete</span>
+              </button>
+              <div class="flex justify-between items-start mb-2 pr-6">
+                <div>
+                  <h4 class="font-bold cursor-text w-full" contenteditable="true" aria-label="Job Title">${title}</h4>
+                  <p class="text-sm text-blue-600 font-medium cursor-text" contenteditable="true" aria-label="Company">${company}</p>
+                </div>
+                <span class="text-xs font-semibold text-slate-500 bg-white dark:bg-slate-900 px-2 py-1 rounded border border-slate-200 cursor-text" contenteditable="true" aria-label="Dates">${dates}</span>
+              </div>
+              <p class="text-sm text-slate-600 dark:text-slate-300 italic cursor-text" contenteditable="true">Click to edit description...</p>
+            </div>
+          `;
+          expList.appendChild(div);
+        },
+      );
+    };
+
+    window.removePosition = function (btn) {
+      btn.closest(".relative.pl-10").remove();
+    };
+
+    window.addEducation = function () {
+      openModal(
+        "Add Education",
+        [
+          { id: "degree", label: "Degree / Certification", value: "" },
+          { id: "school", label: "Institution", value: "" },
+          { id: "year", label: "Year", value: "" },
+        ],
+        () => {
+          const degree = document.getElementById("modal-input-degree").value;
+          if (!degree) return;
+          const school = document.getElementById("modal-input-school").value;
+          const year = document.getElementById("modal-input-year").value;
+
+          const eduList = document.getElementById("education-list");
+          const addBtn = document.getElementById("add-education-btn");
+          const div = document.createElement("div");
+          div.className =
+            "p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 transition-colors relative group";
+          div.innerHTML = `
+            <button class="absolute top-2 right-2 text-slate-400 hover:text-red-500 hidden group-hover:block" onclick="removeEducation(this)">
+              <span class="material-symbols-outlined text-sm">delete</span>
+            </button>
+            <div class="flex items-center gap-3 mb-2 pr-6">
+              <div class="size-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
+                <span class="material-symbols-outlined">account_balance</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-sm cursor-text" contenteditable="true">${degree}</h4>
+                <p class="text-xs text-slate-500 cursor-text" contenteditable="true">${school || ""}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-500 ml-13 cursor-text" contenteditable="true">
+              <span class="material-symbols-outlined text-sm">calendar_today</span>
+              ${year || ""}
+            </div>
+          `;
+          eduList.insertBefore(div, addBtn);
+        },
+      );
+    };
+
+    window.removeEducation = function (btn) {
+      btn.closest(".p-4").remove();
+    };
+
+    window.addCertificate = function () {
+      openModal(
+        "Add Certification",
+        [
+          { id: "name", label: "Certificate Name", value: "" },
+          { id: "issuer", label: "Issuer", value: "" },
+          { id: "issue_date", label: "Issue Date/Year", value: "" },
+        ],
+        () => {
+          const name = document.getElementById("modal-input-name").value;
+          if (!name) return;
+          const issuer = document.getElementById("modal-input-issuer").value;
+          const issue_date = document.getElementById(
+            "modal-input-issue_date",
+          ).value;
+
+          const certList = document.getElementById("certificates-list");
+          const addBtn = document.getElementById("add-certificate-btn");
+          const div = document.createElement("div");
+          div.className =
+            "p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 transition-colors relative group";
+          div.innerHTML = `
+            <button class="absolute top-2 right-2 text-slate-400 hover:text-red-500 hidden group-hover:block" onclick="removeCertificate(this)">
+              <span class="material-symbols-outlined text-sm">delete</span>
+            </button>
+            <div class="flex items-center gap-3 mb-2 pr-6">
+              <div class="size-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
+                <span class="material-symbols-outlined">workspace_premium</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-sm cursor-text" contenteditable="true">${name}</h4>
+                <p class="text-xs text-slate-500 cursor-text" contenteditable="true">${issuer || ""}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-500 ml-13 flex-col items-start cursor-text" contenteditable="true">
+              <div>
+                 <span class="material-symbols-outlined text-[10px] align-middle">calendar_today</span>
+                 ${issue_date || ""}
+              </div>
+            </div>
+          `;
+          certList.insertBefore(div, addBtn);
+        },
+      );
+    };
+
+    window.removeCertificate = function (btn) {
+      btn.closest(".p-4").remove();
+    };
+
+    window.saveResumeDetails = async function () {
+      const btn = document.getElementById("save-resume-details-btn");
+      btn.innerHTML =
+        '<span class="material-symbols-outlined animate-spin">sync</span> Saving...';
+      btn.disabled = true;
+
+      const user = getUser();
+      user.personalDetails = {
+        name: document.getElementById("pd-name").textContent,
+        email: document.getElementById("pd-email").textContent,
+        phone: document.getElementById("pd-phone").textContent,
+        location: document.getElementById("pd-location").textContent,
+      };
+
+      const skills = [];
+      document.querySelectorAll("#skills-list span").forEach((el) => {
+        if (
+          !el.textContent.includes("Add Skill") &&
+          !el.textContent.includes("No skills extracted")
+        ) {
+          skills.push(el.textContent.replace("close", "").trim());
+        }
+      });
+      user.skills = skills;
+
+      const certificates = [];
+      document
+        .querySelectorAll("#certificates-list > div.p-4")
+        .forEach((el) => {
+          if (
+            el.id !== "certificates-empty-state" &&
+            el.id !== "add-certificate-btn"
+          ) {
+            const nameEl = el.querySelector("h4");
+            const issuerEl = el.querySelector("p");
+            const dateEl = el.querySelector(".flex-col > div"); // date is in a div inside .flex-col
+            if (nameEl) {
+              certificates.push({
+                name: nameEl.textContent.trim(),
+                issuer: issuerEl ? issuerEl.textContent.trim() : "",
+                issue_date: dateEl
+                  ? dateEl.textContent.replace("calendar_today", "").trim()
+                  : "",
+              });
+            }
+          }
+        });
+      user.certificates = certificates;
+
+      saveUser(user);
+
+      try {
+        if (user.email) {
+          await fetch("http://localhost:5000/update_user_data", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: user.email,
+              personalDetails: user.personalDetails,
+              skills: user.skills,
+              certificates: user.certificates,
+            }),
+          });
+        }
+        setTimeout(() => {
+          btn.innerHTML =
+            '<span class="material-symbols-outlined">check</span> Saved!';
+          setTimeout(() => {
+            btn.innerHTML =
+              '<span class="material-symbols-outlined">save</span> Save Details';
+            btn.disabled = false;
+          }, 2000);
+        }, 500);
+      } catch (e) {
+        alert("Failed to save details: " + e.message);
+        btn.innerHTML =
+          '<span class="material-symbols-outlined">save</span> Save Details';
+        btn.disabled = false;
+      }
+    };
+  </script>
+  <!-- Generic Modal Template -->
+  <div id="custom-modal"
+    class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/50 backdrop-blur-sm">
+    <div
+      class="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 w-full max-w-md p-6 transform transition-all scale-95 opacity-0 duration-200"
+      id="custom-modal-content">
+      <div class="flex items-center justify-between mb-4">
+        <h3 id="custom-modal-title" class="text-lg font-bold text-slate-800 dark:text-white">
+          Modal Title
+        </h3>
+        <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div id="custom-modal-body" class="space-y-4">
+        <!-- Form fields injected here -->
+      </div>
+      <div class="mt-6 flex justify-end gap-3">
+        <button onclick="closeModal()"
+          class="px-4 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+          Cancel
+        </button>
+        <button id="custom-modal-save"
+          class="px-4 py-2 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Issue 1: ATS Icon from Browse Jobs — auto-populate JD textarea -->
+  <script>
+    (function () {
+      // Check if we were redirected here from the Browse Jobs ATS icon
+      if (window.location.hash !== '#jd-targeted') return;
+      const raw = localStorage.getItem('jd_job_prefill');
+      if (!raw) return;
+      window._isPrefilledAnalysis = true; // Mark as prefilled to hide manual input later
+      try {
+        const prefill = JSON.parse(raw);
+        localStorage.removeItem('jd_job_prefill'); // clean up
+
+        // Wait for DOM + scripts to settle
+        setTimeout(function () {
+          // Switch to ATS tab if not already on it
+          const atsTabBtn = document.querySelector('[onclick*="switchTab"][onclick*="\'ats\'"]');
+          if (atsTabBtn && !atsTabBtn.classList.contains('active')) {
+            atsTabBtn.click();
+          }
+
+          // Scroll to JD section
+          const jdSection = document.getElementById('jd-ats-section');
+          if (jdSection) {
+            jdSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+
+          // Populate the readonly JD display and hide the textarea
+          const jdInput = document.getElementById('ats-job-desc-input');
+          const jdDisplayContent = document.getElementById('jd-display-content');
+          const jdDisplayContainer = document.getElementById('jd-display-container');
+          
+          if (prefill.description) {
+            if (jdInput) {
+              jdInput.value = prefill.description;
+              jdInput.classList.add('hidden'); // Hide the textarea
+            }
+            if (jdDisplayContent) {
+              jdDisplayContent.textContent = prefill.description;
+            }
+            if (jdDisplayContainer) {
+              jdDisplayContainer.classList.remove('hidden'); // Show the read-only box
+            }
+
+            // Auto click the analysis button
+            const analyzeBtn = document.getElementById('run-ats-btn');
+            if (analyzeBtn && !analyzeBtn.disabled) {
+              analyzeBtn.click();
+            }
+          }
+
+          // Show a banner about which job was selected
+          if (prefill.title || prefill.company) {
+            const noDataPanel = document.getElementById('ats-no-data-panel');
+            if (noDataPanel) {
+              const banner = document.createElement('div');
+              banner.id = 'jd-prefill-banner'; // ID so it can be removed after analysis
+              banner.className = 'mb-3 px-4 py-2.5 bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-700 rounded-xl flex items-center gap-2 text-sm';
+              banner.innerHTML = `
+                <span class="material-symbols-outlined text-purple-500 text-base">balance</span>
+                <span class="font-medium text-purple-800 dark:text-purple-200">
+                  Ready to analyze: <strong>${prefill.title || ''}</strong>${prefill.company ? ' at ' + prefill.company : ''}
+                </span>
+                <span class="ml-auto text-xs text-purple-600 font-bold animate-pulse flex items-center gap-1">
+                   <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+                   Analysis in progress...
+                </span>
+              `;
+              noDataPanel.insertAdjacentElement('afterbegin', banner);
+            }
+          }
+        }, 600);
+      } catch (e) {
+        console.warn('[JD Prefill] Failed to read prefill data:', e);
+      }
+    })();
+  </script>
+</body>
+
+</html>

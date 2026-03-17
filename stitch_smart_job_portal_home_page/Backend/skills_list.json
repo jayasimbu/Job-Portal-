@@ -1,0 +1,7126 @@
+{
+  "MERN Stack": [
+    "fullstack js",
+    "Full Stack JavaScript",
+    "MongoDB Express React Node",
+    "MERN stack developer",
+    "mern project",
+    "MERN",
+    "built using mern",
+    "mongo express react node",
+    "MERN based",
+    "mern developer",
+    "full stack mern",
+    "mean stack",
+    "mern architecture",
+    "mern web app",
+    "full stack with mern",
+    "mongo express react node developer"
+  ],
+  "MEAN Stack": [
+    "fullstack angular",
+    "MEAN",
+    "MEAN based",
+    "Angular Full Stack",
+    "MongoDB Express Angular Node",
+    "mean stack developer",
+    "mean developer",
+    "full stack mean",
+    "angular full stack developer"
+  ],
+  "MEVN Stack": [
+    "MEVN",
+    "MongoDB Express Vue Node",
+    "mevn developer",
+    "vue full stack"
+  ],
+  "LAMP Stack": [
+    "lamp stack developer",
+    "linux apache mysql php developer",
+    "LAMP",
+    "Linux Apache MySQL PHP",
+    "lamp stack project",
+    "php mysql apache"
+  ],
+  "LEMP Stack": [
+    "LEMP",
+    "Linux Nginx MySQL PHP"
+  ],
+  "WAMP Stack": [
+    "WAMP",
+    "Windows Apache MySQL PHP"
+  ],
+  "XAMPP": [
+    "WAMP",
+    "Apache MySQL PHP Stack"
+  ],
+  "JAMstack": [
+    "JAMStack",
+    "jamstack architecture",
+    "jamstack developer",
+    "JavaScript APIs Markup",
+    "jamstack site",
+    "static jamstack",
+    "jamstack web"
+  ],
+  "Django Full Stack": [
+    "Django REST",
+    "Django React",
+    "python fullstack",
+    "Django PostgreSQL",
+    "django and react",
+    "django + react",
+    "python web developer",
+    "django developer fullstack"
+  ],
+  "Spring Full Stack": [
+    "Spring MVC Full Stack",
+    "Spring Boot Angular"
+  ],
+  "Ruby on Rails Full Stack": [
+    "Rails Full Stack",
+    "rails full stack developer",
+    "ror fullstack"
+  ],
+  "PHP Full Stack": [
+    "PHP Laravel MySQL"
+  ],
+  ".NET Full Stack": [
+    "ASP.NET Full Stack",
+    "C# Full Stack",
+    "dotnet full stack",
+    "csharp full stack"
+  ],
+  "Flutter Full Stack": [
+    "Flutter Firebase",
+    "Flutter Dart",
+    "flutter app",
+    "dart flutter developer"
+  ],
+  "PERN Stack": [
+    "PERN",
+    "PostgreSQL Express React Node",
+    "pern developer",
+    "postgres express react node"
+  ],
+  "React": [
+    "React JS",
+    "React Framework",
+    "react developer",
+    "react-based",
+    "React.js",
+    "React 18",
+    "built in react",
+    "react application",
+    "react components",
+    "react development",
+    "react apps",
+    "react ui",
+    "ReactJS",
+    "worked with react",
+    "react hooks",
+    "built react app",
+    "react.js developer",
+    "react ui components",
+    "react single page application",
+    "spa with react",
+    "react project"
+  ],
+  "Angular": [
+    "built in angular",
+    "Angular 14",
+    "AngularJS",
+    "angular developer",
+    "angular application",
+    "Angular JS",
+    "angular apps",
+    "Angular 16",
+    "Angular Framework",
+    "angular development",
+    "angular 15",
+    "angular project",
+    "angular spa",
+    "typescript angular",
+    "angular components",
+    "ng developer"
+  ],
+  "Vue.js": [
+    "vue application",
+    "built in vue",
+    "vue development",
+    "Vue 3",
+    "vue developer",
+    "Vue JS",
+    "Vue",
+    "VueJS",
+    "vue.js project",
+    "nuxt vue",
+    "vue components",
+    "vue spa"
+  ],
+  "Svelte": [
+    "Svelte Framework",
+    "built in svelte",
+    "SvelteKit",
+    "svelte developer",
+    "sveltekit project"
+  ],
+  "Ember.js": [
+    "Ember",
+    "EmberJS"
+  ],
+  "Backbone.js": [
+    "Backbone",
+    "BackboneJS"
+  ],
+  "Preact": [
+    "Preact Framework"
+  ],
+  "Lit": [
+    "Lit Framework",
+    "Lit Element"
+  ],
+  "Solid.js": [
+    "SolidJS",
+    "Solid Framework"
+  ],
+  "Qwik": [
+    "Qwik Framework"
+  ],
+  "Astro": [
+    "Astro Framework",
+    "astro site",
+    "astro developer"
+  ],
+  "Remix": [
+    "Remix Framework",
+    "Remix Run",
+    "remix app",
+    "remix developer"
+  ],
+  "Next.js": [
+    "Next JS",
+    "NextJS",
+    "Next Framework",
+    "nextjs developer",
+    "react ssr",
+    "next js developer",
+    "next framework developer",
+    "next js app",
+    "nextjs project",
+    "next react",
+    "server side react",
+    "nextjs ssr"
+  ],
+  "Nuxt.js": [
+    "NuxtJS",
+    "Nuxt Framework",
+    "nuxt application",
+    "nuxt vue developer"
+  ],
+  "Gatsby": [
+    "GatsbyJS",
+    "gatsby static site",
+    "gatsby developer"
+  ],
+  "Alpine.js": [
+    "Alpine",
+    "AlpineJS",
+    "alpine js",
+    "lightweight interactions"
+  ],
+  "Mithril": [
+    "Mithril.js"
+  ],
+  "Stencil": [
+    "StencilJS"
+  ],
+  "Web Components": [
+    "Custom Elements",
+    "Shadow DOM"
+  ],
+  "HTMX": [
+    "Htmx",
+    "htmx developer",
+    "html hypermedia"
+  ],
+  "jQuery": [
+    "jQuery Library",
+    "jquery animations",
+    "JQuery",
+    "jquery developer",
+    "jquery scripts",
+    "jquery dom manipulation"
+  ],
+  "Hyperapp": [
+    "HyperApp"
+  ],
+  "Sapper": [
+    "Sapper Framework"
+  ],
+  "TailwindCSS": [
+    "Tailwind CSS",
+    "tailwind styling",
+    "utility css",
+    "tailwindcss developer",
+    "tailwind classes",
+    "Tailwind",
+    "tailwind components",
+    "tailwind utility classes",
+    "utility first css"
+  ],
+  "Bootstrap": [
+    "Bootstrap CSS",
+    "bootstrap framework",
+    "bootstrap grid",
+    "Bootstrap 5",
+    "Bootstrap 4",
+    "bootstrap styling",
+    "bootstrap components",
+    "bootstrap layout"
+  ],
+  "Material UI": [
+    "MUI",
+    "Material-UI",
+    "Material Design",
+    "mui components",
+    "material design react",
+    "google material"
+  ],
+  "Ant Design": [
+    "AntD",
+    "Ant Design Pro",
+    "antd components",
+    "antd tables"
+  ],
+  "Chakra UI": [
+    "Chakra",
+    "chakra components",
+    "chakra react"
+  ],
+  "Mantine": [
+    "Mantine UI"
+  ],
+  "Vuetify": [
+    "Vuetify Framework"
+  ],
+  "Bulma": [
+    "Bulma CSS"
+  ],
+  "Foundation": [
+    "Foundation CSS",
+    "Zurb Foundation"
+  ],
+  "Semantic UI": [
+    "SemanticUI"
+  ],
+  "UIKit": [
+    "UI Kit"
+  ],
+  "Styled Components": [
+    "Styled-Components",
+    "css in js",
+    "emotion styled",
+    "styled-components react"
+  ],
+  "Emotion": [
+    "Emotion CSS",
+    "CSS-in-JS"
+  ],
+  "CSS Modules": [
+    "CSS Module"
+  ],
+  "SASS": [
+    "SCSS",
+    "Sass CSS",
+    "Syntactically Awesome Style Sheets",
+    "scss styles",
+    "sass preprocessing",
+    "sass variables",
+    "sass mixins"
+  ],
+  "LESS": [
+    "LessCSS",
+    "LESS CSS"
+  ],
+  "PostCSS": [
+    "Post CSS"
+  ],
+  "Shadcn UI": [
+    "shadcn"
+  ],
+  "Radix UI": [
+    "Radix"
+  ],
+  "DaisyUI": [
+    "Daisy UI"
+  ],
+  "Headless UI": [
+    "HeadlessUI"
+  ],
+  "Flowbite": [
+    "Flowbite Components"
+  ],
+  "PrimeNG": [
+    "Prime NG"
+  ],
+  "PrimeReact": [
+    "Prime React"
+  ],
+  "Angular Material": [
+    "Material Angular"
+  ],
+  "Spring Boot": [
+    "Java Spring",
+    "Springboot",
+    "spring boot rest api",
+    "Spring MVC",
+    "spring boot microservices",
+    "spring boot backend",
+    "springboot developer",
+    "spring boot applications",
+    "spring boot developer",
+    "Spring Framework",
+    "java spring boot developer",
+    "java developer spring boot",
+    "rest api spring boot",
+    "spring boot application",
+    "springboot api",
+    "spring based backend",
+    "spring boot annotations",
+    "spring data jpa"
+  ],
+  "Django": [
+    "django api",
+    "python django",
+    "django web app",
+    "Django REST",
+    "django backend",
+    "DRF",
+    "django developer",
+    "Django REST Framework",
+    "django models",
+    "django views",
+    "drf api",
+    "django orm",
+    "django templates"
+  ],
+  "Flask": [
+    "flask developer",
+    "Flask Python",
+    "python flask",
+    "Flask API",
+    "flask backend",
+    "flask routes",
+    "flask blueprints",
+    "flask rest",
+    "flask api python"
+  ],
+  "FastAPI": [
+    "FastAPI Python",
+    "Fast API",
+    "async python api",
+    "fastapi backend",
+    "fastapi endpoints",
+    "async fastapi",
+    "pydantic fastapi",
+    "openapi fastapi"
+  ],
+  "Express.js": [
+    "ExpressJS",
+    "express backend",
+    "Express",
+    "rest api with express",
+    "express node",
+    "express developer",
+    "Node Express",
+    "express routes",
+    "express middleware",
+    "express api",
+    "rest with express"
+  ],
+  "NestJS": [
+    "typescript backend",
+    "Nest Framework",
+    "Nest JS",
+    "nestjs developer",
+    "nest backend",
+    "nestjs modules",
+    "nestjs services",
+    "nest decorators",
+    "nest typescript"
+  ],
+  "Fastify": [
+    "Fastify Node"
+  ],
+  "Hapi.js": [
+    "Hapi",
+    "HapiJS"
+  ],
+  "Koa.js": [
+    "Koa",
+    "KoaJS"
+  ],
+  "Adonis.js": [
+    "AdonisJS",
+    "Adonis Framework"
+  ],
+  "Laravel": [
+    "laravel developer",
+    "Laravel PHP",
+    "php laravel developer",
+    "laravel api",
+    "laravel backend",
+    "PHP Laravel",
+    "laravel routes",
+    "laravel eloquent",
+    "laravel blade",
+    "laravel controllers"
+  ],
+  "Symfony": [
+    "PHP Symfony",
+    "Symfony PHP",
+    "symfony components",
+    "symfony bundles"
+  ],
+  "CodeIgniter": [
+    "Code Igniter",
+    "CI Framework",
+    "ci4",
+    "codeigniter4"
+  ],
+  "Yii": [
+    "Yii2",
+    "Yii Framework"
+  ],
+  "CakePHP": [
+    "Cake PHP"
+  ],
+  "Slim": [
+    "Slim Framework"
+  ],
+  "Ruby on Rails": [
+    "RoR",
+    "Ruby Rails",
+    "ror developer",
+    "Rails",
+    "ruby rails developer",
+    "rails developer"
+  ],
+  "Sinatra": [
+    "Ruby Sinatra"
+  ],
+  "ASP.NET Core": [
+    ".net core developer",
+    "dotnet developer",
+    "c# backend",
+    ".NET Core",
+    "dotnet Core",
+    "asp.net developer",
+    "ASP.NET",
+    "asp net core developer",
+    "dotnet api",
+    "c# web api",
+    "minimal api dotnet"
+  ],
+  "Blazor": [
+    "ASP.NET Blazor"
+  ],
+  "Gin": [
+    "Gin Golang",
+    "Gin Framework",
+    "gin framework go",
+    "go gin rest"
+  ],
+  "Echo": [
+    "Echo Golang"
+  ],
+  "Fiber": [
+    "Fiber Go",
+    "GoFiber",
+    "fiber golang",
+    "go fiber api"
+  ],
+  "Actix": [
+    "Actix Rust",
+    "Actix Web"
+  ],
+  "Rocket": [
+    "Rocket Rust"
+  ],
+  "Ktor": [
+    "Kotlin Ktor"
+  ],
+  "Micronaut": [
+    "Micronaut Framework"
+  ],
+  "Quarkus": [
+    "Red Hat Quarkus"
+  ],
+  "Helidon": [
+    "Oracle Helidon"
+  ],
+  "Vapor": [
+    "Swift Vapor"
+  ],
+  "Phoenix": [
+    "Elixir Phoenix",
+    "elixir phoenix framework"
+  ],
+  "Play Framework": [
+    "Play Scala"
+  ],
+  "Axum": [
+    "Rust Axum"
+  ],
+  "Warp": [
+    "Rust Warp"
+  ],
+  "Tide": [
+    "Rust Tide"
+  ],
+  "Loco": [
+    "Rust Loco"
+  ],
+  "PostgreSQL": [
+    "psql developer",
+    "postgres db",
+    "postgres developer",
+    "postgresql database",
+    "Postgres",
+    "postgresql queries",
+    "pg",
+    "working with postgres",
+    "postgres queries",
+    "PSQL",
+    "Postgres SQL",
+    "postgresql developer",
+    "postgres schemas",
+    "postgres functions",
+    "psql queries",
+    "postgres indexes",
+    "worked with psql",
+    "relational postgres"
+  ],
+  "MySQL": [
+    "mysql backend",
+    "MySQL 8",
+    "mysql database",
+    "mysql developer",
+    "worked with mysql",
+    "mysql queries",
+    "My SQL",
+    "mysql schemas",
+    "mysql stored procedures",
+    "mysql joins",
+    "innodb mysql"
+  ],
+  "SQL Server": [
+    "t-sql",
+    "MS SQL",
+    "microsoft sql",
+    "sql server queries",
+    "mssql developer",
+    "Microsoft SQL Server",
+    "MSSQL",
+    "mssql queries",
+    "tsql developer",
+    "sql server stored procs"
+  ],
+  "Oracle Database": [
+    "Oracle DB",
+    "Oracle SQL"
+  ],
+  "SQLite": [
+    "sqlite3 database",
+    "Lite SQL",
+    "SQLite3",
+    "lightweight db",
+    "sqlite database",
+    "embedded sqlite",
+    "mobile sqlite",
+    "sqlite file database"
+  ],
+  "MariaDB": [
+    "Maria DB"
+  ],
+  "DB2": [
+    "IBM DB2"
+  ],
+  "Teradata": [
+    "Teradata SQL"
+  ],
+  "Sybase": [
+    "SAP Sybase"
+  ],
+  "Aurora": [
+    "AWS Aurora",
+    "Amazon Aurora"
+  ],
+  "CockroachDB": [
+    "Cockroach DB"
+  ],
+  "Supabase": [
+    "Supa Base"
+  ],
+  "PlanetScale": [
+    "Planet Scale"
+  ],
+  "TiDB": [
+    "Ti DB"
+  ],
+  "Snowflake": [
+    "Snowflake DB",
+    "Snowflake Data Warehouse",
+    "snowflake warehousing",
+    "snowflake sql",
+    "cloud data warehousing"
+  ],
+  "Redshift": [
+    "AWS Redshift",
+    "Amazon Redshift"
+  ],
+  "BigQuery": [
+    "Google BigQuery",
+    "bigquery sql",
+    "gcp bigquery",
+    "bq datasets"
+  ],
+  "Databricks": [
+    "Data Engineering Databricks",
+    "databricks notebooks",
+    "databricks spark",
+    "databricks ml"
+  ],
+  "MongoDB": [
+    "mongo queries",
+    "nosql mongodb",
+    "Mongo",
+    "MongoAtlas",
+    "Mongo DB",
+    "mongodb atlas",
+    "worked with mongodb",
+    "mongo database",
+    "mongodb developer",
+    "mongodb collections",
+    "mongodb aggregation",
+    "mongodb crud",
+    "mongo atlas developer"
+  ],
+  "Redis": [
+    "Redis DB",
+    "redis developer",
+    "caching with redis",
+    "Redis Cache",
+    "redis key-value",
+    "redis pub/sub",
+    "redis sorted sets",
+    "caching redis",
+    "redis cluster"
+  ],
+  "Cassandra": [
+    "Cassandra DB",
+    "Apache Cassandra",
+    "apache cassandra cluster",
+    "wide column db",
+    "cassandra tables",
+    "cassandra cluster",
+    "wide column cassandra"
+  ],
+  "DynamoDB": [
+    "Amazon DynamoDB",
+    "dynamo queries",
+    "AWS DynamoDB",
+    "nosql aws",
+    "dynamodb tables",
+    "dynamo tables",
+    "nosql dynamo",
+    "aws nosql"
+  ],
+  "Firebase Firestore": [
+    "Firestore",
+    "firestore database",
+    "Cloud Firestore",
+    "firebase database",
+    "firebase integration",
+    "realtime firebase",
+    "firestore rules",
+    "firebase sdk",
+    "firebase collections"
+  ],
+  "Firebase Realtime Database": [
+    "Firebase DB",
+    "Firebase RT"
+  ],
+  "Couchbase": [
+    "Couchbase Server"
+  ],
+  "CouchDB": [
+    "Apache CouchDB"
+  ],
+  "RavenDB": [
+    "Raven DB"
+  ],
+  "Neo4j": [
+    "Neo4j Graph DB",
+    "Graph Database",
+    "graph database neo4j",
+    "cypher queries",
+    "neo4j nodes"
+  ],
+  "ArangoDB": [
+    "Arango DB"
+  ],
+  "HBase": [
+    "Apache HBase"
+  ],
+  "Bigtable": [
+    "Google Bigtable"
+  ],
+  "InfluxDB": [
+    "Influx DB",
+    "Time Series DB",
+    "time series influx",
+    "influx queries",
+    "metrics influxdb"
+  ],
+  "TimescaleDB": [
+    "Timescale DB"
+  ],
+  "Prometheus": [
+    "Metrics Collection",
+    "prometheus metrics",
+    "prometheus rules",
+    "monitoring prometheus"
+  ],
+  "RethinkDB": [
+    "Rethink DB"
+  ],
+  "FaunaDB": [
+    "Fauna DB"
+  ],
+  "Datomic": [
+    "Datomic DB"
+  ],
+  "Elasticsearch": [
+    "Elastic Search",
+    "ELK Stack",
+    "elastic queries",
+    "elasticsearch indexing",
+    "full text search es",
+    "elk developer"
+  ],
+  "OpenSearch": [
+    "AWS OpenSearch"
+  ],
+  "Solr": [
+    "Apache Solr"
+  ],
+  "Meilisearch": [
+    "Meili Search"
+  ],
+  "Typesense": [
+    "Type Sense"
+  ],
+  "Apache Kafka": [
+    "Event Streaming",
+    "Kafka MQ",
+    "kafka cluster",
+    "kafka producer",
+    "kafka consumer",
+    "kafka topics",
+    "kafka messaging",
+    "Kafka",
+    "event streaming kafka",
+    "kafka producer consumer",
+    "kafka streaming",
+    "kafka broker",
+    "event-driven kafka",
+    "kafka pipeline",
+    "kafka topics setup"
+  ],
+  "RabbitMQ": [
+    "Rabbit MQ",
+    "AMQP",
+    "rabbitmq queues",
+    "rabbitmq exchanges",
+    "amqp rabbitmq",
+    "message broker rabbitmq"
+  ],
+  "ActiveMQ": [
+    "Active MQ",
+    "Apache ActiveMQ"
+  ],
+  "Azure Service Bus": [
+    "Service Bus"
+  ],
+  "AWS SQS": [
+    "SQS",
+    "Simple Queue Service"
+  ],
+  "AWS SNS": [
+    "SNS",
+    "Simple Notification Service"
+  ],
+  "Google Pub/Sub": [
+    "Pub Sub",
+    "Google PubSub"
+  ],
+  "NATS": [
+    "NATS Messaging"
+  ],
+  "ZeroMQ": [
+    "ZMQ",
+    "Zero MQ"
+  ],
+  "IBM MQ": [
+    "MQ Series"
+  ],
+  "MQTT": [
+    "Message Queuing Telemetry Transport"
+  ],
+  "gRPC": [
+    "gRPC Framework",
+    "protobuf grpc",
+    "grpc services",
+    "grpc developer"
+  ],
+  "GraphQL": [
+    "Graph QL",
+    "graphql queries",
+    "graphql schema",
+    "graphql api",
+    "GQL",
+    "built graphql",
+    "graphql resolvers",
+    "graphql mutations",
+    "graphql subscriptions",
+    "graphql api developer"
+  ],
+  "REST API": [
+    "RESTful Web Services",
+    "restful services",
+    "built rest api",
+    "rest api integration",
+    "RESTful API",
+    "REST",
+    "consumed rest api",
+    "designed rest api",
+    "rest api development",
+    "rest endpoints",
+    "api development rest",
+    "rest integration",
+    "built and consumed apis"
+  ],
+  "SOAP": [
+    "Simple Object Access Protocol",
+    "SOAP API"
+  ],
+  "Nginx": [
+    "NGINX",
+    "Nginx Webserver",
+    "nginx config",
+    "nginx reverse proxy",
+    "nginx load balancer"
+  ],
+  "HAProxy": [
+    "HA Proxy",
+    "haproxy load balancing",
+    "haproxy config"
+  ],
+  "Apache": [
+    "Apache HTTP Server"
+  ],
+  "API Gateway": [
+    "AWS API Gateway",
+    "Kong Gateway",
+    "kong api",
+    "api management"
+  ],
+  "Kong": [
+    "Kong API Gateway"
+  ],
+  "Traefik": [
+    "Traefik Reverse Proxy"
+  ],
+  "Envoy": [
+    "Envoy Proxy"
+  ],
+  "Istio": [
+    "Service Mesh"
+  ],
+  "Linkerd": [
+    "Service Mesh Linkerd"
+  ],
+  "Consul": [
+    "Service Discovery"
+  ],
+  "Vault": [
+    "Secrets Management"
+  ],
+  "WebSockets": [
+    "Web Sockets",
+    "WS",
+    "websocket server",
+    "realtime ws",
+    "ws connections"
+  ],
+  "Server-Sent Events": [
+    "SSE",
+    "Server Sent Events"
+  ],
+  "Long Polling": [
+    "Long Poll"
+  ],
+  "JavaScript": [
+    "ECMAScript",
+    "vanilla js",
+    "js programming",
+    "JS",
+    "ES2015",
+    "plain javascript",
+    "frontend javascript",
+    "ES2022",
+    "javascript developer",
+    "ES6",
+    "javascript programming",
+    "js developer",
+    "vanilla javascript",
+    "es6 javascript",
+    "modern javascript"
+  ],
+  "TypeScript": [
+    "typescript developer",
+    "strongly typed javascript",
+    "type-safe js",
+    "TS",
+    "Type Script",
+    "ts developer",
+    "typescript projects",
+    "strongly typed code",
+    "ts codebase",
+    "typed javascript"
+  ],
+  "Python": [
+    "python scripting",
+    "Py",
+    "python programming",
+    "Python 3",
+    "python developer",
+    "built in python",
+    "python coder",
+    "Python3"
+  ],
+  "Java": [
+    "Java 8",
+    "Java 11",
+    "Java 17",
+    "Java SE",
+    "Java EE"
+  ],
+  "C++": [
+    "CPP",
+    "C Plus Plus"
+  ],
+  "C#": [
+    "C Sharp",
+    "CSharp"
+  ],
+  "C": [
+    "C Language",
+    "C Programming"
+  ],
+  "Golang": [
+    "golang developer",
+    "Go",
+    "go lang developer",
+    "Go Language",
+    "go developer",
+    "go backend"
+  ],
+  "Rust": [
+    "Rust Lang",
+    "rust programmer",
+    "rust developer",
+    "systems rust"
+  ],
+  "Swift": [
+    "iOS Swift",
+    "SwiftUI"
+  ],
+  "Kotlin": [
+    "Android Kotlin",
+    "Android Dev"
+  ],
+  "Dart": [
+    "Dart Flutter"
+  ],
+  "PHP": [
+    "PHP 8",
+    "PHP Language"
+  ],
+  "Ruby": [
+    "Ruby Language"
+  ],
+  "Scala": [
+    "Scala JVM"
+  ],
+  "Elixir": [
+    "Elixir Language"
+  ],
+  "Erlang": [
+    "Erlang Language"
+  ],
+  "Haskell": [
+    "Haskell Language"
+  ],
+  "Clojure": [
+    "Clojure JVM"
+  ],
+  "F#": [
+    "F sharp",
+    "FSharp"
+  ],
+  "Lua": [
+    "Lua Scripting"
+  ],
+  "Perl": [
+    "Perl Scripting"
+  ],
+  "R": [
+    "R Language",
+    "R Programming",
+    "r programming ggplot",
+    "r data analysis",
+    "r shiny",
+    "r statistical"
+  ],
+  "MATLAB": [
+    "Mat lab",
+    "Matrix Lab",
+    "matlab simulation",
+    "matlab script",
+    "matlab optimization",
+    "simulink matlab"
+  ],
+  "COBOL": [
+    "Cobol Language"
+  ],
+  "Fortran": [
+    "Fortran Language"
+  ],
+  "Assembly": [
+    "Assembly Language",
+    "ASM"
+  ],
+  "Bash": [
+    "shell scripts",
+    "wrote shell scripts",
+    "linux scripting",
+    "Shell Script",
+    "Bash Script",
+    "Bash Scripting",
+    "bash automation",
+    "bash scripts",
+    "shell automation"
+  ],
+  "PowerShell": [
+    "PS Scripting",
+    "Powershell Script"
+  ],
+  "Groovy": [
+    "Groovy Language"
+  ],
+  "Julia": [
+    "Julia Language"
+  ],
+  "Nim": [
+    "Nim Language"
+  ],
+  "Zig": [
+    "Zig Language"
+  ],
+  "OCaml": [
+    "OCaml Language"
+  ],
+  "Crystal": [
+    "Crystal Language"
+  ],
+  "D": [
+    "D Programming Language"
+  ],
+  "Ada": [
+    "Ada Language"
+  ],
+  "Lisp": [
+    "Common Lisp"
+  ],
+  "Scheme": [
+    "Scheme Lisp"
+  ],
+  "Prolog": [
+    "Prolog Logic"
+  ],
+  "VHDL": [
+    "VHSIC HDL",
+    "vhdl design",
+    "fpga vhdl",
+    "digital logic vhdl"
+  ],
+  "Verilog": [
+    "Verilog HDL",
+    "rtl design verilog",
+    "verilog simulation",
+    "verilog testbench"
+  ],
+  "SystemVerilog": [
+    "System Verilog"
+  ],
+  "HCL": [
+    "HashiCorp Configuration Language"
+  ],
+  "Bicep": [
+    "Azure Bicep"
+  ],
+  "Redux": [
+    "Redux Toolkit",
+    "React Redux",
+    "redux state",
+    "react redux store",
+    "global state redux"
+  ],
+  "Zustand": [
+    "Zustand State"
+  ],
+  "Jotai": [
+    "Jotai Atoms"
+  ],
+  "Recoil": [
+    "Recoil State"
+  ],
+  "MobX": [
+    "Mob X",
+    "MobX State"
+  ],
+  "XState": [
+    "X State",
+    "State Machines"
+  ],
+  "Pinia": [
+    "Pinia Store",
+    "Vue Pinia"
+  ],
+  "Vuex": [
+    "Vuex Store"
+  ],
+  "NgRx": [
+    "NgRx Store",
+    "Angular NgRx"
+  ],
+  "React Context": [
+    "Context API"
+  ],
+  "Tanstack Query": [
+    "React Query",
+    "TanStack"
+  ],
+  "SWR": [
+    "Stale While Revalidate"
+  ],
+  "Apollo Client": [
+    "Apollo GraphQL Client"
+  ],
+  "Jest": [
+    "Jest Testing",
+    "jest unit tests",
+    "Jest Unit Test",
+    "wrote jest tests",
+    "unit testing with jest",
+    "jest test cases",
+    "wrote unit tests jest",
+    "react testing jest"
+  ],
+  "Vitest": [
+    "Vite Test"
+  ],
+  "Mocha": [
+    "Mocha Testing",
+    "mocha chai tests",
+    "mocha runner"
+  ],
+  "Chai": [
+    "Chai Assertions"
+  ],
+  "Cypress": [
+    "E2E Testing",
+    "cypress tests",
+    "Cypress E2E",
+    "integration testing cypress",
+    "e2e with cypress",
+    "cypress e2e suite",
+    "cypress automation"
+  ],
+  "Playwright": [
+    "Playwright Testing",
+    "playwright tests",
+    "e2e playwright",
+    "playwright automation",
+    "e2e playwright tests"
+  ],
+  "Selenium": [
+    "Selenium Automation",
+    "selenium tests",
+    "web automation selenium",
+    "Selenium WebDriver",
+    "automated testing selenium",
+    "selenium framework",
+    "test automation selenium",
+    "selenium scripts"
+  ],
+  "Puppeteer": [
+    "Headless Chrome Testing"
+  ],
+  "Testing Library": [
+    "React Testing Library",
+    "RTL"
+  ],
+  "Enzyme": [
+    "React Enzyme"
+  ],
+  "Jasmine": [
+    "Jasmine Testing"
+  ],
+  "JUnit": [
+    "Unit Testing Java",
+    "junit tests",
+    "unit testing java junit",
+    "test cases junit",
+    "Java JUnit",
+    "java unit testing junit",
+    "junit 5",
+    "spring test junit"
+  ],
+  "Mockito": [
+    "Java Mockito"
+  ],
+  "Pytest": [
+    "Python Pytest",
+    "pytest fixtures",
+    "python unit testing",
+    "pytest coverage"
+  ],
+  "Unittest": [
+    "Python Unittest"
+  ],
+  "RSpec": [
+    "Ruby RSpec"
+  ],
+  "PHPUnit": [
+    "PHP Unit Test"
+  ],
+  "Karma": [
+    "Karma Runner"
+  ],
+  "Cucumber": [
+    "BDD Cucumber"
+  ],
+  "Gherkin": [
+    "BDD Gherkin"
+  ],
+  "k6": [
+    "k6 Load Testing"
+  ],
+  "Artillery": [
+    "Artillery Load Test"
+  ],
+  "JMeter": [
+    "Apache JMeter",
+    "Load Testing"
+  ],
+  "Storybook": [
+    "Component Library"
+  ],
+  "Detox": [
+    "React Native Detox"
+  ],
+  "Appium": [
+    "Mobile Testing"
+  ],
+  "Docker": [
+    "Dockerization",
+    "Containers",
+    "Docker Container",
+    "docker containers",
+    "wrote dockerfiles",
+    "containerized deployment",
+    "dockerized apps",
+    "docker-compose",
+    "docker images",
+    "dockerfile created",
+    "docker networks",
+    "docker volumes",
+    "docker-compose setup"
+  ],
+  "Kubernetes": [
+    "k8s pods",
+    "k8s cluster",
+    "orchestrated containers",
+    "K8s",
+    "Kube",
+    "kubernetes deployment",
+    "deployed on kubernetes",
+    "kubernetes manifest",
+    "k8s deployments",
+    "kubernetes services",
+    "helm charts k8s",
+    "k8s pods management"
+  ],
+  "Helm": [
+    "Helm Charts",
+    "helm chart deploy",
+    "helm values yaml"
+  ],
+  "Terraform": [
+    "Infrastructure as Code",
+    "terraform scripts",
+    "IaC",
+    "infrastructure provisioning",
+    "cloud provisioning terraform"
+  ],
+  "Ansible": [
+    "ansible playbooks",
+    "configuration management",
+    "Config Management",
+    "ansible roles",
+    "ansible tasks",
+    "configuration automation"
+  ],
+  "Puppet": [
+    "Puppet Configuration"
+  ],
+  "Chef": [
+    "Chef Automation"
+  ],
+  "Jenkins": [
+    "jenkins jobs",
+    "Jenkins CI",
+    "ci with jenkins",
+    "automated builds jenkins",
+    "jenkins pipelines",
+    "Jenkins Pipeline",
+    "jenkins groovy",
+    "jenkins shared library",
+    "ci/cd jenkins"
+  ],
+  "GitHub Actions": [
+    "GH Actions",
+    "github actions pipeline",
+    "automated github workflow",
+    "github ci",
+    "github workflow yml",
+    "github ci pipeline"
+  ],
+  "GitLab CI": [
+    "GitLab Pipelines",
+    "gitlab pipeline",
+    "gitlab ci/cd"
+  ],
+  "CircleCI": [
+    "Circle CI"
+  ],
+  "TravisCI": [
+    "Travis CI"
+  ],
+  "Azure DevOps": [
+    "VSTS",
+    "Azure Pipelines"
+  ],
+  "Argo CD": [
+    "ArgoCD"
+  ],
+  "Flux CD": [
+    "FluxCD"
+  ],
+  "Spinnaker": [
+    "Spinnaker CD"
+  ],
+  "Tekton": [
+    "Tekton Pipelines"
+  ],
+  "Drone CI": [
+    "CI/CD Drone"
+  ],
+  "TeamCity": [
+    "JetBrains TeamCity"
+  ],
+  "Bamboo": [
+    "Atlassian Bamboo"
+  ],
+  "Packer": [
+    "HashiCorp Packer"
+  ],
+  "Vagrant": [
+    "HashiCorp Vagrant"
+  ],
+  "Pulumi": [
+    "IaC Pulumi"
+  ],
+  "CDK": [
+    "AWS CDK",
+    "Cloud Development Kit"
+  ],
+  "CloudFormation": [
+    "AWS CloudFormation"
+  ],
+  "ARM Templates": [
+    "Azure ARM"
+  ],
+  "Caddy": [
+    "Caddy Server"
+  ],
+  "Grafana": [
+    "Grafana Dashboard",
+    "Observability",
+    "grafana visualization",
+    "grafana alerting"
+  ],
+  "ELK Stack": [
+    "Elasticsearch Logstash Kibana",
+    "kibana dashboards",
+    "logstash pipelines",
+    "elastic log analysis"
+  ],
+  "Loki": [
+    "Grafana Loki"
+  ],
+  "Jaeger": [
+    "Distributed Tracing"
+  ],
+  "Zipkin": [
+    "Distributed Tracing Zipkin"
+  ],
+  "Datadog": [
+    "Data Dog",
+    "datadog apm",
+    "datadog dashboards",
+    "datadog monitoring"
+  ],
+  "New Relic": [
+    "NewRelic"
+  ],
+  "Dynatrace": [
+    "Dyna Trace"
+  ],
+  "PagerDuty": [
+    "Pager Duty"
+  ],
+  "Sentry": [
+    "Error Monitoring",
+    "sentry error tracking",
+    "sentry alerts"
+  ],
+  "OpenTelemetry": [
+    "OTel",
+    "Open Telemetry"
+  ],
+  "Amazon Web Services": [
+    "Amazon Cloud",
+    "aws certified",
+    "aws services",
+    "deployed on aws",
+    "worked on aws",
+    "aws infrastructure",
+    "aws cloud",
+    "AWS",
+    "aws developer",
+    "aws solution architect",
+    "aws cloud engineer",
+    "multiple aws services",
+    "ec2 s3 rds lambda",
+    "aws environment"
+  ],
+  "Google Cloud Platform": [
+    "GCP",
+    "google cloud services",
+    "worked on gcp",
+    "Google Cloud",
+    "gcp services",
+    "gcp certified",
+    "gcp engineer",
+    "gcp developer",
+    "google cloud engineer",
+    "gcp environment"
+  ],
+  "Microsoft Azure": [
+    "worked on azure",
+    "azure cloud",
+    "MS Azure",
+    "deployed on azure",
+    "azure certified",
+    "Azure",
+    "azure services",
+    "azure engineer",
+    "azure developer",
+    "azure cloud engineer",
+    "azure environment"
+  ],
+  "Alibaba Cloud": [
+    "Aliyun"
+  ],
+  "IBM Cloud": [
+    "IBM Cloud Services"
+  ],
+  "Oracle Cloud": [
+    "OCI",
+    "Oracle Cloud Infrastructure"
+  ],
+  "DigitalOcean": [
+    "Digital Ocean"
+  ],
+  "Linode": [
+    "Linode Cloud",
+    "Akamai Cloud"
+  ],
+  "Vultr": [
+    "Vultr Cloud"
+  ],
+  "Cloudflare": [
+    "Cloudflare Workers",
+    "CF"
+  ],
+  "Vercel": [
+    "Vercel Deploy"
+  ],
+  "Netlify": [
+    "Netlify Deploy"
+  ],
+  "Heroku": [
+    "Heroku Deploy"
+  ],
+  "Railway": [
+    "Railway Deploy"
+  ],
+  "Render": [
+    "Render Deploy"
+  ],
+  "AWS Lambda": [
+    "Serverless Functions",
+    "serverless lambda",
+    "aws serverless",
+    "lambda functions",
+    "Lambda",
+    "lambda handler",
+    "serverless lambda functions",
+    "event-driven lambda"
+  ],
+  "AWS EC2": [
+    "virtual machines aws",
+    "ec2 server",
+    "Elastic Compute Cloud",
+    "ec2 instances",
+    "EC2",
+    "ec2 instance setup",
+    "ec2 autoscaling",
+    "virtual machines ec2"
+  ],
+  "AWS S3": [
+    "object storage",
+    "s3 buckets",
+    "Simple Storage Service",
+    "s3 files",
+    "file upload s3",
+    "S3",
+    "s3 object storage",
+    "s3 bucket policy"
+  ],
+  "AWS RDS": [
+    "RDS",
+    "Relational Database Service"
+  ],
+  "AWS ECS": [
+    "ECS",
+    "Elastic Container Service"
+  ],
+  "AWS EKS": [
+    "EKS",
+    "Elastic Kubernetes Service",
+    "eks cluster",
+    "kubernetes on aws"
+  ],
+  "AWS CloudFront": [
+    "CloudFront",
+    "CDN"
+  ],
+  "AWS Route 53": [
+    "Route 53",
+    "DNS"
+  ],
+  "AWS IAM": [
+    "IAM",
+    "Identity Access Management"
+  ],
+  "AWS VPC": [
+    "VPC",
+    "Virtual Private Cloud"
+  ],
+  "AWS API Gateway": [
+    "API Gateway"
+  ],
+  "AWS DynamoDB": [
+    "DynamoDB"
+  ],
+  "AWS SageMaker": [
+    "SageMaker",
+    "ML Training"
+  ],
+  "Azure Virtual Machines": [
+    "Azure VMs"
+  ],
+  "Azure AKS": [
+    "AKS",
+    "Azure Kubernetes"
+  ],
+  "Azure Storage": [
+    "Azure Blob Storage"
+  ],
+  "Azure Functions": [
+    "Azure Serverless"
+  ],
+  "Azure Active Directory": [
+    "AAD",
+    "Azure AD",
+    "Entra ID"
+  ],
+  "Google Compute Engine": [
+    "GCE"
+  ],
+  "Google Kubernetes Engine": [
+    "GKE"
+  ],
+  "Google Cloud Run": [
+    "Cloud Run"
+  ],
+  "Google Cloud Storage": [
+    "GCS"
+  ],
+  "Google Cloud Functions": [
+    "Cloud Functions"
+  ],
+  "Google Firebase": [
+    "Firebase"
+  ],
+  "Cloud CDN": [
+    "CDN"
+  ],
+  "React Native": [
+    "RN",
+    "React Native App"
+  ],
+  "Flutter": [
+    "Flutter Dart",
+    "Dart Flutter"
+  ],
+  "Ionic": [
+    "Ionic Framework"
+  ],
+  "Xamarin": [
+    "Xamarin Forms"
+  ],
+  "MAUI": [
+    ".NET MAUI",
+    "Multi-platform App UI"
+  ],
+  "Java Android": [
+    "Android Java",
+    "Android Studio"
+  ],
+  "Objective-C": [
+    "ObjC",
+    "iOS Objective-C"
+  ],
+  "Capacitor": [
+    "Ionic Capacitor"
+  ],
+  "Cordova": [
+    "Apache Cordova",
+    "PhoneGap"
+  ],
+  "Expo": [
+    "Expo React Native"
+  ],
+  "Tauri": [
+    "Tauri App"
+  ],
+  "Electron": [
+    "Electron App",
+    "Desktop App"
+  ],
+  "Apache Spark": [
+    "PySpark",
+    "big data spark",
+    "SparkSQL",
+    "Spark",
+    "pyspark jobs",
+    "spark jobs",
+    "spark dataframes",
+    "pyspark dataframe",
+    "spark sql",
+    "spark ml",
+    "distributed spark"
+  ],
+  "Apache Hadoop": [
+    "Hadoop",
+    "HDFS",
+    "MapReduce"
+  ],
+  "Apache Airflow": [
+    "scheduled pipeline airflow",
+    "airflow dags",
+    "Airflow",
+    "Workflow Orchestration"
+  ],
+  "Apache Hive": [
+    "Hive",
+    "Hive SQL"
+  ],
+  "Apache Flink": [
+    "Flink",
+    "Stream Processing"
+  ],
+  "Apache Storm": [
+    "Storm",
+    "Real-Time Processing"
+  ],
+  "Apache NiFi": [
+    "NiFi",
+    "Data Flow"
+  ],
+  "Luigi": [
+    "Luigi Pipeline"
+  ],
+  "Prefect": [
+    "Prefect Pipeline"
+  ],
+  "Dagster": [
+    "Dagster Pipeline"
+  ],
+  "dbt": [
+    "Data Build Tool"
+  ],
+  "Fivetran": [
+    "ETL Fivetran"
+  ],
+  "Stitch": [
+    "Stitch ETL"
+  ],
+  "Meltano": [
+    "Meltano ELT"
+  ],
+  "Airbyte": [
+    "Airbyte ELT"
+  ],
+  "Delta Lake": [
+    "Delta Lake Storage"
+  ],
+  "Apache Iceberg": [
+    "Iceberg Tables"
+  ],
+  "Apache Hudi": [
+    "Hudi"
+  ],
+  "Data Lake": [
+    "Data Lakehouse"
+  ],
+  "Data Warehouse": [
+    "DWH",
+    "Enterprise Data Warehouse"
+  ],
+  "ETL": [
+    "etl process",
+    "Data Pipeline",
+    "Extract Transform Load",
+    "etl pipeline"
+  ],
+  "ELT": [
+    "Extract Load Transform"
+  ],
+  "Data Mesh": [
+    "Data Mesh Architecture"
+  ],
+  "ksqlDB": [
+    "KSQL"
+  ],
+  "Trino": [
+    "Presto SQL"
+  ],
+  "Pulsar": [
+    "Apache Pulsar"
+  ],
+  "TensorFlow": [
+    "Tensor Flow",
+    "deep learning tensorflow",
+    "tf models",
+    "tensorflow developer",
+    "tensorflow models",
+    "TF",
+    "tensorflow 2.x",
+    "tf.keras",
+    "tensorflow datasets",
+    "tensorflow lite"
+  ],
+  "PyTorch": [
+    "Py Torch",
+    "pytorch models",
+    "Torch",
+    "pytorch developer",
+    "deep learning pytorch",
+    "pytorch nn",
+    "pytorch dataloaders",
+    "pytorch training loop"
+  ],
+  "Keras": [
+    "Keras API"
+  ],
+  "Scikit-learn": [
+    "sklearn",
+    "scikit learn models",
+    "sklearn models",
+    "ml pipeline sklearn",
+    "Scikit Learn",
+    "sklearn pipelines",
+    "sklearn preprocessing",
+    "sklearn classifiers"
+  ],
+  "Pandas": [
+    "pandas analysis",
+    "pandas dataframe",
+    "Python Pandas",
+    "data manipulation pandas",
+    "Data Manipulation",
+    "pandas etl",
+    "pandas merge join",
+    "pandas groupby",
+    "dataframe manipulation"
+  ],
+  "NumPy": [
+    "Python NumPy",
+    "numpy arrays",
+    "matrix operations numpy",
+    "numpy math"
+  ],
+  "Matplotlib": [
+    "Python Matplotlib"
+  ],
+  "Seaborn": [
+    "Data Visualization Seaborn"
+  ],
+  "Plotly": [
+    "Plotly Dash"
+  ],
+  "OpenCV": [
+    "Open CV",
+    "Computer Vision Library",
+    "opencv image processing",
+    "cv2 python",
+    "image manipulation opencv"
+  ],
+  "Pillow": [
+    "PIL",
+    "Python Imaging"
+  ],
+  "NLTK": [
+    "Natural Language Toolkit"
+  ],
+  "SpaCy": [
+    "Spacy NLP"
+  ],
+  "Gensim": [
+    "Gensim NLP"
+  ],
+  "Hugging Face": [
+    "transformer models",
+    "fine-tuned llms",
+    "Transformers Library",
+    "HuggingFace",
+    "huggingface models",
+    "hf hub",
+    "hf transformers",
+    "pre-trained transformers",
+    "fine-tuned bert gpt"
+  ],
+  "LangChain": [
+    "langchain developer",
+    "Lang Chain",
+    "langchain apps",
+    "llm apps with langchain",
+    "langchain chains",
+    "rag with langchain",
+    "llm chains"
+  ],
+  "LlamaIndex": [
+    "Llama Index",
+    "GPT Index"
+  ],
+  "OpenAI API": [
+    "openai",
+    "GPT API"
+  ],
+  "Anthropic Claude": [
+    "Claude API"
+  ],
+  "Cohere": [
+    "Cohere API"
+  ],
+  "LightGBM": [
+    "Light GBM"
+  ],
+  "XGBoost": [
+    "XG Boost"
+  ],
+  "CatBoost": [
+    "Cat Boost"
+  ],
+  "Optuna": [
+    "Hyperparameter Tuning"
+  ],
+  "MLflow": [
+    "ML Flow"
+  ],
+  "Weights and Biases": [
+    "WandB",
+    "Weights & Biases"
+  ],
+  "DVC": [
+    "Data Version Control"
+  ],
+  "BentoML": [
+    "Bento ML"
+  ],
+  "Seldon": [
+    "Seldon Core"
+  ],
+  "Kubeflow": [
+    "Kube Flow"
+  ],
+  "Ray": [
+    "Ray Tune",
+    "Distributed ML"
+  ],
+  "JAX": [
+    "Google JAX"
+  ],
+  "Flax": [
+    "Flax Neural"
+  ],
+  "ONNX": [
+    "Open Neural Network Exchange"
+  ],
+  "TorchServe": [
+    "Model Serving"
+  ],
+  "TensorFlow Serving": [
+    "TF Serving"
+  ],
+  "Triton": [
+    "Nvidia Triton"
+  ],
+  "Vertex AI": [
+    "Google Vertex AI"
+  ],
+  "SageMaker": [
+    "AWS SageMaker"
+  ],
+  "Azure ML": [
+    "Azure Machine Learning"
+  ],
+  "AutoML": [
+    "Automated Machine Learning"
+  ],
+  "Retrieval Augmented Generation": [
+    "RAG",
+    "rag pipeline",
+    "vector search rag",
+    "knowledge base rag"
+  ],
+  "Large Language Models": [
+    "fine tuned llm",
+    "working with llms",
+    "llm prompting",
+    "LLMs",
+    "gpt models",
+    "LLM",
+    "llm development",
+    "prompting llms",
+    "llm integration",
+    "openai gpt api",
+    "llm deployment"
+  ],
+  "Generative AI": [
+    "prompt engineering",
+    "genai apps",
+    "llm applications",
+    "GenAI",
+    "ai generated content",
+    "generative ai apps",
+    "genai integration",
+    "image generation ai"
+  ],
+  "Vector Database": [
+    "VectorDB",
+    "Pinecone",
+    "Weaviate",
+    "Chroma"
+  ],
+  "Pinecone": [
+    "Vector DB Pinecone"
+  ],
+  "Weaviate": [
+    "Vector DB Weaviate"
+  ],
+  "Qdrant": [
+    "Vector DB Qdrant"
+  ],
+  "Apache HTTP": [
+    "Apache Web Server",
+    "httpd"
+  ],
+  "IIS": [
+    "Internet Information Services"
+  ],
+  "Load Balancer": [
+    "Load Balancing",
+    "LB"
+  ],
+  "DNS": [
+    "Domain Name System"
+  ],
+  "CDN": [
+    "Content Delivery Network"
+  ],
+  "SSL Certificate": [
+    "TLS Certificate",
+    "HTTPS"
+  ],
+  "TCP/IP": [
+    "TCP IP",
+    "Networking Protocols"
+  ],
+  "UDP": [
+    "User Datagram Protocol"
+  ],
+  "HTTP/2": [
+    "HTTP2",
+    "HTTP Protocol"
+  ],
+  "HTTP/3": [
+    "HTTP3",
+    "QUIC"
+  ],
+  "WebRTC": [
+    "Web RTC",
+    "Real-Time Communication"
+  ],
+  "VPN": [
+    "Virtual Private Network"
+  ],
+  "Subnet": [
+    "Subnetting",
+    "Network Subnet"
+  ],
+  "Firewall": [
+    "Network Firewall"
+  ],
+  "IPv6": [
+    "IP Version 6"
+  ],
+  "NAT": [
+    "Network Address Translation"
+  ],
+  "BGP": [
+    "Border Gateway Protocol"
+  ],
+  "OSI Model": [
+    "OSI Layers"
+  ],
+  "Mongoose": [
+    "Mongoose ORM",
+    "MongoDB ODM"
+  ],
+  "Sequelize": [
+    "Sequelize ORM",
+    "Node ORM"
+  ],
+  "Prisma": [
+    "Prisma ORM"
+  ],
+  "TypeORM": [
+    "Type ORM"
+  ],
+  "Knex.js": [
+    "Knex",
+    "SQL Builder"
+  ],
+  "Hibernate": [
+    "Java Hibernate",
+    "JPA"
+  ],
+  "JPA": [
+    "Java Persistence API"
+  ],
+  "MyBatis": [
+    "My Batis"
+  ],
+  "SQLAlchemy": [
+    "SQL Alchemy",
+    "Python ORM"
+  ],
+  "Tortoise ORM": [
+    "Tortoise",
+    "Async ORM"
+  ],
+  "Beanie": [
+    "Beanie Mongo ODM"
+  ],
+  "Eloquent": [
+    "Laravel Eloquent"
+  ],
+  "Active Record": [
+    "Rails Active Record"
+  ],
+  "Alembic": [
+    "SQLAlchemy Migrations"
+  ],
+  "Flyway": [
+    "DB Migrations Flyway"
+  ],
+  "Liquibase": [
+    "DB Migrations Liquibase"
+  ],
+  "pgAdmin": [
+    "Postgres Admin"
+  ],
+  "DBeaver": [
+    "DB GUI Tool"
+  ],
+  "TablePlus": [
+    "DB GUI"
+  ],
+  "Hasura": [
+    "GraphQL Engine"
+  ],
+  "JWT": [
+    "token-based auth",
+    "jwt tokens",
+    "JSON Web Token",
+    "jwt authentication",
+    "JSON Web Tokens",
+    "json web token auth",
+    "jwt auth",
+    "Bearer token",
+    "jwt based authentication",
+    "jwt validation"
+  ],
+  "OAuth 2.0": [
+    "oauth flow",
+    "OAuth2",
+    "oauth2 authentication",
+    "OAuth",
+    "oauth integration",
+    "OAuth 2",
+    "oauth token",
+    "authorization code flow"
+  ],
+  "OpenID Connect": [
+    "OIDC"
+  ],
+  "SAML": [
+    "Security Assertion Markup Language"
+  ],
+  "Two Factor Authentication": [
+    "2FA",
+    "MFA",
+    "Multi-Factor Authentication"
+  ],
+  "Encryption": [
+    "AES",
+    "RSA Encryption"
+  ],
+  "Bcrypt": [
+    "Password Hashing"
+  ],
+  "OWASP": [
+    "Open Web Application Security Project",
+    "owasp guidelines",
+    "secure coding",
+    "owasp top 10",
+    "secure coding owasp",
+    "owasp top 10 vulnerabilities"
+  ],
+  "XSS": [
+    "Cross-Site Scripting"
+  ],
+  "CSRF": [
+    "Cross-Site Request Forgery"
+  ],
+  "SQL Injection": [
+    "SQLi",
+    "Injection Attacks"
+  ],
+  "Zero Trust": [
+    "Zero Trust Architecture",
+    "zero trust model",
+    "never trust always verify"
+  ],
+  "HTTPS": [
+    "Secure HTTP"
+  ],
+  "Keycloak": [
+    "Identity Provider",
+    "SSO"
+  ],
+  "Auth0": [
+    "Authentication Provider"
+  ],
+  "Okta": [
+    "Okta SSO"
+  ],
+  "Supabase Auth": [
+    "Supabase Authentication"
+  ],
+  "Passport.js": [
+    "Passport Authentication"
+  ],
+  "NextAuth": [
+    "Next Auth"
+  ],
+  "Microservices": [
+    "Micro Services",
+    "microservices architecture",
+    "designed microservices",
+    "built microservices",
+    "Microservice Architecture",
+    "rest microservices",
+    "microservices communication",
+    "service mesh microservices"
+  ],
+  "Monolith": [
+    "Monolithic Architecture"
+  ],
+  "Serverless": [
+    "FaaS",
+    "Serverless Architecture",
+    "serverless framework",
+    "function as a service",
+    "serverless computing"
+  ],
+  "Event Driven": [
+    "Event-Driven Architecture",
+    "EDA"
+  ],
+  "Domain Driven Design": [
+    "DDD"
+  ],
+  "CQRS": [
+    "Command Query Responsibility Segregation"
+  ],
+  "Event Sourcing": [
+    "Event Sourcing Pattern"
+  ],
+  "Hexagonal Architecture": [
+    "Ports and Adapters"
+  ],
+  "Clean Architecture": [
+    "Onion Architecture"
+  ],
+  "MVC": [
+    "Model View Controller"
+  ],
+  "MVP": [
+    "Model View Presenter"
+  ],
+  "MVVM": [
+    "Model View ViewModel"
+  ],
+  "SOA": [
+    "Service Oriented Architecture"
+  ],
+  "BFF": [
+    "Backend for Frontend"
+  ],
+  "SOLID Principles": [
+    "SOLID"
+  ],
+  "Design Patterns": [
+    "Gang of Four Patterns",
+    "singleton pattern",
+    "design patterns",
+    "used design patterns",
+    "gang of four",
+    "factory pattern"
+  ],
+  "Repository Pattern": [
+    "Repository Design Pattern"
+  ],
+  "Factory Pattern": [
+    "Factory Design Pattern"
+  ],
+  "Singleton Pattern": [
+    "Singleton Design Pattern"
+  ],
+  "Observer Pattern": [
+    "Observer Design Pattern"
+  ],
+  "Circuit Breaker": [
+    "Resilience Pattern"
+  ],
+  "API First Design": [
+    "API-First"
+  ],
+  "GraphQL Federation": [
+    "Apollo Federation"
+  ],
+  "WordPress": [
+    "Word Press",
+    "WP",
+    "WordPress CMS"
+  ],
+  "Drupal": [
+    "Drupal CMS"
+  ],
+  "Joomla": [
+    "Joomla CMS"
+  ],
+  "Shopify": [
+    "Shopify Store"
+  ],
+  "WooCommerce": [
+    "Woo Commerce",
+    "woocommerce store",
+    "wordpress ecommerce"
+  ],
+  "Magento": [
+    "Magento E-Commerce"
+  ],
+  "Strapi": [
+    "Strapi CMS",
+    "Headless CMS"
+  ],
+  "Contentful": [
+    "Contentful CMS"
+  ],
+  "Sanity": [
+    "Sanity CMS"
+  ],
+  "Ghost": [
+    "Ghost CMS"
+  ],
+  "Netlify CMS": [
+    "Decap CMS"
+  ],
+  "Webflow": [
+    "Web Flow"
+  ],
+  "Wix": [
+    "Wix Website"
+  ],
+  "Squarespace": [
+    "Square Space"
+  ],
+  "VS Code": [
+    "Visual Studio Code",
+    "VSCode"
+  ],
+  "IntelliJ IDEA": [
+    "IntelliJ"
+  ],
+  "Eclipse": [
+    "Eclipse IDE"
+  ],
+  "NetBeans": [
+    "Net Beans"
+  ],
+  "PyCharm": [
+    "Pycharm IDE"
+  ],
+  "WebStorm": [
+    "WebStorm IDE"
+  ],
+  "Xcode": [
+    "Apple Xcode"
+  ],
+  "Android Studio": [
+    "Android IDE"
+  ],
+  "Visual Studio": [
+    "MS Visual Studio"
+  ],
+  "Vim": [
+    "Neovim",
+    "Vi"
+  ],
+  "Emacs": [
+    "GNU Emacs"
+  ],
+  "Postman": [
+    "API Testing Postman"
+  ],
+  "Swagger": [
+    "OpenAPI",
+    "Swagger UI"
+  ],
+  "Insomnia": [
+    "Insomnia REST"
+  ],
+  "Figma": [
+    "figma ui design",
+    "designed in figma",
+    "Figma Design",
+    "figma prototyping",
+    "figma wireframes",
+    "figma screens",
+    "figma prototype",
+    "figma wireframe",
+    "figma components",
+    "ui design figma"
+  ],
+  "Adobe XD": [
+    "XD Design",
+    "xd prototype",
+    "xd wireframe"
+  ],
+  "Jira": [
+    "jira project",
+    "issue tracking jira",
+    "used jira",
+    "Atlassian Jira",
+    "jira tickets",
+    "jira board",
+    "jira epics stories",
+    "jira sprint",
+    "jira workflow",
+    "jira backlog"
+  ],
+  "Confluence": [
+    "Atlassian Confluence",
+    "confluence wiki",
+    "team documentation confluence"
+  ],
+  "Notion": [
+    "Notion Workspace"
+  ],
+  "Slack": [
+    "Slack Communication"
+  ],
+  "Trello": [
+    "Trello Board"
+  ],
+  "Asana": [
+    "Asana PM"
+  ],
+  "Monday.com": [
+    "Monday PM"
+  ],
+  "Miro": [
+    "Miro Board"
+  ],
+  "Draw.io": [
+    "Diagrams.net"
+  ],
+  "Lucidchart": [
+    "Luci Chart"
+  ],
+  "Git": [
+    "github repositories",
+    "GitHub",
+    "git workflow",
+    "Bitbucket",
+    "worked with git",
+    "git commits",
+    "git branching",
+    "git version control",
+    "GitLab",
+    "git pull push",
+    "branching git",
+    "merge conflict resolution",
+    "git rebase"
+  ],
+  "Sourcetree": [
+    "Source Tree"
+  ],
+  "Fork": [
+    "Git Fork"
+  ],
+  "Webpack": [
+    "Web Pack"
+  ],
+  "Vite": [
+    "ViteJS"
+  ],
+  "Rollup": [
+    "Rollup Bundler"
+  ],
+  "Parcel": [
+    "Parcel Bundler"
+  ],
+  "Babel": [
+    "Babel Transpiler",
+    "JS Transpiler"
+  ],
+  "esbuild": [
+    "ES Build"
+  ],
+  "SWC": [
+    "SWC Compiler"
+  ],
+  "npm": [
+    "Node Package Manager"
+  ],
+  "yarn": [
+    "Yarn Package Manager"
+  ],
+  "pnpm": [
+    "PNPM Package Manager"
+  ],
+  "bun": [
+    "Bun Runtime"
+  ],
+  "Maven": [
+    "Apache Maven"
+  ],
+  "Gradle": [
+    "Gradle Build"
+  ],
+  "Ant": [
+    "Apache Ant"
+  ],
+  "Make": [
+    "Makefile"
+  ],
+  "CMake": [
+    "C Make"
+  ],
+  "Bazel": [
+    "Google Bazel"
+  ],
+  "Nx": [
+    "Nx Monorepo"
+  ],
+  "Turborepo": [
+    "Turbo Repo"
+  ],
+  "Lerna": [
+    "Lerna Monorepo"
+  ],
+  "pip": [
+    "Python pip"
+  ],
+  "Poetry": [
+    "Python Poetry"
+  ],
+  "Conda": [
+    "Anaconda",
+    "Conda Env"
+  ],
+  "Cargo": [
+    "Rust Cargo"
+  ],
+  "Composer": [
+    "PHP Composer"
+  ],
+  "Bundler": [
+    "Ruby Bundler"
+  ],
+  "CocoaPods": [
+    "iOS Pods"
+  ],
+  "SPM": [
+    "Swift Package Manager"
+  ],
+  "Test Driven Development": [
+    "TDD",
+    "tdd approach",
+    "writing tests first",
+    "red green refactor"
+  ],
+  "Behavior Driven Development": [
+    "BDD"
+  ],
+  "Pair Programming": [
+    "Pair Dev"
+  ],
+  "Code Review": [
+    "Code Reviews"
+  ],
+  "Agile": [
+    "sprint reviews",
+    "working in sprints",
+    "Agile Methodology",
+    "Agile Framework",
+    "scrum meetings",
+    "agile practitioner",
+    "ran sprints",
+    "agile retrospectives",
+    "sprint ceremonies"
+  ],
+  "Scrum": [
+    "Scrum Framework",
+    "scrum ceremonies",
+    "Scrum Master",
+    "sprint planning",
+    "daily standups",
+    "scrum team",
+    "scrum master role",
+    "facilitated standups",
+    "sprint backlog",
+    "story points"
+  ],
+  "Kanban": [
+    "Kanban Board",
+    "kanban flow",
+    "wip limits kanban",
+    "kanban tracking"
+  ],
+  "DevOps": [
+    "devops workflow",
+    "Dev Ops",
+    "devops practices",
+    "devops engineer",
+    "devops culture",
+    "devops engineer role",
+    "devops tooling",
+    "infrastructure automation",
+    "platform engineer"
+  ],
+  "GitOps": [
+    "Git Ops"
+  ],
+  "SRE": [
+    "Site Reliability Engineering"
+  ],
+  "Continuous Integration": [
+    "CI"
+  ],
+  "Continuous Deployment": [
+    "CD"
+  ],
+  "Trunk Based Development": [
+    "TBD"
+  ],
+  "Feature Flags": [
+    "Feature Toggles"
+  ],
+  "Blue Green Deployment": [
+    "Blue-Green"
+  ],
+  "Canary Deployment": [
+    "Canary Release"
+  ],
+  "A/B Testing": [
+    "Split Testing"
+  ],
+  "Technical Debt": [
+    "Code Debt"
+  ],
+  "Refactoring": [
+    "Code Refactoring"
+  ],
+  "Printed Circuit Board": [
+    "pcb layout engineer",
+    "worked on pcb",
+    "PCB Layout",
+    "PCB",
+    "hardware pcb",
+    "designed pcbs",
+    "PCB Design",
+    "pcb designer",
+    "pcb schematic",
+    "pcb routing",
+    "pcb fabrication",
+    "high speed pcb",
+    "4 layer pcb",
+    "pcb gerber files"
+  ],
+  "Programmable Logic Controller": [
+    "Ladder Logic",
+    "plc controls",
+    "plc programmer",
+    "industrial plc",
+    "PLC",
+    "ladder diagram",
+    "plc siemens",
+    "plc allen bradley",
+    "plc mitsubishi",
+    "step 7 plc",
+    "tia portal",
+    "plc hmi"
+  ],
+  "Supervisory Control and Data Acquisition": [
+    "SCADA"
+  ],
+  "Very Large Scale Integration": [
+    "VLSI"
+  ],
+  "Field Programmable Gate Array": [
+    "FPGA"
+  ],
+  "Digital Signal Processing": [
+    "DSP"
+  ],
+  "Computer Aided Design": [
+    "CAD",
+    "AutoCAD"
+  ],
+  "Internet of Things": [
+    "iot systems",
+    "iot projects",
+    "IIoT",
+    "iot developer",
+    "connected devices",
+    "iot devices",
+    "IoT",
+    "iot sensor",
+    "iot gateway",
+    "iot data",
+    "mqtt iot",
+    "lorawan iot",
+    "iot prototype"
+  ],
+  "Embedded Systems": [
+    "embedded developer",
+    "firmware developer",
+    "Embedded Programming",
+    "embedded software",
+    "bare metal programming",
+    "embedded c developer",
+    "rtos developer",
+    "firmware engineer",
+    "bare metal embedded",
+    "device driver development"
+  ],
+  "Arduino": [
+    "arduino projects",
+    "built arduino",
+    "Arduino IDE",
+    "arduino programming",
+    "arduino uno",
+    "arduino sensors",
+    "arduino circuit"
+  ],
+  "Raspberry Pi": [
+    "raspberry pi projects",
+    "rpi programming",
+    "RaspberryPi",
+    "pi gpio",
+    "pi camera module",
+    "raspberry pi python"
+  ],
+  "ARM Cortex": [
+    "ARM Architecture"
+  ],
+  "STM32": [
+    "STM Microcontroller",
+    "stm32 hal",
+    "stm32 cubemx",
+    "cortex-m programming"
+  ],
+  "ESP32": [
+    "ESP32 Microcontroller",
+    "ESP8266",
+    "esp32 wifi",
+    "esp32 ble",
+    "esp-idf",
+    "micropython esp32"
+  ],
+  "Real-Time Operating System": [
+    "RTOS",
+    "rtos freertos",
+    "rtos tasks",
+    "real time embedded"
+  ],
+  "FreeRTOS": [
+    "Free RTOS"
+  ],
+  "LwIP": [
+    "Lightweight IP"
+  ],
+  "Electric Vehicle": [
+    "EV",
+    "Electric Car",
+    "ev charging",
+    "ev motor controller",
+    "ev powertrain"
+  ],
+  "Battery Management System": [
+    "BMS",
+    "bms design",
+    "battery protection circuit",
+    "li-ion bms"
+  ],
+  "Renewable Energy": [
+    "Solar",
+    "Wind Energy"
+  ],
+  "Photovoltaic": [
+    "PV",
+    "Solar Panel"
+  ],
+  "Power Electronics": [
+    "Power System Design",
+    "inverter design",
+    "converter design",
+    "pwm control"
+  ],
+  "Motor Control": [
+    "Motor Drive",
+    "bldc motor",
+    "stepper motor control",
+    "vfd drives"
+  ],
+  "Radio Frequency": [
+    "RF Engineering",
+    "rf circuit design",
+    "rf amplifier",
+    "antenna rf",
+    "rf pcb"
+  ],
+  "Control Systems": [
+    "PID Control",
+    "pid tuning",
+    "feedback loop",
+    "closed loop control"
+  ],
+  "Altium Designer": [
+    "Altium",
+    "altium pcb layout",
+    "altium schematic"
+  ],
+  "Eagle CAD": [
+    "Eagle PCB"
+  ],
+  "KiCad": [
+    "KiCAD PCB"
+  ],
+  "LTspice": [
+    "Circuit Simulation",
+    "spice simulation",
+    "circuit analysis ltspice"
+  ],
+  "Proteus": [
+    "Proteus Simulation"
+  ],
+  "Simulink": [
+    "MATLAB Simulink"
+  ],
+  "LabVIEW": [
+    "Lab VIEW",
+    "National Instruments"
+  ],
+  "Modbus": [
+    "Modbus Protocol",
+    "modbus rtu",
+    "modbus tcp",
+    "industrial modbus"
+  ],
+  "CAN Bus": [
+    "CAN Protocol",
+    "canopen",
+    "automotive can"
+  ],
+  "Ethernet/IP": [
+    "Industrial Ethernet"
+  ],
+  "Profibus": [
+    "Profibus Protocol"
+  ],
+  "PROFINET": [
+    "Profinet Protocol"
+  ],
+  "EtherCAT": [
+    "Ether CAT"
+  ],
+  "Wireless Sensor Network": [
+    "WSN"
+  ],
+  "Zigbee": [
+    "IEEE 802.15.4"
+  ],
+  "Bluetooth": [
+    "BLE",
+    "Bluetooth Low Energy"
+  ],
+  "Wi-Fi": [
+    "IEEE 802.11",
+    "Wireless LAN"
+  ],
+  "LoRaWAN": [
+    "LoRa",
+    "LPWAN"
+  ],
+  "Finite Element Analysis": [
+    "fea simulation",
+    "FEM",
+    "structural fea",
+    "fea analysis",
+    "FEA",
+    "fea structural",
+    "stress analysis fea",
+    "thermal fea"
+  ],
+  "Computational Fluid Dynamics": [
+    "cfd simulation",
+    "flow simulation",
+    "CFD",
+    "cfd analysis",
+    "cfd ansys fluent",
+    "cfd openfoam",
+    "airflow cfd"
+  ],
+  "SolidWorks": [
+    "solidworks drawings",
+    "cad solidworks",
+    "solidworks designer",
+    "Solid Works",
+    "modeled in solidworks",
+    "solidworks 3d model",
+    "assembly solidworks",
+    "solidworks drawing",
+    "solidworks simulation",
+    "sw cad"
+  ],
+  "CATIA": [
+    "catia designer",
+    "catia v5 designer",
+    "CATIA V5",
+    "modeled in catia",
+    "CATIA V6",
+    "catia part design",
+    "catia surface design",
+    "catia assembly"
+  ],
+  "ANSYS": [
+    "ANSYS Workbench",
+    "ansys simulation",
+    "fea with ansys",
+    "stress analysis ansys",
+    "ansys mechanical",
+    "ansys fluent",
+    "ansys static structural",
+    "ansys thermal"
+  ],
+  "ProEngineer": [
+    "Creo Parametric",
+    "PTC Creo"
+  ],
+  "Siemens NX": [
+    "NX CAD"
+  ],
+  "AutoCAD": [
+    "Auto CAD",
+    "autocad designer",
+    "drafted in autocad",
+    "AutoDesk CAD",
+    "2d autocad",
+    "autocad 2d drawing",
+    "autocad drafting",
+    "autocad mechanical"
+  ],
+  "Inventor": [
+    "Autodesk Inventor"
+  ],
+  "Fusion 360": [
+    "Autodesk Fusion 360"
+  ],
+  "HVAC": [
+    "Heating Ventilation Air Conditioning"
+  ],
+  "CNC Machining": [
+    "Computer Numerical Control",
+    "CNC",
+    "cnc programming",
+    "g-code programming",
+    "cnc operations",
+    "g code programming",
+    "cnc turning",
+    "cnc milling",
+    "cnc operator"
+  ],
+  "GD&T": [
+    "Geometric Tolerancing",
+    "gdt callouts",
+    "tolerance drawing",
+    "geometric tolerances"
+  ],
+  "Lean Manufacturing": [
+    "Toyota Production System",
+    "lean tools",
+    "Lean",
+    "lean practitioner",
+    "lean environment",
+    "5s lean",
+    "value stream mapping vsm",
+    "lean sigma"
+  ],
+  "Six Sigma": [
+    "green belt",
+    "six sigma certified",
+    "DMAIC",
+    "Black Belt",
+    "dmaic project",
+    "six sigma dmaic",
+    "green belt project",
+    "process improvement six sigma"
+  ],
+  "FMEA": [
+    "Failure Mode Effects Analysis"
+  ],
+  "Statistical Process Control": [
+    "SPC"
+  ],
+  "3D Printing": [
+    "Additive Manufacturing",
+    "fdm printing",
+    "sla printing",
+    "3d printed prototypes",
+    "additive manufacturing 3d"
+  ],
+  "Welding": [
+    "MIG Welding",
+    "TIG Welding",
+    "mig tig welding",
+    "welder certified",
+    "welding inspection"
+  ],
+  "Injection Molding": [
+    "Plastic Injection Molding",
+    "mold flow analysis",
+    "plastic part design"
+  ],
+  "Casting": [
+    "Metal Casting"
+  ],
+  "Forging": [
+    "Metal Forging"
+  ],
+  "Sheet Metal": [
+    "Sheet Metal Design"
+  ],
+  "Rapid Prototyping": [
+    "Prototyping"
+  ],
+  "Product Design": [
+    "Industrial Design"
+  ],
+  "Thermodynamics": [
+    "Thermal Analysis",
+    "thermodynamic cycles",
+    "entropy enthalpy"
+  ],
+  "Kinematics": [
+    "Dynamics",
+    "Machine Design"
+  ],
+  "Building Information Modeling": [
+    "bim engineer",
+    "bim modeling",
+    "BIM",
+    "revit bim",
+    "bim coordinator",
+    "bim 3d model",
+    "bim coordination",
+    "bim clash detection",
+    "revit model bim"
+  ],
+  "Revit": [
+    "Autodesk Revit",
+    "revit mep",
+    "revit structure",
+    "revit architecture",
+    "revit families"
+  ],
+  "Geographic Information System": [
+    "GIS"
+  ],
+  "STAAD Pro": [
+    "structural analysis staad",
+    "STAAD.Pro",
+    "staad analysis",
+    "staad.pro analysis",
+    "staad structure design"
+  ],
+  "ETABS": [
+    "Structural Analysis ETABS",
+    "etabs model",
+    "etabs seismic analysis"
+  ],
+  "SAP2000": [
+    "SAP 2000",
+    "sap 2000 bridge",
+    "sap frame analysis"
+  ],
+  "Primavera": [
+    "p6 planning",
+    "Oracle P6",
+    "oracle primavera schedule",
+    "primavera schedule",
+    "p6 baseline",
+    "project scheduling p6"
+  ],
+  "MS Project": [
+    "Microsoft Project"
+  ],
+  "AutoCAD Civil 3D": [
+    "Civil 3D",
+    "civil cad",
+    "civil 3d drawings",
+    "civil 3d road",
+    "civil 3d grading",
+    "civil 3d corridors"
+  ],
+  "HEC-RAS": [
+    "Hydraulic Analysis"
+  ],
+  "SWMM": [
+    "Storm Water Management"
+  ],
+  "Geotechnical Engineering": [
+    "Soil Mechanics",
+    "soil testing",
+    "bearing capacity",
+    "foundation design"
+  ],
+  "Surveying": [
+    "Land Surveying",
+    "total station",
+    "leveling survey",
+    "survey coordinates"
+  ],
+  "Urban Planning": [
+    "Town Planning",
+    "zoning plan",
+    "masterplan",
+    "urban design"
+  ],
+  "Highway Engineering": [
+    "Road Design"
+  ],
+  "Structural Design": [
+    "Structural Engineering"
+  ],
+  "Water Treatment": [
+    "Wastewater Treatment"
+  ],
+  "Environmental Engineering": [
+    "Environmental Science",
+    "environmental impact",
+    "air quality",
+    "water quality"
+  ],
+  "Cost Estimation": [
+    "BOQ",
+    "Bill of Quantities",
+    "rate analysis",
+    "cost estimate"
+  ],
+  "Quantity Surveying": [
+    "QS"
+  ],
+  "Project Management Construction": [
+    "Construction PM"
+  ],
+  "Search Engine Optimization": [
+    "seo optimized",
+    "website seo",
+    "off-page seo",
+    "SEO",
+    "seo analyst",
+    "seo specialist",
+    "on-page seo",
+    "seo optimization",
+    "keyword research",
+    "link building",
+    "google ranking",
+    "on-page off-page seo",
+    "technical audit seo"
+  ],
+  "Search Engine Marketing": [
+    "SEM"
+  ],
+  "Pay-Per-Click Advertising": [
+    "PPC",
+    "CPC",
+    "ppc campaigns",
+    "running ads",
+    "google ads campaign",
+    "Google Ads",
+    "google ads management",
+    "adwords",
+    "facebook ppc",
+    "pmax campaigns"
+  ],
+  "Social Media Marketing": [
+    "social media campaigns",
+    "social media content",
+    "social media manager",
+    "SMM",
+    "instagram marketing",
+    "linkedin strategy",
+    "facebook marketing",
+    "tiktok marketing"
+  ],
+  "Email Marketing": [
+    "Email Campaigns",
+    "mailchimp campaigns",
+    "email automation",
+    "drip campaigns",
+    "email newsletters"
+  ],
+  "Content Marketing": [
+    "blog posts",
+    "content writer",
+    "Content Strategy",
+    "content creator",
+    "blog strategy",
+    "content calendar",
+    "editorial planning"
+  ],
+  "Inbound Marketing": [
+    "HubSpot Inbound"
+  ],
+  "Performance Marketing": [
+    "Digital Marketing"
+  ],
+  "Affiliate Marketing": [
+    "Affiliate Programs"
+  ],
+  "Influencer Marketing": [
+    "Influencer Campaigns"
+  ],
+  "Conversion Rate Optimization": [
+    "CRO",
+    "landing page optimization",
+    "a/b testing website"
+  ],
+  "Analytics": [
+    "Web Analytics",
+    "Google Analytics",
+    "GA4"
+  ],
+  "Customer Relationship Management": [
+    "used crm",
+    "salesforce crm",
+    "CRM",
+    "crm software",
+    "crm tools",
+    "salesforce sfdc",
+    "hubspot crm",
+    "zoho crm",
+    "crm data entry"
+  ],
+  "Sales Funnel": [
+    "Sales Pipeline"
+  ],
+  "B2B Sales": [
+    "Business to Business"
+  ],
+  "B2C Sales": [
+    "Business to Consumer"
+  ],
+  "Account Management": [
+    "Key Account Manager"
+  ],
+  "Lead Generation": [
+    "Lead Gen"
+  ],
+  "HubSpot": [
+    "HubSpot CRM"
+  ],
+  "Salesforce": [
+    "SFDC",
+    "Salesforce CRM"
+  ],
+  "Zoho CRM": [
+    "Zoho"
+  ],
+  "Market Research": [
+    "Consumer Research",
+    "consumer surveys",
+    "competitor analysis",
+    "market sizing"
+  ],
+  "Brand Management": [
+    "Branding",
+    "brand identity design",
+    "brand guidelines",
+    "visual brand"
+  ],
+  "Product Marketing": [
+    "Go-to-Market",
+    "GTM"
+  ],
+  "Copywriting": [
+    "Marketing Copy"
+  ],
+  "A/B Testing Marketing": [
+    "Split Testing"
+  ],
+  "Instagram Marketing": [
+    "Instagram Ads"
+  ],
+  "LinkedIn Marketing": [
+    "LinkedIn Ads"
+  ],
+  "YouTube Marketing": [
+    "YouTube Ads"
+  ],
+  "TikTok Marketing": [
+    "TikTok Ads"
+  ],
+  "GAAP": [
+    "gaap compliant",
+    "gaap reporting",
+    "Generally Accepted Accounting Principles",
+    "us gaap accounting",
+    "gaap accounting principles",
+    "gaap financial statements"
+  ],
+  "IFRS": [
+    "International Financial Reporting Standards",
+    "ifrs reporting",
+    "international accounting ifrs"
+  ],
+  "Financial Modeling": [
+    "Financial Analysis",
+    "dcf model",
+    "built financial models",
+    "excel financial model",
+    "excel model",
+    "3 statement model",
+    "lbo model",
+    "dcf analysis"
+  ],
+  "Discounted Cash Flow": [
+    "DCF"
+  ],
+  "Mergers and Acquisitions": [
+    "M&A"
+  ],
+  "Anti-Money Laundering": [
+    "AML"
+  ],
+  "Know Your Customer": [
+    "KYC"
+  ],
+  "CPA": [
+    "Certified Public Accountant"
+  ],
+  "CA": [
+    "Chartered Accountant"
+  ],
+  "CFA": [
+    "Chartered Financial Analyst"
+  ],
+  "FRM": [
+    "Financial Risk Manager"
+  ],
+  "Risk Management": [
+    "Enterprise Risk Management",
+    "ERM",
+    "risk assessment matrix",
+    "enterprise risk",
+    "risk mitigation plan"
+  ],
+  "Investment Banking": [
+    "IB"
+  ],
+  "Venture Capital": [
+    "VC"
+  ],
+  "Private Equity": [
+    "PE"
+  ],
+  "Asset Management": [
+    "Portfolio Management"
+  ],
+  "Capital Markets": [
+    "Equity Capital Markets",
+    "ECM"
+  ],
+  "Fixed Income": [
+    "Bonds",
+    "Debt Securities"
+  ],
+  "Derivatives": [
+    "Options",
+    "Futures",
+    "Swaps"
+  ],
+  "Bloomberg Terminal": [
+    "Bloomberg"
+  ],
+  "SAP FICO": [
+    "SAP Finance",
+    "sap finance module",
+    "sap accounts",
+    "sap gl ar ap"
+  ],
+  "QuickBooks": [
+    "Quick Books",
+    "quickbooks online",
+    "qbo accounting"
+  ],
+  "Tally": [
+    "Tally ERP",
+    "tally erp 9",
+    "tally prime",
+    "gst tally"
+  ],
+  "Xero": [
+    "Xero Accounting"
+  ],
+  "P&L Management": [
+    "Profit and Loss"
+  ],
+  "Balance Sheet": [
+    "Financial Statements"
+  ],
+  "Tax Planning": [
+    "Tax Compliance",
+    "Taxation"
+  ],
+  "Audit": [
+    "Internal Audit",
+    "External Audit",
+    "internal audit procedures",
+    "financial audit",
+    "sox compliance"
+  ],
+  "EHR": [
+    "Electronic Medical Record",
+    "patient records",
+    "worked with emr",
+    "EMR",
+    "ehr systems",
+    "Electronic Health Record",
+    "electronic health records",
+    "epic emr",
+    "cerner system",
+    "ehr data entry",
+    "electronic charting"
+  ],
+  "HIPAA": [
+    "Health Insurance Portability Accountability Act",
+    "hipaa regulations",
+    "hipaa compliant",
+    "hipaa privacy",
+    "hipaa training",
+    "hipaa compliant workflow"
+  ],
+  "CPR": [
+    "Cardiopulmonary Resuscitation",
+    "BLS"
+  ],
+  "ICU": [
+    "Intensive Care Unit"
+  ],
+  "ER": [
+    "Emergency Room",
+    "Emergency Department"
+  ],
+  "Telemedicine": [
+    "Telehealth",
+    "virtual care",
+    "telehealth platform",
+    "remote consultation"
+  ],
+  "Medical Coding": [
+    "ICD-10",
+    "CPT Coding",
+    "icd-10 codes",
+    "cpt codes",
+    "medical billing"
+  ],
+  "FHIR": [
+    "Fast Healthcare Interoperability Resources"
+  ],
+  "HL7": [
+    "Health Level Seven"
+  ],
+  "PACS": [
+    "Picture Archiving Communication System"
+  ],
+  "Clinical Decision Support": [
+    "CDS"
+  ],
+  "Nursing": [
+    "Registered Nurse",
+    "RN",
+    "registered nurse rn",
+    "patient care nurse",
+    "icu nurse",
+    "er nurse",
+    "bedside nursing"
+  ],
+  "Patient Care": [
+    "Patient Management"
+  ],
+  "Supply Chain Management": [
+    "scm experience",
+    "supply chain professional",
+    "end-to-end supply chain",
+    "SCM",
+    "supply chain coordinator",
+    "end to end supply chain",
+    "scm processes"
+  ],
+  "Warehouse Management System": [
+    "WMS",
+    "wms implementation",
+    "warehouse operations",
+    "pick pack ship"
+  ],
+  "Transportation Management System": [
+    "TMS"
+  ],
+  "Enterprise Resource Planning": [
+    "ERP",
+    "SAP",
+    "Oracle ERP"
+  ],
+  "Just-In-Time": [
+    "JIT"
+  ],
+  "Bill of Materials": [
+    "BOM"
+  ],
+  "Inventory Management": [
+    "stock levels",
+    "Stock Control",
+    "warehouse inventory",
+    "managing inventory",
+    "stock replenishment",
+    "inventory control",
+    "inventory tracking system"
+  ],
+  "Demand Forecasting": [
+    "Demand Planning",
+    "demand planning tool",
+    "s&op process"
+  ],
+  "Procurement": [
+    "Purchasing",
+    "purchase orders",
+    "supplier negotiation",
+    "vendor sourcing",
+    "purchase order creation",
+    "rfq rfp",
+    "sourcing contracts",
+    "vendor evaluation"
+  ],
+  "Vendor Management": [
+    "Supplier Relations"
+  ],
+  "Third Party Logistics": [
+    "3PL"
+  ],
+  "Cross-Docking": [
+    "Cross Dock"
+  ],
+  "Last Mile Delivery": [
+    "Last Mile Logistics"
+  ],
+  "SAP SCM": [
+    "SAP Supply Chain"
+  ],
+  "SAP MM": [
+    "SAP Materials Management",
+    "materials management sap",
+    "purchase orders sap"
+  ],
+  "SAP WM": [
+    "SAP Warehouse Management"
+  ],
+  "RFID": [
+    "Radio Frequency Identification"
+  ],
+  "Barcode Scanning": [
+    "Barcode"
+  ],
+  "Microsoft Office": [
+    "office 365 user",
+    "word excel powerpoint",
+    "MS Office",
+    "Office 365",
+    "ms office suite",
+    "proficient ms office",
+    "office suite user"
+  ],
+  "Microsoft Excel": [
+    "excel vlookup",
+    "Spreadsheets",
+    "advanced excel",
+    "Excel VBA",
+    "ms excel proficient",
+    "excel formulas",
+    "MS Excel",
+    "excel pivot",
+    "excel macros",
+    "excel proficient",
+    "spreadsheet expert",
+    "data analysis excel"
+  ],
+  "Microsoft Word": [
+    "MS Word"
+  ],
+  "Microsoft PowerPoint": [
+    "MS PowerPoint",
+    "PowerPoint"
+  ],
+  "Quality Management": [
+    "ISO 9001",
+    "QMS",
+    "TQM",
+    "iso 9001 process",
+    "quality audits",
+    "continuous improvement culture"
+  ],
+  "OSHA": [
+    "Occupational Safety Health Administration",
+    "osha 30",
+    "osha 10",
+    "safety compliance"
+  ],
+  "Technical Writing": [
+    "Documentation",
+    "technical doc",
+    "api documentation",
+    "user guides",
+    "readme writing"
+  ],
+  "Public Speaking": [
+    "Presentation Skills"
+  ],
+  "Leadership": [
+    "led cross-functional team",
+    "led a team",
+    "Team Leadership",
+    "team leader",
+    "managed team",
+    "led engineers",
+    "managed developers",
+    "team management",
+    "technical lead"
+  ],
+  "Project Management": [
+    "PMP",
+    "Project Delivery"
+  ],
+  "Communication": [
+    "verbal communication",
+    "strong communication skills",
+    "written communication skills",
+    "Interpersonal Communication",
+    "stakeholder communication",
+    "clear communication",
+    "cross-team communication"
+  ],
+  "Problem Solving": [
+    "critical thinker",
+    "problem-solving skills",
+    "analytical skills",
+    "Analytical Thinking",
+    "strong analytical",
+    "debugging skills",
+    "root cause analysis"
+  ],
+  "Data Entry": [
+    "Data Input"
+  ],
+  "GDPR": [
+    "Data Privacy",
+    "Data Protection",
+    "gdpr compliance",
+    "data protection officer",
+    "privacy impact assessment"
+  ],
+  "ISO 27001": [
+    "Information Security Standard"
+  ],
+  "AWS Bedrock": [
+    "Bedrock AI",
+    "Amazon Bedrock"
+  ],
+  "AWS Glue": [
+    "Glue ETL",
+    "Amazon Glue"
+  ],
+  "AWS Athena": [
+    "Athena SQL",
+    "Amazon Athena"
+  ],
+  "AWS Step Functions": [
+    "Step Functions",
+    "AWS Workflows"
+  ],
+  "AWS Cognito": [
+    "Cognito Auth",
+    "Amazon Cognito"
+  ],
+  "AWS CloudWatch": [
+    "CloudWatch Monitoring"
+  ],
+  "AWS CloudTrail": [
+    "CloudTrail Logging"
+  ],
+  "AWS Elastic Beanstalk": [
+    "Elastic Beanstalk"
+  ],
+  "AWS Lightsail": [
+    "Amazon Lightsail"
+  ],
+  "AWS Fargate": [
+    "Fargate",
+    "Serverless Containers"
+  ],
+  "Azure Cosmos DB": [
+    "Cosmos DB",
+    "Azure NoSQL"
+  ],
+  "Azure Monitor": [
+    "Azure Monitoring"
+  ],
+  "Azure DevOps Pipelines": [
+    "Azure Pipelines"
+  ],
+  "Azure Logic Apps": [
+    "Logic Apps",
+    "Azure Workflows"
+  ],
+  "Azure API Management": [
+    "Azure APIM"
+  ],
+  "Azure Service Fabric": [
+    "Service Fabric"
+  ],
+  "Azure Event Hub": [
+    "Event Hub"
+  ],
+  "Azure Data Factory": [
+    "ADF",
+    "Azure ETL"
+  ],
+  "Azure Synapse Analytics": [
+    "Synapse",
+    "Azure Data Warehouse"
+  ],
+  "Azure Databricks": [
+    "Databricks Azure"
+  ],
+  "Azure OpenAI": [
+    "Azure OpenAI Service"
+  ],
+  "Google Cloud Spanner": [
+    "Cloud Spanner"
+  ],
+  "Google Cloud Dataflow": [
+    "Dataflow"
+  ],
+  "Google Cloud Dataproc": [
+    "Dataproc"
+  ],
+  "Google Cloud Composer": [
+    "Cloud Composer",
+    "Airflow GCP"
+  ],
+  "Google Looker": [
+    "Looker BI",
+    "Looker Studio"
+  ],
+  "Google AlloyDB": [
+    "AlloyDB"
+  ],
+  "Google Cloud SQL": [
+    "Cloud SQL"
+  ],
+  "Cloudflare Workers": [
+    "CF Workers",
+    "Edge Computing"
+  ],
+  "Cloudflare R2": [
+    "R2 Storage"
+  ],
+  "Cloudflare D1": [
+    "D1 Database"
+  ],
+  "Cloudflare KV": [
+    "KV Storage"
+  ],
+  "Cloudflare Pages": [
+    "CF Pages"
+  ],
+  "Cloudflare Stream": [
+    "Video Streaming CDN"
+  ],
+  "React Hooks": [
+    "useState",
+    "useEffect",
+    "Custom Hooks"
+  ],
+  "Server Side Rendering": [
+    "SSR",
+    "Server-Side Rendering"
+  ],
+  "Static Site Generation": [
+    "SSG",
+    "Static Generation"
+  ],
+  "Incremental Static Regeneration": [
+    "ISR"
+  ],
+  "Client Side Rendering": [
+    "CSR"
+  ],
+  "Hydration": [
+    "React Hydration"
+  ],
+  "Progressive Web App": [
+    "PWA",
+    "pwa app",
+    "offline web app",
+    "installable web app"
+  ],
+  "Micro Frontends": [
+    "Micro-Frontends"
+  ],
+  "Module Federation": [
+    "Webpack Module Federation"
+  ],
+  "Web Accessibility": [
+    "a11y",
+    "WCAG",
+    "ARIA"
+  ],
+  "Responsive Design": [
+    "Mobile First Design",
+    "Responsive Web"
+  ],
+  "Cross Browser Compatibility": [
+    "Cross-Browser"
+  ],
+  "Browser APIs": [
+    "Web APIs"
+  ],
+  "Service Workers": [
+    "Service Worker",
+    "Offline Support"
+  ],
+  "Local Storage": [
+    "SessionStorage",
+    "IndexedDB",
+    "Web Storage"
+  ],
+  "Canvas API": [
+    "HTML5 Canvas"
+  ],
+  "WebGL": [
+    "3D Browser Graphics"
+  ],
+  "Three.js": [
+    "ThreeJS",
+    "3D JavaScript",
+    "3d web three.js",
+    "webgl 3d",
+    "three js scene"
+  ],
+  "D3.js": [
+    "D3",
+    "Data Visualization JS",
+    "d3 charts",
+    "data visualization d3",
+    "d3 graphs"
+  ],
+  "Chart.js": [
+    "ChartJS"
+  ],
+  "Recharts": [
+    "React Charts"
+  ],
+  "AG Grid": [
+    "AG-Grid"
+  ],
+  "Framer Motion": [
+    "Framer",
+    "framer animations",
+    "react animations framer"
+  ],
+  "GreenSock": [
+    "GSAP",
+    "Green Sock Animation"
+  ],
+  "Lottie": [
+    "Lottie Animations"
+  ],
+  "React Spring": [
+    "React Animations"
+  ],
+  "Socket.io": [
+    "Socket IO",
+    "Real-Time Web",
+    "websocket socket.io",
+    "realtime socket",
+    "socket io chat"
+  ],
+  "Chromatic": [
+    "Visual Testing"
+  ],
+  "Percy": [
+    "Percy Visual Testing"
+  ],
+  "Nx Workspace": [
+    "Nx Monorepo Workspace"
+  ],
+  "ESLint": [
+    "ES Lint",
+    "JavaScript Linting"
+  ],
+  "Prettier": [
+    "Code Formatter"
+  ],
+  "API Design": [
+    "API Architecture",
+    "API Planning"
+  ],
+  "API Versioning": [
+    "REST Versioning"
+  ],
+  "Rate Limiting": [
+    "API Rate Limiting",
+    "Throttling"
+  ],
+  "Caching": [
+    "Cache Layer",
+    "In-Memory Cache"
+  ],
+  "Pagination": [
+    "API Pagination",
+    "Cursor Pagination"
+  ],
+  "Background Jobs": [
+    "Job Queue",
+    "Worker Queue"
+  ],
+  "Cron Jobs": [
+    "Scheduled Tasks",
+    "Task Scheduler"
+  ],
+  "Webhook": [
+    "Webhooks",
+    "Event Webhook"
+  ],
+  "Email Service": [
+    "SMTP",
+    "AWS SES",
+    "SendGrid"
+  ],
+  "SendGrid": [
+    "Email API"
+  ],
+  "Twilio": [
+    "SMS API",
+    "Communication API"
+  ],
+  "Stripe": [
+    "Stripe Payments",
+    "Payment Integration"
+  ],
+  "PayPal": [
+    "PayPal API",
+    "Payment Gateway"
+  ],
+  "Razorpay": [
+    "Razorpay Payment",
+    "Indian Payment Gateway"
+  ],
+  "Paytm": [
+    "Paytm Gateway"
+  ],
+  "SSO": [
+    "Single Sign-On",
+    "Federated Identity"
+  ],
+  "Session Management": [
+    "Session Handling"
+  ],
+  "Cookie Management": [
+    "HTTP Cookies"
+  ],
+  "CORS": [
+    "Cross-Origin Resource Sharing"
+  ],
+  "Content Negotiation": [
+    "Accept Headers"
+  ],
+  "ETags": [
+    "HTTP ETags"
+  ],
+  "HATEOAS": [
+    "Hypermedia API"
+  ],
+  "XML": [
+    "Extensible Markup Language",
+    "XML Parsing"
+  ],
+  "JSON": [
+    "JavaScript Object Notation"
+  ],
+  "YAML": [
+    "YAML Format"
+  ],
+  "Protobuf": [
+    "Protocol Buffers",
+    "Binary Serialization"
+  ],
+  "MessagePack": [
+    "Binary JSON"
+  ],
+  "Apache Avro": [
+    "Avro Serialization"
+  ],
+  "OpenAPI Specification": [
+    "OAS",
+    "API Spec"
+  ],
+  "AsyncAPI": [
+    "Async API Spec"
+  ],
+  "Swagger Codegen": [
+    "API Code Generation"
+  ],
+  "Application Performance Monitoring": [
+    "APM"
+  ],
+  "Log Aggregation": [
+    "Centralized Logging"
+  ],
+  "Distributed Tracing": [
+    "Tracing"
+  ],
+  "Metrics Collection": [
+    "Custom Metrics"
+  ],
+  "Health Checks": [
+    "Liveness Probe",
+    "Readiness Probe"
+  ],
+  "Alerting": [
+    "Alert Rules",
+    "PagerDuty Alerts"
+  ],
+  "Kibana": [
+    "ELK Kibana",
+    "Log Visualization"
+  ],
+  "Logstash": [
+    "Log Pipeline",
+    "ELK Logstash"
+  ],
+  "Fluentd": [
+    "Fluent Bit",
+    "Log Forwarding"
+  ],
+  "Grafana Stack": [
+    "LGTM Stack"
+  ],
+  "OpenSearch Dashboards": [
+    "Kibana OpenSearch"
+  ],
+  "Cloudwatch Logs": [
+    "AWS Log Management"
+  ],
+  "Application Insights": [
+    "Azure App Insights"
+  ],
+  "Google Cloud Logging": [
+    "Stackdriver Logging"
+  ],
+  "Instana": [
+    "IBM Instana"
+  ],
+  "AppDynamics": [
+    "App Dynamics"
+  ],
+  "Raygun": [
+    "Error Tracking"
+  ],
+  "Rollbar": [
+    "Error Monitoring Rollbar"
+  ],
+  "LogRocket": [
+    "Frontend Monitoring"
+  ],
+  "FullStory": [
+    "Session Replay"
+  ],
+  "Hotjar": [
+    "User Heatmap"
+  ],
+  "DevSecOps": [
+    "Dev Sec Ops",
+    "Security in DevOps"
+  ],
+  "SAST": [
+    "Static Application Security Testing"
+  ],
+  "DAST": [
+    "Dynamic Application Security Testing"
+  ],
+  "Dependency Scanning": [
+    "Vulnerability Scanning"
+  ],
+  "Secrets Management": [
+    "Secret Rotation"
+  ],
+  "Network Segmentation": [
+    "DMZ",
+    "Network Zones"
+  ],
+  "WAF": [
+    "Web Application Firewall"
+  ],
+  "DDoS Protection": [
+    "DDoS Mitigation"
+  ],
+  "Security Hardening": [
+    "OS Hardening"
+  ],
+  "CSPM": [
+    "Cloud Security Posture Management"
+  ],
+  "CWPP": [
+    "Cloud Workload Protection"
+  ],
+  "SCA": [
+    "Software Composition Analysis"
+  ],
+  "SBOM": [
+    "Software Bill of Materials"
+  ],
+  "Falco": [
+    "Falco Security"
+  ],
+  "Aqua Security": [
+    "Container Security"
+  ],
+  "Snyk": [
+    "Snyk Security"
+  ],
+  "Trivy": [
+    "Container Vulnerability Scanner"
+  ],
+  "CIS Benchmarks": [
+    "CIS Security"
+  ],
+  "SOC 2": [
+    "SOC2 Compliance"
+  ],
+  "PCI DSS": [
+    "Payment Card Industry",
+    "PCI Compliance"
+  ],
+  "NIST": [
+    "NIST Framework",
+    "Cybersecurity Framework"
+  ],
+  "Enterprise Integration Patterns": [
+    "EIP"
+  ],
+  "Event Bus": [
+    "Central Event Bus"
+  ],
+  "Saga Pattern": [
+    "Distributed Transactions"
+  ],
+  "Outbox Pattern": [
+    "Transactional Outbox"
+  ],
+  "Dead Letter Queue": [
+    "DLQ"
+  ],
+  "Idempotency": [
+    "Idempotent API"
+  ],
+  "Bulkhead Pattern": [
+    "Fault Isolation"
+  ],
+  "Retry Logic": [
+    "Exponential Backoff"
+  ],
+  "Throttle": [
+    "Throttling"
+  ],
+  "Service Registry": [
+    "Eureka",
+    "Service Discovery"
+  ],
+  "API Composition": [
+    "Aggregator Pattern"
+  ],
+  "Strangler Fig Pattern": [
+    "Migration Pattern"
+  ],
+  "Anti-Corruption Layer": [
+    "ACL Pattern"
+  ],
+  "Sidecar Pattern": [
+    "Container Sidecar"
+  ],
+  "Ambassador Pattern": [
+    "Proxy Pattern"
+  ],
+  "Object Oriented Programming": [
+    "object-oriented design",
+    "Object-Oriented",
+    "OOP",
+    "oop principles",
+    "oop concepts",
+    "classes and objects"
+  ],
+  "Functional Programming": [
+    "FP",
+    "Functional"
+  ],
+  "Reactive Programming": [
+    "Rx",
+    "Observables"
+  ],
+  "RxJS": [
+    "Reactive Extensions JS"
+  ],
+  "RxJava": [
+    "Reactive Java"
+  ],
+  "Concurrent Programming": [
+    "Concurrency"
+  ],
+  "Parallel Programming": [
+    "Parallelism"
+  ],
+  "Asynchronous Programming": [
+    "Async",
+    "Async/Await",
+    "Promises"
+  ],
+  "Metaprogramming": [
+    "Code Generation"
+  ],
+  "Memory Management": [
+    "Garbage Collection",
+    "GC"
+  ],
+  "Data Structures": [
+    "Arrays",
+    "Linked Lists",
+    "Trees",
+    "Graphs"
+  ],
+  "Algorithms": [
+    "Sorting",
+    "Searching",
+    "Dynamic Programming"
+  ],
+  "Complexity Analysis": [
+    "Big O Notation",
+    "Big-O"
+  ],
+  "System Design": [
+    "designed the system",
+    "HLD",
+    "system architecture",
+    "Low Level Design",
+    "LLD",
+    "High Level Design",
+    "designed architecture"
+  ],
+  "Feature Engineering": [
+    "Feature Extraction",
+    "Feature Selection",
+    "feature creation",
+    "feature transformation",
+    "data preprocessing"
+  ],
+  "Model Training": [
+    "ML Training"
+  ],
+  "Model Evaluation": [
+    "Cross Validation",
+    "Model Metrics"
+  ],
+  "Hyperparameter Tuning": [
+    "Grid Search",
+    "Random Search",
+    "Bayesian Optimization"
+  ],
+  "Transfer Learning": [
+    "Pre-trained Models"
+  ],
+  "Fine Tuning": [
+    "Model Fine-tuning"
+  ],
+  "Federated Learning": [
+    "Privacy ML"
+  ],
+  "Explainable AI": [
+    "XAI",
+    "Model Interpretability"
+  ],
+  "Bias Detection": [
+    "AI Fairness"
+  ],
+  "Model Deployment": [
+    "ML Deployment",
+    "Model Serving"
+  ],
+  "AIOps": [
+    "AI Operations"
+  ],
+  "MLOps": [
+    "Machine Learning Operations",
+    "mlflow tracking",
+    "model registry",
+    "production ml"
+  ],
+  "Data Labeling": [
+    "Data Annotation"
+  ],
+  "Synthetic Data": [
+    "Data Generation"
+  ],
+  "Time Series Analysis": [
+    "Time Series Forecasting",
+    "arima model",
+    "time series forecast",
+    "lstm time series"
+  ],
+  "Recommendation Systems": [
+    "Recommender Systems",
+    "Collaborative Filtering",
+    "content-based rec",
+    "matrix factorization"
+  ],
+  "Anomaly Detection": [
+    "Outlier Detection"
+  ],
+  "Clustering": [
+    "K-Means",
+    "DBSCAN",
+    "kmeans clustering",
+    "hierarchical clustering"
+  ],
+  "Classification": [
+    "Binary Classification",
+    "Multi-Class"
+  ],
+  "Regression": [
+    "Linear Regression",
+    "Logistic Regression"
+  ],
+  "Object Detection": [
+    "YOLO",
+    "RCNN",
+    "Object Recognition",
+    "yolov8",
+    "yolov5",
+    "object detection model",
+    "bounding boxes"
+  ],
+  "Image Segmentation": [
+    "Semantic Segmentation"
+  ],
+  "Speech Recognition": [
+    "ASR",
+    "Speech-to-Text",
+    "STT"
+  ],
+  "Text-to-Speech": [
+    "TTS",
+    "Voice Synthesis"
+  ],
+  "Sentiment Analysis": [
+    "Opinion Mining"
+  ],
+  "Named Entity Recognition": [
+    "NER"
+  ],
+  "Text Classification": [
+    "Document Classification"
+  ],
+  "Tokenization": [
+    "NLP Tokenization"
+  ],
+  "Word Embeddings": [
+    "Word2Vec",
+    "GloVe",
+    "FastText"
+  ],
+  "Transformer Models": [
+    "BERT",
+    "GPT",
+    "Attention Mechanism"
+  ],
+  "Stable Diffusion": [
+    "Image Generation AI",
+    "Diffusion Models"
+  ],
+  "GANs": [
+    "Generative Adversarial Networks"
+  ],
+  "Variational Autoencoder": [
+    "VAE"
+  ],
+  "Reinforcement Learning": [
+    "RL",
+    "Q-Learning"
+  ],
+  "Memcached": [
+    "Memcache",
+    "In-Memory Cache"
+  ],
+  "Hazelcast": [
+    "Hazelcast Cache"
+  ],
+  "Ehcache": [
+    "Eh Cache"
+  ],
+  "Caffeine Cache": [
+    "Java Cache"
+  ],
+  "Varnish": [
+    "Varnish Cache"
+  ],
+  "Vitess": [
+    "Vitess MySQL Proxy"
+  ],
+  "ProxySQL": [
+    "MySQL Proxy"
+  ],
+  "pgBouncer": [
+    "Postgres Connection Pool"
+  ],
+  "Apache Druid": [
+    "Druid Analytics"
+  ],
+  "ClickHouse": [
+    "Click House",
+    "Columnar DB"
+  ],
+  "SingleStore": [
+    "Memsql"
+  ],
+  "YugabyteDB": [
+    "Yugabyte"
+  ],
+  "ScyllaDB": [
+    "Scylla DB"
+  ],
+  "Dgraph": [
+    "Graph DB Dgraph"
+  ],
+  "JanusGraph": [
+    "Janus Graph"
+  ],
+  "Amazon Neptune": [
+    "Neptune Graph"
+  ],
+  "Azure Cosmos Graph": [
+    "Cosmos Gremlin"
+  ],
+  "GridDB": [
+    "Grid DB",
+    "IoT Database"
+  ],
+  "QuestDB": [
+    "Time Series Quest"
+  ],
+  "VictoriaMetrics": [
+    "Victoria Metrics",
+    "Metrics DB"
+  ],
+  "Unity": [
+    "Unity 3D",
+    "Unity Game Engine",
+    "unity game developer",
+    "unity c# scripts",
+    "unity editor",
+    "unity 2d 3d"
+  ],
+  "Unreal Engine": [
+    "UE4",
+    "UE5",
+    "Unreal",
+    "ue5 developer",
+    "blueprints unreal",
+    "unreal c++"
+  ],
+  "Godot": [
+    "Godot Engine",
+    "godot 4",
+    "gdscript",
+    "godot game"
+  ],
+  "Game Maker": [
+    "GameMaker Studio"
+  ],
+  "Pygame": [
+    "Python Game Development"
+  ],
+  "LibGDX": [
+    "Lib GDX",
+    "Java Game"
+  ],
+  "OpenGL": [
+    "Open GL",
+    "Graphics Programming",
+    "opengl shader",
+    "glsl",
+    "opengl rendering"
+  ],
+  "Vulkan": [
+    "Vulkan API",
+    "vulkan api developer",
+    "low-level graphics"
+  ],
+  "DirectX": [
+    "Direct X",
+    "DirectX 12"
+  ],
+  "Phaser": [
+    "Phaser JS",
+    "2D Web Games"
+  ],
+  "PlayCanvas": [
+    "Play Canvas"
+  ],
+  "Babylon.js": [
+    "Babylon JS"
+  ],
+  "AR Development": [
+    "Augmented Reality",
+    "ARKit",
+    "ARCore",
+    "arkit ios",
+    "arcore android",
+    "augmented reality app"
+  ],
+  "VR Development": [
+    "Virtual Reality",
+    "Oculus SDK",
+    "vr app",
+    "oculus quest",
+    "vr environment"
+  ],
+  "Mixed Reality": [
+    "MR",
+    "HoloLens"
+  ],
+  "Quantum Computing": [
+    "Quantum Technology",
+    "QPU"
+  ],
+  "Qiskit": [
+    "IBM Qiskit",
+    "Quantum SDK"
+  ],
+  "Cirq": [
+    "Google Cirq"
+  ],
+  "PennyLane": [
+    "Quantum ML"
+  ],
+  "Quantum Machine Learning": [
+    "QML"
+  ],
+  "Blockchain": [
+    "Distributed Ledger",
+    "DLT",
+    "blockchain developer",
+    "blockchain app"
+  ],
+  "Solidity": [
+    "Smart Contracts",
+    "Ethereum Development",
+    "smart contract developer",
+    "solidity ethereum",
+    "evm contracts"
+  ],
+  "Ethereum": [
+    "ETH",
+    "EVM",
+    "eth developer",
+    "ethereum dapp",
+    "web3 ethereum"
+  ],
+  "Hyperledger": [
+    "Hyperledger Fabric",
+    "Enterprise Blockchain"
+  ],
+  "NFT": [
+    "Non-Fungible Token",
+    "nft minting",
+    "erc721 nft",
+    "nft marketplace"
+  ],
+  "DeFi": [
+    "Decentralized Finance",
+    "defi protocol",
+    "defi dapp",
+    "uniswap defi"
+  ],
+  "Web3.js": [
+    "Web3",
+    "Blockchain JS",
+    "web3 integration",
+    "dapp frontend",
+    "metamask integration"
+  ],
+  "Ethers.js": [
+    "Ethers",
+    "Ethereum Client"
+  ],
+  "Hardhat": [
+    "Smart Contract Testing"
+  ],
+  "Truffle": [
+    "Truffle Suite"
+  ],
+  "MetaMask": [
+    "Crypto Wallet"
+  ],
+  "IPFS": [
+    "Inter Planetary File System",
+    "Decentralized Storage",
+    "ipfs upload",
+    "pinata ipfs"
+  ],
+  "Chainlink": [
+    "Oracle Network"
+  ],
+  "Mechatronics": [
+    "Mechatronic Systems",
+    "Robotics"
+  ],
+  "Robotics": [
+    "Robotic Systems",
+    "Industrial Robots"
+  ],
+  "ROS": [
+    "Robot Operating System"
+  ],
+  "SLAM": [
+    "Simultaneous Localization and Mapping"
+  ],
+  "PID Controller": [
+    "PID Tuning"
+  ],
+  "Actuators": [
+    "Servo Motor",
+    "Stepper Motor"
+  ],
+  "PLM Software": [
+    "Product Lifecycle Software"
+  ],
+  "CAD/CAM": [
+    "Computer Aided Design Manufacturing"
+  ],
+  "Metrology": [
+    "Measurement Systems",
+    "CMM"
+  ],
+  "Tribology": [
+    "Wear and Friction"
+  ],
+  "Thermofluids": [
+    "Thermal Fluids"
+  ],
+  "Non-Destructive Testing": [
+    "NDT",
+    "NDT Inspection"
+  ],
+  "Failure Analysis": [
+    "Root Cause Analysis",
+    "RCA"
+  ],
+  "Value Engineering": [
+    "Value Analysis"
+  ],
+  "Design for Manufacturability": [
+    "DFM"
+  ],
+  "Design for Assembly": [
+    "DFA"
+  ],
+  "Tolerance Stack-Up": [
+    "Tolerance Analysis"
+  ],
+  "Surface Treatment": [
+    "Surface Finishing",
+    "Coating"
+  ],
+  "Composite Structures": [
+    "Composite Materials"
+  ],
+  "Finite Difference Method": [
+    "FDM Analysis"
+  ],
+  "Boundary Element Method": [
+    "BEM"
+  ],
+  "Heat Exchanger Design": [
+    "Shell and Tube Heat Exchanger"
+  ],
+  "Distillation Column Design": [
+    "Tray Column",
+    "Packed Column"
+  ],
+  "Reactor Design": [
+    "CSTR",
+    "PFR",
+    "Batch Reactor"
+  ],
+  "Chemical Process Simulation": [
+    "Process Simulation"
+  ],
+  "Polymer Rheology": [
+    "Rheology"
+  ],
+  "Catalysis": [
+    "Catalytic Processes"
+  ],
+  "Electrochemistry": [
+    "Electrolysis",
+    "Fuel Cells"
+  ],
+  "Corrosion Engineering": [
+    "Corrosion Control"
+  ],
+  "Coating Technology": [
+    "Industrial Coatings"
+  ],
+  "Nanotechnology": [
+    "Nano Materials",
+    "Nano Science"
+  ],
+  "Water and Wastewater Treatment": [
+    "Water Treatment Engineering"
+  ],
+  "Environmental Impact Assessment": [
+    "EIA"
+  ],
+  "Life Cycle Assessment": [
+    "LCA",
+    "Carbon Footprint"
+  ],
+  "Structural Analysis Aerospace": [
+    "Aircraft Structures"
+  ],
+  "Aeroelasticity": [
+    "Flutter Analysis"
+  ],
+  "Flight Test Engineering": [
+    "Flight Testing"
+  ],
+  "Mission Analysis": [
+    "Orbital Mechanics"
+  ],
+  "Satellite Systems": [
+    "Satellite Engineering"
+  ],
+  "Guidance Navigation Control": [
+    "GNC"
+  ],
+  "Spacecraft Design": [
+    "Space Systems"
+  ],
+  "Payload Design": [
+    "Spacecraft Payload"
+  ],
+  "Thermal Control System": [
+    "TCS Spacecraft"
+  ],
+  "Attitude Determination": [
+    "Attitude Control",
+    "ADCS"
+  ],
+  "LiDAR": [
+    "Light Detection and Ranging",
+    "lidar mapping",
+    "lidar point cloud"
+  ],
+  "Radar Systems": [
+    "Radar Engineering"
+  ],
+  "GNSS": [
+    "GPS",
+    "Global Navigation Satellite System"
+  ],
+  "Autopilot": [
+    "Flight Automation",
+    "Autopilot Systems"
+  ],
+  "Medical Imaging": [
+    "MRI",
+    "CT Scan",
+    "X-Ray Imaging"
+  ],
+  "Biosensors": [
+    "Biosensor Design"
+  ],
+  "Wearable Devices": [
+    "Wearable Tech"
+  ],
+  "Drug Delivery Systems": [
+    "Drug Delivery"
+  ],
+  "Prosthetics": [
+    "Prosthetic Design"
+  ],
+  "Orthopedic Devices": [
+    "Orthopedic Engineering"
+  ],
+  "Cardiac Devices": [
+    "Pacemakers",
+    "Defibrillators"
+  ],
+  "In Vitro Diagnostics": [
+    "IVD"
+  ],
+  "Bioreactor Design": [
+    "Fermentation"
+  ],
+  "Genomics": [
+    "Genome Sequencing",
+    "NGS",
+    "next gen sequencing",
+    "ngs analysis"
+  ],
+  "Proteomics": [
+    "Protein Analysis"
+  ],
+  "CRISPR": [
+    "Gene Editing",
+    "CRISPR-Cas9",
+    "crispr gene editing",
+    "crispr cas9 experiment"
+  ],
+  "Flow Cytometry": [
+    "Cell Analysis"
+  ],
+  "PCR": [
+    "Polymerase Chain Reaction",
+    "qPCR",
+    "qpcr analysis",
+    "rt-pcr",
+    "pcr amplification"
+  ],
+  "Western Blot": [
+    "Western Blotting"
+  ],
+  "ELISA": [
+    "Enzyme-Linked Immunosorbent Assay"
+  ],
+  "Motion Design": [
+    "Motion Graphics"
+  ],
+  "3D Modeling": [
+    "3D Design",
+    "3D Art"
+  ],
+  "Blender": [
+    "Blender 3D",
+    "blender 3d modeling",
+    "blender render",
+    "blender animation"
+  ],
+  "Maya": [
+    "Autodesk Maya",
+    "maya animation",
+    "maya rigging",
+    "character maya"
+  ],
+  "Cinema 4D": [
+    "C4D",
+    "Cinema4D"
+  ],
+  "3ds Max": [
+    "Autodesk 3ds Max"
+  ],
+  "ZBrush": [
+    "Z Brush",
+    "3D Sculpting"
+  ],
+  "Houdini": [
+    "Houdini FX",
+    "VFX"
+  ],
+  "Substance Painter": [
+    "PBR Texturing"
+  ],
+  "Unreal Engine VFX": [
+    "Niagara VFX"
+  ],
+  "DaVinci Resolve": [
+    "Da Vinci Resolve",
+    "Color Grading"
+  ],
+  "Final Cut Pro": [
+    "Final Cut",
+    "FCP"
+  ],
+  "Adobe Premiere": [
+    "Premiere Pro",
+    "Video Editing",
+    "premiere editing",
+    "video cut premiere",
+    "video production premiere"
+  ],
+  "Adobe After Effects": [
+    "After Effects",
+    "Motion Graphics",
+    "ae motion graphics",
+    "compositing after effects"
+  ],
+  "Adobe Lightroom": [
+    "Lightroom",
+    "Photo Editing"
+  ],
+  "Adobe Photoshop": [
+    "PS",
+    "Photoshop",
+    "photo editing ps",
+    "photoshop retouching",
+    "digital art ps"
+  ],
+  "Adobe Illustrator": [
+    "AI",
+    "Vector Design",
+    "vector illustrator",
+    "logo design illustrator",
+    "ai files"
+  ],
+  "Adobe InDesign": [
+    "InDesign",
+    "Print Design"
+  ],
+  "Sketch": [
+    "Sketch App"
+  ],
+  "InVision": [
+    "InVision Design"
+  ],
+  "Principle": [
+    "Principle Design"
+  ],
+  "ProtoPie": [
+    "Proto Pie"
+  ],
+  "Maze": [
+    "Maze Testing",
+    "UX Research"
+  ],
+  "UsabilityHub": [
+    "Usability Testing"
+  ],
+  "Font Design": [
+    "Typography",
+    "Type Design"
+  ],
+  "Color Theory": [
+    "Color Palette",
+    "Brand Colors"
+  ],
+  "User Research": [
+    "UX Research"
+  ],
+  "Design Thinking": [
+    "Human Centered Design",
+    "empathy map",
+    "ideation workshop",
+    "design sprint"
+  ],
+  "Interaction Design": [
+    "IxD"
+  ],
+  "Service Design": [
+    "Service Blueprint"
+  ],
+  "Information Architecture": [
+    "IA",
+    "Sitemap Design"
+  ],
+  "Risk Register": [
+    "Risk Log",
+    "risk log maintenance",
+    "identified risks"
+  ],
+  "Change Management": [
+    "Organizational Change"
+  ],
+  "Stakeholder Management": [
+    "Stakeholder Engagement"
+  ],
+  "Scope Management": [
+    "Scope Creep"
+  ],
+  "Schedule Management": [
+    "Timeline Planning"
+  ],
+  "Earned Value Management": [
+    "EVM"
+  ],
+  "Work Breakdown Structure": [
+    "WBS"
+  ],
+  "Critical Path Method": [
+    "CPM"
+  ],
+  "Resource Management": [
+    "Capacity Planning"
+  ],
+  "Quality Management Plan": [
+    "QMP"
+  ],
+  "Project Charter": [
+    "Project Initiation"
+  ],
+  "Sprint Planning": [
+    "Agile Sprint"
+  ],
+  "Retrospective": [
+    "Sprint Retrospective"
+  ],
+  "Daily Standup": [
+    "Daily Scrum",
+    "Standup Meeting"
+  ],
+  "Burndown Chart": [
+    "Sprint Burndown"
+  ],
+  "Velocity": [
+    "Team Velocity"
+  ],
+  "User Stories": [
+    "Agile Stories"
+  ],
+  "Acceptance Criteria": [
+    "Definition of Done",
+    "DoD"
+  ],
+  "Backlog Grooming": [
+    "Backlog Refinement"
+  ],
+  "Scaled Agile": [
+    "SAFe",
+    "Scaled Agile Framework"
+  ],
+  "SAFe": [
+    "Scaled Agile Framework",
+    "PI Planning"
+  ],
+  "OKRs": [
+    "Objectives and Key Results",
+    "setting okrs",
+    "okr planning",
+    "objectives key results"
+  ],
+  "RACI Matrix": [
+    "RACI Chart",
+    "Responsibility Matrix"
+  ],
+  "RAID Log": [
+    "Risk Assumptions Issues Dependencies"
+  ],
+  "Workday": [
+    "Workday HCM",
+    "HR Platform",
+    "workday payroll",
+    "workday reports"
+  ],
+  "SAP SuccessFactors": [
+    "SuccessFactors HR"
+  ],
+  "BambooHR": [
+    "Bamboo HR"
+  ],
+  "ADP": [
+    "ADP Payroll",
+    "ADP HCM"
+  ],
+  "Payroll Management": [
+    "Payroll Processing",
+    "salary disbursement",
+    "statutory payroll"
+  ],
+  "Compensation and Benefits": [
+    "C&B",
+    "Total Rewards"
+  ],
+  "Job Analysis": [
+    "Job Description Writing"
+  ],
+  "Competency Framework": [
+    "Skills Framework"
+  ],
+  "Learning and Development": [
+    "L&D",
+    "Training and Development",
+    "training programs",
+    "employee training",
+    "development workshops"
+  ],
+  "Organizational Behavior": [
+    "OB"
+  ],
+  "Succession Planning": [
+    "Career Pathing"
+  ],
+  "Workforce Planning": [
+    "Manpower Planning"
+  ],
+  "Employee Relations": [
+    "Labor Relations"
+  ],
+  "Diversity Equity Inclusion": [
+    "DE&I",
+    "DEI",
+    "D&I"
+  ],
+  "Contract Drafting": [
+    "Legal Drafting",
+    "Contract Review",
+    "drafting contracts",
+    "reviewing agreements",
+    "nda drafting",
+    "contract redlining"
+  ],
+  "Employment Law": [
+    "Labor Law",
+    "labor law advisor",
+    "employment contract review",
+    "workplace law"
+  ],
+  "Data Protection Law": [
+    "Privacy Law",
+    "GDPR Compliance"
+  ],
+  "Competition Law": [
+    "Antitrust Law"
+  ],
+  "Securities Law": [
+    "Financial Regulation"
+  ],
+  "Tax Law": [
+    "Corporate Tax"
+  ],
+  "Real Estate Law": [
+    "Property Law",
+    "conveyancing",
+    "title search"
+  ],
+  "Mergers Acquisitions Law": [
+    "M&A Legal"
+  ],
+  "RERA": [
+    "Real Estate Regulation"
+  ],
+  "SEBI": [
+    "Securities Regulation India"
+  ],
+  "E-Learning Design": [
+    "Online Course Design",
+    "online course development",
+    "elearning modules"
+  ],
+  "Moodle": [
+    "Moodle LMS",
+    "moodle courses"
+  ],
+  "Canvas LMS": [
+    "Canvas Learning"
+  ],
+  "Blackboard": [
+    "Blackboard LMS"
+  ],
+  "Google Classroom": [
+    "GClassroom",
+    "google classroom teacher",
+    "g-suite education"
+  ],
+  "Articulate Storyline": [
+    "Articulate 360"
+  ],
+  "Adobe Captivate": [
+    "Captivate eLearning"
+  ],
+  "Bloom's Taxonomy": [
+    "Learning Taxonomy"
+  ],
+  "Pedagogy": [
+    "Teaching Methodology"
+  ],
+  "Assessment Design": [
+    "Test Design"
+  ],
+  "SCORM": [
+    "Shareable Content Object Reference Model",
+    "scorm content",
+    "scorm packaging"
+  ],
+  "Behavioral Psychology": [
+    "Behavioral Science"
+  ],
+  "Cognitive Psychology": [
+    "Cognitive Science"
+  ],
+  "Organizational Psychology": [
+    "Industrial-Organizational Psychology",
+    "I/O Psychology"
+  ],
+  "Social Research Methods": [
+    "Quantitative Research",
+    "Qualitative Research"
+  ],
+  "Statistical Analysis": [
+    "Stats",
+    "Descriptive Statistics"
+  ],
+  "Survey Design": [
+    "Survey Research"
+  ],
+  "Focus Groups": [
+    "Group Research"
+  ],
+  "Ethnographic Research": [
+    "Ethnography"
+  ],
+  "Content Analysis": [
+    "Textual Analysis"
+  ],
+  "Architectural Design": [
+    "Building Design"
+  ],
+  "Revit Architecture": [
+    "Autodesk Revit"
+  ],
+  "AutoCAD Architecture": [
+    "Architectural CAD"
+  ],
+  "SketchUp": [
+    "Sketch Up",
+    "3D Modeling Architecture"
+  ],
+  "Rhino": [
+    "Rhinoceros 3D"
+  ],
+  "Grasshopper": [
+    "Parametric Design"
+  ],
+  "Lumion": [
+    "Architectural Rendering"
+  ],
+  "V-Ray": [
+    "3D Rendering VRay"
+  ],
+  "ArchiCAD": [
+    "Open BIM"
+  ],
+  "Sustainable Design": [
+    "Green Building",
+    "LEED"
+  ],
+  "LEED Certification": [
+    "Green Architecture"
+  ],
+  "Interior Design": [
+    "Interior Architecture"
+  ],
+  "Landscape Architecture": [
+    "Landscape Design"
+  ],
+  "Master Planning": [
+    "Urban Master Plan"
+  ],
+  "Zoning Regulations": [
+    "Land Use Planning"
+  ],
+  "Transit Oriented Development": [
+    "TOD"
+  ],
+  "Content Creation": [
+    "Content Writing",
+    "Blog Writing"
+  ],
+  "Journalism": [
+    "News Writing",
+    "Investigative Reporting"
+  ],
+  "Public Relations": [
+    "PR",
+    "Media Relations"
+  ],
+  "Brand Communications": [
+    "Corporate Communications"
+  ],
+  "Social Media Management": [
+    "Social Media Strategy"
+  ],
+  "Video Production": [
+    "Video Editing",
+    "Film Production"
+  ],
+  "Photography": [
+    "Photo Editing",
+    "professional photographer",
+    "portrait photography",
+    "product photography",
+    "wedding photography"
+  ],
+  "Podcast Production": [
+    "Podcasting",
+    "podcast editing",
+    "podcast recording",
+    "podcast host"
+  ],
+  "Press Releases": [
+    "Press Release Writing"
+  ],
+  "Crisis Communications": [
+    "Crisis PR"
+  ],
+  "Media Planning": [
+    "Media Buying"
+  ],
+  "Print Media": [
+    "Print Design"
+  ],
+  "Digital Publishing": [
+    "Online Publishing",
+    "epub",
+    "kindle publishing",
+    "digital ebook"
+  ],
+  "Carbon Footprint Analysis": [
+    "Carbon Accounting"
+  ],
+  "ESG": [
+    "Environmental Social Governance"
+  ],
+  "Sustainability Reporting": [
+    "GRI Reporting"
+  ],
+  "Environmental Monitoring": [
+    "Air Quality Monitoring"
+  ],
+  "Climate Change Analysis": [
+    "Climate Science"
+  ],
+  "Waste Management": [
+    "Solid Waste Management"
+  ],
+  "Recycling": [
+    "Circular Economy"
+  ],
+  "Environmental Compliance": [
+    "EHS Compliance"
+  ],
+  "EHS": [
+    "Environment Health Safety"
+  ],
+  "ISO 14001": [
+    "Environmental Management System"
+  ],
+  "Ecology": [
+    "Ecological Assessment"
+  ],
+  "Conservation": [
+    "Nature Conservation"
+  ],
+  "Biodiversity": [
+    "Species Assessment"
+  ],
+  "Operations Management": [
+    "Operations"
+  ],
+  "Business Process Management": [
+    "BPM"
+  ],
+  "Standard Operating Procedures": [
+    "SOP"
+  ],
+  "Continuous Improvement": [
+    "Kaizen",
+    "CI"
+  ],
+  "Root Cause Analysis": [
+    "RCA"
+  ],
+  "Total Quality Management": [
+    "TQM"
+  ],
+  "ISO Certification": [
+    "ISO Audit"
+  ],
+  "Facility Management": [
+    "FM"
+  ],
+  "Vendor Sourcing": [
+    "Supplier Sourcing"
+  ],
+  "Contract Management": [
+    "Vendor Contract"
+  ],
+  "Fleet Management": [
+    "Vehicle Fleet"
+  ],
+  "Admin Management": [
+    "Office Administration"
+  ],
+  "Executive Assistant": [
+    "EA Tasks"
+  ],
+  "Calendar Management": [
+    "Scheduling"
+  ],
+  "HTML5": [
+    "html coding",
+    "html markup",
+    "html5 coding",
+    "web markup",
+    "html pages",
+    "semantic html",
+    "html tags",
+    "html forms",
+    "html5 markup"
+  ],
+  "CSS3": [
+    "css styling",
+    "css design",
+    "css3 styling",
+    "stylesheet",
+    "custom css",
+    "css animations",
+    "flexbox",
+    "css grid",
+    "responsive css"
+  ],
+  "Node.js": [
+    "nodejs developer",
+    "node developer",
+    "node backend",
+    "node js developer",
+    "node.js backend",
+    "node api",
+    "nodejs backend developer",
+    "node.js applications",
+    "node server",
+    "event-driven node"
+  ],
+  "CI/CD": [
+    "ci cd pipelines",
+    "continuous deployment pipeline",
+    "automated deployment",
+    "build pipeline",
+    "release pipeline",
+    "devops pipeline",
+    "built ci/cd pipelines",
+    "automated builds",
+    "deployment automation",
+    "pipeline configuration",
+    "continuous deployment setup"
+  ],
+  "Machine Learning": [
+    "ml models",
+    "built ml models",
+    "ml engineer",
+    "machine learning models",
+    "trained ml",
+    "applied machine learning",
+    "machine learning engineer",
+    "ml models in production",
+    "ml pipeline",
+    "trained and deployed models"
+  ],
+  "Deep Learning": [
+    "dl models",
+    "neural network models",
+    "trained neural networks",
+    "deep learning engineer",
+    "cnn models",
+    "rnn models",
+    "transformer models"
+  ],
+  "SCADA": [
+    "scada systems",
+    "scada engineer",
+    "worked with scada",
+    "scada hmi",
+    "scada automation",
+    "scada programming",
+    "ignition scada",
+    "wonderware"
+  ],
+  "FPGA": [
+    "fpga developer",
+    "fpga design",
+    "verilog fpga",
+    "xilinx fpga",
+    "intel fpga",
+    "intel altera fpga",
+    "vivado design",
+    "quartus prime"
+  ],
+  "Google Analytics": [
+    "google analytics setup",
+    "ga4 tracking",
+    "website analytics",
+    "ga4 configuration",
+    "event tracking",
+    "conversion tracking",
+    "gtm tag manager"
+  ],
+  "Linux": [
+    "linux user",
+    "linux systems",
+    "linux commands",
+    "ubuntu server",
+    "bash linux",
+    "linux administration",
+    "ubuntu administration",
+    "centos server"
+  ],
+  "Natural Language Processing": [
+    "nlp engineer",
+    "text processing",
+    "nlp models",
+    "sentiment models"
+  ],
+  "Computer Vision": [
+    "image recognition",
+    "object detection developer",
+    "cv engineer",
+    "yolo models"
+  ],
+  "Site Reliability Engineering": [
+    "sre practices",
+    "reliability engineering",
+    "sre on call"
+  ],
+  "Infrastructure as Code": [
+    "iac tools",
+    "declarative infrastructure",
+    "automated provisioning"
+  ],
+  "Distributed Systems": [
+    "distributed architecture",
+    "distributed computing",
+    "fault tolerant systems"
+  ],
+  "Observability": [
+    "logs metrics traces",
+    "three pillars observability",
+    "observability stack"
+  ],
+  "Penetration Testing": [
+    "pen tester",
+    "ethical hacker",
+    "vulnerability assessment",
+    "security assessment"
+  ],
+  "Cybersecurity": [
+    "information security engineer",
+    "cybersecurity analyst",
+    "security operations"
+  ],
+  "Intrusion Detection System": [
+    "ids monitoring",
+    "network ids",
+    "intrusion detection"
+  ],
+  "Product Lifecycle Management": [
+    "plm tools",
+    "enovia plm",
+    "teamcenter plm"
+  ],
+  "Failure Mode and Effects Analysis": [
+    "fmea analysis",
+    "risk priority number",
+    "fmea worksheet"
+  ],
+  "Additive Manufacturing": [
+    "3d model printing",
+    "rapid tooling",
+    "sls printing"
+  ],
+  "Material Science": [
+    "material selection",
+    "metallurgy testing",
+    "material failure"
+  ],
+  "Heat Transfer": [
+    "conduction convection radiation",
+    "thermal model"
+  ],
+  "Structural Engineering": [
+    "reinforced concrete design",
+    "steel structure design",
+    "structural loads"
+  ],
+  "Hydraulics": [
+    "hydraulic design",
+    "pipe network",
+    "open channel flow"
+  ],
+  "ASPEN Plus": [
+    "aspen simulation",
+    "hysys simulation",
+    "process flowsheet"
+  ],
+  "HAZOP": [
+    "hazop study",
+    "process hazard",
+    "what if analysis"
+  ],
+  "Piping and Instrumentation Diagram": [
+    "p&id drawing",
+    "instrumentation diagram"
+  ],
+  "Process Flow Diagram": [
+    "pfd drawing",
+    "process flowchart"
+  ],
+  "Material Balance": [
+    "material mass balance",
+    "stoichiometry"
+  ],
+  "Distillation": [
+    "column design",
+    "vapor liquid equilibrium"
+  ],
+  "Petrochemicals": [
+    "oil gas engineer",
+    "refinery operations"
+  ],
+  "Flight Dynamics": [
+    "aerodynamic analysis",
+    "lift drag calculation"
+  ],
+  "Computational Aerodynamics": [
+    "cfd aerospace",
+    "panel method"
+  ],
+  "UAV": [
+    "drone design",
+    "quadcopter",
+    "uav pilot",
+    "unmanned aircraft"
+  ],
+  "Avionics": [
+    "avionics system",
+    "flight computer"
+  ],
+  "Composite Materials": [
+    "composite layup",
+    "carbon fiber parts"
+  ],
+  "Medical Devices": [
+    "fda device",
+    "class ii device",
+    "510k submission"
+  ],
+  "Clinical Trials": [
+    "crf completion",
+    "clinical data management",
+    "trial monitoring"
+  ],
+  "Good Manufacturing Practice": [
+    "gmp environment",
+    "capa gmp",
+    "gmp audit"
+  ],
+  "HPLC": [
+    "hplc method development",
+    "hplc analysis"
+  ],
+  "User Experience": [
+    "ux research",
+    "usability testing",
+    "user journey mapping"
+  ],
+  "User Interface": [
+    "ui component design",
+    "responsive ui",
+    "ui layout"
+  ],
+  "Wireframing": [
+    "lo-fi wireframe",
+    "hi-fi wireframe",
+    "sketch wireframe"
+  ],
+  "Prototyping": [
+    "clickable prototype",
+    "interactive mockup",
+    "figma prototype"
+  ],
+  "Data Science": [
+    "data scientist role",
+    "eda exploratory data analysis",
+    "statistical modeling"
+  ],
+  "Tableau": [
+    "tableau reports",
+    "tableau dashboards",
+    "tableau charts",
+    "tableau server publishing"
+  ],
+  "Power BI": [
+    "power bi dashboards",
+    "power bi reports",
+    "dax power bi",
+    "power bi gateway"
+  ],
+  "Business Intelligence": [
+    "bi dashboards",
+    "business analytics",
+    "bi reporting"
+  ],
+  "Microsoft Project": [
+    "ms project schedule",
+    "gantt chart ms project"
+  ],
+  "WBS": [
+    "work breakdown structure creation"
+  ],
+  "Talent Acquisition": [
+    "full cycle recruiting",
+    "sourcing candidates",
+    "candidate screening"
+  ],
+  "Performance Management": [
+    "performance appraisals",
+    "kpi reviews",
+    "goal setting hr"
+  ],
+  "Intellectual Property": [
+    "patent filing",
+    "trademark registration",
+    "ip strategy"
+  ],
+  "Compliance": [
+    "regulatory compliance",
+    "compliance audit",
+    "compliance officer"
+  ],
+  "Curriculum Development": [
+    "curriculum design",
+    "lesson planning",
+    "course creation"
+  ],
+  "Instructional Design": [
+    "addie model",
+    "sam model",
+    "instructional developer"
+  ],
+  "ISO 9001": [
+    "iso 9001 certified",
+    "qms implementation",
+    "quality management system"
+  ],
+  "Real Estate Appraisal": [
+    "property valuation",
+    "appraisal report",
+    "market value estimation",
+    "appraisal analyst"
+  ],
+  "Real Estate Sales": [
+    "property agent",
+    "real estate broker",
+    "realtor",
+    "property dealer",
+    "commercial sales agent"
+  ],
+  "Property Management": [
+    "rental management",
+    "tenant management",
+    "facility management",
+    "property manager"
+  ],
+  "Real Estate Development": [
+    "land development",
+    "real estate developer",
+    "site acquisition",
+    "project development"
+  ],
+  "Mortgage Finance": [
+    "home loan",
+    "mortgage processing",
+    "loan underwriting",
+    "mortgage advisor"
+  ],
+  "Lease Management": [
+    "lease agreement",
+    "lease negotiation",
+    "commercial lease"
+  ],
+  "MLS": [
+    "multiple listing service",
+    "mls listings",
+    "real estate mls"
+  ],
+  "AutoCAD for Real Estate": [
+    "floor plan cad",
+    "space planning"
+  ],
+  "Real Estate CRM": [
+    "property crm",
+    "agent crm software"
+  ],
+  "RERA Compliance": [
+    "rera agent",
+    "rera registration",
+    "real estate regulation"
+  ],
+  "Hotel Management": [
+    "hotel operations",
+    "property management hospitality",
+    "hotel manager",
+    "gm hotel"
+  ],
+  "Front Office Management": [
+    "front desk",
+    "guest relations",
+    "reception management",
+    "check-in checkout"
+  ],
+  "Food and Beverage Management": [
+    "fb manager",
+    "restaurant management",
+    "banquet management"
+  ],
+  "Housekeeping Management": [
+    "housekeeping supervisor",
+    "room cleanliness standards"
+  ],
+  "Revenue Management": [
+    "hotel revenue",
+    "yield management",
+    "occupancy optimization",
+    "adr revpar"
+  ],
+  "Property Management System": [
+    "pms software",
+    "opera pms",
+    "cloudbed pms"
+  ],
+  "OTA Management": [
+    "booking.com management",
+    "expedia management",
+    "online travel agent"
+  ],
+  "Guest Experience": [
+    "hospitality service",
+    "guest satisfaction",
+    "csat hospitality"
+  ],
+  "Event Banquet Management": [
+    "banquet coordinator",
+    "event catering",
+    "banquet hall management"
+  ],
+  "HACCP": [
+    "food safety haccp",
+    "hazard analysis critical control points",
+    "food hygiene"
+  ],
+  "ISO 22000": [
+    "food safety management system"
+  ],
+  "Travel Management": [
+    "travel coordinator",
+    "corporate travel",
+    "business travel planning"
+  ],
+  "Tour Operations": [
+    "tour operator",
+    "itinerary planning",
+    "tour guide",
+    "group travel"
+  ],
+  "Travel Agency Management": [
+    "travel agency",
+    "gds booking",
+    "travel desk"
+  ],
+  "GDS Systems": [
+    "amadeus gds",
+    "sabre gds",
+    "galileo gds",
+    "travel booking systems"
+  ],
+  "Ecotourism": [
+    "sustainable tourism",
+    "eco travel",
+    "responsible tourism"
+  ],
+  "Destination Management": [
+    "dmc",
+    "destination management company"
+  ],
+  "Event Planning": [
+    "event coordinator",
+    "event organizer",
+    "corporate events",
+    "event execution"
+  ],
+  "Wedding Planning": [
+    "wedding coordinator",
+    "bridal planning",
+    "wedding event manager"
+  ],
+  "Conference Management": [
+    "conference organizer",
+    "seminar planning",
+    "meeting planner",
+    "pcm"
+  ],
+  "Exhibition Management": [
+    "trade show management",
+    "expo coordinator",
+    "exhibition planning"
+  ],
+  "Venue Management": [
+    "venue selector",
+    "venue booking",
+    "venue operations"
+  ],
+  "Event Marketing": [
+    "event promotion",
+    "event publicity",
+    "experiential marketing"
+  ],
+  "Audio Visual Events": [
+    "av setup events",
+    "sound lighting events"
+  ],
+  "Budgeting Events": [
+    "event budgeting",
+    "cost management events"
+  ],
+  "Precision Agriculture": [
+    "precision farming",
+    "gps guided farming",
+    "smart farming"
+  ],
+  "Agricultural Engineering": [
+    "farm machinery",
+    "irrigation engineering",
+    "agri machinery"
+  ],
+  "Soil Science": [
+    "soil testing",
+    "soil health analysis",
+    "soil fertility"
+  ],
+  "Crop Science": [
+    "crop management",
+    "agronomy",
+    "crop yield",
+    "horticulture crops"
+  ],
+  "Livestock Management": [
+    "animal husbandry",
+    "dairy farm management",
+    "poultry management"
+  ],
+  "Remote Sensing Agriculture": [
+    "satellite agriculture",
+    "ndvi analysis",
+    "agri drone"
+  ],
+  "Farm Management Software": [
+    "farmforce",
+    "agrivi",
+    "farm management tool"
+  ],
+  "Irrigation Design": [
+    "drip irrigation",
+    "sprinkler system",
+    "water management farm"
+  ],
+  "Post-Harvest Technology": [
+    "cold storage agri",
+    "grading sorting",
+    "food processing post harvest"
+  ],
+  "Hydroponics": [
+    "indoor farming",
+    "vertical farming",
+    "hydroponic system"
+  ],
+  "AgriTech": [
+    "agricultural technology",
+    "smart agriculture",
+    "digital farming"
+  ],
+  "Plant Pathology": [
+    "disease management crops",
+    "fungicide application"
+  ],
+  "Pest Management": [
+    "integrated pest management",
+    "ipm",
+    "pesticide application"
+  ],
+  "Fertilizer Management": [
+    "nutrient management",
+    "crop nutrition",
+    "fertilizer schedule"
+  ],
+  "Automotive Engineering": [
+    "vehicle design",
+    "automobile engineering",
+    "car engineer"
+  ],
+  "Vehicle Diagnostics": [
+    "obd2 diagnostics",
+    "ecu programming",
+    "vehicle scan tool"
+  ],
+  "Engine Design": [
+    "internal combustion engine",
+    "ic engine",
+    "engine analysis"
+  ],
+  "Transmission Design": [
+    "gearbox design",
+    "drivetrain"
+  ],
+  "Chassis Design": [
+    "suspension design",
+    "chassis engineering",
+    "vehicle dynamics"
+  ],
+  "Automotive CAD": [
+    "catia automotive",
+    "nx automotive cad"
+  ],
+  "AUTOSAR": [
+    "autosar standard",
+    "automotive software"
+  ],
+  "CAN Bus Automotive": [
+    "can protocol automotive",
+    "automotive networking",
+    "lin bus"
+  ],
+  "Electric Vehicle Design": [
+    "ev powertrain",
+    "ev battery systems",
+    "ev architecture"
+  ],
+  "Vehicle Safety": [
+    "ncap",
+    "crash simulation",
+    "passive safety"
+  ],
+  "Automotive Testing": [
+    "rig testing",
+    "vehicle validation",
+    "eol testing"
+  ],
+  "Workshop Management": [
+    "auto repair shop",
+    "service center management"
+  ],
+  "Petroleum Engineering": [
+    "oil and gas engineer",
+    "reservoir engineer",
+    "drilling engineer"
+  ],
+  "Reservoir Simulation": [
+    "eclipse simulator",
+    "petrel software",
+    "reservoir modeling"
+  ],
+  "Drilling Engineering": [
+    "drill bit design",
+    "well planning",
+    "directional drilling"
+  ],
+  "Well Completion": [
+    "well casing",
+    "cementing",
+    "perforating"
+  ],
+  "Production Engineering": [
+    "artificial lift",
+    "gas lift",
+    "esp pump"
+  ],
+  "Pipeline Engineering": [
+    "pipeline design",
+    "pipeline integrity",
+    "flow assurance"
+  ],
+  "HAZOP Oil Gas": [
+    "process safety review",
+    "pha oil gas"
+  ],
+  "Refinery Operations": [
+    "refinery engineer",
+    "crude oil processing"
+  ],
+  "Offshore Engineering": [
+    "offshore platform",
+    "subsea engineering",
+    "fpso"
+  ],
+  "PVT Analysis": [
+    "pressure volume temperature",
+    "fluid properties"
+  ],
+  "HSE Oil Gas": [
+    "health safety environment",
+    "hse officer",
+    "safety management oilfield"
+  ],
+  "Mining Engineering": [
+    "mine engineer",
+    "mineral extraction",
+    "open pit mining"
+  ],
+  "Mine Planning": [
+    "mine design",
+    "pit optimization",
+    "mine plan software"
+  ],
+  "Blasting Engineering": [
+    "drill blast",
+    "explosive design",
+    "blast vibration"
+  ],
+  "Ventilation Engineering": [
+    "mine ventilation",
+    "airflow underground"
+  ],
+  "Geotechnical Mining": [
+    "slope stability",
+    "rock mechanics"
+  ],
+  "Ore Processing": [
+    "mineral processing",
+    "flotation",
+    "leaching"
+  ],
+  "Surpac": [
+    "surpac mine planning",
+    "surpac software"
+  ],
+  "Datamine": [
+    "datamine studio",
+    "mining software"
+  ],
+  "Geology": [
+    "geological survey",
+    "rock analysis",
+    "geologist"
+  ],
+  "Naval Architecture": [
+    "ship design",
+    "hull design",
+    "ship stability"
+  ],
+  "Marine Engineering": [
+    "marine propulsion",
+    "ship machinery",
+    "offshore marine"
+  ],
+  "Ship Systems": [
+    "ballast systems",
+    "bilge systems",
+    "marpol compliance"
+  ],
+  "Hydrodynamics": [
+    "hull resistance",
+    "ship hydrodynamics"
+  ],
+  "Ocean Engineering": [
+    "offshore structures",
+    "wave analysis"
+  ],
+  "Port Management": [
+    "port operations",
+    "harbor management",
+    "maritime logistics"
+  ],
+  "Maritime Safety": [
+    "solas compliance",
+    "imo regulations"
+  ],
+  "Nuclear Engineering": [
+    "nuclear power plant",
+    "reactor design",
+    "nuclear safety"
+  ],
+  "Reactor Physics": [
+    "neutron transport",
+    "criticality calculations"
+  ],
+  "Radiation Safety": [
+    "radiation protection",
+    "dosimetry"
+  ],
+  "Nuclear Fuel Cycle": [
+    "fuel fabrication",
+    "enrichment",
+    "reprocessing"
+  ],
+  "Thermal Hydraulics": [
+    "reactor cooling",
+    "heat transfer nuclear"
+  ],
+  "Geophysics": [
+    "seismic surveys",
+    "ground penetrating radar",
+    "gravity survey"
+  ],
+  "Remote Sensing": [
+    "satellite imagery analysis",
+    "raster data",
+    "land cover mapping"
+  ],
+  "Geospatial Analysis": [
+    "gis analysis",
+    "spatial data analysis",
+    "geospatial data"
+  ],
+  "Cartography": [
+    "map design",
+    "thematic maps",
+    "digital cartography"
+  ],
+  "Oceanography": [
+    "ocean surveys",
+    "marine data",
+    "physical oceanography"
+  ],
+  "Meteorology": [
+    "weather forecasting",
+    "climate data",
+    "atmospheric science",
+    "weather modeling"
+  ],
+  "Hydrology": [
+    "watershed analysis",
+    "flood modeling",
+    "groundwater study"
+  ],
+  "Volcanology": [
+    "volcanic studies",
+    "eruption modeling"
+  ],
+  "Seismology": [
+    "earthquake data",
+    "seismic analysis"
+  ],
+  "Pharmacy": [
+    "pharmacist",
+    "drug dispensing",
+    "pharmaceutical care",
+    "compounding pharmacy"
+  ],
+  "Physical Therapy": [
+    "physiotherapy",
+    "physiotherapist",
+    "musculoskeletal therapy",
+    "rehabilitation"
+  ],
+  "Occupational Therapy": [
+    "ot therapist",
+    "occupational rehabilitation",
+    "functional therapy"
+  ],
+  "Mental Health Counseling": [
+    "counselor",
+    "psychotherapy",
+    "cbt therapy",
+    "clinical counseling"
+  ],
+  "Dentistry": [
+    "dental practice",
+    "oral care",
+    "dental surgery",
+    "orthodontics"
+  ],
+  "Radiology": [
+    "radiologist",
+    "mri interpretation",
+    "ct scan radiology",
+    "diagnostic imaging"
+  ],
+  "Pathology": [
+    "pathology lab",
+    "histopathology",
+    "clinical pathology"
+  ],
+  "Optometry": [
+    "eye care",
+    "optical prescription",
+    "ophthalmic"
+  ],
+  "Anesthesiology": [
+    "anesthesia care",
+    "anesthesiologist"
+  ],
+  "Public Health": [
+    "community health",
+    "epidemiology",
+    "health promotion",
+    "sanitation"
+  ],
+  "Health Administration": [
+    "hospital administration",
+    "healthcare management"
+  ],
+  "Clinical Psychology": [
+    "therapist",
+    "psychological assessment",
+    "clinical psychologist"
+  ],
+  "Cognitive Behavioral Therapy": [
+    "cbt practitioner",
+    "cbt techniques"
+  ],
+  "School Counseling": [
+    "academic counselor",
+    "student counseling"
+  ],
+  "Neuropsychology": [
+    "brain function testing",
+    "cognitive assessment"
+  ],
+  "Psychometrics": [
+    "psychological testing",
+    "test standardization"
+  ],
+  "Addiction Counseling": [
+    "substance abuse counseling",
+    "recovery program"
+  ],
+  "Music Production": [
+    "music producer",
+    "beat making",
+    "music mixing"
+  ],
+  "Audio Engineering": [
+    "sound engineer",
+    "studio recording",
+    "audio mixing mastering"
+  ],
+  "DAW": [
+    "digital audio workstation",
+    "ableton live",
+    "fl studio",
+    "logic pro",
+    "pro tools"
+  ],
+  "Sound Design": [
+    "foley artist",
+    "sfx design",
+    "sound effects production"
+  ],
+  "Music Composition": [
+    "composer",
+    "film scoring",
+    "orchestration"
+  ],
+  "MIDI Programming": [
+    "midi sequencing",
+    "virtual instruments"
+  ],
+  "Voice Over": [
+    "voice acting",
+    "voiceover recording"
+  ],
+  "Acoustics": [
+    "room acoustics",
+    "acoustic treatment"
+  ],
+  "DJ": [
+    "dj sets",
+    "turntablism",
+    "live mixing"
+  ],
+  "Live Sound": [
+    "foh engineer",
+    "live audio mixing",
+    "pa systems"
+  ],
+  "Fashion Design": [
+    "garment design",
+    "apparel design",
+    "clothing designer"
+  ],
+  "Textile Engineering": [
+    "fabric testing",
+    "yarn production",
+    "textile machinery"
+  ],
+  "Pattern Making": [
+    "garment pattern",
+    "grading patterns",
+    "pattern drafting"
+  ],
+  "Fashion Merchandising": [
+    "retail buying",
+    "fashion buying",
+    "apparel merchandise"
+  ],
+  "Textile Testing": [
+    "fabric quality tests",
+    "tensile strength fabric"
+  ],
+  "Fashion Illustration": [
+    "clo 3d",
+    "garment rendering",
+    "fashion sketching"
+  ],
+  "Embroidery and Printing": [
+    "screen printing fabric",
+    "embroidery digitizing"
+  ],
+  "Supply Chain Fashion": [
+    "garment supply chain",
+    "sourcing apparel"
+  ],
+  "Food Science": [
+    "food technology",
+    "food formulation",
+    "food safety science"
+  ],
+  "Culinary Arts": [
+    "chef",
+    "cooking",
+    "culinary skills",
+    "professional cooking"
+  ],
+  "Baking and Pastry": [
+    "pastry chef",
+    "bakery operations",
+    "cake design"
+  ],
+  "Food Product Development": [
+    "new product development food",
+    "npd food"
+  ],
+  "Food Quality Control": [
+    "food qc",
+    "food inspection",
+    "sensory evaluation"
+  ],
+  "Nutrition and Dietetics": [
+    "dietitian",
+    "clinical nutrition",
+    "sports nutrition",
+    "meal planning"
+  ],
+  "Barista": [
+    "coffee preparation",
+    "espresso",
+    "latte art",
+    "coffee brewing"
+  ],
+  "FSSAI": [
+    "food safety india",
+    "fssai license",
+    "fpo certification"
+  ],
+  "Sports Coaching": [
+    "football coach",
+    "cricket coach",
+    "athletic coach",
+    "fitness trainer"
+  ],
+  "Personal Training": [
+    "personal fitness trainer",
+    "gym trainer",
+    "strength and conditioning"
+  ],
+  "Sports Science": [
+    "exercise physiology",
+    "biomechanics sports",
+    "sports analytics"
+  ],
+  "Sports Medicine": [
+    "sports physiotherapy",
+    "athlete recovery",
+    "injury rehab sports"
+  ],
+  "Yoga Instructor": [
+    "yoga teacher",
+    "yoga trainer",
+    "hatha yoga",
+    "yoga certification"
+  ],
+  "Wellness Coaching": [
+    "health coach",
+    "wellbeing coach",
+    "lifestyle coach"
+  ],
+  "Sports Management": [
+    "sports event management",
+    "sports club management",
+    "sports administration"
+  ],
+  "Fitness App Development": [
+    "workout app",
+    "health monitoring app"
+  ],
+  "Social Work": [
+    "community worker",
+    "social worker",
+    "case management social"
+  ],
+  "Community Development": [
+    "community programs",
+    "grassroots initiatives",
+    "community outreach"
+  ],
+  "Non-Profit Management": [
+    "ngo management",
+    "nonprofit operations",
+    "charity management"
+  ],
+  "Grant Writing": [
+    "grant proposals",
+    "fundraising proposals",
+    "funding applications"
+  ],
+  "Child Welfare": [
+    "child protection",
+    "foster care",
+    "case worker children"
+  ],
+  "Elderly Care": [
+    "senior care",
+    "aged care",
+    "geriatric services"
+  ],
+  "Disability Services": [
+    "disability support worker",
+    "ndis",
+    "inclusive programs"
+  ],
+  "Crisis Intervention": [
+    "crisis counseling",
+    "emergency social work"
+  ],
+  "Volunteer Management": [
+    "volunteer coordinator",
+    "volunteer program"
+  ],
+  "Public Policy Analysis": [
+    "policy analysis",
+    "policy researcher",
+    "public affairs"
+  ],
+  "Government Relations": [
+    "government liaison",
+    "government affairs",
+    "regulatory affairs"
+  ],
+  "Political Science": [
+    "political analyst",
+    "policy development",
+    "political research"
+  ],
+  "International Relations": [
+    "diplomacy",
+    "foreign policy",
+    "international development"
+  ],
+  "Economics": [
+    "economic analysis",
+    "econometrics",
+    "macroeconomics",
+    "microeconomics"
+  ],
+  "Public Administration": [
+    "civil services",
+    "public sector",
+    "government admin"
+  ],
+  "Urban Policy": [
+    "city planning policy",
+    "municipal governance"
+  ],
+  "Election Management": [
+    "electoral officer",
+    "election commission",
+    "voter management"
+  ],
+  "Development Economics": [
+    "poverty reduction",
+    "sustainable development goals",
+    "sdgs"
+  ],
+  "Forensic Science": [
+    "forensic analyst",
+    "crime lab",
+    "forensic investigation"
+  ],
+  "Digital Forensics": [
+    "computer forensics",
+    "evidence recovery",
+    "cybercrime investigation"
+  ],
+  "Forensic Accounting": [
+    "financial crime investigation",
+    "fraud forensic"
+  ],
+  "Ballistics": [
+    "firearms examination",
+    "ballistic analysis"
+  ],
+  "DNA Analysis": [
+    "forensic dna",
+    "dna profiling"
+  ],
+  "Fingerprint Analysis": [
+    "fingerprint expert",
+    "dactyloscopy"
+  ],
+  "Crime Scene Investigation": [
+    "csi",
+    "evidence collection"
+  ],
+  "Actuarial Science": [
+    "actuarial analyst",
+    "actuarial modeling",
+    "risk actuary"
+  ],
+  "Life Insurance Actuarial": [
+    "mortality tables",
+    "life premium calculation"
+  ],
+  "General Insurance Actuarial": [
+    "p&c actuarial",
+    "non-life pricing"
+  ],
+  "Pension Actuarial": [
+    "pension valuation",
+    "retirement actuarial"
+  ],
+  "Catastrophe Modeling": [
+    "cat model",
+    "reinsurance pricing"
+  ],
+  "Insurance Underwriting": [
+    "policy underwriting",
+    "risk underwriting",
+    "insurance risk"
+  ],
+  "Insurance Claims": [
+    "claims adjuster",
+    "claims processing",
+    "loss assessment"
+  ],
+  "Insurance Sales": [
+    "insurance advisor",
+    "life insurance agent",
+    "general insurance agent"
+  ],
+  "Reinsurance": [
+    "treaty reinsurance",
+    "facultative reinsurance"
+  ],
+  "Health Insurance": [
+    "medical insurance",
+    "group health plan"
+  ],
+  "Airline Operations": [
+    "airline management",
+    "ground operations",
+    "flight operations"
+  ],
+  "Air Traffic Control": [
+    "atc",
+    "air traffic management",
+    "tower control"
+  ],
+  "Aviation Maintenance": [
+    "aircraft maintenance",
+    "ame",
+    "aircraft mechanic"
+  ],
+  "Pilot": [
+    "commercial pilot cpl",
+    "private pilot ppl",
+    "flight instructor",
+    "atpl"
+  ],
+  "Airport Management": [
+    "airport operations",
+    "terminal management"
+  ],
+  "Aviation Safety": [
+    "safety management system sms",
+    "aviation sms"
+  ],
+  "Flight Dispatch": [
+    "flight dispatcher",
+    "flight planning",
+    "ops officer"
+  ],
+  "Veterinary Medicine": [
+    "veterinarian",
+    "vet doctor",
+    "animal doctor",
+    "clinical vet"
+  ],
+  "Animal Surgery": [
+    "veterinary surgeon",
+    "surgical vet"
+  ],
+  "Livestock Veterinary": [
+    "farm animal vet",
+    "large animal vet"
+  ],
+  "Pet Care": [
+    "small animal vet",
+    "companion animal",
+    "exotic animal"
+  ],
+  "Veterinary Pathology": [
+    "animal pathology lab",
+    "veterinary diagnostics"
+  ],
+  "Equine Veterinary": [
+    "horse vet",
+    "equine medicine"
+  ],
+  "Videography": [
+    "video production",
+    "cinematographer",
+    "videographer"
+  ],
+  "Drone Photography": [
+    "aerial photography",
+    "uav photography"
+  ],
+  "Photo Editing": [
+    "lightroom editing",
+    "photoshop retouch"
+  ],
+  "Video Editing": [
+    "premiere editing",
+    "davinci color grade",
+    "final cut editing"
+  ],
+  "Studio Photography": [
+    "studio lighting",
+    "photo shoot"
+  ],
+  "Photojournalism": [
+    "news photography",
+    "documentary photography"
+  ],
+  "Library Science": [
+    "librarian",
+    "cataloging",
+    "library management"
+  ],
+  "Information Management": [
+    "knowledge management",
+    "records management",
+    "document management"
+  ],
+  "Cataloging": [
+    "marc records",
+    "dewey decimal",
+    "library cataloging"
+  ],
+  "Digital Library": [
+    "digital archiving",
+    "institutional repository"
+  ],
+  "Reference Services": [
+    "research assistance",
+    "reference librarian"
+  ],
+  "Plumbing": [
+    "plumber",
+    "pipe fitting",
+    "sanitation work"
+  ],
+  "Electrical Work": [
+    "electrician",
+    "electrical wiring",
+    "electrical installation"
+  ],
+  "HVAC Technician": [
+    "hvac installer",
+    "ac maintenance",
+    "hvac troubleshooting"
+  ],
+  "Carpentry": [
+    "carpenter",
+    "woodworking",
+    "furniture making"
+  ],
+  "Welding Trade": [
+    "certified welder",
+    "metal fabrication"
+  ],
+  "Masonry": [
+    "bricklaying",
+    "concrete work",
+    "masonry construction"
+  ],
+  "Painting": [
+    "house painter",
+    "industrial painting",
+    "painting contractor"
+  ],
+  "Roofing": [
+    "roofer",
+    "roof installation",
+    "waterproofing"
+  ],
+  "HVAC Refrigeration": [
+    "refrigeration technician",
+    "hvac/r",
+    "chiller maintenance"
+  ],
+  "Shopify Development": [
+    "shopify store",
+    "shopify liquid",
+    "shopify apps"
+  ],
+  "Amazon Seller Central": [
+    "amazon fba",
+    "amazon marketplace",
+    "amazon seller"
+  ],
+  "Dropshipping": [
+    "drop ship business",
+    "ecommerce sourcing"
+  ],
+  "Product Listing Optimization": [
+    "seo amazon",
+    "listing quality"
+  ],
+  "Digital Commerce": [
+    "ecommerce manager",
+    "online store management"
+  ],
+  "Marketplace Management": [
+    "flipkart seller",
+    "meesho seller",
+    "ebay seller"
+  ],
+  "Inventory Management E-Commerce": [
+    "warehouse ecom",
+    "order fulfillment"
+  ],
+  "Customer Service E-Commerce": [
+    "chat support ecom",
+    "ticket resolution"
+  ],
+  "Network Engineering": [
+    "network engineer",
+    "network admin",
+    "network infrastructure"
+  ],
+  "Cisco Networking": [
+    "ccna",
+    "ccnp",
+    "cisco ios",
+    "cisco switches routers"
+  ],
+  "SD-WAN": [
+    "software defined wan",
+    "sdwan",
+    "wan optimization"
+  ],
+  "Network Monitoring": [
+    "network noc",
+    "snmp monitoring",
+    "network observability"
+  ],
+  "VPN Configuration": [
+    "ipsec vpn",
+    "ssl vpn",
+    "vpn setup"
+  ],
+  "Wireless Networking": [
+    "wifi design",
+    "wlan",
+    "wifi controller"
+  ],
+  "Routing Protocols": [
+    "ospf",
+    "bgp",
+    "eigrp",
+    "routing tables"
+  ],
+  "Switching": [
+    "vlan",
+    "spanning tree",
+    "layer 2 switching"
+  ],
+  "Firewall Management": [
+    "fortinet firewall",
+    "palo alto firewall",
+    "asa firewall"
+  ],
+  "DNS and DHCP": [
+    "dns server",
+    "dhcp server",
+    "active directory dns"
+  ],
+  "Active Directory": [
+    "ad ds",
+    "ldap directory",
+    "windows server ad"
+  ],
+  "Network Automation": [
+    "network as code",
+    "netconf yang",
+    "python network"
+  ],
+  "System Administration": [
+    "sysadmin",
+    "system admin",
+    "it operations"
+  ],
+  "Windows Server": [
+    "windows server 2022",
+    "server 2019",
+    "windows admin"
+  ],
+  "Linux Administration": [
+    "linux sysadmin",
+    "centos admin",
+    "ubuntu server admin"
+  ],
+  "Active Directory Administration": [
+    "ad administration",
+    "group policy gpo"
+  ],
+  "Virtualization": [
+    "vmware vsphere",
+    "hyper-v",
+    "esxi",
+    "virtual machines"
+  ],
+  "Storage Management": [
+    "san storage",
+    "nas storage",
+    "storage admin"
+  ],
+  "Backup and Recovery": [
+    "veeam backup",
+    "disaster recovery",
+    "business continuity"
+  ],
+  "Patch Management": [
+    "os patching",
+    "wsus patching",
+    "vulnerability patching"
+  ],
+  "IT Support": [
+    "helpdesk support",
+    "tier 1 2 support",
+    "desktop support",
+    "it technician"
+  ],
+  "Business Strategy": [
+    "strategic planning",
+    "business development",
+    "corporate strategy"
+  ],
+  "Competitive Analysis": [
+    "competitor benchmarking",
+    "market intelligence"
+  ],
+  "Business Model Development": [
+    "business model canvas",
+    "lean canvas"
+  ],
+  "Management Consulting": [
+    "consulting engagements",
+    "mckinsey framework",
+    "strategy consultant"
+  ],
+  "Corporate Finance": [
+    "corporate treasury",
+    "capital allocation"
+  ],
+  "Economics Research": [
+    "economic modeling",
+    "regression economics"
+  ],
+  "Econometrics": [
+    "stata econometrics",
+    "eviews",
+    "panel data analysis"
+  ],
+  "Behavioral Economics": [
+    "nudge theory",
+    "decision making research"
+  ],
+  "Print Design": [
+    "offset printing",
+    "brochure design",
+    "flyer design"
+  ],
+  "Editorial Design": [
+    "magazine layout",
+    "newspaper layout",
+    "book design"
+  ],
+  "Prepress": [
+    "prepress artwork",
+    "color separation",
+    "platemaking"
+  ],
+  "Publishing Software": [
+    "quarkxpress",
+    "indesign publishing",
+    "scribus"
+  ],
+  "Import Export": [
+    "export manager",
+    "import operations",
+    "trade compliance"
+  ],
+  "Customs Clearance": [
+    "customs broker",
+    "hs codes",
+    "customs documentation"
+  ],
+  "Trade Finance": [
+    "letter of credit",
+    "lc trade",
+    "trade banking"
+  ],
+  "Freight Forwarding": [
+    "freight broker",
+    "logistics forwarding",
+    "incoterms"
+  ],
+  "Export Documentation": [
+    "shipping bills",
+    "certificate of origin"
+  ],
+  "WTO Compliance": [
+    "trade regulation compliance"
+  ]
+}

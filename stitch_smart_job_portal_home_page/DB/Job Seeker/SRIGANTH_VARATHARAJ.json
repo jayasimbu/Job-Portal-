@@ -1,0 +1,284 @@
+{
+  "name": "SRIGANTH VARATHARAJ",
+  "email": "[EMAIL_ADDRESS]",
+  "google_id": "114614009748112433029",
+  "role": "jobseeker",
+  "auth_method": "google",
+  "created_at": "2026-03-09T11:16:17.674959",
+  "uploadedResumes": [
+    {
+      "atsHistory": [
+        {
+          "timestamp": "2026-03-11T10:28:45.651Z",
+          "ats_score": 45,
+          "jobDesc": "UI Designer at EduTech Solutions\n\nJoin a fast-paced environment where you will work on cutting-edge projects.\n\nRequired Skills: Docker, Node.js",
+          "matched_keywords": [
+            "HTML5 (Demonstrated via internship projects)",
+            "CSS (Demonstrated via internship projects)",
+            "Bootstrap (Demonstrated via internship projects)",
+            "UI/UX (via Skill Dragon certificate)",
+            "Frontend Technologies (via HTML5, CSS, Bootstrap)",
+            "Spring Boot (Currently Learning)"
+          ],
+          "candidate_type": "fresher"
+        }
+      ],
+      "date": "11/3/2026",
+      "extractedHeadline": "Frontend Web Development Intern",
+      "extractedSkills": [
+        "Core Java",
+        "HTML5",
+        "CSS",
+        "Bootstrap",
+        "Design Tools: Canva, Figma",
+        "Currently Learning: Java (Springboot)"
+      ],
+      "extractedText": "SRIGANTH VARATHARAJ ABOUT ME  A   Computer Science and Engineering student with a strong interest in software  development, backed by hands-on experience in Java and object-oriented design. Familiar with frontend technologies through a virtual internship, where I worked on building user interfaces, resolving bugs, and organizing reusable components. Actively seeking a Software Engineer Trainee role to apply and grow my technical skills in a real-world environment.  6369434256   sriganthvaratharaj@gmail.com   Namakkal,Tamilnadu  EDUCATION  HSC   \u2013 Reliance Matric Higher Secondary School, Komarapalayam - 90.3%   (2022)  SSLC   \u2013 Government Boys Higher Secondary School, Komarapalayam - 89.4%   (2020)  Bachelor of Computer Science and Engineering   (CGPA : 7.8)  Sri Shanmugha College of Engineering and Technology   (2022 \u2013 2026)  CERTIFICATES  Introduction to HTML5 \u2013 University of Michigan (Coursera)  UI/UX   -   Skill Dragon WORK EXPERIENCE  Frontend Web Development Intern \u2014 MotionCut  Virtual Internship | Oct 2024 \u2013 Nov 2024  Completed a structured one-month internship focused on practical frontend  development tasks and UI implementation.  Built three mini frontend projects applying responsive layout techniques,  improving visual consistency and usability.  HackerRank   LeetCode GitHub LinkedIn  TECHNICAL SKILLS  Core Java  HTML5, CSS, Bootstrap  Design Tools: Canva, Figma  Currently Learning: Java (Springboot)\n\n\n--- Embedded PDF Links ---\ntel:6369434256\nmailto:sriganthvaratharaj@gmail.com\nhttps://drive.google.com/drive/folders/1i8cmlFZ3BesxWczeHEUzlrEAYFdLHyh8?usp=drive_link\nhttps://www.hackerrank.com/profile/sriganthvaratha\nhttps://github.com/SriganthVaratharaj\nhttp://linkedin.com/in/sriganth-varatharaj-5bb2172a2",
+      "filename": "Sriganth_Varatharaj.pdf",
+      "id": "res_1773218928587",
+      "size": "0.05 MB",
+      "extractedDetails": {
+        "about_me": "A Computer Science and Engineering student with a strong interest in software development, backed by hands-on experience in Java and object-oriented design. Familiar with frontend technologies through a virtual internship, where I worked on building user interfaces, resolving bugs, and organizing reusable components. Actively seeking a Software Engineer Trainee role to apply and grow my technical skills in a real-world environment.",
+        "certificates": [
+          {
+            "credential_id": "",
+            "issue_date": "",
+            "issuer": "University of Michigan (Coursera)",
+            "name": "Introduction to HTML5"
+          },
+          {
+            "credential_id": "",
+            "issue_date": "",
+            "issuer": "Skill Dragon",
+            "name": "UI/UX"
+          }
+        ],
+        "education": [
+          {
+            "board_or_university": "",
+            "degree": "HSC",
+            "institution": "Reliance Matric Higher Secondary School, Komarapalayam",
+            "percentage_or_cgpa": "90.3%",
+            "type": "hsc",
+            "year": "2022"
+          },
+          {
+            "board_or_university": "",
+            "degree": "SSLC",
+            "institution": "Government Boys Higher Secondary School, Komarapalayam",
+            "percentage_or_cgpa": "89.4%",
+            "type": "sslc",
+            "year": "2020"
+          },
+          {
+            "board_or_university": "",
+            "degree": "Bachelor of Computer Science and Engineering",
+            "institution": "Sri Shanmugha College of Engineering and Technology",
+            "percentage_or_cgpa": "7.8",
+            "type": "ug",
+            "year": "2026"
+          }
+        ],
+        "experience": [
+          {
+            "company": "MotionCut",
+            "description": "Virtual Internship | Completed a structured one-month internship focused on practical frontend development tasks and UI implementation. Built three mini frontend projects applying responsive layout techniques, improving visual consistency and usability.",
+            "duration": "Oct 2024 \u2013 Nov 2024",
+            "role": "Frontend Web Development Intern"
+          }
+        ],
+        "links": [
+          "https://tel:6369434256",
+          "https://mailto:sriganthvaratharaj@gmail.com",
+          "https://drive.google.com/drive/folders/1i8cmlFZ3BesxWczeHEUzlrEAYFdLHyh8?usp=drive_link",
+          "https://www.hackerrank.com/profile/sriganthvaratha",
+          "https://github.com/SriganthVaratharaj",
+          "http://linkedin.com/in/sriganth-varatharaj-5bb2172a2"
+        ],
+        "location": "Namakkal,Tamilnadu",
+        "personal_info": {
+          "email": "sriganthvaratharaj@gmail.com",
+          "name": "SRIGANTH VARATHARAJ",
+          "phone": "6369434256"
+        },
+        "skills": [
+          "Core Java",
+          "HTML5",
+          "CSS",
+          "Bootstrap",
+          "Design Tools: Canva, Figma",
+          "Currently Learning: Java (Springboot)"
+        ]
+      },
+      "normalATS": {
+        "candidate_type": "fresher",
+        "formula_components": {
+          "base_score": 30.3,
+          "cert_score": 33.3,
+          "education_score": 70,
+          "experience_score": 28,
+          "formula": "(Skills\u00d70.40) + (Experience\u00d70.30) + (Education\u00d70.20) + (Certs\u00d70.10)",
+          "skills_score": 11.4
+        },
+        "improvements": [
+          "Reformat the 'TECHNICAL SKILLS' section with clear bullet points or categories instead of a single paragraph to improve ATS parsing.",
+          "Add quantified results to the 'WORK EXPERIENCE' bullets. For example, specify the impact of the 'responsive layout techniques' (e.g., 'improved page load time by X%' or 'increased user engagement metrics').",
+          "Create a distinct 'Skills' section with categorized lists (e.g., 'Programming Languages:', 'Web Technologies:', 'Tools:') for better clarity and keyword scanning.",
+          "The 'CERTIFICATES' section is incomplete; the 'UI/UX - Skill Dragon' entry lacks a clear title or completion date. Standardize this formatting.",
+          "Consider renaming 'About Me' to 'Summary' or 'Objective' for a more professional and standard header."
+        ],
+        "overall_score": 52,
+        "section_scores": {
+          "completeness": 60,
+          "experience_quality": 40,
+          "format_ats_friendliness": 60,
+          "keyword_density": 60,
+          "language_impact": 40
+        },
+        "skills": [
+          "Java",
+          "Object-Oriented Design",
+          "HTML5",
+          "CSS",
+          "Bootstrap",
+          "Figma",
+          "Canva",
+          "Springboot"
+        ],
+        "strengths": [
+          "Standard section headers are used (About Me, Education, etc.), which is ATS-friendly.",
+          "Relevant technical keywords for a software role are present (Java, HTML5, CSS).",
+          "The 'About Me' section effectively serves as a summary/objective."
+        ],
+        "summary": "This resume is from a student/fresher candidate and has a clear, simple structure with standard sections. The main weaknesses are a lack of quantified achievements, a missing dedicated 'Skills' section, and formatting inconsistencies that could hinder ATS parsing."
+      },
+      "normalATSHistory": [],
+      "atsAnalysis": {
+        "ats_score": 45,
+        "breakdown": {
+          "learning_consistency": 3,
+          "resume_score": 45,
+          "skill_breadth": 8
+        },
+        "candidate_type": "fresher",
+        "education": [
+          {
+            "degree": "Bachelor of Computer Science and Engineering",
+            "institution": "Sri Shanmugha College of Engineering and Technology",
+            "year": "2026"
+          },
+          {
+            "degree": "HSC",
+            "institution": "Reliance Matric Higher Secondary School",
+            "year": "2022"
+          },
+          {
+            "degree": "SSLC",
+            "institution": "Government Boys Higher Secondary School",
+            "year": "2020"
+          }
+        ],
+        "experience": [
+          {
+            "company": "MotionCut",
+            "duration": "Oct 2024 \u2013 Nov 2024",
+            "role": "Frontend Web Development Intern"
+          }
+        ],
+        "formula_base": {
+          "base_score": 30.3,
+          "cert_score": 33.3,
+          "certs_found": 1,
+          "education_score": 70,
+          "experience_score": 28,
+          "formula": "(Skills\u00d70.40) + (Experience\u00d70.30) + (Education\u00d70.20) + (Certs\u00d70.10)",
+          "skills_found": 36,
+          "skills_score": 11.4
+        },
+        "improvements": [
+          "Since the JD requires Docker, add a Docker project to your GitHub portfolio demonstrating containerization of a simple web application",
+          "For the Node.js requirement, build and showcase a Node.js project on GitHub - consider creating a simple REST API or integrating Node.js with your frontend skills",
+          "Add your MotionCut internship details more prominently with specific UI/UX accomplishments and technologies used"
+        ],
+        "match_score": 75,
+        "matched_keywords": [
+          "HTML5 (Demonstrated via internship projects)",
+          "CSS (Demonstrated via internship projects)",
+          "Bootstrap (Demonstrated via internship projects)",
+          "UI/UX (via Skill Dragon certificate)",
+          "Frontend Technologies (via HTML5, CSS, Bootstrap)",
+          "Spring Boot (Currently Learning)"
+        ],
+        "missing_keywords": [
+          "Docker",
+          "Node.js"
+        ],
+        "personal_info": {
+          "email": "sriganthvaratharaj@gmail.com",
+          "links": [
+            "https://www.hackerrank.com/profile/sriganthvaratha",
+            "https://github.com/SriganthVaratharaj",
+            "http://linkedin.com/in/sriganth-varatharaj-5bb2172a2",
+            "https://drive.google.com/drive/folders/1i8cmlFZ3BesxWczeHEUzlrEAYFdLHyh8?usp=drive_link"
+          ],
+          "name": "Sriganth Varatharaj",
+          "phone": "6369434256"
+        },
+        "project_score": 16,
+        "ranking_score": 57,
+        "section_scores": {
+          "education_match": 80,
+          "experience_relevance": 70,
+          "format_ats_friendliness": 75,
+          "skills_match": 60
+        },
+        "strengths": [
+          "Completed structured frontend internship with practical project experience",
+          "Active learner currently expanding Java/Spring Boot skills",
+          "Has UI/UX certification showing design foundation",
+          "Maintains coding profiles (HackerRank, LeetCode, GitHub)"
+        ],
+        "summary": "Computer Science student with frontend development internship experience and basic UI/UX skills. While the resume shows relevant frontend capabilities for a UI Designer role, it lacks the specific Docker and Node.js technologies mentioned in the job description. The candidate is actively learning Spring Boot showing good initiative."
+      },
+      "atsJobDesc": "UI Designer at EduTech Solutions\n\nJoin a fast-paced environment where you will work on cutting-edge projects.\n\nRequired Skills: Docker, Node.js"
+    }
+  ],
+  "activeResumeId": "res_1773218928587",
+  "headline": "Frontend Web Development Intern",
+  "skills": [
+    "Core Java",
+    "HTML5",
+    "CSS",
+    "Bootstrap",
+    "Design Tools: Canva, Figma",
+    "Currently Learning: Java (Springboot)"
+  ],
+  "about": "A Computer Science and Engineering student with a strong interest in software development, backed by hands-on experience in Java and object-oriented design. Familiar with frontend technologies through a virtual internship, where I worked on building user interfaces, resolving bugs, and organizing reusable components. Actively seeking a Software Engineer Trainee role to apply and grow my technical skills in a real-world environment.",
+  "notification_preferences": {
+    "job_matches": true,
+    "app_status": true
+  },
+  "searchHistory": [
+    {
+      "query": "Mernstack",
+      "location": "",
+      "timestamp": "2026-03-11T04:24:34.377574"
+    }
+  ],
+  "appliedJobs": [
+    {
+      "jobId": "58",
+      "jobTitle": "UI Designer",
+      "company": "MediCare Plus",
+      "location": "Miami, FL",
+      "salary": "$60k - $80k",
+      "type": "Part-time",
+      "tags": [
+        "Java"
+      ],
+      "status": "applied",
+      "appliedAt": "2026-03-11T05:26:22.454944"
+    }
+  ],
+  "savedJobs": []
+}

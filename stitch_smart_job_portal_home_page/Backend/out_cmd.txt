@@ -1,0 +1,3 @@
+.\routes\ats_routes.py:588:33: f-string is missing placeholders
+.\routes\ats_routes.py:589:21: local variable 'ollama_offline' is assigned to but never used
+.\routes\ats_routes.py:792:33: f-string is missing placeholders

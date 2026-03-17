@@ -1,0 +1,723 @@
+﻿<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Career Auto - AI-Powered Career Platform</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = { darkMode: "class" };
+    </script>
+    <script src="detailed_candidate_growth_profile.js"></script>
+    <script src="detailed_candidate_growth_profile_func.js"></script>
+
+    <link rel="stylesheet" href="detailed_candidate_growth_profile.css" />
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-[#0d141b] dark:text-slate-200 font-display transition-colors duration-200"
+  >
+    <!-- ── Role Guard: jobseeker only ────────────────────────────── -->
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem("user");
+          if (!raw) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace(
+              "../../Platform/Auth/auth_center.html?tab=login",
+            );
+            return;
+          }
+          var user = JSON.parse(raw);
+          if (!(user && (user.email || user.googleId || user.name))) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace(
+              "../../Platform/Auth/auth_center.html?tab=login",
+            );
+            return;
+          }
+          var role = user.role || "jobseeker";
+          if (role !== "jobseeker") {
+            window.location.replace(
+              "../../Employer/Dashboard/employer_dashboard_overview.html",
+            );
+          }
+        } catch (e) {
+          window.location.replace("../../Platform/Auth/auth_center.html?tab=login";
+        }
+      })();
+    </script>
+
+    <!-- Navigation -->
+    <!-- Shared Navigation Bar for Career Auto -->
+    <!-- This will be injected into all pages except login/registration pages -->
+
+    <!-- Header -->
+    <div id="header-container"></div>
+    <script src="../../assets/js/auth_guard.js"></script>
+    <script src="../../assets/js/render_header.js"></script>
+
+    <div
+      class="layout-container flex h-full grow flex-col max-w-[1440px] mx-auto w-full px-4 md:px-8 py-6"
+    >
+      <!-- Breadcrumbs -->
+      <div class="flex flex-wrap gap-2 py-2 mb-4 items-center">
+        <a
+          class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal hover:underline"
+          href="#"
+          >Candidates</a
+        >
+        <span class="material-symbols-outlined text-slate-400 text-sm"
+          >chevron_right</span
+        >
+        <a
+          class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal hover:underline"
+          href="#"
+          >Product Design</a
+        >
+        <span class="material-symbols-outlined text-slate-400 text-sm"
+          >chevron_right</span
+        >
+        <span
+          class="text-slate-900 dark:text-slate-100 text-sm font-semibold leading-normal"
+          >Sarah Jenkins</span
+        >
+      </div>
+      <!-- Header Card -->
+      <div
+        class="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-6 mb-6"
+      >
+        <div
+          class="flex flex-col lg:flex-row gap-8 justify-between items-start lg:items-center"
+        >
+          <!-- Profile Info -->
+          <div class="flex gap-6 items-center flex-1">
+            <div class="relative">
+              <div
+                class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-24 border-4 border-slate-50 dark:border-slate-700 shadow-md"
+                data-alt="Candidate portrait: Sarah Jenkins"
+                style="
+                  background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBdUMZFtH8YbDDxKwbKKx2c1AsdRd-LP57f0w0u5oGKRom8dyRSJ25Vcmmz65mhNn95MRUnkjaJeyF9ACxVKtbDpKPJqkM_D6zktX-6iQESi-OPicDjxLNsHIZPyCWfijfK_p83wAFzMIu3c8q0FtC87MCKjU8gv1JdMAWpZZyvlGmt9Tl_9JOmzijcHCBVNxEUC2VFfVFY0HQTnFvtGaAnyRK1ewitjoF5Vr47kyFAJD2IYzh2QMyX5N7obMbbW2EdIfbh40KZLEN3&quot;);
+                "
+              ></div>
+              <div
+                class="absolute bottom-0 right-0 bg-green-500 border-2 border-white dark:border-[#1a2632] size-5 rounded-full"
+                title="Online"
+              ></div>
+            </div>
+            <div class="flex flex-col gap-1">
+              <h1
+                class="text-[#0d141b] dark:text-white text-2xl md:text-3xl font-bold leading-tight tracking-tight"
+              >
+                Sarah Jenkins
+              </h1>
+              <p
+                class="text-slate-500 dark:text-slate-400 text-base font-medium"
+              >
+                Senior Product Designer at TechFlow
+              </p>
+              <div
+                class="flex items-center gap-4 mt-2 text-sm text-slate-500 dark:text-slate-400"
+              >
+                <span class="flex items-center gap-1"
+                  ><span class="material-symbols-outlined text-[18px]"
+                    >location_on</span
+                  >
+                  San Francisco, CA</span
+                >
+                <span class="flex items-center gap-1"
+                  ><span class="material-symbols-outlined text-[18px]"
+                    >work_history</span
+                  >
+                  7 Years Exp.</span
+                >
+                <span class="flex items-center gap-1"
+                  ><span class="material-symbols-outlined text-[18px]"
+                    >paid</span
+                  >
+                  $140k - $160k</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- AI Score & Actions -->
+          <div
+            class="flex flex-col sm:flex-row items-center gap-8 w-full lg:w-auto"
+          >
+            <!-- AI Score Circle -->
+            <div
+              class="flex items-center gap-4 bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-100 dark:border-slate-700"
+            >
+              <div class="relative size-16">
+                <svg class="size-full -rotate-90" viewbox="0 0 36 36">
+                  <path
+                    class="text-slate-200 dark:text-slate-700"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                  ></path>
+                  <path
+                    class="text-primary"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-dasharray="92, 100"
+                    stroke-linecap="round"
+                    stroke-width="3"
+                  ></path>
+                </svg>
+                <div
+                  class="absolute inset-0 flex items-center justify-center flex-col"
+                >
+                  <span class="text-sm font-bold text-slate-900 dark:text-white"
+                    >92%</span
+                  >
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <span
+                  class="text-xs uppercase tracking-wider font-bold text-slate-400"
+                  >AI Fit Score</span
+                >
+                <span class="text-sm font-medium text-primary"
+                  >High Potential Match</span
+                >
+              </div>
+            </div>
+            <!-- Action Buttons -->
+            <div class="flex gap-3">
+              <button
+                class="flex items-center justify-center gap-2 rounded-xl h-11 px-5 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:hover:bg-slate-700 text-slate-700 dark:text-white text-sm font-bold transition-all shadow-sm"
+              >
+                <span class="material-symbols-outlined text-[20px]">close</span>
+                <span class="hidden sm:inline">Reject</span>
+              </button>
+              <button
+                class="flex items-center justify-center gap-2 rounded-xl h-11 px-5 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:hover:bg-slate-700 text-slate-700 dark:text-white text-sm font-bold transition-all shadow-sm"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >bookmark</span
+                >
+                <span class="hidden sm:inline">Shortlist</span>
+              </button>
+              <button
+                class="flex items-center justify-center gap-2 rounded-xl h-11 px-6 bg-primary hover:bg-blue-600 text-white text-sm font-bold shadow-lg shadow-blue-200 dark:shadow-none transition-all"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >calendar_month</span
+                >
+                <span>Schedule Interview</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <!-- MAIN CONTENT (Left) -->
+        <div class="lg:col-span-8 flex flex-col gap-6">
+          <!-- Tabs Navigation -->
+          <div
+            class="flex border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-[#1a2632] rounded-t-xl px-2"
+          >
+            <button
+              class="relative px-6 py-4 text-sm font-bold text-primary border-b-2 border-primary"
+            >
+              Resume Analysis
+            </button>
+            <button
+              class="relative px-6 py-4 text-sm font-medium text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition-colors"
+            >
+              Growth History
+            </button>
+            <button
+              class="relative px-6 py-4 text-sm font-medium text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition-colors"
+            >
+              Skill Breakdown
+            </button>
+            <button
+              class="relative px-6 py-4 text-sm font-medium text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition-colors"
+            >
+              Recruiter Notes
+            </button>
+          </div>
+          <!-- Tab Content Area -->
+          <div
+            class="bg-white dark:bg-[#1a2632] rounded-b-xl rounded-tr-xl shadow-sm border border-slate-100 dark:border-slate-800 p-6 -mt-6"
+          >
+            <!-- Negative margin to attach to tabs -->
+            <!-- AI Summary Section -->
+            <div
+              class="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-5 mb-8 border border-indigo-100 dark:border-indigo-800/50"
+            >
+              <div class="flex items-center gap-2 mb-3">
+                <span
+                  class="material-symbols-outlined text-indigo-600 dark:text-indigo-400"
+                  >auto_awesome</span
+                >
+                <h3
+                  class="text-indigo-900 dark:text-indigo-200 font-bold text-base"
+                >
+                  AI Executive Summary
+                </h3>
+              </div>
+              <p
+                class="text-slate-700 dark:text-indigo-100/80 text-sm leading-relaxed"
+              >
+                Sarah demonstrates a strong trajectory in B2B SaaS product
+                design, with a particular emphasis on data-heavy interfaces. She
+                has consistently moved into roles with higher responsibility
+                every 2 years. Her recent focus on AI-driven design tools aligns
+                perfectly with our roadmap.
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-800 dark:text-indigo-100"
+                  >Strong Leadership Potential</span
+                >
+                <span
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-800 dark:text-indigo-100"
+                  >SaaS Expert</span
+                >
+                <span
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-800 dark:text-indigo-100"
+                  >Design Systems</span
+                >
+              </div>
+            </div>
+            <!-- Work Experience Timeline -->
+            <div class="mb-6">
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-5">
+                Professional Experience
+              </h3>
+              <div
+                class="relative pl-4 border-l-2 border-slate-100 dark:border-slate-700 space-y-8"
+              >
+                <!-- Role 1 -->
+                <div class="relative">
+                  <div
+                    class="absolute -left-[21px] top-1.5 bg-primary size-3 rounded-full border-2 border-white dark:border-[#1a2632]"
+                  ></div>
+                  <div class="flex justify-between items-start mb-1">
+                    <div>
+                      <h4
+                        class="text-base font-bold text-slate-900 dark:text-white"
+                      >
+                        Senior Product Designer
+                      </h4>
+                      <p class="text-sm font-medium text-primary">
+                        TechFlow • San Francisco
+                      </p>
+                    </div>
+                    <span
+                      class="text-xs font-medium text-slate-400 bg-slate-50 dark:bg-slate-800 px-2 py-1 rounded"
+                      >2021 - Present</span
+                    >
+                  </div>
+                  <p
+                    class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mt-2"
+                  >
+                    Led the redesign of the core analytics dashboard, improving
+                    user engagement by 40%. Managed a team of 3 junior designers
+                    and established the company's first design system using
+                    Figma variables.
+                  </p>
+                  <div class="flex gap-2 mt-3">
+                    <span
+                      class="text-xs text-slate-500 bg-slate-100 dark:bg-slate-700/50 px-2 py-1 rounded"
+                      >Figma</span
+                    >
+                    <span
+                      class="text-xs text-slate-500 bg-slate-100 dark:bg-slate-700/50 px-2 py-1 rounded"
+                      >React</span
+                    >
+                    <span
+                      class="text-xs text-slate-500 bg-slate-100 dark:bg-slate-700/50 px-2 py-1 rounded"
+                      >Analytics</span
+                    >
+                  </div>
+                </div>
+                <!-- Role 2 -->
+                <div class="relative">
+                  <div
+                    class="absolute -left-[21px] top-1.5 bg-slate-300 dark:bg-slate-600 size-3 rounded-full border-2 border-white dark:border-[#1a2632]"
+                  ></div>
+                  <div class="flex justify-between items-start mb-1">
+                    <div>
+                      <h4
+                        class="text-base font-bold text-slate-900 dark:text-white"
+                      >
+                        Product Designer
+                      </h4>
+                      <p
+                        class="text-sm font-medium text-slate-500 dark:text-slate-400"
+                      >
+                        Creative Solutions Inc.
+                      </p>
+                    </div>
+                    <span
+                      class="text-xs font-medium text-slate-400 bg-slate-50 dark:bg-slate-800 px-2 py-1 rounded"
+                      >2018 - 2021</span
+                    >
+                  </div>
+                  <p
+                    class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mt-2"
+                  >
+                    Collaborated with PMs to launch 3 new mobile apps. Conducted
+                    over 50 user research sessions to validate prototypes.
+                  </p>
+                </div>
+                <!-- Role 3 -->
+                <div class="relative">
+                  <div
+                    class="absolute -left-[21px] top-1.5 bg-slate-300 dark:bg-slate-600 size-3 rounded-full border-2 border-white dark:border-[#1a2632]"
+                  ></div>
+                  <div class="flex justify-between items-start mb-1">
+                    <div>
+                      <h4
+                        class="text-base font-bold text-slate-900 dark:text-white"
+                      >
+                        UX Designer
+                      </h4>
+                      <p
+                        class="text-sm font-medium text-slate-500 dark:text-slate-400"
+                      >
+                        StartUp Hub
+                      </p>
+                    </div>
+                    <span
+                      class="text-xs font-medium text-slate-400 bg-slate-50 dark:bg-slate-800 px-2 py-1 rounded"
+                      >2016 - 2018</span
+                    >
+                  </div>
+                  <p
+                    class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mt-2"
+                  >
+                    Designed wireframes and high-fidelity mockups for early
+                    stage startups.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Secondary Section: Growth Preview (Simulating what another tab might look like if content was loaded) -->
+          <!-- We will keep this hidden or minimal since we are in one view, but maybe show skills as a card below -->
+          <div
+            class="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-6"
+          >
+            <div class="flex justify-between items-center mb-6">
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">
+                Skill Breakdown
+              </h3>
+              <button class="text-primary text-sm font-bold hover:underline">
+                View Full Report
+              </button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <!-- Hard Skills -->
+              <div class="flex flex-col gap-4">
+                <h4
+                  class="text-xs font-bold uppercase text-slate-400 tracking-wider mb-1"
+                >
+                  Technical Skills
+                </h4>
+                <div class="space-y-1">
+                  <div class="flex justify-between text-sm">
+                    <span class="font-medium text-slate-700 dark:text-slate-200"
+                      >Figma &amp; Prototyping</span
+                    >
+                    <span class="text-slate-500">95%</span>
+                  </div>
+                  <div
+                    class="h-2 rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden"
+                  >
+                    <div
+                      class="h-full bg-primary rounded-full"
+                      style="width: 95%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="space-y-1">
+                  <div class="flex justify-between text-sm">
+                    <span class="font-medium text-slate-700 dark:text-slate-200"
+                      >User Research</span
+                    >
+                    <span class="text-slate-500">85%</span>
+                  </div>
+                  <div
+                    class="h-2 rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden"
+                  >
+                    <div
+                      class="h-full bg-primary rounded-full"
+                      style="width: 85%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="space-y-1">
+                  <div class="flex justify-between text-sm">
+                    <span class="font-medium text-slate-700 dark:text-slate-200"
+                      >HTML/CSS Knowledge</span
+                    >
+                    <span class="text-slate-500">70%</span>
+                  </div>
+                  <div
+                    class="h-2 rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden"
+                  >
+                    <div
+                      class="h-full bg-primary rounded-full"
+                      style="width: 70%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <!-- Soft Skills -->
+              <div class="flex flex-col gap-4">
+                <h4
+                  class="text-xs font-bold uppercase text-slate-400 tracking-wider mb-1"
+                >
+                  Soft Skills (AI Inferred)
+                </h4>
+                <div class="space-y-1">
+                  <div class="flex justify-between text-sm">
+                    <span class="font-medium text-slate-700 dark:text-slate-200"
+                      >Communication</span
+                    >
+                    <span class="text-slate-500">90%</span>
+                  </div>
+                  <div
+                    class="h-2 rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden"
+                  >
+                    <div
+                      class="h-full bg-purple-500 rounded-full"
+                      style="width: 90%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="space-y-1">
+                  <div class="flex justify-between text-sm">
+                    <span class="font-medium text-slate-700 dark:text-slate-200"
+                      >Adaptability</span
+                    >
+                    <span class="text-slate-500">88%</span>
+                  </div>
+                  <div
+                    class="h-2 rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden"
+                  >
+                    <div
+                      class="h-full bg-purple-500 rounded-full"
+                      style="width: 88%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- SIDEBAR (Right) -->
+        <div class="lg:col-span-4 flex flex-col gap-6 lg:sticky lg:top-24">
+          <!-- Interview Performance -->
+          <div
+            class="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-6"
+          >
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">
+                Interview Score
+              </h3>
+              <div class="flex items-center gap-1 text-orange-400 font-bold">
+                <span class="material-symbols-outlined text-[20px] fill-current"
+                  >star</span
+                >
+                <span>4.5/5</span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-4">
+              <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                <div
+                  class="flex justify-between text-xs text-slate-500 dark:text-slate-400 mb-1"
+                >
+                  <span>Technical Screen</span>
+                  <span>Nov 12</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span
+                    class="text-sm font-semibold text-slate-800 dark:text-white"
+                    >Passed with flying colors</span
+                  >
+                  <span class="text-sm font-bold text-green-600">5.0</span>
+                </div>
+              </div>
+              <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                <div
+                  class="flex justify-between text-xs text-slate-500 dark:text-slate-400 mb-1"
+                >
+                  <span>Culture Fit</span>
+                  <span>Nov 14</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span
+                    class="text-sm font-semibold text-slate-800 dark:text-white"
+                    >Good energy</span
+                  >
+                  <span class="text-sm font-bold text-primary">4.0</span>
+                </div>
+              </div>
+              <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                <div
+                  class="flex justify-between text-xs text-slate-500 dark:text-slate-400 mb-1"
+                >
+                  <span>Portfolio Review</span>
+                  <span>Nov 15</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span
+                    class="text-sm font-semibold text-slate-800 dark:text-white"
+                    >Excellent case studies</span
+                  >
+                  <span class="text-sm font-bold text-green-600">4.8</span>
+                </div>
+              </div>
+            </div>
+            <button
+              class="w-full mt-4 py-2 text-sm text-slate-500 font-medium hover:text-primary transition-colors border border-dashed border-slate-300 dark:border-slate-700 rounded-lg hover:border-primary"
+            >
+              + Add Interview Feedback
+            </button>
+          </div>
+          <!-- Learning Attitude -->
+          <div
+            class="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-6"
+          >
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">
+              Learning Attitude
+            </h3>
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="size-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400"
+              >
+                <span class="material-symbols-outlined text-[24px]"
+                  >rocket_launch</span
+                >
+              </div>
+              <div>
+                <p class="text-sm font-bold text-slate-900 dark:text-white">
+                  High Velocity
+                </p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">
+                  3 certifications in 2023
+                </p>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <span
+                  class="material-symbols-outlined text-slate-400 text-[18px]"
+                  >verified</span
+                >
+                <span class="text-sm text-slate-700 dark:text-slate-300"
+                  >Google UX Certificate</span
+                >
+              </div>
+              <div class="flex items-center gap-3">
+                <span
+                  class="material-symbols-outlined text-slate-400 text-[18px]"
+                  >verified</span
+                >
+                <span class="text-sm text-slate-700 dark:text-slate-300"
+                  >Advanced React Patterns</span
+                >
+              </div>
+              <div class="flex items-center gap-3">
+                <span
+                  class="material-symbols-outlined text-slate-400 text-[18px]"
+                  >verified</span
+                >
+                <span class="text-sm text-slate-700 dark:text-slate-300"
+                  >Accessibility for Designers</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Contact / Meta -->
+          <div
+            class="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-6"
+          >
+            <h3
+              class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4"
+            >
+              Contact Info
+            </h3>
+            <div class="space-y-4">
+              <div class="flex items-center gap-3">
+                <div
+                  class="size-8 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-500"
+                >
+                  <span class="material-symbols-outlined text-[16px]"
+                    >mail</span
+                  >
+                </div>
+                <div class="overflow-hidden">
+                  <p class="text-xs text-slate-500">Email</p>
+                  <p
+                    class="text-sm font-medium truncate text-slate-900 dark:text-slate-200"
+                  >
+                    sarah.jenkins@example.com
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div
+                  class="size-8 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-500"
+                >
+                  <span class="material-symbols-outlined text-[16px]"
+                    >call</span
+                  >
+                </div>
+                <div>
+                  <p class="text-xs text-slate-500">Phone</p>
+                  <p
+                    class="text-sm font-medium text-slate-900 dark:text-slate-200"
+                  >
+                    +1 (555) 123-4567
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div
+                  class="size-8 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-500"
+                >
+                  <span class="material-symbols-outlined text-[16px]"
+                    >link</span
+                  >
+                </div>
+                <div>
+                  <p class="text-xs text-slate-500">Portfolio</p>
+                  <a
+                    class="text-sm font-medium text-primary hover:underline"
+                    href="#"
+                    >sarahdesigns.io</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../assets/js/navbar.js"></script>
+  </body>
+</html>

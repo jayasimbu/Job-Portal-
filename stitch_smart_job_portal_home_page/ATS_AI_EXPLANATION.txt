@@ -1,0 +1,96 @@
+================================================================================
+SMART JOB PORTAL - ATS & AI SYSTEM EXPLANATION
+================================================================================
+
+This document provides a clear formulas, algorithms, and AI techniques used to compute ATS scores and match job 
+seekers with their ideal careers.
+
+---
+1. THE CORE ATS SCORING FORMULA (Hybrid Model)
+---
+The system uses a weighted formula to calculate a "Base Score" before AI 
+refinement. This ensures that even without an internet connection or API keys, 
+the user gets an accurate assessment.
+
+[Line-by-Line Breakdown of the Formula]:
+Formula: (Skills * 0.40) + (Experience * 0.30) + (Education * 0.20) + (Certs * 0.10)
+
+- Skills (40%): Scanned against a JSON database (skills_list.json). 
+  Matches canonical names (e.g., "React") and all aliases ("ReactJS", "React.js").
+  *Calculation*: Found Skills / (Total Known Skills * 0.20), capped at 100%.
+  
+- Experience (30%): Scanned using Regular Expressions (Regex).
+  - Years of Exp: Scans patterns like "(\d+) years of experience".
+  - Roles: Counts distinct role keywords (Engineer, Manager, Intern, etc.).
+  - Sections: Identifies "Work History", "Professional Background" headings.
+  *Calculation*: (Years * 0.15) + (Role Count * 0.04) + (Section Count * 0.10).
+
+- Education (20%): Uses Priority Ranking.
+  - PhD/Doctorate (100% score)
+  - Masters/MTech/MBA (85% score)
+  - Bachelors/BTech/BCA (70% score)
+  - Diploma (50% score)
+  - HSC/12th (40% score), SSLC/10th (30% score)
+
+- Certifications (10%): Scanned against certificates_list.json.
+  Matches names and aliases (e.g., "AWS SAA" or "Solutions Architect Associate").
+  *Calculation*: (Found Certs / 3.0), capped at 100%.
+
+---
+2. AI TECHNIQUES & WORKING PROCESS
+---
+The portal uses advanced Large Language Models (LLMs) like Google Gemini 1.5 
+Flash to perform "Semantic Analysis."
+
+[A. Semantic Matching Algorithm]:
+Unlike basic keyword filters, our AI "understands" context:
+- Stack Unrolling: If you mention "MERN Stack," the AI automatically weights 
+  you for MongoDB, Express, React, and Node.js.
+- Acronym Normalization: Recognizes "K8s" is exactly the same as "Kubernetes."
+- Conceptual Demonstration: If you write "Managed 2M database rows," the AI 
+  automatically credits you for "Data Management" and "Scalability" even if 
+  those exact words aren't there.
+
+[B. Certificate-to-Skill Inference]:
+The system uses a "Mapping Dictionary" to infer skills you haven't explicitly 
+stated. 
+Example: Having a "CKA (Certified Kubernetes Administrator)" automatically 
+adds "Docker," "DevOps," "Linux," and "Orchestration" to your skill profile.
+
+[C. The 3-Tier Fallback System (Reliability)]:
+To ensure the portal never fails, it uses three layers of intelligence:
+- Tier 1 (AI): Calls Gemini for deep semantic understanding.
+- Tier 2 (Local KB): If AI fails (no internet/keys), it falls back to the 
+  internal JSON Knowledge Base (skills_list.json).
+- Tier 3 (Google/DDG): If even local lookup is insufficient, it performs a 
+  real-time web search to find related skills and requirements for a role.
+
+---
+3. EXTERNAL JOB CRAWLING PROCESS
+---
+In the "External Jobs" section, the AI behaves as a "Web Crawler":
+1. Step 1: Receives user skills from the resume.
+2. Step 2: Crawls LIVE data from Naukri, Internshala, and Indeed RSS feeds.
+3. Step 3: Performs "Jaccard Overlap" scoring (Intersection over Union) to rank 
+   jobs that most closely match the user's current skill set.
+4. Step 4: Saves an anonymized "Skill Profile" to improve future 
+   recommendations.
+
+---
+4. AI JOB COMPARISON ENGINE
+---
+When a user selects multiple jobs to compare:
+1. The system fetches the full HTML of those job links.
+2. It strips out noise (ads/footers) using BeautifulSoup.
+3. It feeds the cleaned text into Gemini with a "Senior Career Consultant" 
+   persona.
+4. It outputs a Markdown table comparing: Role, Tech Stack, Culture, and 
+   priority recommendation.
+
+---
+SUMMARY OF AI MODELS USED:
+- Google Gemini 1.5 Flash: Primary semantic engine.
+- Groq / OpenRouter / Ollama: Secondary fallback providers.
+- Regex (Python): For high-speed pattern extraction.
+- NLTK-style logic: For local keyword and synonym matching.
+================================================================================

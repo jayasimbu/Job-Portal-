@@ -1,0 +1,571 @@
+﻿<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Career Auto - AI-Powered Career Platform</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans:wght@300;400;500;600;700;800;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = { darkMode: "class" };
+    </script>
+    <script src="ats_score_calculation_explained.js"></script>
+    <script src="ats_score_calculation_explained_func.js"></script>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-[#0d141b] dark:text-white font-display overflow-x-hidden transition-colors duration-200"
+  >
+    <!-- ── Role Guard: jobseeker only ────────────────────────────── -->
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem("user");
+          if (!raw) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace(
+              "../Auth/auth_center.html?tab=login",
+            );
+            return;
+          }
+          var user = JSON.parse(raw);
+          if (!(user && (user.email || user.googleId || user.name))) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace(
+              "../Auth/auth_center.html?tab=login",
+            );
+            return;
+          }
+          var role = user.role || "jobseeker";
+          if (role !== "jobseeker") {
+            window.location.replace(
+              "../../Employer/Dashboard/employer_dashboard_overview.html",
+            );
+          }
+        } catch (e) {
+          window.location.replace("../Auth/auth_center.html?tab=login";
+        }
+      })();
+    </script>
+
+    <!-- Navbar -->
+    <!-- Shared Navigation Bar for Career Auto -->
+    <!-- This will be injected into all pages except login/registration pages -->
+
+    <!-- Header -->
+    <div id="header-container"></div>
+    <script src="../../assets/js/auth_guard.js"></script>
+    <script src="../../assets/js/render_header.js"></script>
+
+    <div class="relative flex h-auto w-full flex-col">
+      <div class="layout-container flex h-full grow flex-col">
+        <div class="px-5 md:px-20 lg:px-40 flex flex-1 justify-center py-10">
+          <div
+            class="layout-content-container flex flex-col max-w-[1200px] flex-1 gap-8"
+          >
+            <!-- Page Header & Intro -->
+            <div class="flex flex-col gap-4">
+              <div class="flex flex-col gap-2">
+                <h1
+                  class="text-[#0d141b] dark:text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]"
+                >
+                  Understanding Your ATS Score
+                </h1>
+                <p
+                  class="text-[#4c739a] dark:text-gray-400 text-lg md:text-xl font-normal leading-relaxed max-w-3xl"
+                >
+                  How algorithms analyze and weigh your professional profile.
+                  Most companies use Applicant Tracking Systems (ATS) to filter
+                  resumes before a human ever sees them. Our algorithm mimics
+                  these systems to give you a predictive score based on four key
+                  pillars.
+                </p>
+              </div>
+            </div>
+            <!-- Main Dashboard Area -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-4">
+              <!-- Left Column: Visuals & Score Meter (Sticky on large screens) -->
+              <div class="lg:col-span-4 flex flex-col gap-6">
+                <div class="sticky top-24 flex flex-col gap-6">
+                  <!-- Score Meter Card -->
+                  <div
+                    class="bg-white dark:bg-[#1a2632] rounded-2xl p-6 shadow-sm border border-[#e7edf3] dark:border-gray-800 flex flex-col items-center text-center"
+                  >
+                    <h3
+                      class="text-[#0d141b] dark:text-white text-lg font-bold mb-4"
+                    >
+                      Overall Score Impact
+                    </h3>
+                    <!-- Semi-circle Gauge Representation -->
+                    <div
+                      class="relative size-48 flex items-end justify-center overflow-hidden mb-2"
+                    >
+                      <div
+                        class="absolute w-full h-full rounded-full border-[20px] border-[#e7edf3] dark:border-gray-700 top-0"
+                      ></div>
+                      <div
+                        class="absolute w-full h-full rounded-full border-[20px] border-transparent border-t-primary top-0 rotate-[-45deg]"
+                        style="
+                          clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+                          transform: rotate(145deg);
+                        "
+                      ></div>
+                      <div
+                        class="relative z-10 -mb-6 flex flex-col items-center"
+                      >
+                        <span
+                          class="text-5xl font-black text-[#0d141b] dark:text-white"
+                          >100%</span
+                        >
+                        <span
+                          class="text-sm font-medium text-[#4c739a] dark:text-gray-400 mt-1"
+                          >Total Potential</span
+                        >
+                      </div>
+                    </div>
+                    <p
+                      class="text-sm text-[#4c739a] dark:text-gray-400 mt-6 px-4"
+                    >
+                      Aim for a score above
+                      <span class="font-bold text-primary">80%</span> to ensure
+                      your resume passes automated filters.
+                    </p>
+                  </div>
+                  <!-- Breakdown Mini-Chart -->
+                  <div
+                    class="bg-white dark:bg-[#1a2632] rounded-2xl p-6 shadow-sm border border-[#e7edf3] dark:border-gray-800"
+                  >
+                    <h3
+                      class="text-[#0d141b] dark:text-white text-base font-bold mb-4"
+                    >
+                      Weight Breakdown
+                    </h3>
+                    <div class="flex flex-col gap-4">
+                      <div class="flex items-center gap-3">
+                        <div
+                          class="w-full bg-[#e7edf3] dark:bg-gray-700 rounded-full h-2.5"
+                        >
+                          <div
+                            class="bg-primary h-2.5 rounded-full"
+                            style="width: 40%"
+                          ></div>
+                        </div>
+                        <span
+                          class="text-sm font-bold text-[#0d141b] dark:text-white w-12 text-right"
+                          >40%</span
+                        >
+                      </div>
+                      <div
+                        class="flex justify-between text-xs text-[#4c739a] dark:text-gray-400 mb-1"
+                      >
+                        <span>Keywords</span>
+                      </div>
+                      <div class="flex items-center gap-3">
+                        <div
+                          class="w-full bg-[#e7edf3] dark:bg-gray-700 rounded-full h-2.5"
+                        >
+                          <div
+                            class="bg-[#4c739a] h-2.5 rounded-full"
+                            style="width: 30%"
+                          ></div>
+                        </div>
+                        <span
+                          class="text-sm font-bold text-[#0d141b] dark:text-white w-12 text-right"
+                          >30%</span
+                        >
+                      </div>
+                      <div
+                        class="flex justify-between text-xs text-[#4c739a] dark:text-gray-400 mb-1"
+                      >
+                        <span>Experience</span>
+                      </div>
+                      <div class="flex items-center gap-3">
+                        <div
+                          class="w-full bg-[#e7edf3] dark:bg-gray-700 rounded-full h-2.5"
+                        >
+                          <div
+                            class="bg-teal-500 h-2.5 rounded-full"
+                            style="width: 20%"
+                          ></div>
+                        </div>
+                        <span
+                          class="text-sm font-bold text-[#0d141b] dark:text-white w-12 text-right"
+                          >20%</span
+                        >
+                      </div>
+                      <div
+                        class="flex justify-between text-xs text-[#4c739a] dark:text-gray-400 mb-1"
+                      >
+                        <span>Formatting</span>
+                      </div>
+                      <div class="flex items-center gap-3">
+                        <div
+                          class="w-full bg-[#e7edf3] dark:bg-gray-700 rounded-full h-2.5"
+                        >
+                          <div
+                            class="bg-purple-500 h-2.5 rounded-full"
+                            style="width: 10%"
+                          ></div>
+                        </div>
+                        <span
+                          class="text-sm font-bold text-[#0d141b] dark:text-white w-12 text-right"
+                          >10%</span
+                        >
+                      </div>
+                      <div
+                        class="flex justify-between text-xs text-[#4c739a] dark:text-gray-400 mb-1"
+                      >
+                        <span>Education</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Right Column: Detailed Explanations -->
+              <div class="lg:col-span-8 flex flex-col gap-6">
+                <!-- Card 1: Keywords -->
+                <div
+                  class="group bg-white dark:bg-[#1a2632] rounded-2xl p-6 md:p-8 shadow-sm border border-[#e7edf3] dark:border-gray-800 hover:border-primary/50 transition-all"
+                >
+                  <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                      <div class="p-3 rounded-lg bg-primary/10 text-primary">
+                        <span class="material-symbols-outlined">key</span>
+                      </div>
+                      <h3
+                        class="text-xl font-bold text-[#0d141b] dark:text-white"
+                      >
+                        Keywords Match
+                      </h3>
+                    </div>
+                    <span
+                      class="px-3 py-1 bg-primary text-white text-sm font-bold rounded-full"
+                      >40% Impact</span
+                    >
+                  </div>
+                  <p
+                    class="text-[#4c739a] dark:text-gray-300 mb-6 leading-relaxed"
+                  >
+                    This is the single most critical factor. ATS scanners
+                    compare the words in your resume directly against the job
+                    description. Missing key skills often leads to an automatic
+                    rejection.
+                  </p>
+                  <div
+                    class="bg-background-light dark:bg-background-dark rounded-xl p-5 border border-[#e7edf3] dark:border-gray-700"
+                  >
+                    <h4
+                      class="text-sm font-bold text-[#0d141b] dark:text-white uppercase tracking-wider mb-3 flex items-center gap-2"
+                    >
+                      <span
+                        class="material-symbols-outlined text-green-500 text-lg"
+                        >check_circle</span
+                      >
+                      How to Optimize
+                    </h4>
+                    <ul class="space-y-3">
+                      <li
+                        class="flex items-start gap-3 text-sm text-[#0d141b] dark:text-gray-300"
+                      >
+                        <span
+                          class="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0"
+                        ></span>
+                        <span
+                          ><strong>Mirror Language:</strong> Use the exact
+                          phrasing found in the job post (e.g., "Project
+                          Management" vs "Managing Projects").</span
+                        >
+                      </li>
+                      <li
+                        class="flex items-start gap-3 text-sm text-[#0d141b] dark:text-gray-300"
+                      >
+                        <span
+                          class="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0"
+                        ></span>
+                        <span
+                          ><strong>Hard Skills First:</strong> Prioritize tools,
+                          software, and technical methodologies over soft
+                          skills.</span
+                        >
+                      </li>
+                      <li
+                        class="flex items-start gap-3 text-sm text-[#0d141b] dark:text-gray-300"
+                      >
+                        <span
+                          class="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0"
+                        ></span>
+                        <span
+                          ><strong>Context Matters:</strong> Don't just list
+                          keywords; weave them into your bullet points to show
+                          application.</span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Card 2: Experience Relevance -->
+                <div
+                  class="group bg-white dark:bg-[#1a2632] rounded-2xl p-6 md:p-8 shadow-sm border border-[#e7edf3] dark:border-gray-800 hover:border-[#4c739a]/50 transition-all"
+                >
+                  <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="p-3 rounded-lg bg-[#4c739a]/10 text-[#4c739a]"
+                      >
+                        <span class="material-symbols-outlined"
+                          >work_history</span
+                        >
+                      </div>
+                      <h3
+                        class="text-xl font-bold text-[#0d141b] dark:text-white"
+                      >
+                        Experience Relevance
+                      </h3>
+                    </div>
+                    <span
+                      class="px-3 py-1 bg-[#4c739a] text-white text-sm font-bold rounded-full"
+                      >30% Impact</span
+                    >
+                  </div>
+                  <p
+                    class="text-[#4c739a] dark:text-gray-300 mb-6 leading-relaxed"
+                  >
+                    The algorithm evaluates your job titles, years of
+                    experience, and the companies you've worked for. It looks
+                    for career progression and relevant industry exposure.
+                  </p>
+                  <div
+                    class="bg-background-light dark:bg-background-dark rounded-xl p-5 border border-[#e7edf3] dark:border-gray-700"
+                  >
+                    <h4
+                      class="text-sm font-bold text-[#0d141b] dark:text-white uppercase tracking-wider mb-3 flex items-center gap-2"
+                    >
+                      <span
+                        class="material-symbols-outlined text-green-500 text-lg"
+                        >check_circle</span
+                      >
+                      How to Optimize
+                    </h4>
+                    <ul class="space-y-3">
+                      <li
+                        class="flex items-start gap-3 text-sm text-[#0d141b] dark:text-gray-300"
+                      >
+                        <span
+                          class="w-1.5 h-1.5 rounded-full bg-[#4c739a] mt-2 shrink-0"
+                        ></span>
+                        <span
+                          ><strong>Standard Titles:</strong> If your official
+                          title was obscure (e.g., "Guru"), use a standard
+                          equivalent in parentheses.</span
+                        >
+                      </li>
+                      <li
+                        class="flex items-start gap-3 text-sm text-[#0d141b] dark:text-gray-300"
+                      >
+                        <span
+                          class="w-1.5 h-1.5 rounded-full bg-[#4c739a] mt-2 shrink-0"
+                        ></span>
+                        <span
+                          ><strong>Quantify Results:</strong> Use numbers and
+                          percentages to demonstrate impact, which algorithms
+                          often interpret as high-quality content.</span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Card 3: Formatting -->
+                <div
+                  class="group bg-white dark:bg-[#1a2632] rounded-2xl p-6 md:p-8 shadow-sm border border-[#e7edf3] dark:border-gray-800 hover:border-teal-500/50 transition-all"
+                >
+                  <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                      <div class="p-3 rounded-lg bg-teal-500/10 text-teal-600">
+                        <span class="material-symbols-outlined"
+                          >format_shapes</span
+                        >
+                      </div>
+                      <h3
+                        class="text-xl font-bold text-[#0d141b] dark:text-white"
+                      >
+                        Formatting &amp; Parsability
+                      </h3>
+                    </div>
+                    <span
+                      class="px-3 py-1 bg-teal-500 text-white text-sm font-bold rounded-full"
+                      >20% Impact</span
+                    >
+                  </div>
+                  <p
+                    class="text-[#4c739a] dark:text-gray-300 mb-6 leading-relaxed"
+                  >
+                    If the robot can't read it, it doesn't exist. Complex
+                    layouts, columns, graphics, and non-standard fonts can
+                    confuse the parser, resulting in a blank profile on the
+                    recruiter's end.
+                  </p>
+                  <div
+                    class="bg-background-light dark:bg-background-dark rounded-xl p-5 border border-[#e7edf3] dark:border-gray-700"
+                  >
+                    <h4
+                      class="text-sm font-bold text-[#0d141b] dark:text-white uppercase tracking-wider mb-3 flex items-center gap-2"
+                    >
+                      <span
+                        class="material-symbols-outlined text-green-500 text-lg"
+                        >check_circle</span
+                      >
+                      How to Optimize
+                    </h4>
+                    <ul class="space-y-3">
+                      <li
+                        class="flex items-start gap-3 text-sm text-[#0d141b] dark:text-gray-300"
+                      >
+                        <span
+                          class="w-1.5 h-1.5 rounded-full bg-teal-500 mt-2 shrink-0"
+                        ></span>
+                        <span
+                          ><strong>Keep it Simple:</strong> Stick to
+                          single-column layouts for maximum compatibility.</span
+                        >
+                      </li>
+                      <li
+                        class="flex items-start gap-3 text-sm text-[#0d141b] dark:text-gray-300"
+                      >
+                        <span
+                          class="w-1.5 h-1.5 rounded-full bg-teal-500 mt-2 shrink-0"
+                        ></span>
+                        <span
+                          ><strong>Standard Headers:</strong> Use "Experience",
+                          "Education", and "Skills" as section headers. Don't
+                          get creative here.</span
+                        >
+                      </li>
+                      <li
+                        class="flex items-start gap-3 text-sm text-[#0d141b] dark:text-gray-300"
+                      >
+                        <span
+                          class="w-1.5 h-1.5 rounded-full bg-teal-500 mt-2 shrink-0"
+                        ></span>
+                        <span
+                          ><strong>File Type:</strong> Submit as .docx or a
+                          simple PDF generated from a text editor, not an
+                          image-based PDF.</span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Card 4: Education -->
+                <div
+                  class="group bg-white dark:bg-[#1a2632] rounded-2xl p-6 md:p-8 shadow-sm border border-[#e7edf3] dark:border-gray-800 hover:border-purple-500/50 transition-all"
+                >
+                  <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="p-3 rounded-lg bg-purple-500/10 text-purple-600"
+                      >
+                        <span class="material-symbols-outlined">school</span>
+                      </div>
+                      <h3
+                        class="text-xl font-bold text-[#0d141b] dark:text-white"
+                      >
+                        Education &amp; Certs
+                      </h3>
+                    </div>
+                    <span
+                      class="px-3 py-1 bg-purple-500 text-white text-sm font-bold rounded-full"
+                      >10% Impact</span
+                    >
+                  </div>
+                  <p
+                    class="text-[#4c739a] dark:text-gray-300 mb-6 leading-relaxed"
+                  >
+                    While weighted lower for experienced roles, proper listing
+                    of degrees and certifications is essential for passing hard
+                    filters (e.g., "Must have Bachelor's Degree").
+                  </p>
+                  <div
+                    class="bg-background-light dark:bg-background-dark rounded-xl p-5 border border-[#e7edf3] dark:border-gray-700"
+                  >
+                    <h4
+                      class="text-sm font-bold text-[#0d141b] dark:text-white uppercase tracking-wider mb-3 flex items-center gap-2"
+                    >
+                      <span
+                        class="material-symbols-outlined text-green-500 text-lg"
+                        >check_circle</span
+                      >
+                      How to Optimize
+                    </h4>
+                    <ul class="space-y-3">
+                      <li
+                        class="flex items-start gap-3 text-sm text-[#0d141b] dark:text-gray-300"
+                      >
+                        <span
+                          class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"
+                        ></span>
+                        <span
+                          ><strong>Spell it Out:</strong> Write out degree names
+                          fully (e.g., "Bachelor of Science") alongside
+                          abbreviations (B.S.).</span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Bottom CTA Banner -->
+            <div
+              class="mt-12 bg-primary dark:bg-primary-dark rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden"
+            >
+              <!-- Abstract Background Decoration -->
+              <div
+                class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none"
+                style="
+                  background-image: radial-gradient(
+                    circle at 20% 150%,
+                    white 0%,
+                    transparent 50%
+                  );
+                "
+              ></div>
+              <div
+                class="relative z-10 max-w-2xl mx-auto flex flex-col items-center gap-6"
+              >
+                <h2 class="text-3xl font-black tracking-tight">
+                  Ready to test your resume?
+                </h2>
+                <p class="text-blue-100 text-lg">
+                  Upload your resume now and get a detailed ATS score breakdown
+                  in under 30 seconds.
+                </p>
+                <button
+                  class="bg-white text-primary hover:bg-blue-50 transition-colors px-8 py-3 rounded-xl font-bold text-lg shadow-lg flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined">upload_file</span>
+                  Analyze My Resume Free
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../assets/js/navbar.js"></script>
+  </body>
+</html>
