@@ -1,0 +1,12 @@
+{
+  "user_id": 17,
+  "email": "testjs@example.com",
+  "first_name": "Test",
+  "last_name": "Jobseeker",
+  "role": "jobseeker",
+  "created_at": "2026-04-24T11:30:13.155276",
+  "bio": "",
+  "skills": [],
+  "experience": [],
+  "education": []
+}

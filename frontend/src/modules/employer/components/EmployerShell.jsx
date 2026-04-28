@@ -1,57 +1,120 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useTheme } from '../../../core/context/ThemeContext';
+import logo from '../../../assets/logos/career_auto_logo.png';
+import GlobalFooter from '../../../core/components/GlobalFooter';
+import LogoModal from '../../../core/components/LogoModal';
 
 const styles = {
-  page: { minHeight: '100vh', background: '#f8fafc' },
+  page: { minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg-page)', color: 'var(--text-main)', transition: '0.3s', fontFamily: "'Manrope', sans-serif" },
   top: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '12px 24px',
-    background: '#fff',
-    borderBottom: '1px solid #e5e7eb',
+    padding: '8px 24px',
+    background: 'white',
+    borderBottom: '1px solid var(--border)',
     position: 'sticky',
     top: 0,
-    zIndex: 10,
+    zIndex: 50,
   },
-  body: { display: 'grid', gridTemplateColumns: '240px 1fr', minHeight: 'calc(100vh - 61px)' },
-  side: { background: '#fff', borderRight: '1px solid #e5e7eb', padding: '16px' },
+  brand: { fontWeight: 800, fontSize: '20px', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' },
+  logoCont: { height: '36px', width: '36px', background: '#2563eb', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', p: 0, cursor: 'pointer', boxShadow: '0 10px 15px -3px rgba(37, 99, 235, 0.4)' },
+  logo: { height: '100%', width: '100%', objectFit: 'cover', transform: 'scale(1.3)' },
+  body: { display: 'flex', flex: 1, minHeight: 'calc(100vh - 53px)' },
+  side: { width: '240px', background: 'var(--bg-sidebar)', borderRight: '1px solid var(--border)', padding: '20px 16px', height: 'calc(100vh - 53px)', position: 'sticky', top: '53px', overflowY: 'auto' },
   sideLink: {
-    display: 'block',
-    padding: '10px 12px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px',
+    padding: '10px 14px',
     textDecoration: 'none',
-    color: '#475569',
-    borderRadius: '8px',
+    color: 'var(--text-muted)',
+    borderRadius: '12px',
     fontWeight: 600,
-    marginBottom: '8px',
+    fontSize: '14px',
+    marginBottom: '4px',
+    transition: '0.2s',
   },
-  sideLinkActive: { background: '#0f172a', color: '#fff' },
-  main: { padding: '24px' },
+  sideLinkActive: { background: 'rgba(15, 23, 42, 0.08)', color: '#0f172a' },
+  main: { flex: 1, padding: '32px', maxWidth: '1600px', margin: '0 auto', width: '100%' },
+  badge: { fontSize: '10px', fontWeight: 700, color: '#f97316', background: '#fff7ed', padding: '2px 8px', borderRadius: '9999px', textTransform: 'uppercase', letterSpacing: '0.05em', marginLeft: '4px' },
 };
 
 const nav = [
-  { key: 'dashboard', to: '/employer/pages/Dashboard', label: 'Dashboard' },
-  { key: 'post', to: '/employer/pages/PostJob', label: 'Post Job' },
-  { key: 'candidates', to: '/employer/pages/Candidates', label: 'Candidates' },
-  { key: 'analytics', to: '/employer/pages/Analytics', label: 'Analytics' },
-  { key: 'policy', to: '/employer/pages/HiringPolicy', label: 'Hiring Policy' },
-  { key: 'interview', to: '/employer/pages/InterviewSchedule', label: 'Interviews' },
-  { key: 'profile', to: '/employer/pages/CompanyProfile', label: 'Company Profile' },
+  { key: 'dashboard', to: '/platform/employer/dashboard', label: 'Dashboard' },
+  { key: 'post', to: '/platform/employer/post-job', label: 'Post Job' },
+  { key: 'candidates', to: '/platform/employer/candidates', label: 'Candidates' },
+  { key: 'analytics', to: '/platform/employer/analytics', label: 'Analytics' },
+  { key: 'policy', to: '/platform/employer/hiring-policy', label: 'Hiring Policy' },
+  { key: 'interview', to: '/platform/employer/interviews', label: 'Interviews' },
+  { key: 'profile', to: '/platform/employer/profile', label: 'Company Profile' },
 ];
 
 const EmployerShell = ({ active, children }) => {
+  const { isDark, toggleTheme } = useTheme();
+  const navigate = useNavigate();
+
   return (
-    <div style={styles.page}>
+    <div style={styles.page} className={isDark ? 'dark' : ''}>
       <header style={styles.top}>
-        <div style={{ fontWeight: 800, fontSize: '24px', color: '#0f172a' }}>Employer Hub</div>
+          <div className="flex items-center gap-3 group">
+            <div 
+              style={styles.logoCont} 
+              className="transition-transform group-hover:scale-110"
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.dispatchEvent(new CustomEvent('open-logo-modal')); }}
+            >
+              <img src={logo} alt="Career Auto" style={styles.logo} />
+            </div>
+            <span 
+              onClick={() => navigate('/')}
+              className="font-black text-xl text-slate-900 dark:text-white tracking-tighter hover:text-blue-600 transition-colors uppercase cursor-pointer"
+            >
+              Career Auto
+            </span>
+            <span style={styles.badge}>Employer</span>
+          </div>
         <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
           <input
             placeholder="Search candidates..."
-            style={{ border: '1px solid #cbd5e1', borderRadius: '10px', padding: '9px 12px', width: '280px' }}
+            style={{ 
+              border: '1px solid var(--border)', 
+              borderRadius: '12px', 
+              padding: '8px 14px', 
+              width: '280px',
+              background: 'var(--bg-page)',
+              color: 'var(--text-main)',
+              fontSize: '14px',
+              outline: 'none'
+            }}
           />
-          <Link to="/auth/pages/Login" style={{ textDecoration: 'none', color: '#334155', fontWeight: 700 }}>
+          <button
+            onClick={toggleTheme}
+            className="size-9 rounded-full bg-[var(--bg-page)] dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center transition-all hover:border-blue-500 hover:shadow-md active:scale-95"
+            title="Toggle Theme"
+          >
+            <span className="material-symbols-outlined text-[18px]">
+              {isDark ? 'light_mode' : 'dark_mode'}
+            </span>
+          </button>
+          <div className="h-4 w-[1px] bg-slate-200 dark:bg-slate-700 mx-1"></div>
+          <button 
+            onClick={async () => {
+              const { logoutUser } = await import('../../auth/services/authService').catch(() => ({}));
+              if (logoutUser) await logoutUser();
+              else {
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('refreshToken');
+                localStorage.removeItem('currentUser');
+                localStorage.removeItem('userRole');
+              }
+              navigate('/auth/login', { replace: true });
+            }}
+            className="text-sm font-bold text-red-500 hover:text-red-600 transition-colors flex items-center gap-1 bg-transparent border-none cursor-pointer p-0"
+          >
+            <span className="material-symbols-outlined text-[18px]">logout</span>
             Logout
-          </Link>
+          </button>
         </div>
       </header>
 
@@ -65,8 +128,11 @@ const EmployerShell = ({ active, children }) => {
           ))}
         </aside>
 
-        <main style={styles.main}>{children}</main>
+        <main style={styles.main}>
+          <div className="min-h-[calc(100vh-140px)] w-full max-w-[1200px] mx-auto">{children}</div>
+        </main>
       </div>
+      <LogoModal />
     </div>
   );
 };

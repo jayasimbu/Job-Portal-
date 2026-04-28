@@ -1,0 +1,26 @@
+{
+  "updated_at": "2026-04-23T14:21:37.479170",
+  "employer_id": 14,
+  "profile": {
+    "company_name": "jays User",
+    "website": "https://cloudscale.com",
+    "description": "We build cloud productivity tools for distributed teams. | Industry: SaaS | Size: 200-500"
+  },
+  "jobs": [
+    {
+      "id": 2,
+      "title": "Senior Product Designer",
+      "active": true,
+      "employment_type": "Contract"
+    },
+    {
+      "id": 3,
+      "title": "Senior Product Designer",
+      "active": true,
+      "employment_type": "Full-time"
+    }
+  ],
+  "applications": [],
+  "hiring_policy": null,
+  "interviews": []
+}

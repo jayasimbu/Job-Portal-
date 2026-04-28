@@ -5,6 +5,11 @@ export const fetchJobSeekerProfile = async (userId) => {
   return response.data;
 };
 
+export const upsertJobSeekerProfile = async (userId, payload) => {
+  const response = await apiClient.put(`/jobseeker/profile/${userId}`, payload);
+  return response.data;
+};
+
 export const uploadResume = async (payload) => {
   const response = await apiClient.post('/jobseeker/resume/upload', payload);
   return response.data;
@@ -12,6 +17,16 @@ export const uploadResume = async (payload) => {
 
 export const fetchRecommendations = async (userId) => {
   const response = await apiClient.get(`/jobseeker/recommendations/${userId}`);
+  return response.data;
+};
+
+export const fetchApplications = async (userId) => {
+  const response = await apiClient.get(`/jobseeker/applications/${userId}`);
+  return response.data;
+};
+
+export const applyForJob = async (userId, jobId) => {
+  const response = await apiClient.post('/jobseeker/applications', { user_id: userId, job_id: jobId });
   return response.data;
 };
 
@@ -27,6 +42,11 @@ export const fetchLearningRecommendations = async (userId) => {
 
 export const fetchNotifications = async (userId) => {
   const response = await apiClient.get(`/jobseeker/notifications/${userId}`);
+  return response.data;
+};
+
+export const fetchAiQueueStatus = async (userId) => {
+  const response = await apiClient.get(`/ai/queue/status/${userId}`);
   return response.data;
 };
 
@@ -47,5 +67,19 @@ export const fetchSearchHistory = async (userId) => {
 
 export const addSearchHistory = async (userId, query) => {
   const response = await apiClient.post('/jobseeker/search-history', { user_id: userId, query });
+  return response.data;
+};
+
+export const uploadCertificate = async (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  const response = await apiClient.post('/certificates/upload', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  });
+  return response.data;
+};
+
+export const fetchJobSeekerCertificates = async () => {
+  const response = await apiClient.get('/certificates/user');
   return response.data;
 };

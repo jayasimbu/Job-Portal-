@@ -1,45 +1,41 @@
-from sqlalchemy import Column, DateTime, Float, ForeignKey, Integer, JSON, String, Text
-from sqlalchemy.sql import func
-
-from core.database import Base
-
-
-class JobSeekerProfile(Base):
-    __tablename__ = "jobseeker_profiles"
-
-    id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
-    headline = Column(String, nullable=True)
-    skills = Column(JSON, default=list)
-    experience_years = Column(Float, default=0)
-    education_level = Column(String, nullable=True)
-    portfolio_url = Column(String, nullable=True)
-    github_url = Column(String, nullable=True)
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
-    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+from dataclasses import dataclass, field
+from datetime import datetime
+from typing import Any
 
 
-class Resume(Base):
-    __tablename__ = "resumes"
+@dataclass
+class JobSeekerProfile:
+    id: int
+    user_id: int
+    headline: str | None = None
+    skills: list[str] = field(default_factory=list)
+    experience_years: float = 0
+    education_level: str | None = None
+    portfolio_url: str | None = None
+    github_url: str | None = None
+    created_at: datetime | None = None
+    updated_at: datetime | None = None
 
-    id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
-    file_name = Column(String, nullable=False)
-    raw_text = Column(Text, nullable=False)
-    parsed_data = Column(JSON, default=dict)
-    ats_score = Column(Float, default=0)
-    semantic_score = Column(Float, default=0)
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
-    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+
+@dataclass
+class Resume:
+    id: int
+    user_id: int
+    file_name: str
+    raw_text: str
+    parsed_data: dict[str, Any] = field(default_factory=dict)
+    ats_score: float = 0
+    semantic_score: float = 0
+    created_at: datetime | None = None
+    updated_at: datetime | None = None
 
 
-class JobApplication(Base):
-    __tablename__ = "job_applications"
-
-    id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
-    job_id = Column(Integer, ForeignKey("job_postings.id"), nullable=False, index=True)
-    status = Column(String, default="applied")
-    ranking_score = Column(Float, default=0)
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
-    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+@dataclass
+class JobApplication:
+    id: int
+    user_id: int
+    job_id: int
+    status: str = "applied"
+    ranking_score: float = 0
+    created_at: datetime | None = None
+    updated_at: datetime | None = None

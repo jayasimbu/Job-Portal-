@@ -7,6 +7,8 @@ import Candidates from './pages/Candidates';
 import Analytics from './pages/Analytics';
 import HiringPolicy from './pages/HiringPolicy';
 import InterviewSchedule from './pages/InterviewSchedule';
+import JobManagement from './pages/JobManagement';
+import BiasFreeJobRequirements from './pages/BiasFreeJobRequirements';
 
 const EmployerRoutes = () => {
   return (
@@ -19,14 +21,17 @@ const EmployerRoutes = () => {
       <Route path="analytics" element={<Analytics />} />
       <Route path="hiring-policy" element={<HiringPolicy />} />
       <Route path="interviews" element={<InterviewSchedule />} />
+      <Route path="job-management" element={<JobManagement />} />
+      <Route path="bias-free" element={<BiasFreeJobRequirements />} />
 
-      <Route path="pages/Dashboard" element={<Dashboard />} />
-      <Route path="pages/CompanyProfile" element={<CompanyProfile />} />
-      <Route path="pages/PostJob" element={<PostJob />} />
-      <Route path="pages/Candidates" element={<Candidates />} />
-      <Route path="pages/Analytics" element={<Analytics />} />
-      <Route path="pages/HiringPolicy" element={<HiringPolicy />} />
-      <Route path="pages/InterviewSchedule" element={<InterviewSchedule />} />
+      {/* Legacy route compatibility */}
+      <Route path="pages/Dashboard" element={<Navigate to="/employer/dashboard" replace />} />
+      <Route path="pages/CompanyProfile" element={<Navigate to="/employer/profile" replace />} />
+      <Route path="pages/PostJob" element={<Navigate to="/employer/post-job" replace />} />
+      <Route path="pages/Candidates" element={<Navigate to="/employer/candidates" replace />} />
+      <Route path="pages/Analytics" element={<Navigate to="/employer/analytics" replace />} />
+      <Route path="pages/HiringPolicy" element={<Navigate to="/employer/hiring-policy" replace />} />
+      <Route path="pages/InterviewSchedule" element={<Navigate to="/employer/interviews" replace />} />
 
       <Route path="*" element={<Navigate to="dashboard" replace />} />
     </Routes>

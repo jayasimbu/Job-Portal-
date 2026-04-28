@@ -1,19 +1,20 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import AuthCenter from './pages/AuthCenter';
+import VerifyEmail from './pages/VerifyEmail';
+import NewPassword from './pages/NewPassword';
 
 const AuthRoutes = () => {
   return (
     <Routes>
-      <Route index element={<Navigate to="login" replace />} />
-      <Route path="login" element={<Login />} />
-      <Route path="register" element={<Register />} />
-
-      <Route path="pages/Login" element={<Login />} />
-      <Route path="pages/Register" element={<Register />} />
-
-      <Route path="*" element={<Navigate to="login" replace />} />
+      <Route index element={<AuthCenter />} />
+      <Route path="login" element={<AuthCenter />} />
+      <Route path="signin" element={<AuthCenter />} />
+      <Route path="register" element={<AuthCenter />} />
+      <Route path="signup" element={<AuthCenter />} />
+      <Route path="verify" element={<VerifyEmail />} />
+      <Route path="reset-password" element={<NewPassword />} />
+      <Route path="*" element={<Navigate to="" replace />} />
     </Routes>
   );
 };

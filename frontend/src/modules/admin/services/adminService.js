@@ -29,3 +29,13 @@ export const fetchAdminJobs = async () => {
   const response = await apiClient.get('/admin/jobs');
   return response.data;
 };
+
+export const fetchCertificateQueue = async () => {
+  const response = await apiClient.get('/certificates/queue');
+  return response.data;
+};
+
+export const verifyCertificate = async (certId, status) => {
+  const response = await apiClient.put(`/certificates/verify/${certId}`, { status });
+  return response.data;
+};

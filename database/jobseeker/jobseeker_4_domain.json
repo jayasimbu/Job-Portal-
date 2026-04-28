@@ -1,0 +1,123 @@
+{
+  "updated_at": "2026-04-26T20:12:20.735918",
+  "user_id": 4,
+  "profile": {
+    "headline": null,
+    "skills": [],
+    "experience_years": 0,
+    "education_level": null,
+    "portfolio_url": null,
+    "github_url": null
+  },
+  "resumes": [
+    {
+      "id": 1,
+      "file_name": "Jayasimbu Jayamani (Java).pdf",
+      "ats_score": 0.5,
+      "created_at": "2026-04-16T14:28:51.694000"
+    },
+    {
+      "id": 2,
+      "file_name": "Jayasimbu Jayamani (Java).pdf",
+      "ats_score": 6.5,
+      "created_at": "2026-04-16T14:32:35.287000"
+    },
+    {
+      "id": 5,
+      "file_name": "Jayasimbu Jayamani (Java).pdf",
+      "ats_score": 0.5,
+      "created_at": "2026-04-22T04:20:21"
+    },
+    {
+      "id": 6,
+      "file_name": "Jayasimbu Jayamani (Java).pdf",
+      "ats_score": 0.5,
+      "created_at": "2026-04-22T04:20:39.137000"
+    },
+    {
+      "id": 7,
+      "file_name": "Mukesh  Resume.pdf",
+      "ats_score": 0.4,
+      "created_at": "2026-04-22T04:21:30.782000"
+    },
+    {
+      "id": 8,
+      "file_name": "Jayasimbu Jayamani (Java).pdf",
+      "ats_score": 0.5,
+      "created_at": "2026-04-26T13:33:59.558000"
+    },
+    {
+      "id": 9,
+      "file_name": "Jayasimbu Jayamani (Java).pdf",
+      "ats_score": 0.5,
+      "created_at": "2026-04-26T13:35:05.517000"
+    },
+    {
+      "id": 10,
+      "file_name": "Jayasimbu Jayamani (Java).pdf",
+      "ats_score": 0.5,
+      "created_at": "2026-04-26T13:44:28.517000"
+    },
+    {
+      "id": 11,
+      "file_name": "Jayasimbu Jayamani (Java).pdf",
+      "ats_score": 0.5,
+      "created_at": "2026-04-26T13:45:58.115000"
+    },
+    {
+      "id": 12,
+      "file_name": "Jayasimbu Jayamani (Java).pdf",
+      "ats_score": 0.5,
+      "created_at": "2026-04-26T13:52:33.774000"
+    },
+    {
+      "id": 13,
+      "file_name": "Jayasimbu Jayamani (Java).pdf",
+      "ats_score": 0.5,
+      "created_at": "2026-04-26T13:58:32.992000"
+    },
+    {
+      "id": 14,
+      "file_name": "Jayasimbu Jayamani (Java).pdf",
+      "ats_score": 0.5,
+      "created_at": "2026-04-26T13:59:54.090000"
+    },
+    {
+      "id": 15,
+      "file_name": "Boopathi-(FSD)Resume.pdf",
+      "ats_score": 0.6,
+      "created_at": "2026-04-26T14:15:44.324000"
+    },
+    {
+      "id": 17,
+      "file_name": "Jayasimbu Jayamani (Java).pdf",
+      "ats_score": 0.5,
+      "created_at": "2026-04-26T19:17:18.804000"
+    },
+    {
+      "id": 18,
+      "file_name": "Boopathi-(FSD)Resume.pdf",
+      "ats_score": 0.6,
+      "created_at": "2026-04-26T19:52:30.258000"
+    },
+    {
+      "id": 19,
+      "file_name": "Yagul(E22CS035)-resume.pdf",
+      "ats_score": 0.3,
+      "created_at": "2026-04-26T19:53:06.852000"
+    },
+    {
+      "id": 20,
+      "file_name": "Mukesh  Resume.pdf",
+      "ats_score": 0.4,
+      "created_at": "2026-04-26T20:11:23.224000"
+    },
+    {
+      "id": 21,
+      "file_name": "Boopathi-(FSD)Resume.pdf",
+      "ats_score": 0.9,
+      "created_at": "2026-04-26T20:12:20.705000"
+    }
+  ],
+  "applications": []
+}

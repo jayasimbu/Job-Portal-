@@ -1,0 +1,20 @@
+{
+  "updated_at": "2026-04-27T08:20:38.795585",
+  "employer_id": 21,
+  "profile": {
+    "company_name": "Career Auto Demo Inc",
+    "website": "https://demo.example.com",
+    "description": "Demo employer profile for product walkthrough"
+  },
+  "jobs": [
+    {
+      "id": 4,
+      "title": "Demo Full Stack Engineer",
+      "active": true,
+      "employment_type": "full_time"
+    }
+  ],
+  "applications": [],
+  "hiring_policy": null,
+  "interviews": []
+}

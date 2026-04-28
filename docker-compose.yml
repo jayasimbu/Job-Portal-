@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+
+  backend:
+    build: ./backend
+    container_name: careerauto_backend
+    ports:
+      - "8000:8000"
+    # Optional: enable when a root .env file is present
+    # env_file:
+    #   - .env
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/careerauto
+
+  frontend:
+    build: ./frontend
+    container_name: careerauto_frontend
+    ports:
+      - "5173:5173"
+    # Optional: enable when a root .env file is present
+    # env_file:
+    #   - .env
+    depends_on:
+      - backend
+
+  mongo:
+    image: mongo:6
+    container_name: careerauto_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:

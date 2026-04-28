@@ -6,6 +6,8 @@ import CompanyManagement from './pages/CompanyManagement';
 import JobManagement from './pages/JobManagement';
 import SystemLogs from './pages/SystemLogs';
 import Analytics from './pages/Analytics';
+import VerificationQueue from './pages/VerificationQueue';
+import CertificateQueue from './pages/CertificateQueue';
 
 const AdminRoutes = () => {
   return (
@@ -17,6 +19,8 @@ const AdminRoutes = () => {
       <Route path="jobs" element={<JobManagement />} />
       <Route path="logs" element={<SystemLogs />} />
       <Route path="analytics" element={<Analytics />} />
+      <Route path="verification" element={<VerificationQueue />} />
+      <Route path="certificates" element={<CertificateQueue />} />
 
       <Route path="pages/Dashboard" element={<Dashboard />} />
       <Route path="pages/UserManagement" element={<UserManagement />} />

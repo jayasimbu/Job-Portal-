@@ -1,0 +1,7 @@
+{"action": "signup", "timestamp": "2026-04-16T17:07:17.407468", "email": "smoke_jobseeker@example.com", "role": "jobseeker", "payload": {"email": "smoke_jobseeker@example.com", "auth_method": "email"}}
+{"action": "login", "timestamp": "2026-04-16T17:07:17.930985", "email": "smoke_jobseeker@example.com", "role": "jobseeker", "payload": {"email": "smoke_jobseeker@example.com"}}
+{"action": "login", "timestamp": "2026-04-16T17:07:18.416404", "email": "smoke_jobseeker@example.com", "role": "jobseeker", "payload": {"email": "smoke_jobseeker@example.com"}}
+{"action": "login", "timestamp": "2026-04-16T17:08:32.392755", "email": "smoke_jobseeker@example.com", "role": "jobseeker", "payload": {"email": "smoke_jobseeker@example.com"}}
+{"action": "login", "timestamp": "2026-04-16T17:39:13.265342", "email": "smoke_jobseeker@example.com", "role": "jobseeker", "payload": {"email": "smoke_jobseeker@example.com"}}
+{"action": "login", "timestamp": "2026-04-16T17:39:13.738491", "email": "smoke_jobseeker@example.com", "role": "jobseeker", "payload": {"email": "smoke_jobseeker@example.com"}}
+{"action": "login", "timestamp": "2026-04-16T17:40:11.340462", "email": "smoke_jobseeker@example.com", "role": "jobseeker", "payload": {"email": "smoke_jobseeker@example.com"}}

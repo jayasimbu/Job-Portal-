@@ -1,41 +1,55 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useTheme } from '../../../core/context/ThemeContext';
+import logo from '../../../assets/logos/career_auto_logo.png';
+import GlobalFooter from '../../../core/components/GlobalFooter';
+import LogoModal from '../../../core/components/LogoModal';
 
 const styles = {
-  page: { minHeight: '100vh', background: '#f6f7fb' },
+  page: { minHeight: '100vh', background: 'var(--bg-page)', color: 'var(--text-main)', transition: '0.3s', fontFamily: "'Manrope', sans-serif" },
   top: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '12px 24px',
-    borderBottom: '1px solid #e5e7eb',
-    background: '#fff',
+    padding: '8px 24px',
+    borderBottom: '1px solid var(--border)',
+    background: 'white',
+    opacity: 0.9,
+    backdropFilter: 'blur(10px)',
     position: 'sticky',
     top: 0,
-    zIndex: 10,
+    zIndex: 50,
   },
-  brand: { fontWeight: 800, fontSize: '24px', color: '#1e3a8a' },
-  topNav: { display: 'flex', gap: '20px', alignItems: 'center' },
-  body: { display: 'grid', gridTemplateColumns: '240px 1fr', minHeight: 'calc(100vh - 62px)' },
-  side: { background: '#fff', borderRight: '1px solid #e5e7eb', padding: '16px' },
+  brand: { fontWeight: 800, fontSize: '20px', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' },
+  logoCont: { height: '36px', width: '36px', background: '#2563eb', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', p: 0, cursor: 'pointer', boxShadow: '0 10px 15px -3px rgba(37, 99, 235, 0.4)' },
+  logo: { height: '100%', width: '100%', objectFit: 'cover', transform: 'scale(1.3)' },
+  topNav: { display: 'flex', gap: '24px', alignItems: 'center' },
+  body: { display: 'block' },
+  side: { background: 'var(--bg-sidebar)', borderRight: '1px solid var(--border)', padding: '20px 16px', height: 'calc(100vh - 53px)', position: 'sticky', top: '53px' },
   sideLink: {
-    display: 'block',
-    padding: '10px 12px',
-    borderRadius: '8px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px',
+    padding: '10px 14px',
+    borderRadius: '12px',
     textDecoration: 'none',
-    color: '#475569',
+    color: 'var(--text-muted)',
     fontWeight: 600,
-    marginBottom: '8px',
-  },
-  sideLinkActive: { background: '#1d4ed8', color: '#fff' },
-  main: { padding: '24px' },
-  search: {
-    width: '360px',
-    maxWidth: '45vw',
-    border: '1px solid #d1d5db',
-    borderRadius: '10px',
-    padding: '10px 12px',
     fontSize: '14px',
+    marginBottom: '4px',
+    transition: '0.2s',
+  },
+  sideLinkActive: { background: 'rgba(37, 99, 235, 0.1)', color: '#2563eb' },
+  main: { padding: '32px', maxWidth: '1600px', margin: '0 auto', width: '100%' },
+  search: {
+    width: '320px',
+    border: '1px solid var(--border)',
+    background: 'var(--bg-page)',
+    color: 'var(--text-main)',
+    borderRadius: '12px',
+    padding: '8px 14px',
+    fontSize: '14px',
+    outline: 'none',
   },
 };
 
@@ -60,52 +74,65 @@ const sideLinks = [
 ];
 
 const JobSeekerShell = ({ active, children }) => {
+  const { isDark, toggleTheme } = useTheme();
+  const navigate = useNavigate();
+
   return (
-    <div style={styles.page}>
+    <div style={styles.page} className={isDark ? 'dark' : ''}>
       <header style={styles.top}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={styles.brand}>AI Job Portal</div>
-          <input style={styles.search} placeholder="Search jobs, skills..." />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <div className="relative hidden md:block">
+            <input style={styles.search} placeholder="Search jobs, skills..." />
+          </div>
         </div>
         <nav style={styles.topNav}>
-          {topLinks.map((item) => (
-            <Link
-              key={item.key}
-              to={item.to}
-              style={{
-                textDecoration: 'none',
-                color: active === item.key ? '#1d4ed8' : '#475569',
-                fontWeight: active === item.key ? 700 : 500,
-              }}
-            >
-              {item.label}
-            </Link>
-          ))}
-          <Link to="/auth/pages/Login" style={{ textDecoration: 'none', color: '#334155', fontWeight: 700 }}>
+          <div className="hidden lg:flex gap-6 mr-4">
+            {topLinks.map((item) => (
+              <Link
+                key={item.key}
+                to={item.to}
+                style={{
+                  textDecoration: 'none',
+                  color: active === item.key ? '#2563eb' : 'var(--text-muted)',
+                  fontWeight: active === item.key ? 700 : 500,
+                  fontSize: '14px'
+                }}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className="h-4 w-[1px] bg-slate-200 dark:bg-slate-700 mx-1"></div>
+          <button 
+            onClick={async () => {
+              const { logoutUser } = await import('../../auth/services/authService').catch(() => ({}));
+              if (logoutUser) await logoutUser();
+              else {
+                // local fallback if import fails
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('refreshToken');
+                localStorage.removeItem('currentUser');
+                localStorage.removeItem('userRole');
+              }
+              navigate('/auth/login', { replace: true });
+            }}
+            className="text-sm font-bold text-red-500 hover:text-red-600 transition-colors flex items-center gap-1 bg-transparent border-none cursor-pointer p-0"
+          >
+            <span className="material-symbols-outlined text-[18px]">logout</span>
             Logout
-          </Link>
+          </button>
         </nav>
       </header>
 
       <div style={styles.body}>
-        <aside style={styles.side}>
-          <div style={{ fontSize: '12px', color: '#94a3b8', fontWeight: 700, marginBottom: '14px' }}>MAIN MENU</div>
-          {sideLinks.map((item) => (
-            <Link
-              key={item.key}
-              to={item.to}
-              style={{
-                ...styles.sideLink,
-                ...(active === item.key ? styles.sideLinkActive : {}),
-              }}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </aside>
 
-        <main style={styles.main}>{children}</main>
+        <main style={styles.main}>
+          <div className="min-h-[calc(100vh-140px)]">{children}</div>
+          {active !== 'profile' && <GlobalFooter />}
+        </main>
       </div>
+      <LogoModal />
     </div>
   );
 };

@@ -1,0 +1,24 @@
+{"action": "signup", "timestamp": "2026-04-16T14:27:49.589067", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com", "auth_method": "email"}}
+{"action": "logout", "timestamp": "2026-04-16T14:34:49.762567", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com"}}
+{"action": "login", "timestamp": "2026-04-16T14:35:10.768491", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com"}}
+{"action": "logout", "timestamp": "2026-04-17T05:41:13.933024", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com"}}
+{"action": "login", "timestamp": "2026-04-17T05:41:41.799693", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com"}}
+{"action": "logout", "timestamp": "2026-04-17T05:41:48.391267", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com"}}
+{"action": "login_google", "timestamp": "2026-04-19T16:57:23.868125", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com", "google_sub": "105498119308616900291"}}
+{"action": "login_google", "timestamp": "2026-04-20T16:10:55.179137", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com", "google_sub": "105498119308616900291"}}
+{"action": "logout", "timestamp": "2026-04-20T16:15:45.478335", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com"}}
+{"action": "login_google", "timestamp": "2026-04-20T16:53:39.733450", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com", "google_sub": "105498119308616900291"}}
+{"action": "logout", "timestamp": "2026-04-20T17:55:53.411191", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com"}}
+{"action": "login_google", "timestamp": "2026-04-20T17:56:13.509558", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com", "google_sub": "105498119308616900291"}}
+{"action": "login_google", "timestamp": "2026-04-20T18:33:07.281249", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com", "google_sub": "105498119308616900291"}}
+{"action": "login_google", "timestamp": "2026-04-20T18:41:10.368283", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com", "google_sub": "105498119308616900291"}}
+{"action": "login_google", "timestamp": "2026-04-21T15:58:21.150950", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com", "google_sub": "105498119308616900291"}}
+{"action": "logout", "timestamp": "2026-04-21T15:59:19.114530", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com"}}
+{"action": "login_google", "timestamp": "2026-04-21T15:59:47.460341", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com", "google_sub": "105498119308616900291"}}
+{"action": "logout", "timestamp": "2026-04-21T16:10:36.343400", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com"}}
+{"action": "login_google", "timestamp": "2026-04-21T16:10:52.790819", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com", "google_sub": "105498119308616900291"}}
+{"action": "logout", "timestamp": "2026-04-21T16:10:56.465249", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com"}}
+{"action": "login_google", "timestamp": "2026-04-21T17:16:48.060307", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com", "google_sub": "105498119308616900291"}}
+{"action": "login_google", "timestamp": "2026-04-23T13:13:27.728886", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com", "google_sub": "105498119308616900291"}}
+{"action": "login_google", "timestamp": "2026-04-27T10:23:27.295838", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com", "google_sub": "105498119308616900291"}}
+{"action": "login_google", "timestamp": "2026-04-28T04:08:56.685431", "email": "jayasimbu66@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbu66@gmail.com", "google_sub": "105498119308616900291"}}

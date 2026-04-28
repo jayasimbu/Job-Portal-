@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import EmployerShell from '../components/EmployerShell';
 import { fetchInterviews, scheduleInterview } from '../services/employerService';
 
 const fallbackInterviews = [
@@ -52,36 +51,46 @@ const InterviewSchedule = () => {
   };
 
   return (
-    <EmployerShell active="interview">
-      <h1 style={{ fontSize: '34px', marginBottom: '6px' }}>Interview Scheduling</h1>
-      <p style={{ color: '#64748b', marginBottom: '16px' }}>Calendar and scheduling workflow migrated from legacy interview module.</p>
-
-      <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '18px' }}>
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '10px' }}>
-          <button className="btn btn-secondary" onClick={quickSchedule}>Quick Schedule</button>
+    <div className="h-full flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <header className="flex-shrink-0 flex items-center justify-between mb-6">
+        <div>
+          <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight uppercase">Interview Scheduling</h1>
+          <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Calendar and scheduling workflow.</p>
         </div>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr style={{ borderBottom: '1px solid #e2e8f0', textAlign: 'left', color: '#64748b' }}>
-              <th style={{ padding: '8px 6px' }}>Candidate</th>
-              <th style={{ padding: '8px 6px' }}>Role</th>
-              <th style={{ padding: '8px 6px' }}>Date</th>
-              <th style={{ padding: '8px 6px' }}>Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            {interviews.map((i) => (
-              <tr key={`${i.candidate}-${i.date}`} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                <td style={{ padding: '10px 6px', fontWeight: 700 }}>{i.candidate}</td>
-                <td style={{ padding: '10px 6px', color: '#475569' }}>{i.role}</td>
-                <td style={{ padding: '10px 6px', color: '#475569' }}>{i.date}</td>
-                <td style={{ padding: '10px 6px', color: '#475569' }}>{i.time}</td>
+        <button
+          onClick={quickSchedule}
+          className="h-10 px-6 bg-purple-600 text-white font-black text-[10px] uppercase tracking-[0.2em] rounded-2xl hover:bg-purple-700 transition-all flex items-center gap-2 shadow-lg shadow-purple-500/20 active:scale-95"
+        >
+          <span className="material-symbols-outlined text-sm">add</span>
+          Quick Schedule
+        </button>
+      </header>
+
+      <div className="flex-1 overflow-y-auto min-h-0 pr-1 custom-scrollbar">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-sm">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50">
+                <th className="text-left text-[10px] font-black text-slate-400 uppercase tracking-widest px-5 py-4">Candidate</th>
+                <th className="text-left text-[10px] font-black text-slate-400 uppercase tracking-widest px-5 py-4">Role</th>
+                <th className="text-left text-[10px] font-black text-slate-400 uppercase tracking-widest px-5 py-4">Date</th>
+                <th className="text-left text-[10px] font-black text-slate-400 uppercase tracking-widest px-5 py-4">Time</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {interviews.map((i) => (
+                <tr key={`${i.candidate}-${i.date}`} className="border-b border-slate-50 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                  <td className="px-5 py-4 font-black text-sm text-slate-900 dark:text-white">{i.candidate}</td>
+                  <td className="px-5 py-4 text-sm font-bold text-slate-500">{i.role}</td>
+                  <td className="px-5 py-4 text-sm font-bold text-slate-500">{i.date}</td>
+                  <td className="px-5 py-4 text-sm font-bold text-slate-500">{i.time}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </EmployerShell>
+    </div>
   );
 };
 

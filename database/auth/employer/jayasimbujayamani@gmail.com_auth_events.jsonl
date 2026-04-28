@@ -1,0 +1,4 @@
+{"action": "signup", "timestamp": "2026-04-16T14:36:55.626031", "email": "jayasimbujayamani@gmail.com", "role": "employer", "payload": {"email": "jayasimbujayamani@gmail.com", "auth_method": "email"}}
+{"action": "logout", "timestamp": "2026-04-17T06:03:32.239995", "email": "jayasimbujayamani@gmail.com", "role": "employer", "payload": {"email": "jayasimbujayamani@gmail.com"}}
+{"action": "login", "timestamp": "2026-04-17T06:03:39.741943", "email": "jayasimbujayamani@gmail.com", "role": "employer", "payload": {"email": "jayasimbujayamani@gmail.com"}}
+{"action": "logout", "timestamp": "2026-04-17T06:04:42.892805", "email": "jayasimbujayamani@gmail.com", "role": "employer", "payload": {"email": "jayasimbujayamani@gmail.com"}}

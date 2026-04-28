@@ -1,21 +1,21 @@
-from sqlalchemy import Column, Integer, String, DateTime, Boolean
-from sqlalchemy.sql import func
-from core.database import Base
+from dataclasses import dataclass
+from datetime import datetime
 
-class User(Base):
-    __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True, index=True)
-    email = Column(String, unique=True, index=True, nullable=False)
-    username = Column(String, unique=True, index=True)
-    hashed_password = Column(String, nullable=False)
-    first_name = Column(String, nullable=False)
-    last_name = Column(String, nullable=False)
-    role = Column(String, nullable=False)  # jobseeker, employer, admin
-    is_active = Column(Boolean, default=True)
-    is_verified = Column(Boolean, default=False)
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
-    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
-
-    def __repr__(self):
-        return f"<User(id={self.id}, email='{self.email}', role='{self.role}')>"
+@dataclass
+class User:
+    id: int
+    email: str
+    username: str
+    hashed_password: str
+    first_name: str
+    last_name: str
+    role: str
+    auth_method: str = "email"
+    is_active: bool = True
+    is_verified: bool = False
+    verification_token: str | None = None
+    reset_token: str | None = None
+    reset_token_expires: datetime | None = None
+    created_at: datetime | None = None
+    updated_at: datetime | None = None

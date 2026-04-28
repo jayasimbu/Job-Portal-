@@ -1,0 +1,5 @@
+{"action": "signup", "timestamp": "2026-04-23T13:23:48.287049", "email": "mega@corp.com", "role": "jobseeker", "payload": {"email": "mega@corp.com", "auth_method": "email"}}
+{"action": "login", "timestamp": "2026-04-23T13:23:57.617155", "email": "mega@corp.com", "role": "jobseeker", "payload": {"email": "mega@corp.com"}}
+{"action": "logout", "timestamp": "2026-04-23T13:31:17.091192", "email": "mega@corp.com", "role": "jobseeker", "payload": {"email": "mega@corp.com"}}
+{"action": "login", "timestamp": "2026-04-26T20:09:17.129401", "email": "mega@corp.com", "role": "jobseeker", "payload": {"email": "mega@corp.com"}}
+{"action": "logout", "timestamp": "2026-04-26T20:09:41.895269", "email": "mega@corp.com", "role": "jobseeker", "payload": {"email": "mega@corp.com"}}

@@ -1,0 +1,26 @@
+{
+  "updated_at": "2026-04-27T10:47:58.733510",
+  "employer_id": 24,
+  "profile": {
+    "company_name": "Real Time Projects",
+    "website": "https://cloudscale.com",
+    "description": "We build cloud productivity tools for distributed teams. | Industry: SaaS | Size: 200-500"
+  },
+  "jobs": [
+    {
+      "id": 5,
+      "title": "Python Developer",
+      "active": true,
+      "employment_type": "Full-time"
+    },
+    {
+      "id": 6,
+      "title": "Senior Product Designer",
+      "active": true,
+      "employment_type": "Full-time"
+    }
+  ],
+  "applications": [],
+  "hiring_policy": null,
+  "interviews": []
+}

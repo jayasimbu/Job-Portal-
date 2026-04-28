@@ -1,0 +1,27 @@
+{
+  "updated_at": "2026-04-17T09:47:42.902178",
+  "employer_id": 1010,
+  "profile": {
+    "company_name": null,
+    "website": null,
+    "description": null
+  },
+  "jobs": [
+    {
+      "id": 2020,
+      "title": "Senior Logic Engineer",
+      "active": true,
+      "employment_type": "full_time"
+    }
+  ],
+  "applications": [
+    {
+      "id": 3030,
+      "job_id": 2020,
+      "user_id": 1234,
+      "status": "interviewing"
+    }
+  ],
+  "hiring_policy": null,
+  "interviews": []
+}

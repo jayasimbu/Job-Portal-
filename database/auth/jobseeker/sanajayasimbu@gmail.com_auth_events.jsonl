@@ -1,0 +1,2 @@
+{"action": "signup_google", "timestamp": "2026-04-21T17:17:11.740021", "email": "sanajayasimbu@gmail.com", "role": "jobseeker", "payload": {"email": "sanajayasimbu@gmail.com", "google_sub": "104553594734418586815"}}
+{"action": "login_google", "timestamp": "2026-04-21T17:17:11.797562", "email": "sanajayasimbu@gmail.com", "role": "jobseeker", "payload": {"email": "sanajayasimbu@gmail.com", "google_sub": "104553594734418586815"}}

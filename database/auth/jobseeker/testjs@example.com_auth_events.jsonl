@@ -1,0 +1,2 @@
+{"action": "signup", "timestamp": "2026-04-24T11:30:19.068217", "email": "testjs@example.com", "role": "jobseeker", "payload": {"email": "testjs@example.com", "auth_method": "email"}}
+{"action": "logout", "timestamp": "2026-04-26T20:08:46.942078", "email": "testjs@example.com", "role": "jobseeker", "payload": {"email": "testjs@example.com"}}

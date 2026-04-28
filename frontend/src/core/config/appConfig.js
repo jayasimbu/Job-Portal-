@@ -1,15 +1,25 @@
 // Application configuration
+const runtimeApiBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim();
+
 const appConfig = {
   // API configuration
   api: {
-    baseUrl: 'http://localhost:8000/api',
-    timeout: 10000,
+    baseUrl: runtimeApiBaseUrl || 'http://127.0.0.1:8000/api',
+    timeout: 120000,
   },
   
   // Authentication settings
   auth: {
-    tokenStorageKey: 'authToken',
+    tokenStorageKey: 'accessToken',
     refreshTokenStorageKey: 'refreshToken',
+    userStorageKey: 'currentUser',
+    roleStorageKey: 'userRole',
+    roleRedirectMap: {
+      jobseeker: '/platform/jobseeker/dashboard',
+      employer: '/platform/employer/dashboard',
+      admin: '/platform/admin/dashboard',
+    },
+    googleClientId: import.meta.env.VITE_GOOGLE_CLIENT_ID || '',
   },
   
   // Pagination settings
@@ -28,6 +38,10 @@ const appConfig = {
   ai: {
     resumeParsingTimeout: 30000, // 30 seconds
     matchingThreshold: 70, // Minimum match percentage
+    ollama: {
+      model: 'qwen2.5:7b-instruct',
+      timeout: 60000,
+    },
   },
   
   // Feature flags
