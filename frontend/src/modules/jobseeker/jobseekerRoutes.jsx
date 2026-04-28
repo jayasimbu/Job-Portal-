@@ -17,6 +17,7 @@ const CandidateProfile = lazy(() => import('./pages/CandidateProfile'));
 const MatchInsights = lazy(() => import('./pages/MatchInsights'));
 const LearningHub = lazy(() => import('./pages/LearningHub'));
 const SearchHistory = lazy(() => import('./pages/SearchHistory'));
+const SkillGapAnalysis = lazy(() => import('./pages/SkillGapAnalysis'));
 
 const Loader = () => (
   <div className="flex items-center justify-center min-h-[400px]">
@@ -45,6 +46,7 @@ const JobSeekerRoutes = () => {
           <Route path="insights" element={<Insights />} />
           <Route path="learning" element={<Learning />} />
           <Route path="learning/hub" element={<LearningHub />} />
+          <Route path="profile/gaps" element={<SkillGapAnalysis />} />
           <Route path="notifications" element={<Notifications />} />
           <Route path="search-history" element={<SearchHistory />} />
           <Route path="profile/candidate" element={<CandidateProfile />} />

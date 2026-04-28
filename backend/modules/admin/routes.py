@@ -154,9 +154,22 @@ async def verify_company(
         raise HTTPException(status_code=404, detail="Company not found")
     action = "verified" if payload.approve else "rejected"
     return {"message": f"Company {action}"}
+ 
+ 
+@router.get("/jobs")
+async def list_jobs(
+    active: Optional[bool] = Query(None),
+    search: Optional[str] = Query(None),
+    page: int = Query(1, ge=1),
+    page_size: int = Query(20, ge=1, le=100),
+    admin_data: dict = Depends(_require_admin),
+    service: AdminService = Depends(get_admin_service),
+):
+    """List all job postings with optional filters."""
+    return service.get_all_jobs(active=active, search=search, page=page, page_size=page_size)
 
+ # ── Verification Queue ─────────────────────────────────────────────────────────
 
-# ── Verification Queue ─────────────────────────────────────────────────────────
 
 @router.get("/resumes/queue")
 async def get_verification_queue(
@@ -241,3 +254,11 @@ async def admin_health(
     """Returns system health indicators (DB, Ollama, API)."""
     stats = service.get_dashboard_stats()
     return stats.get("system_health", {"api": True})
+ 
+@router.get("/monitoring/health")
+async def monitoring_health_alias(
+    admin_data: dict = Depends(_require_admin),
+    service: AdminService = Depends(get_admin_service),
+):
+    """Alias for /health to match frontend expectations."""
+    return await admin_health(admin_data, service)

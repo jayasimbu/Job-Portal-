@@ -454,7 +454,48 @@ class AdminService:
             "period_days": days,
         }
 
+    def get_all_jobs(
+        self,
+        active: Optional[bool] = None,
+        search: Optional[str] = None,
+        page: int = 1,
+        page_size: int = 20,
+    ) -> Dict[str, Any]:
+        """Paginated list of job postings with optional filters."""
+        query: Dict[str, Any] = {}
+        if active is not None:
+            query["status"] = "active" if active else "inactive"
+        if search:
+            query["$or"] = [
+                {"title": {"$regex": search, "$options": "i"}},
+                {"company_name": {"$regex": search, "$options": "i"}},
+                {"description": {"$regex": search, "$options": "i"}},
+            ]
+
+        try:
+            total = self.job_postings.count_documents(query)
+            skip = (page - 1) * page_size
+            jobs_cursor = self.job_postings.find(query).skip(skip).limit(page_size).sort("created_at", -1)
+            jobs = []
+            for doc in jobs_cursor:
+                doc.pop("_id", None)
+                if "created_at" in doc and hasattr(doc["created_at"], "isoformat"):
+                    doc["created_at"] = doc["created_at"].isoformat()
+                jobs.append(doc)
+        except Exception as exc:
+            log.warning("[AdminService] get_all_jobs error: %s", exc)
+            total, jobs = 0, []
+
+        return {
+            "jobs": jobs,
+            "total": total,
+            "page": page,
+            "page_size": page_size,
+            "total_pages": max(1, -(-total // page_size)),
+        }
+
     # ── Internal Audit Trail ──────────────────────────────────────────────────
+
 
     def _write_audit(
         self,

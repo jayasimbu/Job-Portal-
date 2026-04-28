@@ -1,6 +1,8 @@
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
 from typing import Any, Dict, List, Optional
 
-from fastapi import APIRouter, Depends, Query, UploadFile, File, Form
+from fastapi import APIRouter, BackgroundTasks, Depends, Query, UploadFile, File, Form
 from pydantic import BaseModel
 
 from ai_engine.llm_service import llm_service
@@ -8,13 +10,16 @@ from ai_engine.prompts import ATS_FEEDBACK_PROMPT, JD_MATCH_EXPLANATION_PROMPT
 from ai_engine.verification.certificate_verifier import CertificateVerifier
 from core.security import get_current_user_db, require_roles
 from core.serialization import model_to_dict, models_to_dict
-from modules.jobseeker.ats_algorithm import score_job_description_ats, score_resume_ats
+from ai_engine.ats_scoring.scorer import score_resume_ats, score_job_description_ats
 from modules.jobseeker.model import JobApplication
 from modules.jobseeker.resume_auto_fill import build_profile_from_resume_text
 from modules.jobseeker.service import JobSeekerService, get_jobseeker_service
 import logging
 
 log = logging.getLogger(__name__)
+
+# Dedicated thread-pool for blocking LLM / CPU calls so they never block the event loop
+_llm_executor = ThreadPoolExecutor(max_workers=4, thread_name_prefix="llm_worker")
 
 class ProfilePayload(BaseModel):
     headline: Optional[str] = None
@@ -178,12 +183,28 @@ async def parse_resume(payload: ResumeParsePayload) -> Dict[str, Any]:
     return {"parsed": parsed}
 
 
+def _save_resume_insight(db, user_id: int, score: dict) -> None:
+    """Background helper — saves ATS result to DB without blocking the response."""
+    try:
+        db["resume_insights"].insert_one({
+            "user_id": user_id,
+            "ats_score": score.get("ats_score", score.get("final_score", score.get("overall_score", 0))),
+            "skills_match": score.get("matched_keywords", score.get("skills_match", [])),
+            "missing_keywords": score.get("missing_keywords", []),
+            "breakdown": score.get("breakdown", score.get("score_breakdown", {"skills": 0, "experience": 0, "education": 0}))
+        })
+    except Exception as exc:
+        log.warning("Failed to save resume insights: %s", exc)
+
+
 @router.post("/ats/resume")
 async def run_resume_ats(
-    payload: ATSResumePayload, 
+    background_tasks: BackgroundTasks,
+    payload: ATSResumePayload,
     user=Depends(get_current_user_db),
-    service: JobSeekerService = Depends(get_jobseeker_service)
+    service: JobSeekerService = Depends(get_jobseeker_service),
 ) -> Dict[str, Any]:
+    # Step 1 — pure math, instant (<1 ms)
     score = score_resume_ats(
         {
             "resume_text": payload.resume_text,
@@ -193,86 +214,101 @@ async def run_resume_ats(
             "education": payload.education,
         }
     )
+
+    # Step 2 — LLM call runs in thread-pool so it never blocks the event loop
     feedback_prompt = f"{ATS_FEEDBACK_PROMPT}\n\nATS_RESULT: {score}"
-    enhanced = llm_service.generate_with_fallback(
-        feedback_prompt,
-        user_id=getattr(user, "id", None),
-        request_type="jobseeker_resume_ats",
-        request_payload={
-            "skills": payload.skills[:30],
-            "experience_years": payload.experience_years,
-        },
-    )
+    loop = asyncio.get_event_loop()
+    try:
+        enhanced = await asyncio.wait_for(
+            loop.run_in_executor(
+                _llm_executor,
+                lambda: llm_service.generate_with_fallback(
+                    feedback_prompt,
+                    user_id=getattr(user, "id", None),
+                    request_type="jobseeker_resume_ats",
+                    request_payload={
+                        "skills": payload.skills[:30],
+                        "experience_years": payload.experience_years,
+                    },
+                ),
+            ),
+            timeout=10,  # cap LLM wait at 10 s; ATS score still returns on timeout
+        )
+    except asyncio.TimeoutError:
+        enhanced = {"result": None, "queued": False, "queue_id": None,
+                    "error_code": 408, "error_message": "LLM timed out", "attempted_models": []}
+    except Exception as exc:
+        enhanced = {"result": None, "queued": False, "queue_id": None,
+                    "error_code": 500, "error_message": str(exc), "attempted_models": []}
+
     score["llm_enhanced_feedback"] = enhanced.get("result")
     score["queued"] = enhanced.get("queued", False)
     score["queue_id"] = enhanced.get("queue_id")
     score["error_code"] = enhanced.get("error_code")
     score["error_message"] = enhanced.get("error_message")
     score["attempted_models"] = enhanced.get("attempted_models", [])
-    
-    # Save the ATS result
+
+    # Step 3 — DB write runs AFTER response is sent
     if getattr(user, "id", None):
-        try:
-            # Use bracket access which works for both PyMongo and mock DBs
-            collection = service.db["resume_insights"]
-            collection.insert_one({
-                "user_id": int(user.id),
-                "ats_score": score.get("final_score", score.get("overall_score", 0)),
-                "skills_match": score.get("skills_match", getattr(payload, "skills", [])),
-                "missing_keywords": score.get("missing_keywords", []),
-                "breakdown": score.get("breakdown", score.get("score_breakdown", {"skills": 0, "experience": 0, "education": 0}))
-            })
-        except Exception as e:
-            log.warning(f"Failed to save resume insights: {e}")
-        
+        background_tasks.add_task(_save_resume_insight, service.db, int(user.id), score)
+
     return score
 
 
 @router.post("/ats/jd")
 async def run_jd_ats(
-    payload: ATSJDPayload, 
+    background_tasks: BackgroundTasks,
+    payload: ATSJDPayload,
     user=Depends(get_current_user_db),
-    service: JobSeekerService = Depends(get_jobseeker_service)
+    service: JobSeekerService = Depends(get_jobseeker_service),
 ) -> Dict[str, Any]:
+    # Step 1 — pure math, instant (<1 ms)
     score = score_job_description_ats(
         {"resume_text": payload.resume_text},
         {"job_description": payload.job_description},
     )
+
+    # Step 2 — LLM call runs in thread-pool so it never blocks the event loop
     explain_prompt = (
         f"{JD_MATCH_EXPLANATION_PROMPT}\n\n"
-        f"SCORE: {score.get('final_score')}\n"
+        f"SCORE: {score.get('ats_score') or score.get('final_score')}\n"
         f"MISSING_KEYWORDS: {score.get('missing_keywords', [])}"
     )
-    enhanced = llm_service.generate_with_fallback(
-        explain_prompt,
-        user_id=getattr(user, "id", None),
-        request_type="jobseeker_jd_ats",
-        request_payload={
-            "resume_text": payload.resume_text[:1200],
-            "job_description": payload.job_description[:1200],
-        },
-    )
+    loop = asyncio.get_event_loop()
+    try:
+        enhanced = await asyncio.wait_for(
+            loop.run_in_executor(
+                _llm_executor,
+                lambda: llm_service.generate_with_fallback(
+                    explain_prompt,
+                    user_id=getattr(user, "id", None),
+                    request_type="jobseeker_jd_ats",
+                    request_payload={
+                        "resume_text": payload.resume_text[:1200],
+                        "job_description": payload.job_description[:1200],
+                    },
+                ),
+            ),
+            timeout=10,  # cap LLM wait at 10 s; ATS score still returns on timeout
+        )
+    except asyncio.TimeoutError:
+        enhanced = {"result": None, "queued": False, "queue_id": None,
+                    "error_code": 408, "error_message": "LLM timed out", "attempted_models": []}
+    except Exception as exc:
+        enhanced = {"result": None, "queued": False, "queue_id": None,
+                    "error_code": 500, "error_message": str(exc), "attempted_models": []}
+
     score["llm_enhanced_feedback"] = enhanced.get("result")
     score["queued"] = enhanced.get("queued", False)
     score["queue_id"] = enhanced.get("queue_id")
     score["error_code"] = enhanced.get("error_code")
     score["error_message"] = enhanced.get("error_message")
     score["attempted_models"] = enhanced.get("attempted_models", [])
-    
-    # Save the ATS result
+
+    # Step 3 — DB write runs AFTER response is sent
     if getattr(user, "id", None):
-        try:
-            collection = service.db["resume_insights"]
-            collection.insert_one({
-                "user_id": int(user.id),
-                "ats_score": score.get("final_score", score.get("overall_score", 0)),
-                "skills_match": score.get("skills_match", []),
-                "missing_keywords": score.get("missing_keywords", []),
-                "breakdown": score.get("breakdown", score.get("score_breakdown", {"skills": 0, "experience": 0, "education": 0}))
-            })
-        except Exception as e:
-            log.warning(f"Failed to save resume insights: {e}")
-        
+        background_tasks.add_task(_save_resume_insight, service.db, int(user.id), score)
+
     return score
 
 

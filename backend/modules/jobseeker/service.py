@@ -258,49 +258,81 @@ class JobSeekerService:
                 "title": "Advanced React Patterns",
                 "provider": "Frontend Masters",
                 "gap": "Frontend Architecture",
-                "impact": "+12% ATS Score",
-                "duration": "6 hours",
-                "level": "Advanced"
+                "impact": "+12% Role Match",
+                "duration": "6 Hours",
+                "level": "Advanced",
+                "imgGradient": "from-blue-800 to-blue-600",
+                "imgIcon": "code"
             },
             "Node.js": {
                 "title": "Node.js Backend Architecture",
                 "provider": "Udemy",
                 "gap": "Backend Engineering",
-                "impact": "+15% ATS Score",
-                "duration": "12 hours",
-                "level": "Intermediate"
+                "impact": "+15% Role Match",
+                "duration": "12 Hours",
+                "level": "Intermediate",
+                "imgGradient": "from-green-800 to-green-600",
+                "imgIcon": "dns"
             },
             "AWS": {
-                "title": "Cloud Native Infrastructure",
-                "provider": "CloudAcademy",
+                "title": "Cloud Native Infrastructure with AWS",
+                "provider": "Coursera",
                 "gap": "Cloud / DevOps",
-                "impact": "+10% ATS Score",
-                "duration": "8 hours",
-                "level": "Intermediate"
+                "impact": "+10% Role Match",
+                "duration": "8 Hours",
+                "level": "Intermediate",
+                "imgGradient": "from-orange-800 to-orange-600",
+                "imgIcon": "cloud"
             },
             "Python": {
-                "title": "Professional Python Development",
-                "provider": "Pluralsight",
-                "gap": "Core Programming",
-                "impact": "+8% ATS Score",
-                "duration": "10 hours",
-                "level": "Intermediate"
+                "title": "Applied Data Science with Python Specialization",
+                "provider": "Coursera",
+                "gap": "Data Manipulation",
+                "impact": "+20% Role Match",
+                "duration": "34 Hours",
+                "level": "Intermediate",
+                "imgGradient": "from-blue-800 to-blue-600",
+                "imgIcon": "data_object"
+            },
+            "SQL": {
+                "title": "The Complete SQL Bootcamp: Go from Zero to Hero",
+                "provider": "Udemy",
+                "gap": "Database Querying",
+                "impact": "+15% Role Match",
+                "duration": "22 Hours",
+                "level": "Beginner",
+                "imgGradient": "from-purple-800 to-purple-600",
+                "imgIcon": "storage"
+            },
+            "Machine Learning": {
+                "title": "Machine Learning Specialization",
+                "provider": "Coursera",
+                "gap": "ML Algorithms",
+                "impact": "+12% Role Match",
+                "duration": "40 Hours",
+                "level": "Advanced",
+                "imgGradient": "from-blue-800 to-blue-600",
+                "imgIcon": "psychology"
             },
             "Docker": {
                 "title": "Docker & Kubernetes: The Practical Guide",
                 "provider": "Udemy",
-                "gap": "DevOps / Containerization",
-                "impact": "+12% ATS Score",
-                "duration": "18 hours",
-                "level": "Advanced"
+                "gap": "Containerization",
+                "impact": "+12% Role Match",
+                "duration": "18 Hours",
+                "level": "Advanced",
+                "imgGradient": "from-blue-500 to-cyan-500",
+                "imgIcon": "box"
             },
             "MongoDB": {
                 "title": "MongoDB University: Data Modeling",
                 "provider": "MongoDB",
-                "gap": "Database Design",
-                "impact": "+7% ATS Score",
-                "duration": "4 hours",
-                "level": "Intermediate"
+                "gap": "NoSQL Database Design",
+                "impact": "+7% Role Match",
+                "duration": "4 Hours",
+                "level": "Intermediate",
+                "imgGradient": "from-green-700 to-emerald-500",
+                "imgIcon": "database"
             }
         }
 

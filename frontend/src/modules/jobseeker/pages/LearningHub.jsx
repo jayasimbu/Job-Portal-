@@ -1,55 +1,48 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const courses = [
-  {
-    id: 1,
-    provider: 'Coursera',
-    providerIcon: 'school',
-    providerIconColor: 'text-blue-600',
-    title: 'Applied Data Science with Python Specialization',
-    meta: 'University of Michigan • 4.8 ★ (21k reviews)',
-    tags: ['Intermediate', '34 Hours', 'Certificate'],
-    matchBoost: '+20% Role Match',
-    why: 'Bridges your Python gap specifically for data manipulation, directly impacting your ability to perform EDA tasks required in 85% of job postings.',
-    ctaLabel: 'Go to Coursera',
-    imgGradient: 'from-blue-800 to-blue-600',
-    imgIcon: 'data_object',
-  },
-  {
-    id: 2,
-    provider: 'Udemy',
-    providerIcon: 'play_circle',
-    providerIconColor: 'text-purple-600',
-    title: 'The Complete SQL Bootcamp: Go from Zero to Hero',
-    meta: 'Jose Portilla • 4.7 ★ (156k reviews)',
-    tags: ['Beginner', '22 Hours'],
-    matchBoost: '+15% Role Match',
-    why: 'Addresses your SQL knowledge gap. SQL is the #1 requested skill for Data Scientists, allowing you to query databases directly.',
-    ctaLabel: 'Go to Udemy',
-    imgGradient: 'from-purple-800 to-purple-600',
-    imgIcon: 'storage',
-  },
-  {
-    id: 3,
-    provider: 'Coursera',
-    providerIcon: 'school',
-    providerIconColor: 'text-blue-600',
-    title: 'Machine Learning Specialization',
-    meta: 'Stanford University & DeepLearning.AI • 4.9 ★ (12k reviews)',
-    tags: ['Advanced', '40 Hours', 'Andrew Ng'],
-    matchBoost: '+12% Role Match',
-    why: 'This is the gold standard for ML concepts. Mastering this closes your theoretical gaps in supervised and unsupervised learning algorithms.',
-    ctaLabel: 'Go to Coursera',
-    imgGradient: 'from-blue-800 to-blue-600',
-    imgIcon: 'psychology',
-  },
-];
+import { fetchLearningRecommendations } from '../services/jobseekerService';
+import { getCurrentUserId } from '../../../core/auth/session';
 
 export default function LearningHub() {
   const navigate = useNavigate();
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const userId = getCurrentUserId();
+
+  useEffect(() => {
+    const loadRecommendations = async () => {
+      try {
+        setLoading(true);
+        const data = await fetchLearningRecommendations(userId);
+        // data.learning is the array from backend
+        setCourses(data.learning || []);
+      } catch (err) {
+        console.error('Failed to load learning recommendations:', err);
+        setError('Failed to load recommendations. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadRecommendations();
+  }, [userId]);
+
+  if (loading) {
+    return (
+      <div className="bg-[#f0f4f8] dark:bg-[#0d141b] min-h-screen flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-slate-600 dark:text-slate-400 font-medium">Analyzing skill gaps and finding courses...</p>
+        </div>
+      </div>
+    );
+  }
+
+  const criticalGaps = courses.filter(c => c.status === 'Recommended').length;
 
   return (
-    <div className="bg-[#f0f4f8] dark:bg-[#0d141b] font-sans text-slate-900 dark:text-slate-50 min-h-screen flex flex-col">
+    <div className="bg-[#f0f4f8] dark:bg-[#0d141b] font-sans text-slate-900 dark:text-slate-50 min-h-screen flex flex-col transition-colors duration-200">
       <main className="flex-1 flex flex-col items-center w-full px-4 md:px-10 py-8 max-w-7xl mx-auto">
 
         {/* Hero Section */}
@@ -60,8 +53,8 @@ export default function LearningHub() {
               <span className="material-symbols-outlined text-white text-6xl opacity-60">school</span>
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               <div className="absolute bottom-4 left-4 text-white">
-                <span className="bg-[#2563eb] px-2 py-1 rounded text-xs font-bold uppercase tracking-wide">Target Role</span>
-                <p className="mt-1 font-bold text-lg">Data Scientist</p>
+                <span className="bg-[#2563eb] px-2 py-1 rounded text-xs font-bold uppercase tracking-wide">Target Skills</span>
+                <p className="mt-1 font-bold text-lg">Growth Path</p>
               </div>
             </div>
             {/* Right Content */}
@@ -71,15 +64,21 @@ export default function LearningHub() {
                   Recommended Learning Path
                 </h1>
                 <p className="text-slate-600 dark:text-slate-300 text-base md:text-lg leading-relaxed">
-                  You have{' '}
-                  <span className="font-bold text-[#2563eb]">3 critical skill gaps</span>{' '}
-                  (Python, SQL, Machine Learning) to bridge for your target role. We found high-impact modules to help you close them.
+                  {criticalGaps > 0 ? (
+                    <>
+                      You have{' '}
+                      <span className="font-bold text-[#2563eb]">{criticalGaps} critical skill gaps</span>{' '}
+                      identified from your resume. We found high-impact modules to help you close them.
+                    </>
+                  ) : (
+                    "Based on industry trends and your profile, we've curated the best courses to accelerate your career."
+                  )}
                 </p>
               </div>
               <div className="flex flex-wrap gap-3 mt-2">
                 <div className="flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1.5 rounded-full text-sm font-medium border border-blue-100 dark:border-blue-800">
                   <span className="material-symbols-outlined text-[18px]">trending_up</span>
-                  <span>Accelerate promotion by 6mo</span>
+                  <span>Accelerate Career Growth</span>
                 </div>
                 <div className="flex items-center gap-2 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1.5 rounded-full text-sm font-medium border border-green-100 dark:border-green-800">
                   <span className="material-symbols-outlined text-[18px]">verified</span>
@@ -134,17 +133,17 @@ export default function LearningHub() {
 
         {/* Course Cards */}
         <div className="w-full grid grid-cols-1 gap-6">
-          {courses.map((course) => (
+          {courses.length > 0 ? courses.map((course, idx) => (
             <div
-              key={course.id}
+              key={idx}
               className="bg-white dark:bg-slate-800 rounded-xl shadow-sm dark:shadow-none border border-slate-100 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow"
             >
               <div className="flex flex-col md:flex-row h-full">
                 {/* Course Image */}
-                <div className={`w-full md:w-64 md:min-w-[280px] h-48 md:h-auto bg-gradient-to-br ${course.imgGradient} relative flex items-center justify-center`}>
-                  <span className="material-symbols-outlined text-white text-6xl opacity-40">{course.imgIcon}</span>
+                <div className={`w-full md:w-64 md:min-w-[280px] h-48 md:h-auto bg-gradient-to-br ${course.imgGradient || 'from-slate-700 to-slate-900'} relative flex items-center justify-center`}>
+                  <span className="material-symbols-outlined text-white text-6xl opacity-40">{course.imgIcon || 'school'}</span>
                   <div className="absolute top-3 left-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1 shadow-sm">
-                    <span className={`material-symbols-outlined text-[14px] ${course.providerIconColor}`}>{course.providerIcon}</span>
+                    <span className={`material-symbols-outlined text-[14px] text-blue-600`}>school</span>
                     {course.provider}
                   </div>
                 </div>
@@ -155,33 +154,39 @@ export default function LearningHub() {
                       <h3 className="text-slate-900 dark:text-white text-lg font-bold leading-tight">{course.title}</h3>
                       <div className="shrink-0 bg-blue-50 dark:bg-blue-900/30 text-[#2563eb] px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap border border-blue-200 dark:border-blue-800 flex items-center gap-1">
                         <span className="material-symbols-outlined text-[14px]">rocket_launch</span>
-                        {course.matchBoost}
+                        {course.impact}
                       </div>
                     </div>
-                    <p className="text-slate-500 dark:text-slate-400 text-sm">{course.meta}</p>
+                    <p className="text-slate-500 dark:text-slate-400 text-sm">{course.provider} • {course.level}</p>
                     <div className="flex flex-wrap gap-2 my-2">
-                      {course.tags.map((tag) => (
-                        <span key={tag} className="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs px-2 py-1 rounded">{tag}</span>
-                      ))}
+                      <span className="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs px-2 py-1 rounded">{course.duration}</span>
+                      <span className="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs px-2 py-1 rounded">{course.gap}</span>
                     </div>
                     <p className="text-slate-600 dark:text-slate-300 text-sm mt-1 leading-relaxed border-l-2 border-blue-400 pl-3">
                       <span className="font-semibold text-[#2563eb]">Why this matters:</span>{' '}
-                      {course.why}
+                      {course.matchReason}
                     </p>
                   </div>
                   <div className="flex items-center justify-end mt-4 pt-4 border-t border-slate-100 dark:border-slate-700">
                     <a
-                      href="#"
+                      href={course.url || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2 bg-[#2563eb] hover:bg-blue-600 text-white text-sm font-bold py-2 px-5 rounded-lg transition-colors"
                     >
-                      <span>{course.ctaLabel}</span>
+                      <span>Go to Course</span>
                       <span className="material-symbols-outlined text-[16px]">open_in_new</span>
                     </a>
                   </div>
                 </div>
               </div>
             </div>
-          ))}
+          )) : (
+            <div className="w-full bg-white dark:bg-slate-800 rounded-xl p-12 text-center border border-dashed border-slate-300 dark:border-slate-700">
+                <span className="material-symbols-outlined text-5xl text-slate-300 dark:text-slate-600 mb-4">search_off</span>
+                <p className="text-slate-500 dark:text-slate-400">No specific gaps identified yet. Try uploading a new resume to get targeted recommendations.</p>
+            </div>
+          )}
         </div>
 
         {/* Disclaimer */}

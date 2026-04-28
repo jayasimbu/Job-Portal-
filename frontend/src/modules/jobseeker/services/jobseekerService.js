@@ -40,6 +40,11 @@ export const fetchLearningRecommendations = async (userId) => {
   return response.data;
 };
 
+export const fetchResumeInsights = async () => {
+  const response = await apiClient.get('/jobseeker/resume-insights');
+  return response.data;
+};
+
 export const fetchNotifications = async (userId) => {
   const response = await apiClient.get(`/jobseeker/notifications/${userId}`);
   return response.data;
