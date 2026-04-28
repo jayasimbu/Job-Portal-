@@ -5,7 +5,7 @@ const appConfig = {
   // API configuration
   api: {
     baseUrl: runtimeApiBaseUrl || 'http://127.0.0.1:8000/api',
-    timeout: 120000,
+    timeout: 30000,
   },
   
   // Authentication settings

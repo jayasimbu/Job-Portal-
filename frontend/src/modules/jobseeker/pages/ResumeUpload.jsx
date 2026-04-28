@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../../core/api/apiClient';
+import appConfig from '../../../core/config/appConfig';
 
 export default function ResumeUpload() {
   const navigate = useNavigate();
@@ -37,50 +38,83 @@ export default function ResumeUpload() {
 
   const handleAnalyze = async () => {
     if (!file) { setError('Please select a PDF file first.'); return; }
-    
+
     setLoading(true);
     setResult(null);
     setError('');
     setStatusStep(0); // Uploading
 
+    // Hard timeout — if anything takes longer than 30 s the user gets a clear message
+    const TIMEOUT_MS = appConfig.api.timeout || 30000;
+    let didTimeout = false;
+    const timeoutHandle = setTimeout(() => {
+      didTimeout = true;
+      setLoading(false);
+      setStatusStep(null);
+      setError(
+        'Analysis timed out after 30 seconds. ' +
+        'Check that the backend is running: cd backend → uvicorn main:app --reload'
+      );
+    }, TIMEOUT_MS);
+
     try {
+      // Read real user_id from localStorage
+      const storedUser = localStorage.getItem('currentUser');
+      const parsedUser = storedUser ? JSON.parse(storedUser) : null;
+      const userId = parsedUser?.id ?? 0;
+
       const formData = new FormData();
       formData.append('file', file);
-      formData.append('user_id', "0"); 
+      formData.append('user_id', String(userId));
       formData.append('job_description', jobDesc);
 
-      // 1. Upload & Parse
+      // Step 1 — Upload & Parse
       const uploadResp = await apiClient.post('/jobseeker/resume/upload-file', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
+      if (didTimeout) return;
       setStatusStep(1); // Parsing
-      
-      // Artificial delay for better UX (makes the "System Intelligence" feel real)
-      await new Promise(r => setTimeout(r, 1200));
+
+      await new Promise(r => setTimeout(r, 900));
+      if (didTimeout) return;
       setStatusStep(2); // AI Analysis
-      
+
       const uploadData = uploadResp.data;
-      const resumeText = uploadData.resume?.resume_text || '';
-      const skills = uploadData.resume?.skills || [];
+      const resumeText = uploadData.resume?.resume_text || uploadData.data?.resume?.resume_text || '';
+      const skills = uploadData.resume?.skills || uploadData.data?.resume?.skills || [];
+      const expYears = uploadData.resume?.experience_years || uploadData.data?.resume?.experience_years || 0;
+
       const atsPayload = mode === 'jd'
         ? { resume_text: resumeText, job_description: jobDesc }
-        : { resume_text: resumeText, skills, experience_years: uploadData.resume?.experience_years || 0, projects: [], education: [] };
+        : { resume_text: resumeText, skills, experience_years: expYears, projects: [], education: [] };
 
       const atsEndpoint = mode === 'jd' ? '/jobseeker/ats/jd' : '/jobseeker/ats/resume';
-      
-      // 2. ATS Analysis
+
+      // Step 2 — ATS Analysis (now fast — returns in <1 s from backend)
       const atsResp = await apiClient.post(atsEndpoint, atsPayload);
+      if (didTimeout) return;
       setStatusStep(3); // Finalizing
-      
-      await new Promise(r => setTimeout(r, 900));
-      const atsData = atsResp.data;
-      
-      setResult({ upload: uploadData, ats: atsData });
+
+      await new Promise(r => setTimeout(r, 600));
+      if (didTimeout) return;
+
+      const atsData = atsResp.data?.data ?? atsResp.data;
+      setResult({ upload: uploadData.data ?? uploadData, ats: atsData });
     } catch (err) {
-      setError(err.response?.data?.detail || err.message || 'Analysis failed. Please try again.');
+      if (!didTimeout) {
+        const msg =
+          err.message ||
+          err.response?.data?.message ||
+          err.response?.data?.detail ||
+          'Analysis failed. Please try again.';
+        setError(msg);
+      }
     } finally {
-      setLoading(false);
-      setStatusStep(null);
+      clearTimeout(timeoutHandle);
+      if (!didTimeout) {
+        setLoading(false);
+        setStatusStep(null);
+      }
     }
   };
 
@@ -184,9 +218,18 @@ export default function ResumeUpload() {
         )}
 
         {error && (
-          <div className="flex items-center gap-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-5 text-red-700 dark:text-red-400 font-bold text-sm shadow-sm">
-            <span className="material-symbols-outlined text-xl">error</span>
-            {error}
+          <div className="flex flex-col gap-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-5 shadow-sm">
+            <div className="flex items-start gap-3">
+              <span className="material-symbols-outlined text-xl text-red-500 mt-0.5">error</span>
+              <p className="text-red-700 dark:text-red-400 font-bold text-sm leading-relaxed">{error}</p>
+            </div>
+            <button
+              onClick={() => { setError(''); handleAnalyze(); }}
+              className="self-start flex items-center gap-2 px-4 py-2 bg-red-600 text-white text-sm font-bold rounded-xl hover:bg-red-700 transition-colors"
+            >
+              <span className="material-symbols-outlined text-base">refresh</span>
+              Retry Analysis
+            </button>
           </div>
         )}
 

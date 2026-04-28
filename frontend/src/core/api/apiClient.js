@@ -103,10 +103,14 @@ apiClient.interceptors.response.use(
     }
 
     if (!error.response) {
-      // Standardized network error response
+      // Distinguish timeout from backend-unreachable
+      const isTimeout = error.code === 'ECONNABORTED' || error.message?.includes('timeout');
       return Promise.reject({
-        message: 'Server waking up... Please wait ⏳',
-        networkError: true
+        message: isTimeout
+          ? 'Request timed out. The server is busy — please try again.'
+          : 'Cannot reach server. Make sure the backend is running on port 8000.',
+        networkError: true,
+        isTimeout,
       });
     }
 
