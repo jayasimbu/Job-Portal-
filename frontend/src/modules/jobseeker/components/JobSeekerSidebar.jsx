@@ -1,141 +1,105 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useTheme } from '../../../core/context/ThemeContext';
-import logo from '../../../assets/logos/career_auto_logo.png';
+import logo from '../../../assets/logos/linkup_logo.png';
 
 const NAV_ITEMS = [
-  { icon: 'dashboard', label: 'Dashboard', to: '/jobseeker/dashboard', end: true },
+  { icon: 'grid_view', label: 'Dashboard', to: '/jobseeker/dashboard', end: true },
   { icon: 'search', label: 'Job Search', to: '/jobseeker/jobs', end: true },
-  { icon: 'bookmark', label: 'My Jobs', to: '/jobseeker/jobs/saved', end: false },
-  { icon: 'work', label: 'Applications', to: '/jobseeker/applications', end: false },
-  { icon: 'cloud_upload', label: 'Upload Resume', to: '/jobseeker/upload-resume', end: false },
-  { icon: 'analytics', label: 'Resume Insights', to: '/jobseeker/insights', end: false },
-  { icon: 'school', label: 'Learning', to: '/jobseeker/learning', end: false },
-  { icon: 'chat', label: 'Messages', to: '/jobseeker/notifications', end: false },
-  { icon: 'history', label: 'Search History', to: '/jobseeker/search-history', end: false },
-  { icon: 'person', label: 'Profile Settings', to: '/jobseeker/profile', end: false },
+  { icon: 'bookmark_border', label: 'Saved Jobs', to: '/jobseeker/jobs/saved', end: false },
+  { icon: 'work_outline', label: 'Applications', to: '/jobseeker/applications', end: false },
+  { icon: 'cloud_upload', label: 'Resume Hub', to: '/jobseeker/upload-resume', end: false },
+  { icon: 'insights', label: 'Career Insights', to: '/jobseeker/insights', end: false },
+  { icon: 'auto_awesome', label: 'Growth Path', to: '/jobseeker/learning/roadmap', end: false },
+  { icon: 'person_outline', label: 'My Profile', to: '/jobseeker/profile', end: false },
 ];
 
 const JobSeekerSidebar = () => {
-  const { isDark, toggleTheme } = useTheme();
+  const { isDark } = useTheme();
   const navigate = useNavigate();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-  // Formulate correct username and initial strictly via full_name and email
   const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
   const userEmail = user.email || '';
-  const userName = user.full_name || userEmail || 'User';
-  const initial = (user.full_name?.charAt(0) || userEmail?.charAt(0) || 'U').toUpperCase();
+  const userName = user.full_name || userEmail.split('@')[0] || 'Member';
+  const initial = (userName.charAt(0) || 'U').toUpperCase();
 
   return (
     <>
-      {/* Sidebar Panel */}
       <aside 
-        id="career-auto-sidebar"
-        className="fixed top-0 left-0 w-[220px] h-screen bg-white dark:bg-[#1a2632] border-r border-[#e4eaf0] dark:border-[#2a3b4d] flex flex-col z-40 p-5 pb-6 transition-all duration-300 overflow-y-auto"
+        className="fixed top-0 left-0 w-[240px] h-screen bg-white dark:bg-[#0f172a] border-r border-slate-100 dark:border-slate-800/50 flex flex-col z-40 transition-all duration-300"
       >
-        {/* Brand Row */}
-        <div className="flex items-center gap-3 pb-4 mb-4 border-b border-[#e4eaf0] dark:border-[#2a3b4d]">
-          <div 
-            onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.dispatchEvent(new CustomEvent('open-logo-modal')); }}
-            className="w-[38px] h-[38px] rounded-xl bg-white flex items-center justify-center shadow-sm overflow-hidden p-1 border border-slate-100 cursor-pointer hover:scale-105 transition-transform group-hover:shadow-md"
-            title="View Logo"
-          >
-            <img src={logo} alt="Logo" className="w-full h-full object-contain pointer-events-none" />
+        <div className="p-6">
+          <div className="flex items-center gap-3 mb-8">
+            <div 
+              onClick={() => navigate('/')}
+              className="size-10 bg-blue-600 rounded-xl flex items-center justify-center p-2 shadow-lg shadow-blue-500/20 cursor-pointer"
+            >
+              <img src={logo} alt="L" className="w-full h-full object-contain brightness-0 invert" />
+            </div>
+            <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-white uppercase">LINKUP</span>
           </div>
-          <div 
-            onClick={() => navigate('/')} 
-            className="flex flex-col overflow-hidden cursor-pointer hover:text-blue-600 transition-colors"
-            title="Go to Home"
-          >
-            <span className="text-sm font-extrabold text-[#0d141b] dark:text-white truncate hover:text-blue-600">Career Auto</span>
-            <span className="text-[10px] font-bold text-blue-600 bg-blue-50 dark:bg-[#1e3a5f] dark:text-[#60a5fa] px-2 py-0.5 rounded-full w-fit mt-0.5">Pro Plan</span>
-          </div>
+
+          <nav className="space-y-1">
+            {NAV_ITEMS.map((item) => (
+              <NavLink
+                key={item.label}
+                to={item.to}
+                end={item.end}
+                className={({ isActive }) => `
+                  flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold transition-all
+                  ${isActive 
+                    ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400' 
+                    : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white'
+                  }
+                `}
+              >
+                <span className="material-symbols-outlined text-[20px]">{item.icon}</span>
+                <span>{item.label}</span>
+              </NavLink>
+            ))}
+          </nav>
         </div>
 
-        {/* Navigation Items */}
-        <nav className="flex flex-col gap-1 flex-1">
-          {NAV_ITEMS.map((item) => (
-            <NavLink
-              key={item.label}
-              to={item.to}
-              end={item.end}
-              className={({ isActive }) => `
-                flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200
-                ${isActive 
-                  ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' 
-                  : 'text-[#4a6075] dark:text-[#94a3b8] hover:bg-blue-50/50 dark:hover:bg-blue-900/20 hover:text-blue-600 dark:hover:text-blue-400'
-                }
-              `}
-            >
-              <span className="material-symbols-outlined text-[20px] shrink-0">{item.icon}</span>
-              <span className="truncate">{item.label}</span>
-            </NavLink>
-          ))}
-        </nav>
-
-        {/* Sidebar Footer / Profile */}
-        <div className="mt-auto pt-4 border-t border-[#e4eaf0] dark:border-[#2a3b4d]">
+        <div className="mt-auto p-6 border-t border-slate-100 dark:border-slate-800/50">
           <div className="relative">
             <button 
               onClick={() => setIsProfileOpen(!isProfileOpen)}
-              className="w-full flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-[#1e3a5f] transition-colors text-left group"
+              className="w-full flex items-center gap-3 p-2 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group"
             >
-              <div className="flex items-center gap-3 overflow-hidden">
-                {user.picture ? (
-                  <img src={user.picture} alt="avatar" className="w-8 h-8 rounded-full object-cover border border-slate-200 dark:border-slate-700" />
-                ) : (
-                  <div className="w-8 h-8 rounded-full bg-blue-600 text-white text-[10px] font-black flex items-center justify-center shrink-0">
-                    {initial}
-                  </div>
-                )}
-                <div className="flex flex-col min-w-0">
-                  <span className="text-[11px] font-bold text-slate-900 dark:text-white truncate max-w-[100px]">{userName}</span>
-                  <span className="text-[9px] text-slate-500 dark:text-slate-400 truncate max-w-[100px]">{userEmail}</span>
-                </div>
+              <div className="size-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-sm shadow-md">
+                {initial}
               </div>
-              <span className={`material-symbols-outlined text-slate-400 text-base transition-transform duration-200 ${isProfileOpen ? 'rotate-180' : ''}`}>
-                expand_less
-              </span>
+              <div className="flex flex-col text-left min-w-0 flex-1">
+                <span className="text-sm font-semibold text-slate-900 dark:text-white truncate">{userName}</span>
+                <span className="text-[10px] font-medium text-slate-400 truncate">Free Tier</span>
+              </div>
+              <span className={`material-symbols-outlined text-slate-300 text-base transition-transform ${isProfileOpen ? 'rotate-180' : ''}`}>unfold_more</span>
             </button>
 
-            {/* Profile Dropup Menu */}
             {isProfileOpen && (
-              <div className="absolute bottom-[110%] left-0 w-full bg-white dark:bg-[#1e293b] rounded-2xl shadow-2xl border border-slate-100 dark:border-slate-800 overflow-hidden animate-in slide-in-from-bottom-2 fade-in duration-200 z-50">
-                <div className="p-2 flex flex-col gap-1">
-                  <NavLink to="/jobseeker/profile" className="flex items-center gap-3 px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                    <span className="material-symbols-outlined text-[18px]">person</span>
-                    Profile
-                  </NavLink>
-                  <NavLink to="/platform/settings" className="flex items-center gap-3 px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                    <span className="material-symbols-outlined text-[18px]">settings</span>
-                    Settings
-                  </NavLink>
-
-                </div>
-                <div className="p-2 border-t border-slate-100 dark:border-slate-800">
-                  <button 
-                    onClick={() => {
-                      localStorage.clear();
-                      navigate('/auth/login');
-                    }}
-                    className="w-full flex items-center gap-3 px-3 py-2 text-xs font-bold text-red-600 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
-                  >
-                    <span className="material-symbols-outlined text-[18px]">logout</span>
-                    Sign Out
-                  </button>
-                </div>
+              <div className="absolute bottom-full left-0 w-full mb-2 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-100 dark:border-slate-800 p-2 animate-in slide-in-from-bottom-2 fade-in duration-200">
+                <button onClick={() => navigate('/jobseeker/profile')} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+                  <span className="material-symbols-outlined text-lg">account_circle</span>
+                  Profile
+                </button>
+                <button 
+                  onClick={() => { localStorage.clear(); navigate('/auth/login'); }}
+                  className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all"
+                >
+                  <span className="material-symbols-outlined text-lg">logout</span>
+                  Sign Out
+                </button>
               </div>
             )}
           </div>
         </div>
       </aside>
 
-      {/* Main Content Shift Helper (for body) */}
       <style>{`
         @media (min-width: 1024px) {
           .jobseeker-content-area {
-            padding-left: 220px;
+            padding-left: 240px;
           }
         }
       `}</style>

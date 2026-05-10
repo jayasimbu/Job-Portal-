@@ -25,7 +25,7 @@ export default function InfoPage() {
         <div className="bg-white dark:bg-[#0d141b] border border-slate-200 dark:border-slate-800/60 rounded-3xl p-8 md:p-12 shadow-xl">
           <div className="mb-10 text-center">
             <span className="inline-block px-4 py-1.5 rounded-full bg-blue-100/50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] font-black uppercase tracking-widest mb-4">
-              Career Auto Platform
+              LINKUP Platform
             </span>
             <h1 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 tracking-tight">
               {pageData.title}

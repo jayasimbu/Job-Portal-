@@ -4,7 +4,7 @@ import PageTemplate from '../../core/components/PageTemplate';
 export default function HowItWorks() {
   return (
     <PageTemplate
-      title="How Career Auto Works"
+      title="How LINKUP Works"
       subtitle="From resume upload to hiring decisions — everything in one AI-powered platform."
 
       features={[

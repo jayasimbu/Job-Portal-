@@ -34,7 +34,6 @@ export default function SavedJobs() {
     } catch { setSavedJobs([]); }
   }, []);
 
-  // Close dropdowns on outside click
   useEffect(() => {
     const handler = (e) => {
       if (sortRef.current && !sortRef.current.contains(e.target)) setSortOpen(false);
@@ -50,7 +49,6 @@ export default function SavedJobs() {
     localStorage.setItem('saved_jobs', JSON.stringify(updated));
   };
 
-  // Filter + Sort pipeline
   const processed = savedJobs
     .filter(j => {
       const q = searchQuery.toLowerCase();
@@ -65,8 +63,8 @@ export default function SavedJobs() {
       return matchesSearch && matchesRemote && matchesScore;
     })
     .sort((a, b) => {
-      if (sortBy === 'Most Recent') return 0; // preserved insertion order
-      if (sortBy === 'Oldest First') return 0; // reversed
+      if (sortBy === 'Most Recent') return 0;
+      if (sortBy === 'Oldest First') return 0;
       if (sortBy === 'Title A-Z') return (a.title || '').localeCompare(b.title || '');
       if (sortBy === 'Title Z-A') return (b.title || '').localeCompare(a.title || '');
       return 0;
@@ -75,51 +73,49 @@ export default function SavedJobs() {
   const finalJobs = sortBy === 'Oldest First' ? [...processed].reverse() : processed;
 
   return (
-    <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 py-4 pb-10">
+    <div className="h-full flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* Header */}
-      <div className="flex items-center justify-between gap-4 mb-4">
-        <div>
-          <h1 className="text-xl font-bold text-slate-900 dark:text-white">
-            Your Saved Jobs <span className="text-slate-400 font-medium text-base ml-1">({savedJobs.length})</span>
-          </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-xs mt-0.5">Manage and compare your bookmarked opportunities.</p>
+      <header className="flex-shrink-0 mb-6">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <h1 className="text-xl font-bold text-slate-900 tracking-tight uppercase">Saved Opportunities</h1>
+            <p className="text-sm text-slate-500">Manage and compare your bookmarked roles.</p>
+          </div>
+          <div className="text-right">
+             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Collection Size</span>
+             <span className="text-sm font-bold text-blue-600">{savedJobs.length} SAVED</span>
+          </div>
         </div>
-        <button className="flex items-center gap-1.5 h-8 px-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition-all text-xs font-bold text-slate-700 dark:text-slate-300">
-          <span className="material-symbols-outlined text-[16px] text-blue-600">compare_arrows</span>
-          Compare Mode
-        </button>
-      </div>
+      </header>
 
       {/* Filters Row */}
-      <div className="flex flex-wrap items-center gap-2 mb-4">
-        {/* Search */}
-        <div className="relative flex-1 min-w-[180px]">
-          <span className="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-base">search</span>
+      <div className="flex flex-wrap items-center gap-3 mb-6">
+        <div className="relative flex-1 min-w-[200px]">
+          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
           <input
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            className="w-full pl-8 pr-3 h-8 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#1a2632] text-slate-900 dark:text-white placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Search by title or company..."
+            className="w-full pl-10 pr-3 h-10 rounded-xl border border-slate-200 bg-white text-sm font-bold text-slate-700 placeholder-slate-400 outline-none focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 transition-all"
+            placeholder="Search saved jobs..."
           />
         </div>
 
-        {/* Sort By Dropdown */}
         <div className="relative" ref={sortRef}>
           <button
             onClick={() => { setSortOpen(o => !o); setMatchOpen(false); }}
-            className="flex items-center gap-1.5 h-8 px-3 rounded-lg bg-blue-600 text-white text-xs font-bold shadow-sm"
+            className="flex items-center gap-2 h-10 px-4 rounded-xl bg-white border border-slate-200 text-slate-700 text-[10px] font-black uppercase tracking-widest hover:border-blue-500 transition-all shadow-sm"
           >
             {sortBy}
             <span className="material-symbols-outlined text-sm">{sortOpen ? 'expand_less' : 'expand_more'}</span>
           </button>
           {sortOpen && (
-            <div className="absolute top-full left-0 mt-1 z-50 w-40 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl py-1">
+            <div className="absolute top-full right-0 mt-2 z-50 w-48 bg-white border border-slate-200 rounded-xl shadow-xl py-1">
               {SORT_OPTIONS.map(opt => (
                 <button
                   key={opt}
                   onClick={() => { setSortBy(opt); setSortOpen(false); }}
-                  className={`w-full text-left px-3 py-1.5 text-xs font-semibold transition-colors
-                    ${sortBy === opt ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'}`}
+                  className={`w-full text-left px-4 py-2 text-[10px] font-black uppercase tracking-widest transition-colors
+                    ${sortBy === opt ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:bg-slate-50'}`}
                 >
                   {opt}
                 </button>
@@ -128,101 +124,68 @@ export default function SavedJobs() {
           )}
         </div>
 
-        {/* Match Score Dropdown */}
-        <div className="relative" ref={matchRef}>
-          <button
-            onClick={() => { setMatchOpen(o => !o); setSortOpen(false); }}
-            className="flex items-center gap-1.5 h-8 px-3 rounded-lg bg-white dark:bg-[#1a2632] border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold hover:bg-slate-50 dark:hover:bg-slate-800"
-          >
-            {matchFilter === 'Any Score' ? 'Match Score' : matchFilter}
-            <span className="material-symbols-outlined text-sm">{matchOpen ? 'expand_less' : 'expand_more'}</span>
-          </button>
-          {matchOpen && (
-            <div className="absolute top-full left-0 mt-1 z-50 w-52 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl py-1">
-              {MATCH_OPTIONS.map(opt => (
-                <button
-                  key={opt}
-                  onClick={() => { setMatchFilter(opt); setMatchOpen(false); }}
-                  className={`w-full text-left px-3 py-1.5 text-xs font-semibold transition-colors
-                    ${matchFilter === opt ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'}`}
-                >
-                  {opt}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Remote Only Toggle */}
         <button
           onClick={() => setRemoteOnly(r => !r)}
-          className={`h-8 px-3 rounded-lg text-xs font-bold border transition-colors
-            ${remoteOnly ? 'bg-blue-600 text-white border-blue-600' : 'bg-white dark:bg-[#1a2632] border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}
+          className={`h-10 px-4 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-all shadow-sm
+            ${remoteOnly ? 'bg-blue-600 text-white border-blue-600' : 'bg-white border-slate-200 text-slate-700 hover:border-blue-500'}`}
         >
           Remote Only
         </button>
       </div>
 
       {/* Job List */}
-      <div className="flex flex-col gap-2">
+      <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar min-h-0">
         {finalJobs.length === 0 ? (
-          <div className="text-center py-10">
-            <span className="material-symbols-outlined text-4xl text-slate-300 dark:text-slate-600">bookmark_border</span>
-            <h2 className="text-base font-bold mt-2 text-slate-600 dark:text-slate-300">
-              {savedJobs.length === 0 ? 'No saved jobs yet.' : 'No jobs match your filters.'}
+          <div className="flex flex-col items-center justify-center py-20 text-center">
+            <div className="size-20 bg-slate-50 rounded-full flex items-center justify-center mb-4">
+              <span className="material-symbols-outlined text-4xl text-slate-300">bookmark</span>
+            </div>
+            <h2 className="text-lg font-black text-slate-900 uppercase tracking-tight">
+              {savedJobs.length === 0 ? 'No Saved Jobs' : 'No Results Found'}
             </h2>
+            <p className="text-sm text-slate-500 mt-1 max-w-xs mx-auto">
+              {savedJobs.length === 0 ? 'Start exploring the marketplace to build your career collection.' : 'Try adjusting your filters to find what you are looking for.'}
+            </p>
             {savedJobs.length === 0 && (
-              <button onClick={() => navigate('/jobseeker/jobs')} className="mt-4 px-5 py-1.5 text-sm bg-blue-600 text-white rounded-xl">Browse Jobs</button>
+              <button onClick={() => navigate('/platform/jobseeker/jobs')} className="mt-6 h-10 px-8 bg-blue-600 text-white font-black text-[10px] uppercase tracking-widest rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-500/20 transition-all">
+                Explore Jobs
+              </button>
             )}
           </div>
-        ) : finalJobs.map(job => {
-          const pColor = PLATFORM_COLORS[job.platform] || 'bg-slate-50 border-slate-200 text-slate-600';
-          return (
-            <div key={job.id} className="flex items-center gap-3 p-3 bg-white dark:bg-[#1a2632] rounded-xl border border-slate-200 dark:border-slate-700 hover:shadow-md hover:border-blue-400/40 transition-all">
-              {/* Platform badge */}
-              <div className={`shrink-0 w-10 h-10 rounded-lg flex items-center justify-center border text-[9px] font-bold text-center leading-tight p-1 ${pColor}`}>
-                {job.platform?.slice(0, 6)}
-              </div>
+        ) : (
+          <div className="space-y-4 pb-10">
+            {finalJobs.map(job => (
+              <div key={job.id} className="group p-6 bg-white border border-slate-200 rounded-2xl hover:border-blue-500 transition-all shadow-sm">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                  <div className="flex items-center gap-4 flex-1">
+                    <div className="size-12 bg-slate-50 flex items-center justify-center rounded-xl font-black text-lg text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors uppercase">
+                      {job.company?.[0] || 'J'}
+                    </div>
+                    <div>
+                      <h4 className="text-base font-black text-slate-900 group-hover:text-blue-600 transition-colors uppercase tracking-tight leading-tight">{job.title}</h4>
+                      <p className="text-xs font-bold text-slate-500 mt-1">{job.company} • {job.location}</p>
+                    </div>
+                  </div>
 
-              {/* Info */}
-              <div className="flex-1 min-w-0">
-                <h3 className="text-sm font-bold text-slate-900 dark:text-white truncate">{job.title}</h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{job.company} • {job.location}</p>
-                <div className="flex flex-wrap gap-2 mt-1">
-                  {job.salary && job.salary !== 'Not disclosed' && (
-                    <span className="flex items-center gap-1 text-[10px] font-medium bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-md text-slate-600 dark:text-slate-300">
-                      <span className="material-symbols-outlined text-[12px]">payments</span>{job.salary}
-                    </span>
-                  )}
-                  <span className="flex items-center gap-1 text-[10px] font-medium bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-md text-slate-600 dark:text-slate-300">
-                    <span className="material-symbols-outlined text-[12px]">schedule</span>Full-time
-                  </span>
-                  {job.posted_at && <span className="text-[10px] text-slate-400">{job.posted_at}</span>}
+                  <div className="flex items-center gap-6 shrink-0">
+                    <div className="text-right">
+                       <span className="block text-2xl font-black text-blue-600 leading-none">{job.matchScore || 0}% MATCH</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                       <button onClick={() => removeJob(job.id)} className="size-10 flex items-center justify-center text-slate-300 hover:text-red-500 transition-colors">
+                          <span className="material-symbols-outlined">bookmark_remove</span>
+                       </button>
+                       <button className="h-10 px-8 bg-[#111827] text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-blue-600 transition-all">
+                         View Details
+                       </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              {/* Match + Actions */}
-              <div className="shrink-0 flex flex-col items-end gap-1.5">
-                <div className="text-right">
-                  <span className="text-sm font-bold text-blue-600 dark:text-blue-400">{job.matchScore || 0}%</span>
-                  <p className="text-[9px] font-semibold text-slate-400 uppercase tracking-wider">Match</p>
-                </div>
-                <div className="flex gap-1.5 items-center">
-                  <button onClick={() => removeJob(job.id)} className="p-1 text-slate-400 hover:text-red-500 transition-colors">
-                    <span className="material-symbols-outlined text-base">bookmark_remove</span>
-                  </button>
-                  <a
-                    href={job.url} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-600/10 hover:bg-blue-600 text-blue-600 hover:text-white text-[11px] font-bold transition-all"
-                  >
-                    Apply
-                  </a>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+            ))}
+          </div>
+        )}
       </div>
-    </main>
+    </div>
   );
 }

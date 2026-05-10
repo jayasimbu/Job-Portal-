@@ -101,7 +101,7 @@ export const infoPagesData = {
 
   // RESOURCES
   'how-it-works': {
-    title: 'How Career Auto Works',
+    title: 'How LINKUP Works',
     description: 'Our platform connects learning, analysis, and hiring into one system.',
     featuresListTitle: 'Workflow',
     features: [
@@ -164,8 +164,8 @@ export const infoPagesData = {
 
   // COMPANY
   'about': {
-    title: 'About Career Auto',
-    description: 'Career Auto is an AI-driven career platform that connects skill analysis, learning, and hiring.',
+    title: 'About LINKUP',
+    description: 'LINKUP is an AI-driven career platform that connects skill analysis, learning, and hiring.',
     featuresListTitle: 'Mission',
     features: [
       'To simplify career growth using intelligent technology.'
@@ -174,7 +174,7 @@ export const infoPagesData = {
     benefit: 'To create a smarter hiring ecosystem.'
   },
   'careers': {
-    title: 'Careers at Career Auto',
+    title: 'Careers at LINKUP',
     description: 'Join our team and build the future of AI-driven hiring.',
     featuresListTitle: 'Open Roles',
     features: [
@@ -187,7 +187,7 @@ export const infoPagesData = {
   },
   'press': {
     title: 'Press & Media',
-    description: 'Career Auto in the news.',
+    description: 'LINKUP in the news.',
     featuresListTitle: 'Highlights',
     features: [
       'AI-powered hiring innovation',

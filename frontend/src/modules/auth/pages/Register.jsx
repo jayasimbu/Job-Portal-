@@ -150,9 +150,9 @@ const Register = ({ onSwitch, activeTab, onSwitchTab, onSuccess }) => {
 
         {/* Name + Email */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <div className="space-y-1">
+          <div className="space-y-1 md:col-span-2">
             <label style={{ fontSize: 12, fontWeight: 600 }} className="text-slate-500 dark:text-slate-400 ml-0.5 uppercase tracking-wide">Full Name</label>
-            <input name="full_name" type="text" placeholder="Jayasimbu J"
+            <input name="full_name" type="text" placeholder="Jayasimbu Jayamani"
               className={inputCls(false)} value={formData.full_name} onChange={handleChange} required />
           </div>
           <div className="space-y-1 md:col-span-2">

@@ -128,6 +128,12 @@ class JobSeekerService:
         self._sync_domain_snapshot(user_id)
         return resume
 
+    def get_latest_resume(self, user_id: int):
+        return doc_to_entity(self.resumes.find_one({"user_id": int(user_id)}, sort=[("id", -1)]))
+
+    def get_latest_insight(self, user_id: int):
+        return self.db["resume_insights"].find_one({"user_id": int(user_id)}, sort=[("id", -1)])
+
     def list_recommended_jobs(self, user_id: int) -> List[Dict[str, Any]]:
         profile = self.get_profile(user_id)
         jobs = docs_to_entities(self.jobs.find().sort("id", 1))
@@ -219,7 +225,22 @@ class JobSeekerService:
         return application
 
     def list_applications(self, user_id: int) -> List[Any]:
-        return docs_to_entities(self.applications.find({"user_id": int(user_id)}).sort("id", -1))
+        pipeline = [
+            {"$match": {"user_id": int(user_id)}},
+            {"$lookup": {
+                "from": "job_postings",
+                "localField": "job_id",
+                "foreignField": "id",
+                "as": "job_info"
+            }},
+            {"$unwind": {"path": "$job_info", "preserveNullAndEmptyArrays": True}},
+            {"$sort": {"id": -1}}
+        ]
+        results = list(self.applications.aggregate(pipeline))
+        for r in results:
+            if "job_info" in r:
+                r["job"] = r.pop("job_info")
+        return docs_to_entities(results)
 
     def verify_projects(self, github_url: Optional[str], portfolio_url: Optional[str]) -> Dict[str, Any]:
         return self.verifier.verify_candidate(github_url=github_url, portfolio_url=portfolio_url)

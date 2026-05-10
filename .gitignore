@@ -5,8 +5,13 @@ yarn-debug.log*
 yarn-error.log*
 
 # Production
-/build
-/dist
+**/build/
+**/dist/
+frontend/build_output.txt
+
+# Database
+database/
+# (Optional: Comment out if you actually want to backup local data files)
 
 # Environment files
 .env

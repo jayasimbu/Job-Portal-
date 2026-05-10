@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { Menu, X, LogOut, Moon, Sun } from 'lucide-react';
-import logo from '../../assets/logos/career_auto_logo.png';
+import logo from '../../assets/logos/linkup_logo.png';
 import { useTheme } from '../context/ThemeContext';
 import { getCurrentUser } from '../auth/session';
 import { logoutUser } from '../../modules/auth/services/authService';
+import { ResumeProvider } from '../../modules/jobseeker/context/ResumeContext';
 
 const AppLayout = ({ children, title }) => {
   const { isDark, toggleTheme } = useTheme();
@@ -17,8 +18,7 @@ const AppLayout = ({ children, title }) => {
     { label: 'Jobs', to: '/platform/jobseeker/jobs', icon: 'work' },
     { label: 'Applications', to: '/platform/jobseeker/applications', icon: 'send' },
     { label: 'Learning', to: '/platform/jobseeker/learning', icon: 'school' },
-    { label: 'MCP', to: '/platform/jobseeker/mcp', icon: 'memory' },
-    { label: 'Settings', to: '/platform/jobseeker/settings', icon: 'settings' },
+    { label: 'Profile', to: '/platform/jobseeker/profile', icon: 'person' },
   ];
 
   const handleLogout = async () => {
@@ -29,6 +29,7 @@ const AppLayout = ({ children, title }) => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
+    <ResumeProvider>
     <div className={`h-screen flex flex-col overflow-hidden bg-[#f8faff] dark:bg-[#020617] transition-colors duration-300 font-manrope scroll-smooth`}>
       {/* Platform Header */}
       <header className="flex-shrink-0 sticky top-0 z-[70] bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50">
@@ -37,10 +38,10 @@ const AppLayout = ({ children, title }) => {
           {/* Left: Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-2 group decoration-none">
-              <div className="size-8 bg-blue-600 rounded-lg flex items-center justify-center p-1 transition-transform group-hover:scale-110 shadow-lg shadow-blue-500/20">
-                <img src={logo} alt="L" className="w-full h-full object-cover scale-110" />
+              <div className="size-10 flex items-center justify-center transition-transform group-hover:scale-110">
+                <img src={logo} alt="LINKUP" className="w-full h-full object-contain" />
               </div>
-              <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-white uppercase hidden sm:inline-block">Career Auto</span>
+              <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-white uppercase hidden sm:inline-block">LINKUP</span>
             </Link>
           </div>
 
@@ -156,6 +157,7 @@ const AppLayout = ({ children, title }) => {
         </div>
       </main>
     </div>
+    </ResumeProvider>
   );
 };
 

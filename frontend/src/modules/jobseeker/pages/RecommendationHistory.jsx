@@ -22,7 +22,7 @@ export default function RecommendationHistory() {
       source: 'LinkedIn',
       time: '3 hours ago',
       dateGroup: 'Today',
-      logo: '/assets/logos/career_auto_logo.png' // Using generic logo for now
+      logo: '/assets/logos/linkup_logo.png' // Using generic logo for now
     },
     {
       id: 3,
@@ -48,7 +48,7 @@ export default function RecommendationHistory() {
       source: 'Indeed',
       time: '1 day ago',
       dateGroup: 'Yesterday',
-      logo: '/assets/logos/career_auto_logo.png'
+      logo: '/assets/logos/linkup_logo.png'
     }
   ];
 

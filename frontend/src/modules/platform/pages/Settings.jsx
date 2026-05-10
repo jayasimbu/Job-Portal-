@@ -17,7 +17,7 @@ const Settings = () => {
   });
 
   const [profileData, setProfileData] = useState({
-    fullName: user?.full_name || 'Jaya Simbu',
+    fullName: user?.full_name || 'Jayasimbu Jayamani',
     email: user?.email || 'jaya@example.com',
     bio: 'Senior Frontend Developer passionate about AI and clean architecture.',
     linkedin: 'linkedin.com/in/jayasimbu',

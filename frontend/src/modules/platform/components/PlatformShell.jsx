@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../../assets/logos/career_auto_logo.png';
+import logo from '../../../assets/logos/linkup_logo.png';
 import GlobalFooter from '../../../core/components/GlobalFooter';
 import LogoModal from '../../../core/components/LogoModal';
 import { useTheme } from '../../../core/context/ThemeContext';
@@ -25,9 +25,9 @@ const PlatformShell = ({ active, children }) => {
             className="size-10 bg-blue-600 rounded-full flex items-center justify-center shadow-2xl shadow-blue-500/30 overflow-hidden p-1.5 transition-transform group-hover:scale-110 cursor-pointer"
             onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.dispatchEvent(new CustomEvent('open-logo-modal')); }}
           >
-            <img src={logo} alt="Career Auto" className="w-full h-full object-cover scale-[1.2]" />
+            <img src={logo} alt="LINKUP" className="w-full h-full object-cover scale-[1.2]" />
           </div>
-          <Link to="/" className="font-black text-xl text-slate-900 dark:text-white tracking-tighter hover:text-blue-600 transition-colors uppercase no-underline">Career Auto</Link>
+          <Link to="/" className="font-black text-xl text-slate-900 dark:text-white tracking-tighter hover:text-blue-600 transition-colors uppercase no-underline">LINKUP</Link>
         </div>
         <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full uppercase tracking-wider ml-1">Platform</span>
         <div className="flex items-center gap-4">

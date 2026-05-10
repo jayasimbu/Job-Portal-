@@ -100,6 +100,12 @@ async def analytics(employer_id: int, service: EmployerService = Depends(get_emp
     return {"analytics": service.analytics_summary(employer_id)}
 
 
+@router.get("/top-candidates/{employer_id}")
+async def top_candidates(employer_id: int, service: EmployerService = Depends(get_employer_service)) -> Dict[str, Any]:
+    candidates = service.get_top_candidates(employer_id)
+    return {"top_candidates": candidates}
+
+
 @router.post("/candidates/status")
 async def update_candidate_status(
     payload: CandidateStatusPayload,

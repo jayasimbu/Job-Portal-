@@ -81,7 +81,7 @@ const DETAIL_CONTENT = {
   'ats': {
     title: 'ATS Integration',
     icon: 'terminal',
-    desc: 'Seamlessly connect Career Auto intelligence with your existing Applicant Tracking System.',
+    desc: 'Seamlessly connect LINKUP intelligence with your existing Applicant Tracking System.',
     highlights: [
       'Native Greenhouse & Lever sync',
       'Custom API accessibility',
@@ -143,7 +143,7 @@ const DETAIL_CONTENT = {
   'system-status': {
     title: 'System Status',
     icon: 'settings_suggest',
-    desc: 'Real-time performance metrics and operational logs for all Career Auto services.',
+    desc: 'Real-time performance metrics and operational logs for all LINKUP services.',
     highlights: [
       '99.99% uptime tracking',
       'API response time metrics',
@@ -169,7 +169,7 @@ const DETAIL_CONTENT = {
   'terms': {
     title: 'Terms of Service',
     icon: 'gavel',
-    desc: 'The guidelines and agreements that govern the use of the Career Auto platform and services.',
+    desc: 'The guidelines and agreements that govern the use of the LINKUP platform and services.',
     highlights: [
       'User conduct expectations',
       'Service level agreements',
@@ -257,7 +257,7 @@ const DetailView = () => {
             <div className="space-y-4">
               <h4 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight">Intelligence-First Approach</h4>
               <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
-                At Career Auto, we believe in a world where talent is recognized by what they can do, not where they come from. Our {content.title} solution is built with this philosophy at its core.
+                At LINKUP, we believe in a world where talent is recognized by what they can do, not where they come from. Our {content.title} solution is built with this philosophy at its core.
               </p>
             </div>
             <div className="space-y-4">

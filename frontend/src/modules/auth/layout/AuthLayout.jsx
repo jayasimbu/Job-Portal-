@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '../../../assets/logos/career_auto_logo.png';
+import logo from '../../../assets/logos/linkup_logo.png';
 import LogoModal from '../../../core/components/LogoModal';
 
 const AuthLayout = ({ children, title, subtitle, activeTab, onSwitch, hideLeftPanel = false }) => {
@@ -32,7 +32,7 @@ const AuthLayout = ({ children, title, subtitle, activeTab, onSwitch, hideLeftPa
                      onClick={(e) => { e.stopPropagation(); window.dispatchEvent(new CustomEvent('open-logo-modal')); }}>
                   <img src={logo} alt="Logo" className="w-full h-full object-contain" />
                 </div>
-                <span className="text-sm font-bold tracking-tight text-white/90 hover:text-white transition-colors">Career Auto</span>
+                <span className="text-sm font-bold tracking-tight text-white/90 hover:text-white transition-colors">LINKUP</span>
               </div>
             </div>
 
@@ -79,7 +79,7 @@ const AuthLayout = ({ children, title, subtitle, activeTab, onSwitch, hideLeftPa
                   </div>
                 ))}
               </div>
-              <p style={{ fontSize: 13, fontWeight: 500, color: '#6B7280' }} className="text-center opacity-50">© 2026 Career Auto Inc.</p>
+              <p style={{ fontSize: 13, fontWeight: 500, color: '#6B7280' }} className="text-center opacity-50">© 2026 LINKUP Inc.</p>
             </div>
           </div>
         )}
@@ -94,7 +94,7 @@ const AuthLayout = ({ children, title, subtitle, activeTab, onSwitch, hideLeftPa
                      onClick={(e) => { e.stopPropagation(); window.dispatchEvent(new CustomEvent('open-logo-modal')); }}>
                   <img src={logo} alt="Logo" className="w-full h-full object-contain" />
                 </div>
-                <span className="text-base font-bold tracking-tight text-slate-900 dark:text-white hover:text-blue-600 transition-colors">Career Auto</span>
+                <span className="text-base font-bold tracking-tight text-slate-900 dark:text-white hover:text-blue-600 transition-colors">LINKUP</span>
               </div>
             )}
             {children}

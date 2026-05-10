@@ -77,7 +77,7 @@ export default function ResumeInsights() {
 
   return (
     <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-200">
-      <JobSeekerShell active="dashboard" />
+      <JobSeekerShell active="resume" />
       
       <main className="flex-1 overflow-y-auto px-4 md:px-8 py-6 max-w-[1200px] mx-auto w-full">
         {/* Top Header Row with Title and Upload Button */}

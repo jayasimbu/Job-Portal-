@@ -13,16 +13,19 @@ class JobRecommender:
 
         scored: List[Dict[str, Any]] = []
         for job in jobs:
-            job_text = f"{job.title} {job.description} {' '.join(job.required_skills or [])}"
+            job_title = getattr(job, "title", "")
+            job_desc = getattr(job, "description", "")
+            job_skills = getattr(job, "required_skills", [])
+            job_text = f"{job_title} {job_desc} {' '.join(job_skills or [])}"
             semantic = self.matcher.match_score(skills_text, job_text)
             experience_bonus = min(10, years * 1.5)
             recommendation_score = round(min(100, semantic * 0.9 + experience_bonus), 2)
 
             scored.append(
                 {
-                    "job_id": job.id,
-                    "title": job.title,
-                    "location": job.location,
+                    "id": getattr(job, "id", None),
+                    "title": job_title,
+                    "location": getattr(job, "location", "Remote"),
                     "recommendation_score": recommendation_score,
                 }
             )

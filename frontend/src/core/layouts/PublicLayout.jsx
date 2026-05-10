@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, ArrowRight, LayoutDashboard, LogIn, UserPlus } from 'lucide-react';
-import logo from '../../assets/logos/career_auto_logo.png';
+import logo from '../../assets/logos/linkup_logo.png';
 import GlobalFooter from '../components/GlobalFooter';
 import LogoModal from '../components/LogoModal';
 import { getCurrentUser } from '../auth/session';
@@ -19,27 +19,33 @@ const PublicLayout = ({ children }) => {
     setTimeout(() => {
       navigate(path);
       setLoadingAction(null);
-    }, 400); // 400ms for polishing feel
+    }, 300);
   };
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0d141b] transition-colors duration-300 font-manrope">
-      <nav className="fixed top-0 left-0 right-0 z-[70] py-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm">
-        <div className="max-w-[1400px] mx-auto px-4 md:px-10 flex items-center justify-between h-12">
-          <div className="flex items-center gap-3">
-            <Link to="/" className="flex items-center gap-2 group decoration-none">
-              <div className="size-9 bg-blue-600 rounded-full flex items-center justify-center p-1.5 transition-transform group-hover:scale-110 shadow-lg shadow-blue-500/20 overflow-hidden">
-                <img src={logo} alt="L" className="w-full h-full object-cover scale-110" />
+    <div className="min-h-screen bg-white dark:bg-[#0d141b] transition-colors duration-300 font-sans">
+      <nav className="fixed top-0 left-0 right-0 z-[70] py-2 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800/50">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-12 flex items-center justify-between h-14">
+          <div className="flex items-center gap-8">
+            <Link to="/" className="flex items-center gap-3 group decoration-none">
+              <div className="size-11 flex items-center justify-center transition-all group-hover:scale-110">
+                <img src={logo} alt="LINKUP" className="w-full h-full object-contain" />
               </div>
-              <span className="font-black text-xl tracking-tighter text-slate-900 dark:text-white uppercase transition-colors group-hover:text-blue-600">Career Auto</span>
+              <span className="font-bold text-xl tracking-tight text-slate-900 dark:text-white transition-colors group-hover:text-blue-600 uppercase">LINKUP</span>
             </Link>
+
+            <div className="hidden lg:flex items-center gap-8">
+              {['Features', 'Intelligence', 'Sourcing', 'Pricing'].map(item => (
+                <button key={item} className="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">{item}</button>
+              ))}
+            </div>
           </div>
           
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             {/* Desktop Actions */}
-            <div className="hidden md:flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-3">
               {isAuthenticated ? (
                 <button 
                   onClick={() => {
@@ -48,29 +54,29 @@ const PublicLayout = ({ children }) => {
                     handleNav(path, 'dashboard');
                   }}
                   disabled={loadingAction === 'dashboard'}
-                  className="text-xs font-black text-white bg-blue-600 px-6 py-2.5 rounded-full hover:bg-blue-700 shadow-2xl shadow-blue-600/30 transition-all duration-200 uppercase tracking-widest active:scale-[0.98] flex items-center justify-center min-w-[170px]"
+                  className="text-sm font-semibold text-white bg-blue-600 px-7 py-2.5 rounded-2xl hover:bg-blue-700 shadow-xl shadow-blue-600/20 transition-all active:scale-[0.98] flex items-center gap-2 min-w-[180px] justify-center"
                 >
                   {loadingAction === 'dashboard' ? (
-                    <span className="flex items-center gap-2"><span className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>Loading...</span>
-                  ) : 'Open Dashboard'}
+                    <span className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                  ) : <LayoutDashboard size={18} />}
+                  <span>Open Dashboard</span>
                 </button>
               ) : (
                 <>
                   <button 
                     onClick={() => handleNav('/auth/login', 'login')}
                     disabled={loadingAction === 'login'}
-                    className="text-xs font-black text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-6 py-2.5 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-200 uppercase tracking-widest items-center justify-center min-w-[120px]"
+                    className="text-sm font-semibold text-slate-600 dark:text-slate-300 px-6 py-2.5 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all"
                   >
-                    {loadingAction === 'login' ? 'Wait...' : 'Login'}
+                    {loadingAction === 'login' ? '...' : 'Sign In'}
                   </button>
                   <button 
                     onClick={() => handleNav('/auth/signup', 'signup')}
                     disabled={loadingAction === 'signup'}
-                    className="text-xs font-black text-white bg-blue-600 px-6 py-2.5 rounded-full hover:bg-blue-700 shadow-2xl shadow-blue-600/30 transition-all duration-200 uppercase tracking-widest active:scale-[0.98] flex items-center justify-center min-w-[140px]"
+                    className="text-sm font-semibold text-white bg-slate-900 dark:bg-blue-600 px-7 py-2.5 rounded-2xl hover:opacity-90 transition-all active:scale-[0.98] flex items-center gap-2"
                   >
-                    {loadingAction === 'signup' ? (
-                      <span className="flex items-center gap-2"><span className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>Wait...</span>
-                    ) : 'Sign Up'}
+                    {loadingAction === 'signup' && <span className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>}
+                    <span>Get Started</span>
                   </button>
                 </>
               )}
@@ -79,7 +85,7 @@ const PublicLayout = ({ children }) => {
             {/* Mobile Menu Toggle */}
             <button
               onClick={toggleMenu}
-              className="md:hidden size-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all duration-200"
+              className="md:hidden size-11 rounded-2xl bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:bg-blue-50 transition-all"
             >
               {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
@@ -88,7 +94,7 @@ const PublicLayout = ({ children }) => {
 
         {/* Mobile Dropdown Menu */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-2xl z-[70] animate-in fade-in slide-in-from-top-4 duration-200">
+          <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 shadow-2xl z-[70] animate-in fade-in slide-in-from-top-4 duration-300">
             <div className="flex flex-col p-6 gap-4">
               {isAuthenticated ? (
                 <button 
@@ -97,7 +103,7 @@ const PublicLayout = ({ children }) => {
                     const path = role === 'admin' ? '/platform/admin/dashboard' : (role === 'employer' ? '/platform/employer/dashboard' : '/platform/jobseeker/dashboard');
                     handleNav(path, 'dashboard');
                   }}
-                  className="flex items-center justify-between w-full p-4 rounded-2xl bg-blue-600 text-white font-black uppercase tracking-widest text-xs shadow-lg shadow-blue-500/30"
+                  className="flex items-center justify-between w-full p-4 rounded-2xl bg-blue-600 text-white font-semibold text-sm shadow-lg shadow-blue-500/20"
                 >
                   <div className="flex items-center gap-3">
                     <LayoutDashboard size={18} />
@@ -109,14 +115,14 @@ const PublicLayout = ({ children }) => {
                 <>
                   <button 
                     onClick={() => handleNav('/auth/login', 'login')}
-                    className="flex items-center gap-3 w-full p-4 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-black uppercase tracking-widest text-xs"
+                    className="flex items-center gap-3 w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold text-sm"
                   >
                     <LogIn size={18} />
-                    <span>Login</span>
+                    <span>Sign In</span>
                   </button>
                   <button 
                     onClick={() => handleNav('/auth/signup', 'signup')}
-                    className="flex items-center justify-between w-full p-4 rounded-2xl bg-blue-600 text-white font-black uppercase tracking-widest text-xs shadow-lg shadow-blue-500/30"
+                    className="flex items-center justify-between w-full p-4 rounded-2xl bg-slate-900 text-white font-semibold text-sm shadow-lg shadow-slate-900/20"
                   >
                     <div className="flex items-center gap-3">
                       <UserPlus size={18} />
@@ -126,22 +132,12 @@ const PublicLayout = ({ children }) => {
                   </button>
                 </>
               )}
-              
-              <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4 block">Quick Navigation</span>
-                <div className="grid grid-cols-2 gap-3">
-                  <Link to="/about" onClick={() => setIsMenuOpen(false)} className="text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-blue-600 py-2">About Us</Link>
-                  <Link to="/careers" onClick={() => setIsMenuOpen(false)} className="text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-blue-600 py-2">Careers</Link>
-                  <Link to="/status" onClick={() => setIsMenuOpen(false)} className="text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-blue-600 py-2">Status</Link>
-                  <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-blue-600 py-2">Contact</Link>
-                </div>
-              </div>
             </div>
           </div>
         )}
       </nav>
 
-      <main className="pt-0 mt-0">
+      <main className="min-h-screen">
         {children}
       </main>
 

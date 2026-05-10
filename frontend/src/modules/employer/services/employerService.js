@@ -25,6 +25,11 @@ export const fetchEmployerAnalytics = async (employerId) => {
   return response.data;
 };
 
+export const fetchTopCandidates = async (employerId) => {
+  const response = await apiClient.get(`/employer/top-candidates/${employerId}`);
+  return response.data;
+};
+
 export const updateCandidateStatus = async (applicationId, status) => {
   const response = await apiClient.post('/employer/candidates/status', { application_id: applicationId, status });
   return response.data;

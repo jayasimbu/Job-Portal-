@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { Menu, X, LogOut, Moon, Sun } from 'lucide-react';
-import logo from '../../../assets/logos/career_auto_logo.png';
+import logo from '../../../assets/logos/linkup_logo.png';
 import { useTheme } from '../../../core/context/ThemeContext';
 import { getCurrentUser } from '../../../core/auth/session';
 import { logoutUser } from '../../auth/services/authService';
@@ -13,11 +13,11 @@ const EmployerLayout = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: 'Dashboard', to: '/platform/employer/dashboard', icon: 'dashboard' },
-    { label: 'Post Job', to: '/platform/employer/post-job', icon: 'add_circle' },
-    { label: 'Candidates', to: '/platform/employer/candidates', icon: 'groups' },
-    { label: 'Analytics', to: '/platform/employer/analytics', icon: 'analytics' },
-    { label: 'Settings', to: '/platform/employer/profile', icon: 'settings' },
+    { label: 'Dashboard', to: '/platform/employer/dashboard', icon: 'grid_view' },
+    { label: 'Post a Job', to: '/platform/employer/post-job', icon: 'add_box' },
+    { label: 'Talent Pool', to: '/platform/employer/candidates', icon: 'diversity_3' },
+    { label: 'Analytics', to: '/platform/employer/analytics', icon: 'bar_chart' },
+    { label: 'Profile', to: '/platform/employer/profile', icon: 'business' },
   ];
 
   const handleLogout = async () => {
@@ -28,113 +28,102 @@ const EmployerLayout = ({ children }) => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <div className="h-screen flex flex-col overflow-hidden bg-[#f8faff] dark:bg-[#020617] transition-colors duration-300 font-manrope">
+    <div className="h-screen flex flex-col overflow-hidden bg-slate-50 dark:bg-[#0f172a] transition-colors duration-300 font-sans">
       {/* Top Navbar */}
-      <header className="flex-shrink-0 sticky top-0 z-[70] bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50">
-        <div className="relative max-w-[1400px] mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
+      <header className="flex-shrink-0 sticky top-0 z-[70] bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800/50">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
           
-          {/* Left: Logo & Tag */}
-          <div className="flex items-center gap-3">
-            <Link to="/" className="flex items-center gap-2 group decoration-none">
-              <div className="size-8 bg-blue-600 rounded-lg flex items-center justify-center p-1 transition-transform group-hover:scale-110 shadow-lg shadow-blue-500/20">
-                <img src={logo} alt="L" className="w-full h-full object-cover scale-110" />
+          <div className="flex items-center gap-4">
+            <Link to="/" className="flex items-center gap-3 group decoration-none">
+              <div className="size-10 flex items-center justify-center transition-transform group-hover:scale-110">
+                <img src={logo} alt="LINKUP" className="w-full h-full object-contain" />
               </div>
-              <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-white uppercase hidden sm:inline-block">Career Auto</span>
+              <span className="font-bold text-xl tracking-tight text-slate-900 dark:text-white uppercase hidden sm:inline-block">LINKUP</span>
             </Link>
-            <span className="text-[9px] font-black bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400 px-2.5 py-0.5 rounded-full uppercase tracking-widest hidden xs:inline-block">Employer</span>
+            <div className="h-6 w-px bg-slate-200 dark:bg-slate-800 mx-2 hidden md:block" />
+            <span className="text-[10px] font-bold bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 px-3 py-1 rounded-full uppercase tracking-widest hidden xs:inline-block">Recruiter Hub</span>
           </div>
 
-          {/* Center: Desktop Nav */}
-          <div className="absolute left-1/2 top-0 h-full -translate-x-1/2 hidden md:block">
-            <nav className="flex items-center gap-6 h-full">
-              {navLinks.map((link) => (
-                <NavLink
-                  key={link.to}
-                  to={link.to}
-                  className={({ isActive }) =>
-                    `relative h-full flex items-center px-1 text-[11px] font-black uppercase tracking-widest transition-all duration-300 ease-in-out decoration-none ${
-                      isActive
-                        ? 'text-purple-600 dark:text-purple-400 border-b-[2px] border-purple-600 dark:border-purple-400'
-                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border-b-[2px] border-transparent hover:border-slate-300 dark:hover:border-slate-700'
-                    }`
-                  }
-                >
-                  {link.label}
-                </NavLink>
-              ))}
-            </nav>
-          </div>
+          <nav className="hidden lg:flex items-center gap-8 h-full">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                className={({ isActive }) =>
+                  `relative flex items-center gap-2 py-5 text-sm font-semibold transition-all ${
+                    isActive
+                      ? 'text-blue-600 dark:text-blue-400'
+                      : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  }`
+                }
+              >
+                <span className="material-symbols-outlined text-[20px]">{link.icon}</span>
+                {link.label}
+              </NavLink>
+            ))}
+          </nav>
 
-          {/* Right: Actions */}
-          <div className="flex items-center gap-2 md:gap-4">
+          <div className="flex items-center gap-3">
             <button
               onClick={toggleTheme}
-              className="size-9 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 flex items-center justify-center hover:bg-purple-50 dark:hover:bg-purple-900/30 hover:text-purple-600 transition-all duration-200"
+              className="size-10 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 flex items-center justify-center hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all"
             >
               {isDark ? <Sun size={18} /> : <Moon size={18} />}
             </button>
 
-            <div className="hidden sm:flex items-center gap-3 pl-3 border-l border-slate-200 dark:border-slate-700">
-              <div className="size-9 bg-purple-600 text-white rounded-full flex items-center justify-center font-black text-xs uppercase shadow-lg shadow-purple-500/20">
-                {user?.full_name?.charAt(0) || user?.email?.charAt(0) || 'E'}
+            <div className="hidden sm:flex items-center gap-4 pl-4 border-l border-slate-100 dark:border-slate-800">
+              <div className="flex flex-col items-end mr-1">
+                <span className="text-xs font-bold text-slate-900 dark:text-white truncate max-w-[120px]">
+                  {user?.full_name || user?.email?.split('@')[0] || 'Employer'}
+                </span>
+                <span className="text-[10px] font-medium text-slate-400">Enterprise</span>
               </div>
-              <button 
-                onClick={handleLogout} 
-                className="flex items-center gap-2 text-slate-400 hover:text-red-500 transition-colors group"
-                title="Logout"
-              >
-                <LogOut size={18} className="group-hover:translate-x-0.5 transition-transform" />
+              <button onClick={handleLogout} className="size-10 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-400 hover:text-red-500 transition-all flex items-center justify-center">
+                <LogOut size={18} />
               </button>
             </div>
 
-            {/* Mobile Menu Toggle */}
             <button
               onClick={toggleMenu}
-              className="md:hidden size-9 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-all duration-200"
+              className="lg:hidden size-10 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:bg-blue-50 transition-all"
             >
               {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-xl z-[70] animate-in fade-in slide-in-from-top-4 duration-200">
-            <nav className="flex flex-col p-4 gap-1">
+          <div className="lg:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 shadow-2xl z-[70] animate-in fade-in slide-in-from-top-4 duration-300">
+            <nav className="flex flex-col p-6 gap-2">
               {navLinks.map((link) => (
                 <NavLink
                   key={link.to}
                   to={link.to}
                   onClick={() => setIsMenuOpen(false)}
                   className={({ isActive }) => 
-                    `flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
+                    `flex items-center gap-4 px-4 py-3.5 rounded-2xl text-sm font-semibold transition-all ${
                       isActive 
-                        ? 'bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400' 
+                        ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400' 
                         : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white'
                     }`
                   }
                 >
-                  <span className="material-symbols-outlined text-lg">{link.icon}</span>
+                  <span className="material-symbols-outlined text-xl">{link.icon}</span>
                   {link.label}
                 </NavLink>
               ))}
-              <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between px-4">
+              <div className="mt-4 pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="size-10 bg-purple-600 text-white rounded-full flex items-center justify-center font-black text-sm uppercase">
-                    {user?.full_name?.charAt(0) || user?.email?.charAt(0) || 'E'}
+                  <div className="size-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-sm">
+                    {(user?.full_name || user?.email || 'E')[0].toUpperCase()}
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-xs font-bold text-slate-900 dark:text-white truncate max-w-[150px]">
-                      {user?.full_name || user?.email || 'Employer'}
-                    </span>
-                    <span className="text-[10px] text-slate-500 uppercase tracking-tight">Employer Hub</span>
+                    <span className="text-sm font-semibold text-slate-900 dark:text-white">Account Hub</span>
+                    <span className="text-xs text-slate-500">Sign Out</span>
                   </div>
                 </div>
-                <button 
-                  onClick={handleLogout}
-                  className="size-10 rounded-full bg-red-50 dark:bg-red-900/20 text-red-500 flex items-center justify-center hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors"
-                >
-                  <LogOut size={18} />
+                <button onClick={handleLogout} className="size-11 rounded-2xl bg-red-50 dark:bg-red-900/20 text-red-500 flex items-center justify-center hover:bg-red-100 transition-colors">
+                  <LogOut size={20} />
                 </button>
               </div>
             </nav>
@@ -142,9 +131,8 @@ const EmployerLayout = ({ children }) => {
         )}
       </header>
 
-      {/* Main Content */}
-      <main className="flex-1 overflow-y-auto py-5 px-4 md:px-6 scroll-smooth">
-        <div className="max-w-[1200px] mx-auto h-full">
+      <main className="flex-1 overflow-y-auto py-8 px-6 scroll-smooth bg-white dark:bg-[#0d141b]">
+        <div className="max-w-[1400px] mx-auto h-full">
           {children}
         </div>
       </main>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../../../core/context/ThemeContext';
-import logo from '../../../assets/logos/career_auto_logo.png';
+import logo from '../../../assets/logos/linkup_logo.png';
 import GlobalFooter from '../../../core/components/GlobalFooter';
 import LogoModal from '../../../core/components/LogoModal';
 
@@ -64,13 +64,13 @@ const EmployerShell = ({ active, children }) => {
               className="transition-transform group-hover:scale-110"
               onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.dispatchEvent(new CustomEvent('open-logo-modal')); }}
             >
-              <img src={logo} alt="Career Auto" style={styles.logo} />
+              <img src={logo} alt="LINKUP" style={styles.logo} />
             </div>
             <span 
               onClick={() => navigate('/')}
               className="font-black text-xl text-slate-900 dark:text-white tracking-tighter hover:text-blue-600 transition-colors uppercase cursor-pointer"
             >
-              Career Auto
+              LINKUP
             </span>
             <span style={styles.badge}>Employer</span>
           </div>

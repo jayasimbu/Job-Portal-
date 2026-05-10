@@ -17,6 +17,8 @@ const CandidateProfile = lazy(() => import('./pages/CandidateProfile'));
 const MatchInsights = lazy(() => import('./pages/MatchInsights'));
 const LearningHub = lazy(() => import('./pages/LearningHub'));
 const SearchHistory = lazy(() => import('./pages/SearchHistory'));
+const LearningRoadmap = lazy(() => import('./pages/LearningRoadmap'));
+const GrowthInsights = lazy(() => import('./pages/GrowthInsights'));
 const SkillGapAnalysis = lazy(() => import('./pages/SkillGapAnalysis'));
 
 const Loader = () => (
@@ -46,6 +48,8 @@ const JobSeekerRoutes = () => {
           <Route path="insights" element={<Insights />} />
           <Route path="learning" element={<Learning />} />
           <Route path="learning/hub" element={<LearningHub />} />
+          <Route path="learning/roadmap" element={<LearningRoadmap />} />
+          <Route path="growth" element={<GrowthInsights />} />
           <Route path="profile/gaps" element={<SkillGapAnalysis />} />
           <Route path="notifications" element={<Notifications />} />
           <Route path="search-history" element={<SearchHistory />} />
@@ -64,7 +68,7 @@ const JobSeekerRoutes = () => {
           <Route path="*" element={<Navigate to="dashboard" replace />} />
         </Routes>
       </Suspense>
-    </JobSeekerLayout>
+      </JobSeekerLayout>
   );
 };
 

@@ -6,7 +6,7 @@ import PostJob from './pages/PostJob';
 import Candidates from './pages/Candidates';
 import Analytics from './pages/Analytics';
 import HiringPolicy from './pages/HiringPolicy';
-import InterviewSchedule from './pages/InterviewSchedule';
+import InterviewScheduling from './pages/InterviewScheduling';
 import JobManagement from './pages/JobManagement';
 import BiasFreeJobRequirements from './pages/BiasFreeJobRequirements';
 
@@ -20,7 +20,7 @@ const EmployerRoutes = () => {
       <Route path="candidates" element={<Candidates />} />
       <Route path="analytics" element={<Analytics />} />
       <Route path="hiring-policy" element={<HiringPolicy />} />
-      <Route path="interviews" element={<InterviewSchedule />} />
+      <Route path="interviews" element={<InterviewScheduling />} />
       <Route path="job-management" element={<JobManagement />} />
       <Route path="bias-free" element={<BiasFreeJobRequirements />} />
 

@@ -26,7 +26,7 @@ export const fetchApplications = async (userId) => {
 };
 
 export const applyForJob = async (userId, jobId) => {
-  const response = await apiClient.post('/jobseeker/applications', { user_id: userId, job_id: jobId });
+  const response = await apiClient.post('/jobseeker/applications', { job_id: jobId });
   return response.data;
 };
 
@@ -42,6 +42,11 @@ export const fetchLearningRecommendations = async (userId) => {
 
 export const fetchResumeInsights = async () => {
   const response = await apiClient.get('/jobseeker/resume-insights');
+  return response.data;
+};
+
+export const matchJd = async (payload) => {
+  const response = await apiClient.post('/jobseeker/ats/jd', payload);
   return response.data;
 };
 

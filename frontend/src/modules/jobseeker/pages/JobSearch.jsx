@@ -68,17 +68,16 @@ export default function JobSearch() {
       try {
         const userStr = localStorage.getItem('currentUser') || '{}';
         const user = JSON.parse(userStr);
-        if (!user.email) return;
-        const res = await apiClient.get(`/api/user/search-history?email=${encodeURIComponent(user.email)}`);
-        if (res.data?.success) {
-          setSearchHistory(res.data.searchHistory || []);
-        }
+        if (!user.id) return;
+        
+        const res = await import('../services/jobseekerService').then(m => m.fetchSearchHistory(user.id));
+        setSearchHistory(res.history || []);
       } catch (e) {
         console.error('Failed to fetch search history', e);
       }
     };
 
-    const fetchInitialJobs = async () => {
+    const loadInitialData = async () => {
       setLoading(true);
       setError('');
       try {
@@ -89,7 +88,6 @@ export default function JobSearch() {
         const resp = await fetchRecommendations(user.id);
         const mappedJobs = (resp.recommendations || []).map(job => mapJob(job));
         
-        // Ensure platform is set for the UI
         mappedJobs.forEach(job => { if (!job.platform) job.platform = 'Internal'; });
         
         setJobs(mappedJobs);
@@ -103,7 +101,7 @@ export default function JobSearch() {
     };
 
     fetchHistory();
-    fetchInitialJobs();
+    loadInitialData();
   }, []);
 
   const handleApply = async (job) => {

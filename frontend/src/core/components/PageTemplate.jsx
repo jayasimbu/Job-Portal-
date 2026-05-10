@@ -26,7 +26,7 @@ const PageTemplate = ({ title, subtitle, features = [], steps = [], benefit }) =
           {/* LEFT TEXT */}
           <div>
             <span className="inline-block px-4 py-1.5 rounded-full bg-blue-100/50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] font-black uppercase tracking-widest mb-6">
-              Career Auto Platform
+              LINKUP Platform
             </span>
             <h1 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 leading-tight tracking-tight">{title}</h1>
             <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 font-medium leading-relaxed">{subtitle}</p>

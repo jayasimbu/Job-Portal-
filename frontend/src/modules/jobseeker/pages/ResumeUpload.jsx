@@ -335,7 +335,7 @@ export default function ResumeUpload() {
             )}
 
             {/* Missing keywords */}
-            {result.ats?.missing_keywords?.length > 0 && (
+            {Array.isArray(result.ats?.missing_keywords) && result.ats.missing_keywords.length > 0 && (
               <div className="bg-white dark:bg-[#1a2632] rounded-2xl border border-slate-200 dark:border-slate-700 p-6">
                 <h3 className="font-bold mb-4 flex items-center gap-2 text-orange-600">
                   <span className="material-symbols-outlined">warning</span>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../../assets/logos/career_auto_logo.png';
+import logo from '../../assets/logos/linkup_logo.png';
 
 const LogoModal = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,13 +31,13 @@ const LogoModal = () => {
         <div className="bg-white/5 p-8 rounded-3xl border border-white/10 shadow-2xl">
           <img 
             src={logo} 
-            alt="Career Auto Official Logo" 
+            alt="LINKUP Official Logo" 
             className="max-w-full max-h-[70vh] object-contain rounded-2xl"
           />
         </div>
         
         <div className="text-center">
-          <h2 className="text-2xl font-black text-white tracking-tight">Career Auto</h2>
+          <h2 className="text-2xl font-black text-white tracking-tight">LINKUP</h2>
           <p className="text-white/60 text-sm font-medium mt-1">Refined Branding Identity</p>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logos/career_auto_logo.png';
+import logo from '../../assets/logos/linkup_logo.png';
 
 const GlobalFooter = () => {
   return (
@@ -116,10 +116,10 @@ const GlobalFooter = () => {
         <div className="my-6 border-t border-slate-200 dark:border-slate-800/60 pt-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-4">
             <div className="size-10 bg-blue-600 rounded-full flex shrink-0 items-center justify-center p-2 shadow-sm overflow-hidden" onClick={(e) => { e.stopPropagation(); window.dispatchEvent(new CustomEvent('open-logo-modal')); }}>
-              <img src={logo} alt="Career Auto" className="w-full h-full object-cover scale-110 cursor-pointer" />
+              <img src={logo} alt="LINKUP" className="w-full h-full object-cover scale-110 cursor-pointer" />
             </div>
             <div>
-              <p className="text-sm font-bold text-slate-900 dark:text-white">© 2026 Career Auto Inc.</p>
+              <p className="text-sm font-bold text-slate-900 dark:text-white">© 2026 LINKUP Inc.</p>
               <p className="text-[13px] text-slate-500 mt-1 max-w-lg leading-relaxed">
                 AI-driven career platform connecting learning and hiring.
               </p>

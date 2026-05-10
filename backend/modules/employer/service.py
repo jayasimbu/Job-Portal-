@@ -209,6 +209,21 @@ class EmployerService:
             "top_ats_score": top_score,
         }
 
+    def get_top_candidates(self, employer_id: int, limit: int = 5) -> List[Dict[str, Any]]:
+        jobs = self.list_job_postings(employer_id)
+        active_job_ids = [job.id for job in jobs if job.active]
+        if not active_job_ids:
+            return []
+            
+        all_candidates = []
+        for jid in active_job_ids:
+            ranked = self.rank_applicants(jid)
+            all_candidates.extend(ranked)
+            
+        # Sort by score descending and take top N
+        all_candidates.sort(key=lambda x: x.get("score", 0), reverse=True)
+        return all_candidates[:limit]
+
     def update_candidate_status(self, application_id: int, status: str, employer_id: int = None):
         app_doc = self.applications.find_one({"id": int(application_id)})
         app = doc_to_entity(app_doc)
