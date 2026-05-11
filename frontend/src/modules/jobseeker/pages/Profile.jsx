@@ -1,11 +1,25 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { fetchJobSeekerProfile, upsertJobSeekerProfile, fetchJobSeekerCertificates, uploadCertificate } from '../services/jobseekerService';
+import React, { useEffect, useMemo, useState, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
+import { fetchJobSeekerProfile, upsertJobSeekerProfile, uploadResume } from '../services/jobseekerService';
 import { getCurrentUserId } from '../../../core/auth/session';
 import { useResume } from '../context/ResumeContext';
+import { useToast } from '../../../core/context/ToastContext';
+
+// Import Design System
+import { SectionHeader, ProgressBar, StatCard, SkillChip } from '../components/DesignSystem';
 
 const Profile = () => {
-  const userId = useMemo(() => getCurrentUserId(1), []);
-  const { resumeData } = useResume();
+  const userId = useMemo(() => getCurrentUserId(), []);
+  const location = useLocation();
+  const { showToast } = useToast();
+  const { resumeData, updateResumeData } = useResume();
+  const [activeTab, setActiveTab] = useState(location.state?.activeTab || 'Personal Settings');
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef(null);
+
   const [form, setForm] = useState({
     headline: '',
     skills: '',
@@ -13,43 +27,31 @@ const Profile = () => {
     education_level: '',
     portfolio_url: '',
     github_url: '',
+    bio: '',
   });
-  const [status, setStatus] = useState('');
-  const [certificates, setCertificates] = useState([]);
-  const [uploading, setUploading] = useState(false);
-  const [uploadError, setUploadError] = useState('');
-
-  const topCertificate = useMemo(() => {
-    if (!certificates || certificates.length === 0) return null;
-    return certificates.reduce((prev, current) => 
-      (prev.confidence_score > current.confidence_score) ? prev : current
-    );
-  }, [certificates]);
 
   const loadData = async () => {
+    if (!userId) return;
+    setLoading(true);
     try {
       const response = await fetchJobSeekerProfile(userId);
-      const profile = response?.profile;
-      
-      try {
-        const certsRes = await fetchJobSeekerCertificates();
-        if (certsRes?.certificates) setCertificates(certsRes.certificates);
-      } catch (err) {
-        console.error("No certs found");
+      const prof = response?.profile;
+      if (prof) {
+        setProfile(prof);
+        setForm({
+          headline: prof.headline || '',
+          skills: Array.isArray(prof.skills) ? prof.skills.join(', ') : '',
+          experience_years: prof.experience_years || 0,
+          education_level: prof.education_level || '',
+          portfolio_url: prof.portfolio_url || '',
+          github_url: prof.github_url || '',
+          bio: prof.bio || '',
+        });
       }
-
-      if (!profile) return;
-      
-      setForm({
-        headline: profile.headline || '',
-        skills: Array.isArray(profile.skills) ? profile.skills.join(', ') : '',
-        experience_years: profile.experience_years || 0,
-        education_level: profile.education_level || '',
-        portfolio_url: profile.portfolio_url || '',
-        github_url: profile.github_url || '',
-      });
-    } catch {
-      setStatus('Unable to load profile now.');
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -57,217 +59,248 @@ const Profile = () => {
     loadData();
   }, [userId]);
 
-  const onChange = (key, value) => setForm((prev) => ({ ...prev, [key]: value }));
-
-  const autofillFromResume = () => {
-    if (!resumeData) {
-      setStatus('Please upload a resume in the Dashboard first.');
-      return;
-    }
-    setForm(prev => ({
-      ...prev,
-      skills: resumeData.parsedData?.skills?.join(', ') || prev.skills,
-      experience_years: resumeData.parsedData?.experienceYears || prev.experience_years,
-    }));
-    setStatus('Fields populated from resume analysis. Review and save!');
-  };
-
   const onSave = async () => {
     try {
-      setStatus('');
+      setIsSaving(true);
       await upsertJobSeekerProfile(userId, {
-        headline: form.headline,
-        skills: form.skills
-          .split(',')
-          .map((item) => item.trim())
-          .filter(Boolean),
-        experience_years: Number(form.experience_years) || 0,
-        education_level: form.education_level,
-        portfolio_url: form.portfolio_url,
-        github_url: form.github_url,
+        ...form,
+        skills: form.skills.split(',').map(s => s.trim()).filter(Boolean),
+        experience_years: Number(form.experience_years),
       });
-      setStatus('Profile saved successfully.');
-    } catch {
-      setStatus('Failed to save profile.');
+      showToast('Profile updated successfully! ✅');
+      loadData();
+    } catch (err) {
+      showToast('Failed to update profile ❌');
+    } finally {
+      setIsSaving(false);
     }
   };
 
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    
-    setUploading(true);
-    setUploadError('');
+
     try {
-      if (file.size > 5 * 1024 * 1024) throw new Error("File exceeds 5MB limit");
-      const ext = file.name.split('.').pop().toLowerCase();
-      if (!['pdf', 'jpg', 'jpeg', 'png'].includes(ext)) throw new Error("Only PDF, JPG, PNG allowed");
+      setIsUploading(true);
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('user_id', userId);
       
-      await uploadCertificate(file);
-      await loadData();
+      showToast('Processing resume... 📄');
+      await uploadResume(formData);
+      showToast('Resume synced successfully! ✅');
+      loadData();
     } catch (err) {
-      setUploadError(err.response?.data?.message || err.message || "Failed to upload certificate");
+      showToast('Upload failed ❌');
     } finally {
-      setUploading(false);
-      e.target.value = null; // reset
+      setIsUploading(false);
     }
   };
 
-  const readinessScore = resumeData?.optimizationScore || 45;
+  const performanceMetrics = [
+    { category: 'Frontend', score: 85 },
+    { category: 'Backend', score: 72 },
+    { category: 'AI Architecture', score: 45 },
+    { category: 'Cloud Infrastructure', score: 60 },
+    { category: 'System Design', score: 90 },
+  ];
+
+  if (loading) return <div className="p-20 flex items-center justify-center font-black uppercase tracking-widest text-slate-400">Initializing Profile Context...</div>;
 
   return (
-    <div className="h-full flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-700">
-      <header className="flex-shrink-0 mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-        <div>
-          <h1 className="text-xl font-bold text-slate-900 tracking-tight uppercase">Profile Optimization</h1>
-          <p className="text-sm text-slate-500">Keep your profile complete to improve AI ranking and recommendations.</p>
+    <div className="max-w-7xl mx-auto space-y-10 pb-20 px-4 sm:px-6">
+      {/* PREMIUM HEADER */}
+      <div className="bg-white border border-slate-200 rounded-[2.5rem] overflow-hidden shadow-sm">
+        <div className="h-48 bg-slate-900 relative">
+           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-transparent"></div>
+           <span className="absolute bottom-0 right-0 material-symbols-outlined text-[15rem] text-white opacity-[0.03] rotate-12">fingerprint</span>
         </div>
-        <button 
-          onClick={autofillFromResume}
-          className="h-11 px-6 bg-blue-50 text-blue-600 border border-blue-100 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all flex items-center gap-2 shadow-sm"
-        >
-          <span className="material-symbols-outlined text-sm">magic_button</span>
-          Fill from Resume
-        </button>
-      </header>
-
-      <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar min-h-0">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 pb-10">
-          
-          {/* Main Form */}
-          <section className="lg:col-span-8 bg-white border border-slate-200 rounded-2xl p-8 space-y-8 shadow-sm">
-            <div>
-              <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6">Personal Details</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black text-slate-500 uppercase tracking-wider ml-1">Headline</label>
-                  <input placeholder="e.g. Senior Frontend Engineer" className="w-full h-12 px-4 rounded-xl border border-slate-200 bg-slate-50 text-sm font-bold text-slate-700 outline-none focus:border-blue-600 focus:bg-white transition-all" value={form.headline} onChange={(e) => onChange('headline', e.target.value)} />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black text-slate-500 uppercase tracking-wider ml-1">Skills (Comma Separated)</label>
-                  <input placeholder="React, Node.js, etc." className="w-full h-12 px-4 rounded-xl border border-slate-200 bg-slate-50 text-sm font-bold text-slate-700 outline-none focus:border-blue-600 focus:bg-white transition-all" value={form.skills} onChange={(e) => onChange('skills', e.target.value)} />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black text-slate-500 uppercase tracking-wider ml-1">Experience (Years)</label>
-                  <input type="number" className="w-full h-12 px-4 rounded-xl border border-slate-200 bg-slate-50 text-sm font-bold text-slate-700 outline-none focus:border-blue-600 focus:bg-white transition-all" value={form.experience_years} onChange={(e) => onChange('experience_years', e.target.value)} />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black text-slate-500 uppercase tracking-wider ml-1">Education Level</label>
-                  <input placeholder="e.g. Bachelor's in CS" className="w-full h-12 px-4 rounded-xl border border-slate-200 bg-slate-50 text-sm font-bold text-slate-700 outline-none focus:border-blue-600 focus:bg-white transition-all" value={form.education_level} onChange={(e) => onChange('education_level', e.target.value)} />
-                </div>
-              </div>
+        <div className="px-12 pb-12 flex flex-col md:flex-row items-start md:items-end gap-10 -mt-16 relative z-10">
+          <div className="relative size-40 rounded-[3rem] border-8 border-white shadow-2xl overflow-hidden bg-white shrink-0">
+            <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${userId}`} alt="Avatar" className="size-full object-cover" />
+          </div>
+          <div className="flex-1 space-y-2">
+            <div className="flex items-center gap-4">
+              <h1 className="text-3xl font-black text-slate-900 uppercase tracking-tight">{profile?.name || 'User Profile'}</h1>
+              <span className="px-3 py-1 bg-blue-50 text-blue-600 rounded-xl text-[10px] font-black uppercase tracking-widest border border-blue-100">Verified Professional</span>
             </div>
-
-            <div>
-              <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6">Links & Portfolio</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black text-slate-500 uppercase tracking-wider ml-1">GitHub URL</label>
-                  <input placeholder="github.com/username" className="w-full h-12 px-4 rounded-xl border border-slate-200 bg-slate-50 text-sm font-bold text-slate-700 outline-none focus:border-blue-600 focus:bg-white transition-all" value={form.github_url} onChange={(e) => onChange('github_url', e.target.value)} />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black text-slate-500 uppercase tracking-wider ml-1">Portfolio URL</label>
-                  <input placeholder="yourportfolio.com" className="w-full h-12 px-4 rounded-xl border border-slate-200 bg-slate-50 text-sm font-bold text-slate-700 outline-none focus:border-blue-600 focus:bg-white transition-all" value={form.portfolio_url} onChange={(e) => onChange('portfolio_url', e.target.value)} />
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-4 flex items-center justify-between">
-              <button className="h-12 px-10 bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-500/20 transition-all active:scale-95" onClick={onSave}>
-                Update Profile
-              </button>
-              {status && <span className={`text-[10px] font-black uppercase tracking-widest ${status.includes('Failed') || status.includes('Dashboard') ? 'text-red-500' : 'text-emerald-500'}`}>{status}</span>}
-            </div>
-          </section>
-
-          {/* AI Insights Card */}
-          <aside className="lg:col-span-4 space-y-6">
-            <div className="bg-[#111827] rounded-2xl p-8 text-white space-y-6 shadow-xl">
-               <div className="flex items-center gap-3">
-                  <span className="material-symbols-outlined text-blue-400">auto_fix_high</span>
-                  <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-400">AI Readiness Score</h3>
+            <p className="text-slate-500 font-bold uppercase tracking-[0.1em] text-sm">{form.headline || 'Professional Profile Ready'}</p>
+            <div className="flex items-center gap-6 pt-2">
+               <div className="flex items-center gap-2 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                  <span className="material-symbols-outlined text-sm">location_on</span>
+                  {profile?.location || 'Global Remote'}
                </div>
-               
-               <div className="space-y-2">
-                  <div className="flex justify-between items-end">
-                     <span className="text-4xl font-black">{readinessScore}%</span>
-                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Target: 85%+</span>
-                  </div>
-                  <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-                     <div className="h-full bg-blue-500 rounded-full transition-all duration-1000" style={{ width: `${readinessScore}%` }} />
-                  </div>
-               </div>
-
-               <div className="space-y-4 pt-4 border-t border-white/5">
-                  <p className="text-xs font-bold text-slate-300">Detected Strengths</p>
-                  <div className="flex flex-wrap gap-2">
-                     {(resumeData?.parsedData?.skills || ['React', 'Node.js']).slice(0, 5).map(s => (
-                       <span key={s} className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-[9px] font-black uppercase tracking-widest text-slate-300">{s}</span>
-                     ))}
-                  </div>
+               <div className="flex items-center gap-2 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                  <span className="material-symbols-outlined text-sm">work_history</span>
+                  {form.experience_years} Years Exp
                </div>
             </div>
+          </div>
+          <div className="flex gap-4 pb-2">
+            <button 
+              onClick={onSave}
+              disabled={isSaving}
+              className="px-10 py-4 bg-blue-600 text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-xl shadow-blue-100 hover:bg-blue-700 transition-all active:scale-95"
+            >
+              {isSaving ? 'Saving...' : 'Sync Profile'}
+            </button>
+            <button className="px-10 py-4 bg-white border border-slate-200 text-slate-600 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-slate-50 transition-all active:scale-95">
+              Export CV
+            </button>
+          </div>
+        </div>
+      </div>
 
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-               <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Verification Center</h3>
-               <div className="flex items-center gap-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100">
-                  <span className="material-symbols-outlined text-emerald-600">verified_user</span>
-                  <div>
-                     <p className="text-[10px] font-black text-emerald-600 uppercase tracking-widest leading-none">Identity Verified</p>
-                     <p className="text-[8px] font-bold text-emerald-500 mt-1 uppercase">Boosts application ranking</p>
-                  </div>
-               </div>
-            </div>
-          </aside>
-
-          {/* Certificates Section */}
-          <section className="lg:col-span-12 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm mt-2">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
-              <div>
-                <h3 className="text-lg font-black text-slate-900 tracking-tight uppercase mb-1">Professional Certifications</h3>
-                <p className="text-xs font-bold text-slate-500">AI evaluated certificates can boost your ranking score up to 20 points.</p>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        {/* SIDEBAR: METRICS */}
+        <div className="lg:col-span-4 space-y-10">
+           <section className="bg-white border border-slate-200 rounded-[2.5rem] p-10 space-y-10 shadow-sm">
+              <SectionHeader title="Professional Vitality" icon="monitoring" />
+              <div className="grid grid-cols-2 gap-8">
+                 <StatCard label="App Score" value={88} suffix="%" />
+                 <StatCard label="Response" value={94} suffix="%" color="text-emerald-600" />
               </div>
-              <label className="h-11 px-6 bg-[#111827] text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-blue-600 transition-all cursor-pointer flex items-center justify-center gap-2 shadow-sm">
-                {uploading ? 'Processing AI...' : '+ Upload Certificate'}
-                <input type="file" className="hidden" accept=".pdf,.png,.jpg,.jpeg" onChange={handleFileUpload} disabled={uploading} />
-              </label>
-            </div>
-
-            {certificates.length === 0 ? (
-              <div className="py-12 flex flex-col items-center justify-center border-2 border-dashed border-slate-100 rounded-2xl bg-slate-50/50">
-                <span className="material-symbols-outlined text-4xl text-slate-300 mb-3">workspace_premium</span>
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">No certifications verified yet</p>
+              <div className="space-y-8 pt-4">
+                 {performanceMetrics.map((m, i) => (
+                    <ProgressBar key={i} label={m.category} value={m.score} />
+                 ))}
               </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {certificates.map(cert => (
-                  <div key={cert.id} className="p-5 bg-white border border-slate-200 rounded-xl hover:border-blue-500 transition-all shadow-sm flex flex-col justify-between h-full">
-                    <div className="space-y-4 mb-6">
-                      <div className="flex justify-between items-start">
-                        <div className="size-10 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600">
-                           <span className="material-symbols-outlined">workspace_premium</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                           <span className={`size-2 rounded-full ${cert.verification_status === 'verified' ? 'bg-emerald-500' : 'bg-amber-500'}`}></span>
-                           <span className="text-[9px] font-black uppercase tracking-widest text-slate-400">{cert.verification_status}</span>
-                        </div>
-                      </div>
-                      <div>
-                        <h4 className="text-sm font-black text-slate-900 uppercase tracking-tight leading-tight mb-1">{cert.certificate_name}</h4>
-                        <p className="text-[10px] font-bold text-slate-500 uppercase">{cert.issuer}</p>
-                      </div>
-                    </div>
-                    <div className="pt-4 border-t border-slate-50 flex items-center justify-between">
-                       <span className="text-[9px] font-black text-blue-600 uppercase tracking-widest">AI Confidence: {cert.confidence_score}%</span>
-                       <a href={cert.file_url} target="_blank" rel="noreferrer" className="size-8 rounded-lg bg-slate-50 hover:bg-blue-50 text-slate-400 hover:text-blue-600 transition-all flex items-center justify-center">
-                          <span className="material-symbols-outlined text-sm">visibility</span>
-                       </a>
-                    </div>
-                  </div>
+           </section>
+
+           <section className="bg-white border border-slate-200 rounded-[2.5rem] p-10 space-y-10 shadow-sm">
+              <SectionHeader title="Skill Identity" icon="label" iconColor="text-emerald-600" bgColor="bg-emerald-50" />
+              <div className="flex flex-wrap gap-2">
+                 {form.skills.split(',').map((s, i) => s.trim() && (
+                    <SkillChip key={i} label={s.trim()} variant="success" />
+                 ))}
+              </div>
+           </section>
+        </div>
+
+        {/* MAIN: SETTINGS TABS */}
+        <div className="lg:col-span-8 space-y-10">
+           <div className="bg-white border border-slate-200 rounded-[2.5rem] shadow-sm flex flex-col h-full">
+              <div className="flex border-b border-slate-100 px-8">
+                {['Personal Settings', 'Resume Hub', 'System Preferences'].map(tab => (
+                  <button 
+                    key={tab} 
+                    onClick={() => setActiveTab(tab)}
+                    className={`px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] transition-all relative ${
+                      activeTab === tab ? 'text-blue-600 after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-blue-600' : 'text-slate-400 hover:text-slate-900'
+                    }`}
+                  >
+                    {tab}
+                  </button>
                 ))}
               </div>
-            )}
-          </section>
+
+              <div className="p-12 flex-1">
+                 {activeTab === 'Personal Settings' && (
+                   <div className="space-y-10 animate-in fade-in slide-in-from-right-4 duration-300">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                         <div className="space-y-3">
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Professional Headline</label>
+                            <input 
+                              value={form.headline} 
+                              onChange={(e) => setForm({...form, headline: e.target.value})} 
+                              placeholder="e.g. Senior Full Stack Engineer"
+                              className="w-full h-14 px-6 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-bold text-slate-900 outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-600 transition-all" 
+                            />
+                         </div>
+                         <div className="space-y-3">
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Years of Industry Experience</label>
+                            <input 
+                              type="number" 
+                              value={form.experience_years} 
+                              onChange={(e) => setForm({...form, experience_years: e.target.value})} 
+                              className="w-full h-14 px-6 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-bold text-slate-900 outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-600 transition-all" 
+                            />
+                         </div>
+                      </div>
+                      <div className="space-y-3">
+                         <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Professional Narrative (Bio)</label>
+                         <textarea 
+                           rows={6} 
+                           value={form.bio} 
+                           onChange={(e) => setForm({...form, bio: e.target.value})} 
+                           placeholder="Tell your professional story..."
+                           className="w-full p-6 bg-slate-50 border border-slate-100 rounded-[1.5rem] text-sm font-bold text-slate-900 outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-600 transition-all resize-none"
+                         />
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+                         <div className="space-y-3">
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Github Identity URL</label>
+                            <input 
+                              value={form.github_url} 
+                              onChange={(e) => setForm({...form, github_url: e.target.value})} 
+                              className="w-full h-14 px-6 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-bold text-slate-900 outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-600 transition-all" 
+                            />
+                         </div>
+                         <div className="space-y-3">
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Digital Portfolio</label>
+                            <input 
+                              value={form.portfolio_url} 
+                              onChange={(e) => setForm({...form, portfolio_url: e.target.value})} 
+                              className="w-full h-14 px-6 bg-slate-50 border border-slate-100 rounded-2xl text-sm font-bold text-slate-900 outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-600 transition-all" 
+                            />
+                         </div>
+                      </div>
+                   </div>
+                 )}
+
+                 {activeTab === 'Resume Hub' && (
+                   <div className="space-y-10 animate-in fade-in slide-in-from-right-4 duration-300">
+                      <div className="flex items-center justify-between">
+                         <SectionHeader title="Active Documents" icon="folder_shared" />
+                         <input 
+                           type="file" 
+                           ref={fileInputRef} 
+                           className="hidden" 
+                           accept=".pdf" 
+                           onChange={handleFileUpload} 
+                         />
+                         <button 
+                           onClick={() => fileInputRef.current?.click()}
+                           disabled={isUploading}
+                           className="text-blue-600 text-[10px] font-black uppercase tracking-[0.2em] hover:underline disabled:opacity-50"
+                         >
+                           {isUploading ? 'Syncing...' : '+ Upload New Version'}
+                         </button>
+                      </div>
+
+                      <div className="bg-slate-50 border border-slate-100 rounded-[2rem] p-8 flex items-center justify-between group hover:border-blue-200 transition-all">
+                         <div className="flex items-center gap-6">
+                            <div className="size-16 bg-white rounded-2xl shadow-sm flex items-center justify-center text-blue-600 border border-slate-100">
+                               <span className="material-symbols-outlined text-3xl">description</span>
+                            </div>
+                            <div>
+                               <p className="text-sm font-black text-slate-900 uppercase tracking-tight">{profile?.resume_filename || 'Primary_Professional_CV.pdf'}</p>
+                               <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">Last Synced: {profile?.resume_updated_at || 'Just Now'}</p>
+                            </div>
+                         </div>
+                         <div className="flex gap-4">
+                            <button className="size-10 rounded-xl bg-white border border-slate-100 text-slate-400 flex items-center justify-center hover:text-blue-600 hover:border-blue-100 transition-all shadow-sm">
+                               <span className="material-symbols-outlined text-xl">visibility</span>
+                            </button>
+                            <button className="size-10 rounded-xl bg-white border border-slate-100 text-slate-400 flex items-center justify-center hover:text-blue-600 hover:border-blue-100 transition-all shadow-sm">
+                               <span className="material-symbols-outlined text-xl">cloud_download</span>
+                            </button>
+                         </div>
+                      </div>
+
+                      <div className="p-8 bg-rose-50 border border-rose-100 rounded-[2rem] flex items-center gap-6">
+                         <div className="size-12 bg-rose-500 text-white rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-rose-200">
+                            <span className="material-symbols-outlined">security_update_warning</span>
+                         </div>
+                         <div className="space-y-1">
+                            <h4 className="text-[10px] font-black text-rose-600 uppercase tracking-widest">Privacy Insight</h4>
+                            <p className="text-xs font-bold text-slate-600">Your resume is only visible to recruiters when you explicitly apply for a role.</p>
+                         </div>
+                      </div>
+                   </div>
+                 )}
+              </div>
+           </div>
         </div>
       </div>
     </div>

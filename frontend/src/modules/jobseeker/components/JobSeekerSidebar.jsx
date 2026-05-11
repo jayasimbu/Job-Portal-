@@ -5,12 +5,10 @@ import logo from '../../../assets/logos/linkup_logo.png';
 
 const NAV_ITEMS = [
   { icon: 'grid_view', label: 'Dashboard', to: '/jobseeker/dashboard', end: true },
-  { icon: 'search', label: 'Job Search', to: '/jobseeker/jobs', end: true },
-  { icon: 'bookmark_border', label: 'Saved Jobs', to: '/jobseeker/jobs/saved', end: false },
+  { icon: 'search', label: 'Job Marketplace', to: '/jobseeker/jobs', end: true },
+  { icon: 'compare_arrows', label: 'JD Match', to: '/jobseeker/jd-match', end: false },
   { icon: 'work_outline', label: 'Applications', to: '/jobseeker/applications', end: false },
-  { icon: 'cloud_upload', label: 'Resume Hub', to: '/jobseeker/upload-resume', end: false },
-  { icon: 'insights', label: 'Career Insights', to: '/jobseeker/insights', end: false },
-  { icon: 'auto_awesome', label: 'Growth Path', to: '/jobseeker/learning/roadmap', end: false },
+  { icon: 'school', label: 'Upskilling', to: '/jobseeker/learning', end: false },
   { icon: 'person_outline', label: 'My Profile', to: '/jobseeker/profile', end: false },
 ];
 

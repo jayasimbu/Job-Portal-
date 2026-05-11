@@ -30,10 +30,10 @@ const PublicLayout = ({ children }) => {
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 flex items-center justify-between h-14">
           <div className="flex items-center gap-8">
             <Link to="/" className="flex items-center gap-3 group decoration-none">
-              <div className="size-11 flex items-center justify-center transition-all group-hover:scale-110">
-                <img src={logo} alt="LINKUP" className="w-full h-full object-contain" />
+              <div className="size-10 bg-blue-600 rounded-full flex items-center justify-center transition-all group-hover:scale-110 shadow-lg shadow-blue-500/20">
+                <span className="material-symbols-outlined text-white text-xl">all_inclusive</span>
               </div>
-              <span className="font-bold text-xl tracking-tight text-slate-900 dark:text-white transition-colors group-hover:text-blue-600 uppercase">LINKUP</span>
+              <span className="font-black text-xl tracking-tighter text-slate-900 dark:text-white uppercase">LINKUP</span>
             </Link>
 
             <div className="hidden lg:flex items-center gap-8">

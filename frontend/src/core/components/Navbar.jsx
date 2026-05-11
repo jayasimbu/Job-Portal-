@@ -50,10 +50,10 @@ const Navbar = () => {
         
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 decoration-none group shrink-0">
-          <div className="size-10 bg-slate-900 dark:bg-blue-600 rounded-2xl flex items-center justify-center shadow-xl shadow-slate-900/10 transition-transform group-hover:scale-105">
-            <img src={logo} alt="LINKUP" className="w-8 h-8 object-contain" />
+          <div className="size-10 bg-blue-600 rounded-full flex items-center justify-center shadow-lg shadow-blue-500/20 transition-transform group-hover:scale-105">
+            <span className="material-symbols-outlined text-white text-xl">all_inclusive</span>
           </div>
-          <span className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight uppercase leading-none">
+          <span className="text-2xl font-black text-slate-900 dark:text-white tracking-tighter uppercase leading-none">
             LINKUP
           </span>
         </Link>

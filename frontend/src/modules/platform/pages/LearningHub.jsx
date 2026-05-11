@@ -68,7 +68,7 @@ const LearningHub = () => {
   );
 
   return (
-    <div className="h-full flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="h-full flex flex-col overflow-hidden">
       <header className="flex-shrink-0 mb-6">
         <div className="flex items-center gap-3 mb-1">
            <span className="material-symbols-outlined text-blue-600">auto_awesome</span>
@@ -145,7 +145,7 @@ const LearningHub = () => {
                       <span>{course.progress}%</span>
                     </div>
                     <div className="h-2 bg-slate-100 rounded-full overflow-hidden shadow-inner">
-                      <div className="h-full bg-blue-600 rounded-full transition-all duration-1000" style={{ width: `${course.progress}%` }} />
+                      <div className="h-full bg-blue-600 rounded-full transition-all" style={{ width: `${course.progress}%` }} />
                     </div>
                   </div>
                 )}
@@ -193,7 +193,7 @@ const LearningHub = () => {
                 { name: 'Pluralsight', color: 'bg-rose-50 text-rose-700', icon: 'terminal' }
               ].map(partner => (
                 <div key={partner.name} className={`p-4 rounded-2xl ${partner.color} border border-transparent hover:border-current/20 transition-all cursor-pointer flex flex-col items-center justify-center gap-2 group shadow-sm`}>
-                   <span className="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">{partner.icon}</span>
+                   <span className="material-symbols-outlined text-2xl transition-transform">{partner.icon}</span>
                    <span className="text-[10px] font-black uppercase tracking-widest">{partner.name}</span>
                 </div>
               ))}

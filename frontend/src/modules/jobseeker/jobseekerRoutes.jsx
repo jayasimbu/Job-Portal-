@@ -7,6 +7,7 @@ import JobSearch from './pages/JobSearch';
 import Applications from './pages/Applications';
 import Insights from './pages/Insights';
 import Learning from './pages/Learning';
+import JDMatch from './pages/JDMatch';
 import Notifications from './pages/Notifications';
 
 // New migrated pages from stitch designs
@@ -38,6 +39,7 @@ const JobSeekerRoutes = () => {
           <Route path="profile/resume" element={<ResumeUpload />} />
           <Route path="profile/verify" element={<ProjectVerify />} />
           <Route path="profile/insights" element={<Insights />} />
+          <Route path="jd-match" element={<JDMatch />} />
           <Route path="jobs" element={<JobSearch />} />
           <Route path="jobs/saved" element={<SavedJobs />} />
           <Route path="job-search" element={<JobSearch />} />

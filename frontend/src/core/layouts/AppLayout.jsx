@@ -30,77 +30,59 @@ const AppLayout = ({ children, title }) => {
 
   return (
     <ResumeProvider>
-    <div className={`h-screen flex flex-col overflow-hidden bg-[#f8faff] dark:bg-[#020617] transition-colors duration-300 font-manrope scroll-smooth`}>
+    <div className={`h-screen flex flex-col overflow-hidden bg-[#f8faff] dark:bg-[#020617] transition-colors duration-300 font-manrope`}>
       {/* Platform Header */}
-      <header className="flex-shrink-0 sticky top-0 z-[70] bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50">
-        <div className="relative max-w-[1400px] mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
+      <header className="flex-shrink-0 sticky top-0 z-[70] bg-white border-b border-slate-100 dark:bg-slate-900 dark:border-slate-800">
+        <div className="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
           
-          {/* Left: Logo */}
-          <div className="flex items-center">
-            <Link to="/" className="flex items-center gap-2 group decoration-none">
-              <div className="size-10 flex items-center justify-center transition-transform group-hover:scale-110">
-                <img src={logo} alt="LINKUP" className="w-full h-full object-contain" />
-              </div>
-              <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-white uppercase hidden sm:inline-block">LINKUP</span>
-            </Link>
+          {/* Logo */}
+          <div className="flex items-center gap-3">
+             <div className="size-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-sm">
+                <span className="material-symbols-outlined text-white text-xl">all_inclusive</span>
+             </div>
+             <span className="font-bold text-lg tracking-tighter text-slate-900 dark:text-white uppercase">LINKUP</span>
           </div>
 
-          {/* Center: Desktop Nav */}
-          <div className="absolute left-1/2 top-0 h-full -translate-x-1/2 hidden md:block">
-            <nav className="flex items-center gap-6 h-full">
-              {navLinks.map((link) => (
-                <NavLink
-                  key={link.to}
-                  to={link.to}
-                  className={({ isActive }) => 
-                    `relative h-full flex items-center px-1 text-[11px] font-black uppercase tracking-widest transition-all duration-300 ease-in-out decoration-none ${
-                      isActive 
-                        ? 'text-blue-600 dark:text-blue-400 border-b-[2px] border-blue-600 dark:border-blue-400' 
-                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border-b-[2px] border-transparent hover:border-slate-300 dark:hover:border-slate-700'
-                    }`
-                  }
-                >
-                  {link.label}
-                </NavLink>
-              ))}
-            </nav>
-          </div>
+          {/* Navigation Links */}
+          <nav className="hidden lg:flex items-center gap-6">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                className={({ isActive }) => 
+                  `text-[10px] font-black uppercase tracking-[0.2em] transition-all relative py-2 ${
+                    isActive 
+                      ? 'text-blue-600 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-600' 
+                      : 'text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  }`
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
+          </nav>
 
-          {/* Right: Actions */}
-          <div className="flex items-center gap-2 md:gap-4">
-            <button
-              onClick={toggleTheme}
-              className="size-9 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 flex items-center justify-center hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 transition-all duration-200"
-            >
-              {isDark ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-            
-            <div className="hidden sm:flex items-center gap-3 pl-3 border-l border-slate-200 dark:border-slate-700">
-               <div className="size-9 bg-blue-600 text-white rounded-full flex items-center justify-center font-black text-xs uppercase shadow-lg shadow-blue-500/20">
-                 {user?.full_name?.charAt(0) || user?.email?.charAt(0) || 'U'}
-               </div>
-               <button 
-                onClick={handleLogout} 
-                className="flex items-center gap-2 text-slate-400 hover:text-red-500 transition-colors group"
-                title="Logout"
-               >
-                 <LogOut size={18} className="group-hover:translate-x-0.5 transition-transform" />
-               </button>
-            </div>
-
-            {/* Mobile Menu Toggle */}
-            <button
-              onClick={toggleMenu}
-              className="md:hidden size-9 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all duration-200"
-            >
-              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
+          {/* Right Actions */}
+          <div className="flex items-center gap-4">
+             <button className="size-9 rounded-md bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-blue-600 transition-colors border border-slate-100">
+                <span className="material-symbols-outlined text-lg">notifications</span>
+             </button>
+             
+             <div className="flex items-center gap-3 pl-4 border-l border-slate-100 dark:border-slate-800">
+                <div className="text-right hidden sm:block">
+                   <p className="text-xs font-bold text-slate-900 dark:text-white leading-none mb-1">{user?.full_name || 'Jaya Simbu'}</p>
+                   <p className="text-[10px] font-medium text-slate-400 uppercase tracking-tight leading-none">Jobseeker Account</p>
+                </div>
+                <div className="size-9 bg-slate-800 dark:bg-blue-600 rounded-md flex items-center justify-center text-white font-bold text-sm">
+                   {user?.full_name?.charAt(0) || 'J'}
+                </div>
+             </div>
           </div>
         </div>
 
         {/* Mobile Dropdown Menu */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-xl z-[70] animate-in fade-in slide-in-from-top-4 duration-200">
+          <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-lg z-[70]">
             <nav className="flex flex-col p-4 gap-1">
               {navLinks.map((link) => (
                 <NavLink
@@ -108,7 +90,7 @@ const AppLayout = ({ children, title }) => {
                   to={link.to}
                   onClick={() => setIsMenuOpen(false)}
                   className={({ isActive }) => 
-                    `flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
+                    `flex items-center gap-3 px-4 py-2.5 rounded-md text-sm font-semibold transition-all ${
                       isActive 
                         ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400' 
                         : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white'
@@ -121,21 +103,21 @@ const AppLayout = ({ children, title }) => {
               ))}
               <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between px-4">
                 <div className="flex items-center gap-3">
-                  <div className="size-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-black text-sm uppercase">
+                  <div className="size-9 bg-blue-600 text-white rounded-md flex items-center justify-center font-bold text-xs">
                     {user?.full_name?.charAt(0) || user?.email?.charAt(0) || 'U'}
                   </div>
                   <div className="flex flex-col">
                     <span className="text-xs font-bold text-slate-900 dark:text-white truncate max-w-[150px]">
                       {user?.full_name || user?.email || 'User'}
                     </span>
-                    <span className="text-[10px] text-slate-500 uppercase tracking-tight">Active Session</span>
+                    <span className="text-[10px] text-slate-500 uppercase">Active Session</span>
                   </div>
                 </div>
                 <button 
                   onClick={handleLogout}
-                  className="size-10 rounded-full bg-red-50 dark:bg-red-900/20 text-red-500 flex items-center justify-center hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors"
+                  className="size-9 rounded-md bg-red-50 dark:bg-red-900/20 text-red-500 flex items-center justify-center hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors"
                 >
-                  <LogOut size={18} />
+                  <LogOut size={16} />
                 </button>
               </div>
             </nav>
@@ -144,11 +126,11 @@ const AppLayout = ({ children, title }) => {
       </header>
 
       {/* Main Content Area */}
-      <main className="flex-1 overflow-y-auto py-5 px-4 md:px-6 scroll-smooth">
+      <main className="flex-1 overflow-y-auto py-8 px-4 md:px-8 bg-slate-50/50">
         <div className="max-w-[1200px] mx-auto h-full">
           {title && (
             <div className="mb-6">
-              <h1 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight uppercase">
+              <h1 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight uppercase">
                 {title}
               </h1>
             </div>

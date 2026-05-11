@@ -10,6 +10,11 @@ export const upsertJobSeekerProfile = async (userId, payload) => {
   return response.data;
 };
 
+export const saveResumeAnalysis = async (userId, analysisData) => {
+  const response = await apiClient.post(`/jobseeker/resume/save-analysis/${userId}`, analysisData);
+  return response.data;
+};
+
 export const uploadResume = async (payload) => {
   const response = await apiClient.post('/jobseeker/resume/upload', payload);
   return response.data;

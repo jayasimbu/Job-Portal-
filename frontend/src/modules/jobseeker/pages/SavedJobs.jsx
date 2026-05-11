@@ -73,7 +73,7 @@ export default function SavedJobs() {
   const finalJobs = sortBy === 'Oldest First' ? [...processed].reverse() : processed;
 
   return (
-    <div className="h-full flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="h-full flex flex-col overflow-hidden ">
       {/* Header */}
       <header className="flex-shrink-0 mb-6">
         <div className="flex items-center justify-between gap-4">

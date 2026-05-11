@@ -191,7 +191,7 @@ export default function ResumeInsights() {
           
           {/* ATS SCORE TAB */}
           {activeTab === 'ats' && (
-            <div className="space-y-8 animate-in fade-in duration-300">
+            <div className="space-y-8 ">
               
               {/* Normal ATS Section */}
               <div>
@@ -296,9 +296,9 @@ export default function ResumeInsights() {
 
           {/* SUGGESTIONS TAB */}
           {activeTab === 'suggestions' && (
-            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="space-y-6 ">
               {toastMessage && (
-                <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[120] bg-slate-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-2 text-sm font-bold animate-in fade-in slide-in-from-top-4">
+                <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[120] bg-slate-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-2 text-sm font-bold ">
                   <span className="material-symbols-outlined text-emerald-400">check_circle</span>
                   {toastMessage}
                 </div>
@@ -390,7 +390,7 @@ export default function ResumeInsights() {
 
           {/* Placeholder for other tabs (Content is simplified for static representation) */}
           {activeTab !== 'ats' && activeTab !== 'suggestions' && (
-             <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm text-center py-20 animate-in fade-in duration-300">
+             <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm text-center py-20 ">
                 <span className="material-symbols-outlined text-slate-300 dark:text-slate-600 text-6xl mb-4">construction</span>
                 <h3 className="text-xl font-bold text-slate-600 dark:text-slate-300">Feature Available Soon</h3>
                 <p className="text-slate-500 mt-2">The {tabs.find(t=>t.id===activeTab)?.label} section is currently under development.</p>

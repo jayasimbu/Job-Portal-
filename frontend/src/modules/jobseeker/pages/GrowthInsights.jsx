@@ -18,7 +18,7 @@ export default function GrowthInsights() {
   const detectedSkills = resumeData?.parsedData?.skills || [];
 
   return (
-    <div className="h-full flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="h-full flex flex-col overflow-hidden ">
       <header className="flex-shrink-0 mb-8">
         <div className="flex items-center gap-2 mb-2">
            <span className="material-symbols-outlined text-blue-600 text-sm">trending_up</span>

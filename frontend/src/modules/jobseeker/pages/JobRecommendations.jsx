@@ -37,7 +37,7 @@ const JobRecommendations = () => {
   );
 
   return (
-    <div className="h-full flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="h-full flex flex-col overflow-hidden ">
       <header className="flex-shrink-0 space-y-4 mb-6">
         <div>
           <h1 className="text-xl font-bold text-slate-900 tracking-tight uppercase">Career AI</h1>
