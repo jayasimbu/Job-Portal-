@@ -3,7 +3,7 @@
 ## Summary of Work Completed
 
 ### 1. **Auth Module Integration** ✅
-- **Status**: Copied from FIn1 to Career Auto1/backend/modules/auth/
+- **Status**: Copied from FIn1 to LINKUP1/backend/modules/auth/
 - **Files**: model.py, routes.py, service.py, utils.py, __init__.py
 - **What's Ready**: 
   - User registration endpoint

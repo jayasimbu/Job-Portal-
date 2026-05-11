@@ -36,24 +36,23 @@ const AppLayout = ({ children, title }) => {
         <div className="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
           
           {/* Logo */}
-          <div className="flex items-center gap-3">
-             <div className="size-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-sm">
-                <span className="material-symbols-outlined text-white text-xl">all_inclusive</span>
-             </div>
-             <span className="font-bold text-lg tracking-tighter text-slate-900 dark:text-white uppercase">LINKUP</span>
+          <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/platform/jobseeker/dashboard')}>
+             <img src={logo} alt="LINKUP" className="h-10 w-auto" />
+             <span className="font-bold text-xl tracking-tighter text-slate-900 dark:text-white uppercase">LINKUP</span>
           </div>
 
+
           {/* Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
                 className={({ isActive }) => 
-                  `text-[10px] font-black uppercase tracking-[0.2em] transition-all relative py-2 ${
+                  `text-sm font-semibold transition-all relative py-2 ${
                     isActive 
-                      ? 'text-blue-600 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-600' 
-                      : 'text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                      ? 'text-blue-600 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-600 after:rounded-full' 
+                      : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
                   }`
                 }
               >
@@ -64,20 +63,21 @@ const AppLayout = ({ children, title }) => {
 
           {/* Right Actions */}
           <div className="flex items-center gap-4">
-             <button className="size-9 rounded-md bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-blue-600 transition-colors border border-slate-100">
-                <span className="material-symbols-outlined text-lg">notifications</span>
+             <button className="size-10 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-blue-600 transition-all border border-slate-200 hover:border-blue-200">
+                <span className="material-symbols-outlined text-xl">notifications</span>
              </button>
              
-             <div className="flex items-center gap-3 pl-4 border-l border-slate-100 dark:border-slate-800">
+             <div className="flex items-center gap-3 pl-6 border-l border-slate-100 dark:border-slate-800">
                 <div className="text-right hidden sm:block">
-                   <p className="text-xs font-bold text-slate-900 dark:text-white leading-none mb-1">{user?.full_name || 'Jaya Simbu'}</p>
-                   <p className="text-[10px] font-medium text-slate-400 uppercase tracking-tight leading-none">Jobseeker Account</p>
+                   <p className="text-sm font-bold text-slate-900 dark:text-white leading-tight">{user?.full_name || 'Jaya Simbu'}</p>
+                   <p className="text-[10px] font-bold text-blue-600 uppercase tracking-widest leading-tight">Jobseeker</p>
                 </div>
-                <div className="size-9 bg-slate-800 dark:bg-blue-600 rounded-md flex items-center justify-center text-white font-bold text-sm">
+                <div className="size-10 bg-slate-900 dark:bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-sm shadow-md">
                    {user?.full_name?.charAt(0) || 'J'}
                 </div>
              </div>
           </div>
+
         </div>
 
         {/* Mobile Dropdown Menu */}

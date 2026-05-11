@@ -12,7 +12,13 @@ import {
 } from '../services/jobseekerService';
 import apiClient from '../../../core/api/apiClient';
 
-// Import Design System
+// Import Global UI Components
+import Button from '../../../components/ui/Button';
+import Card, { CardBody, CardHeader, CardFooter } from '../../../components/ui/Card';
+import Badge from '../../../components/ui/Badge';
+import { Heading, Text } from '../../../components/ui/Typography';
+
+// Import Jobseeker Specific Components
 import { 
   StatCard, 
   JobCard, 
@@ -149,167 +155,229 @@ const Dashboard = () => {
     marketFit: 71, 
   };
 
-  const userSkills = resumeData?.parsedData?.skills || dashboardStats?.skills || ['ai', 'bootstrap', 'css3', 'deep learning', 'es6'];
-  const recommendedSkills = (resumeData?.atsDetails?.missing_keywords || resumeInsights?.missing_keywords) || ['System Design', 'Cloud Architecture', 'Unit Testing', 'CI/CD Pipelines'];
+  const userSkills = resumeData?.parsedData?.skills || dashboardStats?.skills || [];
+  const recommendedSkills = (resumeData?.atsDetails?.missing_keywords || resumeInsights?.missing_keywords) || [];
 
   return (
-    <div className="max-w-7xl mx-auto space-y-8 pb-20 px-4 sm:px-6">
+    <div className="max-w-7xl mx-auto space-y-10 pb-20 px-4 sm:px-6">
+      {/* HEADER */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div className="space-y-1">
+          <Heading level={1}>Career Dashboard</Heading>
+          <Text variant="lead">Manage your professional identity and AI insights.</Text>
+        </div>
+        <div className="flex gap-3">
+          <Button variant="outline" onClick={() => navigate('/platform/jobseeker/profile')}>
+            <span className="material-symbols-outlined mr-2">settings</span>
+            Profile Settings
+          </Button>
+          <Button onClick={() => setShowJdModal(true)}>
+            <span className="material-symbols-outlined mr-2">target</span>
+            New JD Match
+          </Button>
+        </div>
+      </div>
+
       {/* ROW 1: SCORE & MANAGEMENT */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* ATS SCORE CARD */}
-        <div className="lg:col-span-7 bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm flex flex-col justify-between min-h-[340px]">
-           <div className="flex justify-between items-start">
+        <Card className="lg:col-span-8">
+          <CardBody className="flex flex-col md:flex-row justify-between gap-8 p-10">
+            <div className="space-y-10 flex-1">
               <div className="flex gap-16">
-                 <StatCard label="ATS SCORE" value={stats.atsScore} suffix="%" />
-                 <StatCard label="MARKET FIT" value={stats.marketFit} suffix="%" color="text-blue-600" />
+                <StatCard label="ATS Optimization" value={stats.atsScore} suffix="%" />
+                <StatCard label="Market Alignment" value={stats.marketFit} suffix="%" color="text-emerald-600" />
               </div>
-              <ATSCircle value={stats.marketFit} size={140} />
-           </div>
 
-           <div className="space-y-6">
-              <div className="flex gap-4">
-                 <button 
-                  onClick={() => setShowJdModal(true)}
-                  className="px-10 py-4 bg-blue-600 text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-2xl shadow-blue-200 hover:bg-blue-700 hover:-translate-y-1 transition-all active:scale-95"
-                 >
-                    Improve Score
-                 </button>
-                 <button 
-                  onClick={() => navigate('/platform/jobseeker/resume-analysis')}
-                  className="px-10 py-4 bg-white border border-slate-200 text-slate-600 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-slate-50 transition-all active:scale-95"
-                 >
-                    View Analysis
-                 </button>
+              <div className="flex flex-wrap gap-4">
+                <Button onClick={() => navigate('/platform/jobseeker/resume-analysis')} size="lg">
+                  Detailed Analysis
+                </Button>
+                <Button variant="secondary" onClick={() => setShowJdModal(true)} size="lg">
+                  Improve Score
+                </Button>
               </div>
-              <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">
-                 LAST ANALYSIS: {resumeData?.optimizationScore ? "JUST NOW" : "TODAY, 10:45 AM"}
-              </p>
-           </div>
-        </div>
+
+              <Text variant="small" className="font-bold uppercase tracking-widest text-slate-400">
+                Last Intelligence Scan: {resumeData?.optimizationScore ? "Just Now" : "Today, 10:45 AM"}
+              </Text>
+            </div>
+            
+            <div className="flex items-center justify-center bg-slate-50 rounded-3xl p-8 border border-slate-100">
+              <ATSCircle value={stats.atsScore} size={160} />
+            </div>
+          </CardBody>
+        </Card>
 
         {/* RESUME MANAGEMENT CARD */}
-        <div className="lg:col-span-5 bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm flex flex-col justify-between min-h-[340px]">
-           <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">RESUME MANAGEMENT</p>
-           
-           <div className="flex-1 flex flex-col items-center justify-center space-y-6">
+        <Card className="lg:col-span-4 bg-blue-600 text-white border-none shadow-blue-200">
+          <CardBody className="flex flex-col justify-between h-full p-10 space-y-8">
+            <div className="space-y-1">
+              <Text variant="small" className="font-bold uppercase tracking-widest text-blue-100">Resume Status</Text>
+              <Heading level={3} className="text-white">Live Intelligence</Heading>
+            </div>
+            
+            <div className="flex-1 flex flex-col items-center justify-center">
               <button 
                 onClick={() => fileInputRef.current?.click()}
                 disabled={isAnalyzing}
-                className="w-full h-24 bg-blue-600 text-white rounded-[1.5rem] flex items-center justify-center gap-4 text-xs font-black uppercase tracking-[0.2em] hover:bg-blue-700 transition-all shadow-2xl shadow-blue-100 disabled:opacity-50 hover:-translate-y-1 active:scale-95"
+                className="group relative flex flex-col items-center justify-center w-full aspect-square bg-white/10 hover:bg-white/20 border-2 border-dashed border-white/30 rounded-3xl transition-all disabled:opacity-50"
               >
                 {isAnalyzing ? (
-                   <div className="flex items-center gap-3">
-                      <div className="size-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      {analysisStep}
-                   </div>
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="size-10 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+                    <Text className="text-white font-bold text-xs uppercase tracking-widest">{analysisStep}</Text>
+                  </div>
                 ) : (
-                   <>
-                      <span className="material-symbols-outlined text-2xl">upload_file</span>
-                      Upload New Resume
-                   </>
+                  <>
+                    <span className="material-symbols-outlined text-4xl mb-2 group-hover:-translate-y-1 transition-transform">cloud_upload</span>
+                    <Text className="text-white font-bold text-xs uppercase tracking-widest text-center">Upload PDF Resume</Text>
+                  </>
                 )}
               </button>
               <input type="file" ref={fileInputRef} className="hidden" accept=".pdf" onChange={handleResumeUpload} />
-           </div>
+            </div>
 
-           <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest text-center">
-              Last upload: {dashboardStats?.resume_updated_at || "May 08, 2026"}
-           </p>
-        </div>
+            <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest text-blue-200">
+              <span>Updated: {dashboardStats?.resume_updated_at || "May 11"}</span>
+              <span className="flex items-center gap-1">
+                <span className="size-2 bg-emerald-400 rounded-full animate-pulse" />
+                Active
+              </span>
+            </div>
+          </CardBody>
+        </Card>
       </div>
 
       {/* ROW 2: SKILLS SECTION */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* YOUR SKILLS */}
-        <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm space-y-10">
-           <SectionHeader title="Your Skills" icon="check_circle" iconColor="text-emerald-500" bgColor="bg-emerald-50" />
-           <div className="flex flex-wrap gap-3">
-              {userSkills.slice(0, 12).map(skill => (
-                <SkillChip key={skill} label={skill} variant="success" />
-              ))}
-           </div>
-        </div>
+        <Card>
+          <CardHeader className="flex justify-between items-center">
+            <SectionHeader title="Your Profile Skills" icon="verified" iconColor="text-emerald-600" bgColor="bg-emerald-50" />
+            <Badge variant="success">{userSkills.length} Total</Badge>
+          </CardHeader>
+          <CardBody className="min-h-[200px]">
+            <div className="flex flex-wrap gap-2.5">
+              {userSkills.length > 0 ? (
+                userSkills.map(skill => (
+                  <SkillChip key={skill} label={skill} variant="success" />
+                ))
+              ) : (
+                <Text variant="small">No skills extracted yet. Please upload a resume.</Text>
+              )}
+            </div>
+          </CardBody>
+        </Card>
 
         {/* RECOMMENDED SKILLS */}
-        <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm space-y-10">
-           <SectionHeader title="Recommended Skills" icon="lightbulb" iconColor="text-rose-500" bgColor="bg-rose-50" />
-           <div className="flex flex-wrap gap-3">
-              {recommendedSkills.slice(0, 12).map(skill => (
-                <SkillChip key={skill} label={skill} variant="danger" />
-              ))}
-           </div>
-        </div>
+        <Card>
+          <CardHeader className="flex justify-between items-center">
+            <SectionHeader title="Missing & Target Skills" icon="lightbulb" iconColor="text-amber-600" bgColor="bg-amber-50" />
+            <Badge variant="warning">Top Growth Area</Badge>
+          </CardHeader>
+          <CardBody className="min-h-[200px]">
+            <div className="flex flex-wrap gap-2.5">
+              {recommendedSkills.length > 0 ? (
+                recommendedSkills.map(skill => (
+                  <SkillChip key={skill} label={skill} variant="warning" />
+                ))
+              ) : (
+                <Text variant="small">Complete your profile to see skill recommendations.</Text>
+              )}
+            </div>
+          </CardBody>
+          <CardFooter className="bg-amber-50/30">
+             <Button variant="ghost" size="sm" className="text-amber-700" onClick={() => navigate('/platform/jobseeker/learning')}>
+                View Learning Roadmap
+                <span className="material-symbols-outlined ml-2 text-sm">arrow_forward</span>
+             </Button>
+          </CardFooter>
+        </Card>
       </div>
 
       {/* ROW 3: RECOMMENDED JOBS */}
-      <div className="space-y-10 pt-4">
-        <div className="flex justify-between items-center">
-           <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">Recommended Jobs</h2>
-           <button 
-            onClick={() => navigate('/platform/jobseeker/jobs')} 
-            className="text-xs font-black text-blue-600 uppercase tracking-[0.2em] hover:underline"
-           >
-              View All Marketplace
-           </button>
+      <div className="space-y-6">
+        <div className="flex justify-between items-end">
+          <div className="space-y-1">
+            <Heading level={2}>AI-Matched Opportunities</Heading>
+            <Text>Jobs curated based on your current skill profile and market fit.</Text>
+          </div>
+          <Button variant="outline" onClick={() => navigate('/platform/jobseeker/jobs')}>
+            Marketplace
+            <span className="material-symbols-outlined ml-2 text-sm">open_in_new</span>
+          </Button>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {recommendations.slice(0, 3).map((job, i) => (
-            <JobCard 
-              key={i} 
-              job={job} 
-              onClick={() => navigate(`/platform/jobseeker/jobs/${job.id}/analysis`)}
-            />
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {recommendations.length > 0 ? (
+            recommendations.slice(0, 3).map((job, i) => (
+              <JobCard 
+                key={i} 
+                job={job} 
+                onClick={() => navigate(`/platform/jobseeker/jobs/${job.id}/analysis`)}
+              />
+            ))
+          ) : (
+            [1, 2, 3].map(i => (
+              <Card key={i} className="animate-pulse">
+                <CardBody className="h-[300px] bg-slate-50/50" />
+              </Card>
+            ))
+          )}
         </div>
       </div>
 
       {/* JD MATCH MODAL */}
       {showJdModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-900/60 backdrop-blur-md">
-           <div className="bg-white rounded-[2.5rem] p-12 w-full max-w-2xl shadow-2xl space-y-10 animate-in fade-in zoom-in duration-300">
-              <div className="flex justify-between items-center">
-                 <SectionHeader title="JD Target Analysis" icon="target" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
+           <Card className="w-full max-w-2xl shadow-2xl animate-in fade-in zoom-in duration-300">
+              <CardHeader className="flex justify-between items-center">
+                 <SectionHeader title="Targeted JD Analysis" icon="ads_click" />
                  <button 
                   onClick={() => setShowJdModal(false)} 
-                  className="material-symbols-outlined text-slate-400 hover:text-slate-900 transition-colors"
+                  className="size-8 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors"
                  >
-                    close
+                    <span className="material-symbols-outlined text-slate-400">close</span>
                  </button>
-              </div>
+              </CardHeader>
               
-              <div className="space-y-4">
-                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Paste Job Description</label>
-                 <textarea 
-                   rows={8} 
-                   value={jdText}
-                   onChange={(e) => setJdText(e.target.value)}
-                   className="w-full p-8 bg-slate-50 border border-slate-100 rounded-[1.5rem] text-sm font-medium outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-600 transition-all resize-none shadow-inner"
-                   placeholder="Paste the full job description here to see your exact match percentage..."
-                 />
-              </div>
+              <CardBody className="space-y-6">
+                 <div className="space-y-2">
+                    <Text variant="small" className="font-bold uppercase tracking-widest text-slate-500">Job Description Content</Text>
+                    <textarea 
+                      rows={10} 
+                      value={jdText}
+                      onChange={(e) => setJdText(e.target.value)}
+                      className="w-full p-6 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-medium outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-600 transition-all resize-none"
+                      placeholder="Paste the job description here to see your exact match score..."
+                    />
+                 </div>
+              </CardBody>
 
-              <div className="flex gap-4 pt-4">
-                 <button 
+              <CardFooter className="flex gap-4">
+                 <Button 
                   onClick={handleJdMatch}
                   disabled={isMatching}
-                  className="flex-1 py-5 bg-blue-600 text-white rounded-2xl text-xs font-black uppercase tracking-[0.2em] hover:bg-blue-700 transition-all shadow-2xl shadow-blue-100 active:scale-95 disabled:opacity-50"
+                  className="flex-1"
+                  size="lg"
                  >
                    {isMatching ? (
                      <div className="flex items-center justify-center gap-3">
                         <div className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        Calculating Match...
+                        Analyzing Match...
                      </div>
                    ) : 'Start Intelligence Scan'}
-                 </button>
-                 <button 
+                 </Button>
+                 <Button 
+                  variant="secondary"
                   onClick={() => setShowJdModal(false)} 
-                  className="px-10 py-5 bg-slate-100 text-slate-600 rounded-2xl text-xs font-black uppercase tracking-[0.2em] hover:bg-slate-200 transition-all active:scale-95"
+                  size="lg"
                  >
                     Cancel
-                 </button>
-              </div>
-           </div>
+                 </Button>
+              </CardFooter>
+           </Card>
         </div>
       )}
     </div>

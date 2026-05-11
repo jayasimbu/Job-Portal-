@@ -161,7 +161,7 @@ def fetch_local_jobs(query: str, location: str) -> list:
             if matches_query and matches_loc:
                 results.append({
                     "id": f"int_db_{j.get('id', int(time.time()))}",
-                    "platform": "Career Auto (Local)",
+                    "platform": "LINKUP (Local)",
                     "title": j.get("title", "Unknown"),
                     "company": j.get("company", "Unknown"),
                     "location": j.get("location", "Remote"),

@@ -18,7 +18,7 @@ def seed_users():
         # Admin
         {
             "id": 1,
-            "email": "admin@careerauto.com",
+            "email": "admin@LINKUP.com",
             "first_name": "System",
             "last_name": "Administrator",
             "role": "admin",

@@ -1,21 +1,21 @@
 Traceback (most recent call last):
   File "<string>", line 3, in <module>
-  File "E:\Desktop\Antigravity\Final Sem Project Anti\Career Auto1\backend\main.py", line 1, in <module>
+  File "E:\Desktop\Antigravity\Final Sem Project Anti\LINKUP1\backend\main.py", line 1, in <module>
     from fastapi import FastAPI
-  File "E:\Desktop\Antigravity\Final Sem Project Anti\Career Auto1\backend\venv\Lib\site-packages\fastapi\__init__.py", line 7, in <module>
+  File "E:\Desktop\Antigravity\Final Sem Project Anti\LINKUP1\backend\venv\Lib\site-packages\fastapi\__init__.py", line 7, in <module>
     from .applications import FastAPI as FastAPI
-  File "E:\Desktop\Antigravity\Final Sem Project Anti\Career Auto1\backend\venv\Lib\site-packages\fastapi\applications.py", line 10, in <module>
+  File "E:\Desktop\Antigravity\Final Sem Project Anti\LINKUP1\backend\venv\Lib\site-packages\fastapi\applications.py", line 10, in <module>
     from fastapi import routing
-  File "E:\Desktop\Antigravity\Final Sem Project Anti\Career Auto1\backend\venv\Lib\site-packages\fastapi\routing.py", line 34, in <module>
+  File "E:\Desktop\Antigravity\Final Sem Project Anti\LINKUP1\backend\venv\Lib\site-packages\fastapi\routing.py", line 34, in <module>
     from fastapi import params
-  File "E:\Desktop\Antigravity\Final Sem Project Anti\Career Auto1\backend\venv\Lib\site-packages\fastapi\params.py", line 8, in <module>
+  File "E:\Desktop\Antigravity\Final Sem Project Anti\LINKUP1\backend\venv\Lib\site-packages\fastapi\params.py", line 8, in <module>
     from fastapi.openapi.models import Example
-  File "E:\Desktop\Antigravity\Final Sem Project Anti\Career Auto1\backend\venv\Lib\site-packages\fastapi\openapi\models.py", line 5, in <module>
+  File "E:\Desktop\Antigravity\Final Sem Project Anti\LINKUP1\backend\venv\Lib\site-packages\fastapi\openapi\models.py", line 5, in <module>
     from fastapi._compat import with_info_plain_validator_function
-  File "E:\Desktop\Antigravity\Final Sem Project Anti\Career Auto1\backend\venv\Lib\site-packages\fastapi\_compat\__init__.py", line 1, in <module>
+  File "E:\Desktop\Antigravity\Final Sem Project Anti\LINKUP1\backend\venv\Lib\site-packages\fastapi\_compat\__init__.py", line 1, in <module>
     from .shared import PYDANTIC_VERSION_MINOR_TUPLE as PYDANTIC_VERSION_MINOR_TUPLE
-  File "E:\Desktop\Antigravity\Final Sem Project Anti\Career Auto1\backend\venv\Lib\site-packages\fastapi\_compat\shared.py", line 17, in <module>
+  File "E:\Desktop\Antigravity\Final Sem Project Anti\LINKUP1\backend\venv\Lib\site-packages\fastapi\_compat\shared.py", line 17, in <module>
     from fastapi.types import UnionType
-  File "E:\Desktop\Antigravity\Final Sem Project Anti\Career Auto1\backend\venv\Lib\site-packages\fastapi\types.py", line 7, in <module>
+  File "E:\Desktop\Antigravity\Final Sem Project Anti\LINKUP1\backend\venv\Lib\site-packages\fastapi\types.py", line 7, in <module>
     from pydantic.main import IncEx as IncEx
-ImportError: cannot import name 'IncEx' from 'pydantic.main' (E:\Desktop\Antigravity\Final Sem Project Anti\Career Auto1\backend\venv\Lib\site-packages\pydantic\main.cp311-win_amd64.pyd)
+ImportError: cannot import name 'IncEx' from 'pydantic.main' (E:\Desktop\Antigravity\Final Sem Project Anti\LINKUP1\backend\venv\Lib\site-packages\pydantic\main.cp311-win_amd64.pyd)

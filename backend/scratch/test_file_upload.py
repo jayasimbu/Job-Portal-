@@ -23,7 +23,7 @@ def test_resume_file_upload():
     # 2. Find a PDF
     pdf_path = None
     # Check common locations or search
-    pdf_path = "c:/Users/JAYASIMBU/Downloads/Career Auto1/Career Auto1/database/jobseeker/Files/test@example.com/resume.pdf"
+    pdf_path = "c:/Users/JAYASIMBU/Downloads/LINKUP1/LINKUP1/database/jobseeker/Files/test@example.com/resume.pdf"
     if not os.path.exists(pdf_path):
         print(f"[SKIP] PDF not found at {pdf_path}")
         return

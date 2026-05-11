@@ -28,7 +28,7 @@ def main():
     if len(sys.argv) > 1:
         pdf_path = sys.argv[1]
     else:
-        pdf_path = r"c:\Users\JAYASIMBU\Downloads\Career Auto1\Career Auto1\Jayasimbu Jayamani (Java).pdf"
+        pdf_path = r"c:\Users\JAYASIMBU\Downloads\LINKUP1\LINKUP1\Jayasimbu Jayamani (Java).pdf"
     
     if not os.path.exists(pdf_path):
         print(f"Error: PDF file not found at {pdf_path}")

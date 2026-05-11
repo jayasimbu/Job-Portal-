@@ -5,7 +5,13 @@ import { useToast } from '../../../core/context/ToastContext';
 import { fetchRecommendations, applyForJob } from '../../jobseeker/services/jobseekerService';
 import { getCurrentUserId } from '../../../core/auth/session';
 
-// Import Design System
+// Import Global UI Components
+import Button from '../../../components/ui/Button';
+import Card, { CardBody } from '../../../components/ui/Card';
+import Badge from '../../../components/ui/Badge';
+import { Heading, Text } from '../../../components/ui/Typography';
+
+// Import Jobseeker Specific Components
 import { JobCard, FilterDropdown, SectionHeader } from '../../jobseeker/components/DesignSystem';
 
 const Jobs = () => {
@@ -85,77 +91,76 @@ const Jobs = () => {
   };
 
   const SkeletonCard = () => (
-    <div className="p-8 bg-white border border-slate-100 rounded-[2.5rem] animate-pulse shadow-sm h-64" />
+    <Card className="animate-pulse">
+      <CardBody className="h-64 bg-slate-50/50" />
+    </Card>
   );
 
   return (
     <div className="max-w-7xl mx-auto space-y-10 pb-20 px-4 sm:px-6">
-      <header className="space-y-10">
-        <div className="flex items-end justify-between">
-          <div className="space-y-1">
-             <h1 className="text-3xl font-black tracking-tight text-slate-900 uppercase">Job Marketplace</h1>
-             <p className="text-slate-400 font-black uppercase tracking-[0.2em] text-[10px]">Discover roles optimized for your professional profile</p>
-          </div>
-          <div className="text-right hidden sm:block">
-             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">Intelligence Match</span>
-             <span className="text-sm font-black text-blue-600 uppercase tracking-tight">{filteredJobs.length} Positions Found</span>
-          </div>
+      {/* HEADER */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div className="space-y-1">
+          <Heading level={1}>Job Marketplace</Heading>
+          <Text variant="lead">Discover roles optimized for your professional profile.</Text>
         </div>
+        <Badge variant="primary" className="py-1.5 px-4">
+          {filteredJobs.length} Positions Available
+        </Badge>
+      </div>
 
-        {/* Search & Filters */}
-        <div className="bg-white p-4 rounded-[2rem] border border-slate-200 shadow-sm space-y-4">
-           <div className="flex flex-col lg:flex-row gap-4">
-              <div className="flex-1 h-14 px-6 bg-slate-50 border border-slate-100 rounded-2xl flex items-center gap-4 group focus-within:ring-4 focus-within:ring-blue-50 focus-within:border-blue-600 transition-all">
-                 <span className="material-symbols-outlined text-slate-400 group-focus-within:text-blue-600">search</span>
-                 <input 
-                   type="text" 
-                   placeholder="Search roles, companies, or industry keywords..." 
-                   className="w-full bg-transparent text-sm font-bold text-slate-700 placeholder:text-slate-300 outline-none"
-                   value={search}
-                   onChange={(e) => setSearch(e.target.value)}
-                   onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-                 />
-              </div>
-              <button 
-                onClick={() => handleSearch()}
-                className="h-14 px-10 bg-slate-900 text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-blue-600 transition-all shadow-xl shadow-slate-100"
-              >
-                 Find Opportunities
-              </button>
-           </div>
+      {/* Search & Filters */}
+      <Card className="p-2">
+        <CardBody className="space-y-4">
+          <div className="flex flex-col lg:flex-row gap-4">
+            <div className="flex-1 h-14 px-6 bg-slate-50 border border-slate-200 rounded-2xl flex items-center gap-4 group focus-within:ring-4 focus-within:ring-blue-50 focus-within:border-blue-600 transition-all">
+              <span className="material-symbols-outlined text-slate-400 group-focus-within:text-blue-600">search</span>
+              <input 
+                type="text" 
+                placeholder="Search roles, companies, or industry keywords..." 
+                className="w-full bg-transparent text-sm font-semibold text-slate-700 placeholder:text-slate-400 outline-none"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+              />
+            </div>
+            <Button onClick={() => handleSearch()} size="lg" className="px-10">
+              Find Opportunities
+            </Button>
+          </div>
 
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <FilterDropdown 
-                label="Location" 
-                value={filters.location} 
-                icon="location_on"
-                options={['Any Location', 'Remote', 'Chennai', 'Bangalore', 'Hyderabad', 'Mumbai', 'Global']}
-                onChange={(v) => setFilters({...filters, location: v})}
-              />
-              <FilterDropdown 
-                label="Work Mode" 
-                value={filters.workMode} 
-                icon="home_work"
-                options={['Any Mode', 'Full-time', 'Contract', 'Hybrid', 'Freelance']}
-                onChange={(v) => setFilters({...filters, workMode: v})}
-              />
-              <FilterDropdown 
-                label="Job Type" 
-                value={filters.jobType} 
-                icon="badge"
-                options={['Any Type', 'Permanent', 'Internship', 'Advisory']}
-                onChange={(v) => setFilters({...filters, jobType: v})}
-              />
-              <FilterDropdown 
-                label="Experience" 
-                value={filters.experience} 
-                icon="bolt"
-                options={['Any Experience', 'Entry Level', 'Mid Senior', 'Director', 'Founder']}
-                onChange={(v) => setFilters({...filters, experience: v})}
-              />
-           </div>
-        </div>
-      </header>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <FilterDropdown 
+              label="Location" 
+              value={filters.location} 
+              icon="location_on"
+              options={['Any Location', 'Remote', 'Chennai', 'Bangalore', 'Hyderabad', 'Mumbai', 'Global']}
+              onChange={(v) => setFilters({...filters, location: v})}
+            />
+            <FilterDropdown 
+              label="Work Mode" 
+              value={filters.workMode} 
+              icon="home_work"
+              options={['Any Mode', 'Full-time', 'Contract', 'Hybrid', 'Freelance']}
+              onChange={(v) => setFilters({...filters, workMode: v})}
+            />
+            <FilterDropdown 
+              label="Job Type" 
+              value={filters.jobType} 
+              icon="badge"
+              options={['Any Type', 'Permanent', 'Internship', 'Advisory']}
+              onChange={(v) => setFilters({...filters, jobType: v})}
+            />
+            <FilterDropdown 
+              label="Experience" 
+              value={filters.experience} 
+              icon="bolt"
+              options={['Any Experience', 'Entry Level', 'Mid Senior', 'Director', 'Founder']}
+              onChange={(v) => setFilters({...filters, experience: v})}
+            />
+          </div>
+        </CardBody>
+      </Card>
 
       <div className="flex-1">
         {loading ? (
@@ -165,7 +170,7 @@ const Jobs = () => {
             <SkeletonCard />
           </div>
         ) : filteredJobs.length > 0 ? (
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 pb-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
             {filteredJobs.map(job => (
               <JobCard 
                 key={job.id} 
@@ -177,20 +182,20 @@ const Jobs = () => {
             ))}
           </div>
         ) : (
-          <div className="bg-white border border-slate-200 rounded-[2.5rem] p-20 flex flex-col items-center justify-center text-center space-y-6 shadow-sm border-dashed">
-            <div className="size-24 rounded-[3rem] bg-slate-50 flex items-center justify-center text-slate-300">
-               <span className="material-symbols-outlined text-5xl">search_off</span>
+          <div className="bg-white border border-slate-200 border-dashed rounded-[2.5rem] p-20 flex flex-col items-center justify-center text-center space-y-6">
+            <div className="size-20 bg-slate-50 rounded-full flex items-center justify-center text-slate-300">
+               <span className="material-symbols-outlined text-4xl">search_off</span>
             </div>
             <div className="space-y-2">
-               <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">No Matches Found</h3>
-               <p className="text-sm font-bold text-slate-400 max-w-xs mx-auto">Try broadening your search or adjusting your filters to discover more roles.</p>
+               <Heading level={3}>No Matches Found</Heading>
+               <Text className="max-w-xs mx-auto">Try broadening your search or adjusting your filters to discover more roles.</Text>
             </div>
-            <button 
+            <Button 
+              variant="secondary"
               onClick={() => { setSearch(''); setFilters({location:'Any Location', workMode:'Any Mode', jobType:'Any Type', experience:'Any Experience'}); setFilteredJobs(allJobs); }}
-              className="px-10 py-4 bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest rounded-2xl hover:bg-blue-600 transition-all"
             >
                Reset Intelligence Filter
-            </button>
+            </Button>
           </div>
         )}
       </div>

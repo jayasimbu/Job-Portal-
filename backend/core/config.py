@@ -28,7 +28,7 @@ class Settings(BaseSettings):
     GZIP_MIN_SIZE: int = 1024
     
     # MongoDB settings
-    DATABASE_URL: str = os.getenv("MONGO_URL", os.getenv("DATABASE_URL", "mongodb://localhost:27017/careerauto"))
+    DATABASE_URL: str = os.getenv("MONGO_URL", os.getenv("DATABASE_URL", "mongodb://localhost:27017/LINKUP"))
     
     # Security settings
     SECRET_KEY: str = "your-secret-key-here-change-in-production"

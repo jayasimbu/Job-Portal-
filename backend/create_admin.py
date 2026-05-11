@@ -5,7 +5,7 @@ import secrets
 
 def create_admin():
     db = get_database()
-    email = "admin@careerauto.com"
+    email = "admin@LINKUP.com"
     password = "hashed_password" 
     
     users_collection = db["users"]

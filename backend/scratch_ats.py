@@ -2,12 +2,12 @@ import sys
 import os
 import pdfplumber
 
-sys.path.append(os.path.abspath('c:/Users/JAYASIMBU/Downloads/Career Auto1/Career Auto1/backend'))
+sys.path.append(os.path.abspath('c:/Users/JAYASIMBU/Downloads/LINKUP1/LINKUP1/backend'))
 
 from modules.jobseeker.resume_parser import ResumeParser
 from ai_engine.ats_scoring.scorer import ATSScorer
 
-pdf_path = r'c:\Users\JAYASIMBU\Downloads\Career Auto1\Career Auto1\Jayasimbu Jayamani (Java).pdf'
+pdf_path = r'c:\Users\JAYASIMBU\Downloads\LINKUP1\LINKUP1\Jayasimbu Jayamani (Java).pdf'
 
 print('Parsing PDF...')
 text = ''

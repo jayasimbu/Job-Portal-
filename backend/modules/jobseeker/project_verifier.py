@@ -76,7 +76,7 @@ def _github_api(path: str, token: Optional[str] = None) -> Optional[dict]:
         import requests
         headers = {
             "Accept": "application/vnd.github+json",
-            "User-Agent": "CareerAuto1-Verifier/1.0",
+            "User-Agent": "LINKUP-Verifier/1.0",
         }
         if token:
             headers["Authorization"] = f"Bearer {token}"
@@ -99,7 +99,7 @@ def _github_api_list(path: str, token: Optional[str] = None, per_page: int = 30)
         import requests
         headers = {
             "Accept": "application/vnd.github+json",
-            "User-Agent": "CareerAuto1-Verifier/1.0",
+            "User-Agent": "LINKUP-Verifier/1.0",
         }
         if token:
             headers["Authorization"] = f"Bearer {token}"
@@ -126,7 +126,7 @@ def _check_live_demo(url: str) -> DimensionResult:
     try:
         import requests
         resp = requests.head(url, allow_redirects=True, timeout=8,
-                             headers={"User-Agent": "CareerAuto1-Verifier/1.0"})
+                             headers={"User-Agent": "LINKUP-Verifier/1.0"})
         if resp.status_code < 400:
             return {"score": 10, "max_score": 10, "label": "Live Demo",
                     "details": f"✅ Project is deployed (HTTP {resp.status_code})."}

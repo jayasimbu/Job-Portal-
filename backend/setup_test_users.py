@@ -8,7 +8,7 @@ def setup_test_users():
     
     users = [
         {
-            "email": "admin@careerauto.com",
+            "email": "admin@LINKUP.com",
             "password": "Admin@2026Secure",
             "role": "admin",
             "first_name": "System",

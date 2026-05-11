@@ -59,8 +59,8 @@ print("1️⃣  ADMIN LOGIN + DASHBOARD")
 print(DIVIDER)
 
 # Try both admin accounts
-admin_token = login("admin@careerauto.com", "Admin@2026Secure")
-admin_email = "admin@careerauto.com"
+admin_token = login("admin@LINKUP.com", "Admin@2026Secure")
+admin_email = "admin@LINKUP.com"
 if not admin_token:
     admin_token = login("demo.admin@example.com")
     admin_email = "demo.admin@example.com"
@@ -138,7 +138,7 @@ if employer_token:
     job_payload = {
         "employer_id": employer_user_id or 0,
         "title": "E2E Test Engineer",
-        "company_name": "Career Auto Test Corp",
+        "company_name": "LINKUP Test Corp",
         "location": "Chennai, India",
         "employment_type": "Full-time",
         "experience_level": "Mid-level",

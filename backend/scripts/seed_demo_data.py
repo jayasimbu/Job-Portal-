@@ -100,7 +100,7 @@ def _ensure_employer_profile(employer_service: EmployerService, employer_id: int
     employer_service.upsert_company_profile(
         employer_id,
         {
-            "company_name": "Career Auto Demo Inc",
+            "company_name": "LINKUP Demo Inc",
             "website": "https://demo.example.com",
             "description": "Demo employer profile for product walkthrough",
             "verified": True,

@@ -11,7 +11,7 @@ from core.config import settings
 from core.email_service import EmailService
 
 def verify_system():
-    print("--- Career Auto1 Auth System Verification ---\n")
+    print("--- LINKUP1 Auth System Verification ---\n")
     
     # 1. Check Settings
     print(f"[OK] SMTP Host: {settings.SMTP_HOST}")

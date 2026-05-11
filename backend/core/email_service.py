@@ -31,12 +31,12 @@ class EmailService:
     @staticmethod
     def send_verification_email(email: str, token: str):
         verification_link = f"{settings.VERIFICATION_URL}?token={token}"
-        subject = "Career Auto1 - Verify Your Email"
+        subject = "LINKUP1 - Verify Your Email"
         html = f"""
         <html>
             <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
                 <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
-                    <h2 style="color: #2563eb;">Welcome to Career Auto1!</h2>
+                    <h2 style="color: #2563eb;">Welcome to LINKUP1!</h2>
                     <p>Thank you for signing up. Please verify your email address to activate your account.</p>
                     <a href="{verification_link}" style="display: inline-block; padding: 12px 24px; background-color: #2563eb; color: #fff; text-decoration: none; border-radius: 5px; font-weight: bold;">Verify Email Address</a>
                     <p>Or copy and paste this link in your browser:</p>
@@ -52,7 +52,7 @@ class EmailService:
     @staticmethod
     def send_password_reset_email(email: str, token: str):
         reset_link = f"{settings.RESET_PASSWORD_URL}?token={token}"
-        subject = "Career Auto1 - Reset Your Password"
+        subject = "LINKUP1 - Reset Your Password"
         html = f"""
         <html>
             <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
@@ -80,7 +80,7 @@ class EmailService:
             "reviewing": ("👀 Under Review", "#ca8a04", "Your application is currently being reviewed by the hiring team."),
         }
         title, color, detail = status_display.get(new_status, ("Status Update", "#6b7280", f"Your application status has been updated to: {new_status}"))
-        subject = f"Career Auto — {title} for {job_title}"
+        subject = f"LINKUP — {title} for {job_title}"
         html = f"""
         <html>
             <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
@@ -94,7 +94,7 @@ class EmailService:
                     </div>
                     <a href="http://localhost:5173/jobseeker/applications" style="display: inline-block; padding: 12px 24px; background-color: #2563eb; color: #fff; text-decoration: none; border-radius: 5px; font-weight: bold;">View in Portal</a>
                     <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-                    <p style="font-size: 0.8em; color: #999;">This is an automated notification from Career Auto.</p>
+                    <p style="font-size: 0.8em; color: #999;">This is an automated notification from LINKUP.</p>
                 </div>
             </body>
         </html>

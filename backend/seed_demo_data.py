@@ -98,19 +98,19 @@ import uuid
 
 demo_logs = [
     {"level": "INFO",    "category": "auth",   "message": "New user registered: priya@example.com",         "user_email": "priya@example.com"},
-    {"level": "INFO",    "category": "admin",  "message": "Company 'TCS Digital' verified by admin",        "user_email": "admin@careerauto.com"},
-    {"level": "INFO",    "category": "job",    "message": "Job 'Full Stack Developer' approved",            "user_email": "admin@careerauto.com"},
+    {"level": "INFO",    "category": "admin",  "message": "Company 'TCS Digital' verified by admin",        "user_email": "admin@LINKUP.com"},
+    {"level": "INFO",    "category": "job",    "message": "Job 'Full Stack Developer' approved",            "user_email": "admin@LINKUP.com"},
     {"level": "INFO",    "category": "resume", "message": "Resume uploaded by Rahul Kumar",                 "user_email": "rahul@example.com"},
     {"level": "INFO",    "category": "job",    "message": "Application submitted for Data Analyst",         "user_email": "rahul@example.com"},
-    {"level": "WARNING", "category": "admin",  "message": "Employer 'TestCorp' suspended for policy violation", "user_email": "admin@careerauto.com"},
+    {"level": "WARNING", "category": "admin",  "message": "Employer 'TestCorp' suspended for policy violation", "user_email": "admin@LINKUP.com"},
     {"level": "INFO",    "category": "auth",   "message": "New user registered: karthik@example.com",      "user_email": "karthik@example.com"},
-    {"level": "INFO",    "category": "admin",  "message": "Company 'Zoho Corporation' verified by admin",   "user_email": "admin@careerauto.com"},
+    {"level": "INFO",    "category": "admin",  "message": "Company 'Zoho Corporation' verified by admin",   "user_email": "admin@LINKUP.com"},
     {"level": "INFO",    "category": "resume", "message": "Resume uploaded by Ananya Reddy",                "user_email": "ananya@example.com"},
-    {"level": "INFO",    "category": "job",    "message": "Job 'Backend Engineer' approved",                "user_email": "admin@careerauto.com"},
+    {"level": "INFO",    "category": "job",    "message": "Job 'Backend Engineer' approved",                "user_email": "admin@LINKUP.com"},
     {"level": "WARNING", "category": "system", "message": "High API response time detected (>2s)",         "user_email": None},
     {"level": "INFO",    "category": "auth",   "message": "New user registered: deepa@example.com",        "user_email": "deepa@example.com"},
     {"level": "INFO",    "category": "job",    "message": "Application submitted for DevOps Engineer",     "user_email": "deepa@example.com"},
-    {"level": "INFO",    "category": "admin",  "message": "User role changed: employer → admin",            "user_email": "admin@careerauto.com"},
+    {"level": "INFO",    "category": "admin",  "message": "User role changed: employer → admin",            "user_email": "admin@LINKUP.com"},
     {"level": "ERROR",   "category": "system", "message": "Ollama service timeout — retrying",              "user_email": None},
 ]
 

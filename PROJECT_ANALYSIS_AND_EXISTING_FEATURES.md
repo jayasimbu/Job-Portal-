@@ -1,4 +1,4 @@
-# Career Auto - Project Analysis & Existing Features Inventory
+# LINKUP - Project Analysis & Existing Features Inventory
 
 ## 📊 ANALYSIS SUMMARY
 
@@ -319,8 +319,8 @@ Features:
 ## 🎯 NEXT STEPS IN PRIORITY ORDER
 
 ### Phase 1: Integration (Immediate)
-1. **Integrate auth module from FIn1 to Career Auto1**
-   - Copy `/FIn1/backend/modules/auth/` → `/Career Auto1/backend/modules/auth/`
+1. **Integrate auth module from FIn1 to LINKUP1**
+   - Copy `/FIn1/backend/modules/auth/` → `/LINKUP1/backend/modules/auth/`
    - Verify it works with FastAPI main.py
    - Fix any import issues
 
@@ -388,7 +388,7 @@ Features:
 
 **FIn1 Coverage**: ~40% (Auth completed)
 **Legacy Coverage**: ~35% (UI/UX + Some AI logic)
-**Career Auto1 Core**: ~20% (Architecture + Prompt)
+**LINKUP1 Core**: ~20% (Architecture + Prompt)
 **Overall Completion**: ~30% of full project
 
 **What's Ready to Code**:

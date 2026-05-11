@@ -23,7 +23,7 @@ def test_full_system():
     if not js_token: return
     js_headers = {"Authorization": f"Bearer {js_token}"}
 
-    resume_path = r"C:\Users\JAYASIMBU\Downloads\Career Auto1\Career Auto1\Boopathi-(FSD)Resume.pdf"
+    resume_path = r"C:\Users\JAYASIMBU\Downloads\LINKUP1\LINKUP1\Boopathi-(FSD)Resume.pdf"
     with open(resume_path, "rb") as f:
         res = requests.post(f"{BASE_URL}/api/jobseeker/upload-resume-file", headers=js_headers, files={"file": f}, data={"user_id": js_id})
     print(f"JS Resume Upload: {res.status_code}")
@@ -74,7 +74,7 @@ def test_full_system():
 
     # --- ADMIN ---
     print("\n--- Phase 6: Admin Validation ---")
-    admin_token, _ = get_token("admin@careerauto.com", "Admin123!", "admin") # Known admin or register
+    admin_token, _ = get_token("admin@LINKUP.com", "Admin123!", "admin") # Known admin or register
     if admin_token:
         admin_headers = {"Authorization": f"Bearer {admin_token}"}
         res = requests.get(f"{BASE_URL}/api/admin/dashboard", headers=admin_headers)

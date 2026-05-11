@@ -56,5 +56,5 @@ def analyze_resume(file_path):
     print(f"\n>>> FINAL VERDICT: {match_scores['final_score']}% ATS FIT")
 
 if __name__ == "__main__":
-    resume_path = r"c:\Users\JAYASIMBU\Downloads\Career Auto1\Career Auto1\Jayasimbu Jayamani (Java).pdf"
+    resume_path = r"c:\Users\JAYASIMBU\Downloads\LINKUP1\LINKUP1\Jayasimbu Jayamani (Java).pdf"
     analyze_resume(resume_path)

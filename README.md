@@ -1,4 +1,4 @@
-# Career Auto1
+# LINKUP1
 
 AI-powered job portal with modular React frontend, FastAPI backend, deterministic ATS algorithms, and Ollama-based AI enhancement.
 
@@ -45,7 +45,7 @@ Build a production-style role-based platform where:
 3. Verification queue and governance controls.
 
 ## Merged Source Strategy
-Career Auto1 consolidates prior work from:
+LINKUP1 consolidates prior work from:
 1. FIn1 auth implementation and module patterns.
 2. stitch_smart_job_portal_home_page UI/UX patterns and legacy feature logic.
 
@@ -198,7 +198,7 @@ Required behavior:
 
 ## Project Structure Snapshot
 ```text
-Career Auto1/
+LINKUP1/
 	frontend/
 		src/
 			core/
@@ -410,7 +410,7 @@ Home → Signup/Login → Dashboard → Resume Analysis → Job Matching → App
 ## 💡 Problem-Solution Clarity
 
 **Problem:** Existing job portals are cluttered, lack actionable feedback, and have "black-box" ATS algorithms that reject good candidates without explanation.
-**Solution:** Career Auto provides transparent, simulated ATS scoring with AI-driven improvement feedback, allowing candidates to refine their resumes directly. For employers, it offers bias-free candidate rankings based purely on verified skills and project proof, ensuring a fair and efficient hiring pipeline.
+**Solution:** LINKUP provides transparent, simulated ATS scoring with AI-driven improvement feedback, allowing candidates to refine their resumes directly. For employers, it offers bias-free candidate rankings based purely on verified skills and project proof, ensuring a fair and efficient hiring pipeline.
 
 ## ⚠️ Limitations
 
@@ -423,4 +423,4 @@ Future Scope and Expansion:
 - **AI Interview Coach:** Real-time mock interviews using voice emotion detection.
 - **Resume Builder:** An integrated tool to build AI-optimized resumes on the platform.
 - **Recruiter Analytics Dashboard:** Deeper workforce planning insights for companies.
-
+

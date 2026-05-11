@@ -4,14 +4,14 @@ import os
 from pathlib import Path
 
 # Add backend to path
-backend_dir = Path(r"c:\Users\JAYASIMBU\Downloads\Career Auto1\Career Auto1\backend")
+backend_dir = Path(r"c:\Users\JAYASIMBU\Downloads\LINKUP1\LINKUP1\backend")
 sys.path.append(str(backend_dir))
 
 import fitz
 from ai_engine.ats_scoring.scorer import ATSScorer
 
 def test_resume_parsing():
-    pdf_path = r"c:\Users\JAYASIMBU\Downloads\Career Auto1\Career Auto1\Jayasimbu Jayamani (Java).pdf"
+    pdf_path = r"c:\Users\JAYASIMBU\Downloads\LINKUP1\LINKUP1\Jayasimbu Jayamani (Java).pdf"
     if not os.path.exists(pdf_path):
         print(f"File not found: {pdf_path}")
         return

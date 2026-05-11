@@ -23,7 +23,7 @@ def test_email_sending():
     try:
         EmailService.send_email(
             to_email=test_email,
-            subject="Career Auto1 - SMTP Connection Test",
+            subject="LINKUP1 - SMTP Connection Test",
             html_content="<h1>Connection Successful!</h1><p>Your SMTP configuration is working correctly.</p>"
         )
         print("Test email sent successully!")

@@ -9,7 +9,7 @@ BACKEND_DIR = Path(__file__).resolve().parent / "backend"
 def start_backend():
     python_exe = sys.executable or "python"
 
-    print(f"--- Starting Career Auto1 Backend ---")
+    print(f"--- Starting LINKUP1 Backend ---")
     print(f"Using Python: {python_exe}")
     print(f"Directory: {BACKEND_DIR}")
 
