@@ -2,17 +2,20 @@ import asyncio
 from concurrent.futures import ThreadPoolExecutor
 from typing import Any, Dict, List, Optional
 
-from fastapi import APIRouter, BackgroundTasks, Depends, Query, UploadFile, File, Form
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, UploadFile, File, Form
 from pydantic import BaseModel
 
+# ── Centralized Services Layer (Phase 1 refactor) ──
+from services.atsService import ats_service
+from services.jdMatchService import jd_match_service
+from services.resumeParserService import resume_parser_service
+
 from ai_engine.llm_service import llm_service
-from ai_engine.prompts import ATS_FEEDBACK_PROMPT, JD_MATCH_EXPLANATION_PROMPT
+from ai_engine.prompts import ATS_FEEDBACK_PROMPT
 from ai_engine.verification.certificate_verifier import CertificateVerifier
 from core.security import get_current_user_db, require_roles
 from core.serialization import model_to_dict, models_to_dict
-from ai_engine.ats_scoring.scorer import score_resume_ats, score_job_description_ats
 from modules.jobseeker.model import JobApplication
-from modules.jobseeker.resume_auto_fill import build_profile_from_resume_text
 from modules.jobseeker.service import JobSeekerService, get_jobseeker_service
 import logging
 
@@ -138,48 +141,22 @@ async def upload_resume_file(
     user=Depends(get_current_user_db),
 ) -> Dict[str, Any]:
     file_bytes = await file.read()
-    
-    # 1. Determine user email for folder
     user_email = getattr(user, "email", f"user_{user_id}@example.com")
-    
-    # 2. Create physical target directory: database/jobseeker/Files/<user_email>
-    import os
-    from pathlib import Path
-    db_base = Path(__file__).resolve().parents[3] / "database" / "jobseeker" / "Files" / user_email
-    db_base.mkdir(parents=True, exist_ok=True)
-    
-    # 3. Save physical file
-    filename = file.filename or "resume.pdf"
-    file_path = db_base / filename
-    file_path.write_bytes(file_bytes)
-    
-    # 4. Extract text carefully using fitz (PyMuPDF) if PDF
-    content = ""
-    if filename.lower().endswith(".pdf"):
-        try:
-            import fitz
-            doc = fitz.open(stream=file_bytes, filetype="pdf")
-            content = chr(10).join([page.get_text() for page in doc])
-            doc.close()
-        except Exception as e:
-            content = file_bytes.decode("utf-8", errors="ignore")
-    else:
-        content = file_bytes.decode("utf-8", errors="ignore")
-
     actual_user_id = getattr(user, "id", user_id)
+    
     resume = service.upload_resume(
         user_id=actual_user_id,
-        file_name=filename,
-        resume_text=content,
+        file_name=file.filename or "resume.pdf",
+        file_bytes=file_bytes,
+        user_email=user_email,
         job_description=job_description,
-        file_path=str(file_path),
     )
     return {"message": "resume processed", "resume": model_to_dict(resume)}
 
 
 @router.post("/resume/parse")
 async def parse_resume(payload: ResumeParsePayload) -> Dict[str, Any]:
-    parsed = build_profile_from_resume_text(payload.resume_text)
+    parsed = resume_parser_service.build_profile_from_text(payload.resume_text)
     return {"parsed": parsed}
 
 
@@ -204,8 +181,8 @@ async def run_resume_ats(
     user=Depends(get_current_user_db),
     service: JobSeekerService = Depends(get_jobseeker_service),
 ) -> Dict[str, Any]:
-    # Step 1 — pure math, instant (<1 ms)
-    score = score_resume_ats(
+    # Step 1 — Deterministic ATS score via centralized service
+    score = ats_service.score_resume(
         {
             "resume_text": payload.resume_text,
             "skills": payload.skills,
@@ -232,7 +209,7 @@ async def run_resume_ats(
                     },
                 ),
             ),
-            timeout=10,  # cap LLM wait at 10 s; ATS score still returns on timeout
+            timeout=10,
         )
     except asyncio.TimeoutError:
         enhanced = {"result": None, "queued": False, "queue_id": None,
@@ -262,54 +239,54 @@ async def run_jd_ats(
     user=Depends(get_current_user_db),
     service: JobSeekerService = Depends(get_jobseeker_service),
 ) -> Dict[str, Any]:
-    # Step 1 — pure math, instant (<1 ms)
-    score = score_job_description_ats(
-        {"resume_text": payload.resume_text},
-        {"job_description": payload.job_description},
+    # Full JD match pipeline via centralized service (ATS + Semantic + LLM)
+    result = await jd_match_service.match_with_llm(
+        resume_data={"parsed_text": payload.resume_text},
+        jd_data={"description": payload.job_description},
+        user_id=getattr(user, "id", None),
+        llm_timeout=10,
     )
 
-    # Step 2 — LLM call runs in thread-pool so it never blocks the event loop
-    explain_prompt = (
-        f"{JD_MATCH_EXPLANATION_PROMPT}\n\n"
-        f"SCORE: {score.get('ats_score') or score.get('final_score')}\n"
-        f"MISSING_KEYWORDS: {score.get('missing_keywords', [])}"
-    )
-    loop = asyncio.get_event_loop()
-    try:
-        enhanced = await asyncio.wait_for(
-            loop.run_in_executor(
-                _llm_executor,
-                lambda: llm_service.generate_with_fallback(
-                    explain_prompt,
-                    user_id=getattr(user, "id", None),
-                    request_type="jobseeker_jd_ats",
-                    request_payload={
-                        "resume_text": payload.resume_text[:1200],
-                        "job_description": payload.job_description[:1200],
-                    },
-                ),
-            ),
-            timeout=10,  # cap LLM wait at 10 s; ATS score still returns on timeout
-        )
-    except asyncio.TimeoutError:
-        enhanced = {"result": None, "queued": False, "queue_id": None,
-                    "error_code": 408, "error_message": "LLM timed out", "attempted_models": []}
-    except Exception as exc:
-        enhanced = {"result": None, "queued": False, "queue_id": None,
-                    "error_code": 500, "error_message": str(exc), "attempted_models": []}
-
-    score["llm_enhanced_feedback"] = enhanced.get("result")
-    score["queued"] = enhanced.get("queued", False)
-    score["queue_id"] = enhanced.get("queue_id")
-    score["error_code"] = enhanced.get("error_code")
-    score["error_message"] = enhanced.get("error_message")
-    score["attempted_models"] = enhanced.get("attempted_models", [])
-
-    # Step 3 — DB write runs AFTER response is sent
+    # DB write runs AFTER response is sent
     if getattr(user, "id", None):
-        background_tasks.add_task(_save_resume_insight, service.db, int(user.id), score)
+        background_tasks.add_task(_save_resume_insight, service.db, int(user.id), result)
 
-    return score
+    return result
+
+
+@router.post("/jobs/{job_id}/match")
+async def match_with_specific_job(
+    job_id: int,
+    user=Depends(get_current_user_db),
+    service: JobSeekerService = Depends(get_jobseeker_service),
+) -> Dict[str, Any]:
+    """
+    Roadmap Step 16: Targeted JD Match API.
+    Fetches user's latest resume and matches against a specific job_id.
+    """
+    # 1. Get job description
+    from modules.employer.service import get_employer_service
+    emp_service = get_employer_service(service.db)
+    job = emp_service.get_job_posting(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="Job not found")
+
+    # 2. Get user resume
+    profile = service.get_profile(user.id)
+    if not profile or not profile.resume_data:
+        raise HTTPException(status_code=400, detail="Please upload a resume first")
+
+    # 3. Match
+    result = await jd_match_service.match_with_llm(
+        resume_data=profile.resume_data,
+        jd_data={
+            "required_skills": job.required_skills,
+            "description": job.description,
+            "required_experience_years": job.min_experience
+        },
+        user_id=user.id
+    )
+    return result
 
 
 @router.get("/resume-insights")

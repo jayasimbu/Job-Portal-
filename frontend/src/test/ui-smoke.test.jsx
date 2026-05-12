@@ -43,3 +43,6 @@ describe('UI smoke tests', () => {
     expect(screen.getByText('User Management')).toBeInTheDocument();
   });
 });
+
+
+

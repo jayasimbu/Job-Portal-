@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../../assets/logos/linkup_logo.png';
-
+import Logo from './Logo';
 const LogoModal = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -14,11 +13,11 @@ const LogoModal = () => {
 
   return (
     <div 
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-300"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 "
       onClick={() => setIsOpen(false)}
     >
       <div 
-        className="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center gap-6 animate-in zoom-in-95 duration-300"
+        className="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center gap-6 "
         onClick={e => e.stopPropagation()}
       >
         <button 
@@ -28,12 +27,8 @@ const LogoModal = () => {
           <span className="material-symbols-outlined text-3xl">close</span>
         </button>
         
-        <div className="bg-white/5 p-8 rounded-3xl border border-white/10 shadow-2xl">
-          <img 
-            src={logo} 
-            alt="LINKUP Official Logo" 
-            className="max-w-full max-h-[70vh] object-contain rounded-2xl"
-          />
+        <div className="bg-white/5 p-8 rounded-3xl border border-white/10 shadow-2xl flex items-center justify-center scale-150 my-10">
+          <Logo variant="dark" />
         </div>
         
         <div className="text-center">
@@ -46,3 +41,6 @@ const LogoModal = () => {
 };
 
 export default LogoModal;
+
+
+

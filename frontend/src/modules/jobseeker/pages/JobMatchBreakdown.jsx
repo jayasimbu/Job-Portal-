@@ -17,7 +17,7 @@ export default function JobMatchBreakdown() {
   };
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-200">
+    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors ">
       <JobSeekerShell active="dashboard" />
       
       <main className="flex-1 overflow-y-auto w-full max-w-[1280px] mx-auto p-4 sm:p-6 lg:p-10">
@@ -283,3 +283,6 @@ export default function JobMatchBreakdown() {
     </div>
   );
 }
+
+
+

@@ -18,7 +18,7 @@ const PlatformShell = ({ active, children }) => {
   const { isDark, toggleTheme } = useTheme();
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${isDark ? 'dark' : ''} bg-[var(--bg-page)] text-[var(--text-main)]`} style={{ fontFamily: "'Manrope', sans-serif" }}>
+    <div className={`min-h-screen transition-colors ${isDark ? 'dark' : ''} bg-[var(--bg-page)] text-[var(--text-main)]`} style={{ fontFamily: "'Manrope', sans-serif" }}>
       <header className="flex justify-between items-center px-10 py-2 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50 sticky top-0 z-50">
         <div className="flex items-center gap-3 group">
           <div 
@@ -66,3 +66,6 @@ const PlatformShell = ({ active, children }) => {
 };
 
 export default PlatformShell;
+
+
+

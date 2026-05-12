@@ -51,7 +51,7 @@ const InterviewSchedule = () => {
   };
 
   return (
-    <div className="h-full flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="h-full flex flex-col overflow-hidden duration-700">
       <header className="flex-shrink-0 flex items-center justify-between mb-6">
         <div>
           <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight uppercase">Interview Scheduling</h1>
@@ -95,3 +95,6 @@ const InterviewSchedule = () => {
 };
 
 export default InterviewSchedule;
+
+
+

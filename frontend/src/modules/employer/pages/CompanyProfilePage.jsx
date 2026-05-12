@@ -21,7 +21,7 @@ export default function CompanyProfilePage() {
   if (loading) return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50">
       <div className="flex flex-col items-center gap-4">
-         <div className="size-12 bg-blue-600/10 rounded-xl flex items-center justify-center animate-pulse">
+         <div className="size-12 bg-blue-600/10 rounded-xl flex items-center justify-center ">
             <span className="material-symbols-outlined text-blue-600">business</span>
          </div>
          <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Loading Profile...</p>
@@ -205,3 +205,6 @@ export default function CompanyProfilePage() {
     </div>
   );
 }
+
+
+

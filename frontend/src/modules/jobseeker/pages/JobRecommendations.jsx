@@ -20,7 +20,7 @@ const JobRecommendations = () => {
   }, [resumeData]);
 
   const SkeletonCard = () => (
-    <div className="p-6 bg-white border border-slate-200 rounded-3xl animate-pulse shadow-sm">
+    <div className="p-6 bg-white border border-slate-200 rounded-3xl  shadow-sm">
       <div className="flex justify-between items-start gap-6">
         <div className="flex-1 space-y-4">
           <div className="flex gap-4">
@@ -119,3 +119,6 @@ const JobRecommendations = () => {
 };
 
 export default JobRecommendations;
+
+
+

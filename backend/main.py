@@ -101,25 +101,25 @@ app.router.route_class = StandardizedAPIRoute
 _request_semaphore = asyncio.Semaphore(max(1, int(settings.MAX_CONCURRENT_REQUESTS)))
 
 
-@app.middleware("http")
-async def concurrency_guard(request: Request, call_next):
-    """Bound in-flight requests so one hot endpoint cannot starve the whole API."""
-    try:
-        await asyncio.wait_for(_request_semaphore.acquire(), timeout=max(0.1, float(settings.REQUEST_QUEUE_WAIT_SECONDS)))
-    except asyncio.TimeoutError:
-        return JSONResponse(
-            status_code=503,
-            content={
-                "success": False,
-                "message": "Server is handling high traffic. Please retry shortly.",
-                "error": "BACKEND_BUSY",
-            },
-        )
-
-    try:
-        return await call_next(request)
-    finally:
-        _request_semaphore.release()
+# @app.middleware("http")
+# async def concurrency_guard(request: Request, call_next):
+#     """Bound in-flight requests so one hot endpoint cannot starve the whole API."""
+#     try:
+#         await asyncio.wait_for(_request_semaphore.acquire(), timeout=max(0.1, float(settings.REQUEST_QUEUE_WAIT_SECONDS)))
+#     except asyncio.TimeoutError:
+#         return JSONResponse(
+#             status_code=503,
+#             content={
+#                 "success": False,
+#                 "message": "Server is handling high traffic. Please retry shortly.",
+#                 "error": "BACKEND_BUSY",
+#             },
+#         )
+# 
+#     try:
+#         return await call_next(request)
+#     finally:
+#         _request_semaphore.release()
 
 
 if settings.ENABLE_GZIP:

@@ -191,7 +191,7 @@ export default function ResumeUpload() {
                 <span className="material-symbols-outlined text-blue-600 text-3xl">psychology</span>
                 Processing Intelligence
               </h3>
-              <div className="text-[10px] uppercase tracking-widest font-black bg-blue-50 dark:bg-blue-900/30 text-blue-600 px-4 py-1.5 rounded-full animate-pulse border border-blue-200 dark:border-blue-800">
+              <div className="text-[10px] uppercase tracking-widest font-black bg-blue-50 dark:bg-blue-900/30 text-blue-600 px-4 py-1.5 rounded-full  border border-blue-200 dark:border-blue-800">
                 Phase {statusStep + 1} / 4
               </div>
             </div>
@@ -203,7 +203,7 @@ export default function ResumeUpload() {
                 { label: 'ATS Match Scoring', icon: 'analytics' },
                 { label: 'Finalizing Insights', icon: 'verified' }
               ].map((step, idx) => (
-                <div key={idx} className={`flex items-center gap-4 p-3 rounded-xl border transition-all duration-500 ${statusStep === idx ? 'bg-blue-50 dark:bg-blue-900/10 border-blue-200 dark:border-blue-800 translate-x-2' : statusStep > idx ? 'bg-slate-50 dark:bg-slate-800/50 border-transparent opacity-60' : 'border-transparent opacity-20'}`}>
+                <div key={idx} className={`flex items-center gap-4 p-3 rounded-xl border transition-all ${statusStep === idx ? 'bg-blue-50 dark:bg-blue-900/10 border-blue-200 dark:border-blue-800 translate-x-2' : statusStep > idx ? 'bg-slate-50 dark:bg-slate-800/50 border-transparent opacity-60' : 'border-transparent opacity-20'}`}>
                   <div className={`size-10 rounded-xl flex items-center justify-center shadow-sm ${statusStep > idx ? 'bg-green-100 text-green-600' : statusStep === idx ? 'bg-blue-600 text-white shadow-blue-500/40' : 'bg-slate-100 text-slate-400'}`}>
                     <span className="material-symbols-outlined text-xl">{statusStep > idx ? 'check' : step.icon}</span>
                   </div>
@@ -241,7 +241,7 @@ export default function ResumeUpload() {
         >
           {loading ? (
             <>
-              <div className="size-5 rounded-full border-2 border-white border-t-transparent animate-spin" />
+              <div className="size-5 rounded-full border-2 border-white border-t-transparent " />
               Processing...
             </>
           ) : (
@@ -294,7 +294,7 @@ export default function ResumeUpload() {
                       </div>
                       <div className="h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
                         <div
-                          className="h-full bg-blue-600 rounded-full transition-all duration-1000"
+                          className="h-full bg-blue-600 rounded-full transition-all "
                           style={{ width: `${sec.score ?? sec.value ?? 0}%` }}
                         />
                       </div>
@@ -373,3 +373,6 @@ export default function ResumeUpload() {
     </div>
   );
 }
+
+
+

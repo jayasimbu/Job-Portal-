@@ -51,7 +51,9 @@ class EmployerService:
                     "id": getattr(job, "id", None),
                     "title": getattr(job, "title", "Untitled Job"),
                     "active": getattr(job, "active", True),
-                    "employment_type": getattr(job, "employment_type", "full_time"),
+                    "job_type": getattr(job, "job_type", "Full-time"),
+                    "experience_level": getattr(job, "experience_level", "Entry"),
+                    "salary": getattr(job, "salary", None),
                 }
                 for job in jobs
             ],
@@ -103,10 +105,12 @@ class EmployerService:
             "title": payload["title"],
             "description": payload["description"],
             "required_skills": payload.get("required_skills", []),
+            "experience_level": payload.get("experience_level", "Entry"),
             "min_experience": float(payload.get("min_experience", 0) or 0),
+            "salary": payload.get("salary"),
             "education_required": payload.get("education_required"),
             "location": payload.get("location"),
-            "employment_type": payload.get("employment_type", "full_time"),
+            "job_type": payload.get("job_type", "Full-time"),
             "active": bool(payload.get("active", True)),
             "created_at": now,
             "updated_at": now,
@@ -124,8 +128,8 @@ class EmployerService:
         if not job:
             return []
 
-        # Sort directly from database index (descending)
-        applications = docs_to_entities(self.applications.find({"job_id": int(job_id)}).sort("ats_score", -1))
+        # Sort directly from database index (descending) by targeted match score
+        applications = docs_to_entities(self.applications.find({"job_id": int(job_id)}).sort("ats_match_score", -1))
         
         candidates: List[Dict[str, Any]] = []
         for index, app in enumerate(applications, start=1):

@@ -75,7 +75,7 @@ export default function Applications() {
       <div className="space-y-4">
         {loading ? (
           [1, 2, 3].map(i => (
-            <Card key={i} className="animate-pulse">
+            <Card key={i} className="">
               <CardBody className="h-24 bg-slate-50/50" />
             </Card>
           ))
@@ -115,7 +115,7 @@ export default function Applications() {
                   </div>
 
                   {isExpanded && (
-                    <div className="mt-8 pt-8 border-t border-slate-100 animate-in fade-in slide-in-from-top-4 duration-300 space-y-6">
+                    <div className="mt-8 pt-8 border-t border-slate-100 duration-300 space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-3">
                           <Text variant="small" className="font-bold uppercase tracking-widest text-slate-400">Matched Strengths</Text>
@@ -160,22 +160,71 @@ export default function Applications() {
             );
           })
         ) : (
-          <Card className="border-dashed">
-            <CardBody className="py-20 flex flex-col items-center justify-center text-center space-y-6">
-              <div className="size-20 bg-slate-50 rounded-full flex items-center justify-center text-slate-300">
-                <span className="material-symbols-outlined text-4xl">work_history</span>
-              </div>
-              <div className="space-y-2">
-                <Heading level={3}>No Applications Yet</Heading>
-                <Text className="max-w-xs mx-auto">Start applying to jobs in the marketplace to see them tracked here.</Text>
-              </div>
-              <Button onClick={() => navigate('/platform/jobseeker/jobs')}>
-                Explore Marketplace
-              </Button>
-            </CardBody>
-          </Card>
+          <div className="space-y-8">
+            <Card className="border-dashed">
+              <CardBody className="py-12 flex flex-col items-center justify-center text-center space-y-4">
+                <div className="size-16 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-300">
+                  <span className="material-symbols-outlined text-3xl">work_history</span>
+                </div>
+                <div className="space-y-1">
+                  <Heading level={3}>Quiet for now</Heading>
+                  <Text className="max-w-xs mx-auto text-sm">Your application journey starts here. Explore matching roles to get started.</Text>
+                </div>
+                <Button onClick={() => navigate('/platform/jobseeker/jobs')} size="sm">
+                  Find Your Match
+                </Button>
+              </CardBody>
+            </Card>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+               <div className="space-y-4">
+                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] px-2">Suggested for You</p>
+                  {[
+                    { title: 'Lead React Developer', company: 'Stripe', match: 92 },
+                    { title: 'Frontend Engineer', company: 'Linear', match: 88 }
+                  ].map((job, i) => (
+                    <Card key={i} className="hover:border-blue-600/30 cursor-pointer p-4 group">
+                       <div className="flex justify-between items-center">
+                          <div className="flex items-center gap-3">
+                             <div className="size-10 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center font-black text-blue-600 uppercase border border-slate-100 dark:border-slate-700">
+                                {job.company[0]}
+                             </div>
+                             <div>
+                                <p className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-blue-600">{job.title}</p>
+                                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{job.company}</p>
+                             </div>
+                          </div>
+                          <Badge variant="primary" className="text-[9px] px-2">{job.match}% Match</Badge>
+                       </div>
+                    </Card>
+                  ))}
+               </div>
+
+               <div className="space-y-4">
+                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] px-2">Market Insights</p>
+                  <Card className="p-6 bg-slate-900 border-none text-white relative overflow-hidden group">
+                     <div className="absolute top-0 right-0 size-32 bg-blue-600/20 rounded-full blur-3xl -mr-16 -mt-16" />
+                     <div className="relative z-10 space-y-4">
+                        <div className="space-y-1">
+                           <p className="text-xs font-bold text-blue-400 uppercase tracking-widest">Trending Skill</p>
+                           <p className="text-lg font-black tracking-tight">Docker & K8s</p>
+                        </div>
+                        <p className="text-xs text-slate-400 font-medium leading-relaxed">
+                           4 recruiters searched for candidates with these skills in your area this week.
+                        </p>
+                        <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
+                           <div className="h-full bg-blue-500 w-3/4" />
+                        </div>
+                     </div>
+                  </Card>
+               </div>
+            </div>
+          </div>
         )}
       </div>
     </div>
   );
 }
+
+
+

@@ -45,3 +45,6 @@ export const UI = {
   BOX_WARNING: "bg-amber-50 border border-amber-200 rounded-xl p-4",
   EMPTY_STATE: "flex flex-col items-center justify-center py-16 text-center space-y-4"
 };
+
+
+

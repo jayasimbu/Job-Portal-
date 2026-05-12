@@ -39,3 +39,6 @@ export const verifyCertificate = async (certId, status) => {
   const response = await apiClient.put(`/certificates/verify/${certId}`, { status });
   return response.data;
 };
+
+
+

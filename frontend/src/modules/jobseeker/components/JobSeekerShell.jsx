@@ -138,3 +138,6 @@ const JobSeekerShell = ({ active, children }) => {
 };
 
 export default JobSeekerShell;
+
+
+

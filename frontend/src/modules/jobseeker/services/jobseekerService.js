@@ -98,3 +98,6 @@ export const fetchJobSeekerCertificates = async () => {
   const response = await apiClient.get('/certificates/user');
   return response.data;
 };
+
+
+

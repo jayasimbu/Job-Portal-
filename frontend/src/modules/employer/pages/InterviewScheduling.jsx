@@ -3,7 +3,7 @@ import EmployerShell from '../components/EmployerShell';
 
 export default function InterviewScheduling() {
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-white dark:bg-[#101922] font-display text-[#0d141b] dark:text-white transition-colors duration-200">
+    <div className="flex h-screen w-full overflow-hidden bg-white dark:bg-[#101922] font-display text-[#0d141b] dark:text-white transition-colors ">
       <EmployerShell active="interview" />
       
       <main className="flex-1 flex flex-row h-full overflow-hidden">
@@ -268,3 +268,6 @@ function CandidateQueueItem({ name, role, status, img }) {
     </div>
   );
 }
+
+
+

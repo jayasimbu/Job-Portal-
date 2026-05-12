@@ -155,13 +155,13 @@ const MCP = () => {
         <span className="text-[10px] font-black text-slate-700 dark:text-slate-300">{Math.round(value)}%</span>
       </div>
       <div className="h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
-        <div className={`h-full rounded-full transition-all duration-1000 ${color}`} style={{ width: `${value}%` }} />
+        <div className={`h-full rounded-full transition-all ${color}`} style={{ width: `${value}%` }} />
       </div>
     </div>
   );
 
   return (
-    <div className="h-full space-y-6 animate-in fade-in duration-700">
+    <div className="h-full space-y-6 ">
       {/* HEADER */}
       <header className="flex items-center justify-between">
         <div>
@@ -186,7 +186,7 @@ const MCP = () => {
               : "bg-blue-600 text-white hover:bg-blue-700 shadow-xl shadow-blue-500/20 active:scale-95"
           }`}
         >
-          <span className={`material-symbols-outlined text-lg ${loading ? "animate-spin" : ""}`}>
+          <span className={`material-symbols-outlined text-lg ${loading ? "" : ""}`}>
             {loading ? "sync" : "rocket_launch"}
           </span>
           {loading ? "Analyzing..." : "Analyze Profile"}
@@ -253,20 +253,20 @@ const MCP = () => {
                 return (
                   <div key={idx} className="relative pl-11 pb-6 last:pb-0 group">
                     {idx !== pipelineSteps.length - 1 && (
-                      <div className={`absolute left-[17px] top-9 bottom-0 w-0.5 transition-colors duration-500 ${isCompleted ? "bg-blue-600" : "bg-slate-100 dark:bg-slate-800"}`} />
+                      <div className={`absolute left-[17px] top-9 bottom-0 w-0.5 transition-colors ${isCompleted ? "bg-blue-600" : "bg-slate-100 dark:bg-slate-800"}`} />
                     )}
-                    <div className={`absolute left-0 top-0 size-9 rounded-full flex items-center justify-center z-10 transition-all duration-500 ${
-                      isActive ? "bg-blue-600 text-white shadow-lg shadow-blue-500/40 scale-110 animate-pulse" 
+                    <div className={`absolute left-0 top-0 size-9 rounded-full flex items-center justify-center z-10 transition-all ${
+                      isActive ? "bg-blue-600 text-white shadow-lg shadow-blue-500/40 scale-110 " 
                       : isCompleted ? "bg-blue-600 text-white shadow-md shadow-blue-500/20" 
                       : "bg-slate-100 dark:bg-slate-800 text-slate-400"
                     }`}>
-                      <span className={`material-symbols-outlined text-base ${isActive ? "animate-spin-slow" : ""}`}>{isCompleted ? "check" : step.icon}</span>
+                      <span className={`material-symbols-outlined text-base ${isActive ? "-slow" : ""}`}>{isCompleted ? "check" : step.icon}</span>
                     </div>
                     <div className="pt-1.5 flex items-center justify-between">
-                      <h4 className={`text-[11px] font-black uppercase tracking-widest transition-colors duration-300 ${
+                      <h4 className={`text-[11px] font-black uppercase tracking-widest transition-colors ${
                         isActive ? "text-blue-600" : isCompleted ? "text-slate-900 dark:text-white" : "text-slate-400"
                       }`}>{step.label}</h4>
-                      {isActive && <span className="text-[9px] font-black text-blue-600 uppercase tracking-widest animate-pulse">Running...</span>}
+                      {isActive && <span className="text-[9px] font-black text-blue-600 uppercase tracking-widest ">Running...</span>}
                     </div>
                   </div>
                 );
@@ -333,7 +333,7 @@ const MCP = () => {
         </div>
 
         {/* ===== RIGHT COLUMN: Intelligence Data ===== */}
-        <div className={`lg:col-span-8 space-y-6 transition-opacity duration-500 ${loading ? "opacity-40 pointer-events-none blur-[1px]" : "opacity-100"}`}>
+        <div className={`lg:col-span-8 space-y-6 transition-opacity ${loading ? "opacity-40 pointer-events-none blur-[1px]" : "opacity-100"}`}>
 
           {/* TOP ROW: Final Intelligence Score & Global Stats */}
           <div className="grid grid-cols-4 gap-4">
@@ -473,7 +473,7 @@ const MCP = () => {
 
                       {/* Expanded Detail - Focused on Action & Skill Gap */}
                       {isExpanded && (
-                        <div className="px-5 pb-5 pt-4 border-t border-slate-100 dark:border-slate-800 animate-in fade-in slide-in-from-top-2 duration-300">
+                        <div className="px-5 pb-5 pt-4 border-t border-slate-100 dark:border-slate-800 duration-300">
                             {/* Dynamic Skill Gap UI */}
                             <div>
                               <h5 className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 flex items-center gap-1.5">
@@ -583,3 +583,6 @@ const MCP = () => {
 };
 
 export default MCP;
+
+
+

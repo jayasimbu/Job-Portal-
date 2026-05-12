@@ -132,8 +132,8 @@ const GoogleLoginButton = ({ activeTab, onSwitch, onError }) => {
       )}
       
       {loading && !error && (
-        <div className="mt-3 flex items-center justify-center gap-2 text-[10px] font-black text-blue-600 uppercase tracking-widest animate-pulse">
-          <span className="material-symbols-outlined text-base animate-spin">sync</span>
+        <div className="mt-3 flex items-center justify-center gap-2 text-[10px] font-black text-blue-600 uppercase tracking-widest ">
+          <span className="material-symbols-outlined text-base ">sync</span>
           Verifying Identity...
         </div>
       )}
@@ -142,3 +142,6 @@ const GoogleLoginButton = ({ activeTab, onSwitch, onError }) => {
 };
 
 export default GoogleLoginButton;
+
+
+

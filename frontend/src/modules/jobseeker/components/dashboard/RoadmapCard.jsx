@@ -6,7 +6,7 @@ const RoadmapCard = ({ onOpenRoadmap }) => {
     <div className="bg-gradient-to-br from-slate-900 to-blue-900 rounded-[12px] p-6 shadow-xl relative overflow-hidden group">
       <div className="relative z-10">
         <div className="flex items-center gap-2 mb-4 text-blue-400">
-          <Compass size={18} className="group-hover:rotate-45 transition-transform duration-500" />
+          <Compass size={18} className="group-hover:rotate-45 transition-transform " />
           <h3 className="text-sm font-black uppercase tracking-tight text-white">Learning Roadmap</h3>
         </div>
         <p className="text-xs font-bold text-slate-300 leading-relaxed mb-6">
@@ -22,7 +22,7 @@ const RoadmapCard = ({ onOpenRoadmap }) => {
       </div>
 
       {/* Decorative Graphics */}
-      <div className="absolute -bottom-4 -right-4 size-32 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all duration-700"></div>
+      <div className="absolute -bottom-4 -right-4 size-32 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all "></div>
       <div className="absolute top-0 right-0 p-4 opacity-10">
          <Compass size={80} className="text-white" />
       </div>
@@ -31,3 +31,6 @@ const RoadmapCard = ({ onOpenRoadmap }) => {
 };
 
 export default RoadmapCard;
+
+
+

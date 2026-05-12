@@ -1,6 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import logo from '../../../assets/logos/linkup_logo.png';
+import { useNavigate, Link } from 'react-router-dom';
+import Logo from '../../../core/components/Logo';
 import LogoModal from '../../../core/components/LogoModal';
 
 const AuthLayout = ({ children, title, subtitle, activeTab, onSwitch, hideLeftPanel = false }) => {
@@ -14,26 +14,22 @@ const AuthLayout = ({ children, title, subtitle, activeTab, onSwitch, hideLeftPa
 
   return (
     <div className="w-full h-full flex items-stretch justify-center">
-      <div className={`w-full h-full ${hideLeftPanel ? 'max-w-[420px]' : ''} flex flex-col lg:flex-row overflow-hidden transition-all duration-300`}
+      <div className={`w-full h-full ${hideLeftPanel ? 'max-w-[420px]' : ''} flex flex-col lg:flex-row overflow-hidden transition-all `}
            style={{ borderRadius: 16 }}>
 
         {/* ═══ LEFT PANEL ═══════════════════════════════════════════════ */}
         {!hideLeftPanel && (
           <div className="hidden lg:flex lg:flex-1 flex-col justify-between text-white relative overflow-hidden"
-               style={{ background: 'linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 60%, #2563eb 100%)', padding: 'clamp(20px, 3vw, 32px)' }}>
+               style={{ background: 'linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #4f46e5 100%)', padding: 'clamp(20px, 3vw, 32px)' }}>
             {/* Glow overlay */}
             <div className="absolute inset-0 pointer-events-none"
                  style={{ background: 'radial-gradient(ellipse at 80% 0%, rgba(255,255,255,0.07) 0%, transparent 70%)' }} />
 
             {/* TOP — Logo */}
             <div className="relative z-10">
-              <div className="flex items-center gap-2 cursor-pointer group w-fit" onClick={() => navigate('/')}>
-                <div className="size-8 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg overflow-hidden p-1 transition-transform group-hover:scale-110"
-                     onClick={(e) => { e.stopPropagation(); window.dispatchEvent(new CustomEvent('open-logo-modal')); }}>
-                  <img src={logo} alt="Logo" className="w-full h-full object-contain" />
-                </div>
-                <span className="text-sm font-bold tracking-tight text-white/90 hover:text-white transition-colors">LINKUP</span>
-              </div>
+              <Link to="/" className="decoration-none">
+                <Logo variant="dark" />
+              </Link>
             </div>
 
             {/* MIDDLE — Heading + Features + CTA */}
@@ -43,7 +39,7 @@ const AuthLayout = ({ children, title, subtitle, activeTab, onSwitch, hideLeftPa
 
               {/* Feature cards — only on signup */}
               {(activeTab === 'signup' || activeTab === 'role') && (
-                <div className="grid grid-cols-3 gap-2 mb-5 animate-in fade-in slide-in-from-bottom-3 duration-500">
+                <div className="grid grid-cols-3 gap-2 mb-5 duration-500">
                   {[
                     { label: 'ATS Logic',  desc: 'Resume scoring', icon: 'verified' },
                     { label: 'AI Insight', desc: 'Smart feedback', icon: 'psychology' },
@@ -89,12 +85,10 @@ const AuthLayout = ({ children, title, subtitle, activeTab, onSwitch, hideLeftPa
              style={{ padding: 32, boxShadow: '0 12px 32px rgba(0,0,0,0.08)' }}>
           <div className="flex-1 flex flex-col w-full justify-center min-h-0">
             {hideLeftPanel && (
-              <div className="flex items-center gap-2 cursor-pointer mb-6 justify-center group" onClick={() => navigate('/')}>
-                <div className="size-10 bg-white dark:bg-slate-900 rounded-full flex items-center justify-center shadow-lg overflow-hidden p-1.5 border border-slate-100 dark:border-slate-800 transition-transform group-hover:scale-110"
-                     onClick={(e) => { e.stopPropagation(); window.dispatchEvent(new CustomEvent('open-logo-modal')); }}>
-                  <img src={logo} alt="Logo" className="w-full h-full object-contain" />
-                </div>
-                <span className="text-base font-bold tracking-tight text-slate-900 dark:text-white hover:text-blue-600 transition-colors">LINKUP</span>
+              <div className="flex justify-center mb-10">
+                <Link to="/" className="decoration-none">
+                  <Logo variant="light" />
+                </Link>
               </div>
             )}
             {children}
@@ -107,3 +101,6 @@ const AuthLayout = ({ children, title, subtitle, activeTab, onSwitch, hideLeftPa
 };
 
 export default AuthLayout;
+
+
+

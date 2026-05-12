@@ -210,3 +210,6 @@ export const infoPagesData = {
     benefit: ''
   }
 };
+
+
+

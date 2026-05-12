@@ -62,7 +62,7 @@ const LearningHub = () => {
   }, [user?.id]);
 
   const SkeletonCard = () => (
-    <Card className="animate-pulse">
+    <Card className="">
       <CardBody className="h-96 bg-slate-50/50" />
     </Card>
   );
@@ -224,3 +224,6 @@ const LearningHub = () => {
 };
 
 export default LearningHub;
+
+
+

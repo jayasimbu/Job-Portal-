@@ -65,7 +65,7 @@ export default function Insights() {
 
       {loading ? (
         <div className="flex justify-center py-20">
-          <div className="size-10 rounded-full border-4 border-blue-600 border-t-transparent animate-spin" />
+          <div className="size-10 rounded-full border-4 border-blue-600 border-t-transparent " />
         </div>
       ) : (
         <div className="max-w-5xl mx-auto px-4 md:px-10 py-8 flex flex-col gap-6">
@@ -101,7 +101,7 @@ export default function Insights() {
                       <span className="font-bold">{sec.score}%</span>
                     </div>
                     <div className="h-2.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
-                      <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${sec.score}%`, backgroundColor: sec.color }} />
+                      <div className="h-full rounded-full transition-all " style={{ width: `${sec.score}%`, backgroundColor: sec.color }} />
                     </div>
                   </div>
                 ))}
@@ -168,3 +168,6 @@ export default function Insights() {
     </div>
   );
 }
+
+
+

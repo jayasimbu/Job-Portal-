@@ -32,20 +32,20 @@ const Login = ({ onSwitch, onForgot }) => {
     } finally { setLoading(false); }
   };
 
-  const inputBase = 'w-full pl-12 pr-4 py-3.5 rounded-2xl text-sm bg-slate-50 dark:bg-slate-800/50 dark:text-white outline-none transition-all duration-300 border border-transparent';
+  const inputBase = 'w-full pl-12 pr-4 py-3.5 rounded-2xl text-sm bg-slate-50 dark:bg-slate-800/50 dark:text-white outline-none transition-all border border-transparent';
   const inputBorder = (isError) => isError
     ? '!border-red-400 focus:!shadow-[0_0_0_4px_rgba(239,68,68,0.05)]'
     : 'focus:border-blue-500 focus:bg-white focus:shadow-[0_0_0_4px_rgba(59,130,246,0.05)]';
 
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="slide-in-from-bottom-4 ">
       <div className="mb-8">
         <h2 className="text-3xl font-semibold text-slate-900 dark:text-white mb-2 tracking-tight">Welcome back</h2>
         <p className="text-slate-500 dark:text-slate-400 text-sm">Enter your details to access your professional dashboard.</p>
       </div>
 
       <div className="mb-6">
-        <div className="rounded-2xl overflow-hidden transition-all duration-300 hover:bg-slate-50 border border-slate-100 dark:border-slate-800">
+        <div className="rounded-2xl overflow-hidden transition-all hover:bg-slate-50 border border-slate-100 dark:border-slate-800">
           <GoogleLoginButton activeTab="login" onSwitch={onSwitch} onError={setError} />
         </div>
         <div className="flex items-center gap-4 my-6">
@@ -57,7 +57,7 @@ const Login = ({ onSwitch, onForgot }) => {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && (
-          <div className={`p-4 rounded-2xl border text-sm font-medium animate-in fade-in zoom-in-95 duration-300 ${
+          <div className={`p-4 rounded-2xl border text-sm font-medium duration-300 ${
             error === 'GOOGLE_REGISTERED' ? 'bg-blue-50 border-blue-100 text-blue-700' : 'bg-red-50 border-red-100 text-red-600'
           }`}>
             <div className="flex items-start gap-3">
@@ -106,7 +106,7 @@ const Login = ({ onSwitch, onForgot }) => {
 
         <button type="submit" disabled={loading}
           className="w-full h-14 bg-slate-900 dark:bg-blue-600 text-white rounded-2xl font-semibold text-base shadow-xl shadow-slate-900/10 dark:shadow-blue-600/10 transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3">
-          {loading ? (<><div className="size-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /><span>Verifying...</span></>) : 'Sign In'}
+          {loading ? (<><div className="size-5 border-2 border-white/30 border-t-white rounded-full " /><span>Verifying...</span></>) : 'Sign In'}
         </button>
       </form>
     </div>
@@ -114,3 +114,6 @@ const Login = ({ onSwitch, onForgot }) => {
 };
 
 export default Login;
+
+
+

@@ -1,10 +1,12 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Search, Building2, CheckCircle2, XCircle, Eye, MoreVertical, Briefcase, Users } from 'lucide-react';
 import apiClient from '@/core/api/apiClient';
-import { useTheme } from '@/core/context/ThemeContext';
 
-const Badge = ({ text, color }) => (
-  <span style={{ padding: '3px 10px', borderRadius: '999px', fontSize: '11px', fontWeight: 700, background: `${color}22`, color, border: `1px solid ${color}44` }}>{text}</span>
-);
+// UI Components
+import Button from '../../../components/ui/Button';
+import Card, { CardBody } from '../../../components/ui/Card';
+import Badge from '../../../components/ui/Badge';
+import { Heading, Text } from '../../../components/ui/Typography';
 
 export default function CompanyManagement() {
   const [companies, setCompanies] = useState([]);
@@ -14,21 +16,20 @@ export default function CompanyManagement() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [verifiedFilter, setVerifiedFilter] = useState('');
-  const [msg, setMsg] = useState('');
-  const { isDark, toggleTheme } = useTheme();
 
   const fetchCompanies = useCallback(() => {
     setLoading(true);
     const params = new URLSearchParams({ page, page_size: 20 });
     if (search) params.set('search', search);
     if (verifiedFilter !== '') params.set('verified', verifiedFilter);
-    apiClient.get(`/api/admin/companies?${params}`)
+    
+    apiClient.get(`/admin/companies?${params}`)
       .then(r => {
         setCompanies(r.data.companies || []);
         setTotal(r.data.total || 0);
         setTotalPages(r.data.total_pages || 1);
       })
-      .catch(() => setMsg('Failed to load companies.'))
+      .catch(() => console.error('Failed to load companies.'))
       .finally(() => setLoading(false));
   }, [page, search, verifiedFilter]);
 
@@ -36,82 +37,108 @@ export default function CompanyManagement() {
 
   const verifyCompany = async (id, approve) => {
     try {
-      await apiClient.put(`/api/admin/companies/${id}/verify`, { approve });
-      setMsg(approve ? '✅ Company verified.' : '❌ Company rejected.');
+      await apiClient.put(`/admin/companies/${id}/verify`, { approve });
       fetchCompanies();
-    } catch { setMsg('Action failed.'); }
+    } catch { console.error('Action failed.'); }
   };
 
-  const inputStyle = { background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '8px', color: 'var(--text-main)', padding: '8px 14px', fontSize: '14px' };
-
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg-page)', color: 'var(--text-main)', fontFamily: "'Inter', sans-serif", padding: '32px', transition: '0.3s' }} className={isDark ? 'dark' : ''}>
-      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-          <h1 style={{ fontSize: '26px', fontWeight: 700, margin: 0 }}>🏢 Company Management</h1>
-          <button
-            onClick={toggleTheme}
-            style={{
-              padding: '10px',
-              borderRadius: '50%',
-              background: 'var(--bg-card)',
-              border: '1px solid var(--border)',
-              color: 'var(--text-main)',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            <span className="material-symbols-outlined">{isDark ? 'light_mode' : 'dark_mode'}</span>
-          </button>
+    <div className="max-w-[1200px] mx-auto space-y-8 pb-20 px-8">
+      {/* HEADER */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="space-y-1">
+          <h1 className="text-xl font-semibold text-slate-900 dark:text-white">
+            Employers
+          </h1>
+          <p className="text-sm text-slate-500 mt-1">
+            Review and manage registered companies.
+          </p>
         </div>
-        <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>{total} registered companies</p>
+      </div>
 
-        {msg && (
-          <div style={{ background: 'rgba(99,102,241,0.15)', border: '1px solid rgba(99,102,241,0.3)', borderRadius: '10px', padding: '12px 18px', marginBottom: '16px', color: '#a5b4fc' }}>
-            {msg} <button onClick={() => setMsg('')} style={{ marginLeft: '10px', background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer' }}>✕</button>
+      {/* FILTERS & SEARCH */}
+      <Card className="border-slate-200 shadow-sm overflow-visible">
+        <CardBody className="p-4 flex flex-col md:flex-row gap-4 items-center">
+          <div className="flex-1 flex items-center gap-3 px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl w-full">
+            <Search size={16} className="text-slate-400" />
+            <input 
+              type="text" 
+              placeholder="Search companies..." 
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              className="bg-transparent border-none outline-none text-sm w-full" 
+            />
           </div>
-        )}
+          <div className="flex items-center gap-3 w-full md:w-auto">
+            <select 
+              value={verifiedFilter} 
+              onChange={e => setVerifiedFilter(e.target.value)}
+              className="px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm outline-none font-bold text-slate-600"
+            >
+              <option value="">All Companies</option>
+              <option value="true">Verified</option>
+              <option value="false">Pending</option>
+            </select>
+          </div>
+        </CardBody>
+      </Card>
 
-        <div style={{ display: 'flex', gap: '12px', marginBottom: '24px', flexWrap: 'wrap' }}>
-          <input style={{ ...inputStyle, minWidth: '220px' }} placeholder="🔍 Search companies…" value={search} onChange={e => { setSearch(e.target.value); setPage(1); }} />
-          <select style={inputStyle} value={verifiedFilter} onChange={e => { setVerifiedFilter(e.target.value); setPage(1); }}>
-            <option value="">All Companies</option>
-            <option value="true">Verified</option>
-            <option value="false">Unverified</option>
-          </select>
-        </div>
-
-        <div style={{ background: 'var(--bg-card)', borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--border)' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+      {/* COMPANIES TABLE */}
+      <Card className="border-slate-200 shadow-sm overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
             <thead>
-              <tr style={{ background: 'var(--bg-page)', borderBottom: '1px solid var(--border)' }}>
-                {['Company', 'Email', 'Status', 'Actions'].map(h => (
-                  <th key={h} style={{ padding: '14px 16px', textAlign: 'left', fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{h}</th>
+              <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700">
+                {['Company', 'Recruiter', 'Jobs Posted', 'Status', ''].map(h => (
+                  <th key={h} className="px-6 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">{h}</th>
                 ))}
               </tr>
             </thead>
-            <tbody>
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
               {loading ? (
-                <tr><td colSpan={4} style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)' }}>Loading…</td></tr>
+                [1,2,3].map(i => (
+                  <tr key={i} className="animate-pulse">
+                    <td colSpan={6} className="px-6 py-6 h-16 bg-slate-50/50" />
+                  </tr>
+                ))
               ) : companies.length === 0 ? (
-                <tr><td colSpan={4} style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)' }}>No companies found.</td></tr>
-              ) : companies.map((c, i) => (
-                <tr key={c.id || i} style={{ borderTop: '1px solid var(--border)' }}>
-                  <td style={{ padding: '14px 16px', fontWeight: 600 }}>{c.company_name || c.name || '(Unnamed)'}</td>
-                  <td style={{ padding: '14px 16px', fontSize: '13px', color: 'var(--text-muted)' }}>{c.email || '—'}</td>
-                  <td style={{ padding: '14px 16px' }}>
-                    <Badge text={c.is_verified ? 'Verified' : 'Pending'} color={c.is_verified ? '#4ade80' : '#fbbf24'} />
+                <tr>
+                  <td colSpan={6} className="px-6 py-20 text-center text-slate-400 font-bold text-sm uppercase tracking-widest">No companies found.</td>
+                </tr>
+              ) : companies.map(c => (
+                <tr key={c.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-3">
+                      <div className="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-black text-blue-600 uppercase border border-slate-200 dark:border-slate-700">
+                        {c.company_name?.[0] || 'C'}
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-slate-900 dark:text-white leading-tight">{c.company_name}</p>
+                        <p className="text-xs text-slate-500 font-medium">{c.email}</p>
+                      </div>
+                    </div>
                   </td>
-                  <td style={{ padding: '14px 16px' }}>
-                    <div style={{ display: 'flex', gap: '8px' }}>
-                      {!c.is_verified && (
-                        <button onClick={() => verifyCompany(c.id, true)} style={{ background: 'rgba(34,197,94,0.2)', border: 'none', color: '#4ade80', borderRadius: '6px', padding: '5px 12px', cursor: 'pointer', fontSize: '12px', fontWeight: 600 }}>✅ Verify</button>
-                      )}
-                      {c.is_verified && (
-                        <button onClick={() => verifyCompany(c.id, false)} style={{ background: 'rgba(239,68,68,0.15)', border: 'none', color: '#f87171', borderRadius: '6px', padding: '5px 12px', cursor: 'pointer', fontSize: '12px', fontWeight: 600 }}>❌ Revoke</button>
-                      )}
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-2">
+                       <Briefcase size={14} className="text-slate-400" />
+                       <span className="text-xs font-bold text-slate-600 dark:text-slate-400">{c.jobs_posted || 0}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <Badge variant={c.is_verified ? 'success' : 'warning'} className="text-[9px] px-2 py-0.5">
+                      {c.is_verified ? 'Verified' : 'Pending'}
+                    </Badge>
+                  </td>
+                  <td className="px-6 py-4 text-right">
+                    <div className="flex items-center justify-end gap-2">
+                      <Button 
+                        variant={c.is_verified ? 'outline' : 'primary'}
+                        size="sm" 
+                        className={`h-8 px-3 text-[10px] uppercase font-bold tracking-widest ${c.is_verified ? 'text-rose-600 border-rose-200 hover:bg-rose-50' : 'text-white'}`}
+                        onClick={() => verifyCompany(c.id, !c.is_verified)}
+                      >
+                        {c.is_verified ? 'Reject' : 'Approve'}
+                      </Button>
                     </div>
                   </td>
                 </tr>
@@ -119,13 +146,35 @@ export default function CompanyManagement() {
             </tbody>
           </table>
         </div>
-
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '20px' }}>
-          <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1} style={{ padding: '8px 16px', background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--text-main)', borderRadius: '8px', cursor: 'pointer', opacity: page <= 1 ? 0.4 : 1 }}>← Prev</button>
-          <span style={{ padding: '8px 16px', color: 'var(--text-muted)' }}>Page {page} of {totalPages}</span>
-          <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page >= totalPages} style={{ padding: '8px 16px', background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--text-main)', borderRadius: '8px', cursor: 'pointer', opacity: page >= totalPages ? 0.4 : 1 }}>Next →</button>
+        
+        {/* PAGINATION */}
+        <div className="px-6 py-4 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between">
+           <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Page {page} of {totalPages}</p>
+           <div className="flex gap-2">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                disabled={page === 1}
+                onClick={() => setPage(p => p - 1)}
+                className="h-8 text-[10px] uppercase font-black"
+              >
+                Previous
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                disabled={page >= totalPages}
+                onClick={() => setPage(p => p + 1)}
+                className="h-8 text-[10px] uppercase font-black"
+              >
+                Next
+              </Button>
+           </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }
+
+
+

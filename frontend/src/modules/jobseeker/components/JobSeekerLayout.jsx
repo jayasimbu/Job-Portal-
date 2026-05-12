@@ -6,7 +6,7 @@ const JobSeekerLayout = ({ children }) => {
   const { isDark } = useTheme();
 
   return (
-    <div className={`min-h-screen bg-background-light dark:bg-background-dark transition-colors duration-300 ${isDark ? 'dark' : ''}`}>
+    <div className={`min-h-screen bg-background-light dark:bg-background-dark transition-colors ${isDark ? 'dark' : ''}`}>
       {/* Sidebar */}
       <JobSeekerSidebar />
 
@@ -38,3 +38,6 @@ const JobSeekerLayout = ({ children }) => {
 };
 
 export default JobSeekerLayout;
+
+
+

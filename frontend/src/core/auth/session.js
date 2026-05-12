@@ -29,3 +29,13 @@ export const getCurrentUserId = (fallback = 1) => {
 export const getCurrentUserRole = () => {
   return readStorage(appConfig.auth.roleStorageKey) || getCurrentUser()?.role || '';
 };
+
+export const logout = () => {
+  localStorage.removeItem(appConfig.auth.tokenStorageKey);
+  localStorage.removeItem(appConfig.auth.refreshTokenStorageKey);
+  localStorage.removeItem(appConfig.auth.userStorageKey);
+  localStorage.removeItem(appConfig.auth.roleStorageKey);
+  window.location.href = '/auth/login';
+};
+
+

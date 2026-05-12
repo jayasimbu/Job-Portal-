@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useResume } from '../context/ResumeContext';
-import { matchJd } from '../services/jobseekerService';
+import { matchJd, fetchLearningRecommendations } from '../services/jobseekerService';
 import { useToast } from '../../../core/context/ToastContext';
 
 // Import Global UI Components
@@ -24,6 +24,7 @@ const JDMatch = () => {
   const [jdText, setJdText] = useState('');
   const [analyzing, setAnalyzing] = useState(false);
   const [matchResult, setMatchResult] = useState(null);
+  const [recommendations, setRecommendations] = useState([]);
 
   const handleAnalyze = async () => {
     if (!jdText) {
@@ -48,6 +49,13 @@ const JDMatch = () => {
         missingSkills: result.missing_keywords || [],
         feedback: result.llm_enhanced_feedback
       });
+
+      // Fetch learning recommendations based on missing skills
+      if (result.missing_keywords?.length > 0) {
+        const recs = await fetchLearningRecommendations(result.missing_keywords);
+        setRecommendations(recs);
+      }
+
       showToast("Intelligence analysis complete! 🎯");
     } catch (err) {
       console.error("Match analysis failed", err);
@@ -91,7 +99,7 @@ const JDMatch = () => {
             >
               {analyzing ? (
                  <>
-                    <div className="size-5 rounded-full border-2 border-white/30 border-t-white animate-spin mr-3"></div>
+                    <div className="size-5 rounded-full border-2 border-white/30 border-t-white  mr-3"></div>
                     Running AI Match Engine...
                  </>
               ) : (
@@ -170,9 +178,53 @@ const JDMatch = () => {
         </Card>
       </div>
 
+      {/* LEARNING RECOMMENDATIONS */}
+      {matchResult && matchResult.missingSkills.length > 0 && (
+        <Card className="slide-in-from-bottom-6 ">
+          <CardHeader>
+            <SectionHeader title="Bridge the Gap: Learning Recommendations" icon="school" />
+          </CardHeader>
+          <CardBody>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {recommendations.length > 0 ? (
+                recommendations.map((rec, i) => (
+                  <div key={i} className="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-blue-200 transition-all group">
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="size-10 bg-white rounded-xl flex items-center justify-center text-blue-600 shadow-sm border border-slate-100">
+                        <span className="material-symbols-outlined">library_books</span>
+                      </div>
+                      <Badge variant="info">{rec.level || 'Intermediate'}</Badge>
+                    </div>
+                    <Heading level={4} className="group-hover:text-blue-600 transition-colors mb-2 line-clamp-1">{rec.title}</Heading>
+                    <Text variant="small" className="text-slate-500 font-bold mb-4">{rec.provider} • {rec.duration || '8 hours'}</Text>
+                    
+                    <div className="space-y-3 mb-6">
+                       <div className="flex items-center gap-2">
+                          <span className="material-symbols-outlined text-xs text-emerald-500">trending_up</span>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-emerald-600">{rec.impact || '+10% Match'}</span>
+                       </div>
+                       <Text variant="small" className="italic text-slate-500">"{rec.matchReason}"</Text>
+                    </div>
+                    
+                    <Button variant="outline" size="sm" className="w-full">
+                      Start Learning
+                      <span className="material-symbols-outlined text-sm ml-2">open_in_new</span>
+                    </Button>
+                  </div>
+                ))
+              ) : (
+                <div className="col-span-full py-12 text-center text-slate-400 font-bold italic">
+                  Generating custom learning path...
+                </div>
+              )}
+            </div>
+          </CardBody>
+        </Card>
+      )}
+
       {/* BOTTOM: ANALYTICS GRID */}
       {matchResult && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 duration-500">
           <Card>
             <CardBody className="space-y-6">
               <StatCard label="Technical Fit" value={matchResult.matchPercentage} suffix="%" />
@@ -198,3 +250,6 @@ const JDMatch = () => {
 };
 
 export default JDMatch;
+
+
+

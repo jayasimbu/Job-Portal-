@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { upsertCompanyProfile } from '../services/employerService';
 import { getCurrentUser, getCurrentUserId } from '../../../core/auth/session';
 import { useToast } from '../../../core/context/ToastContext';
+import { Building2, User, Settings, Save } from 'lucide-react';
+import Button from '../../../components/ui/Button';
+import Badge from '../../../components/ui/Badge';
 
 const CompanyProfile = () => {
   const userId = getCurrentUserId(1);
@@ -10,12 +13,32 @@ const CompanyProfile = () => {
   const [saving, setSaving] = useState(false);
 
   const [form, setForm] = useState({
-    company_name: user?.full_name || 'CloudScale Systems',
-    website: 'https://cloudscale.com',
-    industry: 'SaaS',
-    size: '200-500',
-    description: 'We build cloud productivity tools for distributed teams.',
+    // Company Info
+    company_name: user?.full_name || '',
+    company_type: '',
+    domain: '',
+    industry: '',
+    website: '',
+    linkedin: '',
+    location: '',
+    size: '11-50',
+    description: '',
+    // Recruiter Info
+    hr_name: '',
+    designation: '',
+    email: user?.email || '',
+    phone: '',
+    // Hiring Preferences
+    preferred_skills: '',
+    job_categories: '',
+    hiring_mode: 'Hybrid',
+    hiring_locations: '',
+    hiring_frequency: 'Continuous Hiring',
   });
+
+  const handleChange = (e) => {
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   const onSave = async () => {
     setSaving(true);
@@ -23,9 +46,9 @@ const CompanyProfile = () => {
       await upsertCompanyProfile(userId, {
         company_name: form.company_name,
         website: form.website,
-        description: `${form.description} | Industry: ${form.industry} | Size: ${form.size}`,
+        description: `Industry: ${form.industry} | Size: ${form.size} | Desc: ${form.description}`,
       });
-      showToast('Company Profile Updated ✅');
+      showToast('Profile Saved ✅');
     } catch {
       showToast('Failed to save profile', 'error');
     } finally {
@@ -33,74 +56,182 @@ const CompanyProfile = () => {
     }
   };
 
-  const inputCls = "w-full h-11 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 text-sm font-bold focus:ring-2 focus:ring-purple-500 outline-none transition-all";
+  const inputCls = "w-full h-12 bg-slate-50 border border-slate-200 rounded-xl px-4 text-sm font-medium text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 outline-none transition-all";
+  const labelCls = "text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2 block";
+  const sectionCls = "p-8 bg-white border border-slate-200 rounded-2xl space-y-6 shadow-sm";
 
   return (
-    <div className="h-full flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-700">
-      {/* HEADER */}
-      <header className="flex-shrink-0 mb-6">
-        <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight uppercase">Company Settings</h1>
-        <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Manage your brand identity and hiring profile.</p>
+    <div className="max-w-[1000px] mx-auto space-y-8 pb-8">
+      <header className="flex items-center justify-between">
+        <div className="space-y-1">
+          <h1 className="text-2xl font-bold text-slate-900">Company Profile</h1>
+          <p className="text-sm text-slate-500 font-medium">Manage your company hiring profile.</p>
+        </div>
+        <Badge variant="success" className="uppercase font-bold tracking-widest px-3 py-1">
+          Verified Employer
+        </Badge>
       </header>
 
-      {/* Content */}
-      <div className="flex-1 overflow-y-auto custom-scrollbar pr-1 pb-4 min-h-0">
-        <div className="max-w-3xl mx-auto space-y-6">
-          {/* Company Avatar + Name */}
-          <div className="flex items-center gap-6 p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-sm">
-            <div className="size-20 bg-purple-600 rounded-3xl flex items-center justify-center text-white text-3xl font-black shadow-xl shadow-purple-500/20">
-              {form.company_name.charAt(0)}
+      <div className="space-y-6">
+        {/* Company Info */}
+        <section className={sectionCls}>
+          <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+             <Building2 size={20} className="text-blue-600" />
+             <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest">Company Information</h2>
+          </div>
+          
+          <div className="flex flex-col md:flex-row items-start gap-8">
+            <div className="size-24 bg-slate-100 border border-slate-200 rounded-2xl flex flex-col items-center justify-center shrink-0 text-slate-400 gap-1 cursor-pointer hover:bg-slate-50 transition-colors">
+              <span className="material-symbols-outlined text-2xl">add_photo_alternate</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Upload Logo</span>
+              <span className="text-[8px] font-bold text-slate-400">PNG or JPG</span>
+            </div>
+            
+            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className={labelCls}>Company Name</label>
+                <input name="company_name" value={form.company_name} onChange={handleChange} className={inputCls} placeholder="e.g. Acme Corp" />
+              </div>
+              <div>
+                <label className={labelCls}>Company Type</label>
+                <select name="company_type" value={form.company_type} onChange={handleChange} className={inputCls}>
+                   <option value="">Select Type</option>
+                   <option value="Startup">Startup</option>
+                   <option value="Product Company">Product Company</option>
+                   <option value="Service Company">Service Company</option>
+                   <option value="Agency">Agency</option>
+                   <option value="Enterprise">Enterprise</option>
+                </select>
+              </div>
+              <div>
+                <label className={labelCls}>Company Domain</label>
+                <select name="domain" value={form.domain} onChange={handleChange} className={inputCls}>
+                   <option value="">Select Domain</option>
+                   <option value="IT Services">IT Services</option>
+                   <option value="Software">Software</option>
+                   <option value="Finance">Finance</option>
+                   <option value="Healthcare">Healthcare</option>
+                   <option value="Education">Education</option>
+                   <option value="Marketing">Marketing</option>
+                </select>
+              </div>
+              <div>
+                <label className={labelCls}>Company Size</label>
+                <select name="size" value={form.size} onChange={handleChange} className={inputCls}>
+                   <option value="1-10">1-10 employees</option>
+                   <option value="11-50">11-50 employees</option>
+                   <option value="51-200">51-200 employees</option>
+                   <option value="201-500">201-500 employees</option>
+                   <option value="500+">500+ employees</option>
+                </select>
+              </div>
+              <div>
+                <label className={labelCls}>Headquarters Location</label>
+                <input name="location" value={form.location} onChange={handleChange} className={inputCls} placeholder="e.g. Bangalore, India" />
+              </div>
+              <div>
+                <label className={labelCls}>Company Website</label>
+                <input name="website" value={form.website} onChange={handleChange} className={inputCls} placeholder="https://" />
+              </div>
+              <div className="md:col-span-2">
+                <label className={labelCls}>LinkedIn (Optional)</label>
+                <input name="linkedin" value={form.linkedin} onChange={handleChange} className={inputCls} placeholder="https://linkedin.com/company/..." />
+              </div>
+              <div className="md:col-span-2">
+                <label className={labelCls}>Company Overview</label>
+                <textarea 
+                  name="description" 
+                  value={form.description} 
+                  onChange={handleChange} 
+                  rows={3} 
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 text-sm font-medium text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 outline-none transition-all resize-none"
+                  placeholder="Describe your company, culture, and hiring focus..."
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Recruiter Info */}
+        <section className={sectionCls}>
+          <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+             <User size={20} className="text-blue-600" />
+             <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest">Recruiter Information</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className={labelCls}>Full Name</label>
+              <input name="hr_name" value={form.hr_name} onChange={handleChange} className={inputCls} placeholder="HR / Recruiter Name" />
             </div>
             <div>
-              <h3 className="text-lg font-black text-slate-900 dark:text-white uppercase tracking-tight">{form.company_name}</h3>
-              <p className="text-sm text-slate-500">{form.industry} · {form.size} employees</p>
-              <button className="mt-2 text-[10px] font-black uppercase tracking-widest text-purple-600">Change Logo</button>
+              <label className={labelCls}>Designation</label>
+              <input name="designation" value={form.designation} onChange={handleChange} className={inputCls} placeholder="e.g. Talent Acquisition Lead" />
+            </div>
+            <div>
+              <label className={labelCls}>Work Email</label>
+              <input name="email" type="email" value={form.email} onChange={handleChange} className={inputCls} placeholder="name@company.com" />
+            </div>
+            <div>
+              <label className={labelCls}>Direct Phone (Optional)</label>
+              <input name="phone" value={form.phone} onChange={handleChange} className={inputCls} placeholder="+1 234 567 890" />
             </div>
           </div>
+        </section>
 
-          {/* Form Fields */}
-          <div className="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-sm space-y-5">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Company Name</label>
-                <input className={inputCls} value={form.company_name} onChange={(e) => setForm((p) => ({ ...p, company_name: e.target.value }))} />
-              </div>
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Website</label>
-                <input className={inputCls} value={form.website} onChange={(e) => setForm((p) => ({ ...p, website: e.target.value }))} />
-              </div>
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Industry</label>
-                <input className={inputCls} value={form.industry} onChange={(e) => setForm((p) => ({ ...p, industry: e.target.value }))} />
-              </div>
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Company Size</label>
-                <input className={inputCls} value={form.size} onChange={(e) => setForm((p) => ({ ...p, size: e.target.value }))} />
-              </div>
+        {/* Hiring Preferences */}
+        <section className={sectionCls}>
+          <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+             <Settings size={20} className="text-blue-600" />
+             <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest">Hiring Preferences</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className={labelCls}>Preferred Work Mode</label>
+              <select name="hiring_mode" value={form.hiring_mode} onChange={handleChange} className={inputCls}>
+                 <option value="Remote">Remote</option>
+                 <option value="Hybrid">Hybrid</option>
+                 <option value="Onsite">Onsite</option>
+              </select>
             </div>
-
-            <div className="space-y-1.5">
-              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">About Company</label>
-              <textarea
-                rows={4}
-                value={form.description}
-                onChange={(e) => setForm((p) => ({ ...p, description: e.target.value }))}
-                className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 text-sm font-medium focus:ring-2 focus:ring-purple-500 outline-none resize-none"
-              />
+            <div>
+              <label className={labelCls}>Hiring Locations</label>
+              <select name="hiring_locations" value={form.hiring_locations} onChange={handleChange} className={inputCls}>
+                 <option value="India">India</option>
+                 <option value="Chennai">Chennai</option>
+                 <option value="Bangalore">Bangalore</option>
+                 <option value="Remote">Remote</option>
+              </select>
+            </div>
+            <div>
+              <label className={labelCls}>Hiring Frequency</label>
+              <select name="hiring_frequency" value={form.hiring_frequency} onChange={handleChange} className={inputCls}>
+                 <option value="Occasional">Occasional</option>
+                 <option value="Monthly">Monthly</option>
+                 <option value="Continuous Hiring">Continuous Hiring</option>
+              </select>
+            </div>
+            <div>
+              <label className={labelCls}>Primary Job Categories</label>
+              <input name="job_categories" value={form.job_categories} onChange={handleChange} className={inputCls} placeholder="e.g. Engineering, Sales" />
+            </div>
+            <div className="md:col-span-2">
+              <label className={labelCls}>Tech Stack / Core Skills (Comma separated)</label>
+              <input name="preferred_skills" value={form.preferred_skills} onChange={handleChange} className={inputCls} placeholder="e.g. React, Python, AWS, Figma" />
             </div>
           </div>
+        </section>
 
-          {/* Save */}
-          <div className="flex justify-end">
-            <button
-              onClick={onSave}
-              disabled={saving}
-              className="px-10 py-4 bg-purple-600 text-white font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-purple-700 shadow-[0_8px_20px_rgba(147,51,234,0.3)] transition-all active:scale-95 disabled:opacity-50 flex items-center gap-3"
-            >
-              {saving ? 'Saving...' : 'Save Company Profile'}
-              {!saving && <span className="material-symbols-outlined text-sm">save</span>}
-            </button>
-          </div>
+        <div className="flex justify-end pt-4">
+          <Button 
+            onClick={onSave} 
+            disabled={saving}
+            className="h-12 px-10 text-sm font-bold tracking-wide"
+          >
+            {saving ? 'Saving...' : 'Save Profile'}
+            {!saving && <Save size={16} className="ml-2" />}
+          </Button>
         </div>
       </div>
     </div>

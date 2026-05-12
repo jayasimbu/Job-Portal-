@@ -4,12 +4,12 @@ import { useTheme } from '../../../core/context/ThemeContext';
 import logo from '../../../assets/logos/linkup_logo.png';
 
 const NAV_ITEMS = [
-  { icon: 'grid_view', label: 'Dashboard', to: '/jobseeker/dashboard', end: true },
-  { icon: 'search', label: 'Job Marketplace', to: '/jobseeker/jobs', end: true },
-  { icon: 'compare_arrows', label: 'JD Match', to: '/jobseeker/jd-match', end: false },
-  { icon: 'work_outline', label: 'Applications', to: '/jobseeker/applications', end: false },
-  { icon: 'school', label: 'Upskilling', to: '/jobseeker/learning', end: false },
-  { icon: 'person_outline', label: 'My Profile', to: '/jobseeker/profile', end: false },
+  { icon: 'grid_view', label: 'Dashboard', to: '/platform/jobseeker/dashboard', end: true },
+  { icon: 'description', label: 'Resume', to: '/platform/jobseeker/resume-analysis', end: true },
+  { icon: 'search', label: 'Jobs', to: '/platform/jobseeker/jobs', end: false },
+  { icon: 'work_outline', label: 'Applications', to: '/platform/jobseeker/applications', end: false },
+  { icon: 'school', label: 'Learning', to: '/platform/jobseeker/learning', end: false },
+  { icon: 'person_outline', label: 'Profile', to: '/platform/jobseeker/profile', end: false },
 ];
 
 const JobSeekerSidebar = () => {
@@ -25,7 +25,7 @@ const JobSeekerSidebar = () => {
   return (
     <>
       <aside 
-        className="fixed top-0 left-0 w-[240px] h-screen bg-white dark:bg-[#0f172a] border-r border-slate-100 dark:border-slate-800/50 flex flex-col z-40 transition-all duration-300"
+        className="fixed top-0 left-0 w-[240px] h-screen bg-white dark:bg-[#0f172a] border-r border-slate-100 dark:border-slate-800/50 flex flex-col z-40 transition-all "
       >
         <div className="p-6">
           <div className="flex items-center gap-3 mb-8">
@@ -76,7 +76,7 @@ const JobSeekerSidebar = () => {
             </button>
 
             {isProfileOpen && (
-              <div className="absolute bottom-full left-0 w-full mb-2 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-100 dark:border-slate-800 p-2 animate-in slide-in-from-bottom-2 fade-in duration-200">
+              <div className="absolute bottom-full left-0 w-full mb-2 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-100 dark:border-slate-800 p-2 duration-200">
                 <button onClick={() => navigate('/jobseeker/profile')} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
                   <span className="material-symbols-outlined text-lg">account_circle</span>
                   Profile
@@ -106,3 +106,6 @@ const JobSeekerSidebar = () => {
 };
 
 export default JobSeekerSidebar;
+
+
+

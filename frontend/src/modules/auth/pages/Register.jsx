@@ -59,7 +59,7 @@ const Register = ({ onSwitch, activeTab, onSwitchTab, onSuccess }) => {
   };
 
   /* Reusable input class */
-  const inputCls = (isErr) => `w-full px-4 py-3 rounded-[10px] text-sm bg-white dark:bg-slate-800/30 dark:text-white outline-none transition-all duration-200 border ${
+  const inputCls = (isErr) => `w-full px-4 py-3 rounded-[10px] text-sm bg-white dark:bg-slate-800/30 dark:text-white outline-none transition-all border ${
     isErr ? 'border-red-400 focus:border-red-500 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.1)]'
           : 'border-[#D1D5DB] dark:border-slate-700 focus:border-[#2563EB] focus:shadow-[0_0_0_3px_rgba(37,99,235,0.1)]'
   }`;
@@ -67,12 +67,12 @@ const Register = ({ onSwitch, activeTab, onSwitchTab, onSuccess }) => {
   // ── Role Selection ─────────────────────────────────────────────────
   if (activeTab === 'role') {
     return (
-      <div className="animate-in fade-in zoom-in-95 duration-500">
+      <div className="zoom-in-95 ">
         <RoleSelection selectedRole={formData.role} onSelect={handleRoleSelect} />
         <div className="mt-5 flex flex-col gap-2">
           <button onClick={() => onSwitchTab && onSwitchTab('signup')}
             style={{ height: 52, background: 'linear-gradient(135deg, #2563EB, #1D4ED8)', fontSize: 15, fontWeight: 600 }}
-            className="w-full text-white rounded-xl transition-all duration-200 hover:-translate-y-px hover:shadow-[0_8px_20px_rgba(37,99,235,0.3)] active:scale-[0.98]">
+            className="w-full text-white rounded-xl transition-all hover:-translate-y-px hover:shadow-[0_8px_20px_rgba(37,99,235,0.3)] active:scale-[0.98]">
             Next: Account Details →
           </button>
           <button onClick={() => onSwitchTab && onSwitchTab('login')}
@@ -86,7 +86,7 @@ const Register = ({ onSwitch, activeTab, onSwitchTab, onSuccess }) => {
   // ── Success ────────────────────────────────────────────────────────
   if (success) {
     return (
-      <div className="animate-in fade-in zoom-in-95 duration-500 text-center py-6">
+      <div className="zoom-in-95 text-center py-6">
         <div className="size-16 bg-green-50 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto mb-5 shadow-lg shadow-green-500/10">
           <span className="material-symbols-outlined text-green-600 text-3xl">mark_email_read</span>
         </div>
@@ -105,7 +105,7 @@ const Register = ({ onSwitch, activeTab, onSwitchTab, onSuccess }) => {
 
   // ── Main Sign-Up Form ──────────────────────────────────────────────
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-3 duration-500">
+    <div className="slide-in-from-bottom-3 ">
       <div className="mb-4">
         <h2 style={{ fontSize: 28, fontWeight: 600 }} className="text-slate-900 dark:text-white mb-1 tracking-tight">Create Account</h2>
         <p style={{ fontSize: 15 }} className="text-slate-500 dark:text-slate-400">Fill in your details to get started.</p>
@@ -113,7 +113,7 @@ const Register = ({ onSwitch, activeTab, onSwitchTab, onSuccess }) => {
 
       {/* Google — clean, border only */}
       <div className="mb-3">
-        <div className="rounded-[10px] overflow-hidden transition-all duration-200 hover:bg-[#F9FAFB]"
+        <div className="rounded-[10px] overflow-hidden transition-all hover:bg-[#F9FAFB]"
              style={{ background: '#FFFFFF', border: '1px solid #E5E7EB', boxShadow: 'none' }}>
           <GoogleLoginButton activeTab={activeTab} onSwitch={onSwitch} onError={setError} />
         </div>
@@ -172,7 +172,7 @@ const Register = ({ onSwitch, activeTab, onSwitchTab, onSuccess }) => {
               <div className="mt-1 space-y-0.5">
                 <div className="flex gap-0.5">
                   {[0,1,2,3].map(idx => (
-                    <div key={idx} className={`h-1 flex-1 rounded-full transition-all duration-500 ${idx < strength.score ? strength.color : 'bg-slate-200 dark:bg-slate-700'}`} />
+                    <div key={idx} className={`h-1 flex-1 rounded-full transition-all ${idx < strength.score ? strength.color : 'bg-slate-200 dark:bg-slate-700'}`} />
                   ))}
                 </div>
                 <p className={`text-[10px] font-semibold ${strength.text}`}>{strength.label}</p>
@@ -198,8 +198,8 @@ const Register = ({ onSwitch, activeTab, onSwitchTab, onSuccess }) => {
         <div className="pt-1">
           <button type="submit" disabled={loading}
             style={{ height: 52, background: 'linear-gradient(135deg, #2563EB, #1D4ED8)', fontSize: 15, fontWeight: 600 }}
-            className="w-full text-white rounded-xl transition-all duration-200 hover:-translate-y-px hover:shadow-[0_8px_20px_rgba(37,99,235,0.3)] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3">
-            {loading ? (<><div className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /><span>Creating Account...</span></>) : 'Create Account'}
+            className="w-full text-white rounded-xl transition-all hover:-translate-y-px hover:shadow-[0_8px_20px_rgba(37,99,235,0.3)] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3">
+            {loading ? (<><div className="size-4 border-2 border-white/30 border-t-white rounded-full " /><span>Creating Account...</span></>) : 'Create Account'}
           </button>
         </div>
       </form>
@@ -208,3 +208,6 @@ const Register = ({ onSwitch, activeTab, onSwitchTab, onSuccess }) => {
 };
 
 export default Register;
+
+
+

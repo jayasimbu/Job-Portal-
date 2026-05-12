@@ -3,8 +3,7 @@ import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { UI } from '../../constants/ui';
 import { logoutUser } from '../../modules/auth/services/authService';
 import { getCurrentUser } from '../../core/auth/session';
-import logo from '../../assets/logos/linkup_logo.png';
-
+import Logo from './Logo';
 const Navbar = () => {
   const navigate = useNavigate();
   const user = getCurrentUser();
@@ -49,13 +48,8 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 decoration-none group shrink-0">
-          <div className="size-10 bg-blue-600 rounded-full flex items-center justify-center shadow-lg shadow-blue-500/20 transition-transform group-hover:scale-105">
-            <span className="material-symbols-outlined text-white text-xl">all_inclusive</span>
-          </div>
-          <span className="text-2xl font-black text-slate-900 dark:text-white tracking-tighter uppercase leading-none">
-            LINKUP
-          </span>
+        <Link to="/" className="decoration-none shrink-0 group hover:opacity-80 transition-opacity">
+          <Logo variant="light" />
         </Link>
 
         {/* Desktop Nav */}
@@ -104,7 +98,7 @@ const Navbar = () => {
               </div>
               
               {/* DROPDOWN */}
-              <div className="absolute top-[calc(100%+12px)] right-0 w-[300px] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-2xl rounded-[32px] opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-[110] translate-y-4 group-hover:translate-y-0 overflow-hidden">
+              <div className="absolute top-[calc(100%+12px)] right-0 w-[300px] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-2xl rounded-[32px] opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all z-[110] translate-y-4 group-hover:translate-y-0 overflow-hidden">
                  <div className="p-8 pb-6 flex items-center gap-4">
                     <div className="size-14 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center font-semibold text-xl">
                        {user?.full_name?.[0] || 'U'}
@@ -141,3 +135,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+

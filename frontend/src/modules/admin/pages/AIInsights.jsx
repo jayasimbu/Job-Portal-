@@ -47,7 +47,7 @@ const AIInsights = () => {
 
   if (loading) {
     return (
-      <div className={`${UI.PAGE_CONTAINER} bg-[#f8fafc] dark:bg-[#0d141b] -mx-4 -mt-8 px-8 py-10 min-h-screen animate-pulse`}>
+      <div className={`${UI.PAGE_CONTAINER} bg-[#f8fafc] dark:bg-[#0d141b] -mx-4 -mt-8 px-8 py-10 min-h-screen `}>
         <div className="h-10 bg-slate-200 dark:bg-slate-800 rounded-xl w-1/4 mb-12" />
         <div className="grid grid-cols-4 gap-6 mb-12">
           {[1,2,3,4].map(i => <div key={i} className="h-[130px] bg-slate-200 dark:bg-slate-800 rounded-[2rem]" />)}
@@ -70,7 +70,7 @@ const AIInsights = () => {
               <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400">Advanced Analytics Hub</span>
            </div>
            <h1 className="text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-none">AI Intelligence</h1>
-           <p className="text-slate-500 font-medium mt-3 max-w-md">Real-time insights derived from neural processing of marketplace activities and skill demand vectors.</p>
+           <p className="text-slate-500 font-medium mt-3 max-w-md">Real-time insights derived from Processing of marketplace activities and skill demand vectors.</p>
         </div>
         <div className="flex items-center gap-4 bg-white dark:bg-slate-900 p-1.5 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
            {[7, 30, 60, 90].map(v => (
@@ -135,7 +135,7 @@ const AIInsights = () => {
                       <span className="text-[10px] font-black text-slate-400 uppercase tabular-nums">{s.count} Requisitions</span>
                     </div>
                     <div className="w-full bg-slate-50 dark:bg-slate-800 rounded-full h-1.5 overflow-hidden">
-                      <div className="h-full bg-blue-600 rounded-full transition-all duration-1000 shadow-[0_0_8px_rgba(59,130,246,0.5)]" style={{ width: `${pct}%` }} />
+                      <div className="h-full bg-blue-600 rounded-full transition-all shadow-[0_0_8px_rgba(59,130,246,0.5)]" style={{ width: `${pct}%` }} />
                     </div>
                   </div>
                 );
@@ -173,7 +173,7 @@ const AIInsights = () => {
                     <span className="text-[10px] font-black text-slate-400 uppercase tabular-nums">{count} ({pct}%)</span>
                   </div>
                   <div className="w-full bg-slate-50 dark:bg-slate-800 rounded-full h-1.5 overflow-hidden">
-                    <div className={`h-full ${color} rounded-full transition-all duration-1000 shadow-sm`} style={{ width: `${pct}%` }} />
+                    <div className={`h-full ${color} rounded-full transition-all shadow-sm`} style={{ width: `${pct}%` }} />
                   </div>
                 </div>
               );
@@ -232,3 +232,6 @@ const AIInsights = () => {
 };
 
 export default AIInsights;
+
+
+

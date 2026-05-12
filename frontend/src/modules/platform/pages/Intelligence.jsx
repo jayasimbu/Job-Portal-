@@ -17,3 +17,6 @@ const Intelligence = () => {
 };
 
 export default Intelligence;
+
+
+

@@ -26,7 +26,7 @@ const LearningRoadmap = () => {
 
   if (loading) return (
     <div className={UI.PAGE_CONTAINER + " flex items-center justify-center min-h-[60vh]"}>
-      <div className="size-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
+      <div className="size-12 border-4 border-blue-600 border-t-transparent rounded-full " />
     </div>
   );
 
@@ -111,3 +111,6 @@ const LearningRoadmap = () => {
 };
 
 export default LearningRoadmap;
+
+
+

@@ -36,3 +36,6 @@ export default function ProjectAuthBadge({ score = 95, label = 'Verified Project
     </div>
   );
 }
+
+
+

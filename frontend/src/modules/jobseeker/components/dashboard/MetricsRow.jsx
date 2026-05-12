@@ -24,3 +24,6 @@ const MetricsRow = ({ aiScore, matchRate, marketFit }) => {
 };
 
 export default MetricsRow;
+
+
+

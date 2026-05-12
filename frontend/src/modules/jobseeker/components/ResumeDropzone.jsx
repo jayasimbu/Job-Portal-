@@ -105,7 +105,7 @@ export default function ResumeDropzone({ onFileUploaded }) {
           
           <div className="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
             <div 
-              className={`h-full rounded-full transition-all duration-200 ease-out ${uploadProgress === 100 ? 'bg-green-500' : 'bg-blue-600'}`}
+              className={`h-full rounded-full transition-all ease-out ${uploadProgress === 100 ? 'bg-green-500' : 'bg-blue-600'}`}
               style={{ width: `${uploadProgress}%` }}
             ></div>
           </div>
@@ -118,3 +118,6 @@ export default function ResumeDropzone({ onFileUploaded }) {
     </div>
   );
 }
+
+
+

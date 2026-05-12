@@ -52,7 +52,7 @@ export default function ATSScoreCard({ score = 0, sectionScores = {} }) {
               fill="transparent"
               strokeDasharray={circumference}
               strokeDashoffset={strokeDashoffset}
-              className={`${strokeColor} transition-all duration-1000 ease-out`}
+              className={`${strokeColor} transition-all ease-out`}
               strokeLinecap="round"
             />
           </svg>
@@ -86,3 +86,6 @@ export default function ATSScoreCard({ score = 0, sectionScores = {} }) {
     </div>
   );
 }
+
+
+

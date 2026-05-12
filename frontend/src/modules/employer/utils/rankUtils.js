@@ -3,3 +3,6 @@ export const sortByRankScore = (candidates = []) => {
 };
 
 export const topCandidates = (candidates = [], limit = 10) => sortByRankScore(candidates).slice(0, limit);
+
+
+

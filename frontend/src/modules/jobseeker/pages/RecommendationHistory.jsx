@@ -259,8 +259,8 @@ export default function RecommendationHistory() {
 
           {/* Quick Stats/Promo */}
           <div className="rounded-2xl bg-blue-600 text-white p-6 relative overflow-hidden group">
-            <div className="absolute -right-4 -top-4 w-24 h-24 bg-white/10 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
-            <div className="absolute -left-2 -bottom-2 w-16 h-16 bg-white/10 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
+            <div className="absolute -right-4 -top-4 w-24 h-24 bg-white/10 rounded-full group-hover:scale-110 transition-transform "></div>
+            <div className="absolute -left-2 -bottom-2 w-16 h-16 bg-white/10 rounded-full group-hover:scale-110 transition-transform "></div>
             
             <h4 className="font-bold text-lg mb-2 relative z-10">Upload your Resume</h4>
             <p className="text-blue-100 text-sm mb-4 relative z-10">
@@ -275,3 +275,6 @@ export default function RecommendationHistory() {
     </div>
   );
 }
+
+
+

@@ -14,7 +14,7 @@ export default function JobStepper({ steps, currentStep }) {
             <div className="flex items-center gap-2.5">
               {/* Status Indicator */}
               <div
-                className={`flex items-center justify-center text-[11px] font-bold transition-all duration-200 shrink-0 ${
+                className={`flex items-center justify-center text-[11px] font-bold transition-all shrink-0 ${
                   completed
                     ? 'bg-slate-100 text-slate-500 border-slate-200'
                     : active
@@ -66,3 +66,6 @@ export default function JobStepper({ steps, currentStep }) {
     </nav>
   );
 }
+
+
+

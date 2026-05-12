@@ -19,10 +19,12 @@ class JobPayload(BaseModel):
     title: str
     description: str
     required_skills: List[str] = Field(default_factory=list)
+    experience_level: str = "Entry"
     min_experience: float = 0
+    salary: Optional[str] = None
     education_required: Optional[str] = None
     location: Optional[str] = None
-    employment_type: str = "full_time"
+    job_type: str = "Full-time"
 
 
 class CandidateStatusPayload(BaseModel):

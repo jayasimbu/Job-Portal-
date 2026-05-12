@@ -1,322 +1,286 @@
-import React, { useEffect, useMemo, useState, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
-import { fetchJobSeekerProfile, upsertJobSeekerProfile, uploadResume } from '../services/jobseekerService';
-import { getCurrentUserId } from '../../../core/auth/session';
-import { useResume } from '../context/ResumeContext';
-import { useToast } from '../../../core/context/ToastContext';
-
-// Import Global UI Components
+import React, { useState } from 'react';
+import { 
+  User, Mail, Phone, MapPin, Edit2, Code, ExternalLink, 
+  Settings, Bell, Lock, Eye, Download, UploadCloud, Briefcase, GraduationCap
+} from 'lucide-react';
 import Button from '../../../components/ui/Button';
-import Card, { CardBody, CardHeader, CardFooter } from '../../../components/ui/Card';
-import Badge from '../../../components/ui/Badge';
-import { Heading, Text } from '../../../components/ui/Typography';
 
-// Import Jobseeker Specific Components
-import { SectionHeader, ProgressBar, StatCard, SkillChip } from '../components/DesignSystem';
+export default function Profile() {
+  const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+  const [activeTab, setActiveTab] = useState('profile'); // profile | account
 
-const Profile = () => {
-  const userId = useMemo(() => getCurrentUserId(), []);
-  const location = useLocation();
-  const { showToast } = useToast();
-  const { resumeData, updateResumeData } = useResume();
-  const [activeTab, setActiveTab] = useState(location.state?.activeTab || 'Personal Settings');
-  const [profile, setProfile] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [isSaving, setIsSaving] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
-  const fileInputRef = useRef(null);
-
-  const [form, setForm] = useState({
-    headline: '',
-    skills: '',
-    experience_years: 0,
-    education_level: '',
-    portfolio_url: '',
-    github_url: '',
-    bio: '',
-  });
-
-  const loadData = async () => {
-    if (!userId) return;
-    setLoading(true);
-    try {
-      const response = await fetchJobSeekerProfile(userId);
-      const prof = response?.profile;
-      if (prof) {
-        setProfile(prof);
-        setForm({
-          headline: prof.headline || '',
-          skills: Array.isArray(prof.skills) ? prof.skills.join(', ') : '',
-          experience_years: prof.experience_years || 0,
-          education_level: prof.education_level || '',
-          portfolio_url: prof.portfolio_url || '',
-          github_url: prof.github_url || '',
-          bio: prof.bio || '',
-        });
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
+  // Mock data representing a complete profile
+  const profileData = {
+    name: user.full_name || 'Jayasimbu Jayamani',
+    role: 'Frontend Developer',
+    location: 'Chennai, India',
+    email: user.email || 'jayasimbu@example.com',
+    phone: '+91 9876543210',
+    about: 'Frontend developer passionate about building modern web applications with a focus on performance, accessibility, and clean code architecture. Experienced in React ecosystem and UI/UX design systems.',
+    personalDetails: {
+      dob: '15 Aug 1999',
+      gender: 'Male',
+      languages: 'English, Tamil',
+      nationality: 'Indian'
+    },
+    skills: ['React', 'Node.js', 'MongoDB', 'Tailwind', 'JavaScript', 'TypeScript', 'Redux', 'Git'],
+    experience: [
+      { id: 1, role: 'Frontend Developer', company: 'Tech Corp', duration: '2023 - Present', description: 'Leading the frontend team to build scalable React applications.' },
+      { id: 2, role: 'Frontend Intern', company: 'ABC Technologies', duration: '2022 - 2023', description: 'Developed interactive UI components using Vue.js.' }
+    ],
+    education: [
+      { id: 1, degree: 'B.Tech IT', institution: 'XYZ College of Engineering', year: '2023', score: '8.5 CGPA' }
+    ],
+    projects: [
+      { id: 1, title: 'E-Commerce Dashboard', tech: ['React', 'Tailwind', 'Redux'], github: '#', live: '#' },
+      { id: 2, title: 'AI Resume Builder', tech: ['Next.js', 'OpenAI API', 'MongoDB'], github: '#', live: '#' }
+    ],
+    certifications: [
+      { id: 1, title: 'Meta Front-End Developer', provider: 'Coursera', year: '2023' }
+    ]
   };
-
-  useEffect(() => {
-    loadData();
-  }, [userId]);
-
-  const onSave = async () => {
-    try {
-      setIsSaving(true);
-      await upsertJobSeekerProfile(userId, {
-        ...form,
-        skills: form.skills.split(',').map(s => s.trim()).filter(Boolean),
-        experience_years: Number(form.experience_years),
-      });
-      showToast('Profile updated successfully! ✅');
-      loadData();
-    } catch (err) {
-      showToast('Failed to update profile ❌');
-    } finally {
-      setIsSaving(false);
-    }
-  };
-
-  const handleFileUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    try {
-      setIsUploading(true);
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('user_id', userId);
-      
-      showToast('Processing resume... 📄');
-      await uploadResume(formData);
-      showToast('Resume synced successfully! ✅');
-      loadData();
-    } catch (err) {
-      showToast('Upload failed ❌');
-    } finally {
-      setIsUploading(false);
-    }
-  };
-
-  const performanceMetrics = [
-    { category: 'Frontend', score: 85 },
-    { category: 'Backend', score: 72 },
-    { category: 'AI Architecture', score: 45 },
-    { category: 'Cloud Infrastructure', score: 60 },
-    { category: 'System Design', score: 90 },
-  ];
-
-  if (loading) return <div className="p-20 flex items-center justify-center font-black uppercase tracking-widest text-slate-400">Initializing Profile Context...</div>;
 
   return (
-    <div className="max-w-7xl mx-auto space-y-8 pb-20 px-4 sm:px-6">
-      {/* PREMIUM HEADER */}
-      <Card className="overflow-hidden border-none shadow-md">
-        <div className="h-48 bg-slate-900 relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/30 to-purple-600/10" />
-          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
-        </div>
-        <CardBody className="px-10 pb-10 flex flex-col md:flex-row items-start md:items-end gap-8 -mt-16 relative z-10">
-          <div className="relative size-40 rounded-[2.5rem] border-8 border-white shadow-xl overflow-hidden bg-white shrink-0">
-            <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${userId}`} alt="Avatar" className="size-full object-cover" />
-          </div>
-          <div className="flex-1 space-y-3">
-            <div className="flex items-center gap-3">
-              <Heading level={1} className="text-3xl font-bold">{profile?.name || 'User Profile'}</Heading>
-              <Badge variant="success" className="px-3 py-1">Verified Expert</Badge>
-            </div>
-            <Text variant="lead" className="text-slate-600 font-semibold">{form.headline || 'Add a professional headline'}</Text>
-            <div className="flex flex-wrap items-center gap-6 pt-1">
-              <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-slate-400 text-base">location_on</span>
-                <Text variant="small" className="font-bold text-slate-500 uppercase tracking-wider">{profile?.location || 'Global Remote'}</Text>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-slate-400 text-base">work_history</span>
-                <Text variant="small" className="font-bold text-slate-500 uppercase tracking-wider">{form.experience_years} Years Exp</Text>
-              </div>
-            </div>
-          </div>
-          <div className="flex gap-3">
-            <Button onClick={onSave} disabled={isSaving} className="px-8">
-              {isSaving ? 'Syncing...' : 'Sync Profile'}
-            </Button>
-            <Button variant="secondary" className="px-8">
-              Export CV
-            </Button>
-          </div>
-        </CardBody>
-      </Card>
-
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* SIDEBAR: METRICS */}
-        <div className="lg:col-span-4 space-y-8">
-          <Card>
-            <CardHeader>
-              <SectionHeader title="Performance Vitals" icon="monitoring" />
-            </CardHeader>
-            <CardBody className="space-y-8">
-              <div className="grid grid-cols-2 gap-6">
-                <StatCard label="App Rank" value={88} suffix="%" />
-                <StatCard label="Response Rate" value={94} suffix="%" color="text-emerald-600" />
-              </div>
-              <div className="space-y-6 pt-4 border-t border-slate-50">
-                {performanceMetrics.map((m, i) => (
-                  <ProgressBar key={i} label={m.category} value={m.score} />
-                ))}
-              </div>
-            </CardBody>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <SectionHeader title="Skill Identity" icon="verified" iconColor="text-emerald-600" bgColor="bg-emerald-50" />
-            </CardHeader>
-            <CardBody>
-              <div className="flex flex-wrap gap-2">
-                {form.skills.split(',').map((s, i) => s.trim() && (
-                  <SkillChip key={i} label={s.trim()} variant="success" />
-                ))}
-              </div>
-            </CardBody>
-          </Card>
+    <div className="max-w-[1000px] mx-auto space-y-8 pb-20 px-8">
+      {/* HEADER & TABS */}
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">My Profile</h1>
+          <Button variant="secondary" className="gap-2">
+            <Edit2 size={16} /> Edit Profile
+          </Button>
         </div>
 
-        {/* MAIN: SETTINGS TABS */}
-        <div className="lg:col-span-8 space-y-8">
-          <Card className="h-full flex flex-col">
-            <div className="flex border-b border-slate-100 bg-slate-50/30 px-6">
-              {['Personal Settings', 'Resume Hub', 'System Preferences'].map(tab => (
-                <button 
-                  key={tab} 
-                  onClick={() => setActiveTab(tab)}
-                  className={`px-6 py-5 text-xs font-bold uppercase tracking-widest transition-all relative ${
-                    activeTab === tab ? 'text-blue-600 after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-blue-600' : 'text-slate-400 hover:text-slate-900'
-                  }`}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-
-            <CardBody className="p-10 flex-1">
-              {activeTab === 'Personal Settings' && (
-                <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-300">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Text variant="small" className="font-bold uppercase tracking-widest text-slate-400 px-1">Headline</Text>
-                      <input 
-                        value={form.headline} 
-                        onChange={(e) => setForm({...form, headline: e.target.value})} 
-                        placeholder="e.g. Senior Full Stack Engineer"
-                        className="w-full h-12 px-5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-900 outline-none focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 transition-all" 
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Text variant="small" className="font-bold uppercase tracking-widest text-slate-400 px-1">Industry Experience (Years)</Text>
-                      <input 
-                        type="number" 
-                        value={form.experience_years} 
-                        onChange={(e) => setForm({...form, experience_years: e.target.value})} 
-                        className="w-full h-12 px-5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-900 outline-none focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 transition-all" 
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Text variant="small" className="font-bold uppercase tracking-widest text-slate-400 px-1">Professional Bio</Text>
-                    <textarea 
-                      rows={5} 
-                      value={form.bio} 
-                      onChange={(e) => setForm({...form, bio: e.target.value})} 
-                      placeholder="Tell your professional story..."
-                      className="w-full p-5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-900 outline-none focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 transition-all resize-none"
-                    />
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Text variant="small" className="font-bold uppercase tracking-widest text-slate-400 px-1">GitHub Profile</Text>
-                      <input 
-                        value={form.github_url} 
-                        onChange={(e) => setForm({...form, github_url: e.target.value})} 
-                        className="w-full h-12 px-5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-900 outline-none focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 transition-all" 
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Text variant="small" className="font-bold uppercase tracking-widest text-slate-400 px-1">Portfolio Website</Text>
-                      <input 
-                        value={form.portfolio_url} 
-                        onChange={(e) => setForm({...form, portfolio_url: e.target.value})} 
-                        className="w-full h-12 px-5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-900 outline-none focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 transition-all" 
-                      />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {activeTab === 'Resume Hub' && (
-                <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-300">
-                  <div className="flex items-center justify-between">
-                    <SectionHeader title="Active Document" icon="folder_shared" />
-                    <input 
-                      type="file" 
-                      ref={fileInputRef} 
-                      className="hidden" 
-                      accept=".pdf" 
-                      onChange={handleFileUpload} 
-                    />
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={() => fileInputRef.current?.click()}
-                      disabled={isUploading}
-                    >
-                      <span className="material-symbols-outlined mr-2 text-base">add</span>
-                      {isUploading ? 'Uploading...' : 'Update Resume'}
-                    </Button>
-                  </div>
-
-                  <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex items-center justify-between group hover:border-blue-300 transition-all">
-                    <div className="flex items-center gap-5">
-                      <div className="size-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600 border border-slate-100">
-                        <span className="material-symbols-outlined text-2xl">description</span>
-                      </div>
-                      <div>
-                        <Text className="font-bold text-slate-900 leading-none">{profile?.resume_filename || 'Primary_Professional_CV.pdf'}</Text>
-                        <Text variant="small" className="font-bold text-slate-400 uppercase tracking-widest mt-2">Last Updated: {profile?.resume_updated_at || 'Just Now'}</Text>
-                      </div>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button variant="outline" size="sm" className="px-3">
-                        <span className="material-symbols-outlined text-base">visibility</span>
-                      </Button>
-                      <Button variant="outline" size="sm" className="px-3">
-                        <span className="material-symbols-outlined text-base">download</span>
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div className="p-6 bg-amber-50 border border-amber-100 rounded-2xl flex items-center gap-5">
-                    <div className="size-12 bg-amber-500 text-white rounded-xl flex items-center justify-center shrink-0 shadow-lg shadow-amber-200">
-                      <span className="material-symbols-outlined">security</span>
-                    </div>
-                    <div className="space-y-0.5">
-                      <Text variant="small" className="font-bold text-amber-700 uppercase tracking-widest leading-none">Privacy Guard</Text>
-                      <Text variant="small" className="font-semibold text-slate-600">Your documents are only visible to authorized recruiters during active applications.</Text>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </CardBody>
-          </Card>
+        <div className="flex border-b border-slate-200 dark:border-slate-800">
+          <button 
+            onClick={() => setActiveTab('profile')}
+            className={`px-6 py-3 text-sm font-bold border-b-2 transition-all ${activeTab === 'profile' ? 'border-blue-600 text-blue-600' : 'border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-300'}`}
+          >
+            Profile Details
+          </button>
+          <button 
+            onClick={() => setActiveTab('account')}
+            className={`px-6 py-3 text-sm font-bold border-b-2 transition-all ${activeTab === 'account' ? 'border-blue-600 text-blue-600' : 'border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-300'}`}
+          >
+            Account Settings
+          </button>
         </div>
       </div>
+
+      {activeTab === 'profile' ? (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          {/* LEFT COLUMN: Overview & Personal */}
+          <div className="lg:col-span-4 space-y-6">
+            {/* Top Profile Card */}
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm flex flex-col items-center text-center space-y-4">
+              <div className="size-24 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 flex items-center justify-center text-3xl font-black shadow-inner border-4 border-white dark:border-slate-900">
+                {profileData.name.charAt(0)}
+              </div>
+              <div>
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">{profileData.name}</h2>
+                <p className="text-sm font-medium text-slate-500 mt-1">{profileData.role}</p>
+              </div>
+              <div className="w-full space-y-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+                <div className="flex items-center gap-3 text-sm font-medium text-slate-600 dark:text-slate-400">
+                  <MapPin size={16} className="text-slate-400" /> {profileData.location}
+                </div>
+                <div className="flex items-center gap-3 text-sm font-medium text-slate-600 dark:text-slate-400">
+                  <Mail size={16} className="text-slate-400" /> {profileData.email}
+                </div>
+                <div className="flex items-center gap-3 text-sm font-medium text-slate-600 dark:text-slate-400">
+                  <Phone size={16} className="text-slate-400" /> {profileData.phone}
+                </div>
+              </div>
+            </div>
+
+            {/* Personal Details */}
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-4">
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Personal Details</h3>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-slate-500 font-medium">Date of Birth</span>
+                  <span className="font-semibold text-slate-700 dark:text-slate-300">{profileData.personalDetails.dob}</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-slate-500 font-medium">Gender</span>
+                  <span className="font-semibold text-slate-700 dark:text-slate-300">{profileData.personalDetails.gender}</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-slate-500 font-medium">Languages</span>
+                  <span className="font-semibold text-slate-700 dark:text-slate-300">{profileData.personalDetails.languages}</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-slate-500 font-medium">Nationality</span>
+                  <span className="font-semibold text-slate-700 dark:text-slate-300">{profileData.personalDetails.nationality}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Resume Section */}
+            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50 rounded-2xl p-6 shadow-sm space-y-4">
+              <h3 className="text-sm font-bold text-blue-900 dark:text-blue-100 uppercase tracking-wider">Resume</h3>
+              <div className="space-y-3">
+                <Button className="w-full justify-center gap-2">
+                  <Download size={16} /> Download PDF
+                </Button>
+                <Button variant="secondary" className="w-full justify-center gap-2 bg-white dark:bg-slate-900 border-blue-200 dark:border-blue-800/50">
+                  <UploadCloud size={16} /> Replace Resume
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN: Details */}
+          <div className="lg:col-span-8 space-y-8">
+            
+            {/* About */}
+            <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-3">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <User size={18} className="text-blue-600" /> About
+              </h3>
+              <p className="text-slate-600 dark:text-slate-400 font-medium leading-relaxed text-sm">
+                {profileData.about}
+              </p>
+            </section>
+
+            {/* Skills */}
+            <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-4">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <div className="size-2 bg-emerald-500 rounded-full" /> Skills
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {profileData.skills.map(skill => (
+                  <span key={skill} className="px-3 py-1.5 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-lg text-sm font-bold text-slate-700 dark:text-slate-300">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </section>
+
+            {/* Experience */}
+            <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-6">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <Briefcase size={18} className="text-blue-600" /> Experience
+              </h3>
+              <div className="space-y-6 pl-2 border-l-2 border-slate-100 dark:border-slate-800 ml-2">
+                {profileData.experience.map(exp => (
+                  <div key={exp.id} className="relative pl-6">
+                    <div className="absolute w-3 h-3 bg-blue-600 rounded-full -left-[27px] top-1.5 border-4 border-white dark:border-slate-900" />
+                    <h4 className="text-base font-bold text-slate-900 dark:text-white">{exp.role}</h4>
+                    <p className="text-sm font-semibold text-slate-500 mt-1">{exp.company} • {exp.duration}</p>
+                    <p className="text-sm font-medium text-slate-600 dark:text-slate-400 mt-2">{exp.description}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Education */}
+            <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-6">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <GraduationCap size={18} className="text-blue-600" /> Education
+              </h3>
+              <div className="space-y-6 pl-2 border-l-2 border-slate-100 dark:border-slate-800 ml-2">
+                {profileData.education.map(edu => (
+                  <div key={edu.id} className="relative pl-6">
+                    <div className="absolute w-3 h-3 bg-blue-600 rounded-full -left-[27px] top-1.5 border-4 border-white dark:border-slate-900" />
+                    <h4 className="text-base font-bold text-slate-900 dark:text-white">{edu.degree}</h4>
+                    <p className="text-sm font-semibold text-slate-500 mt-1">{edu.institution} • {edu.year}</p>
+                    <p className="text-sm font-bold text-slate-700 dark:text-slate-300 mt-1">{edu.score}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Projects */}
+            <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-4">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <div className="size-2 bg-purple-500 rounded-full" /> Projects
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {profileData.projects.map(proj => (
+                  <div key={proj.id} className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700">
+                    <h4 className="font-bold text-slate-900 dark:text-white mb-2">{proj.title}</h4>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {proj.tech.map(t => (
+                        <span key={t} className="text-[10px] font-bold px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded text-slate-600 dark:text-slate-400">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Button variant="ghost" className="h-8 px-2 text-xs text-slate-600 hover:bg-white dark:hover:bg-slate-800">
+                        <Code size={14} className="mr-1" /> Code
+                      </Button>
+                      <Button variant="ghost" className="h-8 px-2 text-xs text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                        <ExternalLink size={14} className="mr-1" /> Live Demo
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+          </div>
+        </div>
+      ) : (
+        /* ACCOUNT SETTINGS TAB */
+        <div className="max-w-3xl mx-auto space-y-6">
+          {/* Preferences */}
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm flex items-start gap-4">
+            <div className="size-10 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center shrink-0">
+              <Settings size={20} className="text-slate-500" />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-bold text-slate-900 dark:text-white text-lg">Account Preferences</h3>
+              <p className="text-sm font-medium text-slate-500 mb-4">Manage your language, timezone, and general account settings.</p>
+              <Button variant="secondary" className="h-9 px-4 text-sm">Manage Preferences</Button>
+            </div>
+          </div>
+
+          {/* Notifications */}
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm flex items-start gap-4">
+            <div className="size-10 bg-blue-50 dark:bg-blue-900/20 rounded-xl flex items-center justify-center shrink-0">
+              <Bell size={20} className="text-blue-600" />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-bold text-slate-900 dark:text-white text-lg">Email Notifications</h3>
+              <p className="text-sm font-medium text-slate-500 mb-4">Control which emails and alerts you receive from us.</p>
+              <Button variant="secondary" className="h-9 px-4 text-sm">Manage Alerts</Button>
+            </div>
+          </div>
+
+          {/* Password */}
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm flex items-start gap-4">
+            <div className="size-10 bg-rose-50 dark:bg-rose-900/20 rounded-xl flex items-center justify-center shrink-0">
+              <Lock size={20} className="text-rose-600" />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-bold text-slate-900 dark:text-white text-lg">Password & Security</h3>
+              <p className="text-sm font-medium text-slate-500 mb-4">Update your password and secure your account.</p>
+              <Button variant="secondary" className="h-9 px-4 text-sm">Change Password</Button>
+            </div>
+          </div>
+
+          {/* Visibility */}
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm flex items-start gap-4">
+            <div className="size-10 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl flex items-center justify-center shrink-0">
+              <Eye size={20} className="text-emerald-600" />
+            </div>
+            <div className="flex-1 flex flex-col md:flex-row md:items-center justify-between gap-4">
+               <div>
+                 <h3 className="font-bold text-slate-900 dark:text-white text-lg">Profile Visibility</h3>
+                 <p className="text-sm font-medium text-slate-500">Allow employers to find your profile in searches.</p>
+               </div>
+               <label className="relative inline-flex items-center cursor-pointer shrink-0">
+                 <input type="checkbox" className="sr-only peer" defaultChecked />
+                 <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-600 peer-checked:bg-emerald-500"></div>
+               </label>
+            </div>
+          </div>
+
+        </div>
+      )}
     </div>
   );
-};
-
-export default Profile;
+}

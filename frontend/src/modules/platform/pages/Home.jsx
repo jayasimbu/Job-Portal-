@@ -1,107 +1,272 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTheme } from '../../../core/context/ThemeContext';
-import { getCurrentUser } from '../../../core/auth/session';
-import { UI } from '../../../constants/ui';
-import logo from '../../../assets/logos/linkup_logo.png';
-
-const HERO_BG = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop';
+import { 
+  ArrowRight, 
+  Sparkles, 
+  ShieldCheck, 
+  Zap, 
+  BarChart3, 
+  Cpu,
+  Brain,
+  Lock
+} from 'lucide-react';
+import { Card } from '../../../components/ui/Card';
+import Button from '../../../components/ui/Button';
 
 const Home = () => {
   const navigate = useNavigate();
-  const { isDark } = useTheme();
-  const user = getCurrentUser();
-  const isAuthenticated = !!user;
 
-  const dashboardPath = user?.role === 'employer' 
-    ? '/platform/employer/dashboard' 
-    : user?.role === 'admin' 
-      ? '/platform/admin/dashboard' 
-      : '/platform/jobseeker/dashboard';
+  const features = [
+    { 
+      title: 'Smarter Resume Analysis', 
+      desc: 'Understand how your profile compares to industry standards with actionable feedback.',
+      icon: Cpu,
+    },
+    { 
+      title: 'Better Job Matching', 
+      desc: 'Discover roles that actually fit your skills and career trajectory, not just keywords.',
+      icon: Brain,
+    },
+    { 
+      title: 'Real-time Visibility', 
+      desc: 'Know exactly where you stand with applications and how recruiters see your profile.',
+      icon: BarChart3,
+    },
+    { 
+      title: 'Verified Profiles', 
+      desc: 'Stand out with a verified profile that builds instant trust with innovative employers.',
+      icon: ShieldCheck,
+    },
+    { 
+      title: 'Career Insights', 
+      desc: 'Get specific advice on skills to learn and projects to build to reach your next goal.',
+      icon: Sparkles,
+    },
+    { 
+      title: 'Simple Applications', 
+      desc: 'Apply to top companies with one click using your unified, professional LINKUP profile.',
+      icon: Zap,
+    }
+  ];
 
-  const goToApp = () => navigate(isAuthenticated ? dashboardPath : '/auth/login');
+  const steps = [
+    { title: 'Upload', desc: 'Securely upload your resume for analysis.' },
+    { title: 'Discover', desc: 'Explore roles matched to your unique profile.' },
+    { title: 'Apply', desc: 'Apply to jobs with a single click.' },
+    { title: 'Connect', desc: 'Directly interact with interested recruiters.' },
+    { title: 'Grow', desc: 'Follow personalized paths to upskill.' }
+  ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0d141b] text-slate-700 dark:text-slate-300 font-sans selection:bg-blue-600/10 selection:text-blue-600">
-      
-      {/* Hero Section */}
-      <section className="relative pt-48 pb-32 px-6 lg:px-20 overflow-hidden">
-         {/* Elegant Background Decor */}
-         <div className="absolute top-0 right-0 w-[40%] h-full bg-slate-50/50 dark:bg-slate-900/10 -skew-x-6 translate-x-20 z-0" />
-         <div className="absolute top-40 left-20 size-[500px] bg-blue-600/5 rounded-full blur-[120px] animate-pulse z-0" />
-         
-         <div className="max-w-[1400px] mx-auto relative z-10">
-            <div className="max-w-4xl space-y-10">
-               <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/30 rounded-2xl shadow-sm">
-                  <span className="material-symbols-outlined text-blue-600 text-[18px]">auto_awesome</span>
-                  <span className="text-sm font-semibold text-blue-600 tracking-tight">Intelligence-Driven Career Platform</span>
-               </div>
-               
-               <h1 className="text-7xl lg:text-[100px] font-semibold text-slate-900 dark:text-white leading-[0.95] tracking-tight">
-                  Design your <br/>
-                  <span className="text-blue-600 font-serif italic">Future</span> <br/>
-                  with clarity.
-               </h1>
-               
-               <p className="text-xl text-slate-500 dark:text-slate-400 font-medium max-w-2xl leading-relaxed">
-                  LINKUP bridges the gap between high-impact talent and innovative companies through precision neural matching.
-               </p>
-               
-               <div className="flex flex-wrap items-center gap-6 pt-6">
-                  <button onClick={goToApp} className="h-16 px-10 bg-slate-900 dark:bg-blue-600 text-white rounded-2xl font-semibold text-base shadow-2xl shadow-slate-900/20 dark:shadow-blue-600/20 hover:-translate-y-1 transition-all active:scale-95">
-                     Explore Opportunities
-                  </button>
-                  <button className="flex items-center gap-3 text-sm font-semibold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-all group">
-                     See how it works
-                     <span className="material-symbols-outlined text-blue-600 group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                  </button>
-               </div>
+    <div className="space-y-32 pb-32">
+      {/* ═══ HERO SECTION ═══════════════════════════════════════════════ */}
+      <section className="pt-40 px-8">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+          <div className="space-y-10">
+            <div className="space-y-6">
+              <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-slate-900 dark:text-white leading-[0.95] tracking-tighter">
+                Find better opportunities with <span className="text-blue-600">smarter matching.</span>
+              </h1>
+              <p className="text-xl text-slate-500 dark:text-slate-400 font-medium max-w-xl leading-relaxed">
+                LINKUP helps candidates understand their resume strength, discover matching roles, and improve hiring visibility. Zero guesswork, just progress.
+              </p>
+            </div>
+            
+            <div className="flex flex-wrap items-center gap-6">
+              <Button 
+                onClick={() => navigate('/auth/signup?role=jobseeker')}
+                className="h-14 px-8 text-base"
+                variant="primary"
+              >
+                Upload Resume
+                <ArrowRight size={18} />
+              </Button>
+              <Button 
+                onClick={() => navigate('/platform/jobseeker/jobs')}
+                className="h-14 px-8 text-base border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
+                variant="outline"
+              >
+                Explore Jobs
+              </Button>
+            </div>
 
-               <div className="pt-20 flex gap-16 border-t border-slate-100 dark:border-slate-800/50 w-fit">
-                  {[
-                     { val: '24k+', label: 'Elite Talent' },
-                     { val: '98%', label: 'Match Precision' },
-                     { val: '12ms', label: 'Processing' }
-                  ].map(stat => (
-                     <div key={stat.label}>
-                        <p className="text-3xl font-semibold text-slate-900 dark:text-white tracking-tight">{stat.val}</p>
-                        <p className="text-xs font-medium text-slate-400 uppercase tracking-widest mt-2">{stat.label}</p>
-                     </div>
-                  ))}
+            <div className="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+               <div>
+                  <p className="text-sm font-bold text-slate-900 dark:text-white">Join 20,000+ Professionals</p>
+                  <p className="text-xs text-slate-500 font-medium">Discover your next career move</p>
                </div>
             </div>
-         </div>
+          </div>
+
+          {/* REAL PRODUCT PREVIEW */}
+          <div>
+            <Card className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl rounded-2xl overflow-hidden p-8">
+              <div className="space-y-8">
+                {/* Header Section */}
+                <div className="flex items-center justify-between pb-6 border-b border-slate-100 dark:border-slate-800">
+                  <div className="flex items-center gap-4">
+                    <div className="size-10 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center text-slate-900 dark:text-white">
+                      <BarChart3 size={18} />
+                    </div>
+                    <div>
+                      <p className="text-base font-bold text-slate-900 dark:text-white">Dashboard Overview</p>
+                      <p className="text-[11px] text-slate-500 font-medium mt-0.5">Live Profile Performance</p>
+                    </div>
+                  </div>
+                  <div className="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-semibold border border-emerald-200">
+                    Strong Fit
+                  </div>
+                </div>
+
+                {/* Score & Insights */}
+                <div className="grid grid-cols-5 gap-6 items-center">
+                  <div className="col-span-2 flex flex-col items-center justify-center p-6 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
+                    <div className="text-xs font-semibold text-slate-500 mb-2">Resume Strength</div>
+                    <div className="text-4xl font-black text-blue-600 tracking-tight">82%</div>
+                  </div>
+                  <div className="col-span-3 space-y-3">
+                    <div className="text-xs font-semibold text-slate-500">Matched Expertise</div>
+                    <div className="flex flex-wrap gap-2">
+                      {['React', 'Tailwind', 'Node.js', 'System Design'].map(s => (
+                        <span key={s} className="px-2.5 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded text-[11px] font-semibold text-slate-700 dark:text-slate-300">
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Applications Section */}
+                <div className="space-y-4">
+                   <div className="flex items-center justify-between">
+                     <p className="text-xs font-semibold text-slate-500">Active Applications</p>
+                     <span className="text-xs font-semibold text-blue-600 cursor-pointer hover:underline">View All</span>
+                   </div>
+                   <div className="space-y-2">
+                      {[
+                        { company: 'Zoho', role: 'Frontend Engineer', status: 'Reviewing', match: 87 },
+                        { company: 'Stripe', role: 'Product Developer', status: 'Applied', match: 92 }
+                      ].map((app, i) => (
+                        <div key={i} className="flex items-center justify-between p-3 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800">
+                          <div className="flex items-center gap-3">
+                             <div className="size-8 bg-slate-100 dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700 flex items-center justify-center font-bold text-[10px] text-slate-700 dark:text-slate-300">
+                               {app.company[0]}
+                             </div>
+                             <div>
+                                <p className="text-xs font-bold text-slate-900 dark:text-white leading-tight">{app.role}</p>
+                                <p className="text-[10px] text-slate-500 mt-0.5">{app.company} • {app.status}</p>
+                             </div>
+                          </div>
+                          <div className="text-right">
+                             <p className="text-xs font-bold text-blue-600">{app.match}%</p>
+                             <p className="text-[9px] text-slate-400 font-medium">Match</p>
+                          </div>
+                        </div>
+                      ))}
+                   </div>
+                </div>
+
+                {/* Actionable Insight */}
+                <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-xl space-y-2">
+                   <div className="flex items-center gap-2">
+                     <Zap size={14} className="text-blue-600" />
+                     <p className="text-xs font-bold text-blue-800 dark:text-blue-400">Recommendation</p>
+                   </div>
+                   <p className="text-sm text-blue-900 dark:text-blue-200 font-medium leading-relaxed">
+                     Adding <strong>Docker</strong> to your profile could improve your match for 12 new backend roles in your area.
+                   </p>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="py-24 px-6 lg:px-20 bg-slate-50/50 dark:bg-slate-900/20">
-         <div className="max-w-[1400px] mx-auto space-y-24">
-            <div className="text-center space-y-6 max-w-3xl mx-auto">
-               <h2 className="text-sm font-bold text-blue-600 uppercase tracking-[0.2em]">Our Core Engine</h2>
-               <h3 className="text-5xl lg:text-6xl font-semibold text-slate-900 dark:text-white tracking-tight leading-[1.1]">
-                  Intelligent tools for the modern workplace.
-               </h3>
-            </div>
+      {/* ═══ FEATURES SECTION ═══════════════════════════════════════════ */}
+      <section className="px-8 max-w-[1400px] mx-auto space-y-16">
+        <div className="text-center space-y-4 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
+             Where clarity meets <span className="text-blue-600">Opportunity.</span>
+          </h2>
+          <p className="text-lg text-slate-500 font-medium">
+            LINKUP provides the tools you need to navigate your career with confidence and reach your full potential.
+          </p>
+        </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-               {[
-                  { title: 'Neural Matching', icon: 'hub', desc: 'Go beyond keywords with multi-dimensional skill mapping that understands your potential.', color: 'blue' },
-                  { title: 'ATS Intelligence', icon: 'psychology', desc: 'Analyze your profile against 500+ proprietary ATS algorithms to optimize visibility.', color: 'indigo' },
-                  { title: 'Bias-Free Protocols', icon: 'verified_user', desc: 'Anonymized merit-based scoring to ensure total workplace equality and inclusion.', color: 'emerald' },
-                  { title: 'Growth Analytics', icon: 'trending_up', desc: 'Visualize your professional trajectory with predictive growth modeling.', color: 'violet' },
-                  { title: 'Skill Gap Analysis', icon: 'data_exploration', desc: 'Identify critical competencies missing from your profile for your dream role.', color: 'amber' },
-                  { title: 'Enterprise Pipelines', icon: 'corporate_fare', desc: 'Direct-to-recruiter channels for verified high-impact candidates.', color: 'rose' }
-               ].map((feature, i) => (
-                  <div key={i} className="group p-10 bg-white dark:bg-slate-900/50 rounded-[32px] border border-slate-100 dark:border-slate-800 hover:border-blue-200 dark:hover:border-blue-900/50 transition-all hover:shadow-2xl hover:shadow-slate-200/50 dark:hover:shadow-none">
-                     <div className={`size-14 rounded-2xl bg-${feature.color}-50 dark:bg-${feature.color}-900/10 flex items-center justify-center text-${feature.color}-600 mb-8 group-hover:scale-110 transition-transform`}>
-                        <span className="material-symbols-outlined text-3xl">{feature.icon}</span>
-                     </div>
-                     <h4 className="text-xl font-semibold text-slate-900 dark:text-white tracking-tight mb-4">{feature.title}</h4>
-                     <p className="text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{feature.desc}</p>
-                  </div>
-               ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {features.map((f, i) => (
+            <div key={i} className="p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+              <div className="size-12 rounded-xl flex items-center justify-center mb-6 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 text-blue-600">
+                <f.icon size={24} />
+              </div>
+              <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-3 tracking-tight">{f.title}</h4>
+              <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{f.desc}</p>
             </div>
-         </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ═══ WORKFLOW SECTION ════════════════════════════════════════════ */}
+      <section className="px-8 bg-slate-50 dark:bg-slate-900/50 py-24 border-y border-slate-200 dark:border-slate-800">
+        <div className="max-w-[1400px] mx-auto space-y-16">
+          <div className="space-y-4">
+            <h3 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
+              Engineered for results.
+            </h3>
+            <p className="text-lg text-slate-500 font-medium max-w-2xl">
+              A streamlined pipeline designed to move you from application to interview faster.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+            {steps.map((s, i) => (
+              <div key={i} className="space-y-4 relative">
+                {/* Connector Line (hidden on mobile) */}
+                {i < steps.length - 1 && (
+                  <div className="hidden lg:block absolute top-6 left-16 w-[calc(100%-1rem)] h-px bg-slate-200 dark:bg-slate-700" />
+                )}
+                <div className="size-12 bg-blue-600 rounded-xl flex items-center justify-center font-bold text-lg text-white shadow-md relative z-10">
+                  {i + 1}
+                </div>
+                <div className="space-y-2">
+                  <h4 className="text-base font-bold text-slate-900 dark:text-white tracking-tight">{s.title}</h4>
+                  <p className="text-sm text-slate-500 leading-relaxed font-medium">{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ CTA SECTION ═════════════════════════════════════════════════ */}
+      <section className="px-8 max-w-[1400px] mx-auto">
+        <div className="py-20 px-8 bg-blue-600 rounded-3xl text-center space-y-10">
+          <div className="space-y-6 max-w-3xl mx-auto">
+            <h3 className="text-5xl font-black text-white tracking-tight leading-[1.1]">
+              Ready to scale your Career?
+            </h3>
+            <p className="text-lg text-blue-100 font-medium">
+              Join 20,000+ professionals and top companies using LINKUP to define the future of recruitment.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Button 
+              onClick={() => navigate('/auth/signup?role=jobseeker')}
+              className="h-14 px-8 text-base bg-white text-blue-600 hover:bg-slate-50 shadow-sm"
+              variant="primary"
+            >
+              Get Started Free
+            </Button>
+            <Button 
+              onClick={() => navigate('/auth/signup?role=employer')}
+              className="h-14 px-8 text-base border-white/30 text-white hover:bg-white/10"
+              variant="outline"
+            >
+              Talk to Sales
+            </Button>
+          </div>
+        </div>
       </section>
     </div>
   );

@@ -9,3 +9,6 @@ export const normalizeResumeData = (res) => {
     rawText: res.resume_text || ''
   };
 };
+
+
+

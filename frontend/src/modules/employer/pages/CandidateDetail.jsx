@@ -79,7 +79,7 @@ export default function CandidateDetail() {
   if (loading) {
     return (
       <div className="h-[60vh] flex flex-col items-center justify-center gap-4">
-         <div className="size-12 border-4 border-slate-100 border-t-blue-600 rounded-full animate-spin" />
+         <div className="size-12 border-4 border-slate-100 border-t-blue-600 rounded-full " />
          <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Loading Candidate Data...</p>
       </div>
     );
@@ -307,4 +307,7 @@ export default function CandidateDetail() {
     </div>
   );
 }
+
+
+
 

@@ -41,3 +41,6 @@ export const formatAIResponse = (responseType, data) => {
       return data;
   }
 };
+
+
+

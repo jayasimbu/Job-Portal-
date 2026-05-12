@@ -8,7 +8,7 @@ const ScoreItem = ({ label, percentage, color }) => (
     </div>
     <div className="h-2 bg-slate-100 rounded-full overflow-hidden border border-slate-50">
       <div 
-        className={`h-full transition-all duration-1000 ${color}`} 
+        className={`h-full transition-all ${color}`} 
         style={{ width: `${percentage}%` }}
       />
     </div>
@@ -29,7 +29,7 @@ const ScoreBreakdown = ({ breakdown }) => {
       <div className="flex items-center justify-between mb-8">
         <h3 className="text-sm font-black text-slate-900 uppercase tracking-tight">Intelligence Breakdown</h3>
         <div className="flex items-center gap-2">
-           <span className="size-2 bg-emerald-500 rounded-full animate-pulse"></span>
+           <span className="size-2 bg-emerald-500 rounded-full "></span>
            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Live Insights</span>
         </div>
       </div>
@@ -50,3 +50,6 @@ const ScoreBreakdown = ({ breakdown }) => {
 };
 
 export default ScoreBreakdown;
+
+
+

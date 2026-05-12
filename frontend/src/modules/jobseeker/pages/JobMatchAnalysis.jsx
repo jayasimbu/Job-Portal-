@@ -3,6 +3,28 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { fetchRecommendations, applyForJob } from '../services/jobseekerService';
 import { getCurrentUserId } from '../../../core/auth/session';
 import { useToast } from '../../../core/context/ToastContext';
+import { 
+  Target, 
+  Building2, 
+  MapPin, 
+  Briefcase, 
+  Zap, 
+  ShieldCheck, 
+  XCircle, 
+  Brain, 
+  ArrowLeft,
+  ChevronRight,
+  Info,
+  Clock,
+  Sparkles
+} from 'lucide-react';
+
+// UI Components
+import Button from '../../../components/ui/Button';
+import Card, { CardBody, CardHeader } from '../../../components/ui/Card';
+import Badge from '../../../components/ui/Badge';
+import { Heading, Text } from '../../../components/ui/Typography';
+import { ATSCircle, SectionHeader, SkillChip } from '../components/DesignSystem';
 
 const JobMatchAnalysis = () => {
   const { id } = useParams();
@@ -34,7 +56,7 @@ const JobMatchAnalysis = () => {
     try {
       setIsApplying(true);
       await applyForJob(userId, job.id);
-      showToast(`Applied successfully to ${job.company} ✅`);
+      showToast(`Application sent to ${job.company}! 🚀`);
       setJob({ ...job, hasApplied: true });
     } catch (err) {
       showToast("Application failed ❌");
@@ -43,60 +65,142 @@ const JobMatchAnalysis = () => {
     }
   };
 
-  if (loading) return <div className="p-8 font-black uppercase tracking-widest text-slate-400">Analyzing Compatibility...</div>;
-  if (!job) return <div className="p-8 font-bold text-red-500">Job not found.</div>;
+  if (loading) return (
+    <div className="min-h-screen flex flex-col items-center justify-center space-y-6">
+       <div className="size-16 border-4 border-blue-600/20 border-t-blue-600 rounded-full " />
+       <p className="text-sm font-black uppercase tracking-[0.2em] text-slate-400">Smart Comparison Active</p>
+    </div>
+  );
+
+  if (!job) return (
+    <div className="min-h-screen flex flex-col items-center justify-center space-y-6">
+       <XCircle size={64} className="text-rose-500" />
+       <Heading level={2}>Opportunity Not Found</Heading>
+       <Button onClick={() => navigate('/platform/jobseeker/jobs')}>Return to Marketplace</Button>
+    </div>
+  );
 
   return (
-    <div className="max-w-7xl mx-auto space-y-8 pb-20">
-      {/* HEADER SECTION */}
-      <header className="flex items-center justify-between bg-white border border-slate-200 p-8 rounded-lg shadow-sm">
-        <div className="flex items-center gap-6">
-           <div className="size-20 bg-slate-50 border border-slate-100 rounded-lg flex items-center justify-center font-black text-4xl text-slate-300">
-              {job.company?.[0]}
-           </div>
-           <div className="space-y-1">
-              <h1 className="text-3xl font-bold text-slate-900">{job.title}</h1>
-              <p className="text-lg font-semibold text-blue-600 uppercase tracking-wider">{job.company} • {job.location}</p>
-           </div>
+    <div className="max-w-[1400px] mx-auto space-y-12 pb-20 px-8">
+      {/* NAVIGATION & ACTIONS */}
+      <div className="flex justify-between items-center">
+        <Button variant="secondary" onClick={() => navigate(-1)}>
+          <ArrowLeft size={18} />
+          Back to Search
+        </Button>
+        <div className="flex gap-4">
+           <Badge variant="primary" className="bg-emerald-50 text-emerald-600 border-emerald-100 py-1.5 px-4">
+              <Clock size={14} className="mr-2" />
+              Closing in 3 days
+           </Badge>
         </div>
-        <div className="flex flex-col items-end gap-2">
-           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Market Status</span>
-           <span className="px-4 py-1.5 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold uppercase border border-emerald-100">Actively Hiring</span>
+      </div>
+
+      {/* HEADER SECTION */}
+      <header className="card-premium p-10 bg-white dark:bg-slate-900 border-none shadow-premium relative overflow-hidden group">
+        <div className="absolute top-0 right-0 size-96 bg-blue-600/5 rounded-full blur-[100px] -mr-48 -mt-48 transition-all group-hover:bg-blue-600/10" />
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-10 relative z-10">
+          <div className="flex flex-col md:flex-row items-center gap-10">
+             <div className="size-28 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2.5rem] flex items-center justify-center font-black text-5xl text-blue-600 shadow-inner">
+                {job.company?.[0]}
+             </div>
+             <div className="space-y-3 text-center md:text-left">
+                <div className="flex items-center justify-center md:justify-start gap-3">
+                   <Badge variant="slate" className="bg-slate-100 dark:bg-slate-800 border-none text-[10px]">FULL-TIME</Badge>
+                   <Badge variant="primary" className="bg-blue-50 text-blue-600 border-none text-[10px]">AI MATCHED</Badge>
+                </div>
+                <h1 className="text-5xl font-black tracking-tighter text-slate-900 dark:text-white">{job.title}</h1>
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-6">
+                   <div className="flex items-center gap-2 text-slate-500 font-bold text-sm">
+                      <Building2 size={18} />
+                      {job.company}
+                   </div>
+                   <div className="flex items-center gap-2 text-slate-500 font-bold text-sm">
+                      <MapPin size={18} />
+                      {job.location}
+                   </div>
+                </div>
+             </div>
+          </div>
+          
+          <div className="flex flex-col items-center lg:items-end gap-6 shrink-0">
+             <div className="flex items-center gap-4">
+                <div className="text-right">
+                   <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-tight">Match Precision</p>
+                   <p className="text-4xl font-black text-blue-600">{Math.round(job.match_score || 72)}%</p>
+                </div>
+                <ATSCircle value={job.match_score || 72} size={100} />
+             </div>
+             <Button 
+               onClick={handleApply}
+               disabled={job.hasApplied || isApplying}
+               variant={job.hasApplied ? 'secondary' : 'gradient'}
+               className="h-16 px-12 text-lg w-full md:w-auto"
+             >
+               {job.hasApplied ? 'Application Sent ✅' : isApplying ? 'Processing...' : (
+                 <>
+                   <Zap size={20} className="fill-white" />
+                   One-Click Apply
+                 </>
+               )}
+             </Button>
+          </div>
         </div>
       </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* LEFT SIDE: JOB DESCRIPTION */}
-        <div className="lg:col-span-7 space-y-8">
-           <section className="bg-white border border-slate-200 rounded-lg p-8 shadow-sm space-y-8">
-              <div className="flex items-center gap-3 border-b border-slate-50 pb-4">
-                 <span className="material-symbols-outlined text-slate-900">description</span>
-                 <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest">Detailed Job Description</h2>
-              </div>
+        <div className="lg:col-span-8 space-y-12">
+           <section className="space-y-10">
+              <SectionHeader title="Opportunity Blueprint" icon={Briefcase} color="blue" />
               
-              <div className="space-y-6">
-                 <div className="space-y-2">
-                    <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider text-blue-600">The Role</h3>
-                    <p className="text-slate-600 leading-relaxed font-medium">
+              <div className="space-y-12">
+                 <div className="space-y-4">
+                    <Text variant="small" className="font-black uppercase tracking-[0.2em] text-blue-600">The Mission</Text>
+                    <p className="text-xl text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
                       {job.description || "As a Senior Developer, you will be responsible for architecting and implementing scalable solutions, mentoring junior engineers, and driving technical excellence across our platform."}
                     </p>
                  </div>
 
-                 <div className="space-y-4">
-                    <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider text-blue-600">Core Responsibilities</h3>
-                    <ul className="list-disc pl-5 space-y-2 text-slate-600 font-medium">
-                       <li>Lead development of high-performance microservices.</li>
-                       <li>Collaborate with product and design teams to build intuitive user experiences.</li>
-                       <li>Optimize application performance and scalability for millions of users.</li>
-                       <li>Participate in code reviews and advocate for engineering best practices.</li>
-                    </ul>
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div className="space-y-6">
+                       <Text variant="small" className="font-black uppercase tracking-[0.2em] text-blue-600">Primary Responsibilities</Text>
+                       <ul className="space-y-4">
+                          {[
+                            'Lead development of high-performance microservices',
+                            'Collaborate with global product and design teams',
+                            'Optimize application performance and scalability',
+                            'Champion engineering best practices'
+                          ].map(item => (
+                            <li key={item} className="flex gap-4 text-slate-600 dark:text-slate-400 font-medium">
+                               <div className="size-2 bg-blue-500 rounded-full mt-2 shrink-0" />
+                               {item}
+                            </li>
+                          ))}
+                       </ul>
+                    </div>
+
+                    <div className="space-y-6">
+                       <Text variant="small" className="font-black uppercase tracking-[0.2em] text-blue-600">Growth Potential</Text>
+                       <Card className="bg-slate-50 dark:bg-slate-800 border-none p-6">
+                          <div className="space-y-4">
+                             <div className="flex items-center gap-3 text-blue-600 font-bold">
+                                <Sparkles size={20} />
+                                High Impact Role
+                             </div>
+                             <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
+                                This position report directly to the Head of Engineering and has a clear path to Technical Lead within 12 months.
+                             </p>
+                          </div>
+                       </Card>
+                    </div>
                  </div>
 
-                 <div className="space-y-4">
-                    <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider text-blue-600">Technical Requirements</h3>
-                    <div className="flex flex-wrap gap-2">
+                 <div className="space-y-6">
+                    <Text variant="small" className="font-black uppercase tracking-[0.2em] text-blue-600">Technical Stack</Text>
+                    <div className="flex flex-wrap gap-3">
                        {['React', 'Node.js', 'PostgreSQL', 'Docker', 'AWS', 'Kubernetes', 'CI/CD'].map(skill => (
-                          <span key={skill} className="px-3 py-1.5 bg-slate-50 border border-slate-100 rounded text-xs font-bold text-slate-500 uppercase tracking-widest">{skill}</span>
+                          <SkillChip key={skill} label={skill} variant="slate" />
                        ))}
                     </div>
                  </div>
@@ -104,85 +208,96 @@ const JobMatchAnalysis = () => {
            </section>
         </div>
 
-        {/* RIGHT SIDE: RESUME ANALYSIS */}
-        <div className="lg:col-span-5 space-y-8">
-           <section className="bg-slate-900 text-white rounded-lg p-8 shadow-xl relative overflow-hidden">
-              <div className="relative z-10 space-y-6">
-                 <div className="flex items-center justify-between">
-                    <div className="space-y-1">
-                       <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">AI Analysis Engine</p>
-                       <h2 className="text-sm font-bold uppercase tracking-widest text-blue-400">Compatibility Score</h2>
+        {/* RIGHT SIDE: MATCH INTELLIGENCE */}
+        <div className="lg:col-span-4 space-y-8">
+           <section className="sticky top-8 space-y-8">
+              {/* AI INSIGHT CARD */}
+              <Card className="bg-slate-900 text-white border-none p-8 shadow-2xl relative overflow-hidden group">
+                 <div className="absolute bottom-0 right-0 size-48 bg-blue-600/20 rounded-full blur-3xl -mr-24 -mb-24" />
+                 <div className="relative z-10 space-y-8">
+                    <div className="flex items-center justify-between">
+                       <SectionHeader title="Match Strength" icon={Brain} color="blue" />
+                       <Badge variant="primary" className="bg-blue-600 text-white border-none py-1 px-3">BETA</Badge>
                     </div>
-                    <div className="text-right">
-                       <p className="text-5xl font-bold">{Math.round(job.match_score || 72)}%</p>
+                    
+                    <div className="space-y-6">
+                       <div className="flex items-center justify-between">
+                          <span className="text-xs font-bold uppercase tracking-widest text-slate-400">Match Probability</span>
+                          <span className="text-xl font-black text-blue-400">{Math.round(job.match_score || 72)}%</span>
+                       </div>
+                       <div className="h-3 w-full bg-white/5 rounded-full overflow-hidden shadow-inner">
+                          <div className="h-full bg-gradient-to-r from-blue-600 to-indigo-500 rounded-full transition-all " style={{ width: `${job.match_score || 72}%` }}></div>
+                       </div>
                     </div>
-                 </div>
-                 <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
-                    <div className="h-full bg-blue-500" style={{ width: `${job.match_score || 72}%` }}></div>
-                 </div>
-                 <p className="text-xs font-medium text-slate-400 leading-relaxed italic">
-                   "Based on your resume, you have a strong match for the core technical stack, but adding Docker experience would significantly improve your chances."
-                 </p>
-              </div>
-              <span className="absolute -bottom-10 -right-10 material-symbols-outlined text-[12rem] text-white/5 rotate-12">psychology</span>
-           </section>
 
-           {/* OUTPUT SECTION: SKILLS COMPARISON */}
-           <section className="bg-white border border-slate-200 rounded-lg p-8 shadow-sm space-y-8">
-              <div className="grid grid-cols-1 gap-8">
+                    <div className="p-6 bg-white/5 rounded-2xl border border-white/5">
+                       <p className="text-sm font-medium text-slate-300 leading-relaxed italic">
+                         "Your profile demonstrates excellent command of {job.title.split(' ')[0]} patterns. The core match is strong, but emphasizing deployment automation would bridge the 12% gap in requirements."
+                       </p>
+                    </div>
+                 </div>
+              </Card>
+
+              {/* SKILLS GAP COMPARISON */}
+              <Card>
+                 <CardHeader>
+                    <Heading level={4}>Requirement Analysis</Heading>
+                 </CardHeader>
+                 <CardBody className="space-y-10">
+                    <div className="space-y-4">
+                       <div className="flex items-center gap-2 text-emerald-500">
+                          <ShieldCheck size={18} />
+                          <span className="text-[10px] font-black uppercase tracking-widest">Matched Assets</span>
+                       </div>
+                       <div className="flex flex-wrap gap-2">
+                          {['React', 'Node.js', 'PostgreSQL', 'JavaScript'].map(s => (
+                             <SkillChip key={s} label={s} variant="success" />
+                          ))}
+                       </div>
+                    </div>
+
+                    <div className="space-y-4">
+                       <div className="flex items-center gap-2 text-rose-500">
+                          <XCircle size={18} />
+                          <span className="text-[10px] font-black uppercase tracking-widest">Growth Gaps</span>
+                       </div>
+                       <div className="flex flex-wrap gap-2">
+                          {['Docker', 'AWS', 'Kubernetes'].map(s => (
+                             <SkillChip key={s} label={s} variant="danger" />
+                          ))}
+                       </div>
+                    </div>
+
+                    <div className="pt-6 border-t border-slate-100 dark:border-slate-800 space-y-6">
+                       <div className="flex items-center gap-2 text-blue-600">
+                          <Sparkles size={18} />
+                          <span className="text-[10px] font-black uppercase tracking-widest">AI Strategy</span>
+                       </div>
+                       <ul className="space-y-4">
+                          {[
+                             'Showcase deployment projects in your resume',
+                             'Increase keyword density for backend optimization',
+                             'Mention cloud-native exploration in your summary'
+                          ].map((rec, i) => (
+                             <li key={i} className="flex gap-3 text-xs font-bold text-slate-600 dark:text-slate-400">
+                                <ChevronRight size={14} className="text-blue-500 shrink-0" />
+                                {rec}
+                             </li>
+                          ))}
+                       </ul>
+                    </div>
+                 </CardBody>
+              </Card>
+
+              <Card className="bg-blue-50 dark:bg-blue-900/20 border-blue-100 dark:border-blue-800/50 p-8 text-center">
                  <div className="space-y-4">
-                    <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
-                       <span className="material-symbols-outlined text-emerald-500 text-sm">check_circle</span>
-                       Matched Skills
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                       {['React', 'Node.js', 'MongoDB', 'JavaScript'].map(s => (
-                          <span key={s} className="px-3 py-1.5 bg-emerald-50 text-emerald-600 rounded text-[10px] font-bold border border-emerald-100 uppercase tracking-widest">✔ {s}</span>
-                       ))}
-                    </div>
+                    <Info size={32} className="mx-auto text-blue-600" />
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">Professional Tip</h4>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
+                       Candidates who customize their summary based on AI match insights are 3.5x more likely to secure an initial interview.
+                    </p>
                  </div>
-
-                 <div className="space-y-4">
-                    <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
-                       <span className="material-symbols-outlined text-red-500 text-sm">cancel</span>
-                       Missing Skills
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                       {['Docker', 'AWS', 'Kubernetes'].map(s => (
-                          <span key={s} className="px-3 py-1.5 bg-red-50 text-red-600 rounded text-[10px] font-bold border border-red-100 uppercase tracking-widest">✘ {s}</span>
-                       ))}
-                    </div>
-                 </div>
-              </div>
-
-              <div className="pt-8 border-t border-slate-50 space-y-4">
-                 <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">AI Strategic Recommendations</h4>
-                 <ul className="space-y-3">
-                    {[
-                       'Highlight your deployment projects in the resume.',
-                       'Improve keyword density for backend optimization roles.',
-                       'Mention CI/CD tools you have explored even if self-taught.'
-                    ].map((rec, i) => (
-                       <li key={i} className="flex gap-3 text-xs font-semibold text-slate-600">
-                          <span className="text-blue-600">•</span> {rec}
-                       </li>
-                    ))}
-                 </ul>
-              </div>
-
-              <div className="pt-8">
-                 <button 
-                  onClick={handleApply}
-                  disabled={job.hasApplied || isApplying}
-                  className={`w-full h-14 rounded-md text-xs font-bold uppercase tracking-widest transition-all shadow-md ${
-                    job.hasApplied 
-                      ? 'bg-emerald-50 text-emerald-600 cursor-default border border-emerald-100' 
-                      : 'bg-blue-600 text-white hover:bg-blue-700 shadow-blue-200'
-                  }`}
-                 >
-                   {job.hasApplied ? 'Application Sent ✅' : isApplying ? 'Processing Application...' : 'Apply for this Role'}
-                 </button>
-              </div>
+              </Card>
            </section>
         </div>
       </div>
@@ -191,3 +306,6 @@ const JobMatchAnalysis = () => {
 };
 
 export default JobMatchAnalysis;
+
+
+

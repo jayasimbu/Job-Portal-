@@ -5,10 +5,10 @@ import AdminTopbar from './AdminTopbar.jsx';
 
 const AdminLayout = ({ children }) => {
   return (
-    <div className="min-h-screen bg-[#fdfdfd] dark:bg-[#080c10] transition-colors duration-500 font-manrope selection:bg-blue-100 selection:text-blue-900">
+    <div className="min-h-screen bg-[#fdfdfd] dark:bg-[#080c10] transition-colors font-manrope selection:bg-blue-100 selection:text-blue-900">
       {/* Decorative Background Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-500/5 blur-[120px] rounded-full animate-pulse" />
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-500/5 blur-[120px] rounded-full " />
         <div className="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-violet-500/5 blur-[100px] rounded-full" />
       </div>
 
@@ -34,3 +34,6 @@ const AdminLayout = ({ children }) => {
 };
 
 export default AdminLayout;
+
+
+

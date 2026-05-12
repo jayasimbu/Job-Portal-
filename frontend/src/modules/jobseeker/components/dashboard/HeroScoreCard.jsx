@@ -18,7 +18,7 @@ const HeroScoreCard = ({ score, insight, onUpload, onViewJobs }) => {
     <div className="bg-white rounded-[12px] p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-slate-100 relative overflow-hidden group">
       <div className="flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
         <div className="flex items-center gap-6">
-          <div className={`size-32 rounded-full border-[8px] border-slate-50 flex items-center justify-center relative ${getBgColor(score)} transition-all duration-500 group-hover:scale-105`}>
+          <div className={`size-32 rounded-full border-[8px] border-slate-50 flex items-center justify-center relative ${getBgColor(score)} transition-all group-hover:scale-105`}>
             <span className={`text-5xl font-black tabular-nums ${getStatusColor(score)}`}>{score}</span>
             <div className="absolute -top-2 -right-2 p-1.5 bg-blue-600 rounded-lg text-white shadow-lg animate-bounce">
               <Sparkles size={16} />
@@ -30,7 +30,7 @@ const HeroScoreCard = ({ score, insight, onUpload, onViewJobs }) => {
               {insight || "“Ready for mid-level frontend roles”"}
             </p>
             <div className="flex items-center gap-2 mt-4">
-              <span className={`size-2 rounded-full animate-pulse ${getStatusColor(score).replace('text-', 'bg-')}`}></span>
+              <span className={`size-2 rounded-full  ${getStatusColor(score).replace('text-', 'bg-')}`}></span>
               <span className="text-[11px] font-black uppercase tracking-widest text-slate-400">Analysis Synchronized</span>
             </div>
           </div>
@@ -61,3 +61,6 @@ const HeroScoreCard = ({ score, insight, onUpload, onViewJobs }) => {
 };
 
 export default HeroScoreCard;
+
+
+

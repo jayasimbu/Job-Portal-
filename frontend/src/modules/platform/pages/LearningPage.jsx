@@ -57,7 +57,7 @@ const LearningPage = () => {
             <p className="text-sm font-bold text-blue-600">{progress}%</p>
           </div>
           <div className="w-16 h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
-            <div className="h-full bg-blue-600 rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
+            <div className="h-full bg-blue-600 rounded-full transition-all " style={{ width: `${progress}%` }} />
           </div>
         </div>
       </header>
@@ -66,7 +66,7 @@ const LearningPage = () => {
         {/* Left Pane: Video Player */}
         <div className="flex-[2] flex flex-col bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
           {loading ? (
-            <div className="w-full aspect-video bg-slate-100 dark:bg-slate-800 animate-pulse flex items-center justify-center">
+            <div className="w-full aspect-video bg-slate-100 dark:bg-slate-800  flex items-center justify-center">
               <span className="material-symbols-outlined text-4xl text-slate-300 dark:text-slate-600">movie</span>
             </div>
           ) : activeVideo ? (
@@ -117,7 +117,7 @@ const LearningPage = () => {
             <div className="flex-1 overflow-y-auto p-2 space-y-1 custom-scrollbar">
               {loading ? (
                 Array(4).fill(0).map((_, i) => (
-                  <div key={i} className="h-16 bg-slate-100 dark:bg-slate-800 rounded-xl animate-pulse mb-2" />
+                  <div key={i} className="h-16 bg-slate-100 dark:bg-slate-800 rounded-xl  mb-2" />
                 ))
               ) : videos.map((vid, idx) => (
                 <button
@@ -162,3 +162,6 @@ const LearningPage = () => {
 };
 
 export default LearningPage;
+
+
+

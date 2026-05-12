@@ -63,6 +63,11 @@ class Settings(BaseSettings):
     OLLAMA_STARTUP_TIMEOUT_SECONDS: int = 8
     ALLOWED_OLLAMA_MODELS: List[str] = []
 
+    # OpenRouter settings (Cloud-mode Step 22)
+    OPENROUTER_API_KEY: str = ""
+    OPENROUTER_MODEL: str = "deepseek-v3.1:671b-cloud"
+    OPENROUTER_BASE_URL: str = "https://openrouter.ai/api/v1"
+
     # Queue settings for rate-limited model requests
     OLLAMA_QUEUE_ENABLED: bool = True
     OLLAMA_QUEUE_POLL_SECONDS: int = 30

@@ -76,9 +76,9 @@ export default function HiringPolicy() {
               </div>
               <button
                 onClick={() => toggle(key)}
-                className={`relative flex-shrink-0 mt-0.5 w-12 h-6 rounded-full transition-all duration-200 ${policy[key] ? 'bg-blue-600' : 'bg-slate-200 dark:bg-slate-700'}`}
+                className={`relative flex-shrink-0 mt-0.5 w-12 h-6 rounded-full transition-all ${policy[key] ? 'bg-blue-600' : 'bg-slate-200 dark:bg-slate-700'}`}
               >
-                <span className={`absolute top-0.5 size-5 rounded-full bg-white shadow transition-all duration-200 ${policy[key] ? 'right-0.5' : 'left-0.5'}`} />
+                <span className={`absolute top-0.5 size-5 rounded-full bg-white shadow transition-all ${policy[key] ? 'right-0.5' : 'left-0.5'}`} />
               </button>
             </div>
           ))}
@@ -128,3 +128,6 @@ export default function HiringPolicy() {
     </div>
   );
 }
+
+
+

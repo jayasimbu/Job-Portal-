@@ -189,7 +189,7 @@ export default function MatchInsights() {
                 <div className="relative w-48 h-24 overflow-hidden mb-4">
                   <svg className="w-48 h-48 -rotate-180" viewBox="0 0 100 100">
                     <circle className="text-slate-100 dark:text-slate-700" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" strokeDasharray="125.6 251.2" strokeWidth="10" />
-                    <circle className="text-[#2563eb] transition-all duration-1000 ease-out" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" strokeDasharray="125.6 251.2" strokeDashoffset="30" strokeLinecap="round" strokeWidth="10" />
+                    <circle className="text-[#2563eb] transition-all ease-out" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" strokeDasharray="125.6 251.2" strokeDashoffset="30" strokeLinecap="round" strokeWidth="10" />
                   </svg>
                   <div className="absolute bottom-0 left-0 right-0 text-center">
                     <span className="text-3xl font-black text-[#0d141b] dark:text-white">88%</span>
@@ -236,3 +236,6 @@ export default function MatchInsights() {
     </div>
   );
 }
+
+
+

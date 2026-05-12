@@ -51,13 +51,13 @@ export default function ProjectVerifyCard() {
           className="flex items-center justify-center px-6 py-2.5 bg-blue-600 text-white font-bold text-sm rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           {isVerifying ? (
-            <><span className="material-symbols-outlined animate-spin mr-2 !text-[18px]">sync</span> Verifying...</>
+            <><span className="material-symbols-outlined  mr-2 !text-[18px]">sync</span> Verifying...</>
           ) : 'Analyze Repo'}
         </button>
       </div>
 
       {result && (
-        <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700 animate-fade-in text-sm">
+        <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700  text-sm">
           <div className="flex justify-between items-center mb-4 pb-4 border-b border-slate-200 dark:border-slate-700">
             <span className="font-semibold text-slate-700 dark:text-slate-300">Authenticity Score</span>
             <div className="flex items-center gap-2">
@@ -84,3 +84,6 @@ export default function ProjectVerifyCard() {
     </div>
   );
 }
+
+
+

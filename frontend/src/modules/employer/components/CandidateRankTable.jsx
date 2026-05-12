@@ -29,3 +29,6 @@ const CandidateRankTable = ({ candidates = [] }) => {
 };
 
 export default CandidateRankTable;
+
+
+

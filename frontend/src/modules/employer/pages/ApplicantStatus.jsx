@@ -3,7 +3,7 @@ import EmployerShell from '../components/EmployerShell';
 
 export default function ApplicantStatus() {
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-950 font-display text-slate-900 dark:text-slate-100 transition-colors duration-200">
+    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-950 font-display text-slate-900 dark:text-slate-100 transition-colors ">
       <EmployerShell active="candidates" />
       
       <main className="flex-1 flex flex-col h-full overflow-hidden">
@@ -143,7 +143,7 @@ export default function ApplicantStatus() {
                         <div className="flex justify-between items-start mb-2">
                           <div className="flex items-center gap-2">
                             <h4 className="text-base font-bold text-blue-600 dark:text-blue-400">Interview In Progress</h4>
-                            <span className="animate-pulse size-2 rounded-full bg-blue-600"></span>
+                            <span className=" size-2 rounded-full bg-blue-600"></span>
                           </div>
                           <span className="text-xs font-medium text-blue-700 bg-blue-100 dark:bg-blue-900/30 dark:text-blue-300 px-2 py-1 rounded">Nov 02, 2023</span>
                         </div>
@@ -280,3 +280,6 @@ function TimelineStep({ icon, title, date, desc, status }) {
     </div>
   );
 }
+
+
+

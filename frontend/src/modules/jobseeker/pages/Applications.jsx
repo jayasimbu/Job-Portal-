@@ -1,171 +1,113 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { fetchApplications } from '../services/jobseekerService';
-import { mapApplication } from '../../../core/api/adapters';
+import React, { useState } from 'react';
+import { Send, MapPin, Search } from 'lucide-react';
+import Button from '../../../components/ui/Button';
 
-// Import Design System
-import { SectionHeader, StatCard, ProgressBar } from '../components/DesignSystem';
+export default function Applications() {
+  const [filter, setFilter] = useState('All');
 
-const STAGES = ['Applied', 'Reviewing', 'Shortlisted', 'Interview', 'Rejected', 'Hired'];
-
-const Applications = () => {
-  const navigate = useNavigate();
-  const [applications, setApplications] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const fetchApps = async () => {
-    setLoading(true);
-    try {
-      const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
-      const data = await fetchApplications(user.id);
-      if (data.applications) {
-        setApplications(data.applications.map(app => mapApplication(app)));
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
+  // Mock data for UI demonstration
+  const applications = [
+    {
+      id: 1,
+      role: 'Frontend Developer',
+      company: 'Zoho',
+      location: 'Chennai',
+      appliedOn: 'Applied 2 days ago',
+      matchScore: 82,
+      status: 'Under Review'
+    },
+    {
+      id: 2,
+      role: 'React Engineer',
+      company: 'Freshworks',
+      location: 'Chennai',
+      appliedOn: 'Applied 1 week ago',
+      matchScore: 88,
+      status: 'Selected'
+    },
+    {
+      id: 3,
+      role: 'UI Developer',
+      company: 'Chargebee',
+      location: 'Remote',
+      appliedOn: 'Applied 2 weeks ago',
+      matchScore: 65,
+      status: 'Rejected'
     }
-  };
+  ];
 
-  useEffect(() => {
-    fetchApps();
-  }, []);
-
-  const interviewApplications = applications.filter(app => app.status === 'Interview');
+  const filteredApps = filter === 'All' 
+    ? applications 
+    : applications.filter(app => app.status === filter);
 
   return (
-    <div className="max-w-7xl mx-auto space-y-12 pb-20 px-4 sm:px-6">
+    <div className="max-w-[1000px] mx-auto space-y-8 pb-20 px-8">
       {/* HEADER */}
-      <header className="flex justify-between items-end">
-        <div className="space-y-1">
-          <h1 className="text-3xl font-black tracking-tight text-slate-900 uppercase">Application Tracker</h1>
-          <p className="text-slate-400 font-black uppercase tracking-[0.2em] text-[10px]">End-to-end monitoring of your professional pipeline</p>
-        </div>
-        <div className="text-right">
-           <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">Pipeline Health</span>
-           <span className="text-sm font-black text-blue-600 uppercase tracking-tight">{applications.length} Active Processes</span>
-        </div>
-      </header>
-
-      {/* TOP STATS */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-         <div className="bg-white border border-slate-200 rounded-[2rem] p-8 shadow-sm">
-            <StatCard label="Total Apps" value={applications.length} />
-         </div>
-         <div className="bg-white border border-slate-200 rounded-[2rem] p-8 shadow-sm">
-            <StatCard label="Interviews" value={interviewApplications.length} color="text-purple-600" />
-         </div>
-         <div className="bg-white border border-slate-200 rounded-[2rem] p-8 shadow-sm">
-            <StatCard label="Shortlisted" value={applications.filter(a => a.status === 'Shortlisted').length} color="text-emerald-600" />
-         </div>
-         <div className="bg-white border border-slate-200 rounded-[2rem] p-8 shadow-sm">
-            <StatCard label="Review Rate" value="84" suffix="%" color="text-blue-600" />
-         </div>
+      <div className="space-y-2">
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Applications</h1>
+        <p className="text-slate-500 font-medium text-base">
+          Track your applied jobs.
+        </p>
       </div>
 
-      {/* INTERVIEW TRACKER SECTION */}
-      {interviewApplications.length > 0 && (
-        <section className="space-y-8">
-           <SectionHeader title="Interview Queue" icon="event_upcoming" iconColor="text-purple-600" bgColor="bg-purple-50" />
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {interviewApplications.map(app => (
-                <div key={app.id} className="p-8 border border-slate-200 rounded-[2.5rem] bg-white shadow-sm hover:shadow-xl transition-all relative overflow-hidden group cursor-pointer">
-                   <div className="flex justify-between items-start mb-6">
-                      <div className="size-14 bg-slate-50 rounded-2xl flex items-center justify-center font-black text-2xl text-slate-300 uppercase">
-                        {app.company?.[0]}
-                      </div>
-                      <span className="px-3 py-1.5 bg-purple-50 text-purple-600 rounded-xl text-[9px] font-black uppercase tracking-widest border border-purple-100">Live Process</span>
-                   </div>
-                   <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight mb-1 group-hover:text-blue-600 transition-colors">{app.title}</h3>
-                   <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6">{app.company}</p>
-                   
-                   <div className="space-y-4 mb-8">
-                      <div className="flex items-center gap-3 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-                         <span className="material-symbols-outlined text-sm">calendar_month</span>
-                         May 15, 2026 • 10:30 AM
-                      </div>
-                      <div className="flex items-center gap-3 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-                         <span className="material-symbols-outlined text-sm">video_chat</span>
-                         <a href="#" className="text-blue-600 hover:underline">Launch Interview Meeting</a>
-                      </div>
-                   </div>
+      {/* FILTER BAR */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl overflow-x-auto w-full sm:w-auto">
+          {['All', 'Under Review', 'Selected', 'Rejected'].map(status => (
+            <button
+              key={status}
+              onClick={() => setFilter(status)}
+              className={`px-6 py-2.5 rounded-lg text-sm font-bold whitespace-nowrap transition-all ${filter === status ? 'bg-white dark:bg-slate-900 text-blue-600 shadow-sm' : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'}`}
+            >
+              {status}
+            </button>
+          ))}
+        </div>
+      </div>
 
-                   <button className="w-full py-4 bg-slate-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 transition-all shadow-xl shadow-slate-100">
-                      Join Digital Office
-                   </button>
-                   <span className="absolute -bottom-6 -right-6 material-symbols-outlined text-[8rem] text-slate-50 opacity-[0.03] group-hover:scale-110 transition-transform">event</span>
+      {/* APPLICATIONS LIST */}
+      <div className="space-y-4">
+        {filteredApps.length === 0 ? (
+          <div className="text-center py-20 text-slate-500 font-medium bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl">
+            No applications found for this status.
+          </div>
+        ) : (
+          filteredApps.map(app => (
+            <div key={app.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
+              
+              <div className="flex gap-4 items-start">
+                <div className="size-12 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 border border-blue-100 dark:border-blue-800/50 flex items-center justify-center shrink-0">
+                  <Send size={20} />
                 </div>
-              ))}
-           </div>
-        </section>
-      )}
+                <div className="space-y-1">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white leading-tight">{app.role}</h3>
+                  <div className="flex items-center gap-2 text-sm font-medium text-slate-500">
+                    <span className="text-slate-700 dark:text-slate-300">{app.company}</span>
+                    <span>•</span>
+                    <span className="flex items-center gap-1"><MapPin size={14} /> {app.location}</span>
+                  </div>
+                </div>
+              </div>
 
-      {/* STATUS PIPELINE (KANBAN) */}
-      <section className="space-y-8">
-         <SectionHeader title="Intelligence Pipeline" icon="account_tree" />
-         <div className="overflow-x-auto pb-8 -mx-2 px-2 custom-scrollbar">
-            <div className="flex gap-8 min-w-[1400px]">
-               {STAGES.map(stage => {
-                 const appsInStage = applications.filter(app => {
-                   const status = app.status?.toLowerCase();
-                   const target = stage.toLowerCase();
-                   if (target === 'applied') return status === 'applied' || !status;
-                   return status === target;
-                 });
+              <div className="flex flex-col sm:items-end gap-2 mt-4 sm:mt-0">
+                <div className="flex items-center gap-3">
+                   <span className="text-sm font-semibold text-slate-500">{app.appliedOn}</span>
+                   <span className="bg-emerald-50 text-emerald-700 font-bold px-2 py-1 rounded border border-emerald-100 text-xs">
+                     {app.matchScore}% Match
+                   </span>
+                </div>
+                <div>
+                   {app.status === 'Under Review' && <span className="px-4 py-1.5 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-800/50 rounded-lg text-sm font-bold">Under Review</span>}
+                   {app.status === 'Selected' && <span className="px-4 py-1.5 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/50 rounded-lg text-sm font-bold">Selected</span>}
+                   {app.status === 'Rejected' && <span className="px-4 py-1.5 bg-rose-50 dark:bg-rose-900/20 text-rose-700 dark:text-rose-400 border border-rose-200 dark:border-rose-800/50 rounded-lg text-sm font-bold">Rejected</span>}
+                </div>
+              </div>
 
-                 return (
-                   <div key={stage} className="flex-1 space-y-6">
-                      <div className="flex items-center justify-between px-4">
-                         <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">{stage}</h3>
-                         <span className="size-8 bg-slate-50 rounded-xl flex items-center justify-center text-xs font-black text-slate-400 border border-slate-100">
-                           {appsInStage.length}
-                         </span>
-                      </div>
-
-                      <div className="space-y-4">
-                         {appsInStage.map(app => (
-                           <div 
-                             key={app.id} 
-                             className="bg-white border border-slate-200 rounded-[2rem] p-6 hover:border-blue-500 transition-all group cursor-pointer shadow-sm hover:shadow-md"
-                           >
-                              <div className="flex justify-between items-start mb-4">
-                                 <div className="size-10 bg-slate-50 rounded-xl flex items-center justify-center font-black text-slate-300 text-sm">
-                                   {app.company?.[0]}
-                                 </div>
-                                 <div className="text-right">
-                                   <p className="text-sm font-black text-slate-900 leading-tight">{app.ats_score || 78}%</p>
-                                   <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Match</p>
-                                 </div>
-                              </div>
-                              
-                              <h4 className="text-xs font-black text-slate-900 uppercase tracking-tight mb-1 line-clamp-1 group-hover:text-blue-600 transition-colors">{app.title}</h4>
-                              <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-4">{app.company}</p>
-                              
-                              <div className="pt-4 border-t border-slate-50">
-                                 <div className="flex justify-between items-center mb-2">
-                                    <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Progress</span>
-                                    <span className="text-[8px] font-black text-blue-600 uppercase tracking-widest">Stage {STAGES.indexOf(stage) + 1}/6</span>
-                                 </div>
-                                 <ProgressBar value={(STAGES.indexOf(stage) + 1) / STAGES.length * 100} />
-                              </div>
-                           </div>
-                         ))}
-                         
-                         {appsInStage.length === 0 && (
-                           <div className="h-40 rounded-[2rem] border-2 border-dashed border-slate-50 flex items-center justify-center opacity-30">
-                              <p className="text-[9px] font-black text-slate-300 uppercase tracking-[0.2em]">Idle Stage</p>
-                           </div>
-                         )}
-                      </div>
-                   </div>
-                 );
-               })}
             </div>
-         </div>
-      </section>
+          ))
+        )}
+      </div>
+
     </div>
   );
-};
-
-export default Applications;
+}

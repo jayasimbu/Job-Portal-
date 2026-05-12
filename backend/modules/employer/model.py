@@ -21,10 +21,12 @@ class JobPosting:
     title: str
     description: str
     required_skills: list[str] = field(default_factory=list)
+    experience_level: str = "Entry"  # Entry, Mid, Senior
     min_experience: float = 0
+    salary: str | None = None
     education_required: str | None = None
     location: str | None = None
-    employment_type: str = "full_time"
+    job_type: str = "Full-time"  # Full-time, Part-time, Internship, Contract
     active: bool = True
     created_at: datetime | None = None
     updated_at: datetime | None = None

@@ -84,7 +84,7 @@ export default function BiasFreeJobRequirements() {
   const progress = ((currentStep + 1) / steps.length) * 100;
 
   return (
-    <div className="h-full flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="h-full flex flex-col overflow-hidden duration-700">
       <div className="flex-1 overflow-y-auto custom-scrollbar pr-1 pb-4">
         <div className="flex flex-col w-full max-w-[1024px] mx-auto">
           
@@ -103,7 +103,7 @@ export default function BiasFreeJobRequirements() {
             <div className="flex flex-col gap-3 mt-4">
               <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 overflow-hidden shadow-inner">
                 <div 
-                  className="bg-purple-600 h-3 rounded-full transition-all duration-500 ease-out relative overflow-hidden" 
+                  className="bg-purple-600 h-3 rounded-full transition-all ease-out relative overflow-hidden" 
                   style={{ width: `${progress}%` }}
                 >
                   <div className="absolute inset-0 bg-white/20 w-full h-full animate-[shimmer_2s_infinite]"></div>
@@ -119,7 +119,7 @@ export default function BiasFreeJobRequirements() {
                   return (
                     <div key={step} className="flex flex-col items-center gap-2 bg-slate-50 dark:bg-[#0d141b] px-2">
                       <div 
-                        className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black transition-all duration-300 ${
+                        className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black transition-all ${
                           isActive 
                             ? 'bg-purple-600 text-white shadow-[0_0_15px_rgba(147,51,234,0.4)] scale-110 ring-4 ring-purple-100 dark:ring-purple-900/30' 
                             : isPast 
@@ -155,7 +155,7 @@ export default function BiasFreeJobRequirements() {
           )}
 
           {toast && (
-            <div className={`p-4 rounded-2xl text-sm font-bold mb-6 shadow-sm flex items-center gap-2 animate-in fade-in slide-in-from-top-4 ${
+            <div className={`p-4 rounded-2xl text-sm font-bold mb-6 shadow-sm flex items-center gap-2 ${
               toast.type === 'error' ? 'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400' : 
               'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400'
             }`}>
@@ -285,7 +285,7 @@ export default function BiasFreeJobRequirements() {
                             onChange={() => setProficiency(level.id)}
                             className="sr-only"
                           />
-                          <div className={`h-full p-5 rounded-2xl border transition-all duration-200 flex flex-col gap-2 group-hover:scale-[1.02] ${
+                          <div className={`h-full p-5 rounded-2xl border transition-all flex flex-col gap-2 group-hover:scale-[1.02] ${
                             isSelected 
                               ? 'bg-purple-50 dark:bg-purple-900/20 border-purple-500 ring-1 ring-purple-500 shadow-sm' 
                               : 'bg-slate-50 dark:bg-slate-800 border-slate-300 dark:border-slate-700 hover:border-purple-400'
@@ -321,7 +321,7 @@ export default function BiasFreeJobRequirements() {
                       disabled={loading}
                       className="flex-1 sm:flex-none flex items-center justify-center gap-2 rounded-xl py-3 px-10 bg-purple-600 text-white text-base font-black transition-all shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/40 hover:-translate-y-0.5 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                     >
-                      {loading ? <span className="material-symbols-outlined animate-spin">sync</span> : 'Publish Job'}
+                      {loading ? <span className="material-symbols-outlined ">sync</span> : 'Publish Job'}
                     </button>
                   </div>
                 </div>
@@ -408,8 +408,8 @@ export default function BiasFreeJobRequirements() {
               </div>
 
               {/* Inclusive Hiring Guide CTA */}
-              <div className="bg-gradient-to-br from-purple-600 to-indigo-600 rounded-3xl p-6 text-white shadow-xl shadow-purple-500/20 relative overflow-hidden group cursor-pointer hover:-translate-y-1 transition-all duration-300">
-                <div className="absolute -right-10 -top-10 bg-white/10 size-40 rounded-full blur-2xl group-hover:bg-white/20 transition-all duration-500"></div>
+              <div className="bg-gradient-to-br from-purple-600 to-indigo-600 rounded-3xl p-6 text-white shadow-xl shadow-purple-500/20 relative overflow-hidden group cursor-pointer hover:-translate-y-1 transition-all ">
+                <div className="absolute -right-10 -top-10 bg-white/10 size-40 rounded-full blur-2xl group-hover:bg-white/20 transition-all "></div>
                 <div className="relative z-10 flex flex-col gap-3">
                   <div className="size-12 bg-white/20 rounded-2xl flex items-center justify-center mb-1 backdrop-blur-md shadow-inner">
                     <span className="material-symbols-outlined text-white">menu_book</span>
@@ -429,3 +429,6 @@ export default function BiasFreeJobRequirements() {
     </div>
   );
 }
+
+
+

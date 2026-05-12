@@ -1,219 +1,279 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UI } from '../../../constants/ui';
-
-const steps = ['Role Details', 'Requirements', 'Bias Analysis', 'Review'];
+import { Briefcase, Building2, UserCircle, Save, CheckCircle2, X } from 'lucide-react';
+import Button from '../../../components/ui/Button';
 
 export default function PostJob() {
   const navigate = useNavigate();
-  const [currentStep] = useState(0);
+  const [skillInput, setSkillInput] = useState('');
+  
   const [form, setForm] = useState({
+    // Basic Info
     title: '',
     department: '',
+    category: '',
     location: '',
-    jobType: 'Full-time',
-    salaryMin: '',
-    salaryMax: '',
-    salaryPeriod: 'Yearly',
+    // Job Details
+    experienceLevel: 'Entry Level (0-2 years)',
+    salary: '',
+    employmentType: 'Full Time',
+    workMode: 'Onsite',
+    shiftTiming: 'Day Shift',
+    bondPeriod: '0 Months',
+    applicationDeadline: '',
+    genderPreference: 'Any',
+    jobDescription: '',
+    // Candidate Preferences
+    education: '',
+    languages: '',
+    preferredCriteria: '',
+    skillsRequired: [],
   });
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const progress = ((currentStep + 1) / steps.length) * 100;
+  const addSkill = (e) => {
+    if (e.key === 'Enter' && skillInput.trim()) {
+      e.preventDefault();
+      if (!form.skillsRequired.includes(skillInput.trim())) {
+        setForm(prev => ({
+          ...prev,
+          skillsRequired: [...prev.skillsRequired, skillInput.trim()]
+        }));
+      }
+      setSkillInput('');
+    }
+  };
+
+  const removeSkill = (skillToRemove) => {
+    setForm(prev => ({
+      ...prev,
+      skillsRequired: prev.skillsRequired.filter(s => s !== skillToRemove)
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // In a real app, this would submit the form payload to the backend
+    console.log("Submitting structured job:", form);
+    navigate('/platform/employer/dashboard');
+  };
+
+  const inputCls = "w-full h-11 bg-slate-50 border border-slate-200 rounded-lg px-3 text-sm font-medium text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 outline-none transition-all";
+  const labelCls = "text-[11px] font-bold text-slate-500 uppercase tracking-wide mb-1.5 block";
+  const sectionCls = "p-6 bg-white border border-slate-200 rounded-xl space-y-5 shadow-sm";
 
   return (
-    <div className="space-y-10 max-w-6xl mx-auto pb-20">
-      {/* Header Section */}
-      <div className="space-y-6">
-        <div className="flex items-center gap-4">
-           <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-blue-600 text-sm">add_circle</span>
-              <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Job Creation</span>
-           </div>
-           <div className="h-px flex-1 bg-slate-100" />
-           <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Step {currentStep + 1} of {steps.length}</div>
-        </div>
-        
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-           <div>
-              <h1 className="text-3xl font-black text-slate-900 tracking-tight leading-none mb-3">Post a New Position</h1>
-              <p className="text-slate-500 font-bold text-sm max-w-2xl">Create a high-impact job posting using our AI-driven optimization engine.</p>
-           </div>
-           <div className="flex gap-2">
-              {steps.map((_, i) => (
-                 <div key={i} className={`h-1 rounded-full transition-all duration-300 ${currentStep >= i ? 'w-8 bg-blue-600' : 'w-4 bg-slate-100'}`} />
-              ))}
-           </div>
-        </div>
-      </div>
+    <div className="max-w-[1000px] mx-auto space-y-6 pb-20">
+      <header className="space-y-1">
+        <h1 className="text-2xl font-bold text-slate-900">Post a Job</h1>
+        <p className="text-sm text-slate-500 font-medium">Create a structured job posting to enable high-accuracy AI matching.</p>
+      </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-10 items-start">
-        {/* Main Form */}
-        <div className={UI.CARD_BASE + " space-y-12"}>
-          
-          {/* Basic Info */}
-          <section className="space-y-8">
-            <div className="flex items-center gap-3 border-b border-slate-50 pb-4">
-               <span className="material-symbols-outlined text-blue-600">business_center</span>
-               <h2 className="text-sm font-black text-slate-900 uppercase tracking-widest">Basic Information</h2>
-            </div>
-
-            <div className="space-y-6">
-              <div className="space-y-2">
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block ml-1">Position Title</label>
-                <div className="relative group">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 group-focus-within:text-blue-600 transition-colors">title</span>
-                  <input
-                    name="title"
-                    value={form.title}
-                    onChange={handleChange}
-                    className="w-full h-14 bg-slate-50 border border-slate-100 rounded-2xl pl-12 pr-4 text-sm font-bold outline-none focus:border-blue-600 transition-all text-slate-900 placeholder:text-slate-300"
-                    placeholder="e.g. Senior Machine Learning Engineer"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block ml-1">Department</label>
-                  <input
-                    name="department"
-                    value={form.department}
-                    onChange={handleChange}
-                    className="w-full h-14 bg-slate-50 border border-slate-100 rounded-2xl px-4 text-sm font-bold outline-none focus:border-blue-600 transition-all text-slate-900 placeholder:text-slate-300"
-                    placeholder="e.g. Engineering"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block ml-1">Location</label>
-                  <input
-                    name="location"
-                    value={form.location}
-                    onChange={handleChange}
-                    className="w-full h-14 bg-slate-50 border border-slate-100 rounded-2xl px-4 text-sm font-bold outline-none focus:border-blue-600 transition-all text-slate-900 placeholder:text-slate-300"
-                    placeholder="e.g. San Francisco, CA"
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Employment Details */}
-          <section className="space-y-8">
-            <div className="flex items-center gap-3 border-b border-slate-50 pb-4">
-               <span className="material-symbols-outlined text-blue-600">layers</span>
-               <h2 className="text-sm font-black text-slate-900 uppercase tracking-widest">Employment Details</h2>
-            </div>
-
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block ml-1">Job Type</label>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {['Full-time', 'Part-time', 'Contract', 'Internship'].map((type) => (
-                    <button
-                      key={type}
-                      onClick={() => setForm(p => ({ ...p, jobType: type }))}
-                      className={`h-12 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-all ${
-                        form.jobType === type 
-                          ? 'bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-600/20' 
-                          : 'bg-white border-slate-100 text-slate-400 hover:border-blue-200'
-                      }`}
-                    >
-                      {type}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block ml-1">Compensation Range (Annual)</label>
-                <div className="flex items-center gap-4">
-                  <div className="flex-1 relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-black text-sm">$</span>
-                    <input
-                      name="salaryMin"
-                      type="number"
-                      value={form.salaryMin}
-                      onChange={handleChange}
-                      className="w-full h-14 bg-slate-50 border border-slate-100 rounded-2xl pl-10 pr-4 text-sm font-bold outline-none focus:border-blue-600 transition-all text-slate-900"
-                      placeholder="Min"
-                    />
-                  </div>
-                  <div className="h-px w-4 bg-slate-200" />
-                  <div className="flex-1 relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-black text-sm">$</span>
-                    <input
-                      name="salaryMax"
-                      type="number"
-                      value={form.salaryMax}
-                      onChange={handleChange}
-                      className="w-full h-14 bg-slate-50 border border-slate-100 rounded-2xl pl-10 pr-4 text-sm font-bold outline-none focus:border-blue-600 transition-all text-slate-900"
-                      placeholder="Max"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Footer Actions */}
-          <div className="pt-10 border-t border-slate-50 flex items-center justify-between">
-            <button 
-              onClick={() => navigate('/platform/employer/dashboard')}
-              className="text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-slate-900 transition-all"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={() => navigate('/platform/employer/bias-free', { state: { basicInfo: form } })}
-              className={UI.BTN_PRIMARY}
-            >
-              Next: Requirements
-              <span className="material-symbols-outlined text-sm ml-2">arrow_forward</span>
-            </button>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Basic Information */}
+        <section className={sectionCls}>
+          <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
+             <Briefcase size={18} className="text-blue-600" />
+             <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest">Basic Information</h2>
           </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="md:col-span-2">
+              <label className={labelCls}>Job Title *</label>
+              <input required name="title" value={form.title} onChange={handleChange} className={inputCls} placeholder="e.g. Senior React Developer" />
+            </div>
+            
+            <div>
+              <label className={labelCls}>Department</label>
+              <input name="department" value={form.department} onChange={handleChange} className={inputCls} placeholder="e.g. Engineering" />
+            </div>
+
+            <div>
+              <label className={labelCls}>Job Category *</label>
+              <select required name="category" value={form.category} onChange={handleChange} className={inputCls}>
+                 <option value="">Select Category</option>
+                 <option value="Frontend">Frontend</option>
+                 <option value="Backend">Backend</option>
+                 <option value="Fullstack">Fullstack</option>
+                 <option value="UI/UX">UI/UX</option>
+                 <option value="AI/ML">AI/ML</option>
+                 <option value="DevOps">DevOps</option>
+                 <option value="Testing">Testing / QA</option>
+                 <option value="Mobile">Mobile Development</option>
+                 <option value="Data Science">Data Science</option>
+              </select>
+            </div>
+
+            <div className="md:col-span-2">
+              <label className={labelCls}>Location</label>
+              <input name="location" value={form.location} onChange={handleChange} className={inputCls} placeholder="e.g. New York, NY" />
+            </div>
+          </div>
+        </section>
+
+        {/* Job Details */}
+        <section className={sectionCls}>
+          <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
+             <Building2 size={18} className="text-blue-600" />
+             <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest">Job Details</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div>
+              <label className={labelCls}>Employment Type</label>
+              <select name="employmentType" value={form.employmentType} onChange={handleChange} className={inputCls}>
+                 <option value="Full Time">Full Time</option>
+                 <option value="Part Time">Part Time</option>
+                 <option value="Contract">Contract</option>
+                 <option value="Internship">Internship</option>
+              </select>
+            </div>
+            
+            <div>
+              <label className={labelCls}>Work Mode</label>
+              <select name="workMode" value={form.workMode} onChange={handleChange} className={inputCls}>
+                 <option value="Remote">Remote</option>
+                 <option value="Hybrid">Hybrid</option>
+                 <option value="Onsite">Onsite</option>
+              </select>
+            </div>
+
+            <div>
+              <label className={labelCls}>Shift Timing</label>
+              <select name="shiftTiming" value={form.shiftTiming} onChange={handleChange} className={inputCls}>
+                 <option value="Day Shift">Day Shift</option>
+                 <option value="Night Shift">Night Shift</option>
+                 <option value="Flexible">Flexible</option>
+                 <option value="Rotational">Rotational</option>
+              </select>
+            </div>
+
+            <div>
+              <label className={labelCls}>Experience Required</label>
+              <select name="experienceLevel" value={form.experienceLevel} onChange={handleChange} className={inputCls}>
+                 <option value="Entry Level (0-2 years)">Entry Level (0-2 years)</option>
+                 <option value="Mid Level (3-5 years)">Mid Level (3-5 years)</option>
+                 <option value="Senior Level (5-8 years)">Senior Level (5-8 years)</option>
+                 <option value="Expert (8+ years)">Expert (8+ years)</option>
+              </select>
+            </div>
+
+            <div>
+              <label className={labelCls}>Salary Range</label>
+              <input name="salary" value={form.salary} onChange={handleChange} className={inputCls} placeholder="e.g. $80,000 - $120,000" />
+            </div>
+
+            <div>
+              <label className={labelCls}>Bond Period</label>
+              <select name="bondPeriod" value={form.bondPeriod} onChange={handleChange} className={inputCls}>
+                 <option value="0 Months">None (0 Months)</option>
+                 <option value="6 Months">6 Months</option>
+                 <option value="1 Year">1 Year</option>
+                 <option value="2 Years">2 Years</option>
+              </select>
+            </div>
+
+            <div>
+              <label className={labelCls}>Gender Preference</label>
+              <select name="genderPreference" value={form.genderPreference} onChange={handleChange} className={inputCls}>
+                 <option value="Any">Any</option>
+                 <option value="Male">Male</option>
+                 <option value="Female">Female</option>
+              </select>
+            </div>
+
+            <div className="md:col-span-2">
+              <label className={labelCls}>Application Deadline</label>
+              <input name="applicationDeadline" type="date" value={form.applicationDeadline} onChange={handleChange} className={inputCls} />
+            </div>
+
+            <div className="md:col-span-3">
+              <label className={labelCls}>Detailed Job Description *</label>
+              <textarea 
+                required
+                name="jobDescription" 
+                value={form.jobDescription} 
+                onChange={handleChange} 
+                rows={8} 
+                className="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm font-medium text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 outline-none transition-all resize-y"
+                placeholder="Provide a comprehensive job description, including responsibilities, day-to-day tasks, and team structure..."
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Candidate Preferences */}
+        <section className={sectionCls}>
+          <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
+             <UserCircle size={18} className="text-blue-600" />
+             <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest">Candidate Preferences</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="md:col-span-2">
+              <label className={labelCls}>Required Skills (Press Enter to add)</label>
+              <div className="space-y-3">
+                <input
+                  value={skillInput}
+                  onChange={(e) => setSkillInput(e.target.value)}
+                  onKeyDown={addSkill}
+                  className={inputCls}
+                  placeholder="e.g. React, Node.js, Python"
+                />
+                <div className="flex flex-wrap gap-2">
+                  {form.skillsRequired.map(skill => (
+                    <div key={skill} className="flex items-center gap-1.5 bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md border border-slate-200">
+                      <span className="text-[11px] font-bold">{skill}</span>
+                      <button type="button" onClick={() => removeSkill(skill)} className="hover:text-rose-600 transition-colors">
+                        <X size={12} />
+                      </button>
+                    </div>
+                  ))}
+                  {form.skillsRequired.length === 0 && (
+                    <span className="text-[11px] text-slate-400 italic">No skills added. Add required skills to enable ATS matching.</span>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label className={labelCls}>Minimum Education</label>
+              <input name="education" value={form.education} onChange={handleChange} className={inputCls} placeholder="e.g. Bachelor's Degree in CS" />
+            </div>
+
+            <div>
+              <label className={labelCls}>Required Languages</label>
+              <input name="languages" value={form.languages} onChange={handleChange} className={inputCls} placeholder="e.g. English, Spanish" />
+            </div>
+
+            <div className="md:col-span-2">
+              <label className={labelCls}>Preferred Candidate Criteria (Optional)</label>
+              <textarea 
+                name="preferredCriteria" 
+                value={form.preferredCriteria} 
+                onChange={handleChange} 
+                rows={3} 
+                className="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm font-medium text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 outline-none transition-all resize-none"
+                placeholder="Any additional preferences (e.g. Local candidates preferred, immediate joiners only)..."
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Actions */}
+        <div className="flex items-center justify-end gap-3 pt-2">
+          <Button type="button" variant="ghost" onClick={() => navigate('/platform/employer/dashboard')}>
+            Cancel
+          </Button>
+          <Button type="submit" variant="primary" className="px-8">
+            <CheckCircle2 size={16} className="mr-2" />
+            Publish Job Post
+          </Button>
         </div>
-
-        {/* Sidebar */}
-        <aside className="space-y-6">
-           <div className="bg-slate-900 rounded-[2.5rem] p-8 text-white space-y-6 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/10 rounded-full blur-3xl" />
-              <div className="relative z-10 space-y-6">
-                 <div className="flex items-center gap-3 border-b border-white/5 pb-4">
-                    <span className="material-symbols-outlined text-blue-500">auto_awesome</span>
-                    <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-400">AI Assistant</h3>
-                 </div>
-                 <p className="text-xs text-slate-400 font-bold leading-relaxed">
-                    Our AI models will use these basic details to automatically generate optimized job requirements and identify potential bias in the next steps.
-                 </p>
-                 <div className="space-y-4 pt-4">
-                    {[
-                       'Auto-generate requirements',
-                       'Instant bias detection',
-                       'Top 1% candidate matching'
-                    ].map(feature => (
-                       <div key={feature} className="flex items-center gap-3">
-                          <span className="material-symbols-outlined text-emerald-500 text-sm">check_circle</span>
-                          <span className="text-[9px] font-black uppercase tracking-widest text-slate-300">{feature}</span>
-                       </div>
-                    ))}
-                 </div>
-              </div>
-           </div>
-
-           <div className={UI.CARD_BASE + " p-6 flex items-center gap-4"}>
-              <div className="size-10 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center">
-                 <span className="material-symbols-outlined text-xl">lightbulb</span>
-              </div>
-              <div>
-                 <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Pro Tip</p>
-                 <p className="text-[10px] font-bold text-slate-700 leading-tight">Specific titles perform 40% better.</p>
-              </div>
-           </div>
-        </aside>
-      </div>
+      </form>
     </div>
   );
 }

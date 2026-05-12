@@ -8,10 +8,10 @@ export const Heading = ({
 }) => {
   const Tag = `h${level}`;
   const sizes = {
-    1: 'text-3xl font-bold tracking-tight text-slate-900',
-    2: 'text-2xl font-bold tracking-tight text-slate-900',
-    3: 'text-xl font-bold text-slate-900',
-    4: 'text-lg font-semibold text-slate-900',
+    1: 'text-3xl font-bold tracking-tight text-slate-900 dark:text-white',
+    2: 'text-xl font-semibold tracking-tight text-slate-900 dark:text-white',
+    3: 'text-lg font-medium text-slate-900 dark:text-white',
+    4: 'text-base font-medium text-slate-900 dark:text-white',
   };
 
   return (
@@ -28,10 +28,10 @@ export const Text = ({
   ...props 
 }) => {
   const variants = {
-    body: 'text-base text-slate-600 leading-relaxed',
-    small: 'text-sm text-slate-500',
+    body: 'text-sm text-slate-500 dark:text-slate-400 leading-relaxed',
+    small: 'text-[10px] text-slate-400 uppercase tracking-widest',
     muted: 'text-sm text-slate-400',
-    lead: 'text-lg text-slate-600',
+    lead: 'text-base text-slate-600 dark:text-slate-300',
   };
 
   return (
@@ -40,3 +40,6 @@ export const Text = ({
     </p>
   );
 };
+
+
+

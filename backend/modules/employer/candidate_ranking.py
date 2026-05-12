@@ -1,19 +1,17 @@
 """
 backend/modules/employer/candidate_ranking.py — Full ATS + Semantic Ranking Engine
-Uses the new hybrid ATS scorer (`score_job_description_ats`) for accurate ranking.
+Uses the centralized services layer for ATS scoring and semantic matching.
 """
 from __future__ import annotations
 
 import logging
 from typing import Any, Dict, List, Optional
 
-from ai_engine.ats_scoring.scorer import ATSScorer, score_job_description_ats
-from ai_engine.semantic_matching.matcher import SemanticMatcher
+# ── Centralized Services Layer (Phase 1 refactor) ──
+from services.atsService import ats_service
+from services.jdMatchService import jd_match_service
 
 log = logging.getLogger(__name__)
-
-_ats = ATSScorer()
-_semantic = SemanticMatcher()
 
 
 class CandidateRankingEngine:
@@ -78,9 +76,9 @@ class CandidateRankingEngine:
                 "parsed_text": resume_text,
             }
 
-            # JD-targeted ATS score (hybrid formula)
+            # JD-targeted ATS score (hybrid formula) via centralized service
             try:
-                ats_result = score_job_description_ats(resume_data, jd_data)
+                ats_result = ats_service.score_against_jd(resume_data, jd_data)
                 ats_score = ats_result["ats_score"]
                 matched_keywords = ats_result.get("matched_keywords", [])
                 missing_keywords = ats_result.get("missing_keywords", [])
@@ -92,15 +90,15 @@ class CandidateRankingEngine:
                 missing_keywords = []
                 ats_breakdown = {}
 
-            # Semantic similarity score
+            # Semantic similarity score via centralized service
             try:
-                semantic_score = _semantic.match_score(resume_text, job_description)
+                semantic_score = jd_match_service.semantic_score(resume_text, job_description)
             except Exception as exc:
                 log.warning("[CandidateRanking] Semantic matching failed: %s", exc)
                 semantic_score = 0.0
 
             # Weighted final score
-            final_score = round((ats_score * 0.60) + (semantic_score * 100 * 0.40), 2)
+            final_score = round((ats_score * 0.60) + (semantic_score * 0.40), 2)
 
             ranked.append({
                 **candidate,
@@ -123,12 +121,12 @@ class CandidateRankingEngine:
 def _extract_skills_from_jd(job_description: str) -> List[str]:
     """
     Lightweight skill extraction from a job description text.
-    Returns tokens that match our skills reference lookup.
+    Uses the centralized resume parser service for skill detection.
     """
     try:
-        from ai_engine.ats_scoring.scorer import _SKILLS_LOOKUP
-        text_lower = job_description.lower()
-        return [token for token in _SKILLS_LOOKUP if token in text_lower][:30]
+        from services.resumeParserService import resume_parser_service
+        parsed = resume_parser_service.parse_text(job_description)
+        return parsed.get("skills", [])[:30]
     except Exception:
         return []
 

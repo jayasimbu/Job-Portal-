@@ -61,7 +61,7 @@ const JDMatcher = ({ onMatch }) => {
           >
             {matching ? (
               <>
-                <div className="size-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+                <div className="size-4 border-2 border-white/20 border-t-white rounded-full " />
                 Analyzing Match...
               </>
             ) : (
@@ -83,7 +83,7 @@ const JDMatcher = ({ onMatch }) => {
           )}
 
           {matching && (
-            <div className="space-y-6 w-full animate-pulse">
+            <div className="space-y-6 w-full ">
                <div className="size-32 rounded-full bg-slate-200 mx-auto"></div>
                <div className="space-y-2">
                   <div className="h-4 bg-slate-200 rounded w-full"></div>
@@ -93,7 +93,7 @@ const JDMatcher = ({ onMatch }) => {
           )}
 
           {result && (
-            <div className="w-full space-y-8 animate-in zoom-in duration-500">
+            <div className="w-full space-y-8 ">
                <div className="text-center">
                   <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">ATS Match</h4>
                   <div className="text-6xl font-black text-blue-600 tabular-nums tracking-tighter">{result.score}<span className="text-2xl text-blue-300">%</span></div>
@@ -137,3 +137,6 @@ const JDMatcher = ({ onMatch }) => {
 };
 
 export default JDMatcher;
+
+
+

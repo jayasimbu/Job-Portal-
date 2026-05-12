@@ -45,7 +45,7 @@ const Settings = () => {
   ];
 
   return (
-    <div className="w-full px-4 md:px-6 lg:px-10 xl:px-16 py-6 md:py-10 h-full flex flex-col overflow-y-auto animate-in fade-in slide-in-from-bottom-4 duration-700 relative">
+    <div className="w-full px-4 md:px-6 lg:px-10 xl:px-16 py-6 md:py-10 h-full flex flex-col overflow-y-auto duration-700 relative">
       <div className="max-w-7xl mx-auto w-full flex flex-col gap-8">
       {/* HEADER */}
       <header className="flex-shrink-0 mb-6">
@@ -75,7 +75,7 @@ const Settings = () => {
         {/* Content Area */}
         <main className="flex-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 overflow-y-auto custom-scrollbar">
           {activeTab === 'profile' && (
-            <div className="space-y-6 animate-in fade-in duration-300">
+            <div className="space-y-6 ">
                <div className="flex items-center gap-6 mb-8">
                   <div className="size-20 bg-blue-600 rounded-3xl flex items-center justify-center text-white text-3xl font-black shadow-xl shadow-blue-500/20">
                     {profileData.fullName.charAt(0)}
@@ -121,7 +121,7 @@ const Settings = () => {
           )}
 
           {activeTab === 'links' && (
-            <div className="space-y-6 animate-in fade-in duration-300">
+            <div className="space-y-6 ">
                <h3 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest mb-4">Social & Portfolio Links</h3>
                
                {[
@@ -146,7 +146,7 @@ const Settings = () => {
           )}
 
           {activeTab === 'resume' && (
-            <div className="space-y-6 animate-in fade-in duration-300">
+            <div className="space-y-6 ">
                <div className="flex items-center justify-between mb-4">
                   <h3 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest">AI Extracted Insights</h3>
                   <span className="text-[10px] font-black bg-blue-50 text-blue-600 px-3 py-1 rounded-full uppercase tracking-tighter">Synced with latest resume</span>
@@ -187,7 +187,7 @@ const Settings = () => {
           )}
 
           {activeTab === 'preferences' && (
-            <div className="space-y-8 animate-in fade-in duration-300">
+            <div className="space-y-8 ">
                <div>
                   <h3 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest mb-4">Platform Preferences</h3>
                   <div className="space-y-4">
@@ -205,9 +205,9 @@ const Settings = () => {
                         </div>
                         <button 
                           onClick={() => handleToggle(pref.key)}
-                          className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${settings[pref.key] ? 'bg-blue-600' : 'bg-slate-200 dark:bg-slate-700'}`}
+                          className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors ease-in-out focus:outline-none ${settings[pref.key] ? 'bg-blue-600' : 'bg-slate-200 dark:bg-slate-700'}`}
                         >
-                          <span className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${settings[pref.key] ? 'translate-x-4' : 'translate-x-0'}`} />
+                          <span className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition ease-in-out ${settings[pref.key] ? 'translate-x-4' : 'translate-x-0'}`} />
                         </button>
                       </div>
                     ))}
@@ -235,3 +235,6 @@ const Settings = () => {
 };
 
 export default Settings;
+
+
+

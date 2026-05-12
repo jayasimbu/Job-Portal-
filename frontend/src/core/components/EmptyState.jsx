@@ -2,7 +2,7 @@ import React from 'react';
 
 const EmptyState = ({ icon, title, description, actionText, onAction }) => {
   return (
-    <div className="flex flex-col items-center justify-center py-16 text-center animate-in fade-in duration-700">
+    <div className="flex flex-col items-center justify-center py-16 text-center ">
       <div className="size-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mb-6 border border-slate-200 dark:border-slate-700 shadow-sm">
         <span className="material-symbols-outlined text-4xl text-slate-400">{icon || 'folder_open'}</span>
       </div>
@@ -23,7 +23,7 @@ const EmptyState = ({ icon, title, description, actionText, onAction }) => {
 };
 
 export const ErrorState = ({ message, onRetry }) => (
-  <div className="flex flex-col items-center justify-center py-16 text-center animate-in fade-in duration-500">
+  <div className="flex flex-col items-center justify-center py-16 text-center ">
     <div className="size-20 bg-red-50 dark:bg-red-900/10 rounded-full flex items-center justify-center mb-6 border border-red-100 dark:border-red-900/30">
       <span className="material-symbols-outlined text-4xl text-red-500">error</span>
     </div>
@@ -40,3 +40,6 @@ export const ErrorState = ({ message, onRetry }) => (
 );
 
 export default EmptyState;
+
+
+

@@ -79,3 +79,6 @@ const ResumeInsights = ({ quality, issues }) => {
 };
 
 export default ResumeInsights;
+
+
+

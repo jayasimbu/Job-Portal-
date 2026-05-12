@@ -32,7 +32,7 @@ export default function LearningHub() {
     return (
       <div className="bg-[#f0f4f8] dark:bg-[#0d141b] min-h-screen flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full "></div>
           <p className="text-slate-600 dark:text-slate-400 font-medium">Analyzing skill gaps and finding courses...</p>
         </div>
       </div>
@@ -42,7 +42,7 @@ export default function LearningHub() {
   const criticalGaps = courses.filter(c => c.status === 'Recommended').length;
 
   return (
-    <div className="bg-[#f0f4f8] dark:bg-[#0d141b] font-sans text-slate-900 dark:text-slate-50 min-h-screen flex flex-col transition-colors duration-200">
+    <div className="bg-[#f0f4f8] dark:bg-[#0d141b] font-sans text-slate-900 dark:text-slate-50 min-h-screen flex flex-col transition-colors ">
       <main className="flex-1 flex flex-col items-center w-full px-4 md:px-10 py-8 max-w-7xl mx-auto">
 
         {/* Hero Section */}
@@ -199,3 +199,6 @@ export default function LearningHub() {
     </div>
   );
 }
+
+
+

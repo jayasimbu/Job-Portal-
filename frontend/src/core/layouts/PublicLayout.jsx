@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Menu, X, ArrowRight, LayoutDashboard, LogIn, UserPlus } from 'lucide-react';
-import logo from '../../assets/logos/linkup_logo.png';
+import { Menu, X, ArrowRight, LayoutDashboard, LogIn, UserPlus, Sparkles } from 'lucide-react';
+
 import GlobalFooter from '../components/GlobalFooter';
 import LogoModal from '../components/LogoModal';
+import Logo from '../components/Logo';
 import { getCurrentUser } from '../auth/session';
 
 const PublicLayout = ({ children }) => {
@@ -12,6 +13,15 @@ const PublicLayout = ({ children }) => {
   const isAuthenticated = !!user;
   const [loadingAction, setLoadingAction] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleNav = (path, actionName) => {
     setLoadingAction(actionName);
@@ -25,27 +35,24 @@ const PublicLayout = ({ children }) => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0d141b] transition-colors duration-300 font-sans">
-      <nav className="fixed top-0 left-0 right-0 z-[70] py-2 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800/50">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 flex items-center justify-between h-14">
-          <div className="flex items-center gap-8">
-            <Link to="/" className="flex items-center gap-3 group decoration-none">
-              <div className="size-10 bg-blue-600 rounded-full flex items-center justify-center transition-all group-hover:scale-110 shadow-lg shadow-blue-500/20">
-                <span className="material-symbols-outlined text-white text-xl">all_inclusive</span>
-              </div>
-              <span className="font-black text-xl tracking-tighter text-slate-900 dark:text-white uppercase">LINKUP</span>
+    <div className="min-h-screen bg-white dark:bg-[#0F172A] transition-colors font-sans">
+      <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all ${
+        scrolled 
+          ? 'py-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800/50 shadow-sm' 
+          : 'py-6 bg-transparent'
+      }`}>
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between">
+          <div className="flex items-center gap-12">
+            <Link to="/" className="decoration-none">
+              <Logo variant="light" />
             </Link>
 
-            <div className="hidden lg:flex items-center gap-8">
-              {['Features', 'Intelligence', 'Sourcing', 'Pricing'].map(item => (
-                <button key={item} className="text-sm font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">{item}</button>
-              ))}
-            </div>
+            {/* Navigation links removed per clean design */}
           </div>
           
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-6">
             {/* Desktop Actions */}
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-4">
               {isAuthenticated ? (
                 <button 
                   onClick={() => {
@@ -53,30 +60,29 @@ const PublicLayout = ({ children }) => {
                     const path = role === 'admin' ? '/platform/admin/dashboard' : (role === 'employer' ? '/platform/employer/dashboard' : '/platform/jobseeker/dashboard');
                     handleNav(path, 'dashboard');
                   }}
-                  disabled={loadingAction === 'dashboard'}
-                  className="text-sm font-semibold text-white bg-blue-600 px-7 py-2.5 rounded-2xl hover:bg-blue-700 shadow-xl shadow-blue-600/20 transition-all active:scale-[0.98] flex items-center gap-2 min-w-[180px] justify-center"
+                  className="group relative inline-flex items-center justify-center gap-3 bg-slate-900 dark:bg-blue-600 text-white px-8 py-3 rounded-2xl font-bold text-sm overflow-hidden transition-all hover:pr-12 shadow-xl shadow-blue-600/10 active:scale-95"
                 >
-                  {loadingAction === 'dashboard' ? (
-                    <span className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
-                  ) : <LayoutDashboard size={18} />}
-                  <span>Open Dashboard</span>
+                  <span className="relative z-10 flex items-center gap-2">
+                    {loadingAction === 'dashboard' ? (
+                        <span className="size-4 border-2 border-white/30 border-t-white rounded-full "></span>
+                    ) : <LayoutDashboard size={18} />}
+                    Open Dashboard
+                  </span>
+                  <ArrowRight size={18} className="absolute right-4 opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
                 </button>
               ) : (
                 <>
                   <button 
                     onClick={() => handleNav('/auth/login', 'login')}
-                    disabled={loadingAction === 'login'}
-                    className="text-sm font-semibold text-slate-600 dark:text-slate-300 px-6 py-2.5 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all"
+                    className="text-sm font-bold text-slate-600 dark:text-slate-300 px-6 py-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all"
                   >
-                    {loadingAction === 'login' ? '...' : 'Sign In'}
+                    Sign In
                   </button>
                   <button 
                     onClick={() => handleNav('/auth/signup', 'signup')}
-                    disabled={loadingAction === 'signup'}
-                    className="text-sm font-semibold text-white bg-slate-900 dark:bg-blue-600 px-7 py-2.5 rounded-2xl hover:opacity-90 transition-all active:scale-[0.98] flex items-center gap-2"
+                    className="bg-blue-600 text-white px-8 py-3 rounded-2xl font-bold text-sm shadow-xl shadow-blue-600/20 hover:bg-blue-700 transition-all active:scale-95 flex items-center gap-2"
                   >
-                    {loadingAction === 'signup' && <span className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>}
-                    <span>Get Started</span>
+                    Get Started Free
                   </button>
                 </>
               )}
@@ -85,59 +91,56 @@ const PublicLayout = ({ children }) => {
             {/* Mobile Menu Toggle */}
             <button
               onClick={toggleMenu}
-              className="md:hidden size-11 rounded-2xl bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:bg-blue-50 transition-all"
+              className="md:hidden size-12 rounded-2xl bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:bg-blue-50 transition-all border border-slate-100 dark:border-slate-700"
             >
-              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
 
         {/* Mobile Dropdown Menu */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 shadow-2xl z-[70] animate-in fade-in slide-in-from-top-4 duration-300">
-            <div className="flex flex-col p-6 gap-4">
-              {isAuthenticated ? (
-                <button 
-                  onClick={() => {
-                    const role = user?.role;
-                    const path = role === 'admin' ? '/platform/admin/dashboard' : (role === 'employer' ? '/platform/employer/dashboard' : '/platform/jobseeker/dashboard');
-                    handleNav(path, 'dashboard');
-                  }}
-                  className="flex items-center justify-between w-full p-4 rounded-2xl bg-blue-600 text-white font-semibold text-sm shadow-lg shadow-blue-500/20"
-                >
-                  <div className="flex items-center gap-3">
-                    <LayoutDashboard size={18} />
-                    <span>Go to Dashboard</span>
-                  </div>
-                  <ArrowRight size={18} />
-                </button>
-              ) : (
-                <>
+          <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 shadow-2xl z-[100] duration-300">
+            <div className="flex flex-col p-8 gap-6">
+              {/* Mobile navigation links removed */}
+              <div className="flex flex-col gap-4 pt-4">
+                {isAuthenticated ? (
                   <button 
-                    onClick={() => handleNav('/auth/login', 'login')}
-                    className="flex items-center gap-3 w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold text-sm"
+                    onClick={() => {
+                      const role = user?.role;
+                      const path = role === 'admin' ? '/platform/admin/dashboard' : (role === 'employer' ? '/platform/employer/dashboard' : '/platform/jobseeker/dashboard');
+                      handleNav(path, 'dashboard');
+                    }}
+                    className="flex items-center justify-between w-full p-5 rounded-2xl bg-blue-600 text-white font-bold text-lg shadow-xl shadow-blue-500/20"
                   >
-                    <LogIn size={18} />
-                    <span>Sign In</span>
+                    <span>Dashboard</span>
+                    <ArrowRight size={20} />
                   </button>
-                  <button 
-                    onClick={() => handleNav('/auth/signup', 'signup')}
-                    className="flex items-center justify-between w-full p-4 rounded-2xl bg-slate-900 text-white font-semibold text-sm shadow-lg shadow-slate-900/20"
-                  >
-                    <div className="flex items-center gap-3">
-                      <UserPlus size={18} />
+                ) : (
+                  <>
+                    <button 
+                      onClick={() => handleNav('/auth/login', 'login')}
+                      className="flex items-center gap-4 w-full p-5 rounded-2xl bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-bold text-lg"
+                    >
+                      <LogIn size={22} />
+                      <span>Sign In</span>
+                    </button>
+                    <button 
+                      onClick={() => handleNav('/auth/signup', 'signup')}
+                      className="flex items-center justify-between w-full p-5 rounded-2xl bg-slate-900 text-white font-bold text-lg shadow-xl shadow-slate-900/20"
+                    >
                       <span>Create Account</span>
-                    </div>
-                    <ArrowRight size={18} />
-                  </button>
-                </>
-              )}
+                      <ArrowRight size={22} />
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         )}
       </nav>
 
-      <main className="min-h-screen">
+      <main>
         {children}
       </main>
 
@@ -148,3 +151,6 @@ const PublicLayout = ({ children }) => {
 };
 
 export default PublicLayout;
+
+
+

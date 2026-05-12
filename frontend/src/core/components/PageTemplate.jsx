@@ -45,7 +45,7 @@ const PageTemplate = ({ title, subtitle, features = [], steps = [], benefit }) =
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
               alt="Platform Engine"
-              className="w-3/4 max-w-sm opacity-90 dark:opacity-70 grayscale hover:grayscale-0 transition-all duration-500"
+              className="w-3/4 max-w-sm opacity-90 dark:opacity-70 grayscale hover:grayscale-0 transition-all "
               onError={(e) => {
                 e.target.style.display = 'none';
               }}
@@ -115,3 +115,6 @@ const PageTemplate = ({ title, subtitle, features = [], steps = [], benefit }) =
 };
 
 export default PageTemplate;
+
+
+

@@ -76,7 +76,7 @@ export default function CourseRecommendations() {
   ]);
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-200">
+    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors ">
       <JobSeekerShell active="learning" />
       
       <main className="flex-1 overflow-y-auto px-4 lg:px-10 py-8 w-full max-w-[1440px] mx-auto">
@@ -213,7 +213,7 @@ export default function CourseRecommendations() {
             {/* Course Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {courses.map(course => (
-                <div key={course.id} className="group flex flex-col bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-lg transition-all duration-300 hover:border-blue-500/50">
+                <div key={course.id} className="group flex flex-col bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-lg transition-all hover:border-blue-500/50">
                   
                   {/* Card Image */}
                   <div className={`h-40 w-full bg-gradient-to-br ${course.imageBg} relative flex items-center justify-center text-white`}>
@@ -283,3 +283,6 @@ export default function CourseRecommendations() {
     </div>
   );
 }
+
+
+

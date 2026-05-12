@@ -94,7 +94,7 @@ export default function ExternalJobs() {
       </div>
 
       {loading ? (
-        <div className="flex justify-center py-16"><div className="size-8 border-3 border-[#2563eb] border-t-transparent rounded-full animate-spin" /></div>
+        <div className="flex justify-center py-16"><div className="size-8 border-3 border-[#2563eb] border-t-transparent rounded-full " /></div>
       ) : filtered.length === 0 ? (
         <div className="text-center py-16 bg-white rounded-lg border border-slate-200 shadow-[var(--shadow-sm)]">
           <span className="material-symbols-outlined text-4xl text-slate-300 mb-3 block">work_off</span>
@@ -133,3 +133,6 @@ export default function ExternalJobs() {
     </div>
   );
 }
+
+
+

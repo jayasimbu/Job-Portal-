@@ -12,3 +12,6 @@ const ResumeInsightsCard = ({ score = 0, skills = [], recommendations = [] }) =>
 };
 
 export default ResumeInsightsCard;
+
+
+

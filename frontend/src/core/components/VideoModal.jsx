@@ -4,7 +4,7 @@ const VideoModal = ({ isOpen, onClose, video }) => {
   if (!isOpen || !video) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm animate-in fade-in duration-200" onClick={onClose}>
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm " onClick={onClose}>
       <div className="bg-white dark:bg-slate-900 w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl flex flex-col border border-slate-200 dark:border-slate-800" onClick={e => e.stopPropagation()}>
         <div className="flex justify-between items-center p-4 border-b border-slate-100 dark:border-slate-800">
           <h3 className="font-bold text-slate-900 dark:text-white truncate pr-4">{video.title}</h3>
@@ -31,3 +31,6 @@ const VideoModal = ({ isOpen, onClose, video }) => {
 };
 
 export default VideoModal;
+
+
+

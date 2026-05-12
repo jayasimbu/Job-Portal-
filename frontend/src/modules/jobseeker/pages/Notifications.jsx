@@ -61,7 +61,7 @@ const Notifications = () => {
           </p>
         </div>
         {unreadCount > 0 && (
-          <span className="bg-red-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full animate-pulse shadow-lg shadow-red-500/30">
+          <span className="bg-red-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full  shadow-lg shadow-red-500/30">
             {unreadCount} NEW
           </span>
         )}
@@ -69,7 +69,7 @@ const Notifications = () => {
 
       {loading ? (
         <div className="flex justify-center py-16">
-          <div className="size-10 rounded-full border-4 border-blue-600 border-t-transparent animate-spin" />
+          <div className="size-10 rounded-full border-4 border-blue-600 border-t-transparent " />
         </div>
       ) : notices.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 gap-4 bg-white dark:bg-[#1a2632] border border-slate-200 dark:border-slate-700 rounded-3xl">
@@ -117,3 +117,6 @@ const Notifications = () => {
 };
 
 export default Notifications;
+
+
+

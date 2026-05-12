@@ -37,3 +37,6 @@ const PlatformRoutes = () => {
 };
 
 export default PlatformRoutes;
+
+
+

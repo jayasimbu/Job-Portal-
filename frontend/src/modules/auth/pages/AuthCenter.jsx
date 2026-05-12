@@ -52,14 +52,14 @@ const AuthCenter = () => {
         <div className="relative flex bg-slate-100 dark:bg-slate-800/50 p-1 rounded-2xl shadow-inner">
           {/* Sliding bg pill */}
           <div
-            className="absolute top-1 bottom-1 rounded-xl bg-blue-600 shadow-lg shadow-blue-500/20 transition-all duration-300 ease-out"
+            className="absolute top-1 bottom-1 rounded-xl bg-blue-600 shadow-lg shadow-blue-500/20 transition-all ease-out"
             style={{ width: `calc(${100/tabs.length}% - 4px)`, left: `calc(${activeIdx * (100/tabs.length)}% + 2px)` }}
           />
           {tabs.map(({ id, label }) => {
             const active = id === 'signup' ? (activeTab === 'signup' || activeTab === 'role') : activeTab === id;
             return (
               <button key={id} onClick={() => switchTab(id)}
-                className={`flex-1 py-2.5 rounded-xl text-[13px] font-semibold tracking-wide relative z-10 transition-colors duration-300 ${
+                className={`flex-1 py-2.5 rounded-xl text-[13px] font-semibold tracking-wide relative z-10 transition-colors ${
                   active ? 'text-white' : 'text-slate-500 dark:text-slate-400 hover:text-slate-700'
                 }`}>{label}</button>
             );
@@ -82,3 +82,6 @@ const AuthCenter = () => {
 };
 
 export default AuthCenter;
+
+
+

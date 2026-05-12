@@ -34,16 +34,16 @@ const VerifyEmail = () => {
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center p-4">
-            <div className="max-w-md w-full bg-white dark:bg-slate-800 rounded-3xl shadow-2xl p-8 text-center border border-slate-100 dark:border-slate-700 animate-in fade-in zoom-in duration-500">
+            <div className="max-w-md w-full bg-white dark:bg-slate-800 rounded-3xl shadow-2xl p-8 text-center border border-slate-100 dark:border-slate-700 duration-500">
                 <div className="mb-6">
                     {status === 'verifying' && (
-                        <div className="size-20 bg-blue-50 dark:bg-blue-900/20 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
-                            <span className="material-symbols-outlined text-blue-600 text-4xl animate-spin">sync</span>
+                        <div className="size-20 bg-blue-50 dark:bg-blue-900/20 rounded-full flex items-center justify-center mx-auto mb-4 ">
+                            <span className="material-symbols-outlined text-blue-600 text-4xl ">sync</span>
                         </div>
                     )}
                     {status === 'success' && (
                         <div className="size-20 bg-green-50 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-500/10">
-                            <span className="material-symbols-outlined text-green-600 text-4xl animate-in zoom-in duration-500">check_circle</span>
+                            <span className="material-symbols-outlined text-green-600 text-4xl ">check_circle</span>
                         </div>
                     )}
                     {status === 'error' && (
@@ -71,7 +71,7 @@ const VerifyEmail = () => {
                 )}
 
                 {status === 'success' && (
-                    <p className="mt-4 text-[10px] text-slate-400 font-bold uppercase tracking-widest animate-pulse">
+                    <p className="mt-4 text-[10px] text-slate-400 font-bold uppercase tracking-widest ">
                         Redirecting to login in 3 seconds...
                     </p>
                 )}
@@ -81,3 +81,6 @@ const VerifyEmail = () => {
 };
 
 export default VerifyEmail;
+
+
+

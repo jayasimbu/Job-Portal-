@@ -63,7 +63,7 @@ export default function GrowthInsights() {
                          strokeDasharray="100" 
                          strokeDashoffset={100 - atsScore} 
                          strokeLinecap="round"
-                         style={{ transition: 'stroke-dashoffset 2s ease-in-out' }}
+                         style={{ transition: 'stroke-dashoffset 2s ' }}
                        />
                     </svg>
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
@@ -177,3 +177,6 @@ export default function GrowthInsights() {
     </div>
   );
 }
+
+
+

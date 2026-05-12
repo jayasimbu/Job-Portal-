@@ -3,17 +3,28 @@ import React, { createContext, useContext, useEffect } from 'react';
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const isDark = false;
-  const toggleTheme = () => {};
+  const [theme, setTheme] = React.useState(() => {
+    return localStorage.getItem('theme') || 'light';
+  });
+
+  const isDark = theme === 'dark';
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+  };
 
   useEffect(() => {
     const root = window.document.documentElement;
-    root.classList.remove('dark');
-    localStorage.setItem('theme', 'light');
-  }, []);
+    if (isDark) {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme, isDark]);
 
   return (
-    <ThemeContext.Provider value={{ theme: 'light', toggleTheme, isDark: false }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, isDark }}>
       {children}
     </ThemeContext.Provider>
   );
@@ -26,3 +37,6 @@ export const useTheme = () => {
   }
   return context;
 };
+
+
+

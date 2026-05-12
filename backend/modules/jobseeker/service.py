@@ -5,11 +5,13 @@ import json
 
 from fastapi import Depends
 
-from ai_engine.ats_scoring.scorer import ATSScorer
-from ai_engine.recommendation.recommender import JobRecommender
+# ── Centralized Services Layer (Phase 1 refactor) ──
+from services.atsService import ats_service
+from services.resumeParserService import resume_parser_service
+from services.recommendationService import recommendation_service
+
 from ai_engine.verification.verifier import VerificationEngine
 from core.database import doc_to_entity, docs_to_entities, get_db, get_next_sequence
-from modules.jobseeker.resume_parser import ResumeParser
 
 
 bookmark_store: Dict[int, List[int]] = {}
@@ -23,9 +25,10 @@ class JobSeekerService:
         self.resumes = db["resumes"]
         self.applications = db["job_applications"]
         self.jobs = db["job_postings"]
-        self.parser = ResumeParser()
-        self.ats_scorer = ATSScorer()
-        self.recommender = JobRecommender()
+        # Phase 1: Delegate AI concerns to centralized services
+        self.parser = resume_parser_service
+        self.ats_scorer = ats_service
+        self.recommender = recommendation_service
         self.verifier = VerificationEngine()
 
     @staticmethod
@@ -45,6 +48,9 @@ class JobSeekerService:
             "profile": {
                 "headline": getattr(profile, "headline", None),
                 "skills": getattr(profile, "skills", []),
+                "ats_score": getattr(profile, "ats_score", 0),
+                "resume_data": getattr(profile, "resume_data", {}),
+                "missing_skills": getattr(profile, "missing_skills", []),
                 "experience_years": getattr(profile, "experience_years", 0),
                 "education_level": getattr(profile, "education_level", None),
                 "portfolio_url": getattr(profile, "portfolio_url", None),
@@ -55,6 +61,7 @@ class JobSeekerService:
                     "id": getattr(r, "id", None),
                     "file_name": getattr(r, "file_name", "Unknown File"),
                     "ats_score": getattr(r, "ats_score", 0),
+                    "missing_skills": getattr(r, "missing_skills", []),
                     "created_at": getattr(r, "created_at", datetime.utcnow()).isoformat() if hasattr(r, "created_at") and r.created_at else None,
                 }
                 for r in resumes
@@ -65,6 +72,9 @@ class JobSeekerService:
                     "job_id": getattr(a, "job_id", None),
                     "status": getattr(a, "status", "applied"),
                     "ats_score": getattr(a, "ats_score", 0),
+                    "ats_match_score": getattr(a, "ats_match_score", getattr(a, "ats_score", 0)),
+                    "matched_skills": getattr(a, "matched_skills", []),
+                    "missing_skills": getattr(a, "missing_skills", []),
                 }
                 for a in applications
             ],
@@ -107,9 +117,44 @@ class JobSeekerService:
         self._sync_domain_snapshot(user_id)
         return profile
 
-    def upload_resume(self, user_id: int, file_name: str, resume_text: str, job_description: str = "", file_path: str = ""):
+    def upload_resume(self, user_id: int, file_name: str, file_bytes: bytes, user_email: str, job_description: str = ""):
+        # 1. Save physical file to database/jobseeker/Files/<user_email>
+        from pathlib import Path
+        db_base = Path(__file__).resolve().parents[3] / "database" / "jobseeker" / "Files" / user_email
+        db_base.mkdir(parents=True, exist_ok=True)
+        file_path = db_base / file_name
+        file_path.write_bytes(file_bytes)
+
+        # 2. Extract content
+        from services.resumeParserService import resume_parser_service
+        resume_text = resume_parser_service.extract_text_from_bytes(file_bytes, file_name)
+
         parsed = self.parser.parse_text(resume_text)
-        ats_score = self.ats_scorer.score_resume(parsed, job_description)
+        resume_data = {
+            "skills": parsed.get("skills", []),
+            "experience_years": parsed.get("experience_years", 0),
+            "parsed_text": resume_text,
+            "projects": parsed.get("projects", []),
+            "education": parsed.get("education", []),
+        }
+        if job_description.strip():
+            required_skills = self.parser._extract_skills(job_description.lower())
+            ats_result = self.ats_scorer.score_job_description_ats(
+                resume_data,
+                {
+                    "required_skills": required_skills,
+                    "required_experience_years": 0,
+                    "description": job_description,
+                },
+            )
+            ats_score = ats_result.get("ats_score", 0)
+            missing_skills = ats_result.get("missing_keywords", [])
+            matched_skills = ats_result.get("matched_keywords", [])
+        else:
+            ats_result = self.ats_scorer.score_resume_ats(resume_data)
+            ats_score = ats_result.get("ats_score", 0)
+            missing_skills = []
+            matched_skills = []
         now = datetime.utcnow()
         resume_doc = {
             "id": get_next_sequence(self.db, "resumes"),
@@ -117,13 +162,51 @@ class JobSeekerService:
             "file_name": file_name,
             "raw_text": resume_text,
             "parsed_data": parsed,
+            "resume_data": resume_data,
             "ats_score": ats_score,
+            "missing_skills": missing_skills,
             "semantic_score": 0,
             "file_path": file_path, 
             "created_at": now,
             "updated_at": now,
         }
         self.resumes.insert_one(resume_doc)
+
+        existing_profile = self.profiles.find_one({"user_id": int(user_id)})
+        if existing_profile:
+            self.profiles.update_one(
+                {"user_id": int(user_id)},
+                {
+                    "$set": {
+                        "skills": list(set(parsed.get("skills", []))),
+                        "experience_years": float(parsed.get("experience_years", 0)),
+                        "education_level": parsed.get("education", "unknown"),
+                        "ats_score": float(ats_score),
+                        "resume_data": resume_data,
+                        "missing_skills": missing_skills,
+                        "updated_at": now,
+                    }
+                },
+            )
+        else:
+            self.profiles.insert_one(
+                {
+                    "id": get_next_sequence(self.db, "jobseeker_profiles"),
+                    "user_id": int(user_id),
+                    "headline": "",
+                    "skills": parsed.get("skills", []),
+                    "ats_score": ats_score,
+                    "resume_data": resume_data,
+                    "missing_skills": missing_skills,
+                    "experience_years": parsed.get("experience_years", 0),
+                    "education_level": parsed.get("education", "unknown"),
+                    "portfolio_url": None,
+                    "github_url": None,
+                    "created_at": now,
+                    "updated_at": now,
+                }
+            )
+
         resume = doc_to_entity(resume_doc)
         self._sync_domain_snapshot(user_id)
         return resume
@@ -141,7 +224,7 @@ class JobSeekerService:
             "skills": getattr(profile, "skills", []),
             "experience_years": getattr(profile, "experience_years", 0),
         }
-        return self.recommender.recommend(profile_payload, jobs)
+        return self.recommender.recommend_jobs(profile_payload, jobs)
 
     def apply_for_job(self, user_id: int, job_id: int):
         print(f"[AUTH_DEBUG] User {user_id} attempting to apply for Job {job_id}")
@@ -175,6 +258,7 @@ class JobSeekerService:
             ats_result = score_job_description_ats(resume_data, jd_data)
             ats_score = ats_result.get("ats_score", 0)
             skills_match = ats_result.get("breakdown", {})
+            matched_skills = ats_result.get("matched_keywords", [])
             missing_keywords = ats_result.get("missing_keywords", [])
             
             # AI Certificate Checking Engine Integration
@@ -203,7 +287,12 @@ class JobSeekerService:
             print(f"ATS score computed: Failed with error {e}")
             ats_score = 0
             skills_match = {}
+            matched_skills = []
             missing_keywords = []
+
+        # ROADMAP STEP 27: AI Summary Generation
+        from services.llmService import llm_service
+        ai_summary = llm_service.generate_hr_feedback(ats_score, matched_skills)
 
         now = datetime.utcnow()
         application_doc = {
@@ -212,11 +301,16 @@ class JobSeekerService:
             "job_id": int(job_id),
             "employer_id": int(job_doc["employer_id"]),
             "status": "applied",
-            "ats_score": ats_score,
-            "skills_match": skills_match,
-            "missing_keywords": missing_keywords,
+            "ats_match_score": ats_score,
+            "matched_skills": matched_skills,
+            "missing_skills": missing_keywords,
+            "ai_summary": ai_summary,
             "created_at": now,
             "updated_at": now,
+            # Legacy/Internal compat
+            "ats_score": ats_score,
+            "ranking_score": ats_score,
+            "skills_match": skills_match,
         }
         self.applications.insert_one(application_doc)
         print("Application inserted with score")
@@ -251,20 +345,7 @@ class JobSeekerService:
         resume = doc_to_entity(self.resumes.find_one({"user_id": int(user_id)}, sort=[("id", -1)]))
         ats_score = resume.ats_score if resume else 0
         experience_years = profile.experience_years if profile else 0
-        return [
-            {
-                "title": "ATS Readiness",
-                "description": f"Current ATS score is {ats_score:.1f}. Target 85+ for premium role filters.",
-            },
-            {
-                "title": "Skill Coverage",
-                "description": f"Detected {len(skills)} mapped skills. Add project evidence for top 3 skills.",
-            },
-            {
-                "title": "Experience Fit",
-                "description": f"Profile maps to {experience_years:.1f}+ years roles based on experience markers.",
-            },
-        ]
+        return self.recommender.get_insights(skills, ats_score, experience_years)
 
     def get_learning_recommendations(self, user_id: int) -> List[Dict[str, Any]]:
         # 1. Fetch latest resume insights for this user

@@ -3,7 +3,7 @@ import JobSeekerShell from '../components/JobSeekerShell';
 
 export default function SearchHistory() {
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-200">
+    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors ">
       <JobSeekerShell active="search-history" />
       
       <main className="flex-1 overflow-y-auto w-full p-4 lg:p-10 lg:py-8 flex flex-col lg:flex-row gap-8">
@@ -257,8 +257,8 @@ export default function SearchHistory() {
           </div>
 
           <div className="rounded-2xl bg-indigo-600 text-white p-6 relative overflow-hidden group mt-2">
-            <div className="absolute -right-4 -top-4 w-24 h-24 bg-white/10 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
-            <div className="absolute -left-2 -bottom-2 w-16 h-16 bg-white/10 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
+            <div className="absolute -right-4 -top-4 w-24 h-24 bg-white/10 rounded-full group-hover:scale-110 transition-transform "></div>
+            <div className="absolute -left-2 -bottom-2 w-16 h-16 bg-white/10 rounded-full group-hover:scale-110 transition-transform "></div>
             <h4 className="font-bold text-lg mb-2 relative z-10">Upload your Resume</h4>
             <p className="text-indigo-100 text-sm mb-4 relative z-10">Get 2x better AI recommendations by uploading your latest CV.</p>
             <button className="bg-white text-indigo-600 text-sm font-bold px-4 py-2 rounded-lg relative z-10 hover:bg-indigo-50 transition-colors">
@@ -271,3 +271,6 @@ export default function SearchHistory() {
     </div>
   );
 }
+
+
+

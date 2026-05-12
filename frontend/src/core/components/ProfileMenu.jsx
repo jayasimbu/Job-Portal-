@@ -113,7 +113,7 @@ export default function ProfileMenu({ role = 'jobseeker' }) {
                 <p className="text-xs font-black text-emerald-600 dark:text-emerald-400">75%</p>
               </div>
               <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
-                <div className="bg-emerald-500 h-1.5 rounded-full transition-all duration-700" style={{ width: '75%' }}></div>
+                <div className="bg-emerald-500 h-1.5 rounded-full transition-all " style={{ width: '75%' }}></div>
               </div>
             </div>
 
@@ -157,3 +157,6 @@ export default function ProfileMenu({ role = 'jobseeker' }) {
     </div>
   );
 }
+
+
+

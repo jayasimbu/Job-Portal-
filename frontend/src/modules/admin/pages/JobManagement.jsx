@@ -1,147 +1,188 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Search, Briefcase, Building2, Eye, Trash2, CheckCircle2, XCircle, Users } from 'lucide-react';
 import apiClient from '@/core/api/apiClient';
-import { useTheme } from '@/core/context/ThemeContext';
 
-const riskColors = { low: '#4ade80', medium: '#fbbf24', high: '#f87171' };
-const statusColors = { pending: '#94a3b8', approved: '#4ade80', flagged: '#f87171', rejected: '#fb923c' };
+// UI Components
+import Button from '../../../components/ui/Button';
+import Card, { CardBody } from '../../../components/ui/Card';
+import Badge from '../../../components/ui/Badge';
+import { Heading, Text } from '../../../components/ui/Typography';
 
-const Badge = ({ text, color }) => (
-  <span style={{ padding: '3px 10px', borderRadius: '999px', fontSize: '11px', fontWeight: 700, background: `${color}22`, color, border: `1px solid ${color}44`, textTransform: 'capitalize' }}>{text}</span>
-);
-
-export default function VerificationQueue() {
-  const [items, setItems] = useState([]);
+export default function JobManagement() {
+  const [jobs, setJobs] = useState([]);
   const [total, setTotal] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
-  const [statusFilter, setStatusFilter] = useState('pending');
-  const [msg, setMsg] = useState('');
-  const [reviewNote, setReviewNote] = useState({});
-  const { isDark, toggleTheme } = useTheme();
+  const [search, setSearch] = useState('');
+  const [statusFilter, setStatusFilter] = useState('');
 
-  const fetchQueue = useCallback(() => {
+  const fetchJobs = useCallback(() => {
     setLoading(true);
-    apiClient.get(`/api/admin/resumes/queue?status=${statusFilter}&page=${page}&page_size=15`)
+    const params = new URLSearchParams({ page, page_size: 20 });
+    if (search) params.set('search', search);
+    if (statusFilter) params.set('status', statusFilter);
+    
+    apiClient.get(`/admin/jobs?${params}`)
       .then(r => {
-        setItems(r.data.items || []);
+        setJobs(r.data.jobs || []);
         setTotal(r.data.total || 0);
         setTotalPages(r.data.total_pages || 1);
       })
-      .catch(() => setMsg('Failed to load verification queue.'))
+      .catch(() => console.error('Failed to load jobs.'))
       .finally(() => setLoading(false));
-  }, [statusFilter, page]);
+  }, [page, search, statusFilter]);
 
-  useEffect(() => { fetchQueue(); }, [fetchQueue]);
+  useEffect(() => { fetchJobs(); }, [fetchJobs]);
 
-  const reviewItem = async (id, action) => {
+  const updateJobStatus = async (id, status) => {
     try {
-      await apiClient.put(`/api/admin/resumes/${id}/review`, { action, notes: reviewNote[id] || '' });
-      setMsg(`Item ${action}.`);
-      fetchQueue();
-    } catch { setMsg('Action failed.'); }
+      await apiClient.put(`/admin/jobs/${id}/status`, { status });
+      fetchJobs();
+    } catch { console.error('Action failed.'); }
   };
 
-  const inputStyle = { background: 'var(--bg-page)', border: '1px solid var(--border)', borderRadius: '8px', color: 'var(--text-main)', padding: '7px 12px', fontSize: '13px', width: '100%', marginTop: '8px' };
-
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg-page)', color: 'var(--text-main)', fontFamily: "'Inter', sans-serif", padding: '32px', transition: '0.3s' }} className={isDark ? 'dark' : ''}>
-      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-          <h1 style={{ fontSize: '26px', fontWeight: 700, margin: 0 }}>📋 Verification Queue</h1>
-          <button
-            onClick={toggleTheme}
-            style={{
-              padding: '10px',
-              borderRadius: '50%',
-              background: 'var(--bg-card)',
-              border: '1px solid var(--border)',
-              color: 'var(--text-main)',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            <span className="material-symbols-outlined">{isDark ? 'light_mode' : 'dark_mode'}</span>
-          </button>
-        </div>
-        <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>{total} items</p>
-
-        {msg && (
-          <div style={{ background: 'rgba(99,102,241,0.15)', border: '1px solid rgba(99,102,241,0.3)', borderRadius: '10px', padding: '12px 18px', marginBottom: '16px', color: '#a5b4fc' }}>
-            {msg} <button onClick={() => setMsg('')} style={{ marginLeft: '10px', background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer' }}>✕</button>
-          </div>
-        )}
-
-        {/* Status Tabs */}
-        <div style={{ display: 'flex', gap: '8px', marginBottom: '24px' }}>
-          {['pending', 'approved', 'flagged', 'rejected', 'all'].map(s => (
-            <button key={s} onClick={() => { setStatusFilter(s); setPage(1); }} style={{
-              padding: '8px 18px', borderRadius: '8px', border: '1px solid var(--border)', cursor: 'pointer', fontWeight: 600, fontSize: '13px',
-              background: statusFilter === s ? 'var(--primary)' : 'var(--bg-card)',
-              color: statusFilter === s ? '#fff' : 'var(--text-muted)', textTransform: 'capitalize',
-            }}>{s}</button>
-          ))}
-        </div>
-
-        {/* Cards */}
-        {loading ? (
-          <div style={{ textAlign: 'center', padding: '60px', color: '#94a3b8' }}>Loading…</div>
-        ) : items.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '60px' }}>
-            <div style={{ fontSize: '48px', marginBottom: '16px' }}>✅</div>
-            <p style={{ color: '#94a3b8' }}>No items in this category.</p>
-          </div>
-        ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            {items.map(item => (
-              <div key={item.id} style={{
-                background: 'var(--bg-card)',
-                border: `1px solid ${riskColors[item.risk_level] || 'var(--border)'}44`,
-                borderRadius: '16px',
-                padding: '20px 24px',
-              }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px' }}>
-                  <div>
-                    <div style={{ fontWeight: 700, fontSize: '16px', color: 'var(--text-main)' }}>{item.user_name}</div>
-                    <div style={{ color: 'var(--text-muted)', fontSize: '13px', marginTop: '4px' }}>{item.user_email}</div>
-                    {item.certificate_name && <div style={{ marginTop: '6px', fontSize: '13px', color: '#a5b4fc' }}>📜 {item.certificate_name}</div>}
-                    <div style={{ marginTop: '8px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                      <Badge text={`Risk: ${item.risk_level}`} color={riskColors[item.risk_level] || '#94a3b8'} />
-                      <Badge text={item.status} color={statusColors[item.status] || '#94a3b8'} />
-                    </div>
-                    <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '8px' }}>Submitted: {item.submitted_at ? new Date(item.submitted_at).toLocaleString() : '—'}</div>
-                    {item.notes && <div style={{ marginTop: '8px', fontSize: '13px', color: 'var(--text-muted)' }}>Note: {item.notes}</div>}
-                  </div>
-
-                  {item.status === 'pending' && (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', minWidth: '200px' }}>
-                      <input
-                        style={inputStyle}
-                        placeholder="Optional notes…"
-                        value={reviewNote[item.id] || ''}
-                        onChange={e => setReviewNote(prev => ({ ...prev, [item.id]: e.target.value }))}
-                      />
-                      <div style={{ display: 'flex', gap: '8px' }}>
-                        <button onClick={() => reviewItem(item.id, 'approved')} style={{ flex: 1, background: 'rgba(34,197,94,0.2)', border: 'none', color: '#4ade80', borderRadius: '8px', padding: '8px', cursor: 'pointer', fontWeight: 600, fontSize: '13px' }}>✅ Approve</button>
-                        <button onClick={() => reviewItem(item.id, 'flagged')} style={{ flex: 1, background: 'rgba(251,191,36,0.2)', border: 'none', color: '#fbbf24', borderRadius: '8px', padding: '8px', cursor: 'pointer', fontWeight: 600, fontSize: '13px' }}>🚩 Flag</button>
-                        <button onClick={() => reviewItem(item.id, 'rejected')} style={{ flex: 1, background: 'rgba(239,68,68,0.15)', border: 'none', color: '#f87171', borderRadius: '8px', padding: '8px', cursor: 'pointer', fontWeight: 600, fontSize: '13px' }}>❌ Reject</button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '24px' }}>
-          <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1} style={{ padding: '8px 16px', background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--text-main)', borderRadius: '8px', cursor: 'pointer', opacity: page <= 1 ? 0.4 : 1 }}>← Prev</button>
-          <span style={{ padding: '8px 16px', color: 'var(--text-muted)' }}>Page {page} of {totalPages}</span>
-          <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page >= totalPages} style={{ padding: '8px 16px', background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--text-main)', borderRadius: '8px', cursor: 'pointer', opacity: page >= totalPages ? 0.4 : 1 }}>Next →</button>
+    <div className="max-w-[1200px] mx-auto space-y-8 pb-20 px-8">
+      {/* HEADER */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="space-y-1">
+          <h1 className="text-xl font-semibold text-slate-900 dark:text-white">
+            Jobs
+          </h1>
+          <p className="text-sm text-slate-500 mt-1">
+            Review and manage all posted jobs.
+          </p>
         </div>
       </div>
+
+      {/* FILTERS & SEARCH */}
+      <Card className="border-slate-200 shadow-sm overflow-visible">
+        <CardBody className="p-4 flex flex-col md:flex-row gap-4 items-center">
+          <div className="flex-1 flex items-center gap-3 px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl w-full">
+            <Search size={16} className="text-slate-400" />
+            <input 
+              type="text" 
+              placeholder="Search by job title or employer..." 
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              className="bg-transparent border-none outline-none text-sm w-full" 
+            />
+          </div>
+          <div className="flex items-center gap-3 w-full md:w-auto">
+            <select 
+              value={statusFilter} 
+              onChange={e => setStatusFilter(e.target.value)}
+              className="px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm outline-none font-bold text-slate-600"
+            >
+              <option value="">All Status</option>
+              <option value="open">Open</option>
+              <option value="closed">Closed</option>
+              <option value="draft">Draft</option>
+            </select>
+          </div>
+        </CardBody>
+      </Card>
+
+      {/* JOBS TABLE */}
+      <Card className="border-slate-200 shadow-sm overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700">
+                {['Job Title', 'Employer', 'Applications', 'Status', 'Posted Date', ''].map(h => (
+                  <th key={h} className="px-6 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+              {loading ? (
+                [1,2,3].map(i => (
+                  <tr key={i} className="animate-pulse">
+                    <td colSpan={6} className="px-6 py-6 h-16 bg-slate-50/50" />
+                  </tr>
+                ))
+              ) : jobs.length === 0 ? (
+                <tr>
+                  <td colSpan={6} className="px-6 py-20 text-center text-slate-400 font-bold text-sm uppercase tracking-widest">No jobs found.</td>
+                </tr>
+              ) : jobs.map(j => (
+                <tr key={j.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-3">
+                      <div className="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+                        <Briefcase size={20} />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-slate-900 dark:text-white leading-tight">{j.title}</p>
+                        <p className="text-xs text-slate-500 font-medium">{j.location || 'Remote'}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-2">
+                       <Building2 size={14} className="text-slate-400" />
+                       <span className="text-xs font-bold text-slate-600 dark:text-slate-400">{j.company_name}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-2">
+                       <Users size={14} className="text-slate-400" />
+                       <span className="text-xs font-bold text-slate-600 dark:text-slate-400">{j.application_count || 0}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <Badge variant={j.status === 'open' ? 'success' : 'secondary'} className="text-[9px] px-2 py-0.5">
+                      {j.status}
+                    </Badge>
+                  </td>
+                  <td className="px-6 py-4">
+                    <p className="text-xs font-bold text-slate-500">{j.created_at ? new Date(j.created_at).toLocaleDateString() : '—'}</p>
+                  </td>
+                  <td className="px-6 py-4 text-right">
+                    <div className="flex items-center justify-end gap-2">
+                      <Button variant="ghost" size="sm" className="size-8 p-0">
+                        <Eye size={14} className="text-slate-400" />
+                      </Button>
+                      <Button variant="ghost" size="sm" className="size-8 p-0 hover:text-rose-600">
+                        <Trash2 size={14} />
+                      </Button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        
+        {/* PAGINATION */}
+        <div className="px-6 py-4 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between">
+           <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Page {page} of {totalPages}</p>
+           <div className="flex gap-2">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                disabled={page === 1}
+                onClick={() => setPage(p => p - 1)}
+                className="h-8 text-[10px] uppercase font-black"
+              >
+                Previous
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                disabled={page >= totalPages}
+                onClick={() => setPage(p => p + 1)}
+                className="h-8 text-[10px] uppercase font-black"
+              >
+                Next
+              </Button>
+           </div>
+        </div>
+      </Card>
     </div>
   );
 }
+
+
+

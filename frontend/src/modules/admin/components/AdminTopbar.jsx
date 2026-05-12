@@ -9,28 +9,14 @@ const AdminTopbar = () => {
         {/* Left: Command Search */}
         <div className="flex items-center gap-6">
            <div className="flex w-[420px] h-12 items-center gap-3 rounded-2xl bg-slate-50/50 dark:bg-slate-900/50 px-5 border border-slate-200/50 dark:border-slate-800/50 focus-within:border-blue-500 focus-within:bg-white dark:focus-within:bg-slate-900 transition-all shadow-sm group">
-             <Command size={16} className="text-slate-400 group-focus-within:text-blue-600 transition-colors" />
+             <Search size={16} className="text-slate-400 group-focus-within:text-blue-600 transition-colors" />
              <input
                type="text"
-               placeholder="Execute system command or search node..."
+               placeholder="Search platform..."
                className="bg-transparent text-[13px] font-medium text-slate-700 dark:text-slate-200 outline-none placeholder:text-slate-400 w-full"
              />
-             <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-[10px] font-black text-slate-400">
-                <span className="text-[12px]">⌘</span>K
-             </div>
            </div>
 
-           {/* Telemetry Dots */}
-           <div className="hidden lg:flex items-center gap-4 border-l border-slate-100 dark:border-slate-800 pl-6">
-              <div className="flex items-center gap-2">
-                 <div className="size-2 rounded-full bg-emerald-500 animate-pulse" />
-                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Mainnet</span>
-              </div>
-              <div className="flex items-center gap-2">
-                 <Cpu size={14} className="text-blue-500" />
-                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">3.2ms</span>
-              </div>
-           </div>
         </div>
 
         {/* Right: Actions & Identity */}
@@ -40,17 +26,14 @@ const AdminTopbar = () => {
               <Bell size={20} className="group-hover:rotate-12 transition-transform" />
               <span className="absolute top-3 right-3 h-2 w-2 rounded-full bg-rose-500 border-2 border-white dark:border-[#080c10]" />
             </button>
-            <button className="relative size-11 flex items-center justify-center text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-2xl transition-all border border-transparent hover:border-slate-200 dark:hover:border-slate-700">
-              <Shield size={20} />
-            </button>
           </div>
 
           <div className="h-8 w-px bg-slate-100 dark:bg-slate-800" />
 
           <div className="flex items-center gap-3 cursor-pointer group">
             <div className="text-right hidden sm:block">
-              <p className="text-sm font-black text-slate-900 dark:text-white leading-none mb-1 group-hover:text-blue-600 transition-colors">Admin Node</p>
-              <p className="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-[0.2em]">Root Authority</p>
+              <p className="text-sm font-black text-slate-900 dark:text-white leading-none mb-1 group-hover:text-blue-600 transition-colors">Platform Admin</p>
+              <p className="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-[0.2em]">Admin</p>
             </div>
             <div className="size-11 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 p-0.5 shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">
                <div className="w-full h-full rounded-[14px] bg-white dark:bg-[#080c10] flex items-center justify-center text-blue-600">
@@ -65,3 +48,6 @@ const AdminTopbar = () => {
 };
 
 export default AdminTopbar;
+
+
+

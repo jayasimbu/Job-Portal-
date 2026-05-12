@@ -36,7 +36,7 @@ const NewPassword = () => {
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center p-4 font-inter">
-            <div className="max-w-md w-full bg-white dark:bg-slate-800 rounded-3xl shadow-2xl p-8 border border-slate-100 dark:border-slate-700 animate-in fade-in zoom-in duration-500">
+            <div className="max-w-md w-full bg-white dark:bg-slate-800 rounded-3xl shadow-2xl p-8 border border-slate-100 dark:border-slate-700 duration-500">
                 <div className="text-center mb-8">
                     <div className="size-16 bg-blue-50 dark:bg-blue-900/20 rounded-[2rem] flex items-center justify-center mx-auto mb-6 shadow-inner border border-blue-100/50 dark:border-blue-800/30">
                         <span className="material-symbols-outlined text-blue-600 text-3xl">lock_open</span>
@@ -50,7 +50,7 @@ const NewPassword = () => {
                         <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-800/30 rounded-2xl">
                             <p className="text-green-600 dark:text-green-400 font-bold text-sm uppercase tracking-wider">{message}</p>
                         </div>
-                        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest animate-pulse">Redirecting to login...</p>
+                        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest ">Redirecting to login...</p>
                     </div>
                 ) : (
                     <form onSubmit={handleSubmit} className="space-y-4">
@@ -94,7 +94,7 @@ const NewPassword = () => {
                         >
                             {loading ? (
                                 <>
-                                    <div className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                    <div className="size-4 border-2 border-white/30 border-t-white rounded-full " />
                                     <span>Updating...</span>
                                 </>
                             ) : 'Update Password'}
@@ -107,3 +107,6 @@ const NewPassword = () => {
 };
 
 export default NewPassword;
+
+
+

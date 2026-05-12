@@ -82,3 +82,6 @@ export const ResumeProvider = ({ children }) => {
 };
 
 export const useResume = () => useContext(ResumeContext);
+
+
+

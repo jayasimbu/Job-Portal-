@@ -1,2 +1,4 @@
 {"action": "signup", "timestamp": "2026-04-27T10:26:07.800614", "email": "realtimeprojects0@gmail.com", "role": "employer", "payload": {"email": "realtimeprojects0@gmail.com", "auth_method": "email"}}
 {"action": "login", "timestamp": "2026-05-10T14:13:24.321222", "email": "realtimeprojects0@gmail.com", "role": "employer", "payload": {"email": "realtimeprojects0@gmail.com"}}
+{"action": "logout", "timestamp": "2026-05-11T19:10:05.389723", "email": "realtimeprojects0@gmail.com", "role": "employer", "payload": {"email": "realtimeprojects0@gmail.com"}}
+{"action": "login", "timestamp": "2026-05-11T19:10:09.325898", "email": "realtimeprojects0@gmail.com", "role": "employer", "payload": {"email": "realtimeprojects0@gmail.com"}}

@@ -78,7 +78,7 @@ export default function EligibilityFeedback() {
   };
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-[#101922] text-[#0d141b] dark:text-white transition-colors duration-200">
+    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-[#101922] text-[#0d141b] dark:text-white transition-colors ">
       <JobSeekerShell active="dashboard" />
       
       <main className="flex-1 overflow-y-auto px-4 md:px-10 py-8 max-w-[1280px] mx-auto w-full">
@@ -288,3 +288,6 @@ export default function EligibilityFeedback() {
     </div>
   );
 }
+
+
+

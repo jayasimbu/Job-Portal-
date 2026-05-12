@@ -23,13 +23,13 @@ const ResetPassword = ({ onBack }) => {
     } finally { setLoading(false); }
   };
 
-  const inputCls = (isErr) => `w-full pl-11 pr-4 py-2.5 rounded-[10px] text-sm bg-white dark:bg-slate-800/30 dark:text-white outline-none transition-all duration-200 border ${
+  const inputCls = (isErr) => `w-full pl-11 pr-4 py-2.5 rounded-[10px] text-sm bg-white dark:bg-slate-800/30 dark:text-white outline-none transition-all border ${
     isErr ? 'border-red-400 focus:border-red-500 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.1)]'
           : 'border-[#D1D5DB] dark:border-slate-700 focus:border-[#2563EB] focus:shadow-[0_0_0_3px_rgba(37,99,235,0.1)]'
   }`;
 
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-3 duration-500">
+    <div className="slide-in-from-bottom-3 ">
       <div className="mb-5">
         <div className="size-11 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center mb-3">
           <span className="material-symbols-outlined text-blue-600 text-xl">lock_reset</span>
@@ -65,8 +65,8 @@ const ResetPassword = ({ onBack }) => {
           <div className="flex flex-col gap-2 mt-3">
             <button type="submit" disabled={loading}
               style={{ height: 52, background: 'linear-gradient(135deg, #2563EB, #1D4ED8)', fontSize: 15, fontWeight: 600 }}
-              className="w-full text-white rounded-xl transition-all duration-200 hover:-translate-y-px hover:shadow-[0_8px_20px_rgba(37,99,235,0.3)] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3">
-              {loading ? (<><div className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /><span>Sending...</span></>) : 'Send Reset Link'}
+              className="w-full text-white rounded-xl transition-all hover:-translate-y-px hover:shadow-[0_8px_20px_rgba(37,99,235,0.3)] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3">
+              {loading ? (<><div className="size-4 border-2 border-white/30 border-t-white rounded-full " /><span>Sending...</span></>) : 'Send Reset Link'}
             </button>
             <button type="button" onClick={onBack}
               style={{ height: 44, fontSize: 14, fontWeight: 600 }}
@@ -76,7 +76,7 @@ const ResetPassword = ({ onBack }) => {
           </div>
         </form>
       ) : (
-        <div className="text-center space-y-5 animate-in zoom-in-95 duration-500 py-3">
+        <div className="text-center space-y-5 py-3">
           <div className="p-6 bg-green-50/50 dark:bg-green-900/10 border border-green-100 dark:border-green-800/30 rounded-2xl flex flex-col items-center">
             <div className="size-14 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-3 text-green-600 animate-bounce">
               <span className="material-symbols-outlined text-3xl">mark_email_read</span>
@@ -106,3 +106,6 @@ const ResetPassword = ({ onBack }) => {
 };
 
 export default ResetPassword;
+
+
+

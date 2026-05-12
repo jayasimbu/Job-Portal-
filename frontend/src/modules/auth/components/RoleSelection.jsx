@@ -32,7 +32,7 @@ const RoleSelection = ({ onSelect }) => {
         <button
           key={role.id}
           onClick={() => onSelect(role.id)}
-          className={`flex items-center gap-4 p-4 transition-all duration-300 rounded-2xl border-2 ${role.borderColor} ${role.hoverBorder} text-left group bg-white dark:bg-[#1a2632] shadow-sm hover:shadow-[0_15px_40px_rgba(37,99,235,0.08)] hover:scale-[1.02] active:scale-[0.98] outline-none focus:ring-4 focus:ring-blue-500/10`}
+          className={`flex items-center gap-4 p-4 transition-all rounded-2xl border-2 ${role.borderColor} ${role.hoverBorder} text-left group bg-white dark:bg-[#1a2632] shadow-sm hover:shadow-[0_15px_40px_rgba(37,99,235,0.08)] hover:scale-[1.02] active:scale-[0.98] outline-none focus:ring-4 focus:ring-blue-500/10`}
         >
           <div className={`size-12 rounded-xl ${role.color} ${role.iconColor} transition-transform group-hover:scale-110 flex items-center justify-center shrink-0`}>
             {role.icon}
@@ -65,3 +65,6 @@ const RoleSelection = ({ onSelect }) => {
 };
 
 export default RoleSelection;
+
+
+

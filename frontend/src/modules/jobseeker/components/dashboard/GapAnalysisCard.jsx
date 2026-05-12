@@ -41,3 +41,6 @@ const GapAnalysisCard = ({ gaps, onGapClick }) => {
 };
 
 export default GapAnalysisCard;
+
+
+

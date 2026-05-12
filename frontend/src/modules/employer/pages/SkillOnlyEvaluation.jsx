@@ -3,7 +3,7 @@ import EmployerShell from '../components/EmployerShell';
 
 export default function SkillOnlyEvaluation() {
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-white dark:bg-slate-950 font-display text-slate-900 dark:text-slate-100 transition-colors duration-200">
+    <div className="flex h-screen w-full overflow-hidden bg-white dark:bg-slate-950 font-display text-slate-900 dark:text-slate-100 transition-colors ">
       <EmployerShell active="candidates" />
       
       <main className="flex-1 flex flex-col h-full overflow-y-auto">
@@ -99,7 +99,7 @@ export default function SkillOnlyEvaluation() {
                 
                 <div className="hidden md:flex flex-col items-center gap-2 z-10 shrink-0">
                   <div className="size-16 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/30">
-                    <span className="material-symbols-outlined !text-3xl animate-pulse">auto_awesome</span>
+                    <span className="material-symbols-outlined !text-3xl ">auto_awesome</span>
                   </div>
                 </div>
                 
@@ -111,7 +111,7 @@ export default function SkillOnlyEvaluation() {
                   <div className="grid lg:grid-cols-2 gap-8 items-center">
                     <div className="w-full bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-xl p-8 border border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center text-center gap-5 relative shadow-inner">
                       <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-mono text-sm font-semibold tracking-wide">
-                        <span className="material-symbols-outlined !text-lg animate-spin">sync</span>
+                        <span className="material-symbols-outlined !text-lg ">sync</span>
                         Sanitizing Data...
                       </div>
                       <div className="w-full h-2.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
@@ -285,7 +285,7 @@ function SkillBar({ name, percentage }) {
 function FeatureCard({ icon, title, desc }) {
   return (
     <div className="flex flex-col gap-4 p-8 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:border-blue-500/30 dark:hover:border-blue-500/30 transition-all hover:-translate-y-1 group">
-      <div className="size-14 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/40 transition-all duration-300 shadow-sm">
+      <div className="size-14 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/40 transition-all shadow-sm">
         <span className="material-symbols-outlined !text-3xl">{icon}</span>
       </div>
       <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-2">{title}</h3>
@@ -312,3 +312,6 @@ function ChartItem({ name, score, isHighlight }) {
     </div>
   );
 }
+
+
+

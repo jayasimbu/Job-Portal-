@@ -91,7 +91,7 @@ const Jobs = () => {
   };
 
   const SkeletonCard = () => (
-    <Card className="animate-pulse">
+    <Card className="">
       <CardBody className="h-64 bg-slate-50/50" />
     </Card>
   );
@@ -204,3 +204,6 @@ const Jobs = () => {
 };
 
 export default Jobs;
+
+
+

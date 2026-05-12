@@ -7,7 +7,7 @@ const DETAIL_CONTENT = {
   'ai-matcher': {
     title: 'AI Matcher',
     icon: 'psychology',
-    desc: 'Our flagship neural matching engine that connects your unique skill profile with the perfect opportunities.',
+    desc: 'Our flagship Smart matching system that connects your unique skill profile with the perfect opportunities.',
     highlights: [
       'Semantic understanding of your experience',
       'Real-time job market compatibility analysis',
@@ -209,7 +209,7 @@ const DetailView = () => {
 
   return (
     <PlatformShell active="none">
-      <div className="max-w-4xl mx-auto py-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="max-w-4xl mx-auto py-12 duration-500">
         <div className="flex flex-col md:flex-row gap-10 items-start">
           {/* Header Section */}
           <div className="flex-1 space-y-6">
@@ -274,3 +274,6 @@ const DetailView = () => {
 };
 
 export default DetailView;
+
+
+

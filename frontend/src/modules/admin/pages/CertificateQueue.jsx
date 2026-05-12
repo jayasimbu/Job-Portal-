@@ -34,13 +34,13 @@ const CertificateQueue = () => {
 
   return (
     <AdminShell active="certificates">
-      <div className="max-w-[1200px] mx-auto space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700 p-6">
+      <div className="max-w-[1200px] mx-auto space-y-10 duration-700 p-6">
         <header className="flex flex-col gap-1">
           <h1 className="text-[26px] font-bold text-slate-900 dark:text-white tracking-tight uppercase mt-1">Certificate Verification</h1>
           <p className="text-[15px] text-slate-500 dark:text-slate-400 leading-relaxed mt-1">Review AI parsed certificates and verify them manually for ATS scaling.</p>
         </header>
         {loading ? (
-          <div className="animate-pulse flex flex-col gap-4">
+          <div className=" flex flex-col gap-4">
              <div className="h-24 bg-slate-200 dark:bg-slate-800 rounded-xl"></div>
              <div className="h-24 bg-slate-200 dark:bg-slate-800 rounded-xl"></div>
           </div>
@@ -64,7 +64,7 @@ const CertificateQueue = () => {
                   </div>
                   
                   <div className="flex flex-col gap-3 mt-6">
-                     <a href={cert.file_url} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 px-4 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 transition duration-150 rounded-xl text-sm font-bold text-slate-700 dark:text-slate-300">
+                     <a href={cert.file_url} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 px-4 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 transition rounded-xl text-sm font-bold text-slate-700 dark:text-slate-300">
                        <span className="material-symbols-outlined text-[18px]">open_in_new</span> View Original Document
                      </a>
                      <div className="text-xs text-slate-400 font-bold bg-white dark:bg-[#1a2632] p-3 rounded-xl border border-slate-200 dark:border-slate-700">
@@ -120,3 +120,6 @@ const CertificateQueue = () => {
 };
 
 export default CertificateQueue;
+
+
+

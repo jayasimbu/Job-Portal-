@@ -122,7 +122,7 @@ export default function ProjectVerify() {
           >
             {loading ? (
               <>
-                <div className="size-5 rounded-full border-2 border-white border-t-transparent animate-spin" />
+                <div className="size-5 rounded-full border-2 border-white border-t-transparent " />
                 Analyzing Repository...
               </>
             ) : (
@@ -201,7 +201,7 @@ export default function ProjectVerify() {
                       </div>
                       <div className="h-2.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden mb-1.5">
                         <div
-                          className="h-full rounded-full transition-all duration-1000"
+                          className="h-full rounded-full transition-all "
                           style={{ width: `${pct}%`, backgroundColor: pct >= 70 ? '#22c55e' : pct >= 40 ? '#eab308' : '#ef4444' }}
                         />
                       </div>
@@ -232,3 +232,6 @@ export default function ProjectVerify() {
     </div>
   );
 }
+
+
+

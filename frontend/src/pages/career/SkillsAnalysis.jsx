@@ -20,7 +20,7 @@ export default function SkillsAnalysis() {
       benefit="Empowers you to optimize your profile for high-match roles and premium hiring filters."
     >
       <div className="mt-16 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-12 shadow-2xl relative overflow-hidden group">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/5 rounded-full -mr-32 -mt-32 blur-3xl group-hover:bg-blue-600/10 transition-all duration-700" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/5 rounded-full -mr-32 -mt-32 blur-3xl group-hover:bg-blue-600/10 transition-all " />
         
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
@@ -63,7 +63,7 @@ export default function SkillsAnalysis() {
               { label: 'Experience', value: '20%', icon: 'work', color: 'indigo' },
               { label: 'Format Quality', value: '10%', icon: 'format_paint', color: 'amber' }
             ].map((stat, i) => (
-              <div key={i} className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-300">
+              <div key={i} className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-800 hover:border-blue-500/50 transition-all ">
                 <div className={`size-10 rounded-xl bg-${stat.color}-100 dark:bg-${stat.color}-900/20 text-${stat.color}-600 dark:text-${stat.color}-400 flex items-center justify-center mb-4`}>
                   <span className="material-symbols-outlined">{stat.icon}</span>
                 </div>
@@ -77,3 +77,6 @@ export default function SkillsAnalysis() {
     </PageTemplate>
   );
 }
+
+
+
