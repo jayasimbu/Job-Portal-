@@ -25,7 +25,13 @@ def _is_payload_envelope(payload: Dict[str, Any]) -> bool:
     return set(payload.keys()).issuperset({"success", "message", "data"})
 
 
+from core.serialization import model_to_dict
+
+
 def normalize_success_payload(payload: Any) -> Dict[str, Any]:
+    # Ensure all data is JSON serializable (converts ObjectIds to strings recursively)
+    payload = model_to_dict(payload)
+
     if isinstance(payload, dict) and _is_payload_envelope(payload):
         return {
             "success": bool(payload.get("success", True)),

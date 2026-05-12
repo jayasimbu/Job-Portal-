@@ -1,10 +1,22 @@
 import React, { useState } from 'react';
-import JobSeekerShell from '../components/JobSeekerShell';
+import { 
+  Search, 
+  History, 
+  Globe, 
+  ExternalLink, 
+  RefreshCcw, 
+  Trash2, 
+  Sparkles, 
+  Zap,
+  ArrowRight,
+  Filter,
+  Calendar
+} from 'lucide-react';
+import Button from '../../../components/ui/Button';
 
 export default function RecommendationHistory() {
-  const [activeTab, setActiveTab] = useState('internal'); // 'internal' or 'external'
+  const [activeTab, setActiveTab] = useState('internal'); 
 
-  // Dummy data for searches
   const historyItems = [
     {
       id: 1,
@@ -21,8 +33,7 @@ export default function RecommendationHistory() {
       company: 'Google',
       source: 'LinkedIn',
       time: '3 hours ago',
-      dateGroup: 'Today',
-      logo: '/assets/logos/linkup_logo.png' // Using generic logo for now
+      dateGroup: 'Today'
     },
     {
       id: 3,
@@ -39,23 +50,12 @@ export default function RecommendationHistory() {
       time: '1 day ago',
       tags: ['New York', 'Startup'],
       dateGroup: 'Yesterday'
-    },
-    {
-      id: 5,
-      type: 'external',
-      title: 'Creative Director',
-      company: 'Airbnb',
-      source: 'Indeed',
-      time: '1 day ago',
-      dateGroup: 'Yesterday',
-      logo: '/assets/logos/linkup_logo.png'
     }
   ];
 
   const aiSuggestions = [
     { id: 1, title: 'Lead Product Designer', match: '98%', company: 'Spotify', location: 'Remote', tags: ['Design System', 'Figma'] },
-    { id: 2, title: 'Senior UI/UX Designer', match: '94%', company: 'Linear', location: 'San Francisco', tags: ['SaaS', 'Prototyping'] },
-    { id: 3, title: 'Product Design Manager', match: '88%', company: 'Dropbox', location: 'Hybrid', tags: ['Management'] }
+    { id: 2, title: 'Senior UI/UX Designer', match: '94%', company: 'Linear', location: 'San Francisco', tags: ['SaaS', 'Prototyping'] }
   ];
 
   const filteredItems = historyItems.filter(item => 
@@ -69,209 +69,154 @@ export default function RecommendationHistory() {
   }, {});
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
-      <JobSeekerShell active="dashboard" /> {/* Or a new nav item if added to shell */}
+    <div className="space-y-8 pt-2">
+      {/* HEADER SECTION */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight uppercase leading-none">Activity Hub</h1>
+          <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.3em] mt-2">Historical Search & Match Data</p>
+        </div>
+        <div className="flex items-center gap-3">
+          <Button variant="secondary" className="h-10 px-4 rounded-xl border-slate-200 dark:border-slate-800 text-[9px] font-black uppercase tracking-widest text-rose-500 hover:bg-rose-50">
+            <Trash2 size={14} /> Clear History
+          </Button>
+        </div>
+      </div>
 
-      <main className="flex-1 w-full max-w-[1440px] mx-auto p-4 lg:p-10 lg:py-8 flex flex-col lg:flex-row gap-8 overflow-y-auto">
-        {/* Left Column: Search & Activity History */}
-        <section className="flex-1 min-w-0">
-          {/* Page Header */}
-          <div className="mb-8">
-            <h1 className="text-3xl lg:text-4xl font-black tracking-tight text-slate-900 dark:text-white mb-2">
-              Search History &amp; Activity
-            </h1>
-            <p className="text-slate-500 dark:text-slate-400 text-base lg:text-lg">
-              Manage your recent searches and viewed jobs across platforms.
-            </p>
-          </div>
-
-          {/* Controls Toolbar */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
-            {/* Segmented Control */}
-            <div className="bg-slate-200 dark:bg-slate-800 p-1 rounded-xl inline-flex w-full sm:w-auto">
-              <button
-                onClick={() => setActiveTab('internal')}
-                className={`flex-1 sm:flex-none px-6 py-2 rounded-lg text-sm font-bold transition-all ${
-                  activeTab === 'internal' 
-                    ? 'bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white' 
-                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 font-medium'
-                }`}>
-                Internal Searches
-              </button>
-              <button
-                onClick={() => setActiveTab('external')}
-                className={`flex-1 sm:flex-none px-6 py-2 rounded-lg text-sm font-bold transition-all ${
-                  activeTab === 'external' 
-                    ? 'bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white' 
-                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 font-medium'
-                }`}>
-                External Activity
-              </button>
-            </div>
-
-            {/* Filters/Actions */}
-            <div className="flex gap-2 w-full sm:w-auto">
-              <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-600 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
-                <span className="material-symbols-outlined text-[18px]">calendar_month</span>
-                <span>Date Range</span>
-              </button>
-              <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-600 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
-                <span className="material-symbols-outlined text-[18px]">filter_list</span>
-                <span>Filter</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Timelines */}
-          {Object.entries(groupedItems).length === 0 ? (
-            <div className="py-12 text-center text-slate-500 dark:text-slate-400">
-              No activity found for this category.
-            </div>
-          ) : (
-            Object.entries(groupedItems).map(([groupName, items]) => (
-              <div key={groupName} className="mb-8">
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                  {groupName}
-                  <span className="text-xs font-normal text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-full">{items.length} Activities</span>
-                </h3>
-                <div className="flex flex-col gap-4">
-                  {items.map(item => (
-                    item.type === 'search' ? (
-                      <div key={item.id} className="group bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 dark:hover:border-blue-500/50 hover:shadow-md transition-all">
-                        <div className="flex flex-col sm:flex-row justify-between gap-4">
-                          <div className="flex gap-4">
-                            <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center shrink-0 text-blue-600 dark:text-blue-400">
-                              <span className="material-symbols-outlined text-[24px]">search</span>
-                            </div>
-                            <div>
-                              <div className="flex items-center gap-2 mb-1">
-                                <h4 className="text-lg font-bold text-slate-900 dark:text-white">{item.title}</h4>
-                                <span className="text-xs text-slate-400 font-medium">{item.time}</span>
-                              </div>
-                              <div className="flex flex-wrap gap-2">
-                                {item.tags.map(tag => (
-                                  <span key={tag} className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700">{tag}</span>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                          <button className="sm:self-center shrink-0 flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 text-white text-sm font-bold shadow-sm hover:bg-blue-700 transition-colors w-full sm:w-auto">
-                            <span className="material-symbols-outlined text-[18px]">replay</span>
-                            Rerun
-                          </button>
-                        </div>
-                      </div>
-                    ) : (
-                      <div key={item.id} className="group bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-600 transition-all relative overflow-hidden">
-                        <div className="absolute top-0 left-0 w-1 h-full bg-orange-400"></div>
-                        <div className="flex flex-col sm:flex-row justify-between gap-4 pl-2">
-                          <div className="flex gap-4">
-                            <div className="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 overflow-hidden shrink-0 flex items-center justify-center">
-                              {/* Placeholder generic icon for external, optionally item.logo */}
-                              <span className="material-symbols-outlined text-slate-400 dark:text-slate-500">domain</span>
-                            </div>
-                            <div>
-                              <div className="flex items-center gap-2 mb-1 flex-wrap">
-                                <h4 className="text-lg font-bold text-slate-900 dark:text-white">{item.title}</h4>
-                                <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300">External View</span>
-                              </div>
-                              <p className="text-sm text-slate-500 dark:text-slate-400 mb-2">
-                                {item.company} • Viewed on {item.source}
-                              </p>
-                              <span className="text-xs text-slate-400">{item.time}</span>
-                            </div>
-                          </div>
-                          <div className="sm:self-center flex items-center gap-3 shrink-0">
-                            <a href="#" className="flex items-center gap-1 text-blue-600 dark:text-blue-400 text-sm font-semibold hover:underline">
-                              View Source
-                              <span className="material-symbols-outlined text-[16px]">open_in_new</span>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    )
-                  ))}
-                </div>
-              </div>
-            ))
-          )}
-
-          {/* Footer Action Bar */}
-          <div className="mt-12 flex justify-center pb-8">
-            <button className="text-slate-500 hover:text-red-500 text-sm font-semibold flex items-center gap-2 transition-colors">
-              <span className="material-symbols-outlined text-[18px]">delete</span>
-              Clear Search History
-            </button>
-          </div>
-        </section>
-
-        {/* Right Column: AI Recommendations (Sidebar) */}
-        <aside className="w-full lg:w-96 shrink-0 flex flex-col gap-6">
-          {/* AI Recommendation Card */}
-          <div className="bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-[#131d26] rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-6 sticky top-24">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                  <span className="material-symbols-outlined text-[20px]">auto_awesome</span>
-                </div>
-                <h3 className="font-bold text-lg text-slate-900 dark:text-white">AI Suggestions</h3>
-              </div>
-              <button className="text-slate-400 hover:text-blue-500 transition-colors">
-                <span className="material-symbols-outlined">more_horiz</span>
-              </button>
-            </div>
-            
-            <div className="mb-4">
-              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                Based on your search for <span className="font-bold text-slate-800 dark:text-slate-200">"Product Designer"</span> and recent activity.
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-3">
-              {aiSuggestions.map(s => (
-                <a key={s.id} href="#" className="block p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border border-transparent hover:border-slate-200 dark:hover:border-slate-700 group">
-                  <div className="flex items-start justify-between mb-1">
-                    <h4 className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors text-sm">
-                      {s.title}
-                    </h4>
-                    <span className="text-xs font-bold text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 px-1.5 py-0.5 rounded">
-                      {s.match} Match
-                    </span>
-                  </div>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mb-2">
-                    {s.company} • {s.location}
-                  </p>
-                  <div className="flex gap-1.5">
-                    {s.tags.map(tag => (
-                      <span key={tag} className="text-[10px] bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-1.5 py-0.5 rounded">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </a>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* MAIN FEED (8 Units) */}
+        <div className="lg:col-span-8 space-y-6">
+          {/* TABS & FILTERS */}
+          <div className="flex flex-wrap items-center justify-between gap-4 bg-white dark:bg-slate-900 p-2 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+            <div className="flex bg-slate-50 dark:bg-slate-800/50 p-1 rounded-xl">
+              {['internal', 'external'].map(tab => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-6 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${
+                    activeTab === tab 
+                      ? 'bg-white dark:bg-slate-700 shadow-sm text-blue-600' 
+                      : 'text-slate-500 hover:text-slate-800 dark:hover:text-white'
+                  }`}
+                >
+                  {tab === 'internal' ? 'Internal Searches' : 'External View'}
+                </button>
               ))}
             </div>
-
-            <button className="w-full mt-4 py-2 text-sm text-blue-600 dark:text-blue-400 font-bold hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors">
-              View All Recommendations
-            </button>
-          </div>
-
-          {/* Quick Stats/Promo */}
-          <div className="rounded-2xl bg-blue-600 text-white p-6 relative overflow-hidden group">
-            <div className="absolute -right-4 -top-4 w-24 h-24 bg-white/10 rounded-full group-hover:scale-110 transition-transform "></div>
-            <div className="absolute -left-2 -bottom-2 w-16 h-16 bg-white/10 rounded-full group-hover:scale-110 transition-transform "></div>
             
-            <h4 className="font-bold text-lg mb-2 relative z-10">Upload your Resume</h4>
-            <p className="text-blue-100 text-sm mb-4 relative z-10">
-              Get 2x better AI recommendations by uploading your latest CV.
-            </p>
-            <button className="bg-white text-blue-600 text-sm font-bold px-4 py-2 rounded-lg relative z-10 hover:bg-blue-50 transition-colors">
-              Update Profile
-            </button>
+            <div className="flex items-center gap-2 pr-2">
+               <button className="p-2 text-slate-400 hover:text-blue-600 transition-colors">
+                  <Calendar size={18} />
+               </button>
+               <button className="p-2 text-slate-400 hover:text-blue-600 transition-colors">
+                  <Filter size={18} />
+               </button>
+            </div>
           </div>
-        </aside>
-      </main>
+
+          {/* ACTIVITY LIST */}
+          <div className="space-y-6">
+            {Object.entries(groupedItems).length === 0 ? (
+              <div className="py-24 text-center">
+                 <div className="size-16 bg-slate-50 dark:bg-slate-800 rounded-3xl flex items-center justify-center text-slate-300 mx-auto mb-4">
+                    <History size={32} />
+                 </div>
+                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">No Recent Activity Found</p>
+              </div>
+            ) : (
+              Object.entries(groupedItems).map(([groupName, items]) => (
+                <div key={groupName} className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <h3 className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-[0.2em]">{groupName}</h3>
+                    <div className="h-px flex-1 bg-slate-100 dark:bg-slate-800"></div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {items.map(item => (
+                      <div key={item.id} className="group bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-5 hover:border-blue-500/30 transition-all flex items-center justify-between">
+                        <div className="flex items-center gap-5">
+                          <div className={`size-12 rounded-xl flex items-center justify-center ${item.type === 'search' ? 'bg-blue-50 text-blue-600' : 'bg-orange-50 text-orange-600'} dark:bg-slate-800 border border-transparent group-hover:border-current transition-colors`}>
+                            {item.type === 'search' ? <Search size={20} /> : <Globe size={20} />}
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-3">
+                              <h4 className="font-black text-base text-slate-900 dark:text-white uppercase tracking-tight">{item.title}</h4>
+                              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">{item.time}</span>
+                            </div>
+                            <div className="flex flex-wrap gap-2 mt-2">
+                              {item.type === 'search' ? (
+                                item.tags.map(tag => (
+                                  <span key={tag} className="text-[9px] font-bold text-slate-500 bg-slate-50 dark:bg-slate-800 px-2 py-0.5 rounded border border-slate-100 dark:border-slate-700 uppercase tracking-widest">{tag}</span>
+                                ))
+                              ) : (
+                                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{item.company} • {item.source}</p>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                        <Button variant="secondary" className="h-10 px-4 rounded-xl text-[9px] font-black uppercase tracking-widest border-slate-200 dark:border-slate-800">
+                          {item.type === 'search' ? <RefreshCcw size={14} /> : <ExternalLink size={14} />}
+                          {item.type === 'search' ? 'Rerun' : 'Source'}
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+
+        {/* SIDEBAR (4 Units) */}
+        <div className="lg:col-span-4 space-y-6">
+          {/* AI MATCH SUGGESTIONS */}
+          <div className="bg-slate-900 dark:bg-black border border-slate-800 rounded-[2rem] p-7 shadow-xl space-y-6">
+             <div className="flex items-center gap-3">
+                <div className="size-8 bg-blue-600 rounded-lg flex items-center justify-center text-white">
+                   <Sparkles size={16} />
+                </div>
+                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">AI Intelligence</h2>
+             </div>
+             
+             <p className="text-[11px] font-medium text-slate-400 leading-relaxed uppercase tracking-wide">
+                Based on your interest in <span className="text-white font-black">"Product Designer"</span>
+             </p>
+
+             <div className="space-y-4">
+                {aiSuggestions.map(s => (
+                  <div key={s.id} className="group p-4 bg-slate-800/30 border border-slate-800/50 rounded-2xl hover:border-blue-500/30 transition-all cursor-pointer">
+                    <div className="flex items-start justify-between mb-2">
+                      <h4 className="font-black text-sm text-white uppercase tracking-tight group-hover:text-blue-400 transition-colors">{s.title}</h4>
+                      <span className="text-[9px] font-black text-emerald-400">{s.match} Match</span>
+                    </div>
+                    <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-3">{s.company} • {s.location}</p>
+                    <div className="flex flex-wrap gap-1.5">
+                       {s.tags.map(t => <span key={t} className="text-[8px] font-black text-slate-400 bg-slate-800/50 px-2 py-0.5 rounded uppercase">{t}</span>)}
+                    </div>
+                  </div>
+                ))}
+             </div>
+
+             <Button className="w-full h-11 text-[9px] font-black uppercase tracking-widest shadow-lg shadow-blue-500/10">
+                Explore Recommendations <ArrowRight size={14} />
+             </Button>
+          </div>
+
+          {/* ACTION CARD */}
+          <div className="bg-blue-600 rounded-[2rem] p-8 text-white relative overflow-hidden group shadow-xl shadow-blue-500/20">
+             <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform">
+                <Zap size={100} fill="white" />
+             </div>
+             <div className="relative z-10 space-y-4">
+                <h3 className="text-2xl font-black uppercase tracking-tighter leading-none">Optimize<br />Your Rank</h3>
+                <p className="text-xs font-bold text-blue-100 uppercase tracking-widest leading-relaxed">Update your skills to unlock 2x more matches.</p>
+                <Button className="bg-white text-blue-600 hover:bg-blue-50 h-10 px-6 rounded-xl font-black text-[10px] uppercase tracking-widest">
+                   Sync Resume
+                </Button>
+             </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

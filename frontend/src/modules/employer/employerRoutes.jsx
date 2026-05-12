@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Candidates from './pages/Candidates';
+import CandidateDetail from './pages/CandidateDetail';
 import Analytics from './pages/Analytics';
 import Applications from './pages/Applications';
 import PostJob from './pages/PostJob';
@@ -14,6 +15,7 @@ const EmployerRoutes = () => {
       <Route path="dashboard" element={<Dashboard />} />
       <Route path="post-job" element={<PostJob />} />
       <Route path="candidates" element={<Candidates />} />
+      <Route path="candidates/:id" element={<CandidateDetail />} />
       <Route path="applications" element={<Applications />} />
       <Route path="profile" element={<CompanyProfile />} />
       <Route path="analytics" element={<Analytics />} />

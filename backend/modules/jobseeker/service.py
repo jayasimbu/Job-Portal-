@@ -84,7 +84,18 @@ class JobSeekerService:
         file_path.write_text(json.dumps(snapshot, ensure_ascii=True, indent=2), encoding="utf-8")
 
     def get_profile(self, user_id: int):
-        return doc_to_entity(self.profiles.find_one({"user_id": int(user_id)}))
+        profile_doc = self.profiles.find_one({"user_id": int(user_id)})
+        if not profile_doc:
+            return None
+            
+        # Fetch all resumes for this user to support multiple versions in UI
+        resumes = list(self.resumes.find({"user_id": int(user_id)}).sort("id", -1))
+        # Ensure ObjectIds are handled (handled by doc_to_entity/serialization usually, 
+        # but we mark it here for clarity)
+        profile_doc["uploadedResumes"] = resumes
+        profile_doc["hasResume"] = len(resumes) > 0
+        
+        return doc_to_entity(profile_doc)
 
     def update_profile(self, user_id: int, update_data: Dict[str, Any]):
         now = datetime.utcnow()
@@ -139,7 +150,7 @@ class JobSeekerService:
         }
         if job_description.strip():
             required_skills = self.parser._extract_skills(job_description.lower())
-            ats_result = self.ats_scorer.score_job_description_ats(
+            ats_result = self.ats_scorer.score_against_jd(
                 resume_data,
                 {
                     "required_skills": required_skills,
@@ -151,7 +162,7 @@ class JobSeekerService:
             missing_skills = ats_result.get("missing_keywords", [])
             matched_skills = ats_result.get("matched_keywords", [])
         else:
-            ats_result = self.ats_scorer.score_resume_ats(resume_data)
+            ats_result = self.ats_scorer.score_resume(resume_data)
             ats_score = ats_result.get("ats_score", 0)
             missing_skills = []
             matched_skills = []
@@ -166,7 +177,7 @@ class JobSeekerService:
             "ats_score": ats_score,
             "missing_skills": missing_skills,
             "semantic_score": 0,
-            "file_path": file_path, 
+            "file_path": str(file_path), 
             "created_at": now,
             "updated_at": now,
         }
@@ -182,6 +193,7 @@ class JobSeekerService:
                         "experience_years": float(parsed.get("experience_years", 0)),
                         "education_level": parsed.get("education", "unknown"),
                         "ats_score": float(ats_score),
+                        "ats_breakdown": ats_result.get("breakdown", {}),
                         "resume_data": resume_data,
                         "missing_skills": missing_skills,
                         "updated_at": now,
@@ -196,6 +208,7 @@ class JobSeekerService:
                     "headline": "",
                     "skills": parsed.get("skills", []),
                     "ats_score": ats_score,
+                    "ats_breakdown": ats_result.get("breakdown", {}),
                     "resume_data": resume_data,
                     "missing_skills": missing_skills,
                     "experience_years": parsed.get("experience_years", 0),
@@ -254,8 +267,7 @@ class JobSeekerService:
         }
         
         try:
-            from ai_engine.ats_scoring.scorer import score_job_description_ats
-            ats_result = score_job_description_ats(resume_data, jd_data)
+            ats_result = self.ats_scorer.score_against_jd(resume_data, jd_data)
             ats_score = ats_result.get("ats_score", 0)
             skills_match = ats_result.get("breakdown", {})
             matched_skills = ats_result.get("matched_keywords", [])

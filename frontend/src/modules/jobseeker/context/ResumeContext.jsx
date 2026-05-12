@@ -42,15 +42,20 @@ export const ResumeProvider = ({ children }) => {
       const profile = res?.profile;
       
       if (profile && profile.hasResume) {
-        // Adapt API response to shared format
+        // Adapt API response to shared format — include ALL real data
         const adapted = {
           hasResume: true,
           optimizationScore: profile.ats_score || 0,
           parsedData: {
             skills: profile.skills || [],
             experienceYears: profile.experience_years || 0,
+            projects: profile.resume_data?.projects || [],
+            education: profile.resume_data?.education || []
           },
-          rawText: profile.resume_text || ''
+          atsBreakdown: profile.ats_breakdown || {},
+          missingSkills: profile.missing_skills || [],
+          matchedSkills: profile.matched_skills || [],
+          rawText: profile.resume_data?.parsed_text || profile.resume_text || ''
         };
         updateResumeData(adapted);
       }
@@ -82,6 +87,3 @@ export const ResumeProvider = ({ children }) => {
 };
 
 export const useResume = () => useContext(ResumeContext);
-
-
-

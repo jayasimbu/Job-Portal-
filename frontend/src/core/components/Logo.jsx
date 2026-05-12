@@ -1,50 +1,58 @@
 import React from 'react';
-import { Share2 } from 'lucide-react';
+import premiumLogo from '../../assets/logos/linkup_premium_logo.png';
 
-const Logo = ({ variant = 'light', className = '', showText = true }) => {
+const Logo = ({ variant = 'light', className = '', showText = true, showIcon = true, size = 'default' }) => {
   // Styles based on variant
   const isDark = variant === 'dark';
-  const textColor = isDark ? 'text-white' : 'text-slate-900';
-  const subtextColor = isDark ? 'text-blue-100 opacity-90' : 'text-slate-500 opacity-70';
+  
+  // Size mapping
+  const sizeMap = {
+    small: 'h-10',
+    default: 'h-14',
+    large: 'h-20',
+    xl: 'h-32'
+  };
+
+  const logoHeight = sizeMap[size] || sizeMap.default;
 
   return (
-    <div className={`flex items-center gap-[12px] ${className}`}>
-      {/* ICON */}
-      <div 
-        className="flex items-center justify-center shrink-0"
-        style={{
-          width: '44px',
-          height: '44px',
-          borderRadius: '14px',
-          background: 'linear-gradient(135deg, #2563eb 0%, #4338ca 100%)',
-          boxShadow: '0 4px 12px rgba(37, 99, 235, 0.25)'
-        }}
-      >
-        <Share2 size={24} className="text-white" />
-      </div>
+    <div className={`flex items-center gap-[14px] ${className}`}>
+      {/* PREMIUM LOGO IMAGE */}
+      {showIcon && (
+        <div 
+          className={`flex items-center justify-center shrink-0 overflow-hidden ${logoHeight}`}
+          style={{
+            // Maintain aspect ratio, width will be auto
+            aspectRatio: 'auto'
+          }}
+        >
+          <img 
+            src={premiumLogo} 
+            alt="LINKUP Premium Logo" 
+            className="h-full w-auto object-contain transition-transform duration-300 hover:scale-105" 
+          />
+        </div>
+      )}
 
-      {/* TEXT */}
       {showText && (
-        <div className="flex flex-col justify-center">
-          <span 
-            className={`${textColor} leading-none`}
+        <div className="flex flex-col justify-center leading-none">
+          <div 
+            className={`font-black tracking-tighter ${isDark ? 'text-white' : 'text-slate-900'}`}
             style={{
-              fontSize: '30px',
-              fontWeight: 800,
-              letterSpacing: '-1px'
+              fontSize: size === 'small' ? '22px' : size === 'large' ? '42px' : size === 'xl' ? '64px' : '30px',
+              lineHeight: 1
             }}
           >
-            LINKUP
-          </span>
-          <span 
-            className={`${subtextColor} uppercase leading-none mt-1`}
-            style={{
-              fontSize: '10px',
-              letterSpacing: '2px'
-            }}
-          >
-            Career Intelligence Platform
-          </span>
+            LINK<span style={{ color: '#2563eb' }}>UP</span>
+          </div>
+          {size !== 'small' && (
+            <span 
+              className={`uppercase tracking-[0.2em] mt-1.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}
+              style={{ fontSize: size === 'large' ? '12px' : size === 'xl' ? '16px' : '10px', fontWeight: 800 }}
+            >
+              Career Intelligence
+            </span>
+          )}
         </div>
       )}
     </div>

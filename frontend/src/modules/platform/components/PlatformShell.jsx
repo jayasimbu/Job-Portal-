@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../../assets/logos/linkup_logo.png';
+import Logo from '../../../core/components/Logo';
 import GlobalFooter from '../../../core/components/GlobalFooter';
 import LogoModal from '../../../core/components/LogoModal';
 import { useTheme } from '../../../core/context/ThemeContext';
@@ -20,15 +20,9 @@ const PlatformShell = ({ active, children }) => {
   return (
     <div className={`min-h-screen transition-colors ${isDark ? 'dark' : ''} bg-[var(--bg-page)] text-[var(--text-main)]`} style={{ fontFamily: "'Manrope', sans-serif" }}>
       <header className="flex justify-between items-center px-10 py-2 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50 sticky top-0 z-50">
-        <div className="flex items-center gap-3 group">
-          <div 
-            className="size-10 bg-blue-600 rounded-full flex items-center justify-center shadow-2xl shadow-blue-500/30 overflow-hidden p-1.5 transition-transform group-hover:scale-110 cursor-pointer"
-            onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.dispatchEvent(new CustomEvent('open-logo-modal')); }}
-          >
-            <img src={logo} alt="LINKUP" className="w-full h-full object-cover scale-[1.2]" />
-          </div>
-          <Link to="/" className="font-black text-xl text-slate-900 dark:text-white tracking-tighter hover:text-blue-600 transition-colors uppercase no-underline">LINKUP</Link>
-        </div>
+          <Link to="/" className="no-underline">
+            <Logo />
+          </Link>
         <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full uppercase tracking-wider ml-1">Platform</span>
         <div className="flex items-center gap-4">
           <nav className="hidden md:flex gap-2">

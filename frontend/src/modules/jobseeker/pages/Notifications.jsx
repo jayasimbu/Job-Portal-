@@ -17,7 +17,7 @@ const Notifications = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const userId = JSON.parse(localStorage.getItem('currentUser') || '{}').id || 1;
+    const userId = (() => { try { return JSON.parse(localStorage.getItem('currentUser') || '{}').id || 1; } catch { return 1; } })();
     const load = async () => {
       try {
         const response = await fetchNotifications(userId);

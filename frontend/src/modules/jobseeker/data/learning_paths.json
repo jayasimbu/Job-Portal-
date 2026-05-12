@@ -1,0 +1,18 @@
+{
+  "React": {
+    "title": "Mastering React",
+    "steps": ["JavaScript Basics", "React Core Concepts", "Hooks & State Management", "Next.js Framework"]
+  },
+  "Docker": {
+    "title": "Containerization with Docker",
+    "steps": ["Intro to Containers", "Docker Images & Containers", "Docker Compose", "Docker Swarm/K8s Basics"]
+  },
+  "AWS": {
+    "title": "AWS Cloud Practitioner",
+    "steps": ["Cloud Computing Basics", "IAM & Security", "EC2 & S3", "VPC & Networking"]
+  },
+  "Spring Boot": {
+    "title": "Java Backend with Spring Boot",
+    "steps": ["Java Recap", "Spring Framework Basics", "Spring Boot Config", "Data Access & REST APIs"]
+  }
+}

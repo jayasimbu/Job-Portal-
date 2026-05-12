@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../../../core/context/ThemeContext';
-import logo from '../../../assets/logos/linkup_logo.png';
+import Logo from '../../../core/components/Logo';
 import GlobalFooter from '../../../core/components/GlobalFooter';
 import LogoModal from '../../../core/components/LogoModal';
 
@@ -11,7 +11,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '8px 24px',
+    padding: '16px 32px',
     background: 'white',
     borderBottom: '1px solid var(--border)',
     position: 'sticky',
@@ -21,8 +21,8 @@ const styles = {
   brand: { fontWeight: 800, fontSize: '20px', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' },
   logoCont: { height: '36px', width: '36px', background: '#2563eb', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', p: 0, cursor: 'pointer', boxShadow: '0 10px 15px -3px rgba(37, 99, 235, 0.4)' },
   logo: { height: '100%', width: '100%', objectFit: 'cover', transform: 'scale(1.3)' },
-  body: { display: 'flex', flex: 1, minHeight: 'calc(100vh - 53px)' },
-  side: { width: '240px', background: 'var(--bg-sidebar)', borderRight: '1px solid var(--border)', padding: '20px 16px', height: 'calc(100vh - 53px)', position: 'sticky', top: '53px', overflowY: 'auto' },
+  body: { display: 'flex', flex: 1, minHeight: 'calc(100vh - 80px)' },
+  side: { width: '280px', background: 'var(--bg-sidebar)', borderRight: '1px solid var(--border)', padding: '24px 20px', height: 'calc(100vh - 80px)', position: 'sticky', top: '80px', overflowY: 'auto' },
   sideLink: {
     display: 'flex',
     alignItems: 'center',
@@ -59,19 +59,9 @@ const EmployerShell = ({ active, children }) => {
     <div style={styles.page} className={isDark ? 'dark' : ''}>
       <header style={styles.top}>
           <div className="flex items-center gap-3 group">
-            <div 
-              style={styles.logoCont} 
-              className="transition-transform group-hover:scale-110"
-              onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.dispatchEvent(new CustomEvent('open-logo-modal')); }}
-            >
-              <img src={logo} alt="LINKUP" style={styles.logo} />
-            </div>
-            <span 
-              onClick={() => navigate('/')}
-              className="font-black text-xl text-slate-900 dark:text-white tracking-tighter hover:text-blue-600 transition-colors uppercase cursor-pointer"
-            >
-              LINKUP
-            </span>
+            <Link to="/" className="no-underline">
+              <Logo />
+            </Link>
             <span style={styles.badge}>Employer</span>
           </div>
         <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>

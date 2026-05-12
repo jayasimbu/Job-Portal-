@@ -23,7 +23,7 @@ import { logoutUser } from '../../modules/auth/services/authService';
 import { getCurrentUser } from '../../core/auth/session';
 import Logo from './Logo';
 
-const Sidebar = ({ role, isCollapsed, toggleCollapse }) => {
+const Sidebar = ({ role }) => {
   const navigate = useNavigate();
   const user = getCurrentUser();
 
@@ -37,7 +37,7 @@ const Sidebar = ({ role, isCollapsed, toggleCollapse }) => {
       case 'jobseeker':
         return [
           { label: 'Dashboard', to: '/platform/jobseeker/dashboard', icon: LayoutDashboard },
-          { label: 'Resume', to: '/platform/jobseeker/resume-analysis', icon: FileSearch },
+          { label: 'JD Match', to: '/platform/jobseeker/jd-match-analysis', icon: BarChart3 },
           { label: 'Jobs', to: '/platform/jobseeker/jobs', icon: Briefcase },
           { label: 'Applications', to: '/platform/jobseeker/applications', icon: Send },
           { label: 'Learning', to: '/platform/jobseeker/learning', icon: GraduationCap },
@@ -69,54 +69,43 @@ const Sidebar = ({ role, isCollapsed, toggleCollapse }) => {
 
   return (
     <aside 
-      className={`fixed top-0 left-0 h-full bg-white dark:bg-slate-900 border-r border-slate-100 dark:border-slate-800 z-50 flex flex-col ${
-        isCollapsed ? 'w-20' : 'w-64'
-      }`}
+      className={`fixed top-0 left-0 h-full bg-white dark:bg-[#0f172a] border-r border-slate-100 dark:border-slate-800/50 z-50 flex flex-col w-[270px] transition-all`}
     >
       {/* Sidebar Header */}
-      <div className="h-24 flex items-center px-6">
-          <Logo variant="light" showText={!isCollapsed} />
+      <div className="h-24 flex items-center px-8 border-b border-slate-50 dark:border-slate-800/50">
+          <Logo variant="light" showText={true} />
       </div>
 
       {/* Navigation Links */}
-      <nav className="flex-1 px-4 py-2 space-y-1 overflow-y-auto">
+      <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
         {links.map((link) => (
           <NavLink
             key={link.to}
             to={link.to}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium group ${
+              `flex items-center gap-[14px] px-5 h-[54px] rounded-2xl text-[16px] font-semibold transition-all group ${
                 isActive 
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/10' 
-                  : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-400 dark:hover:text-white dark:hover:bg-slate-800'
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' 
+                  : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-400 dark:hover:text-white dark:hover:bg-slate-800/50'
               }`
             }
           >
-            <link.icon size={18} className={isCollapsed ? 'mx-auto' : ''} />
-            {!isCollapsed && <span className="text-sm">{link.label}</span>}
+            <link.icon size={20} />
+            <span>{link.label}</span>
           </NavLink>
         ))}
       </nav>
 
       {/* Bottom Utility Section */}
-      {!isCollapsed && (
-        <div className="p-4 border-t border-slate-100 dark:border-slate-800 space-y-4">
-          <div className="space-y-1">
-            <button 
-              onClick={handleLogout}
-              className="w-full flex items-center gap-3 px-3 py-2 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/10 rounded-xl text-xs font-bold uppercase tracking-wider"
-            >
-              <LogOut size={14} />
-              Sign Out
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Collapse Toggle */}
-      <button onClick={toggleCollapse} className="absolute -right-3 top-10 size-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-blue-600 shadow-sm transition-all z-50">
-        {isCollapsed ? <ChevronRight size={12} /> : <ChevronLeft size={12} />}
-      </button>
+      <div className="p-4 border-t border-slate-100 dark:border-slate-800/50 space-y-2">
+        <button 
+          onClick={handleLogout}
+          className="w-full h-12 flex items-center gap-3.5 px-5 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/10 rounded-2xl text-[15px] font-bold transition-all"
+        >
+          <LogOut size={18} />
+          Sign Out
+        </button>
+      </div>
     </aside>
   );
 };

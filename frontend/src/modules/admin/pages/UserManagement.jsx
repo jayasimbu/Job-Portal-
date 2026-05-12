@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { Search, Filter, MoreVertical, Shield, User, Building2, Trash2, Ban, Eye } from 'lucide-react';
 import apiClient from '@/core/api/apiClient';
 
@@ -17,11 +18,18 @@ const ROLE_CONFIG = {
 };
 
 export default function UserManagement() {
-  const [users, setUsers] = useState([]);
-  const [total, setTotal] = useState(0);
+  const [users, setUsers] = useState([
+    { id: "101", first_name: "Jaya", last_name: "Simbu", email: "jayasimbu.dev@linkup.com", role: "jobseeker", is_active: true, created_at: "2023-10-12T10:00:00Z" },
+    { id: "102", first_name: "Priya", last_name: "Mani", email: "priya.ux@design.in", role: "jobseeker", is_active: true, created_at: "2023-11-05T10:00:00Z" },
+    { id: "103", first_name: "Arjun", last_name: "Reddy", email: "arjun.backend@tech.com", role: "jobseeker", is_active: true, created_at: "2024-01-20T10:00:00Z" },
+    { id: "104", first_name: "Kavya", last_name: "S", email: "kavya.data@analyst.in", role: "jobseeker", is_active: true, created_at: "2023-09-15T10:00:00Z" },
+    { id: "105", first_name: "Siddharth", last_name: "V", email: "sid.devops@infra.com", role: "jobseeker", is_active: true, created_at: "2023-12-01T10:00:00Z" }
+  ]);
+  const navigate = useNavigate();
+  const [total, setTotal] = useState(5);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
   const [roleFilter, setRoleFilter] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
@@ -132,15 +140,18 @@ export default function UserManagement() {
                 return (
                   <tr key={u.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                     <td className="px-6 py-4">
-                      <div className="flex items-center gap-3">
+                      <Link 
+                        to={`/platform/admin/users/${u.id}`}
+                        className="flex items-center gap-3 group/item cursor-pointer no-underline"
+                      >
                         <div className="size-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-bold text-slate-400 uppercase">
                           {u.first_name?.[0]}{u.last_name?.[0]}
                         </div>
                         <div>
-                          <p className="text-sm font-bold text-slate-900 dark:text-white leading-tight">{u.first_name} {u.last_name}</p>
+                          <p className="text-sm font-bold text-slate-900 dark:text-white leading-tight group-hover/item:text-blue-600 transition-colors">{u.first_name} {u.last_name}</p>
                           <p className="text-xs text-slate-500 font-medium">{u.email}</p>
                         </div>
-                      </div>
+                      </Link>
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2">

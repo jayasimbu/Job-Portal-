@@ -1,0 +1,7 @@
+{
+  "frontend-dev": "We are looking for a Frontend Developer with expertise in React, Tailwind CSS, and TypeScript. You will be responsible for building responsive and interactive user interfaces.",
+  "java-dev": "Join our team as a Java Developer. Requirements: Strong Java skills, Spring Boot, Hibernate, and experience with REST APIs and Microservices.",
+  "data-scientist": "Seeking a Data Scientist proficient in Python, SQL, and Machine Learning. Experience with Pandas and Scikit-Learn is essential.",
+  "fullstack-mern": "Looking for a MERN Stack Developer. You should have solid experience with MongoDB, Express.js, React, and Node.js.",
+  "devops-eng": "We need a DevOps Engineer to manage our AWS infrastructure. Skills required: Docker, Kubernetes, CI/CD, and Terraform."
+}

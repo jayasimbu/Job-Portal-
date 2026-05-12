@@ -4,7 +4,7 @@ const runtimeApiBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim();
 const appConfig = {
   // API configuration
   api: {
-    baseUrl: runtimeApiBaseUrl || 'http://127.0.0.1:8000/api',
+    baseUrl: runtimeApiBaseUrl || 'http://localhost:8000/api',
     timeout: 30000,
   },
   

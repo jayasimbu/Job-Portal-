@@ -7,6 +7,7 @@ import JobSearch from './pages/JobSearch';
 import Applications from './pages/Applications';
 import Learning from './pages/Learning';
 import ResumeAnalysis from './pages/ResumeAnalysis';
+import JDMatchAnalysis from './pages/JDMatchAnalysis';
 import JobDetails from './pages/JobMatchAnalysis'; // Reusing this or similar for job details
 
 const Loader = () => (
@@ -22,9 +23,10 @@ const JobSeekerRoutes = () => {
         <Routes>
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="resume-analysis" element={<ResumeAnalysis />} />
+          <Route path="jd-match-analysis" element={<JDMatchAnalysis />} />
           <Route path="jobs" element={<JobSearch />} />
           <Route path="jobs/:jobId" element={<JobDetails />} />
+          <Route path="companies/:id" element={<CompanyDetail />} />
           <Route path="applications" element={<Applications />} />
           <Route path="learning" element={<Learning />} />
           <Route path="profile" element={<Profile />} />

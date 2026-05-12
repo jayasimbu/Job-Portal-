@@ -29,7 +29,7 @@ export default function Applications() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+        const user = (() => { try { return JSON.parse(localStorage.getItem('currentUser') || '{}'); } catch { return {}; } })();
         const jobs = await fetchEmployerJobs(user.id);
         
         // Mocking application data based on jobs and candidates

@@ -32,8 +32,7 @@ const LogoModal = () => {
         </div>
         
         <div className="text-center">
-          <h2 className="text-2xl font-black text-white tracking-tight">LINKUP</h2>
-          <p className="text-white/60 text-sm font-medium mt-1">Refined Branding Identity</p>
+          <p className="text-white/60 text-sm font-medium">Refined Branding Identity</p>
         </div>
       </div>
     </div>

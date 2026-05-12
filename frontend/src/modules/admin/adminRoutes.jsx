@@ -8,6 +8,8 @@ import UserManagement from './pages/UserManagement';
 import CompanyManagement from './pages/CompanyManagement';
 import JobManagement from './pages/JobManagement';
 import Applications from './pages/Applications';
+import UserDetail from './pages/UserDetail';
+import CompanyDetail from './pages/CompanyDetail';
 
 const AdminRoutes = () => {
   return (
@@ -17,7 +19,9 @@ const AdminRoutes = () => {
         
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="users" element={<UserManagement />} />
+        <Route path="users/:id" element={<UserDetail />} />
         <Route path="employers" element={<CompanyManagement />} />
+        <Route path="employers/:id" element={<CompanyDetail />} />
         <Route path="jobs" element={<JobManagement />} />
         <Route path="applications" element={<Applications />} />
 

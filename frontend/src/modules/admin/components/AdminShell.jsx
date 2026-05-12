@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../../../core/context/ThemeContext';
-import logo from '../../../assets/logos/linkup_logo.png';
+import Logo from '../../../core/components/Logo';
 import GlobalFooter from '../../../core/components/GlobalFooter';
 import LogoModal from '../../../core/components/LogoModal';
 
@@ -60,19 +60,9 @@ const AdminShell = ({ active, children }) => {
     <div style={styles.page} className={isDark ? 'dark' : ''}>
       <header style={styles.top}>
         <div className="flex items-center gap-3 group">
-          <div 
-            style={styles.logoCont} 
-            className="transition-transform group-hover:scale-110"
-            onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.dispatchEvent(new CustomEvent('open-logo-modal')); }}
-          >
-            <img src={logo} alt="LINKUP" style={styles.logo} />
-          </div>
-          <span 
-            onClick={() => navigate('/')}
-            className="font-black text-xl text-slate-900 dark:text-white tracking-tighter hover:text-blue-600 transition-colors uppercase cursor-pointer"
-          >
-            LINKUP
-          </span>
+          <Link to="/" className="no-underline">
+            <Logo />
+          </Link>
           <span style={styles.badge}>Admin</span>
         </div>
         <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>

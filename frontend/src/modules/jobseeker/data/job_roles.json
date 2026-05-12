@@ -1,0 +1,27 @@
+[
+  {
+    "id": "frontend-dev",
+    "title": "Frontend Developer",
+    "skills": ["React", "JavaScript", "HTML", "CSS", "Tailwind CSS", "TypeScript"]
+  },
+  {
+    "id": "java-dev",
+    "title": "Java Developer",
+    "skills": ["Java", "Spring Boot", "Hibernate", "REST API", "MySQL", "Microservices"]
+  },
+  {
+    "id": "data-scientist",
+    "title": "Data Scientist",
+    "skills": ["Python", "Machine Learning", "Data Analysis", "SQL", "Pandas", "Scikit-Learn"]
+  },
+  {
+    "id": "fullstack-mern",
+    "title": "MERN Stack Developer",
+    "skills": ["MongoDB", "Express.js", "React", "Node.js", "JavaScript", "Redux"]
+  },
+  {
+    "id": "devops-eng",
+    "title": "DevOps Engineer",
+    "skills": ["AWS", "Docker", "Kubernetes", "CI/CD", "Terraform", "Linux"]
+  }
+]

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Search, Filter, Eye, ChevronDown } from 'lucide-react';
 import Button from '../../../components/ui/Button';
 
 export default function Candidates() {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [roleFilter, setRoleFilter] = useState('All');
 
@@ -88,12 +90,12 @@ export default function Candidates() {
               ) : (
                 filteredCandidates.map(c => (
                   <tr key={c.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition-colors">
-                    <td className="p-4">
+                    <td className="p-4 cursor-pointer" onClick={() => navigate(`/platform/employer/candidates/${c.id}`)}>
                       <div className="flex items-center gap-3">
                         <div className="size-8 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center font-black text-xs">
                           {c.name.charAt(0)}
                         </div>
-                        <span className="text-sm font-bold text-slate-900 dark:text-white">{c.name}</span>
+                        <span className="text-sm font-bold text-slate-900 dark:text-white hover:text-blue-600 transition-colors">{c.name}</span>
                       </div>
                     </td>
                     <td className="p-4 text-sm font-semibold text-slate-700 dark:text-slate-300">{c.role}</td>
@@ -118,7 +120,11 @@ export default function Candidates() {
                     </td>
                     <td className="p-4 text-xs font-bold text-slate-500">{c.status}</td>
                     <td className="p-4 text-right">
-                      <Button variant="ghost" className="h-8 px-2 text-[10px] font-black uppercase tracking-widest text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                      <Button 
+                        variant="ghost" 
+                        className="h-8 px-2 text-[10px] font-black uppercase tracking-widest text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20"
+                        onClick={() => navigate(`/platform/employer/candidates/${c.id}`)}
+                      >
                         View
                       </Button>
                     </td>

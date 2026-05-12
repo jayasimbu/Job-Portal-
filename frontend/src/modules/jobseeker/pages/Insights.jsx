@@ -29,7 +29,7 @@ export default function Insights() {
 
   useEffect(() => {
     const token = localStorage.getItem('accessToken') || '';
-    const userId = JSON.parse(localStorage.getItem('currentUser') || '{}').id;
+    const userId = (() => { try { return JSON.parse(localStorage.getItem('currentUser') || '{}').id; } catch { return null; } })();
     if (!userId) { setInsights(MOCK_INSIGHTS); setLoading(false); return; }
     fetch(`${API}/api/jobseeker/insights/${userId}`, {
       headers: token ? { Authorization: `Bearer ${token}` } : {},

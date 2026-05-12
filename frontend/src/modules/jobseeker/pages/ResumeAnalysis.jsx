@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import apiClient from '../../../core/api/apiClient';
 import { useToast } from '../../../core/context/ToastContext';
+import appConfig from '../../../core/config/appConfig';
 import { 
   FileText, 
   Upload, 
@@ -60,7 +61,7 @@ export default function ResumeAnalysis() {
       formData.append('job_description', '');
 
       const token = localStorage.getItem('accessToken') || '';
-      const baseUrl = 'http://127.0.0.1:8000/api';
+      const baseUrl = appConfig.api.baseUrl;
       
       const uploadResp = await fetch(`${baseUrl}/jobseeker/resume/upload-file`, {
         method: 'POST',

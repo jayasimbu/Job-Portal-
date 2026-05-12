@@ -1,5 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { 
+  Sparkles, 
+  PlayCircle, 
+  BrainCircuit, 
+  School, 
+  Timer, 
+  BarChart3, 
+  ChevronRight,
+  Play,
+  Terminal,
+  Users,
+  Award,
+  BookOpen
+} from 'lucide-react';
 import EmptyState from '../../../core/components/EmptyState';
 import { searchVideos } from '../../../core/services/youtubeService';
 import VideoModal from '../../../core/components/VideoModal';
@@ -10,10 +24,9 @@ import apiClient from '../../../core/api/apiClient';
 import Button from '../../../components/ui/Button';
 import Card, { CardBody, CardHeader, CardFooter } from '../../../components/ui/Card';
 import Badge from '../../../components/ui/Badge';
-import { Heading, Text } from '../../../components/ui/Typography';
 
 // Import Jobseeker Specific Components
-import { ProgressBar, SectionHeader } from '../../jobseeker/components/DesignSystem';
+import { ProgressBar } from '../../jobseeker/components/DesignSystem';
 
 const LearningHub = () => {
   const navigate = useNavigate();
@@ -39,9 +52,7 @@ const LearningHub = () => {
           return;
         }
 
-        // Simulate AI thinking and API fetching for YouTube videos
         const coursesWithVideos = await Promise.all(backendRecs.map(async (course, idx) => {
-          // Construct search query
           const query = `${course.title} tutorial`;
           const videos = await searchVideos(query, 3);
           return { 
@@ -62,87 +73,89 @@ const LearningHub = () => {
   }, [user?.id]);
 
   const SkeletonCard = () => (
-    <Card className="">
-      <CardBody className="h-96 bg-slate-50/50" />
-    </Card>
+    <div className="h-96 bg-slate-100 dark:bg-slate-800 animate-pulse rounded-3xl" />
   );
 
   return (
-    <div className="max-w-7xl mx-auto space-y-10 pb-20 px-4 sm:px-6">
-      {/* HEADER */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div className="space-y-1">
-          <Heading level={1}>AI Learning Hub</Heading>
-          <Text variant="lead">Personalized curriculum to close your detected skill gaps.</Text>
+    <div className="space-y-8 pt-2">
+      {/* HEADER SECTION */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight uppercase leading-none">Learning Engine</h1>
+          <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.3em] mt-2">Personalized Curriculum & Skill Acquisition</p>
         </div>
-        <Badge variant="primary" className="py-1.5 px-4 flex items-center gap-2">
-          <span className="material-symbols-outlined text-sm">auto_awesome</span>
-          AI Growth Engine Active
-        </Badge>
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-100 dark:border-blue-800/50">
+            <Sparkles size={14} className="text-blue-600" />
+            <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">AI Synthesis Active</span>
+          </div>
+        </div>
       </div>
 
-      <div className="flex-1">
+      <div className="space-y-12">
         {loading ? (
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
             <SkeletonCard />
             <SkeletonCard />
           </div>
         ) : recommendations.length > 0 ? (
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
             {recommendations.map(course => (
-              <Card key={course.id} className="group hover:border-blue-500 transition-all flex flex-col">
-                <CardBody className="p-8 flex-1 space-y-8">
+              <div key={course.id} className="group bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[2rem] overflow-hidden flex flex-col shadow-sm hover:border-blue-500/30 transition-all">
+                <div className="p-8 flex-1 space-y-8">
                   <div className="flex justify-between items-start">
-                    <Badge variant={course.status === 'In Progress' ? 'primary' : 'success'}>
+                    <span className={`px-3 py-1 rounded text-[9px] font-black uppercase tracking-widest ${
+                      course.status === 'In Progress' ? 'bg-blue-600 text-white' : 'bg-emerald-500 text-white'
+                    }`}>
                       {course.status}
-                    </Badge>
-                    <Badge variant="info" className="bg-emerald-50 text-emerald-700 border-emerald-100">
-                      {course.impact} Impact
-                    </Badge>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Heading level={3} className="group-hover:text-blue-600 transition-colors">{course.title}</Heading>
-                    <div className="flex items-center gap-3">
-                      <Text variant="small" className="font-bold uppercase tracking-wider">{course.provider}</Text>
-                      <span className="size-1 bg-slate-300 rounded-full" />
-                      <Text variant="small" className="font-bold text-slate-400">{course.duration}</Text>
+                    </span>
+                    <div className="flex items-center gap-2 px-3 py-1 bg-slate-50 dark:bg-slate-800 rounded text-[9px] font-black text-slate-500 uppercase tracking-widest border border-slate-100 dark:border-slate-700">
+                      <BarChart3 size={12} /> {course.impact} Impact
                     </div>
                   </div>
 
-                  <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                  <div className="space-y-3">
+                    <h3 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight group-hover:text-blue-600 transition-colors leading-none">{course.title}</h3>
+                    <div className="flex items-center gap-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                      <span className="text-slate-900 dark:text-slate-300 font-black">{course.provider}</span>
+                      <span className="text-slate-200 dark:text-slate-800">•</span>
+                      <span className="flex items-center gap-1.5"><Timer size={12} /> {course.duration}</span>
+                    </div>
+                  </div>
+
+                  <div className="p-5 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-700/50">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="material-symbols-outlined text-blue-600 text-sm">psychology</span>
-                      <Text variant="small" className="font-bold uppercase tracking-widest text-slate-400">AI Logic</Text>
+                      <BrainCircuit size={14} className="text-blue-600" />
+                      <span className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em]">AI Rationale</span>
                     </div>
-                    <Text variant="small" className="text-slate-700 font-medium leading-relaxed italic">
+                    <p className="text-[11px] font-medium text-slate-600 dark:text-slate-400 leading-relaxed italic">
                       "{course.matchReason}"
-                    </Text>
+                    </p>
                   </div>
 
-                  {/* Recommended Videos Section */}
+                  {/* Video Modules */}
                   {course.videos && course.videos.length > 0 && (
                     <div className="space-y-4">
                       <div className="flex items-center gap-2">
-                        <span className="material-symbols-outlined text-red-500 text-sm">play_circle</span>
-                        <Text variant="small" className="font-bold uppercase tracking-widest text-slate-400">Video Modules</Text>
+                        <PlayCircle size={14} className="text-rose-500" />
+                        <span className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em]">Curriculum Modules</span>
                       </div>
-                      <div className="space-y-3">
+                      <div className="space-y-2">
                         {course.videos.map((vid, idx) => (
                           <div 
                             key={idx} 
-                            className="flex items-center gap-4 p-3 rounded-xl hover:bg-white hover:shadow-sm border border-transparent hover:border-slate-100 transition-all group/vid cursor-pointer" 
+                            className="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition-all group/vid cursor-pointer" 
                             onClick={() => setSelectedVideo(vid)}
                           >
-                            <div className="w-24 h-14 bg-slate-200 rounded-lg overflow-hidden shrink-0 relative shadow-sm">
+                            <div className="w-20 h-12 bg-slate-200 dark:bg-slate-700 rounded-lg overflow-hidden shrink-0 relative shadow-sm">
                               <img src={vid.thumbnail} alt={vid.title} className="w-full h-full object-cover" />
                               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/vid:opacity-100 transition-opacity flex items-center justify-center">
-                                <span className="material-symbols-outlined text-white text-base">play_arrow</span>
+                                <Play size={16} className="text-white fill-white" />
                               </div>
                             </div>
                             <div className="flex-1 min-w-0">
-                              <Text variant="small" className="font-bold text-slate-700 truncate group-hover/vid:text-blue-600 transition-colors">{vid.title}</Text>
-                              <Text variant="small" className="text-slate-400 text-[10px] uppercase font-bold tracking-wider">{vid.channelTitle}</Text>
+                              <p className="text-[11px] font-black text-slate-700 dark:text-slate-300 truncate group-hover/vid:text-blue-600 transition-colors uppercase tracking-tight">{vid.title}</p>
+                              <p className="text-[8px] text-slate-400 font-bold uppercase tracking-widest">{vid.channelTitle}</p>
                             </div>
                           </div>
                         ))}
@@ -152,62 +165,65 @@ const LearningHub = () => {
 
                   {course.progress > 0 && (
                     <div className="pt-2">
-                      <ProgressBar value={course.progress} label="Curriculum Progress" />
+                      <div className="flex justify-between items-center mb-2">
+                         <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Course Progress</span>
+                         <span className="text-[9px] font-black text-blue-600 uppercase tracking-widest">{course.progress}%</span>
+                      </div>
+                      <div className="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                         <div className="h-full bg-blue-600 rounded-full" style={{ width: `${course.progress}%` }}></div>
+                      </div>
                     </div>
                   )}
-                </CardBody>
-                <CardFooter className="grid grid-cols-2 gap-4 bg-slate-50/50 p-8">
-                  <Button 
-                    variant="outline"
+                </div>
+                <div className="grid grid-cols-2 gap-px bg-slate-100 dark:bg-slate-800 border-t border-slate-100 dark:border-slate-800">
+                  <button 
                     onClick={() => course.videos?.length > 0 && setSelectedVideo(course.videos[0])}
-                    className="w-full"
+                    className="h-14 bg-white dark:bg-slate-900 text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors"
                   >
-                    <span className="material-symbols-outlined mr-2">play_circle</span>
-                    Preview
-                  </Button>
-                  <Button 
+                    Preview Curriculum
+                  </button>
+                  <button 
                     onClick={() => navigate(`/platform/jobseeker/learning/${course.id}`)}
-                    className="w-full"
+                    className="h-14 bg-white dark:bg-slate-900 text-[10px] font-black uppercase tracking-widest text-blue-600 hover:bg-blue-50 transition-colors flex items-center justify-center gap-2"
                   >
-                    {course.progress > 0 ? 'Resume' : 'Start'}
-                    <span className="material-symbols-outlined ml-2">school</span>
-                  </Button>
-                </CardFooter>
-              </Card>
+                    {course.progress > 0 ? 'Resume Course' : 'Start Curriculum'}
+                    <ChevronRight size={14} />
+                  </button>
+                </div>
+              </div>
             ))}
           </div>
         ) : (
-          <Card className="border-dashed">
-            <CardBody className="py-20 flex flex-col items-center justify-center text-center space-y-6">
-              <div className="size-20 bg-slate-50 rounded-full flex items-center justify-center text-slate-300">
-                <span className="material-symbols-outlined text-4xl">school</span>
-              </div>
-              <div className="space-y-2">
-                <Heading level={3}>Recommendations Locked</Heading>
-                <Text className="max-w-xs mx-auto">Upload your resume to the dashboard first. Our AI will analyze your skill gaps and unlock a personalized learning path.</Text>
-              </div>
-              <Button onClick={() => navigate('/platform/jobseeker/dashboard')}>
-                Go to Dashboard
-              </Button>
-            </CardBody>
-          </Card>
+          <div className="py-32 text-center bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[3rem]">
+             <div className="size-20 bg-slate-50 dark:bg-slate-800 rounded-[2rem] flex items-center justify-center text-slate-200 mx-auto mb-6">
+                <BrainCircuit size={40} />
+             </div>
+             <h3 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight mb-2">Recommendations Locked</h3>
+             <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] max-w-sm mx-auto mb-8 leading-relaxed">Complete your profile to unlock a personalized skill-acquisition roadmap.</p>
+             <Button onClick={() => navigate('/platform/jobseeker/dashboard')} className="h-12 px-8 rounded-2xl font-black text-[10px] uppercase tracking-widest">
+                Optimize Profile
+             </Button>
+          </div>
         )}
 
-        {/* Premium Partners Section */}
-        <div className="mt-12 space-y-6">
-          <SectionHeader title="Growth Partners" icon="stars" iconColor="text-purple-600" bgColor="bg-purple-50" />
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {/* Growth Partners Section */}
+        <div className="space-y-6">
+          <div className="flex items-center gap-3">
+             <h3 className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-[0.3em]">Knowledge Partners</h3>
+             <div className="h-px flex-1 bg-slate-100 dark:bg-slate-800"></div>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { name: 'Coursera', color: 'bg-blue-50 text-blue-700', icon: 'school' },
-              { name: 'Udemy', color: 'bg-purple-50 text-purple-700', icon: 'workspace_premium' },
-              { name: 'LinkedIn', color: 'bg-sky-50 text-sky-700', icon: 'groups' },
-              { name: 'Pluralsight', color: 'bg-rose-50 text-rose-700', icon: 'terminal' }
+              { name: 'Coursera', color: 'text-blue-600', icon: School, bg: 'bg-blue-50' },
+              { name: 'Udemy', color: 'text-purple-600', icon: Award, bg: 'bg-purple-50' },
+              { name: 'LinkedIn', color: 'text-sky-600', icon: Users, bg: 'bg-sky-50' },
+              { name: 'Pluralsight', color: 'text-rose-600', icon: Terminal, bg: 'bg-rose-50' }
             ].map(partner => (
-              <div key={partner.name} className={`p-6 rounded-2xl ${partner.color} border border-transparent hover:border-current/20 transition-all cursor-pointer flex flex-col items-center justify-center gap-3 group shadow-sm bg-white`}>
-                <div className={`size-12 rounded-xl ${partner.color.split(' ')[0]} flex items-center justify-center`}>
-                  <span className="material-symbols-outlined text-2xl transition-transform group-hover:scale-110">{partner.icon}</span>
+              <div key={partner.name} className="p-6 rounded-[2rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-blue-500/20 transition-all group flex flex-col items-center justify-center gap-4 cursor-pointer shadow-sm">
+                <div className={`size-12 rounded-2xl ${partner.bg} dark:bg-slate-800 flex items-center justify-center ${partner.color}`}>
+                  <partner.icon size={24} className="transition-transform group-hover:scale-110" />
                 </div>
-                <Text variant="small" className="font-bold uppercase tracking-widest">{partner.name}</Text>
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest group-hover:text-slate-900 dark:group-hover:text-white transition-colors">{partner.name}</span>
               </div>
             ))}
           </div>

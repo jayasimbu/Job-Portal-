@@ -1,0 +1,8 @@
+{
+  "Java": ["Spring Boot", "Hibernate", "REST API", "Microservices", "Maven", "JUnit"],
+  "React": ["Next.js", "Redux", "TypeScript", "Tailwind CSS", "React Query", "Jest"],
+  "Python": ["Django", "FastAPI", "Flask", "Pandas", "NumPy", "Scikit-Learn"],
+  "JavaScript": ["Node.js", "Express.js", "TypeScript", "React", "Vue.js", "Angular"],
+  "Cloud": ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "Terraform"],
+  "DevOps": ["CI/CD", "Jenkins", "GitHub Actions", "Ansible", "Docker", "Kubernetes"]
+}

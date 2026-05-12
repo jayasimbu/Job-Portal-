@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { Search, Building2, CheckCircle2, XCircle, Eye, MoreVertical, Briefcase, Users } from 'lucide-react';
 import apiClient from '@/core/api/apiClient';
 
@@ -9,11 +10,18 @@ import Badge from '../../../components/ui/Badge';
 import { Heading, Text } from '../../../components/ui/Typography';
 
 export default function CompanyManagement() {
-  const [companies, setCompanies] = useState([]);
-  const [total, setTotal] = useState(0);
+  const [companies, setCompanies] = useState([
+    { id: "1", company_name: "Real Time Projects", email: "sanjay@realtimeprojects.com", jobs_posted: 12, is_verified: true },
+    { id: "2", company_name: "Zoho Corporation", email: "anitha.hr@zohocorp.com", jobs_posted: 85, is_verified: true },
+    { id: "3", company_name: "Freshworks", email: "manoj.k@freshworks.com", jobs_posted: 32, is_verified: true },
+    { id: "4", company_name: "Razorpay", email: "deepak.s@razorpay.com", jobs_posted: 18, is_verified: true },
+    { id: "5", company_name: "Zomato", email: "rahul.v@zomato.com", jobs_posted: 45, is_verified: true }
+  ]);
+  const navigate = useNavigate();
+  const [total, setTotal] = useState(5);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
   const [verifiedFilter, setVerifiedFilter] = useState('');
 
@@ -108,15 +116,18 @@ export default function CompanyManagement() {
               ) : companies.map(c => (
                 <tr key={c.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                   <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
+                    <Link 
+                      to={`/platform/admin/employers/${c.id}`}
+                      className="flex items-center gap-3 group/item cursor-pointer no-underline"
+                    >
                       <div className="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-black text-blue-600 uppercase border border-slate-200 dark:border-slate-700">
                         {c.company_name?.[0] || 'C'}
                       </div>
                       <div>
-                        <p className="text-sm font-bold text-slate-900 dark:text-white leading-tight">{c.company_name}</p>
+                        <p className="text-sm font-bold text-slate-900 dark:text-white leading-tight group-hover/item:text-blue-600 transition-colors">{c.company_name}</p>
                         <p className="text-xs text-slate-500 font-medium">{c.email}</p>
                       </div>
-                    </div>
+                    </Link>
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2">

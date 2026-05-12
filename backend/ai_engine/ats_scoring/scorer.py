@@ -54,20 +54,24 @@ _CERTS_LOOKUP: set = _build_lookup(_CERTS_DICT)
 
 def _calculate_skill_score(resume_skills: List[str], required_skills: List[str]) -> float:
     """
-    Skill Score = min(100, (Skills Found / max(5, Required Skills)) * 100)
+    Skill Score = (Skills Found / len(Required Skills)) * 100
     """
     if not required_skills:
-        return 50.0 # Neutral if no JD skills provided
+        # If no JD skills provided, calculate score based on total number of recognized skills
+        recognized = [s for s in resume_skills if s.lower() in _SKILLS_LOOKUP]
+        return min(100.0, (len(recognized) / 10.0) * 100) # 10 recognized skills = 100% baseline
     
     resume_lower = {s.lower() for s in resume_skills}
-    matched = sum(1 for s in required_skills if s.lower() in resume_lower)
+    required_lower = [s.lower() for s in required_skills]
+    matched = sum(1 for s in required_lower if s in resume_lower)
     
-    score = (matched / max(5, len(required_skills))) * 100
+    score = (matched / len(required_lower)) * 100
     return min(100.0, score)
+
 
 def _calculate_experience_score(resume_data: Dict[str, Any], is_fresher: bool, required_years: float = 0) -> float:
     """
-    Fresher: Internship(70), Projects(60), None(50)
+    Fresher: Internship(85), Projects(75), None(60)
     Experienced: (Candidate / Required) * 100
     """
     candidate_exp = float(resume_data.get("experience_years", 0))
@@ -75,42 +79,46 @@ def _calculate_experience_score(resume_data: Dict[str, Any], is_fresher: bool, r
 
     if is_fresher:
         if "intern" in text or "internship" in text:
-            return 70.0
+            return 85.0
         if resume_data.get("projects") or "project" in text:
-            return 60.0
-        return 50.0
+            return 75.0
+        return 60.0
     else:
-        if required_years <= 0: return 80.0 # High baseline for exp if not specified
+        if required_years <= 0: return 85.0 
         score = (candidate_exp / required_years) * 100
         return min(100.0, score)
 
+
 def _calculate_project_score(resume_data: Dict[str, Any]) -> float:
     """
-    GitHub/Portfolio detected (+50)
-    Each valid project (+10)
+    GitHub/Portfolio detected (+40)
+    Each valid project (+20)
     """
     score = 0.0
     text = (resume_data.get("parsed_text", "")).lower()
     projects = resume_data.get("projects", [])
 
-    if "github.com" in text or "portfolio" in text or "bitbucket" in text:
-        score += 50.0
+    if any(domain in text for domain in ["github.com", "portfolio", "bitbucket", "gitlab", "vercel", "netlify"]):
+        score += 40.0
     
-    score += (len(projects) * 10.0)
+    score += (len(projects) * 20.0)
     return min(100.0, score)
+
 
 def _calculate_education_score(resume_data: Dict[str, Any]) -> float:
     text = (resume_data.get("parsed_text", "")).lower()
-    if "phd" in text or "doctorate" in text: return 100.0
-    if "master" in text or "mtech" in text or "mba" in text: return 85.0
-    if "bachelor" in text or "btech" in text or "bsc" in text: return 70.0
-    if "diploma" in text: return 50.0
-    return 30.0
+    if any(x in text for x in ["phd", "doctorate"]): return 100.0
+    if any(x in text for x in ["master", "mtech", "mba", "mca", "ms "]): return 85.0
+    if any(x in text for x in ["bachelor", "btech", "bsc", "be ", "bca"]): return 75.0
+    if "diploma" in text: return 60.0
+    return 40.0
+
 
 def _calculate_cert_score(resume_data: Dict[str, Any]) -> float:
     text = (resume_data.get("parsed_text", "")).lower()
     found = sum(1 for cert in _CERTS_LOOKUP if cert in text)
-    return min(100.0, found * 20.0) # 5 certs = 100%
+    return min(100.0, found * 25.0) # 4 certs = 100%
+
 
 # ── Main Scoring Logic ───────────────────────────────────────────────────────
 
@@ -138,11 +146,10 @@ def score_job_description_ats(resume_data: Dict[str, Any], jd_data: Dict[str, An
         (ed_score * 0.10) + 
         (c_score * 0.10)
     )
-    mode = "Roadmap Standardized"
-
+    
     return {
         "ats_score": round(ats_score, 1),
-        "mode": mode,
+        "mode": "Hybrid Scoring Engine v2",
         "breakdown": {
             "skills": round(s_score, 1),
             "experience": round(e_score, 1),
@@ -155,18 +162,18 @@ def score_job_description_ats(resume_data: Dict[str, Any], jd_data: Dict[str, An
         "suggestions": _generate_suggestions(s_score, p_score, is_fresher)
     }
 
+
 def _generate_suggestions(s: float, p: float, is_fresher: bool) -> List[str]:
     suggestions = []
-    if s < 60: suggestions.append("Upskill in core technologies mentioned in the JD.")
-    if p < 50: suggestions.append("Add GitHub links and more project documentation.")
-    if is_fresher and p < 70: suggestions.append("Focus on building 2-3 high-quality portfolio projects.")
+    if s < 70: suggestions.append("Upskill in core technologies mentioned in the JD.")
+    if p < 60: suggestions.append("Add GitHub links and more project documentation.")
+    if is_fresher and p < 80: suggestions.append("Focus on building 2-3 high-quality portfolio projects.")
     return suggestions
 
+
 def score_resume_ats(resume_data: Dict[str, Any]) -> Dict[str, Any]:
-    """Baseline fallback using global skills if no JD is present."""
-    # Mock a JD using global lookup for baseline
-    global_skills = list(_SKILLS_LOOKUP)[:10] 
-    return score_job_description_ats(resume_data, {"required_skills": global_skills, "description": ""})
+    """Baseline fallback when no specific JD is provided."""
+    return score_job_description_ats(resume_data, {"required_skills": [], "description": ""})
 
 class ATSScorer:
     """Wrapper class for backward compatibility."""

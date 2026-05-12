@@ -1,0 +1,117 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { 
+  User, 
+  FileText, 
+  Bookmark, 
+  Settings, 
+  LogOut, 
+  CheckCircle2, 
+  ShieldCheck,
+  TrendingUp,
+  LayoutDashboard
+} from 'lucide-react';
+
+const ProfileDropdown = ({ user, onClose }) => {
+  const navigate = useNavigate();
+  const role = user?.role || 'jobseeker';
+
+  const menuItems = role === 'employer' ? [
+    { icon: LayoutDashboard, label: 'Dashboard', path: '/platform/employer/dashboard' },
+    { icon: User, label: 'Company Profile', path: '/platform/employer/profile' },
+    { icon: Settings, label: 'Settings', path: '/platform/settings' },
+  ] : [
+    { icon: User, label: 'View Profile', path: '/platform/jobseeker/profile' },
+    { icon: FileText, label: 'Edit Resume', path: '/platform/jobseeker/resume' },
+    { icon: Bookmark, label: 'Saved Jobs', path: '/platform/jobseeker/jobs?tab=saved' },
+    { icon: Settings, label: 'Settings', path: '/platform/settings' },
+  ];
+
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = '/auth/login';
+  };
+
+  return (
+    <div className="absolute top-16 right-0 w-80 bg-white dark:bg-[#0d1117] border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl shadow-blue-500/10 overflow-hidden animate-in fade-in zoom-in duration-200 z-[60]">
+      
+      {/* User Header */}
+      <div className="p-6 pb-4 border-b border-slate-100 dark:border-slate-800">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="size-14 bg-blue-600 rounded-2xl flex items-center justify-center text-white text-xl font-black shadow-lg shadow-blue-500/20">
+            {user?.full_name?.charAt(0) || 'J'}
+          </div>
+          <div>
+            <h4 className="text-lg font-black text-slate-900 dark:text-white tracking-tight uppercase leading-none">
+              {user?.full_name || 'Jayasimbu Cse'}
+            </h4>
+            <div className="flex items-center gap-1.5 mt-1">
+              <ShieldCheck size={12} className="text-blue-500" />
+              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Identity Verified</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Profile Strength */}
+        <div className="space-y-2 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-100 dark:border-slate-800">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Profile Strength</span>
+            <span className="text-xs font-black text-emerald-500">75%</span>
+          </div>
+          <div className="h-1.5 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+            <div className="h-full bg-emerald-500 rounded-full" style={{ width: '75%' }} />
+          </div>
+        </div>
+      </div>
+
+      {/* Stats Grid (Only for Jobseeker for now as per image) */}
+      {role === 'jobseeker' && (
+        <div className="grid grid-cols-3 border-b border-slate-100 dark:border-slate-800">
+          <div className="p-4 text-center border-r border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+            <p className="text-lg font-black text-slate-900 dark:text-white">8</p>
+            <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Applied</p>
+          </div>
+          <div className="p-4 text-center border-r border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+            <p className="text-lg font-black text-slate-900 dark:text-white">3</p>
+            <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Shortlisted</p>
+          </div>
+          <div className="p-4 text-center hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+            <p className="text-lg font-black text-slate-900 dark:text-white">1</p>
+            <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Interviews</p>
+          </div>
+        </div>
+      )}
+
+      {/* Menu Items */}
+      <div className="p-2">
+        {menuItems.map((item, i) => (
+          <button
+            key={i}
+            onClick={() => {
+              navigate(item.path);
+              onClose();
+            }}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-blue-600 dark:hover:text-blue-400 transition-all group"
+          >
+            <item.icon size={18} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
+            {item.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Logout */}
+      <div className="p-2 bg-slate-50 dark:bg-slate-800/30">
+        <button
+          onClick={handleLogout}
+          className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/20 transition-all group"
+        >
+          <LogOut size={18} className="group-hover:translate-x-1 transition-transform" />
+          Logout
+        </button>
+      </div>
+
+    </div>
+  );
+};
+
+export default ProfileDropdown;
