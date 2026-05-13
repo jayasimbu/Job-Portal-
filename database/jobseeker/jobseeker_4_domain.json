@@ -1,49 +1,45 @@
 {
-  "updated_at": "2026-05-12T15:08:45.586237",
+  "updated_at": "2026-05-13T10:13:50.686984",
   "user_id": 4,
   "profile": {
     "headline": "UI/UX",
     "skills": [
-      "user interface",
-      "responsive ui",
-      "javascript",
+      "https",
       "java",
-      "xml"
+      "powerpoint",
+      "leadership",
+      "github",
+      "communication",
+      "python"
     ],
-    "ats_score": 68.8,
+    "ats_score": 69.2,
     "resume_data": {
       "skills": [
+        "communication",
+        "github",
+        "https",
         "java",
-        "javascript",
-        "responsive ui",
-        "user interface",
-        "xml"
+        "leadership",
+        "powerpoint",
+        "python"
       ],
       "experience_years": 0.0,
-      "parsed_text": "MENAKA SANKAR\nStudent \n7339015547\nThiruchengode,Namakkal\ne22cs065@shanmugha.edu.in\nABOUT ME\nEDUCATION\nSRI SHANMUGHA COLLEGE OF ENGINEERING AND TECHNOLOGY \nBE COMPUTER SCIENCE AND TECHNOLOGY -7.85 CGPA\n70%\n2022-2026\n2021-2022\nSKILL\nCSS\nHTML\nJAVA SCRIPT \nJAVA\nPROJECTS\nRestaurant Landing Page \nDeveloped a responsive landing page using HTML & CSS.\nImplemented modern layout, clean UI design, menus and restaurant sections.\nFocused on mobile friendly design and engaging user interface.\nImplemented modern layout, clean UI design, about and skills\nDeveloped a Personal Portfolio age using HTML & CSS.\nAndroid Development Intern \u2013 Eduskills\nWorked on Android fundamentals and application lifecycle.\nBuilt UI layouts and basic functionality using XML and Java.\nGained experience in mobile app development workflow and team collaboration.\nAndroid Development Internship \u2013 Eduskills\nJava Basic Skill Certification \u2013 HackerRank\nI hereby declare that all the information provided above is true and correct\nto the best of my knowledge and belief.\nGOVERNMENT HIGHER SECONDARY SCHOOL  -HSC\nA passionate and dedicated Computer Science Engineering student with strong interest\nin Web Development and Android Development. Skilled in building responsive UI using\nHTML, CSS, and JavaScript. Seeking an opportunity to apply my technical skills, contribute\nto real-time projects, and grow in a professional environment.\nPersonal Portfolio \nINTERNSHIP \nCERTIFICATIONS\nDECLARATION\n",
+      "parsed_text": "MUKESH SRINIVASAN\nABOUT ME\nFinal-year \nB.E. \nComputer \nScience \nand \nEngineering \nstudent \nwith \nstrong\nprogramming skills and a passion for developing innovative technology solutions.\nDedicated, adaptable, and eager to learn new technologies while contributing\neffectively to team projects.\n8667421553\nmukeshsk102004@gmail.com\nOmalur,Salem-636503\nEDUCATION\nHSC \u2013  Vanniyakula Sathiriyar Higher Secondary  School (2022)  (Per : 59%)\nSSLC \u2013 Vanniyakula Sathiriyar Higher Secondary School (2020)  (Per : 71%)\nBachelor of Computer Science and Engineering  (CGPA : 7.2)\nSri Shanmugha College of Engineering and Technology (2022 \u2013 2026)\nhttps://www.linkedin.com/in/mukesh-srinivasan-2207412a4\nTECHNICAL SKILLS\nProgramming Languages: Java, Python.\nWeb Technologies: HTML, CSS.\nSoftware proficiency : Excel , PowerPoint.\nSOFT SKILLS\nCommunication \nLeadership\nAdaptability\nTime Management\nCERTIFICATES\nArtificial Intelligence Fundamentals - IBM.\nJava Certificate(Basic)  -  Hackerrank.\nCustomer Engagement Fundamentals - IBM.\nhttps://www.hackerrank.com/profile/mukeshsk102004\nhttps://leetcode.com/u/tKJMu9tpdP/\nhttps://github.com/mukeshsk102004-code\nCerifications link\nWORKSHOP\nEthical Hacking - Conducted by Kongu Engineering College.\nUI & UX Design - Conducted by Erode Sengunthar Engineering College.\n",
       "projects": [
         {
-          "title": "PROJECTS",
-          "reference": "PROJECTS"
+          "title": "effectively to team projects.",
+          "reference": "effectively to team projects."
         },
         {
-          "title": "Developed a Personal Portfolio age using HTML & CSS.",
-          "reference": "Developed a Personal Portfolio age using HTML & CSS."
-        },
-        {
-          "title": "to real-time projects, and grow in a professional environment.",
-          "reference": "to real-time projects, and grow in a professional environment."
-        },
-        {
-          "title": "Personal Portfolio",
-          "reference": "Personal Portfolio"
+          "title": "https://github.com/mukeshsk102004-code",
+          "reference": "https://github.com/mukeshsk102004-code"
         }
       ],
-      "education": "unknown"
+      "education": "bachelors"
     },
     "missing_skills": [],
     "experience_years": 0.0,
-    "education_level": "unknown",
+    "education_level": "bachelors",
     "portfolio_url": null,
     "github_url": null
   },
@@ -1223,6 +1219,90 @@
       "ats_score": 68.8,
       "missing_skills": [],
       "created_at": "2026-05-12T15:08:45.473000"
+    },
+    {
+      "id": 8964,
+      "file_name": "Yagul S D -E22CS035 .pdf",
+      "ats_score": 74.8,
+      "missing_skills": [],
+      "created_at": "2026-05-12T16:44:50.696000"
+    },
+    {
+      "id": 8965,
+      "file_name": "Yagul S D -E22CS035 .pdf",
+      "ats_score": 74.8,
+      "missing_skills": [],
+      "created_at": "2026-05-12T16:59:13.122000"
+    },
+    {
+      "id": 8966,
+      "file_name": "Yagul S D -E22CS035 .pdf",
+      "ats_score": 74.8,
+      "missing_skills": [],
+      "created_at": "2026-05-13T03:26:31.040000"
+    },
+    {
+      "id": 8967,
+      "file_name": "Yagul S D -E22CS035 .pdf",
+      "ats_score": 74.8,
+      "missing_skills": [],
+      "created_at": "2026-05-13T03:26:40.152000"
+    },
+    {
+      "id": 8968,
+      "file_name": "Yagul S D -E22CS035 .pdf",
+      "ats_score": 74.8,
+      "missing_skills": [],
+      "created_at": "2026-05-13T03:40:21.685000"
+    },
+    {
+      "id": 8969,
+      "file_name": "Yagul S D -E22CS035 .pdf",
+      "ats_score": 74.8,
+      "missing_skills": [],
+      "created_at": "2026-05-13T03:40:36.972000"
+    },
+    {
+      "id": 8970,
+      "file_name": "Blue and White Clean Professional A4 Resume_20251202_190627_0000.pdf",
+      "ats_score": 68.8,
+      "missing_skills": [],
+      "created_at": "2026-05-13T03:46:18.259000"
+    },
+    {
+      "id": 8971,
+      "file_name": "Blue and White Clean Professional A4 Resume_20251202_190627_0000.pdf",
+      "ats_score": 68.8,
+      "missing_skills": [],
+      "created_at": "2026-05-13T03:53:09.232000"
+    },
+    {
+      "id": 8972,
+      "file_name": "Yagul S D -E22CS035 .pdf",
+      "ats_score": 74.8,
+      "missing_skills": [],
+      "created_at": "2026-05-13T03:53:29.785000"
+    },
+    {
+      "id": 8973,
+      "file_name": "Resume 1.pdf",
+      "ats_score": 54.0,
+      "missing_skills": [],
+      "created_at": "2026-05-13T07:57:28.408000"
+    },
+    {
+      "id": 8974,
+      "file_name": "Jayasimbu Customer Success Specialist.pdf",
+      "ats_score": 68.8,
+      "missing_skills": [],
+      "created_at": "2026-05-13T08:19:08.667000"
+    },
+    {
+      "id": 8975,
+      "file_name": "Mukesh  Resume (1).pdf",
+      "ats_score": 69.2,
+      "missing_skills": [],
+      "created_at": "2026-05-13T10:13:50.609000"
     }
   ],
   "applications": [
@@ -1277,6 +1357,15 @@
       "status": "applied",
       "ats_score": 0,
       "ats_match_score": 0,
+      "matched_skills": [],
+      "missing_skills": []
+    },
+    {
+      "id": 3054,
+      "job_id": 1,
+      "status": "applied",
+      "ats_score": 64.8,
+      "ats_match_score": 64.8,
       "matched_skills": [],
       "missing_skills": []
     }

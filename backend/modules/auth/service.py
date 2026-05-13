@@ -164,11 +164,11 @@ class AuthService:
     @staticmethod
     def get_role_redirect_path(role: str) -> str:
         mapping = {
-            "jobseeker": "/jobseeker/dashboard",
-            "employer": "/employer/dashboard",
-            "admin": "/admin/dashboard",
+            "jobseeker": "/platform/jobseeker/home",
+            "employer": "/platform/employer/home",
+            "admin": "/platform/admin/dashboard",
         }
-        return mapping.get(role, "/platform/home")
+        return mapping.get(role, "/")
 
     def update_user_profile(self, user_id: int, **kwargs) -> User:
         """Update user profile"""

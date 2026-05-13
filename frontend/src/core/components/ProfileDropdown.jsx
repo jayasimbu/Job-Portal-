@@ -17,14 +17,9 @@ const ProfileDropdown = ({ user, onClose }) => {
   const role = user?.role || 'jobseeker';
 
   const menuItems = role === 'employer' ? [
-    { icon: LayoutDashboard, label: 'Dashboard', path: '/platform/employer/dashboard' },
     { icon: User, label: 'Company Profile', path: '/platform/employer/profile' },
-    { icon: Settings, label: 'Settings', path: '/platform/settings' },
   ] : [
     { icon: User, label: 'View Profile', path: '/platform/jobseeker/profile' },
-    { icon: FileText, label: 'Edit Resume', path: '/platform/jobseeker/resume' },
-    { icon: Bookmark, label: 'Saved Jobs', path: '/platform/jobseeker/jobs?tab=saved' },
-    { icon: Settings, label: 'Settings', path: '/platform/settings' },
   ];
 
   const handleLogout = () => {

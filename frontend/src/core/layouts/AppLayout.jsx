@@ -6,6 +6,7 @@ import { getCurrentUser, getCurrentUserRole } from '../auth/session';
 import { ResumeProvider } from '../../modules/jobseeker/context/ResumeContext';
 import Sidebar from '../components/Sidebar';
 import ProfileDropdown from '../components/ProfileDropdown';
+import Logo from '../components/Logo';
 
 const AppLayout = ({ children, title }) => {
   const { isDark, toggleTheme } = useTheme();
@@ -41,17 +42,24 @@ const AppLayout = ({ children, title }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
   
+  const isHome = location.pathname === '/platform/jobseeker/home';
+  
   return (
     <ResumeProvider>
       <div className="h-screen flex overflow-hidden bg-white dark:bg-[#0a0f14] transition-colors font-sans">
-        <Sidebar role={userRole || 'jobseeker'} />
+        {!isHome && <Sidebar role={userRole || 'jobseeker'} />}
 
-        <div className="flex-1 flex flex-col min-w-0 md:pl-[270px]">
+        <div className={`flex-1 flex flex-col min-w-0 ${!isHome ? 'md:pl-[270px]' : ''}`}>
           {/* Header */}
           <header className={`h-20 flex-shrink-0 px-8 flex items-center justify-between sticky top-0 z-50 transition-all ${
             scrolled ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800 shadow-sm' : 'bg-transparent'
           }`}>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-6">
+               {isHome && (
+                 <div className="mr-4">
+                   <Logo showText={true} />
+                 </div>
+               )}
                {title && (
                  <div className="flex flex-col">
                    <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tighter uppercase leading-none">

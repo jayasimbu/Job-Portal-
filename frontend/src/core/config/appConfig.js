@@ -15,8 +15,8 @@ const appConfig = {
     userStorageKey: 'currentUser',
     roleStorageKey: 'userRole',
     roleRedirectMap: {
-      jobseeker: '/platform/jobseeker/dashboard',
-      employer: '/platform/employer/dashboard',
+      jobseeker: '/platform/jobseeker/home',
+      employer: '/platform/employer/home',
       admin: '/platform/admin/dashboard',
     },
     googleClientId: import.meta.env.VITE_GOOGLE_CLIENT_ID || '',

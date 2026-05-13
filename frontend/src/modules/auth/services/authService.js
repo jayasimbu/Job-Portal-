@@ -82,7 +82,7 @@ export const logoutUser = async () => {
 };
 
 export const getRoleRedirectPath = (role) => {
-  return appConfig.auth.roleRedirectMap[role] || '/platform/home';
+  return appConfig.auth.roleRedirectMap[role] || '/';
 };
 
 export const forgotPassword = async (email) => {

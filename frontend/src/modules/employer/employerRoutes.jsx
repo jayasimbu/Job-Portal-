@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
+import EmployerHome from './pages/EmployerHome';
 import Candidates from './pages/Candidates';
 import CandidateDetail from './pages/CandidateDetail';
 import Analytics from './pages/Analytics';
@@ -11,7 +12,8 @@ import CompanyProfile from './pages/CompanyProfile';
 const EmployerRoutes = () => {
   return (
     <Routes>
-      <Route index element={<Navigate to="dashboard" replace />} />
+      <Route index element={<Navigate to="home" replace />} />
+      <Route path="home" element={<EmployerHome />} />
       <Route path="dashboard" element={<Dashboard />} />
       <Route path="post-job" element={<PostJob />} />
       <Route path="candidates" element={<Candidates />} />

@@ -203,12 +203,16 @@ export default function Dashboard() {
           <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">Your resume score & job matches</p>
         </div>
         <div className="flex items-center gap-3">
-          <Button variant="secondary" className="h-10 px-4 rounded-xl bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 font-bold text-[11px] uppercase tracking-widest hover:bg-slate-50 shadow-sm">
+          <Button 
+            onClick={() => navigate('/platform/jobseeker/jobs')}
+            variant="secondary" 
+            className="h-10 px-4 rounded-xl bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 font-bold text-[11px] uppercase tracking-widest hover:bg-slate-50 shadow-sm"
+          >
             <Search size={14} /> Search Jobs
           </Button>
           <Button onClick={() => fileInputRef.current?.click()} disabled={isUploading} className="h-10 px-5 rounded-xl font-bold text-[11px] uppercase tracking-widest shadow-lg shadow-blue-500/20">
             {isUploading ? <Loader size={14} className="animate-spin" /> : <UploadCloud size={14} />}
-            {isUploading ? 'Analyzing...' : 'Update Resume'}
+            {isUploading ? 'Analyzing...' : 'Upload Resume'}
           </Button>
         </div>
       </div>
@@ -225,7 +229,7 @@ export default function Dashboard() {
           </p>
           <Button onClick={() => fileInputRef.current?.click()} disabled={isUploading} className="h-11 px-7 rounded-xl font-bold text-[11px] uppercase tracking-widest shadow-lg shadow-blue-500/30 mx-auto">
             {isUploading ? <Loader size={14} className="animate-spin" /> : <UploadCloud size={14} />}
-            {isUploading ? 'Analyzing...' : 'Upload Resume Now'}
+            {isUploading ? 'Analyzing...' : 'Upload Resume'}
           </Button>
         </div>
       )}

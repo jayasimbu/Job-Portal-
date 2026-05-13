@@ -74,15 +74,15 @@ const PublicLayout = ({ children }) => {
                 <>
                   <button 
                     onClick={() => handleNav('/auth/login', 'login')}
-                    className="text-sm font-bold text-slate-600 dark:text-slate-300 px-6 py-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all"
+                    className="text-sm font-bold text-slate-600 dark:text-slate-300 px-6 py-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all uppercase tracking-widest"
                   >
                     Sign In
                   </button>
                   <button 
                     onClick={() => handleNav('/auth/signup', 'signup')}
-                    className="bg-blue-600 text-white px-8 py-3 rounded-2xl font-bold text-sm shadow-xl shadow-blue-600/20 hover:bg-blue-700 transition-all active:scale-95 flex items-center gap-2"
+                    className="bg-blue-600 text-white px-8 py-3 rounded-2xl font-bold text-sm shadow-xl shadow-blue-600/20 hover:bg-blue-700 transition-all active:scale-95 flex items-center gap-2 uppercase tracking-widest"
                   >
-                    Get Started Free
+                    Sign Up
                   </button>
                 </>
               )}

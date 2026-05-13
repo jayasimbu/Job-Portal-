@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Dashboard from '../jobseeker/pages/Dashboard';
+import JobseekerHome from '../jobseeker/pages/JobseekerHome';
 import Profile from '../jobseeker/pages/Profile';
 import JDMatchAnalysis from '../jobseeker/pages/JDMatchAnalysis';
 import Jobs from './pages/Jobs';
@@ -15,9 +16,10 @@ const PlatformRoutes = () => {
   return (
     <Suspense fallback={<div className="p-8 font-black uppercase tracking-widest text-slate-400">Loading System...</div>}>
         <Routes>
-          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route index element={<Navigate to="home" replace />} />
           
           {/* Main Core Pages */}
+          <Route path="home" element={<JobseekerHome />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="jobs" element={<Jobs />} />
           <Route path="jobs/:id" element={<JobDetails />} />

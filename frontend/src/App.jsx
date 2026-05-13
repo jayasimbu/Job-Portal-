@@ -9,11 +9,12 @@ import ProtectedRoute from './core/components/ProtectedRoute';
 import PublicLayout from './core/layouts/PublicLayout';
 import AppLayout from './core/layouts/AppLayout';
 import EmployerLayout from './modules/employer/components/EmployerLayout';
-import Home from './modules/platform/pages/Home';
+import PublicHome from './modules/platform/pages/PublicHome';
 import ErrorBoundary from './core/components/ErrorBoundary';
 
 import { ThemeProvider } from './core/context/ThemeContext';
 import { ToastProvider } from './core/context/ToastContext';
+import { getCurrentUser, getCurrentUserRole } from './core/auth/session';
 
 import SystemStatus from './modules/platform/pages/SystemStatus';
 // Career Info Pages
@@ -46,7 +47,16 @@ function App() {
           <ErrorBoundary>
             <Routes>
             {/* Public Landing Page */}
-            <Route path="/" element={<PublicLayout><Home /></PublicLayout>} />
+            <Route 
+              path="/" 
+              element={
+                getCurrentUser() ? (
+                  <Navigate to={getCurrentUserRole() === 'employer' ? '/platform/employer/home' : '/platform/jobseeker/home'} replace />
+                ) : (
+                  <PublicLayout><PublicHome /></PublicLayout>
+                )
+              } 
+            />
             <Route path="/status" element={<PublicLayout><SystemStatus /></PublicLayout>} />
 
             {/* Auth Module */}

@@ -36,8 +36,9 @@ const Sidebar = ({ role }) => {
     switch (userRole) {
       case 'jobseeker':
         return [
-          { label: 'Dashboard', to: '/platform/jobseeker/dashboard', icon: LayoutDashboard },
-          { label: 'JD Match', to: '/platform/jobseeker/jd-match-analysis', icon: BarChart3 },
+          { label: 'Home', to: '/platform/jobseeker/home', icon: LayoutDashboard },
+          { label: 'Dashboard', to: '/platform/jobseeker/dashboard', icon: BarChart3 },
+          { label: 'JD Match', to: '/platform/jobseeker/jd-match-analysis', icon: Target },
           { label: 'Jobs', to: '/platform/jobseeker/jobs', icon: Briefcase },
           { label: 'Applications', to: '/platform/jobseeker/applications', icon: Send },
           { label: 'Learning', to: '/platform/jobseeker/learning', icon: GraduationCap },
@@ -45,7 +46,8 @@ const Sidebar = ({ role }) => {
         ];
       case 'employer':
         return [
-          { label: 'Dashboard', to: '/platform/employer/dashboard', icon: LayoutDashboard },
+          { label: 'Home', to: '/platform/employer/home', icon: LayoutDashboard },
+          { label: 'Dashboard', to: '/platform/employer/dashboard', icon: BarChart3 },
           { label: 'Post Job', to: '/platform/employer/post-job', icon: Briefcase },
           { label: 'Candidates', to: '/platform/employer/candidates', icon: Users },
           { label: 'Applications', to: '/platform/employer/applications', icon: Send },

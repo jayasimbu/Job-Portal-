@@ -39,21 +39,14 @@ export default function ProfileMenu({ role = 'jobseeker' }) {
   const menuItems = isAdmin
     ? [
         { label: 'Admin Dashboard', icon: 'shield', to: '/platform/admin/dashboard' },
-        { label: 'User Controls', icon: 'manage_accounts', to: '/platform/admin/users' },
-        { label: 'System Logs', icon: 'terminal', to: '/platform/admin/logs' },
-        { label: 'Settings', icon: 'settings', to: '/platform/admin/settings' },
+        { label: 'Logout', icon: 'logout', action: handleLogout },
       ]
     : isEmployer
     ? [
         { label: 'Company Profile', icon: 'corporate_fare', to: '/platform/employer/profile' },
-        { label: 'Analytics', icon: 'analytics', to: '/platform/employer/analytics' },
-        { label: 'Settings', icon: 'settings', to: '/platform/employer/settings' },
       ]
     : [
         { label: 'View Profile', icon: 'person', to: '/platform/jobseeker/profile' },
-        { label: 'Edit Resume', icon: 'description', to: '/platform/jobseeker/profile' },
-        { label: 'Saved Jobs', icon: 'bookmark', to: '/platform/jobseeker/saved' },
-        { label: 'Settings', icon: 'settings', to: '/platform/jobseeker/settings' },
       ];
 
   const stats = isAdmin
@@ -132,7 +125,11 @@ export default function ProfileMenu({ role = 'jobseeker' }) {
               {menuItems.map((item, i) => (
                 <button
                   key={i}
-                  onClick={() => { setOpen(false); navigate(item.to); }}
+                  onClick={() => { 
+                    setOpen(false); 
+                    if (item.action) item.action();
+                    else if (item.to) navigate(item.to); 
+                  }}
                   className="w-full text-left text-sm py-2.5 px-3 rounded-xl font-bold flex items-center gap-3 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                 >
                   <span className="material-symbols-outlined text-[18px] text-slate-400">{item.icon}</span>

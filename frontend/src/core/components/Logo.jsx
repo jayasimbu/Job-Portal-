@@ -1,7 +1,11 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
+import { getCurrentUserRole } from '../auth/session';
 import premiumLogo from '../../assets/logos/linkup_premium_logo.png';
 
 const Logo = ({ variant = 'light', className = '', showText = true, showIcon = true, size = 'default' }) => {
+  const role = getCurrentUserRole();
+  const homePath = role === 'admin' ? '/platform/admin/dashboard' : (role === 'employer' ? '/platform/employer/home' : (role === 'jobseeker' ? '/platform/jobseeker/home' : '/'));
+
   // Styles based on variant
   const isDark = variant === 'dark';
   
@@ -16,7 +20,7 @@ const Logo = ({ variant = 'light', className = '', showText = true, showIcon = t
   const logoHeight = sizeMap[size] || sizeMap.default;
 
   return (
-    <div className={`flex items-center gap-[14px] ${className}`}>
+    <Link to={homePath} className={`flex items-center gap-[14px] ${className} hover:opacity-90 transition-opacity decoration-none`}>
       {/* PREMIUM LOGO IMAGE */}
       {showIcon && (
         <div 
@@ -55,7 +59,7 @@ const Logo = ({ variant = 'light', className = '', showText = true, showIcon = t
           )}
         </div>
       )}
-    </div>
+    </Link>
   );
 };
 

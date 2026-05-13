@@ -100,7 +100,7 @@ const JDMatch = () => {
             <div className="text-center py-6">
               <FileText size={32} className="text-slate-200 mx-auto mb-3" />
               <p className="text-sm font-bold text-slate-500">Upload your resume in the Dashboard first</p>
-              <p className="text-[10px] text-slate-400 mt-1">Go to Dashboard → Update Resume</p>
+              <p className="text-[10px] text-slate-400 mt-1">Go to Dashboard → Upload Resume</p>
             </div>
           )}
         </div>
