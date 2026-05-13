@@ -58,12 +58,12 @@ const Settings = () => {
       <div className="flex-1 flex flex-col md:flex-row gap-6 min-h-0">
         {/* Sidebar Tabs */}
         <aside className="w-full md:w-56 flex-shrink-0">
-          <nav className="flex md:flex-col gap-1 bg-white dark:bg-slate-900 p-2 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <nav className="flex md:flex-col gap-1 bg-slate-50 dark:bg-slate-900 p-2 rounded-2xl border border-slate-300 dark:border-slate-700">
             {tabs.map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === tab.id ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30' : 'text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800'}`}
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === tab.id ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30' : 'text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800'}`}
               >
                 <span className="material-symbols-outlined text-lg">{tab.icon}</span>
                 <span className="hidden md:inline">{tab.label}</span>
@@ -73,7 +73,7 @@ const Settings = () => {
         </aside>
 
         {/* Content Area */}
-        <main className="flex-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 overflow-y-auto custom-scrollbar">
+        <main className="flex-1 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-3xl p-6 overflow-y-auto custom-scrollbar">
           {activeTab === 'profile' && (
             <div className="space-y-6 ">
                <div className="flex items-center gap-6 mb-8">
@@ -94,7 +94,7 @@ const Settings = () => {
                       type="text" 
                       value={profileData.fullName}
                       onChange={(e) => setProfileData({...profileData, fullName: e.target.value})}
-                      className="w-full h-11 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 text-sm font-bold focus:ring-2 focus:ring-blue-500 outline-none" 
+                      className="w-full h-11 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 text-sm font-bold focus:ring-2 focus:ring-blue-500 outline-none" 
                     />
                   </div>
                   <div className="space-y-1.5">
@@ -103,7 +103,7 @@ const Settings = () => {
                       type="email" 
                       value={profileData.email}
                       disabled
-                      className="w-full h-11 bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl px-4 text-sm font-bold text-slate-400 cursor-not-allowed" 
+                      className="w-full h-11 bg-slate-100 dark:bg-slate-800/50 border border-slate-300 dark:border-slate-700 rounded-xl px-4 text-sm font-bold text-slate-400 cursor-not-allowed" 
                     />
                   </div>
                </div>
@@ -114,7 +114,7 @@ const Settings = () => {
                     rows={4}
                     value={profileData.bio}
                     onChange={(e) => setProfileData({...profileData, bio: e.target.value})}
-                    className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 text-sm font-medium focus:ring-2 focus:ring-blue-500 outline-none resize-none"
+                    className="w-full bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-4 text-sm font-medium focus:ring-2 focus:ring-blue-500 outline-none resize-none"
                   />
                </div>
             </div>
@@ -137,7 +137,7 @@ const Settings = () => {
                         type="text" 
                         value={profileData[link.id]}
                         onChange={(e) => setProfileData({...profileData, [link.id]: e.target.value})}
-                        className="w-full h-11 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl pl-12 pr-4 text-sm font-bold focus:ring-2 focus:ring-blue-500 outline-none" 
+                        className="w-full h-11 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl pl-12 pr-4 text-sm font-bold focus:ring-2 focus:ring-blue-500 outline-none" 
                       />
                     </div>
                  </div>
@@ -152,11 +152,11 @@ const Settings = () => {
                   <span className="text-[10px] font-black bg-blue-50 text-blue-600 px-3 py-1 rounded-full uppercase tracking-tighter">Synced with latest resume</span>
                </div>
 
-               <div className="p-5 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
+               <div className="p-5 bg-slate-100 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700">
                   <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">Detected Skill Cloud</h4>
                   <div className="flex flex-wrap gap-2">
                     {['React', 'Node.js', 'Python', 'AWS', 'Docker', 'Tailwind CSS', 'System Design'].map(skill => (
-                      <span key={skill} className="px-3 py-1 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 text-xs font-bold rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm">
+                      <span key={skill} className="px-3 py-1 bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-200 text-xs font-bold rounded-lg border border-slate-300 dark:border-slate-700 shadow-sm">
                         {skill}
                       </span>
                     ))}
@@ -164,11 +164,11 @@ const Settings = () => {
                </div>
 
                <div className="grid grid-cols-2 gap-4">
-                  <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
+                  <div className="p-4 bg-slate-100 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700">
                     <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">ATS Optimization</h4>
                     <p className="text-2xl font-black text-blue-600">78%</p>
                   </div>
-                  <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
+                  <div className="p-4 bg-slate-100 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700">
                     <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Market Relevance</h4>
                     <p className="text-2xl font-black text-emerald-600">High</p>
                   </div>
@@ -207,7 +207,7 @@ const Settings = () => {
                           onClick={() => handleToggle(pref.key)}
                           className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors ease-in-out focus:outline-none ${settings[pref.key] ? 'bg-blue-600' : 'bg-slate-200 dark:bg-slate-700'}`}
                         >
-                          <span className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition ease-in-out ${settings[pref.key] ? 'translate-x-4' : 'translate-x-0'}`} />
+                          <span className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-slate-50 shadow ring-0 transition ease-in-out ${settings[pref.key] ? 'translate-x-4' : 'translate-x-0'}`} />
                         </button>
                       </div>
                     ))}

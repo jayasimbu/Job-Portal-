@@ -194,7 +194,7 @@ const MCP = () => {
         </div>
       </header>
 
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3 shadow-sm">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-[2rem] border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 px-4 py-3 shadow-sm">
         <div className="flex flex-wrap gap-2">
           {feedTabs.map((tab) => (
             <button
@@ -237,7 +237,7 @@ const MCP = () => {
         {/* ===== LEFT COLUMN: Pipeline + Engine Status ===== */}
         <div className="lg:col-span-4 space-y-6">
           {/* Pipeline Flow */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2rem] p-7 shadow-sm relative overflow-hidden">
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[2rem] p-7 shadow-sm relative overflow-hidden">
             <div className="absolute top-0 right-0 p-6 opacity-[0.03]">
               <span className="material-symbols-outlined text-[8rem]">memory</span>
             </div>
@@ -274,7 +274,7 @@ const MCP = () => {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2rem] p-7 shadow-sm">
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[2rem] p-7 shadow-sm">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 flex items-center gap-2">
                 <span className="material-symbols-outlined text-sm text-blue-600">notifications</span>
@@ -305,7 +305,7 @@ const MCP = () => {
                     key={notification.id}
                     className={`rounded-xl border p-3 ${
                       notification.isRead
-                        ? "bg-slate-50/70 dark:bg-slate-800/40 border-slate-100 dark:border-slate-800"
+                        ? "bg-slate-100/70 dark:bg-slate-800/40 border-slate-200 dark:border-slate-700"
                         : "bg-blue-50/70 dark:bg-blue-900/10 border-blue-100 dark:border-blue-900/30"
                     }`}
                   >
@@ -317,7 +317,7 @@ const MCP = () => {
                       {!notification.isRead && (
                         <button
                           onClick={() => markRead(notification.id)}
-                          className="shrink-0 rounded-full px-2.5 py-1 text-[8px] font-black uppercase tracking-widest bg-white dark:bg-slate-900 border border-blue-200 dark:border-blue-800 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-950/40"
+                          className="shrink-0 rounded-full px-2.5 py-1 text-[8px] font-black uppercase tracking-widest bg-slate-50 dark:bg-slate-900 border border-blue-200 dark:border-blue-800 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-950/40"
                         >
                           Mark Read
                         </button>
@@ -351,7 +351,7 @@ const MCP = () => {
                 </div>
             </div>
 
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm text-center flex flex-col justify-center col-span-4 md:col-span-2">
+            <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5 shadow-sm text-center flex flex-col justify-center col-span-4 md:col-span-2">
               <span className="text-4xl font-black tracking-tighter text-blue-600">{displayData?.total_matches || displayData?.total || 0}</span>
               <span className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">Top Matches</span>
             </div>
@@ -359,7 +359,7 @@ const MCP = () => {
 
           {/* SCORE BREAKDOWN & EXPLAINABILITY (Top Match) */}
           {topJob && (
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2rem] p-7 shadow-sm">
+            <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[2rem] p-7 shadow-sm">
               <div className="flex items-center justify-between mb-5">
                 <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 flex items-center gap-2">
                   <span className="material-symbols-outlined text-sm text-blue-600">tune</span>
@@ -367,19 +367,19 @@ const MCP = () => {
                 </h3>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-                <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-3 bg-slate-50/60 dark:bg-slate-800/30">
+                <div className="rounded-xl border border-slate-300 dark:border-slate-700 p-3 bg-slate-100/60 dark:bg-slate-800/30">
                   <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">ATS</span>
                   <p className="text-xl font-black text-blue-600 mt-1">{topComponents.ats}%</p>
                 </div>
-                <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-3 bg-slate-50/60 dark:bg-slate-800/30">
+                <div className="rounded-xl border border-slate-300 dark:border-slate-700 p-3 bg-slate-100/60 dark:bg-slate-800/30">
                   <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Semantic</span>
                   <p className="text-xl font-black text-cyan-600 mt-1">{topComponents.semantic}%</p>
                 </div>
-                <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-3 bg-slate-50/60 dark:bg-slate-800/30">
+                <div className="rounded-xl border border-slate-300 dark:border-slate-700 p-3 bg-slate-100/60 dark:bg-slate-800/30">
                   <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Experience</span>
                   <p className="text-xl font-black text-emerald-600 mt-1">{topComponents.experience}%</p>
                 </div>
-                <div className="rounded-xl border border-slate-200 dark:border-slate-800 p-3 bg-slate-50/60 dark:bg-slate-800/30">
+                <div className="rounded-xl border border-slate-300 dark:border-slate-700 p-3 bg-slate-100/60 dark:bg-slate-800/30">
                   <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Trend</span>
                   <p className="text-xl font-black text-amber-600 mt-1">{topComponents.trend}%</p>
                 </div>
@@ -419,7 +419,7 @@ const MCP = () => {
           )}
 
           {/* RANKED JOBS */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2rem] p-7 shadow-sm">
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[2rem] p-7 shadow-sm">
             <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-5 flex items-center gap-2">
               <span className="material-symbols-outlined text-sm text-emerald-500">format_list_numbered</span>
               Adaptive Job Recommendations
@@ -435,10 +435,10 @@ const MCP = () => {
                 {displayData.jobs.map((job, i) => {
                   const isExpanded = expandedJob === i;
                   return (
-                    <div key={i} className="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden transition-all hover:border-blue-400 bg-slate-50/50 dark:bg-slate-800/20">
+                    <div key={i} className="border border-slate-300 dark:border-slate-700 rounded-2xl overflow-hidden transition-all hover:border-blue-400 bg-slate-100/50 dark:bg-slate-800/20">
                       {/* Job Row */}
                       <div
-                        className="flex items-center justify-between p-4 cursor-pointer group bg-white dark:bg-slate-900"
+                        className="flex items-center justify-between p-4 cursor-pointer group bg-slate-50 dark:bg-slate-900"
                         onClick={() => { setExpandedJob(isExpanded ? null : i); if (!isExpanded) sendFeedback(job.jobId, "click"); }}
                       >
                         <div className="flex items-center gap-4 min-w-0">
@@ -473,7 +473,7 @@ const MCP = () => {
 
                       {/* Expanded Detail - Focused on Action & Skill Gap */}
                       {isExpanded && (
-                        <div className="px-5 pb-5 pt-4 border-t border-slate-100 dark:border-slate-800 duration-300">
+                        <div className="px-5 pb-5 pt-4 border-t border-slate-200 dark:border-slate-700 duration-300">
                             {/* Dynamic Skill Gap UI */}
                             <div>
                               <h5 className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 flex items-center gap-1.5">
@@ -495,10 +495,10 @@ const MCP = () => {
                                       </div>
                                   </div>
                                   {job.skillGap.learningPath?.length > 0 && (
-                                    <div className="space-y-3 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                                    <div className="space-y-3 p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-300 dark:border-slate-700 shadow-sm">
                                       <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-1">Recommended Learning Path</span>
                                       {job.skillGap.learningPath.map((pathObj, pi) => (
-                                        <div key={pi} className="space-y-2 border-b border-slate-100 dark:border-slate-800 pb-3 last:border-0 last:pb-0">
+                                        <div key={pi} className="space-y-2 border-b border-slate-200 dark:border-slate-700 pb-3 last:border-0 last:pb-0">
                                             <div className="flex items-center gap-2 text-[11px] font-black text-slate-800 dark:text-white uppercase tracking-tight">
                                                 <span className="material-symbols-outlined text-sm text-blue-500">school</span>
                                                 {pathObj.skill} Mastery
@@ -540,7 +540,7 @@ const MCP = () => {
                             </button>
                             <button
                               onClick={(e) => { e.stopPropagation(); sendFeedback(job.jobId, "ignore"); }}
-                              className="h-10 px-5 border border-slate-200 dark:border-slate-700 text-slate-500 text-[9px] font-black uppercase tracking-widest rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all active:scale-95 flex items-center justify-center gap-2 bg-white dark:bg-slate-900 shadow-sm"
+                              className="h-10 px-5 border border-slate-300 dark:border-slate-700 text-slate-500 text-[9px] font-black uppercase tracking-widest rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-all active:scale-95 flex items-center justify-center gap-2 bg-slate-50 dark:bg-slate-900 shadow-sm"
                             >
                               <span className="material-symbols-outlined text-sm">visibility_off</span> Ignore Match
                             </button>
@@ -555,7 +555,7 @@ const MCP = () => {
           </div>
 
           {/* SKILL MATRIX */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2rem] p-7 shadow-sm">
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[2rem] p-7 shadow-sm">
             <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-5 flex items-center gap-2">
               <span className="material-symbols-outlined text-sm text-indigo-500">fingerprint</span>
               Skills Identified
@@ -568,7 +568,7 @@ const MCP = () => {
             ) : (
               <div className="flex flex-wrap gap-2">
                 {displayData.skills.map((skill, i) => (
-                  <span key={i} className="px-3 py-1.5 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[10px] font-black uppercase tracking-tight rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                  <span key={i} className="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[10px] font-black uppercase tracking-tight rounded-xl border border-slate-300 dark:border-slate-700 shadow-sm">
                     {skill}
                   </span>
                 ))}

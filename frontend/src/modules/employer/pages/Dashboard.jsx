@@ -44,8 +44,8 @@ export default function Dashboard() {
       {/* METRICS */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {metrics.map((m, idx) => (
-          <div key={idx} className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-5 flex flex-col gap-2 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
-            <div className={`size-9 rounded-lg bg-slate-50 dark:bg-slate-800 flex items-center justify-center ${m.color}`}>
+          <div key={idx} className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 flex flex-col gap-2 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+            <div className={`size-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center ${m.color}`}>
               <m.icon size={18} />
             </div>
             <div>
@@ -58,7 +58,7 @@ export default function Dashboard() {
       </div>
 
       {/* HIRING PIPELINE */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+      <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest">Hiring Pipeline</h3>
           <span className="text-xs font-semibold text-slate-500">{pipelineTotal} Total Candidates</span>
@@ -100,7 +100,7 @@ export default function Dashboard() {
           
           <div className="space-y-2">
             {recentApplicants.map((app, idx) => (
-              <div key={idx} className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-4 flex items-center justify-between gap-3 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group">
+              <div key={idx} className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-4 flex items-center justify-between gap-3 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group">
                 <div className="flex items-center gap-3">
                   <div className="size-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-blue-600 font-black text-base group-hover:scale-105 transition-transform">
                     {app.name.charAt(0)}
@@ -113,7 +113,7 @@ export default function Dashboard() {
                 <div className="flex items-center gap-4">
                   <div className="hidden sm:flex items-center gap-1">
                     {app.skills.map(s => (
-                      <span key={s} className="text-[10px] font-bold text-slate-500 bg-slate-50 dark:bg-slate-800 px-2 py-0.5 rounded">{s}</span>
+                      <span key={s} className="text-[10px] font-bold text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">{s}</span>
                     ))}
                   </div>
                   <div className="text-right">
@@ -148,7 +148,7 @@ export default function Dashboard() {
           
           <div className="space-y-2">
             {activeJobs.map((job, idx) => (
-              <div key={idx} className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 cursor-pointer group">
+              <div key={idx} className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 cursor-pointer group">
                 <div className="flex items-center justify-between">
                   <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">{job.title}</h4>
                   <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-900/20 px-2.5 py-1 rounded uppercase tracking-widest">{job.status}</span>
@@ -165,7 +165,7 @@ export default function Dashboard() {
           </div>
 
           {/* Quick Analytics */}
-          <div className="bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-xl p-5 space-y-3">
+          <div className="bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl p-5 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest">Quick Analytics</h3>
             <div className="grid grid-cols-3 gap-3">
               {[

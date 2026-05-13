@@ -10,7 +10,7 @@ const Shimmer = ({ className, width, height, rounded = 'rounded-2xl' }) => {
 };
 
 export const ShimmerCard = () => (
-  <div className="p-6 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[32px] space-y-6">
+  <div className="p-6 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[32px] space-y-6">
     <div className="flex justify-between items-start">
       <Shimmer width="56px" height="56px" />
       <Shimmer width="80px" height="24px" rounded="rounded-full" />
@@ -25,7 +25,7 @@ export const ShimmerCard = () => (
 export const ShimmerList = () => (
   <div className="space-y-4 w-full">
     {[1, 2, 3].map(i => (
-      <div key={i} className="p-6 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[28px] flex items-center justify-between gap-6">
+      <div key={i} className="p-6 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[28px] flex items-center justify-between gap-6">
         <div className="flex items-center gap-6 flex-1">
           <Shimmer width="56px" height="56px" />
           <div className="space-y-2 flex-1">

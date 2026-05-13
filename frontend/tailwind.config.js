@@ -12,6 +12,7 @@ export default {
         display: ['Outfit', 'system-ui', 'sans-serif'],
       },
       colors: {
+        white: '#F8FAFC', // slate-50 - eye-friendly soft white
         primary: {
           DEFAULT: '#2563EB',
           dark: '#1D4ED8',
@@ -39,11 +40,11 @@ export default {
           dark: '#DC2626',
         },
         background: {
-          light: '#F8FAFC',
+          light: '#F1F5F9', // slate-100 - eye-friendly base
           dark: '#0F172A',
         },
         surface: {
-          light: '#FFFFFF',
+          light: '#F8FAFC', // slate-50 - soft surface
           dark: '#1E293B',
         },
         text: {

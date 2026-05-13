@@ -116,7 +116,7 @@ export default function ResumeInsights() {
 
         {/* STATS OVERVIEW CARDS */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-          <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+          <div className="bg-slate-50 p-6 rounded-3xl border border-slate-200 shadow-sm">
             <div className="flex items-center justify-between mb-4">
               <div className="size-10 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
                 <span className="material-symbols-outlined">analytics</span>
@@ -127,7 +127,7 @@ export default function ResumeInsights() {
             <h3 className="text-3xl font-black text-slate-900 mt-1">{stats.atsScore}%</h3>
           </div>
 
-          <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+          <div className="bg-slate-50 p-6 rounded-3xl border border-slate-200 shadow-sm">
             <div className="flex items-center justify-between mb-4">
               <div className="size-10 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center">
                 <span className="material-symbols-outlined">lightbulb</span>
@@ -137,7 +137,7 @@ export default function ResumeInsights() {
             <h3 className="text-3xl font-black text-slate-900 mt-1">{stats.pendingFixes}</h3>
           </div>
 
-          <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+          <div className="bg-slate-50 p-6 rounded-3xl border border-slate-200 shadow-sm">
             <div className="flex items-center justify-between mb-4">
               <div className="size-10 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center">
                 <span className="material-symbols-outlined">history</span>
@@ -147,7 +147,7 @@ export default function ResumeInsights() {
             <h3 className="text-3xl font-black text-slate-900 mt-1">{stats.versions}</h3>
           </div>
 
-          <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm ring-2 ring-blue-600/5 ring-offset-0">
+          <div className="bg-slate-50 p-6 rounded-3xl border border-slate-200 shadow-sm ring-2 ring-blue-600/5 ring-offset-0">
             <div className="flex items-center justify-between mb-4">
               <div className="size-10 bg-blue-600 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-blue-600/20">
                 <span className="material-symbols-outlined">trending_up</span>
@@ -166,7 +166,7 @@ export default function ResumeInsights() {
               onClick={() => setActiveTab(tab.id)}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${
                 activeTab === tab.id 
-                  ? 'bg-white text-blue-600 shadow-sm' 
+                  ? 'bg-slate-50 text-blue-600 shadow-sm' 
                   : 'text-slate-500 hover:text-slate-700'
               }`}
             >
@@ -182,13 +182,13 @@ export default function ResumeInsights() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Active Resume Card */}
               <div className="lg:col-span-1 space-y-6">
-                <div className="bg-white rounded-3xl border border-slate-100 p-6 shadow-sm">
+                <div className="bg-slate-50 rounded-3xl border border-slate-200 p-6 shadow-sm">
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Active Resume</h3>
                     <span className="size-2 bg-emerald-500 rounded-full animate-pulse"></span>
                   </div>
                   <div className="flex items-center gap-4 mb-8">
-                    <div className="size-14 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400">
+                    <div className="size-14 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-400">
                       <span className="material-symbols-outlined text-[32px]">description</span>
                     </div>
                     <div className="flex-1 min-w-0">
@@ -201,7 +201,7 @@ export default function ResumeInsights() {
                     </div>
                   </div>
                   <div className="space-y-3">
-                    <button className="w-full py-3 bg-slate-50 hover:bg-slate-100 text-slate-700 rounded-xl text-xs font-black uppercase tracking-wider transition-colors">
+                    <button className="w-full py-3 bg-slate-100 hover:bg-slate-100 text-slate-700 rounded-xl text-xs font-black uppercase tracking-wider transition-colors">
                       Download PDF
                     </button>
                     <button 
@@ -224,7 +224,7 @@ export default function ResumeInsights() {
 
               {/* Main Analysis Results */}
               <div className="lg:col-span-2">
-                <div className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm h-full">
+                <div className="bg-slate-50 rounded-3xl border border-slate-200 p-8 shadow-sm h-full">
                   <h3 className="text-lg font-black text-slate-900 mb-8 flex items-center gap-2">
                     <span className="material-symbols-outlined text-blue-600">checklist</span>
                     Analysis Summary
@@ -257,15 +257,15 @@ export default function ResumeInsights() {
           )}
 
           {activeTab === 'suggestions' && (
-            <div className="bg-white rounded-3xl border border-slate-100 p-8 shadow-sm">
+            <div className="bg-slate-50 rounded-3xl border border-slate-200 p-8 shadow-sm">
               <div className="flex items-center justify-between mb-8">
                 <h3 className="text-lg font-black text-slate-900">Smart Suggestions</h3>
                 <span className="text-[10px] font-black text-blue-600 bg-blue-50 px-3 py-1.5 rounded-xl uppercase tracking-widest">AI Powered</span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="p-6 bg-slate-50 rounded-2xl border border-transparent hover:border-blue-200 transition-all cursor-pointer group">
+                <div className="p-6 bg-slate-100 rounded-2xl border border-transparent hover:border-blue-200 transition-all cursor-pointer group">
                   <div className="flex items-start gap-4">
-                    <div className="size-10 bg-white rounded-xl flex items-center justify-center shadow-sm text-blue-600 shrink-0">
+                    <div className="size-10 bg-slate-50 rounded-xl flex items-center justify-center shadow-sm text-blue-600 shrink-0">
                       <span className="material-symbols-outlined">add_task</span>
                     </div>
                     <div>
@@ -286,8 +286,8 @@ export default function ResumeInsights() {
 
           {/* Fallback for other tabs */}
           {activeTab !== 'ats' && activeTab !== 'suggestions' && (
-            <div className="bg-white rounded-3xl border border-slate-100 p-20 shadow-sm text-center">
-              <div className="size-20 bg-slate-50 text-slate-300 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="bg-slate-50 rounded-3xl border border-slate-200 p-20 shadow-sm text-center">
+              <div className="size-20 bg-slate-100 text-slate-300 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="material-symbols-outlined text-4xl">construction</span>
               </div>
               <h3 className="text-xl font-black text-slate-900">Under Construction</h3>

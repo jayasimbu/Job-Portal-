@@ -28,13 +28,13 @@ const EmployerLayout = ({ children, title }) => {
   const isHome = location.pathname === '/platform/employer/home';
 
   return (
-    <div className="h-screen flex overflow-hidden bg-white dark:bg-[#0a0f14] transition-colors font-sans">
+    <div className="h-screen flex overflow-hidden bg-slate-50 dark:bg-[#0a0f14] transition-colors font-sans">
       {!isHome && <Sidebar role="employer" />}
 
       <div className={`flex-1 flex flex-col min-w-0 ${!isHome ? 'md:pl-[270px]' : ''}`}>
         {/* Header */}
         <header className={`h-20 flex-shrink-0 px-8 flex items-center justify-between sticky top-0 z-50 transition-all ${
-          scrolled ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800 shadow-sm' : 'bg-transparent'
+          scrolled ? 'bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-700 shadow-sm' : 'bg-transparent'
         }`}>
           <div className="flex items-center gap-6">
             {isHome && (
@@ -65,10 +65,10 @@ const EmployerLayout = ({ children, title }) => {
                   </div>
                 </div>
                 <div className="relative">
-                   <div className="size-11 bg-slate-900 dark:bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-sm shadow-xl shadow-blue-500/10 transition-all group-hover:scale-110 group-hover:rotate-3 border-2 border-white dark:border-slate-800">
+                   <div className="size-11 bg-slate-900 dark:bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-sm shadow-xl shadow-blue-500/10 transition-all group-hover:scale-110 group-hover:rotate-3 border-2 border-white dark:border-slate-700">
                     {(user?.full_name || user?.email || 'E')[0].toUpperCase()}
                   </div>
-                  <div className="absolute -bottom-0.5 -right-0.5 size-3.5 bg-emerald-500 rounded-full border-2 border-white dark:border-slate-900"></div>
+                  <div className="absolute -bottom-0.5 -right-0.5 size-3.5 bg-emerald-500 rounded-full border-2 border-white dark:border-slate-800"></div>
                 </div>
               </div>
 
@@ -83,7 +83,7 @@ const EmployerLayout = ({ children, title }) => {
         </header>
 
         {/* Main Content Area - Only this scrolls */}
-        <main id="employer-main-content" className="flex-1 overflow-y-auto px-4 md:px-6 lg:px-6 pb-10 scroll-smooth">
+        <main id="employer-main-content" className="flex-1 overflow-y-auto px-4 md:px-6 lg:px-6 pb-4 scroll-smooth">
           <div className="max-w-[1440px] mx-auto ">
             {children}
           </div>

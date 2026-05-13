@@ -3,7 +3,7 @@ import EmployerShell from '../components/EmployerShell';
 
 export default function ApplicantStatus() {
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-950 font-display text-slate-900 dark:text-slate-100 transition-colors ">
+    <div className="flex h-screen w-full overflow-hidden bg-slate-100 dark:bg-slate-950 font-display text-slate-900 dark:text-slate-100 transition-colors ">
       <EmployerShell active="candidates" />
       
       <main className="flex-1 flex flex-col h-full overflow-hidden">
@@ -34,7 +34,7 @@ export default function ApplicantStatus() {
             </div>
             
             <div className="flex items-center gap-3">
-              <button className="flex items-center justify-center h-11 px-6 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm">
+              <button className="flex items-center justify-center h-11 px-6 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors shadow-sm">
                 <span className="material-symbols-outlined mr-2 text-[20px]">mail</span>
                 Email
               </button>
@@ -44,10 +44,10 @@ export default function ApplicantStatus() {
                   <span className="material-symbols-outlined ml-2 text-[20px]">expand_more</span>
                 </button>
                 {/* Simulated Dropdown */}
-                <div className="hidden group-hover:block absolute right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 overflow-hidden z-20">
-                  <button className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Move to Offer</button>
-                  <button className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Schedule 2nd Interview</button>
-                  <div className="border-t border-slate-100 dark:border-slate-700 my-1"></div>
+                <div className="hidden group-hover:block absolute right-0 mt-2 w-48 bg-slate-50 dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden z-20">
+                  <button className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">Move to Offer</button>
+                  <button className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">Schedule 2nd Interview</button>
+                  <div className="border-t border-slate-200 dark:border-slate-700 my-1"></div>
                   <button className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">Reject Applicant</button>
                 </div>
               </div>
@@ -61,15 +61,15 @@ export default function ApplicantStatus() {
             <div className="lg:col-span-4 space-y-6">
               
               {/* Candidate Profile Card */}
-              <div className="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
+              <div className="bg-slate-50 dark:bg-slate-900 rounded-xl shadow-sm border border-slate-300 dark:border-slate-700 p-6">
                 <div className="flex flex-col items-center text-center mb-6">
                   <div className="relative mb-4">
                     <div 
-                      className="bg-center bg-no-repeat bg-cover rounded-full size-32 shadow-md border-2 border-white dark:border-slate-800"
+                      className="bg-center bg-no-repeat bg-cover rounded-full size-32 shadow-md border-2 border-white dark:border-slate-700"
                       style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300&auto=format&fit=crop)' }}
                     ></div>
-                    <div className="absolute bottom-1 right-1 bg-white dark:bg-slate-900 p-1.5 rounded-full shadow-sm">
-                      <div className="bg-green-500 size-3 rounded-full border-2 border-white dark:border-slate-900"></div>
+                    <div className="absolute bottom-1 right-1 bg-slate-50 dark:bg-slate-900 p-1.5 rounded-full shadow-sm">
+                      <div className="bg-green-500 size-3 rounded-full border-2 border-white dark:border-slate-800"></div>
                     </div>
                   </div>
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white">Sarah Jenkins</h3>
@@ -87,7 +87,7 @@ export default function ApplicantStatus() {
               </div>
 
               {/* Documents Card */}
-              <div className="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
+              <div className="bg-slate-50 dark:bg-slate-900 rounded-xl shadow-sm border border-slate-300 dark:border-slate-700 p-6">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="font-bold text-slate-900 dark:text-white">Documents</h3>
                   <button className="text-blue-600 hover:text-blue-700 text-sm font-semibold transition-colors">View All</button>
@@ -104,7 +104,7 @@ export default function ApplicantStatus() {
             <div className="lg:col-span-8 space-y-6">
               
               {/* Vertical Timeline Card */}
-              <div className="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 md:p-8">
+              <div className="bg-slate-50 dark:bg-slate-900 rounded-xl shadow-sm border border-slate-300 dark:border-slate-700 p-6 md:p-8">
                 <div className="flex items-center justify-between mb-8">
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white">Application Timeline</h3>
                   <span className="text-sm text-slate-500 dark:text-slate-400">Total duration: 12 days</span>
@@ -139,7 +139,7 @@ export default function ApplicantStatus() {
                     </div>
                     {/* Active Content */}
                     <div className="flex-1 -mt-2">
-                      <div className="bg-slate-50 dark:bg-slate-800/50 rounded-lg p-5 border border-blue-200 dark:border-blue-900/30 shadow-sm">
+                      <div className="bg-slate-100 dark:bg-slate-800/50 rounded-lg p-5 border border-blue-200 dark:border-blue-900/30 shadow-sm">
                         <div className="flex justify-between items-start mb-2">
                           <div className="flex items-center gap-2">
                             <h4 className="text-base font-bold text-blue-600 dark:text-blue-400">Interview In Progress</h4>
@@ -151,7 +151,7 @@ export default function ApplicantStatus() {
                           Technical interview with Lead Designer (Alex M.) and Product Manager.
                         </p>
                         <div className="flex gap-3 mt-4">
-                          <button className="px-4 py-2 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded text-sm font-semibold text-slate-700 dark:text-white hover:border-blue-600 hover:text-blue-600 dark:hover:border-blue-400 dark:hover:text-blue-400 transition-colors shadow-sm">
+                          <button className="px-4 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded text-sm font-semibold text-slate-700 dark:text-white hover:border-blue-600 hover:text-blue-600 dark:hover:border-blue-400 dark:hover:text-blue-400 transition-colors shadow-sm">
                             View Calendar
                           </button>
                         </div>
@@ -174,7 +174,7 @@ export default function ApplicantStatus() {
               </div>
 
               {/* Internal Notes Section */}
-              <div className="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
+              <div className="bg-slate-50 dark:bg-slate-900 rounded-xl shadow-sm border border-slate-300 dark:border-slate-700 p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="bg-blue-50 dark:bg-blue-900/20 p-2 rounded-lg text-blue-600 dark:text-blue-400">
                     <span className="material-symbols-outlined">edit_note</span>
@@ -183,7 +183,7 @@ export default function ApplicantStatus() {
                 </div>
                 
                 {/* Existing Note */}
-                <div className="bg-slate-50 dark:bg-slate-800/50 rounded-lg p-4 mb-4 border border-slate-100 dark:border-slate-700">
+                <div className="bg-slate-100 dark:bg-slate-800/50 rounded-lg p-4 mb-4 border border-slate-200 dark:border-slate-700">
                   <div className="flex justify-between items-center mb-2">
                     <div className="flex items-center gap-2">
                       <div className="size-6 rounded-full bg-blue-500 text-white text-xs flex items-center justify-center font-bold shadow-sm">
@@ -201,7 +201,7 @@ export default function ApplicantStatus() {
                 {/* New Note Input */}
                 <div className="relative mt-4">
                   <textarea 
-                    className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-slate-900 dark:text-white min-h-[100px] resize-none outline-none transition-all placeholder-slate-400"
+                    className="w-full bg-slate-100 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-lg p-3 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-slate-900 dark:text-white min-h-[100px] resize-none outline-none transition-all placeholder-slate-400"
                     placeholder="Type a new internal note here..."
                   ></textarea>
                   <div className="absolute bottom-3 right-3 flex items-center gap-2">
@@ -227,8 +227,8 @@ export default function ApplicantStatus() {
 
 function ContactItem({ icon, label, value, isLink }) {
   return (
-    <div className="flex items-center gap-3 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer group border border-transparent hover:border-slate-200 dark:hover:border-slate-700">
-      <div className="bg-white dark:bg-slate-700 p-2 rounded-lg shadow-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors text-slate-500 dark:text-slate-400">
+    <div className="flex items-center gap-3 p-3 rounded-lg bg-slate-100 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer group border border-transparent hover:border-slate-300 dark:hover:border-slate-700">
+      <div className="bg-slate-50 dark:bg-slate-700 p-2 rounded-lg shadow-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors text-slate-500 dark:text-slate-400">
         <span className="material-symbols-outlined text-[20px]">{icon}</span>
       </div>
       <div className="flex flex-col overflow-hidden">
@@ -243,7 +243,7 @@ function ContactItem({ icon, label, value, isLink }) {
 
 function DocumentItem({ icon, color, name, meta }) {
   return (
-    <div className="flex items-center justify-between p-3 border border-slate-200 dark:border-slate-700 rounded-lg group hover:border-blue-200 dark:hover:border-blue-800 transition-colors bg-white dark:bg-slate-800/50 cursor-pointer">
+    <div className="flex items-center justify-between p-3 border border-slate-300 dark:border-slate-700 rounded-lg group hover:border-blue-200 dark:hover:border-blue-800 transition-colors bg-slate-50 dark:bg-slate-800/50 cursor-pointer">
       <div className="flex items-center gap-3">
         <span className={`material-symbols-outlined text-${color}-500 text-[28px]`}>{icon}</span>
         <div className="flex flex-col">

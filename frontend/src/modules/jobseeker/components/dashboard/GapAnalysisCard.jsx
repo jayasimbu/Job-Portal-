@@ -3,7 +3,7 @@ import { AlertCircle, ChevronRight } from 'lucide-react';
 
 const GapAnalysisCard = ({ gaps, onGapClick }) => {
   return (
-    <div className="bg-white rounded-[12px] p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col h-full">
+    <div className="bg-slate-50 rounded-[12px] p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-slate-200 flex flex-col h-full">
       <div className="flex items-center gap-2 mb-6">
         <AlertCircle size={18} className="text-amber-500" />
         <h3 className="text-sm font-black text-slate-900 uppercase tracking-tight">Intelligence Gap Analysis</h3>
@@ -15,7 +15,7 @@ const GapAnalysisCard = ({ gaps, onGapClick }) => {
             <button 
               key={i}
               onClick={() => onGapClick(gap)}
-              className="w-full flex items-center justify-between p-3.5 rounded-xl bg-slate-50 border border-transparent hover:border-amber-200 hover:bg-amber-50 transition-all group text-left"
+              className="w-full flex items-center justify-between p-3.5 rounded-xl bg-slate-100 border border-transparent hover:border-amber-200 hover:bg-amber-50 transition-all group text-left"
             >
               <div className="flex items-center gap-3">
                 <span className="text-rose-500 font-black">❗</span>

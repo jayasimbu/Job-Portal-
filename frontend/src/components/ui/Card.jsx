@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Card = ({ children, className = '', ...props }) => (
   <div 
-    className={`bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl shadow-sm transition-all overflow-hidden ${className}`}
+    className={`bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm transition-all overflow-hidden ${className}`}
     {...props}
   >
     {children}
@@ -10,7 +10,7 @@ export const Card = ({ children, className = '', ...props }) => (
 );
 
 export const CardHeader = ({ children, className = '' }) => (
-  <div className={`px-6 py-4 border-b border-slate-50 dark:border-slate-800 flex items-center justify-between ${className}`}>
+  <div className={`px-6 py-4 border-b border-slate-50 dark:border-slate-700 flex items-center justify-between ${className}`}>
     {children}
   </div>
 );
@@ -22,7 +22,7 @@ export const CardBody = ({ children, className = '' }) => (
 );
 
 export const CardFooter = ({ children, className = '' }) => (
-  <div className={`px-6 py-4 border-t border-slate-50 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-800/30 ${className}`}>
+  <div className={`px-6 py-4 border-t border-slate-50 dark:border-slate-700 bg-slate-100/30 dark:bg-slate-800/30 ${className}`}>
     {children}
   </div>
 );
@@ -58,9 +58,9 @@ export const MetricCard = ({ icon: Icon, label, value, trend, color = 'blue' }) 
 
 export const InsightCard = ({ title, description, icon: Icon, actionLabel, onAction }) => (
   <Card className="p-6 bg-gradient-to-br from-blue-600 to-indigo-700 text-white border-none shadow-xl shadow-blue-600/20 relative overflow-hidden group">
-    <div className="absolute top-0 right-0 size-32 bg-white/10 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-white/20 transition-all" />
+    <div className="absolute top-0 right-0 size-32 bg-slate-50/10 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-slate-50/20 transition-all" />
     <div className="relative z-10 space-y-6">
-      <div className="size-12 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center">
+      <div className="size-12 bg-slate-50/20 backdrop-blur-md rounded-xl flex items-center justify-center">
         <Icon size={24} />
       </div>
       <div className="space-y-2">
@@ -70,7 +70,7 @@ export const InsightCard = ({ title, description, icon: Icon, actionLabel, onAct
       {actionLabel && (
         <button 
           onClick={onAction}
-          className="w-full py-3 bg-white text-blue-600 rounded-xl font-bold text-sm hover:bg-blue-50 transition-all active:scale-95 shadow-lg"
+          className="w-full py-3 bg-slate-50 text-blue-600 rounded-xl font-bold text-sm hover:bg-blue-50 transition-all active:scale-95 shadow-lg"
         >
           {actionLabel}
         </button>
@@ -84,7 +84,7 @@ export const DashboardCard = ({ title, subtitle, children, icon: Icon, action })
     <CardHeader className="flex-shrink-0">
       <div className="flex items-center gap-3">
         {Icon && (
-          <div className="size-8 bg-slate-50 dark:bg-slate-800 rounded-lg flex items-center justify-center text-blue-600">
+          <div className="size-8 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center text-blue-600">
             <Icon size={18} />
           </div>
         )}

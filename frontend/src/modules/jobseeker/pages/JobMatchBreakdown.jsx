@@ -17,16 +17,16 @@ export default function JobMatchBreakdown() {
   };
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors ">
+    <div className="flex h-screen w-full overflow-hidden bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors ">
       <JobSeekerShell active="dashboard" />
       
       <main className="flex-1 overflow-y-auto w-full max-w-[1280px] mx-auto p-4 sm:p-6 lg:p-10">
         
         {/* Job Heading Section */}
-        <div className="mb-8 rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+        <div className="mb-8 rounded-2xl bg-slate-50 dark:bg-slate-800 p-6 shadow-sm border border-slate-300 dark:border-slate-700">
           <div className="flex flex-col md:flex-row justify-between gap-6 items-start md:items-center">
             <div className="flex gap-5 items-center">
-              <div className="size-16 rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center p-2 shrink-0 border border-slate-200 dark:border-slate-600">
+              <div className="size-16 rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center p-2 shrink-0 border border-slate-300 dark:border-slate-600">
                 <div className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-600 rounded flex items-center justify-center text-white font-bold text-xl">
                   T
                 </div>
@@ -58,7 +58,7 @@ export default function JobMatchBreakdown() {
               </div>
             </div>
             <div className="flex gap-3 w-full md:w-auto">
-              <button className="flex-1 md:flex-none h-11 px-6 rounded-xl border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors flex items-center justify-center gap-2">
+              <button className="flex-1 md:flex-none h-11 px-6 rounded-xl border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-bold hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors flex items-center justify-center gap-2">
                 <span className="material-symbols-outlined icon-filled">bookmark</span>
                 Save
               </button>
@@ -77,7 +77,7 @@ export default function JobMatchBreakdown() {
           <div className="lg:col-span-8 flex flex-col gap-8">
             
             {/* Tabs */}
-            <div className="flex border-b border-slate-200 dark:border-slate-700 overflow-x-auto">
+            <div className="flex border-b border-slate-300 dark:border-slate-700 overflow-x-auto">
               {['Overview', 'Company', 'Reviews'].map(tab => (
                 <button 
                   key={tab}
@@ -93,7 +93,7 @@ export default function JobMatchBreakdown() {
               ))}
             </div>
 
-            <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col gap-8">
+            <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-300 dark:border-slate-700 flex flex-col gap-8">
               {/* Job Overview */}
               <section>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">About the Role</h3>
@@ -152,7 +152,7 @@ export default function JobMatchBreakdown() {
                     { icon: 'laptop_mac', text: 'New MacBook Pro' },
                     { icon: 'school', text: 'Learning Budget' }
                   ].map((benefit, idx) => (
-                    <div key={idx} className="flex items-center gap-3 p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50">
+                    <div key={idx} className="flex items-center gap-3 p-4 rounded-xl bg-slate-100 dark:bg-slate-700/50">
                       <span className="material-symbols-outlined text-blue-600">{benefit.icon}</span>
                       <span className="font-medium text-slate-700 dark:text-slate-200">{benefit.text}</span>
                     </div>
@@ -166,7 +166,7 @@ export default function JobMatchBreakdown() {
           <aside className="lg:col-span-4 lg:sticky lg:top-24 flex flex-col gap-6">
             
             {/* AI Match Card */}
-            <div className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-slate-200 dark:border-slate-700">
+            <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-slate-300 dark:border-slate-700">
               {/* Header Gradient */}
               <div className="bg-gradient-to-r from-blue-600 to-blue-600 p-4 text-white">
                 <div className="flex items-center justify-between">
@@ -174,7 +174,7 @@ export default function JobMatchBreakdown() {
                     <span className="material-symbols-outlined">auto_awesome</span>
                     AI Match Insights
                   </h3>
-                  <span className="bg-white/20 px-2 py-0.5 rounded text-xs font-medium backdrop-blur-sm">Beta</span>
+                  <span className="bg-slate-50/20 px-2 py-0.5 rounded text-xs font-medium backdrop-blur-sm">Beta</span>
                 </div>
               </div>
               
@@ -241,7 +241,7 @@ export default function JobMatchBreakdown() {
             </div>
 
             {/* Other similar jobs mini-list */}
-            <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5">
+            <div className="rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-5">
               <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">
                 Similar High Matches
               </h4>

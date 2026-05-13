@@ -3,7 +3,7 @@ import JobSeekerShell from '../components/JobSeekerShell';
 
 export default function SearchHistory() {
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors ">
+    <div className="flex h-screen w-full overflow-hidden bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors ">
       <JobSeekerShell active="search-history" />
       
       <main className="flex-1 overflow-y-auto w-full p-4 lg:p-10 lg:py-8 flex flex-col lg:flex-row gap-8">
@@ -24,7 +24,7 @@ export default function SearchHistory() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
             {/* Segmented Control */}
             <div className="bg-slate-200 dark:bg-slate-800 p-1 rounded-xl inline-flex w-full sm:w-auto">
-              <button className="flex-1 sm:flex-none px-6 py-2 rounded-lg bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white text-sm font-bold transition-all">
+              <button className="flex-1 sm:flex-none px-6 py-2 rounded-lg bg-slate-50 dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white text-sm font-bold transition-all">
                 Internal Searches
               </button>
               <button className="flex-1 sm:flex-none px-6 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 text-sm font-medium transition-all">
@@ -33,11 +33,11 @@ export default function SearchHistory() {
             </div>
             {/* Filters/Actions */}
             <div className="flex gap-2 w-full sm:w-auto">
-              <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-600 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+              <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-600 dark:text-slate-300 text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
                 <span className="material-symbols-outlined text-[18px]">calendar_month</span>
                 <span>Date Range</span>
               </button>
-              <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-600 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+              <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-600 dark:text-slate-300 text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
                 <span className="material-symbols-outlined text-[18px]">filter_list</span>
                 <span>Filter</span>
               </button>
@@ -55,7 +55,7 @@ export default function SearchHistory() {
             <div className="flex flex-col gap-4">
               
               {/* Item 1: Search */}
-              <div className="group bg-white dark:bg-[#1e293b] p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 dark:hover:border-blue-500/50 hover:shadow-md transition-all">
+              <div className="group bg-slate-50 dark:bg-[#1e293b] p-5 rounded-2xl border border-slate-300 dark:border-slate-700 hover:border-blue-500/50 dark:hover:border-blue-500/50 hover:shadow-md transition-all">
                 <div className="flex flex-col sm:flex-row justify-between gap-4">
                   <div className="flex gap-4">
                     <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0 text-blue-600">
@@ -67,9 +67,9 @@ export default function SearchHistory() {
                         <span className="text-xs text-slate-400 font-medium">2 hours ago</span>
                       </div>
                       <div className="flex flex-wrap gap-2">
-                        <span className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700">Remote</span>
-                        <span className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700">Full-time</span>
-                        <span className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700">$120k - $160k</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-300 dark:border-slate-700">Remote</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-300 dark:border-slate-700">Full-time</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-300 dark:border-slate-700">$120k - $160k</span>
                       </div>
                     </div>
                   </div>
@@ -81,11 +81,11 @@ export default function SearchHistory() {
               </div>
 
               {/* Item 2: External View */}
-              <div className="group bg-white dark:bg-[#1e293b] p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-600 transition-all relative overflow-hidden">
+              <div className="group bg-slate-50 dark:bg-[#1e293b] p-5 rounded-2xl border border-slate-300 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-all relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-1 h-full bg-orange-400"></div>
                 <div className="flex flex-col sm:flex-row justify-between gap-4 pl-2">
                   <div className="flex gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 overflow-hidden shrink-0 flex items-center justify-center text-slate-400">
+                    <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 overflow-hidden shrink-0 flex items-center justify-center text-slate-400">
                       <span className="material-symbols-outlined text-[24px]">corporate_fare</span>
                     </div>
                     <div>
@@ -107,7 +107,7 @@ export default function SearchHistory() {
               </div>
 
               {/* Item 3: Search */}
-              <div className="group bg-white dark:bg-[#1e293b] p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 dark:hover:border-blue-500/50 hover:shadow-md transition-all">
+              <div className="group bg-slate-50 dark:bg-[#1e293b] p-5 rounded-2xl border border-slate-300 dark:border-slate-700 hover:border-blue-500/50 dark:hover:border-blue-500/50 hover:shadow-md transition-all">
                 <div className="flex flex-col sm:flex-row justify-between gap-4">
                   <div className="flex gap-4">
                     <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0 text-blue-600">
@@ -119,12 +119,12 @@ export default function SearchHistory() {
                         <span className="text-xs text-slate-400 font-medium">5 hours ago</span>
                       </div>
                       <div className="flex flex-wrap gap-2">
-                        <span className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700">San Francisco, CA</span>
-                        <span className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700">Hybrid</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-300 dark:border-slate-700">San Francisco, CA</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-300 dark:border-slate-700">Hybrid</span>
                       </div>
                     </div>
                   </div>
-                  <button className="sm:self-center shrink-0 flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-bold hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 transition-colors w-full sm:w-auto">
+                  <button className="sm:self-center shrink-0 flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-bold hover:bg-slate-100 dark:hover:bg-slate-700 hover:border-slate-300 transition-colors w-full sm:w-auto">
                     <span className="material-symbols-outlined text-[18px]">replay</span>
                     Rerun
                   </button>
@@ -143,7 +143,7 @@ export default function SearchHistory() {
             </h3>
             <div className="flex flex-col gap-4">
               {/* Item 4: Search */}
-               <div className="group bg-white dark:bg-[#1e293b] p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 dark:hover:border-blue-500/50 hover:shadow-md transition-all">
+               <div className="group bg-slate-50 dark:bg-[#1e293b] p-5 rounded-2xl border border-slate-300 dark:border-slate-700 hover:border-blue-500/50 dark:hover:border-blue-500/50 hover:shadow-md transition-all">
                 <div className="flex flex-col sm:flex-row justify-between gap-4">
                   <div className="flex gap-4">
                     <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0 text-blue-600">
@@ -155,12 +155,12 @@ export default function SearchHistory() {
                         <span className="text-xs text-slate-400 font-medium">1 day ago</span>
                       </div>
                       <div className="flex flex-wrap gap-2">
-                        <span className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700">New York</span>
-                        <span className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700">Startup</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-300 dark:border-slate-700">New York</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-300 dark:border-slate-700">Startup</span>
                       </div>
                     </div>
                   </div>
-                  <button className="sm:self-center shrink-0 flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-bold hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-300 transition-colors w-full sm:w-auto">
+                  <button className="sm:self-center shrink-0 flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-bold hover:bg-slate-100 dark:hover:bg-slate-700 hover:border-slate-300 transition-colors w-full sm:w-auto">
                     <span className="material-symbols-outlined text-[18px]">replay</span>
                     Rerun
                   </button>
@@ -168,11 +168,11 @@ export default function SearchHistory() {
               </div>
 
               {/* Item 5: External View */}
-              <div className="group bg-white dark:bg-[#1e293b] p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-600 transition-all relative overflow-hidden">
+              <div className="group bg-slate-50 dark:bg-[#1e293b] p-5 rounded-2xl border border-slate-300 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-all relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-1 h-full bg-orange-400"></div>
                 <div className="flex flex-col sm:flex-row justify-between gap-4 pl-2">
                   <div className="flex gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 overflow-hidden shrink-0 flex items-center justify-center text-slate-400">
+                    <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 overflow-hidden shrink-0 flex items-center justify-center text-slate-400">
                       <span className="material-symbols-outlined text-[24px]">corporate_fare</span>
                     </div>
                     <div>
@@ -206,7 +206,7 @@ export default function SearchHistory() {
 
         {/* Right Column: AI Recommendations (Sidebar) */}
         <aside className="w-full lg:w-96 shrink-0 flex flex-col gap-6">
-          <div className="bg-gradient-to-br from-white to-slate-50 dark:from-[#1e293b] dark:to-[#131d26] rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-6 sticky top-24">
+          <div className="bg-gradient-to-br from-white to-slate-50 dark:from-[#1e293b] dark:to-[#131d26] rounded-2xl border border-slate-300 dark:border-slate-700 shadow-sm p-6 sticky top-24">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
@@ -226,7 +226,7 @@ export default function SearchHistory() {
             </div>
 
             <div className="flex flex-col gap-3">
-              <a className="block p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border border-transparent hover:border-slate-200 dark:hover:border-slate-700 group" href="#">
+              <a className="block p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border border-transparent hover:border-slate-300 dark:hover:border-slate-700 group" href="#">
                 <div className="flex items-start justify-between mb-1">
                   <h4 className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors text-sm">Lead Product Designer</h4>
                   <span className="text-xs font-bold text-green-600 bg-green-50 dark:bg-green-900/20 dark:text-green-400 px-1.5 py-0.5 rounded">98% Match</span>
@@ -238,7 +238,7 @@ export default function SearchHistory() {
                 </div>
               </a>
 
-              <a className="block p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border border-transparent hover:border-slate-200 dark:hover:border-slate-700 group" href="#">
+              <a className="block p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border border-transparent hover:border-slate-300 dark:hover:border-slate-700 group" href="#">
                 <div className="flex items-start justify-between mb-1">
                   <h4 className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors text-sm">Senior UI/UX Designer</h4>
                   <span className="text-xs font-bold text-green-600 bg-green-50 dark:bg-green-900/20 dark:text-green-400 px-1.5 py-0.5 rounded">94% Match</span>
@@ -257,11 +257,11 @@ export default function SearchHistory() {
           </div>
 
           <div className="rounded-2xl bg-indigo-600 text-white p-6 relative overflow-hidden group mt-2">
-            <div className="absolute -right-4 -top-4 w-24 h-24 bg-white/10 rounded-full group-hover:scale-110 transition-transform "></div>
-            <div className="absolute -left-2 -bottom-2 w-16 h-16 bg-white/10 rounded-full group-hover:scale-110 transition-transform "></div>
+            <div className="absolute -right-4 -top-4 w-24 h-24 bg-slate-50/10 rounded-full group-hover:scale-110 transition-transform "></div>
+            <div className="absolute -left-2 -bottom-2 w-16 h-16 bg-slate-50/10 rounded-full group-hover:scale-110 transition-transform "></div>
             <h4 className="font-bold text-lg mb-2 relative z-10">Upload your Resume</h4>
             <p className="text-indigo-100 text-sm mb-4 relative z-10">Get 2x better AI recommendations by uploading your latest CV.</p>
-            <button className="bg-white text-indigo-600 text-sm font-bold px-4 py-2 rounded-lg relative z-10 hover:bg-indigo-50 transition-colors">
+            <button className="bg-slate-50 text-indigo-600 text-sm font-bold px-4 py-2 rounded-lg relative z-10 hover:bg-indigo-50 transition-colors">
               Update Profile
             </button>
           </div>

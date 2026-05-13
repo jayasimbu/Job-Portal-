@@ -68,9 +68,9 @@ export default function AdminDashboard() {
       {/* Metric Cards with Trends */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {metrics.map((m, i) => (
-          <div key={i} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+          <div key={i} className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
             <div className="flex items-center justify-between mb-3">
-              <div className={`size-10 rounded-lg bg-slate-50 dark:bg-slate-800 flex items-center justify-center ${m.color}`}>
+              <div className={`size-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center ${m.color}`}>
                 <m.icon size={20} />
               </div>
               <div className={`flex items-center gap-1 text-xs font-bold ${m.trendUp ? 'text-emerald-500' : 'text-rose-500'}`}>
@@ -87,7 +87,7 @@ export default function AdminDashboard() {
       {/* CHARTS + MODERATION ROW */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {/* Weekly Activity Chart — CSS bars */}
-        <div className="lg:col-span-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+        <div className="lg:col-span-2 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5">
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
               <Activity size={18} className="text-blue-600" />
@@ -117,13 +117,13 @@ export default function AdminDashboard() {
         </div>
 
         {/* Moderation Queue */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+        <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5">
           <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-4">Moderation Queue</h3>
           <div className="space-y-3">
             {moderationQueue.map((item, i) => (
-              <div key={i} className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer">
+              <div key={i} className="flex items-center justify-between p-3 bg-slate-100 dark:bg-slate-800/50 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer">
                 <div className="flex items-center gap-3">
-                  <div className={`size-9 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex items-center justify-center ${item.color}`}>
+                  <div className={`size-9 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 flex items-center justify-center ${item.color}`}>
                     <item.icon size={16} />
                   </div>
                   <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">{item.type}</span>
@@ -144,10 +144,10 @@ export default function AdminDashboard() {
         {/* Recent Employers */}
         <div className="space-y-3">
           <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest">Recent Employers</h2>
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl overflow-hidden">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800 text-xs font-bold uppercase tracking-widest text-slate-500">
+                <tr className="bg-slate-100 dark:bg-slate-800/50 border-b border-slate-300 dark:border-slate-700 text-xs font-bold uppercase tracking-widest text-slate-500">
                   <th className="p-3">Company</th>
                   <th className="p-3">Jobs</th>
                   <th className="p-3">Status</th>
@@ -156,7 +156,7 @@ export default function AdminDashboard() {
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 {recentEmployers.map((emp, i) => (
-                  <tr key={i} className="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition-colors">
+                  <tr key={i} className="hover:bg-slate-100 dark:hover:bg-slate-800/20 transition-colors">
                     <td className="p-3 text-sm font-medium text-slate-900 dark:text-white">{emp.name}</td>
                     <td className="p-3 text-sm font-semibold text-blue-600">{emp.jobs}</td>
                     <td className="p-3">
@@ -177,10 +177,10 @@ export default function AdminDashboard() {
         {/* Recent Job Posts */}
         <div className="space-y-3">
           <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest">Recent Job Posts</h2>
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl overflow-hidden">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800 text-xs font-bold uppercase tracking-widest text-slate-500">
+                <tr className="bg-slate-100 dark:bg-slate-800/50 border-b border-slate-300 dark:border-slate-700 text-xs font-bold uppercase tracking-widest text-slate-500">
                   <th className="p-3">Role</th>
                   <th className="p-3">Company</th>
                   <th className="p-3">Applicants</th>
@@ -189,7 +189,7 @@ export default function AdminDashboard() {
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 {recentJobs.map((job, i) => (
-                  <tr key={i} className="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition-colors">
+                  <tr key={i} className="hover:bg-slate-100 dark:hover:bg-slate-800/20 transition-colors">
                     <td className="p-3 text-sm font-medium text-slate-900 dark:text-white">{job.title}</td>
                     <td className="p-3 text-sm text-slate-500">{job.company}</td>
                     <td className="p-3 text-sm font-semibold text-blue-600">{job.applicants}</td>
@@ -208,10 +208,10 @@ export default function AdminDashboard() {
         {/* Recent Applications */}
         <div className="space-y-3 lg:col-span-2">
           <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest">Recent Applications</h2>
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl overflow-hidden">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800 text-xs font-bold uppercase tracking-widest text-slate-500">
+                <tr className="bg-slate-100 dark:bg-slate-800/50 border-b border-slate-300 dark:border-slate-700 text-xs font-bold uppercase tracking-widest text-slate-500">
                   <th className="p-3">Candidate</th>
                   <th className="p-3">Role</th>
                   <th className="p-3">Match</th>
@@ -220,7 +220,7 @@ export default function AdminDashboard() {
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 {recentApplications.map((app, i) => (
-                  <tr key={i} className="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition-colors">
+                  <tr key={i} className="hover:bg-slate-100 dark:hover:bg-slate-800/20 transition-colors">
                     <td className="p-3 text-sm font-medium text-slate-900 dark:text-white">{app.candidate}</td>
                     <td className="p-3 text-sm text-slate-500">{app.role}</td>
                     <td className="p-3">

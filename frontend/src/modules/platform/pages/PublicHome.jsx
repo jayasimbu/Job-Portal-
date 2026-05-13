@@ -17,9 +17,9 @@ const PublicHome = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="space-y-32 pb-32">
+    <div className="space-y-8 pb-10">
       {/* ═══ HERO SECTION ═══════════════════════════════════════════════ */}
-      <section className="pt-40 px-4 md:px-8 relative overflow-hidden">
+      <section className="pt-10 px-4 md:px-8 relative overflow-hidden">
         {/* Background Gradients */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-gradient-to-b from-blue-50/50 to-transparent dark:from-blue-900/10 dark:to-transparent -z-10" />
         
@@ -30,7 +30,7 @@ const PublicHome = () => {
           </div>
           
           <div className="space-y-6">
-            <h1 className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white leading-[0.95] tracking-tighter uppercase">
+            <h1 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white leading-[0.95] tracking-tighter uppercase">
               Revolutionizing <span className="text-blue-600">Recruitment</span> <br />
               with Intelligence.
             </h1>
@@ -49,7 +49,7 @@ const PublicHome = () => {
             </Button>
             <Button 
               onClick={() => navigate('/about')}
-              className="h-16 px-10 text-lg border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-2xl"
+              className="h-16 px-10 text-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-2xl"
               variant="outline"
             >
               How it Works
@@ -62,7 +62,7 @@ const PublicHome = () => {
       <section className="px-4 md:px-8 max-w-[1400px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Candidates */}
-          <div className="group p-12 rounded-[40px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/5">
+          <div className="group p-12 rounded-[40px] bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-blue-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/5">
             <div className="size-16 rounded-2xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 mb-8 transition-transform group-hover:scale-110 group-hover:rotate-3">
               <Users size={32} />
             </div>
@@ -87,7 +87,7 @@ const PublicHome = () => {
             </ul>
             <Button 
               onClick={() => navigate('/auth/signup?role=jobseeker')}
-              className="w-full h-14 bg-slate-900 dark:bg-white dark:text-slate-900 text-white rounded-2xl font-black"
+              className="w-full h-14 bg-slate-900 dark:bg-slate-50 dark:text-slate-900 text-white rounded-2xl font-black"
             >
               Find Your Next Role
             </Button>
@@ -128,9 +128,9 @@ const PublicHome = () => {
       </section>
 
       {/* ═══ TRUST SECTION ═══════════════════════════════════════════════ */}
-      <section className="bg-slate-50 dark:bg-slate-900/50 py-32 border-y border-slate-200 dark:border-slate-800">
+      <section className="bg-slate-100 dark:bg-slate-900/50 py-8 border-y border-slate-300 dark:border-slate-700">
         <div className="max-w-[1200px] mx-auto px-4 md:px-8">
-          <div className="text-center space-y-4 mb-20">
+          <div className="text-center space-y-4 mb-6">
             <h2 className="text-4xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">Powered by Intelligent Design</h2>
             <p className="text-lg text-slate-500 font-medium max-w-2xl mx-auto">
               Our platform uses state-of-the-art AI models to ensure transparency and fairness in the recruitment process.
@@ -144,7 +144,7 @@ const PublicHome = () => {
               { icon: BarChart3, title: 'Data Sovereignty', desc: 'Your data is encrypted and protected. You maintain full control over your profile.' }
             ].map((feature, i) => (
               <div key={i} className="space-y-4 text-center">
-                <div className="size-14 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center justify-center mx-auto text-blue-600">
+                <div className="size-14 bg-slate-50 dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 flex items-center justify-center mx-auto text-blue-600">
                   <feature.icon size={28} />
                 </div>
                 <h4 className="text-lg font-black text-slate-900 dark:text-white uppercase">{feature.title}</h4>
@@ -156,22 +156,23 @@ const PublicHome = () => {
       </section>
 
       {/* ═══ FINAL CTA ═══════════════════════════════════════════════════ */}
-      <section className="px-4 md:px-8 max-w-[1200px] mx-auto">
-        <div className="relative p-12 md:p-24 rounded-[60px] bg-blue-600 overflow-hidden text-center">
-          <div className="absolute top-0 right-0 size-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+      <section className="px-4 md:px-8 max-w-[1100px] mx-auto">
+        <div className="relative p-10 md:p-14 rounded-[40px] bg-blue-600 overflow-hidden text-center">
+          <div className="absolute top-0 right-0 size-96 bg-slate-50/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
           <div className="absolute bottom-0 left-0 size-96 bg-blue-900/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
           
-          <div className="relative z-10 space-y-10">
-            <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter leading-none">
+          <div className="relative z-10 space-y-8">
+            <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter leading-none">
               The Future of <br /> Hiring is Here.
             </h2>
-            <p className="text-xl text-blue-100 font-medium max-w-xl mx-auto">
+            <p className="text-lg text-blue-100 font-medium max-w-xl mx-auto">
               Join the 20,000+ professionals and companies already using LINKUP to define their success.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
                <Button 
                 onClick={() => navigate('/auth/signup')}
-                className="h-16 px-12 bg-white text-blue-600 hover:bg-blue-50 font-black text-lg rounded-2xl"
+                className="h-14 px-10 bg-slate-50 text-blue-600 hover:bg-slate-100 font-black text-base rounded-xl"
+                variant="secondary"
                >
                  Create Free Account
                </Button>

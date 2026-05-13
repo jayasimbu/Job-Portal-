@@ -19,7 +19,7 @@ export default function CompanyProfilePage() {
   }, [employerId]);
 
   if (loading) return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50">
+    <div className="min-h-screen flex items-center justify-center bg-slate-100">
       <div className="flex flex-col items-center gap-4">
          <div className="size-12 bg-blue-600/10 rounded-xl flex items-center justify-center ">
             <span className="material-symbols-outlined text-blue-600">business</span>
@@ -30,7 +30,7 @@ export default function CompanyProfilePage() {
   );
 
   if (error || !data) return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 gap-6 p-8">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-slate-100 gap-6 p-8">
       <div className="size-20 bg-rose-50 rounded-[2rem] flex items-center justify-center text-rose-500">
          <span className="material-symbols-outlined text-4xl">domain_disabled</span>
       </div>
@@ -45,7 +45,7 @@ export default function CompanyProfilePage() {
   const { company = {}, jobs = [] } = data;
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans pb-20">
+    <div className="min-h-screen bg-slate-100 flex flex-col font-sans pb-20">
       
       {/* Header / Hero */}
       <header className="relative h-[40vh] min-h-[350px] flex items-end pb-16 overflow-hidden bg-slate-900">
@@ -56,7 +56,7 @@ export default function CompanyProfilePage() {
 
          <div className="max-w-6xl mx-auto w-full px-8 relative z-20">
             <div className="flex flex-col md:flex-row items-center md:items-end gap-10">
-               <div className="size-32 bg-white rounded-3xl border-4 border-slate-800 shadow-2xl flex items-center justify-center p-6 shrink-0">
+               <div className="size-32 bg-slate-50 rounded-3xl border-4 border-slate-800 shadow-2xl flex items-center justify-center p-6 shrink-0">
                  {company.logo ? (
                    <img src={company.logo} alt="Logo" className="size-full object-contain" />
                  ) : (
@@ -81,7 +81,7 @@ export default function CompanyProfilePage() {
                </div>
 
                <div className="flex items-center gap-3 shrink-0">
-                  <button className="size-12 bg-white/10 border border-white/10 rounded-xl flex items-center justify-center text-slate-400 hover:text-white transition-all">
+                  <button className="size-12 bg-slate-50/10 border border-white/10 rounded-xl flex items-center justify-center text-slate-400 hover:text-white transition-all">
                      <span className="material-symbols-outlined">share</span>
                   </button>
                   <button className={UI.BTN_PRIMARY + " h-12 px-8"}>
@@ -136,7 +136,7 @@ export default function CompanyProfilePage() {
                   </div>
                 ))
               ) : (
-                <div className="p-16 border-2 border-dashed border-slate-200 rounded-3xl text-center">
+                <div className="p-16 border-2 border-dashed border-slate-300 rounded-3xl text-center">
                    <span className="material-symbols-outlined text-slate-300 text-4xl mb-4">work_outline</span>
                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">No active job postings at this time.</p>
                 </div>
@@ -199,7 +199,7 @@ export default function CompanyProfilePage() {
 
       </main>
 
-      <footer className="mt-20 py-8 border-t border-slate-100 text-center">
+      <footer className="mt-20 py-8 border-t border-slate-200 text-center">
          <p className="text-[10px] font-semibold text-slate-300 uppercase tracking-[0.4em]">© LINKUP • {new Date().getFullYear()}</p>
       </footer>
     </div>

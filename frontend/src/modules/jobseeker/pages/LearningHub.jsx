@@ -47,7 +47,7 @@ export default function LearningHub() {
 
         {/* Hero Section */}
         <div className="w-full mb-8">
-          <div className="flex flex-col md:flex-row gap-8 bg-white dark:bg-slate-800 rounded-xl p-6 md:p-8 shadow-sm border border-slate-100 dark:border-slate-700">
+          <div className="flex flex-col md:flex-row gap-8 bg-slate-50 dark:bg-slate-800 rounded-xl p-6 md:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
             {/* Left Image Panel */}
             <div className="w-full md:w-1/3 aspect-video rounded-lg relative overflow-hidden group bg-gradient-to-br from-blue-800 to-blue-600 flex items-center justify-center">
               <span className="material-symbols-outlined text-white text-6xl opacity-60">school</span>
@@ -109,7 +109,7 @@ export default function LearningHub() {
             ].map((filter) => (
               <button
                 key={filter.label}
-                className={`flex h-9 items-center justify-center gap-x-2 rounded-lg px-4 transition-colors text-sm font-medium ${filter.active ? 'bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-slate-100 hover:bg-slate-300 dark:hover:bg-slate-600' : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-slate-300 text-slate-900 dark:text-slate-100'}`}
+                className={`flex h-9 items-center justify-center gap-x-2 rounded-lg px-4 transition-colors text-sm font-medium ${filter.active ? 'bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-slate-100 hover:bg-slate-300 dark:hover:bg-slate-600' : 'bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-slate-300 text-slate-900 dark:text-slate-100'}`}
               >
                 <span>{filter.label}</span>
                 <span className="material-symbols-outlined text-[18px]">{filter.icon}</span>
@@ -136,13 +136,13 @@ export default function LearningHub() {
           {courses.length > 0 ? courses.map((course, idx) => (
             <div
               key={idx}
-              className="bg-white dark:bg-slate-800 rounded-xl shadow-sm dark:shadow-none border border-slate-100 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow"
+              className="bg-slate-50 dark:bg-slate-800 rounded-xl shadow-sm dark:shadow-none border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow"
             >
               <div className="flex flex-col md:flex-row h-full">
                 {/* Course Image */}
                 <div className={`w-full md:w-64 md:min-w-[280px] h-48 md:h-auto bg-gradient-to-br ${course.imgGradient || 'from-slate-700 to-slate-900'} relative flex items-center justify-center`}>
                   <span className="material-symbols-outlined text-white text-6xl opacity-40">{course.imgIcon || 'school'}</span>
-                  <div className="absolute top-3 left-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1 shadow-sm">
+                  <div className="absolute top-3 left-3 bg-slate-50/90 dark:bg-slate-900/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1 shadow-sm">
                     <span className={`material-symbols-outlined text-[14px] text-blue-600`}>school</span>
                     {course.provider}
                   </div>
@@ -167,7 +167,7 @@ export default function LearningHub() {
                       {course.matchReason}
                     </p>
                   </div>
-                  <div className="flex items-center justify-end mt-4 pt-4 border-t border-slate-100 dark:border-slate-700">
+                  <div className="flex items-center justify-end mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
                     <a
                       href={course.url || "#"}
                       target="_blank"
@@ -182,7 +182,7 @@ export default function LearningHub() {
               </div>
             </div>
           )) : (
-            <div className="w-full bg-white dark:bg-slate-800 rounded-xl p-12 text-center border border-dashed border-slate-300 dark:border-slate-700">
+            <div className="w-full bg-slate-50 dark:bg-slate-800 rounded-xl p-12 text-center border border-dashed border-slate-300 dark:border-slate-700">
                 <span className="material-symbols-outlined text-5xl text-slate-300 dark:text-slate-600 mb-4">search_off</span>
                 <p className="text-slate-500 dark:text-slate-400">No specific gaps identified yet. Try uploading a new resume to get targeted recommendations.</p>
             </div>

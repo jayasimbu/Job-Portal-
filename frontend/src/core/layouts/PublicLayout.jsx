@@ -35,10 +35,10 @@ const PublicLayout = ({ children }) => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0F172A] transition-colors font-sans">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0F172A] transition-colors font-sans">
       <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all ${
         scrolled 
-          ? 'py-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800/50 shadow-sm' 
+          ? 'py-3 bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-700/50 shadow-sm' 
           : 'py-6 bg-transparent'
       }`}>
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between">
@@ -74,7 +74,7 @@ const PublicLayout = ({ children }) => {
                 <>
                   <button 
                     onClick={() => handleNav('/auth/login', 'login')}
-                    className="text-sm font-bold text-slate-600 dark:text-slate-300 px-6 py-3 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all uppercase tracking-widest"
+                    className="text-sm font-bold text-slate-600 dark:text-slate-300 px-6 py-3 rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-all uppercase tracking-widest"
                   >
                     Sign In
                   </button>
@@ -91,7 +91,7 @@ const PublicLayout = ({ children }) => {
             {/* Mobile Menu Toggle */}
             <button
               onClick={toggleMenu}
-              className="md:hidden size-12 rounded-2xl bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:bg-blue-50 transition-all border border-slate-100 dark:border-slate-700"
+              className="md:hidden size-12 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:bg-blue-50 transition-all border border-slate-200 dark:border-slate-700"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -100,7 +100,7 @@ const PublicLayout = ({ children }) => {
 
         {/* Mobile Dropdown Menu */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 shadow-2xl z-[100] duration-300">
+          <div className="md:hidden absolute top-full left-0 w-full bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 shadow-2xl z-[100] duration-300">
             <div className="flex flex-col p-8 gap-6">
               {/* Mobile navigation links removed */}
               <div className="flex flex-col gap-4 pt-4">
@@ -120,7 +120,7 @@ const PublicLayout = ({ children }) => {
                   <>
                     <button 
                       onClick={() => handleNav('/auth/login', 'login')}
-                      className="flex items-center gap-4 w-full p-5 rounded-2xl bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-bold text-lg"
+                      className="flex items-center gap-4 w-full p-5 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-bold text-lg"
                     >
                       <LogIn size={22} />
                       <span>Sign In</span>

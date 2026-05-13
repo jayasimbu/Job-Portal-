@@ -35,8 +35,8 @@ const NewPassword = () => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center p-4 font-inter">
-            <div className="max-w-md w-full bg-white dark:bg-slate-800 rounded-3xl shadow-2xl p-8 border border-slate-100 dark:border-slate-700 duration-500">
+        <div className="min-h-screen bg-slate-100 dark:bg-slate-900 flex items-center justify-center p-4 font-inter">
+            <div className="max-w-md w-full bg-slate-50 dark:bg-slate-800 rounded-3xl shadow-2xl p-8 border border-slate-200 dark:border-slate-700 duration-500">
                 <div className="text-center mb-8">
                     <div className="size-16 bg-blue-50 dark:bg-blue-900/20 rounded-[2rem] flex items-center justify-center mx-auto mb-6 shadow-inner border border-blue-100/50 dark:border-blue-800/30">
                         <span className="material-symbols-outlined text-blue-600 text-3xl">lock_open</span>
@@ -66,8 +66,8 @@ const NewPassword = () => {
                             <input
                                 type="password"
                                 required
-                                className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50/30 dark:bg-slate-900/30 dark:text-white text-sm outline-none transition-all focus:ring-4 focus:ring-blue-500/10 ${
-                                    status === 'error' && message.includes('match') ? 'border-red-200 focus:border-red-500 ring-red-500/10' : 'border-slate-200 dark:border-slate-700 focus:border-blue-500'
+                                className={`w-full px-4 py-3.5 rounded-xl border bg-slate-100/30 dark:bg-slate-900/30 dark:text-white text-sm outline-none transition-all focus:ring-4 focus:ring-blue-500/10 ${
+                                    status === 'error' && message.includes('match') ? 'border-red-200 focus:border-red-500 ring-red-500/10' : 'border-slate-300 dark:border-slate-700 focus:border-blue-500'
                                 }`}
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -79,8 +79,8 @@ const NewPassword = () => {
                             <input
                                 type="password"
                                 required
-                                className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50/30 dark:bg-slate-900/30 dark:text-white text-sm outline-none transition-all focus:ring-4 focus:ring-blue-500/10 ${
-                                    status === 'error' && message.includes('match') ? 'border-red-200 focus:border-red-500 ring-red-500/10' : 'border-slate-200 dark:border-slate-700 focus:border-blue-500'
+                                className={`w-full px-4 py-3.5 rounded-xl border bg-slate-100/30 dark:bg-slate-900/30 dark:text-white text-sm outline-none transition-all focus:ring-4 focus:ring-blue-500/10 ${
+                                    status === 'error' && message.includes('match') ? 'border-red-200 focus:border-red-500 ring-red-500/10' : 'border-slate-300 dark:border-slate-700 focus:border-blue-500'
                                 }`}
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}

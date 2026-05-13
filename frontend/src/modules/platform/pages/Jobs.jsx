@@ -96,9 +96,9 @@ export default function Jobs() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0d1117] transition-colors">
+    <div className="min-h-screen bg-slate-100 dark:bg-[#0d1117] transition-colors">
       {/* HEADER SECTION */}
-      <div className="bg-white dark:bg-[#0d1117] border-b border-slate-200 dark:border-slate-800 pt-8 pb-6 px-8 sticky top-0 z-30 backdrop-blur-xl bg-opacity-80">
+      <div className="bg-slate-50 dark:bg-[#0d1117] border-b border-slate-300 dark:border-slate-700 pt-8 pb-6 px-8 sticky top-0 z-30 backdrop-blur-xl bg-opacity-80">
         <div>
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div>
@@ -112,7 +112,7 @@ export default function Jobs() {
                 <input 
                   type="text" 
                   placeholder="Search roles, skills, or companies..." 
-                  className="w-full h-12 pl-12 pr-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-sm font-semibold focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 outline-none transition-all"
+                  className="w-full h-12 pl-12 pr-4 bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-sm font-semibold focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 outline-none transition-all"
                 />
               </div>
               <Button className="h-12 px-8 rounded-xl font-black text-[11px] uppercase tracking-widest shadow-lg shadow-blue-500/10">
@@ -122,14 +122,14 @@ export default function Jobs() {
           </div>
 
           <div className="flex flex-wrap items-center gap-4 mt-8">
-            <div className="flex bg-slate-100 dark:bg-slate-900 p-1 rounded-xl border border-slate-200 dark:border-slate-800">
+            <div className="flex bg-slate-100 dark:bg-slate-900 p-1 rounded-xl border border-slate-300 dark:border-slate-700">
               {['recommended', 'all'].map(tab => (
                 <button 
                   key={tab}
                   onClick={() => setActiveTab(tab)}
                   className={`px-6 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${
                     activeTab === tab 
-                    ? 'bg-white dark:bg-slate-800 text-blue-600 shadow-sm' 
+                    ? 'bg-slate-50 dark:bg-slate-800 text-blue-600 shadow-sm' 
                     : 'text-slate-500 hover:text-slate-800 dark:hover:text-white'
                   }`}
                 >
@@ -143,7 +143,7 @@ export default function Jobs() {
             {/* QUICK FILTERS */}
             <div className="flex items-center gap-2">
               {['Remote', 'Hybrid', 'Full-time', 'Senior'].map(filter => (
-                <button key={filter} className="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-800 text-[10px] font-bold text-slate-500 uppercase tracking-widest hover:bg-white dark:hover:bg-slate-900 transition-all">
+                <button key={filter} className="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-[10px] font-bold text-slate-500 uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-900 transition-all">
                   {filter}
                 </button>
               ))}
@@ -156,7 +156,7 @@ export default function Jobs() {
       <div className="px-8 py-8">
         <div className="space-y-4">
           {loading ? (
-            <div className="py-32 text-center">
+            <div className="py-12 text-center">
                <div className="animate-spin size-8 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"></div>
                <p className="font-black uppercase tracking-widest text-slate-400 text-xs">Synchronizing Match Engine...</p>
             </div>
@@ -164,11 +164,11 @@ export default function Jobs() {
             jobs.map((job) => (
               <div 
                 key={job.id} 
-                className="group bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-6 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 flex flex-col lg:flex-row lg:items-center justify-between gap-8"
+                className="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 flex flex-col lg:flex-row lg:items-center justify-between gap-8"
               >
                 {/* 1. Primary Info */}
                 <div className="flex items-start gap-6 flex-1">
-                  <div className="size-16 shrink-0 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 flex items-center justify-center font-black text-2xl text-blue-600 transition-transform group-hover:scale-105">
+                  <div className="size-16 shrink-0 bg-slate-100 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 flex items-center justify-center font-black text-2xl text-blue-600 transition-transform group-hover:scale-105">
                     {job.company?.[0] || 'T'}
                   </div>
                   <div className="min-w-0">
@@ -194,7 +194,7 @@ export default function Jobs() {
                 </div>
 
                 {/* 2. AI Intelligence Stats */}
-                <div className="flex flex-wrap items-center gap-8 lg:px-12 lg:border-x border-slate-100 dark:border-slate-800">
+                <div className="flex flex-wrap items-center gap-8 lg:px-12 lg:border-x border-slate-200 dark:border-slate-700">
                   <div className="flex flex-col items-center">
                     <span className="text-2xl font-black text-blue-600 tracking-tighter">{job.matchScore}%</span>
                     <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest mt-0.5">MATCH SCORE</span>
@@ -221,7 +221,7 @@ export default function Jobs() {
                   <Button 
                     onClick={() => navigate(`/platform/jobseeker/jobs/${job.id}`)}
                     variant="secondary" 
-                    className="h-11 rounded-xl font-black text-[10px] uppercase tracking-widest border-slate-200 dark:border-slate-800"
+                    className="h-11 rounded-xl font-black text-[10px] uppercase tracking-widest border-slate-300 dark:border-slate-700"
                   >
                     Analyze Details
                   </Button>

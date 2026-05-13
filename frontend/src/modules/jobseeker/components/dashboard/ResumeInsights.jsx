@@ -11,7 +11,7 @@ const ResumeInsights = ({ quality, issues }) => {
   const displayIssues = issues || defaultIssues;
 
   return (
-    <div className="bg-white rounded-[12px] p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-slate-100">
+    <div className="bg-slate-50 rounded-[12px] p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-slate-200">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-8">
         <div className="flex items-center gap-4">
           <div className="size-16 bg-blue-500/10 text-blue-500 rounded-2xl flex items-center justify-center">
@@ -64,7 +64,7 @@ const ResumeInsights = ({ quality, issues }) => {
          </div>
       </div>
 
-      <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+      <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-slate-100 rounded-2xl border border-slate-200">
          <div className="flex items-center gap-3">
             <div className="size-2 bg-blue-500 rounded-full animate-ping"></div>
             <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Aesthetic Optimization Service Available</p>

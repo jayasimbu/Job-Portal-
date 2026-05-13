@@ -151,7 +151,7 @@ export default function CompanyDetail() {
       </button>
 
       {/* HEADER */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-10 shadow-sm flex flex-col md:flex-row items-center gap-10">
+      <div className="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[2.5rem] p-10 shadow-sm flex flex-col md:flex-row items-center gap-10">
         <div className="size-36 bg-slate-100 dark:bg-slate-800 rounded-[2rem] flex items-center justify-center text-blue-600 shadow-inner shrink-0">
           <Building2 size={64} />
         </div>
@@ -166,7 +166,7 @@ export default function CompanyDetail() {
             <Briefcase size={16} className="text-blue-500" /> {companyData.industry}
           </p>
           <div className="flex items-center justify-center md:justify-start gap-6 text-xs font-bold text-slate-400 mt-6">
-            <span className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800 px-4 py-2 rounded-xl border border-slate-100 dark:border-slate-800">
+            <span className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700">
                <Users size={16} /> {companyData.companySize}
             </span>
             <a href={companyData.website} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-blue-600 bg-blue-50 dark:bg-blue-900/20 px-4 py-2 rounded-xl border border-blue-100 dark:border-blue-800 hover:scale-105 transition-transform">
@@ -178,8 +178,8 @@ export default function CompanyDetail() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* SECTION 1 — COMPANY INFO */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-8 shadow-sm space-y-8">
-          <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 border-b border-slate-100 dark:border-slate-800 pb-5">Operational Details</h2>
+        <div className="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[2.5rem] p-8 shadow-sm space-y-8">
+          <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 border-b border-slate-200 dark:border-slate-700 pb-5">Operational Details</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-1.5">
               <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Official Domain</p>
@@ -211,18 +211,18 @@ export default function CompanyDetail() {
         </div>
 
         {/* SECTION 2 — JOB ACTIVITY */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-8 shadow-sm space-y-8">
-          <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 border-b border-slate-100 dark:border-slate-800 pb-5">Talent Acquisition Metrics</h2>
+        <div className="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[2.5rem] p-8 shadow-sm space-y-8">
+          <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 border-b border-slate-200 dark:border-slate-700 pb-5">Talent Acquisition Metrics</h2>
           <div className="grid grid-cols-2 gap-6">
-            <div className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-700 space-y-1">
+            <div className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-200 dark:border-slate-700 space-y-1">
               <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Active Jobs</p>
               <p className="text-4xl font-black text-slate-900 dark:text-white">{companyData.activeJobs}</p>
             </div>
-            <div className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-700 space-y-1">
+            <div className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-200 dark:border-slate-700 space-y-1">
               <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Closed Cycles</p>
               <p className="text-4xl font-black text-slate-900 dark:text-white">{companyData.closedJobs}</p>
             </div>
-            <div className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-700 space-y-1">
+            <div className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-200 dark:border-slate-700 space-y-1">
               <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Total Candidates</p>
               <p className="text-3xl font-black text-slate-900 dark:text-white">{companyData.applicationsReceived.toLocaleString()}</p>
             </div>
@@ -235,12 +235,12 @@ export default function CompanyDetail() {
       </div>
 
       {/* SECTION 3 — RECENT JOB POSTS */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-8 shadow-sm space-y-8">
-        <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 border-b border-slate-100 dark:border-slate-800 pb-5">Recent Deployment Cycles</h2>
+      <div className="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[2.5rem] p-8 shadow-sm space-y-8">
+        <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 border-b border-slate-200 dark:border-slate-700 pb-5">Recent Deployment Cycles</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead>
-              <tr className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] border-b border-slate-50 dark:border-slate-800">
+              <tr className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] border-b border-slate-50 dark:border-slate-700">
                 <th className="pb-6 px-4">Position Title</th>
                 <th className="pb-6 px-4">Applicants</th>
                 <th className="pb-6 px-4">Current Status</th>
@@ -257,14 +257,14 @@ export default function CompanyDetail() {
                   </td>
                   <td className="py-6 px-4">
                     <span className={`px-4 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest border ${
-                      job.status === 'Active' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-slate-100 text-slate-500 border-slate-200'
+                      job.status === 'Active' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-slate-100 text-slate-500 border-slate-300'
                     }`}>
                       {job.status}
                     </span>
                   </td>
                   <td className="py-6 px-4 text-xs font-bold text-slate-400 uppercase tracking-widest">{job.date}</td>
                   <td className="py-6 px-4 text-right">
-                    <button className="size-10 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-blue-600 transition-all border border-slate-100 dark:border-slate-700 ml-auto mr-0">
+                    <button className="size-10 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-blue-600 transition-all border border-slate-200 dark:border-slate-700 ml-auto mr-0">
                       <ExternalLink size={16} />
                     </button>
                   </td>

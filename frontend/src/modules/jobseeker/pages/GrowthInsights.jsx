@@ -29,14 +29,14 @@ export default function GrowthInsights() {
       </header>
 
       {/* Tabs */}
-      <div className="flex gap-2 bg-slate-50 dark:bg-slate-900/50 p-1.5 rounded-2xl border border-slate-100 dark:border-slate-800 mb-8 w-fit">
+      <div className="flex gap-2 bg-slate-100 dark:bg-slate-900/50 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-700 mb-8 w-fit">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
               activeTab === tab.id
-                ? 'bg-white dark:bg-blue-600 text-blue-600 dark:text-white shadow-sm'
+                ? 'bg-slate-50 dark:bg-blue-600 text-blue-600 dark:text-white shadow-sm'
                 : 'text-slate-500 hover:text-slate-900'
             }`}
           >
@@ -50,7 +50,7 @@ export default function GrowthInsights() {
         {activeTab === 'skillgap' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-10">
             <div className="lg:col-span-5">
-              <div className="bg-white border border-slate-200 rounded-[32px] p-10 shadow-sm flex flex-col items-center text-center">
+              <div className="bg-slate-50 border border-slate-300 rounded-[32px] p-10 shadow-sm flex flex-col items-center text-center">
                  <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-8">Role Readiness</p>
                  
                  <div className="relative size-48 mb-8">
@@ -77,7 +77,7 @@ export default function GrowthInsights() {
                      <span className="text-[10px] font-black uppercase text-blue-600">Technical Skills</span>
                      <span className="text-sm font-bold text-blue-900">92%</span>
                    </div>
-                   <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-between">
+                   <div className="p-4 bg-slate-100 rounded-2xl border border-slate-200 flex items-center justify-between">
                      <span className="text-[10px] font-black uppercase text-slate-500">Industry Context</span>
                      <span className="text-sm font-bold text-slate-900">78%</span>
                    </div>
@@ -86,7 +86,7 @@ export default function GrowthInsights() {
             </div>
 
             <div className="lg:col-span-7 flex flex-col gap-8">
-              <div className="bg-white border border-slate-200 rounded-[32px] p-10 shadow-sm">
+              <div className="bg-slate-50 border border-slate-300 rounded-[32px] p-10 shadow-sm">
                  <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest mb-8">Detected Gaps</h3>
                  <div className="flex flex-wrap gap-3">
                     {missingKeywords.length > 0 ? missingKeywords.map((skill, idx) => (
@@ -99,7 +99,7 @@ export default function GrowthInsights() {
 
               <div className="bg-slate-900 rounded-[32px] p-8 text-white flex items-center justify-between group cursor-pointer shadow-xl shadow-slate-900/20" onClick={() => navigate('/platform/jobseeker/learning')}>
                  <div className="flex items-center gap-4">
-                    <div className="size-12 bg-white/20 rounded-2xl flex items-center justify-center">
+                    <div className="size-12 bg-slate-50/20 rounded-2xl flex items-center justify-center">
                        <span className="material-symbols-outlined">auto_awesome</span>
                     </div>
                     <div>
@@ -115,7 +115,7 @@ export default function GrowthInsights() {
 
         {activeTab === 'profile' && (
           <div className="flex flex-col gap-8 pb-10">
-            <div className="bg-white border border-slate-200 rounded-[32px] p-10 shadow-sm">
+            <div className="bg-slate-50 border border-slate-300 rounded-[32px] p-10 shadow-sm">
               <div className="flex items-center gap-6 mb-10">
                 <div className="size-20 rounded-[28px] bg-blue-600 flex items-center justify-center text-white text-3xl font-black">
                   {detectedSkills[0]?.charAt(0) || 'P'}
@@ -132,7 +132,7 @@ export default function GrowthInsights() {
                    { label: 'Skills Verified', val: detectedSkills.length, color: 'emerald' },
                    { label: 'Profile Views', val: '12', color: 'purple' }
                  ].map(stat => (
-                   <div key={stat.label} className="p-6 bg-slate-50 rounded-2xl border border-slate-100 text-center">
+                   <div key={stat.label} className="p-6 bg-slate-100 rounded-2xl border border-slate-200 text-center">
                       <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">{stat.label}</p>
                       <p className={`text-3xl font-black text-${stat.color}-600`}>{stat.val}</p>
                    </div>
@@ -140,7 +140,7 @@ export default function GrowthInsights() {
               </div>
             </div>
 
-            <div className="bg-white border border-slate-200 rounded-[32px] p-10 shadow-sm">
+            <div className="bg-slate-50 border border-slate-300 rounded-[32px] p-10 shadow-sm">
                <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest mb-10">Upskilling Timeline</h3>
                <div className="space-y-12 relative before:absolute before:left-[17px] before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-100">
                   <div className="relative pl-12">
@@ -167,7 +167,7 @@ export default function GrowthInsights() {
               <div className="bg-blue-600 rounded-[32px] p-12 text-white mb-8 text-center">
                  <h2 className="text-3xl font-black uppercase tracking-tight mb-4">Master Your Domain</h2>
                  <p className="text-blue-100 text-sm font-medium mb-8">Personalized curriculum based on your detected skill gaps.</p>
-                 <button onClick={() => navigate('/platform/jobseeker/learning')} className="h-12 px-10 bg-white text-blue-600 text-[10px] font-black uppercase tracking-widest rounded-xl hover:scale-105 transition-all">
+                 <button onClick={() => navigate('/platform/jobseeker/learning')} className="h-12 px-10 bg-slate-50 text-blue-600 text-[10px] font-black uppercase tracking-widest rounded-xl hover:scale-105 transition-all">
                     Open Learning Hub
                  </button>
               </div>

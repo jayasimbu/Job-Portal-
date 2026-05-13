@@ -45,7 +45,7 @@ const AuthCenter = () => {
 
   return (
     <div style={{ height: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
-         className="bg-slate-50 dark:bg-[#0a0f14] px-4">
+         className="bg-slate-100 dark:bg-[#0a0f14] px-4">
 
       {/* ─── Tab bar with sliding indicator ──────────────────────────── */}
       <div className="w-full max-w-[760px] mb-3 flex-shrink-0">

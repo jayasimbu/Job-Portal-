@@ -35,9 +35,9 @@ const AdminSidebar = () => {
   };
 
   return (
-    <aside className="fixed left-0 top-0 h-full w-[270px] bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col z-[60]">
+    <aside className="fixed left-0 top-0 h-full w-[270px] bg-slate-50 dark:bg-slate-900 border-r border-slate-300 dark:border-slate-700 flex flex-col z-[60]">
       {/* Branding */}
-      <div className="h-24 px-8 flex items-center border-b border-slate-100 dark:border-slate-800">
+      <div className="h-24 px-8 flex items-center border-b border-slate-200 dark:border-slate-700">
         <Link to="/" className="decoration-none">
           <Logo variant="light" />
         </Link>
@@ -53,7 +53,7 @@ const AdminSidebar = () => {
               flex items-center gap-3.5 h-[54px] px-4 rounded-xl text-[16px] font-semibold transition-all
               ${isActive 
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' 
-                : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'}
+                : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'}
             `}
           >
             <item.icon size={20} />
@@ -63,7 +63,7 @@ const AdminSidebar = () => {
       </nav>
 
       {/* Footer */}
-      <div className="p-4 border-t border-slate-100 dark:border-slate-800">
+      <div className="p-4 border-t border-slate-200 dark:border-slate-700">
         <button 
           onClick={handleLogout}
           className="w-full h-12 flex items-center justify-center gap-2.5 px-4 rounded-xl text-[15px] font-bold text-slate-500 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/10 transition-colors"

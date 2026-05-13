@@ -15,7 +15,7 @@ const AnalysisSummary = ({ matchResults }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 h-full">
+    <div className="bg-slate-50 rounded-2xl shadow-sm border border-slate-300 p-6 h-full">
       <h3 className="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
         <PieChart className="size-5 text-indigo-600" />
         Analysis Summary
@@ -50,7 +50,7 @@ const AnalysisSummary = ({ matchResults }) => {
           </div>
         </div>
 
-        <div className="pt-4 border-t border-slate-100">
+        <div className="pt-4 border-t border-slate-200">
           <p className="text-xs font-bold text-slate-500 uppercase mb-3 tracking-widest">Next Steps</p>
           <ul className="space-y-2">
             <li className="flex items-center gap-2 text-sm text-slate-600">

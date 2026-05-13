@@ -126,7 +126,7 @@ export default function MyJobs() {
   };
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+    <div className="flex h-screen w-full overflow-hidden bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
       <JobSeekerShell active="my-jobs" />
 
       <main className="flex-1 w-full max-w-[1200px] mx-auto px-4 py-4 overflow-y-auto">
@@ -157,13 +157,13 @@ export default function MyJobs() {
         <div className="flex flex-wrap gap-2 mb-2">
           <button 
             onClick={() => setActivePage('bookmarks')}
-            className={`flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs font-bold transition-all ${activePage === 'bookmarks' ? 'bg-blue-600 text-white shadow' : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-200'}`}>
+            className={`flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs font-bold transition-all ${activePage === 'bookmarks' ? 'bg-blue-600 text-white shadow' : 'bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-200'}`}>
             <span className="material-symbols-outlined text-base">bookmark</span>
             Saved Jobs
           </button>
           <button 
             onClick={() => setActivePage('applied')}
-            className={`flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs font-bold transition-all ${activePage === 'applied' ? 'bg-green-600 text-white shadow' : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-green-50 hover:text-green-700 hover:border-green-200'}`}>
+            className={`flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs font-bold transition-all ${activePage === 'applied' ? 'bg-green-600 text-white shadow' : 'bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-green-50 hover:text-green-700 hover:border-green-200'}`}>
             <span className="material-symbols-outlined text-base">send</span>
             Applied Jobs
             {appliedJobs.length > 0 && (
@@ -172,7 +172,7 @@ export default function MyJobs() {
           </button>
           <button 
             onClick={() => setActivePage('external')}
-            className={`flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs font-bold transition-all ${activePage === 'external' ? 'bg-purple-600 text-white shadow' : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-purple-50 hover:text-purple-700 hover:border-purple-200'}`}>
+            className={`flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs font-bold transition-all ${activePage === 'external' ? 'bg-purple-600 text-white shadow' : 'bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-purple-50 hover:text-purple-700 hover:border-purple-200'}`}>
             <span className="material-symbols-outlined text-base">open_in_new</span>
             External Jobs
           </button>
@@ -187,7 +187,7 @@ export default function MyJobs() {
         {activePage === 'bookmarks' && (
           <div>
             {/* Filter Tabs */}
-            <div className="flex gap-2 bg-white dark:bg-slate-900 rounded-2xl p-1.5 border border-slate-200 dark:border-slate-800 shadow-sm mb-2 overflow-x-auto">
+            <div className="flex gap-2 bg-slate-50 dark:bg-slate-900 rounded-2xl p-1.5 border border-slate-300 dark:border-slate-700 shadow-sm mb-2 overflow-x-auto">
               {['all', 'Full-time', 'Part-time', 'Contract', 'Remote', 'Hybrid', 'Internship', 'Freelance'].map(filter => (
                 <button 
                   key={filter}
@@ -217,7 +217,7 @@ export default function MyJobs() {
                 </div>
               ) : (
                 filteredJobs.map((job, idx) => (
-                  <article key={job.id || idx} className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm hover:shadow-md hover:border-blue-300 transition-all">
+                  <article key={job.id || idx} className="bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-300 dark:border-slate-700 p-5 shadow-sm hover:shadow-md hover:border-blue-300 transition-all">
                     <div className="flex gap-4 items-start">
                       <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center shrink-0">
                         <span className="material-symbols-outlined text-blue-500">work</span>
@@ -238,7 +238,7 @@ export default function MyJobs() {
                           {(job.tags || []).map(t => <span key={t} className="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">{t}</span>)}
                           {job.type && <span className="px-2.5 py-1 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 text-xs font-bold">{job.type}</span>}
                         </div>
-                        <div className="flex items-center gap-4 mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
+                        <div className="flex items-center gap-4 mt-4 pt-3 border-t border-slate-200 dark:border-slate-700">
                           {job.salary && <span className="flex items-center gap-1 text-sm text-slate-500"><span className="material-symbols-outlined text-base">payments</span>{job.salary}</span>}
                           {job.savedAt && <span className="flex items-center gap-1 text-xs text-slate-400"><span className="material-symbols-outlined text-sm">schedule</span>Saved {timeAgo(job.savedAt)}</span>}
                           <div className="ml-auto flex gap-2">
@@ -285,7 +285,7 @@ export default function MyJobs() {
                   const statusColor = status === "applied" ? "green" : status === "shortlisted" ? "blue" : status === "rejected" ? "red" : "slate";
                   
                   return (
-                    <article key={idx} className={`bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm border-l-4 border-l-${statusColor}-400`}>
+                    <article key={idx} className={`bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-300 dark:border-slate-700 p-5 shadow-sm border-l-4 border-l-${statusColor}-400`}>
                       <div className="flex gap-4 items-start">
                         <div className={`w-12 h-12 rounded-xl bg-${statusColor}-50 dark:bg-${statusColor}-900/20 flex items-center justify-center shrink-0`}>
                           <span className={`material-symbols-outlined text-${statusColor}-500`}>send</span>
@@ -304,7 +304,7 @@ export default function MyJobs() {
                             {(job.tags || []).map(t => <span key={t} className="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">{t}</span>)}
                             {job.type && <span className="px-2.5 py-1 rounded-full bg-green-50 text-green-600 text-xs font-bold">{job.type}</span>}
                           </div>
-                          <div className="flex items-center gap-4 mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
+                          <div className="flex items-center gap-4 mt-4 pt-3 border-t border-slate-200 dark:border-slate-700">
                             {job.salary && <span className="flex items-center gap-1 text-sm text-slate-500"><span className="material-symbols-outlined text-base">payments</span>{job.salary}</span>}
                             {appliedDate && <span className="flex items-center gap-1 text-xs text-slate-400"><span className="material-symbols-outlined text-sm">schedule</span>Applied on {appliedDate}</span>}
                           </div>
@@ -344,7 +344,7 @@ export default function MyJobs() {
                 </div>
               ) : (
                 extJobs.map((job, idx) => (
-                  <article key={job.id || idx} className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm border-l-4 border-l-purple-400">
+                  <article key={job.id || idx} className="bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-300 dark:border-slate-700 p-5 shadow-sm border-l-4 border-l-purple-400">
                     <div className="flex gap-4 items-start">
                       <div className="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-900/20 flex items-center justify-center shrink-0">
                         <span className="material-symbols-outlined text-purple-500">open_in_new</span>
@@ -365,7 +365,7 @@ export default function MyJobs() {
                         <div className="flex flex-wrap gap-2 mt-3">
                           {(job.tags || []).map(t => <span key={t} className="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">{t}</span>)}
                         </div>
-                        <div className="flex items-center gap-4 mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
+                        <div className="flex items-center gap-4 mt-4 pt-3 border-t border-slate-200 dark:border-slate-700">
                           {job.salary && <span className="flex items-center gap-1 text-sm text-slate-500"><span className="material-symbols-outlined text-base">payments</span>{job.salary}</span>}
                           {job.savedAt && <span className="flex items-center gap-1 text-xs text-slate-400"><span className="material-symbols-outlined text-sm">schedule</span>Saved {timeAgo(job.savedAt)}</span>}
                           <div className="ml-auto flex gap-2">

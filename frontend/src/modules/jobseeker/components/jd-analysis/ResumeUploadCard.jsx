@@ -26,7 +26,7 @@ const ResumeUploadCard = ({ onUpload, isParsing, resumeFile, atsScore }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden transition-all hover:shadow-md">
+    <div className="bg-slate-50 rounded-2xl shadow-sm border border-slate-300 overflow-hidden transition-all hover:shadow-md">
       <div className="p-6">
         <h2 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
           <span className="flex items-center justify-center size-8 rounded-full bg-blue-100 text-blue-600 text-sm font-bold">1</span>
@@ -59,10 +59,10 @@ const ResumeUploadCard = ({ onUpload, isParsing, resumeFile, atsScore }) => {
             </div>
           </div>
         ) : (
-          <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
+          <div className="bg-slate-100 rounded-xl p-6 border border-slate-300">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div className="size-12 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-blue-600">
+                <div className="size-12 rounded-lg bg-slate-50 border border-slate-300 flex items-center justify-center text-blue-600">
                   <FileText className="size-6" />
                 </div>
                 <div>

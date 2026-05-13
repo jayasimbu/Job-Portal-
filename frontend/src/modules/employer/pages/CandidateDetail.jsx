@@ -113,7 +113,7 @@ export default function CandidateDetail() {
   }, [id]);
 
   if (loading) return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-black">
+    <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-black">
       <div className="flex flex-col items-center gap-4">
         <div className="size-12 rounded-full border-4 border-blue-600 border-t-transparent animate-spin" />
         <p className="text-sm font-black uppercase tracking-[0.2em] text-slate-400">Analyzing Candidate Match...</p>
@@ -132,7 +132,7 @@ export default function CandidateDetail() {
       </button>
 
       {/* HEADER */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-10 shadow-sm flex flex-col md:flex-row items-center gap-10">
+      <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[2.5rem] p-10 shadow-sm flex flex-col md:flex-row items-center gap-10">
         <div className="size-36 bg-blue-600 rounded-[2rem] flex items-center justify-center text-white text-5xl font-black shadow-2xl shadow-blue-500/20 shrink-0">
           {candidate.name.charAt(0)}
         </div>
@@ -144,8 +144,8 @@ export default function CandidateDetail() {
             </span>
           </div>
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 text-slate-500 font-bold uppercase tracking-widest text-[10px]">
-            <span className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-800"><Briefcase size={14} className="text-blue-500" /> {candidate.role}</span>
-            <span className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-800"><MapPin size={14} className="text-rose-500" /> {candidate.location}</span>
+            <span className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700"><Briefcase size={14} className="text-blue-500" /> {candidate.role}</span>
+            <span className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700"><MapPin size={14} className="text-rose-500" /> {candidate.location}</span>
             <span className="flex items-center gap-2 text-blue-600 bg-blue-50 dark:bg-blue-900/20 px-3 py-1.5 rounded-lg border border-blue-100 dark:border-blue-800"><Clock size={14} /> Applied {candidate.appliedDate}</span>
           </div>
         </div>
@@ -161,8 +161,8 @@ export default function CandidateDetail() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-8">
           {/* SECTION 1 — ABOUT */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-8 shadow-sm space-y-8">
-            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 border-b border-slate-100 dark:border-slate-800 pb-5">Candidate Intelligence</h2>
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[2.5rem] p-8 shadow-sm space-y-8">
+            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 border-b border-slate-200 dark:border-slate-700 pb-5">Candidate Intelligence</h2>
             <div className="space-y-8">
               <div className="space-y-3">
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Professional Summary</p>
@@ -180,11 +180,11 @@ export default function CandidateDetail() {
           </div>
 
           {/* SECTION 2 — SKILLS */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-8 shadow-sm space-y-8">
-            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 border-b border-slate-100 dark:border-slate-800 pb-5">Skill Spectrum</h2>
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[2.5rem] p-8 shadow-sm space-y-8">
+            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 border-b border-slate-200 dark:border-slate-700 pb-5">Skill Spectrum</h2>
             <div className="flex flex-wrap gap-3">
               {candidate.skills.map(skill => (
-                <span key={skill} className="px-5 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl text-xs font-black text-slate-600 dark:text-slate-300 uppercase tracking-widest shadow-sm">
+                <span key={skill} className="px-5 py-3 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl text-xs font-black text-slate-600 dark:text-slate-300 uppercase tracking-widest shadow-sm">
                   {skill}
                 </span>
               ))}
@@ -203,10 +203,10 @@ export default function CandidateDetail() {
                </div>
             </div>
             <div className="flex items-center gap-4">
-               <Button variant="secondary" className="bg-white/5 border-white/10 text-white h-12 px-6 gap-2 text-xs font-black uppercase tracking-widest transition-all hover:bg-white/10">
+               <Button variant="secondary" className="bg-slate-50/5 border-white/10 text-white h-12 px-6 gap-2 text-xs font-black uppercase tracking-widest transition-all hover:bg-slate-50/10">
                   <FileText size={16} /> View
                </Button>
-               <Button variant="secondary" className="bg-white/5 border-white/10 text-white h-12 px-6 gap-2 text-xs font-black uppercase tracking-widest transition-all hover:bg-white/10">
+               <Button variant="secondary" className="bg-slate-50/5 border-white/10 text-white h-12 px-6 gap-2 text-xs font-black uppercase tracking-widest transition-all hover:bg-slate-50/10">
                   <Download size={16} /> Download
                </Button>
             </div>
@@ -215,7 +215,7 @@ export default function CandidateDetail() {
 
         <div className="space-y-8">
           {/* SECTION 3 — ATS MATCH ANALYSIS */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-8 shadow-sm space-y-8">
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[2.5rem] p-8 shadow-sm space-y-8">
             <div className="flex items-center gap-3 text-blue-600">
                <Sparkles size={24} />
                <h2 className="text-xs font-black uppercase tracking-[0.3em]">ATS Match Analysis</h2>
@@ -244,7 +244,7 @@ export default function CandidateDetail() {
                 </div>
               </div>
 
-              <div className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-800">
+              <div className="p-6 bg-slate-100 dark:bg-slate-800/50 rounded-3xl border border-slate-200 dark:border-slate-700">
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Hiring Recommendation</p>
                 <p className="text-sm font-bold text-slate-600 dark:text-slate-300 leading-relaxed">{candidate.recommendation}</p>
               </div>
@@ -256,10 +256,10 @@ export default function CandidateDetail() {
             <Button className="w-full h-14 gap-3 text-xs font-black uppercase tracking-widest shadow-xl shadow-blue-500/20 transition-all hover:scale-105 active:scale-95">
                <CheckCircle2 size={20} /> Shortlist Candidate
             </Button>
-            <Button variant="secondary" className="w-full h-14 gap-3 text-white border-white/10 hover:bg-white/5 text-xs font-black uppercase tracking-widest">
+            <Button variant="secondary" className="w-full h-14 gap-3 text-white border-white/10 hover:bg-slate-50/5 text-xs font-black uppercase tracking-widest">
                <Mail size={18} /> Send Assessment
             </Button>
-            <Button variant="secondary" className="w-full h-14 gap-3 text-white border-white/10 hover:bg-white/5 text-xs font-black uppercase tracking-widest">
+            <Button variant="secondary" className="w-full h-14 gap-3 text-white border-white/10 hover:bg-slate-50/5 text-xs font-black uppercase tracking-widest">
                <MessageSquare size={18} /> Schedule Interview
             </Button>
             <div className="pt-4 border-t border-slate-800">

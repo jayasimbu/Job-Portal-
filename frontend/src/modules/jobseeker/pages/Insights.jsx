@@ -45,8 +45,8 @@ export default function Insights() {
   const scoreColor = score >= 80 ? '#22c55e' : score >= 60 ? '#eab308' : '#ef4444';
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0d1117] text-[#0d141b] dark:text-white">
-      <div className="bg-white dark:bg-[#1a2632] border-b border-slate-200 dark:border-slate-700 px-6 py-4 flex items-center gap-4">
+    <div className="min-h-screen bg-slate-100 dark:bg-[#0d1117] text-[#0d141b] dark:text-white">
+      <div className="bg-slate-50 dark:bg-[#1a2632] border-b border-slate-300 dark:border-slate-700 px-6 py-4 flex items-center gap-4">
         <button onClick={() => navigate(-1)} className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">
           <span className="material-symbols-outlined">arrow_back</span>
         </button>
@@ -72,7 +72,7 @@ export default function Insights() {
           {/* Overall score + sections */}
           <div className="grid md:grid-cols-3 gap-6">
             {/* Gauge */}
-            <div className="bg-white dark:bg-[#1a2632] rounded-2xl border border-slate-200 dark:border-slate-700 p-6 flex flex-col items-center gap-2">
+            <div className="bg-slate-50 dark:bg-[#1a2632] rounded-2xl border border-slate-300 dark:border-slate-700 p-6 flex flex-col items-center gap-2">
               <p className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Overall ATS Score</p>
               <div className="relative size-36 my-2">
                 <svg className="size-36 -rotate-90" viewBox="0 0 36 36">
@@ -91,7 +91,7 @@ export default function Insights() {
             </div>
 
             {/* Section bars */}
-            <div className="md:col-span-2 bg-white dark:bg-[#1a2632] rounded-2xl border border-slate-200 dark:border-slate-700 p-6">
+            <div className="md:col-span-2 bg-slate-50 dark:bg-[#1a2632] rounded-2xl border border-slate-300 dark:border-slate-700 p-6">
               <p className="font-bold mb-4">Score Breakdown</p>
               <div className="flex flex-col gap-4">
                 {(data.sections || []).map((sec, i) => (
@@ -111,7 +111,7 @@ export default function Insights() {
 
           {/* Skills */}
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white dark:bg-[#1a2632] rounded-2xl border border-slate-200 dark:border-slate-700 p-6">
+            <div className="bg-slate-50 dark:bg-[#1a2632] rounded-2xl border border-slate-300 dark:border-slate-700 p-6">
               <h3 className="font-bold mb-4 flex items-center gap-2 text-green-600">
                 Matched Skills
               </h3>
@@ -123,7 +123,7 @@ export default function Insights() {
                 ))}
               </div>
             </div>
-            <div className="bg-white dark:bg-[#1a2632] rounded-2xl border border-slate-200 dark:border-slate-700 p-6">
+            <div className="bg-slate-50 dark:bg-[#1a2632] rounded-2xl border border-slate-300 dark:border-slate-700 p-6">
               <h3 className="font-bold mb-4 flex items-center gap-2 text-orange-600">
                 Missing / Add These
               </h3>
@@ -138,7 +138,7 @@ export default function Insights() {
           </div>
 
           {/* Recommendations */}
-          <div className="bg-white dark:bg-[#1a2632] rounded-2xl border border-slate-200 dark:border-slate-700 p-6">
+          <div className="bg-slate-50 dark:bg-[#1a2632] rounded-2xl border border-slate-300 dark:border-slate-700 p-6">
             <h3 className="font-bold mb-4 flex items-center gap-2">
               AI Recommendations
             </h3>
@@ -158,7 +158,7 @@ export default function Insights() {
               <span className="material-symbols-outlined text-sm">upload_file</span>
               Re-analyze Resume
             </button>
-            <button onClick={() => navigate('/jobseeker/jobs')} className="flex-1 flex items-center justify-center gap-2 h-11 rounded-xl border border-slate-200 dark:border-slate-700 font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+            <button onClick={() => navigate('/jobseeker/jobs')} className="flex-1 flex items-center justify-center gap-2 h-11 rounded-xl border border-slate-300 dark:border-slate-700 font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
               <span className="material-symbols-outlined text-sm">work</span>
               Browse Matching Jobs
             </button>

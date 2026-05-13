@@ -21,20 +21,20 @@ const JDMatcher = ({ onMatch }) => {
   };
 
   return (
-    <div className="bg-white rounded-[12px] p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col gap-8">
+    <div className="bg-slate-50 rounded-[12px] p-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-slate-200 flex flex-col gap-8">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <h3 className="text-xl font-black text-slate-900 tracking-tight uppercase">ATS Match</h3>
           <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Cross-reference your profile with any job description</p>
         </div>
         <div className="flex gap-2 w-full md:w-auto">
-          <button className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-600 hover:bg-slate-100 transition-all">
+          <button className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-100 border border-slate-300 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-600 hover:bg-slate-100 transition-all">
             <Search size={14} />
             Select Saved Job
           </button>
           <button 
             onClick={() => { setJdText(''); setResult(null); }}
-            className="p-2.5 border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors text-slate-400"
+            className="p-2.5 border border-slate-300 rounded-xl hover:bg-slate-100 transition-colors text-slate-400"
           >
             <FileSearch size={18} />
           </button>
@@ -46,7 +46,7 @@ const JDMatcher = ({ onMatch }) => {
         <div className="space-y-4">
           <textarea 
             placeholder="Paste Job Description (JD) here to calculate instant match score..."
-            className="w-full h-64 bg-slate-50 border border-slate-200 rounded-2xl p-6 text-sm font-medium focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all outline-none resize-none placeholder:text-slate-400 scrollbar-hide"
+            className="w-full h-64 bg-slate-100 border border-slate-300 rounded-2xl p-6 text-sm font-medium focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all outline-none resize-none placeholder:text-slate-400 scrollbar-hide"
             value={jdText}
             onChange={(e) => setJdText(e.target.value)}
           />
@@ -74,7 +74,7 @@ const JDMatcher = ({ onMatch }) => {
         </div>
 
         {/* Results Area */}
-        <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 flex flex-col items-center justify-center relative overflow-hidden">
+        <div className="bg-slate-100 border border-slate-200 rounded-2xl p-6 flex flex-col items-center justify-center relative overflow-hidden">
           {!result && !matching && (
             <div className="text-center space-y-4 opacity-50">
               <BrainCircuit size={48} className="mx-auto text-slate-300" />

@@ -25,15 +25,15 @@ export default function JobSearch() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0d1117]">
+    <div className="min-h-screen bg-slate-100 dark:bg-[#0d1117]">
       {/* STICKY SEARCH & TABS CONTAINER */}
-      <div className="sticky top-0 z-30 bg-slate-50/80 dark:bg-[#0d1117]/80 backdrop-blur-md pt-4 pb-3 px-6 border-b border-slate-200 dark:border-slate-800">
+      <div className="sticky top-0 z-30 bg-slate-100/80 dark:bg-[#0d1117]/80 backdrop-blur-md pt-4 pb-3 px-6 border-b border-slate-300 dark:border-slate-700">
         <div className="max-w-[1200px] mx-auto space-y-3">
           
           {/* TOP SEARCH ROW */}
           <div className="flex flex-col lg:flex-row gap-3">
             {/* TABS */}
-            <div className="flex bg-white dark:bg-slate-900 p-1 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm w-fit shrink-0">
+            <div className="flex bg-slate-50 dark:bg-slate-900 p-1 rounded-xl border border-slate-300 dark:border-slate-700 shadow-sm w-fit shrink-0">
               <button 
                 onClick={() => setActiveTab('recommended')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${
@@ -65,7 +65,7 @@ export default function JobSearch() {
                 <input 
                   type="text" 
                   placeholder="Search roles, skills, or companies..." 
-                  className="w-full h-11 pl-11 pr-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all shadow-sm"
+                  className="w-full h-11 pl-11 pr-4 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all shadow-sm"
                 />
               </div>
               <Button className="h-11 px-6 rounded-xl shadow-lg shadow-blue-500/20 text-[11px] font-bold uppercase tracking-widest">
@@ -83,7 +83,7 @@ export default function JobSearch() {
             ].map((filter, idx) => (
               <div key={idx} className="relative">
                 <filter.icon size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-                <select className="pl-9 pr-8 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-[10px] font-bold uppercase tracking-widest appearance-none focus:ring-2 focus:ring-blue-500/20 outline-none hover:border-slate-300 transition-colors shadow-sm">
+                <select className="pl-9 pr-8 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-[10px] font-bold uppercase tracking-widest appearance-none focus:ring-2 focus:ring-blue-500/20 outline-none hover:border-slate-300 transition-colors shadow-sm">
                   {filter.options.map(opt => <option key={opt}>{opt}</option>)}
                 </select>
                 <ChevronDown size={12} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
@@ -110,11 +110,11 @@ export default function JobSearch() {
             jobs.map((job) => (
               <div 
                 key={job.id} 
-                className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-500/30 transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4"
+                className="group bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl p-4 hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-500/30 transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4"
               >
                 {/* Left: Logo + Info */}
                 <div className="flex items-center gap-4 flex-1 min-w-0">
-                  <div className="size-10 shrink-0 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700 flex items-center justify-center font-black text-base text-blue-600">
+                  <div className="size-10 shrink-0 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center font-black text-base text-blue-600">
                     {job.company[0]}
                   </div>
                   <div className="min-w-0">
@@ -156,7 +156,7 @@ export default function JobSearch() {
                   <div className="flex items-center gap-2">
                     <Button 
                       variant="secondary" 
-                      className="h-8 px-4 text-[10px] font-bold uppercase tracking-widest rounded-lg border-slate-200"
+                      className="h-8 px-4 text-[10px] font-bold uppercase tracking-widest rounded-lg border-slate-300"
                       onClick={() => navigate(`/platform/jobseeker/jobs/${job.id}`)}
                     >
                       Details

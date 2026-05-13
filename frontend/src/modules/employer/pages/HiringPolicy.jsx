@@ -37,8 +37,8 @@ export default function HiringPolicy() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0d1117] text-[#0d141b] dark:text-white">
-      <div className="bg-white dark:bg-[#1a2632] border-b border-slate-200 dark:border-slate-700 px-6 py-4 flex items-center gap-4">
+    <div className="min-h-screen bg-slate-100 dark:bg-[#0d1117] text-[#0d141b] dark:text-white">
+      <div className="bg-slate-50 dark:bg-[#1a2632] border-b border-slate-300 dark:border-slate-700 px-6 py-4 flex items-center gap-4">
         <button onClick={() => navigate(-1)} className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">
           <span className="material-symbols-outlined">arrow_back</span>
         </button>
@@ -61,7 +61,7 @@ export default function HiringPolicy() {
         </div>
 
         {/* Toggle policies */}
-        <div className="bg-white dark:bg-[#1a2632] rounded-2xl border border-slate-200 dark:border-slate-700 p-6 flex flex-col gap-5">
+        <div className="bg-slate-50 dark:bg-[#1a2632] rounded-2xl border border-slate-300 dark:border-slate-700 p-6 flex flex-col gap-5">
           <h3 className="font-bold text-base mb-1">Anonymization & Screening Settings</h3>
           {TOGGLES.map(({ key, label, desc, icon }) => (
             <div key={key} className="flex items-start justify-between gap-4">
@@ -78,14 +78,14 @@ export default function HiringPolicy() {
                 onClick={() => toggle(key)}
                 className={`relative flex-shrink-0 mt-0.5 w-12 h-6 rounded-full transition-all ${policy[key] ? 'bg-blue-600' : 'bg-slate-200 dark:bg-slate-700'}`}
               >
-                <span className={`absolute top-0.5 size-5 rounded-full bg-white shadow transition-all ${policy[key] ? 'right-0.5' : 'left-0.5'}`} />
+                <span className={`absolute top-0.5 size-5 rounded-full bg-slate-50 shadow transition-all ${policy[key] ? 'right-0.5' : 'left-0.5'}`} />
               </button>
             </div>
           ))}
         </div>
 
         {/* Numeric thresholds */}
-        <div className="bg-white dark:bg-[#1a2632] rounded-2xl border border-slate-200 dark:border-slate-700 p-6 flex flex-col gap-5">
+        <div className="bg-slate-50 dark:bg-[#1a2632] rounded-2xl border border-slate-300 dark:border-slate-700 p-6 flex flex-col gap-5">
           <h3 className="font-bold text-base mb-1">Scoring Thresholds</h3>
           <div>
             <label className="block text-sm font-semibold mb-2">Minimum ATS Score Threshold: <span className="text-blue-600">{policy.min_ats_score}</span></label>

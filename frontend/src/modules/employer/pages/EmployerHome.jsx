@@ -34,11 +34,11 @@ const EmployerHome = () => {
     <div className="space-y-10 pb-20">
       {/* ═══ WELCOME HERO ═══════════════════════════════════════════════ */}
       <section className="bg-slate-900 dark:bg-blue-600 rounded-[40px] p-10 md:p-16 text-white relative overflow-hidden shadow-2xl">
-         <div className="absolute top-0 right-0 size-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+         <div className="absolute top-0 right-0 size-96 bg-slate-50/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
          
          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
-               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/20 border border-white/30 text-xs font-black uppercase tracking-widest">
+               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-50/20 border border-white/30 text-xs font-black uppercase tracking-widest">
                   <Sparkles size={14} />
                   Hiring Intelligence Active
                </div>
@@ -53,14 +53,14 @@ const EmployerHome = () => {
                <div className="flex flex-wrap gap-4">
                   <Button 
                     onClick={() => navigate('/platform/employer/post-job')}
-                    className="h-14 px-8 bg-white text-slate-900 hover:bg-slate-50 font-black rounded-2xl shadow-lg"
+                    className="h-14 px-8 bg-slate-50 text-slate-900 hover:bg-slate-100 font-black rounded-2xl shadow-lg"
                   >
                     Post a New Job
                     <UserPlus size={18} />
                   </Button>
                   <Button 
                     onClick={() => navigate('/platform/employer/candidates')}
-                    className="h-14 px-8 border-white/30 text-white hover:bg-white/10 font-black rounded-2xl"
+                    className="h-14 px-8 border-white/30 text-white hover:bg-slate-50/10 font-black rounded-2xl"
                     variant="outline"
                   >
                     Browse Candidates
@@ -71,8 +71,8 @@ const EmployerHome = () => {
             <div className="hidden lg:block">
                <div className="grid grid-cols-2 gap-4">
                   {quickStats.map((stat, i) => (
-                    <Card key={i} className="p-6 bg-white/10 backdrop-blur-md border-white/20">
-                       <div className={`size-10 rounded-xl bg-white/20 flex items-center justify-center mb-4 text-white`}>
+                    <Card key={i} className="p-6 bg-slate-50/10 backdrop-blur-md border-white/20">
+                       <div className={`size-10 rounded-xl bg-slate-50/20 flex items-center justify-center mb-4 text-white`}>
                           <stat.icon size={20} />
                        </div>
                        <p className="text-3xl font-black text-white leading-none">{stat.value}</p>
@@ -95,9 +95,9 @@ const EmployerHome = () => {
             
             <div className="space-y-4">
                {recentHiringActivity.map((activity, i) => (
-                 <div key={i} className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 flex items-center justify-between group hover:border-blue-500/50 transition-all">
+                 <div key={i} className="p-6 rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex items-center justify-between group hover:border-blue-500/50 transition-all">
                     <div className="flex items-center gap-6">
-                       <div className="size-12 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-400 group-hover:text-blue-600 transition-colors">
+                       <div className="size-12 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 group-hover:text-blue-600 transition-colors">
                           <Briefcase size={24} />
                        </div>
                        <div>

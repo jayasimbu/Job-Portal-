@@ -77,7 +77,7 @@ export default function RecommendationHistory() {
           <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.3em] mt-2">Historical Search & Match Data</p>
         </div>
         <div className="flex items-center gap-3">
-          <Button variant="secondary" className="h-10 px-4 rounded-xl border-slate-200 dark:border-slate-800 text-[9px] font-black uppercase tracking-widest text-rose-500 hover:bg-rose-50">
+          <Button variant="secondary" className="h-10 px-4 rounded-xl border-slate-300 dark:border-slate-700 text-[9px] font-black uppercase tracking-widest text-rose-500 hover:bg-rose-50">
             <Trash2 size={14} /> Clear History
           </Button>
         </div>
@@ -87,15 +87,15 @@ export default function RecommendationHistory() {
         {/* MAIN FEED (8 Units) */}
         <div className="lg:col-span-8 space-y-6">
           {/* TABS & FILTERS */}
-          <div className="flex flex-wrap items-center justify-between gap-4 bg-white dark:bg-slate-900 p-2 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
-            <div className="flex bg-slate-50 dark:bg-slate-800/50 p-1 rounded-xl">
+          <div className="flex flex-wrap items-center justify-between gap-4 bg-slate-50 dark:bg-slate-900 p-2 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+            <div className="flex bg-slate-100 dark:bg-slate-800/50 p-1 rounded-xl">
               {['internal', 'external'].map(tab => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
                   className={`px-6 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${
                     activeTab === tab 
-                      ? 'bg-white dark:bg-slate-700 shadow-sm text-blue-600' 
+                      ? 'bg-slate-50 dark:bg-slate-700 shadow-sm text-blue-600' 
                       : 'text-slate-500 hover:text-slate-800 dark:hover:text-white'
                   }`}
                 >
@@ -117,8 +117,8 @@ export default function RecommendationHistory() {
           {/* ACTIVITY LIST */}
           <div className="space-y-6">
             {Object.entries(groupedItems).length === 0 ? (
-              <div className="py-24 text-center">
-                 <div className="size-16 bg-slate-50 dark:bg-slate-800 rounded-3xl flex items-center justify-center text-slate-300 mx-auto mb-4">
+              <div className="py-10 text-center">
+                 <div className="size-16 bg-slate-100 dark:bg-slate-800 rounded-3xl flex items-center justify-center text-slate-300 mx-auto mb-4">
                     <History size={32} />
                  </div>
                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">No Recent Activity Found</p>
@@ -133,7 +133,7 @@ export default function RecommendationHistory() {
                   
                   <div className="space-y-3">
                     {items.map(item => (
-                      <div key={item.id} className="group bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-5 hover:border-blue-500/30 transition-all flex items-center justify-between">
+                      <div key={item.id} className="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 hover:border-blue-500/30 transition-all flex items-center justify-between">
                         <div className="flex items-center gap-5">
                           <div className={`size-12 rounded-xl flex items-center justify-center ${item.type === 'search' ? 'bg-blue-50 text-blue-600' : 'bg-orange-50 text-orange-600'} dark:bg-slate-800 border border-transparent group-hover:border-current transition-colors`}>
                             {item.type === 'search' ? <Search size={20} /> : <Globe size={20} />}
@@ -146,7 +146,7 @@ export default function RecommendationHistory() {
                             <div className="flex flex-wrap gap-2 mt-2">
                               {item.type === 'search' ? (
                                 item.tags.map(tag => (
-                                  <span key={tag} className="text-[9px] font-bold text-slate-500 bg-slate-50 dark:bg-slate-800 px-2 py-0.5 rounded border border-slate-100 dark:border-slate-700 uppercase tracking-widest">{tag}</span>
+                                  <span key={tag} className="text-[9px] font-bold text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-700 uppercase tracking-widest">{tag}</span>
                                 ))
                               ) : (
                                 <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{item.company} • {item.source}</p>
@@ -154,7 +154,7 @@ export default function RecommendationHistory() {
                             </div>
                           </div>
                         </div>
-                        <Button variant="secondary" className="h-10 px-4 rounded-xl text-[9px] font-black uppercase tracking-widest border-slate-200 dark:border-slate-800">
+                        <Button variant="secondary" className="h-10 px-4 rounded-xl text-[9px] font-black uppercase tracking-widest border-slate-300 dark:border-slate-700">
                           {item.type === 'search' ? <RefreshCcw size={14} /> : <ExternalLink size={14} />}
                           {item.type === 'search' ? 'Rerun' : 'Source'}
                         </Button>
@@ -210,7 +210,7 @@ export default function RecommendationHistory() {
              <div className="relative z-10 space-y-4">
                 <h3 className="text-2xl font-black uppercase tracking-tighter leading-none">Optimize<br />Your Rank</h3>
                 <p className="text-xs font-bold text-blue-100 uppercase tracking-widest leading-relaxed">Update your skills to unlock 2x more matches.</p>
-                <Button className="bg-white text-blue-600 hover:bg-blue-50 h-10 px-6 rounded-xl font-black text-[10px] uppercase tracking-widest">
+                <Button className="bg-slate-50 text-blue-600 hover:bg-blue-50 h-10 px-6 rounded-xl font-black text-[10px] uppercase tracking-widest">
                    Sync Resume
                 </Button>
              </div>

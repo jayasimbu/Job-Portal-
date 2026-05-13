@@ -78,13 +78,13 @@ export default function EligibilityFeedback() {
   };
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-[#101922] text-[#0d141b] dark:text-white transition-colors ">
+    <div className="flex h-screen w-full overflow-hidden bg-slate-100 dark:bg-[#101922] text-[#0d141b] dark:text-white transition-colors ">
       <JobSeekerShell active="dashboard" />
       
       <main className="flex-1 overflow-y-auto px-4 md:px-10 py-8 max-w-[1280px] mx-auto w-full">
         {/* Page Heading & Context */}
         <div className="flex flex-col gap-6 mb-8">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-white dark:bg-[#1a2634] p-6 rounded-xl shadow-sm border border-slate-200 dark:border-[#2a3441]">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-slate-50 dark:bg-[#1a2634] p-6 rounded-xl shadow-sm border border-slate-300 dark:border-[#2a3441]">
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2">
                 <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold px-2 py-1 rounded-md uppercase tracking-wider">
@@ -113,7 +113,7 @@ export default function EligibilityFeedback() {
 
           {/* Stats Overview */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1a2634] border border-slate-200 dark:border-[#2a3441] shadow-sm">
+            <div className="flex flex-col gap-2 rounded-xl p-6 bg-slate-50 dark:bg-[#1a2634] border border-slate-300 dark:border-[#2a3441] shadow-sm">
               <div className="flex items-center justify-between">
                 <p className="text-slate-500 dark:text-gray-400 text-sm font-medium uppercase tracking-wide">
                   Overall Match
@@ -136,7 +136,7 @@ export default function EligibilityFeedback() {
               <div className="absolute -right-6 -bottom-6 w-24 h-24 bg-orange-200 dark:bg-orange-800/20 rounded-full blur-xl"></div>
             </div>
             
-            <div className="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1a2634] border border-slate-200 dark:border-[#2a3441] shadow-sm">
+            <div className="flex flex-col gap-2 rounded-xl p-6 bg-slate-50 dark:bg-[#1a2634] border border-slate-300 dark:border-[#2a3441] shadow-sm">
               <div className="flex items-center justify-between">
                 <p className="text-slate-500 dark:text-gray-400 text-sm font-medium uppercase tracking-wide">
                   Est. Time to Eligibility
@@ -152,8 +152,8 @@ export default function EligibilityFeedback() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Column: Detailed Gap Analysis */}
           <div className="lg:col-span-8 flex flex-col gap-6">
-            <div className="bg-white dark:bg-[#1a2634] rounded-xl border border-slate-200 dark:border-[#2a3441] shadow-sm overflow-hidden">
-              <div className="p-6 border-b border-slate-200 dark:border-[#2a3441]">
+            <div className="bg-slate-50 dark:bg-[#1a2634] rounded-xl border border-slate-300 dark:border-[#2a3441] shadow-sm overflow-hidden">
+              <div className="p-6 border-b border-slate-300 dark:border-[#2a3441]">
                 <h2 className="text-xl font-bold">Gap Analysis &amp; Core Requirements</h2>
                 <p className="text-sm text-slate-500 dark:text-gray-400 mt-1">
                   Detailed breakdown of your skills versus role expectations.
@@ -229,13 +229,13 @@ export default function EligibilityFeedback() {
                 <p className="text-blue-100 text-sm mb-6">
                   Complete the suggested actions below to boost your match score to <span className="font-bold text-white">95%</span>.
                 </p>
-                <button className="w-full bg-white text-blue-600 hover:bg-blue-50 font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors">
+                <button className="w-full bg-slate-50 text-blue-600 hover:bg-blue-50 font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors">
                   <span className="material-symbols-outlined text-[20px]">notifications_active</span>
                   Remind Me in 3 Months
                 </button>
               </div>
-              <div className="absolute -right-10 -top-10 w-40 h-40 bg-white opacity-10 rounded-full"></div>
-              <div className="absolute -left-10 -bottom-10 w-32 h-32 bg-white opacity-10 rounded-full"></div>
+              <div className="absolute -right-10 -top-10 w-40 h-40 bg-slate-50 opacity-10 rounded-full"></div>
+              <div className="absolute -left-10 -bottom-10 w-32 h-32 bg-slate-50 opacity-10 rounded-full"></div>
             </div>
 
             <div className="flex flex-col gap-4">
@@ -245,7 +245,7 @@ export default function EligibilityFeedback() {
               </h3>
 
               {gapData.recommendations.map(rec => (
-                <div key={rec.id} className="bg-white dark:bg-[#1a2634] rounded-xl border border-slate-200 dark:border-[#2a3441] p-4 shadow-sm hover:shadow-md transition-shadow">
+                <div key={rec.id} className="bg-slate-50 dark:bg-[#1a2634] rounded-xl border border-slate-300 dark:border-[#2a3441] p-4 shadow-sm hover:shadow-md transition-shadow">
                   <div className="flex gap-4">
                     <div 
                       className="w-20 h-20 rounded-lg bg-cover bg-center shrink-0" 
@@ -275,7 +275,7 @@ export default function EligibilityFeedback() {
                     <p className="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
                       Your profile mentions "Cloud Experience". Be more specific by listing tools like <strong>Docker</strong> or <strong>Kubernetes</strong> if you have used them.
                     </p>
-                    <button className="mt-3 text-xs font-bold bg-white dark:bg-[#1a2634] border border-slate-200 dark:border-[#2a3441] px-3 py-1.5 rounded-lg hover:bg-gray-50 dark:hover:bg-[#233040] transition-colors">
+                    <button className="mt-3 text-xs font-bold bg-slate-50 dark:bg-[#1a2634] border border-slate-300 dark:border-[#2a3441] px-3 py-1.5 rounded-lg hover:bg-gray-50 dark:hover:bg-[#233040] transition-colors">
                       Edit Profile
                     </button>
                   </div>

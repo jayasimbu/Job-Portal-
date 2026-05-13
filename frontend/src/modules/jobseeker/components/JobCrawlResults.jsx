@@ -53,7 +53,7 @@ export default function JobCrawlResults({ jobs = [] }) {
       case 'linkedin': return 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 border-blue-200 dark:border-blue-800/50';
       case 'indeed': return 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300 border-cyan-200 dark:border-cyan-800/50';
       case 'naukri': return 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 border-blue-200 dark:border-blue-800/50';
-      default: return 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border-slate-200 dark:border-slate-700';
+      default: return 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border-slate-300 dark:border-slate-700';
     }
   };
 
@@ -73,7 +73,7 @@ export default function JobCrawlResults({ jobs = [] }) {
           href={job.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="block bg-white dark:bg-slate-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 hover:border-purple-300 dark:hover:border-purple-800/50 hover:shadow-md transition-all group"
+          className="block bg-slate-50 dark:bg-slate-900 rounded-xl p-5 border border-slate-300 dark:border-slate-700 hover:border-purple-300 dark:hover:border-purple-800/50 hover:shadow-md transition-all group"
         >
           <div className="flex justify-between items-start mb-3">
             <div>
@@ -97,7 +97,7 @@ export default function JobCrawlResults({ jobs = [] }) {
             )}
           </div>
           
-          <div className="flex items-center gap-4 text-xs font-medium text-slate-500 pt-3 border-t border-slate-100 dark:border-slate-800 mt-2">
+          <div className="flex items-center gap-4 text-xs font-medium text-slate-500 pt-3 border-t border-slate-200 dark:border-slate-700 mt-2">
             <span className="flex items-center gap-1">
               <span className="material-symbols-outlined !text-[16px]">location_on</span>
               {job.location}
@@ -110,7 +110,7 @@ export default function JobCrawlResults({ jobs = [] }) {
         </a>
       ))}
       
-      <button className="w-full py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+      <button className="w-full py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/50 text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
         Load More External Jobs
       </button>
     </div>

@@ -16,7 +16,7 @@ import Button from '../../../components/ui/Button';
 import Card, { CardBody } from '../../../components/ui/Card';
 
 const SettingItem = ({ icon: Icon, title, description, action }) => (
-  <div className="flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors border-b border-slate-100 dark:border-slate-800 last:border-0 cursor-pointer group">
+  <div className="flex items-center justify-between p-4 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors border-b border-slate-200 dark:border-slate-700 last:border-0 cursor-pointer group">
     <div className="flex items-center gap-4">
       <div className="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 group-hover:text-blue-600 transition-colors">
         <Icon size={20} />
@@ -51,7 +51,7 @@ export default function Settings() {
         {/* COMPANY PROFILE */}
         <div className="space-y-4">
           <SectionHeader title="Organization" />
-          <Card className="border-slate-100 shadow-sm overflow-hidden">
+          <Card className="border-slate-200 shadow-sm overflow-hidden">
             <SettingItem 
               icon={Building2} 
               title="Company Profile" 
@@ -68,7 +68,7 @@ export default function Settings() {
         {/* HIRING PREFERENCES */}
         <div className="space-y-4">
           <SectionHeader title="Recruitment" />
-          <Card className="border-slate-100 shadow-sm overflow-hidden">
+          <Card className="border-slate-200 shadow-sm overflow-hidden">
             <SettingItem 
               icon={Target} 
               title="Hiring Preferences" 
@@ -85,7 +85,7 @@ export default function Settings() {
         {/* ACCESS & SECURITY */}
         <div className="space-y-4">
           <SectionHeader title="Access & Security" />
-          <Card className="border-slate-100 shadow-sm overflow-hidden">
+          <Card className="border-slate-200 shadow-sm overflow-hidden">
             <SettingItem 
               icon={Users} 
               title="Team Access" 

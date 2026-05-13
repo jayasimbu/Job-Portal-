@@ -72,7 +72,7 @@ const Notifications = () => {
           <div className="size-10 rounded-full border-4 border-blue-600 border-t-transparent " />
         </div>
       ) : notices.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-20 gap-4 bg-white dark:bg-[#1a2632] border border-slate-200 dark:border-slate-700 rounded-3xl">
+        <div className="flex flex-col items-center justify-center py-20 gap-4 bg-slate-50 dark:bg-[#1a2632] border border-slate-300 dark:border-slate-700 rounded-3xl">
           <div className="size-20 rounded-3xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
             <span className="material-symbols-outlined text-4xl text-blue-400">notifications_off</span>
           </div>
@@ -88,7 +88,7 @@ const Notifications = () => {
                 key={n.id || i}
                 className={`flex items-start gap-4 p-5 rounded-2xl border transition-all hover:shadow-md cursor-pointer ${
                   n.read
-                    ? 'bg-white dark:bg-[#1a2632] border-slate-200 dark:border-slate-700'
+                    ? 'bg-slate-50 dark:bg-[#1a2632] border-slate-300 dark:border-slate-700'
                     : 'bg-blue-50/50 dark:bg-blue-900/10 border-blue-200 dark:border-blue-800 shadow-sm'
                 }`}
               >

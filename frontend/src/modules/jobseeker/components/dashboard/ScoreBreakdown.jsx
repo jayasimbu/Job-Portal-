@@ -25,7 +25,7 @@ const ScoreBreakdown = ({ breakdown }) => {
   ];
 
   return (
-    <div className="bg-white rounded-[12px] p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-slate-100">
+    <div className="bg-slate-50 rounded-[12px] p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-slate-200">
       <div className="flex items-center justify-between mb-8">
         <h3 className="text-sm font-black text-slate-900 uppercase tracking-tight">Intelligence Breakdown</h3>
         <div className="flex items-center gap-2">
@@ -40,7 +40,7 @@ const ScoreBreakdown = ({ breakdown }) => {
         ))}
       </div>
 
-      <div className="mt-8 p-4 bg-slate-50 rounded-xl border border-slate-100">
+      <div className="mt-8 p-4 bg-slate-100 rounded-xl border border-slate-200">
          <p className="text-[11px] font-bold text-slate-500 leading-relaxed italic">
             "Your profile excels in <span className="text-emerald-600 font-black">Skills Recognition</span> but requires immediate updates in <span className="text-rose-600 font-black">Experience Validation</span> to increase marketability."
          </p>

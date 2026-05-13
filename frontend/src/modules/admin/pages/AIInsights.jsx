@@ -72,14 +72,14 @@ const AIInsights = () => {
            <h1 className="text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-none">AI Intelligence</h1>
            <p className="text-slate-500 font-medium mt-3 max-w-md">Real-time insights derived from Processing of marketplace activities and skill demand vectors.</p>
         </div>
-        <div className="flex items-center gap-4 bg-white dark:bg-slate-900 p-1.5 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+        <div className="flex items-center gap-4 bg-slate-50 dark:bg-slate-900 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
            {[7, 30, 60, 90].map(v => (
              <button
                key={v}
                onClick={() => setDays(v)}
                className={`h-9 px-4 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
                  days === v 
-                   ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-lg' 
+                   ? 'bg-slate-900 dark:bg-slate-50 text-white dark:text-slate-900 shadow-lg' 
                    : 'text-slate-400 hover:text-slate-600'
                }`}
              >
@@ -92,7 +92,7 @@ const AIInsights = () => {
       {/* KPI Overview */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
         {kpis.map((s) => (
-          <div key={s.label} className="bg-white dark:bg-slate-900 p-6 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col justify-between h-[130px] group">
+          <div key={s.label} className="bg-slate-50 dark:bg-slate-900 p-6 rounded-[2rem] border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between h-[130px] group">
             <div className="flex items-start justify-between">
               <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{s.label}</p>
               <div className={`size-10 rounded-xl bg-${s.color}-50 dark:bg-${s.color}-500/10 flex items-center justify-center text-${s.color}-600 dark:text-${s.color}-400 group-hover:scale-110 transition-transform`}>
@@ -108,7 +108,7 @@ const AIInsights = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
         {/* Skill Demand Vectors */}
-        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-8 shadow-sm group">
+        <div className="bg-slate-50 dark:bg-slate-900 rounded-[2.5rem] border border-slate-200 dark:border-slate-700 p-8 shadow-sm group">
           <div className="flex items-center justify-between mb-8">
              <div className="flex items-center gap-3">
                 <div className="size-10 rounded-xl bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400">
@@ -134,7 +134,7 @@ const AIInsights = () => {
                       <span className="text-sm font-black text-slate-900 dark:text-white tracking-tight">{s.skill}</span>
                       <span className="text-[10px] font-black text-slate-400 uppercase tabular-nums">{s.count} Requisitions</span>
                     </div>
-                    <div className="w-full bg-slate-50 dark:bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                    <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-1.5 overflow-hidden">
                       <div className="h-full bg-blue-600 rounded-full transition-all shadow-[0_0_8px_rgba(59,130,246,0.5)]" style={{ width: `${pct}%` }} />
                     </div>
                   </div>
@@ -145,7 +145,7 @@ const AIInsights = () => {
         </div>
 
         {/* Pipeline Throughput */}
-        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-8 shadow-sm group">
+        <div className="bg-slate-50 dark:bg-slate-900 rounded-[2.5rem] border border-slate-200 dark:border-slate-700 p-8 shadow-sm group">
           <div className="flex items-center justify-between mb-8">
              <div className="flex items-center gap-3">
                 <div className="size-10 rounded-xl bg-violet-50 dark:bg-violet-500/10 flex items-center justify-center text-violet-600 dark:text-violet-400">
@@ -172,7 +172,7 @@ const AIInsights = () => {
                     <span className="text-sm font-black text-slate-900 dark:text-white tracking-tight">{label}</span>
                     <span className="text-[10px] font-black text-slate-400 uppercase tabular-nums">{count} ({pct}%)</span>
                   </div>
-                  <div className="w-full bg-slate-50 dark:bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                  <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-1.5 overflow-hidden">
                     <div className={`h-full ${color} rounded-full transition-all shadow-sm`} style={{ width: `${pct}%` }} />
                   </div>
                 </div>
@@ -182,7 +182,7 @@ const AIInsights = () => {
         </div>
 
         {/* Geographic Distribution */}
-        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-8 shadow-sm">
+        <div className="bg-slate-50 dark:bg-slate-900 rounded-[2.5rem] border border-slate-200 dark:border-slate-700 p-8 shadow-sm">
           <div className="flex items-center gap-3 mb-8">
              <div className="size-10 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
                 <Globe size={18} />
@@ -194,7 +194,7 @@ const AIInsights = () => {
               <div className="col-span-2 py-10 text-center text-slate-300">Scanning regions...</div>
             ) : (
               topLocations.map((loc, i) => (
-                <div key={i} className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-transparent hover:border-blue-100 dark:hover:border-blue-500/20 transition-all group/loc">
+                <div key={i} className="flex items-center justify-between p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/50 border border-transparent hover:border-blue-100 dark:hover:border-blue-500/20 transition-all group/loc">
                   <div className="flex items-center gap-3">
                     <MapPin size={14} className="text-slate-300 group-hover/loc:text-blue-500 transition-colors" />
                     <span className="text-xs font-black text-slate-700 dark:text-slate-200 tracking-tight">{loc.location}</span>
@@ -207,7 +207,7 @@ const AIInsights = () => {
         </div>
 
         {/* Predictive Market Needs */}
-        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-8 shadow-sm">
+        <div className="bg-slate-50 dark:bg-slate-900 rounded-[2.5rem] border border-slate-200 dark:border-slate-700 p-8 shadow-sm">
            <div className="flex items-center gap-3 mb-8">
              <div className="size-10 rounded-xl bg-amber-50 dark:bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400">
                 <Target size={18} />
@@ -219,7 +219,7 @@ const AIInsights = () => {
               <div className="py-10 text-center text-slate-300 w-full">Aggregating market roles...</div>
             ) : (
               topJobs.map((title, i) => (
-                <span key={i} className="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-800 rounded-xl text-slate-900 dark:text-white text-[10px] font-black uppercase tracking-widest hover:border-blue-500 transition-all cursor-default shadow-sm">
+                <span key={i} className="px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white text-[10px] font-black uppercase tracking-widest hover:border-blue-500 transition-all cursor-default shadow-sm">
                   {title}
                 </span>
               ))

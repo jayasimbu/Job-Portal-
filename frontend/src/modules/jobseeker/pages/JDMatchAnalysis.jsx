@@ -53,7 +53,7 @@ const JDMatchAnalysis = () => {
       {/* INPUT SECTION — Side by Side */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* LEFT: Resume Upload */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4">
+        <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5 space-y-4">
           <div className="flex items-center gap-2">
             <FileText size={16} className="text-blue-600" />
             <h3 className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-widest">Your Resume</h3>
@@ -93,7 +93,7 @@ const JDMatchAnalysis = () => {
           ) : (
             <div className="text-center py-6">
               <label htmlFor="resume-upload-input" className="cursor-pointer group">
-                <div className="size-14 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-blue-50 transition-colors">
+                <div className="size-14 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-blue-50 transition-colors">
                   {isParsing ? <Loader size={24} className="text-blue-600 animate-spin" /> : <FileText size={24} className="text-slate-300 group-hover:text-blue-500 transition-colors" />}
                 </div>
                 <p className="text-sm font-bold text-slate-500">{isParsing ? 'Parsing resume...' : 'Click to upload resume'}</p>
@@ -105,7 +105,7 @@ const JDMatchAnalysis = () => {
         </div>
 
         {/* RIGHT: JD Input */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4">
+        <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5 space-y-4">
           <div className="flex items-center gap-2">
             <ClipboardList size={16} className="text-indigo-600" />
             <h3 className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-widest">Job Description</h3>
@@ -114,7 +114,7 @@ const JDMatchAnalysis = () => {
             value={jdText}
             onChange={(e) => setJdText(e.target.value)}
             placeholder="Paste the full job description here..."
-            className="w-full h-40 p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl resize-none outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-600 transition-all text-sm font-medium leading-relaxed"
+            className="w-full h-40 p-4 bg-slate-100 dark:bg-slate-800/50 border border-slate-300 dark:border-slate-700 rounded-xl resize-none outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-600 transition-all text-sm font-medium leading-relaxed"
           />
         </div>
       </div>
@@ -142,7 +142,7 @@ const JDMatchAnalysis = () => {
           {/* Score + Skills Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* ATS Score */}
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 text-center">
+            <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5 text-center">
               <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-3">Match Score</p>
               <div className="relative size-20 mx-auto">
                 <svg className="size-full -rotate-90" viewBox="0 0 36 36">
@@ -156,7 +156,7 @@ const JDMatchAnalysis = () => {
             </div>
 
             {/* Matched Skills */}
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+            <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5">
               <p className="text-[9px] font-black text-emerald-500 uppercase tracking-widest mb-3">Matched Skills ({matchResults.matchedSkills?.length || 0})</p>
               <div className="flex flex-wrap gap-1.5">
                 {(matchResults.matchedSkills || []).map((s, i) => (
@@ -169,7 +169,7 @@ const JDMatchAnalysis = () => {
             </div>
 
             {/* Missing Skills */}
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+            <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5">
               <p className="text-[9px] font-black text-rose-500 uppercase tracking-widest mb-3">Missing Skills ({matchResults.missingSkills?.length || 0})</p>
               <div className="flex flex-wrap gap-1.5">
                 {(matchResults.missingSkills || []).map((s, i) => (
@@ -182,7 +182,7 @@ const JDMatchAnalysis = () => {
             </div>
 
             {/* Recommendations */}
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+            <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5">
               <p className="text-[9px] font-black text-blue-500 uppercase tracking-widest mb-3">Recommended Jobs</p>
               {recommendedJobs?.length > 0 ? (
                 <div className="space-y-2">
@@ -208,7 +208,7 @@ const JDMatchAnalysis = () => {
 
           {/* Feedback */}
           {matchResults.feedback && (
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+            <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5">
               <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">Feedback</p>
               <p className="text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed italic">
                 "{matchResults.feedback}"

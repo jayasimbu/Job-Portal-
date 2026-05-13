@@ -24,7 +24,7 @@ export default function ProjectVerifyCard() {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 w-full mb-6">
+    <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-6 shadow-sm border border-slate-300 dark:border-slate-700 w-full mb-6">
       <div className="flex items-center gap-3 mb-6">
         <span className="material-symbols-outlined text-blue-600 bg-blue-50 dark:bg-blue-900/30 p-2 rounded-lg">verified</span>
         <h3 className="text-lg font-bold text-slate-900 dark:text-white">Project Authenticity Verifier</h3>
@@ -42,7 +42,7 @@ export default function ProjectVerifyCard() {
             placeholder="https://github.com/username/repo" 
             value={url}
             onChange={e => setUrl(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+            className="w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
           />
         </div>
         <button 
@@ -57,8 +57,8 @@ export default function ProjectVerifyCard() {
       </div>
 
       {result && (
-        <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700  text-sm">
-          <div className="flex justify-between items-center mb-4 pb-4 border-b border-slate-200 dark:border-slate-700">
+        <div className="p-4 bg-slate-100 dark:bg-slate-800/50 rounded-lg border border-slate-300 dark:border-slate-700  text-sm">
+          <div className="flex justify-between items-center mb-4 pb-4 border-b border-slate-300 dark:border-slate-700">
             <span className="font-semibold text-slate-700 dark:text-slate-300">Authenticity Score</span>
             <div className="flex items-center gap-2">
               <span className={`text-xl font-black ${result.score >= 80 ? 'text-green-600' : 'text-amber-500'}`}>{result.score}/100</span>

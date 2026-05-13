@@ -123,12 +123,12 @@ export default function ResumeUpload() {
   const gaugeFill = score;
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0d1117] text-[#0d141b] dark:text-white">
+    <div className="min-h-screen bg-slate-100 dark:bg-[#0d1117] text-[#0d141b] dark:text-white">
 
 
       <div className="max-w-4xl mx-auto px-4 md:px-10 py-8 flex flex-col gap-8">
         {/* Mode toggle */}
-        <div className="flex gap-2 bg-white dark:bg-[#1a2632] p-1 rounded-xl border border-slate-200 dark:border-slate-700 w-fit">
+        <div className="flex gap-2 bg-slate-50 dark:bg-[#1a2632] p-1 rounded-xl border border-slate-300 dark:border-slate-700 w-fit">
           {['normal', 'jd'].map(m => (
             <button
               key={m}
@@ -147,7 +147,7 @@ export default function ResumeUpload() {
           onDrop={handleDrop}
           onClick={() => inputRef.current?.click()}
           className={`flex flex-col items-center justify-center gap-4 p-10 rounded-2xl border-2 border-dashed cursor-pointer transition-all
-            ${dragging ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-slate-300 dark:border-slate-600 bg-white dark:bg-[#1a2632] hover:border-blue-400 hover:bg-blue-50/30 dark:hover:bg-blue-900/10'}`}
+            ${dragging ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-[#1a2632] hover:border-blue-400 hover:bg-blue-50/30 dark:hover:bg-blue-900/10'}`}
         >
           <input ref={inputRef} type="file" accept=".pdf" className="hidden" onChange={handleFile} />
           <div className={`size-16 rounded-2xl flex items-center justify-center ${file ? 'bg-green-100 dark:bg-green-900/20' : 'bg-blue-100 dark:bg-blue-900/20'}`}>
@@ -170,7 +170,7 @@ export default function ResumeUpload() {
 
         {/* JD input */}
         {mode === 'jd' && (
-          <div className="bg-white dark:bg-[#1a2632] rounded-2xl border border-slate-200 dark:border-slate-700 p-6">
+          <div className="bg-slate-50 dark:bg-[#1a2632] rounded-2xl border border-slate-300 dark:border-slate-700 p-6">
             <label className="block text-sm font-bold mb-2 text-slate-700 dark:text-slate-300">
               Paste Job Description *
             </label>
@@ -179,13 +179,13 @@ export default function ResumeUpload() {
               value={jobDesc}
               onChange={e => setJobDesc(e.target.value)}
               placeholder="Paste the full job description here to get a match-specific ATS score..."
-              className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-xl p-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl p-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         )}
 
         {loading && (
-          <div className="bg-white dark:bg-[#1a2632] rounded-2xl border border-slate-200 dark:border-slate-700 p-8 flex flex-col gap-6 shadow-xl border-l-4 border-l-blue-500 scale-in-center">
+          <div className="bg-slate-50 dark:bg-[#1a2632] rounded-2xl border border-slate-300 dark:border-slate-700 p-8 flex flex-col gap-6 shadow-xl border-l-4 border-l-blue-500 scale-in-center">
             <div className="flex items-center justify-between">
               <h3 className="font-black text-xl flex items-center gap-3">
                 <span className="material-symbols-outlined text-blue-600 text-3xl">psychology</span>
@@ -203,7 +203,7 @@ export default function ResumeUpload() {
                 { label: 'ATS Match Scoring', icon: 'analytics' },
                 { label: 'Finalizing Insights', icon: 'verified' }
               ].map((step, idx) => (
-                <div key={idx} className={`flex items-center gap-4 p-3 rounded-xl border transition-all ${statusStep === idx ? 'bg-blue-50 dark:bg-blue-900/10 border-blue-200 dark:border-blue-800 translate-x-2' : statusStep > idx ? 'bg-slate-50 dark:bg-slate-800/50 border-transparent opacity-60' : 'border-transparent opacity-20'}`}>
+                <div key={idx} className={`flex items-center gap-4 p-3 rounded-xl border transition-all ${statusStep === idx ? 'bg-blue-50 dark:bg-blue-900/10 border-blue-200 dark:border-blue-800 translate-x-2' : statusStep > idx ? 'bg-slate-100 dark:bg-slate-800/50 border-transparent opacity-60' : 'border-transparent opacity-20'}`}>
                   <div className={`size-10 rounded-xl flex items-center justify-center shadow-sm ${statusStep > idx ? 'bg-green-100 text-green-600' : statusStep === idx ? 'bg-blue-600 text-white shadow-blue-500/40' : 'bg-slate-100 text-slate-400'}`}>
                     <span className="material-symbols-outlined text-xl">{statusStep > idx ? 'check' : step.icon}</span>
                   </div>
@@ -256,7 +256,7 @@ export default function ResumeUpload() {
         {result && (
           <div className="flex flex-col gap-6">
             {/* Score card */}
-            <div className="bg-white dark:bg-[#1a2632] rounded-2xl border border-slate-200 dark:border-slate-700 p-6">
+            <div className="bg-slate-50 dark:bg-[#1a2632] rounded-2xl border border-slate-300 dark:border-slate-700 p-6">
               <h2 className="text-lg font-bold mb-6">ATS Analysis Results</h2>
               <div className="flex flex-col md:flex-row gap-8 items-center">
                 {/* Gauge */}
@@ -306,7 +306,7 @@ export default function ResumeUpload() {
 
             {/* Extracted skills */}
             {result.upload?.resume?.skills?.length > 0 && (
-              <div className="bg-white dark:bg-[#1a2632] rounded-2xl border border-slate-200 dark:border-slate-700 p-6">
+              <div className="bg-slate-50 dark:bg-[#1a2632] rounded-2xl border border-slate-300 dark:border-slate-700 p-6">
                 <h3 className="font-bold mb-4 flex items-center gap-2">
                   <span className="material-symbols-outlined text-blue-600">psychology</span>
                   Extracted Skills
@@ -323,7 +323,7 @@ export default function ResumeUpload() {
 
             {/* AI feedback */}
             {result.ats?.llm_enhanced_feedback && (
-              <div className="bg-white dark:bg-[#1a2632] rounded-2xl border border-slate-200 dark:border-slate-700 p-6">
+              <div className="bg-slate-50 dark:bg-[#1a2632] rounded-2xl border border-slate-300 dark:border-slate-700 p-6">
                 <h3 className="font-bold mb-4 flex items-center gap-2">
                   <span className="material-symbols-outlined text-purple-600">auto_awesome</span>
                   AI-Powered Feedback
@@ -336,7 +336,7 @@ export default function ResumeUpload() {
 
             {/* Missing keywords */}
             {Array.isArray(result.ats?.missing_keywords) && result.ats.missing_keywords.length > 0 && (
-              <div className="bg-white dark:bg-[#1a2632] rounded-2xl border border-slate-200 dark:border-slate-700 p-6">
+              <div className="bg-slate-50 dark:bg-[#1a2632] rounded-2xl border border-slate-300 dark:border-slate-700 p-6">
                 <h3 className="font-bold mb-4 flex items-center gap-2 text-orange-600">
                   <span className="material-symbols-outlined">warning</span>
                   Missing Keywords
@@ -361,7 +361,7 @@ export default function ResumeUpload() {
               </button>
               <button
                 onClick={() => { setResult(null); setFile(null); }}
-                className="flex-1 flex items-center justify-center gap-2 h-11 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                className="flex-1 flex items-center justify-center gap-2 h-11 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               >
                 <span className="material-symbols-outlined text-sm">upload</span>
                 Analyze Another

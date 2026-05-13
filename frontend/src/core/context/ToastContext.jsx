@@ -26,7 +26,7 @@ export const ToastProvider = ({ children }) => {
             className={`flex items-center gap-3 px-6 py-3 rounded-2xl shadow-2xl pointer-events-auto ${
               toast.type === 'error' 
                 ? 'bg-rose-600 text-white' 
-                : 'bg-slate-900 dark:bg-white text-white dark:text-slate-900'
+                : 'bg-slate-900 dark:bg-slate-50 text-white dark:text-slate-900'
             }`}
           >
             <span className="material-symbols-outlined text-lg">

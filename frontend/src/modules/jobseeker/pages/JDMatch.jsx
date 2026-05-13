@@ -71,7 +71,7 @@ const JDMatch = () => {
       {/* INPUT SECTION — Side by Side */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* LEFT: Resume Status */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4">
+        <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5 space-y-4">
           <div className="flex items-center gap-2">
             <FileText size={16} className="text-blue-600" />
             <h3 className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-widest">Your Resume</h3>
@@ -106,7 +106,7 @@ const JDMatch = () => {
         </div>
 
         {/* RIGHT: JD Input */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4">
+        <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5 space-y-4">
           <div className="flex items-center gap-2">
             <ClipboardList size={16} className="text-indigo-600" />
             <h3 className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-widest">Job Description</h3>
@@ -115,7 +115,7 @@ const JDMatch = () => {
             value={jdText}
             onChange={(e) => setJdText(e.target.value)}
             placeholder="Paste the full job description here (Responsibilities, Requirements, Skills)..."
-            className="w-full h-40 p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl resize-none outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-600 transition-all text-sm font-medium leading-relaxed"
+            className="w-full h-40 p-4 bg-slate-100 dark:bg-slate-800/50 border border-slate-300 dark:border-slate-700 rounded-xl resize-none outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-600 transition-all text-sm font-medium leading-relaxed"
           />
         </div>
       </div>
@@ -143,7 +143,7 @@ const JDMatch = () => {
           {/* Score + Skills Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* ATS Score */}
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 text-center">
+            <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5 text-center">
               <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-3">ATS Score</p>
               <div className="relative size-20 mx-auto">
                 <svg className="size-full -rotate-90" viewBox="0 0 36 36">
@@ -157,7 +157,7 @@ const JDMatch = () => {
             </div>
 
             {/* Matched Skills */}
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+            <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5">
               <p className="text-[9px] font-black text-emerald-500 uppercase tracking-widest mb-3">Matched Skills ({matchResult.matchedSkills.length})</p>
               <div className="flex flex-wrap gap-1.5">
                 {matchResult.matchedSkills.map((s, i) => (
@@ -170,7 +170,7 @@ const JDMatch = () => {
             </div>
 
             {/* Missing Skills */}
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+            <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5">
               <p className="text-[9px] font-black text-rose-500 uppercase tracking-widest mb-3">Missing Skills ({matchResult.missingSkills.length})</p>
               <div className="flex flex-wrap gap-1.5">
                 {matchResult.missingSkills.map((s, i) => (
@@ -183,7 +183,7 @@ const JDMatch = () => {
             </div>
 
             {/* Recommendations */}
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+            <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5">
               <p className="text-[9px] font-black text-blue-500 uppercase tracking-widest mb-3">Recommended</p>
               {recommendations.length > 0 ? (
                 <div className="space-y-2">
@@ -209,7 +209,7 @@ const JDMatch = () => {
 
           {/* AI Feedback */}
           {matchResult.feedback && (
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+            <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5">
               <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">Feedback</p>
               <p className="text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed italic">
                 "{matchResult.feedback}"

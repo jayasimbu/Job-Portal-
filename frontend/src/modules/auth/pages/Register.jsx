@@ -59,7 +59,7 @@ const Register = ({ onSwitch, activeTab, onSwitchTab, onSuccess }) => {
   };
 
   /* Reusable input class */
-  const inputCls = (isErr) => `w-full px-4 py-3 rounded-[10px] text-sm bg-white dark:bg-slate-800/30 dark:text-white outline-none transition-all border ${
+  const inputCls = (isErr) => `w-full px-4 py-3 rounded-[10px] text-sm bg-slate-50 dark:bg-slate-800/30 dark:text-white outline-none transition-all border ${
     isErr ? 'border-red-400 focus:border-red-500 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.1)]'
           : 'border-[#D1D5DB] dark:border-slate-700 focus:border-[#2563EB] focus:shadow-[0_0_0_3px_rgba(37,99,235,0.1)]'
   }`;
@@ -96,7 +96,7 @@ const Register = ({ onSwitch, activeTab, onSwitchTab, onSuccess }) => {
         </p>
         <button onClick={() => onSwitchTab('login')}
           style={{ height: 48, fontSize: 15, fontWeight: 600 }}
-          className="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl hover:-translate-y-px active:scale-[0.98] transition-all">
+          className="w-full bg-slate-900 dark:bg-slate-50 text-white dark:text-slate-900 rounded-xl hover:-translate-y-px active:scale-[0.98] transition-all">
           Go to Login
         </button>
       </div>
@@ -125,7 +125,7 @@ const Register = ({ onSwitch, activeTab, onSwitchTab, onSuccess }) => {
       </div>
 
       {/* Role Toggle — Premium Interaction */}
-      <div className="flex gap-2 mb-4 p-1 bg-slate-50 dark:bg-slate-800 rounded-[10px]">
+      <div className="flex gap-2 mb-4 p-1 bg-slate-100 dark:bg-slate-800 rounded-[10px]">
         {[{ id: 'jobseeker', label: '👤  Job Seeker' }, { id: 'employer', label: '🏢  Employer' }].map((r) => (
           <button key={r.id} type="button" onClick={() => setFormData({ ...formData, role: r.id })}
             style={{ borderRadius: 10, transition: 'all 0.2s ease', fontSize: 14, fontWeight: 600 }}

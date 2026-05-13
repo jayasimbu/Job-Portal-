@@ -33,8 +33,8 @@ const VerifyEmail = () => {
     }, [token, navigate]);
 
     return (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center p-4">
-            <div className="max-w-md w-full bg-white dark:bg-slate-800 rounded-3xl shadow-2xl p-8 text-center border border-slate-100 dark:border-slate-700 duration-500">
+        <div className="min-h-screen bg-slate-100 dark:bg-slate-900 flex items-center justify-center p-4">
+            <div className="max-w-md w-full bg-slate-50 dark:bg-slate-800 rounded-3xl shadow-2xl p-8 text-center border border-slate-200 dark:border-slate-700 duration-500">
                 <div className="mb-6">
                     {status === 'verifying' && (
                         <div className="size-20 bg-blue-50 dark:bg-blue-900/20 rounded-full flex items-center justify-center mx-auto mb-4 ">

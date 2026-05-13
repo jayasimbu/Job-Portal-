@@ -16,7 +16,7 @@ const PLATFORM_COLORS = {
   Upwork: 'bg-lime-100 text-lime-700 border-lime-200',
   Fiverr: 'bg-green-100 text-green-700 border-green-200',
   FlexJobs: 'bg-cyan-100 text-cyan-700 border-cyan-200',
-  'Remote.co': 'bg-slate-100 text-slate-700 border-slate-200',
+  'Remote.co': 'bg-slate-100 text-slate-700 border-slate-300',
   'We Work Remotely': 'bg-orange-100 text-orange-700 border-orange-200',
   USAJOBS: 'bg-blue-100 text-blue-700 border-blue-200',
   'Shine.com': 'bg-yellow-100 text-yellow-700 border-yellow-200',
@@ -84,10 +84,10 @@ export default function ExternalJobs() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 bg-white border border-slate-200 rounded-lg p-1 w-fit">
+      <div className="flex gap-1 bg-slate-50 border border-slate-300 rounded-lg p-1 w-fit">
         {['recommended', 'all'].map(t => (
           <button key={t} onClick={() => setTab(t)}
-            className={`px-5 py-2 rounded-lg text-xs font-bold capitalize transition-all ${tab === t ? 'bg-[#2563eb] text-white' : 'text-slate-500 hover:bg-slate-50'}`}>
+            className={`px-5 py-2 rounded-lg text-xs font-bold capitalize transition-all ${tab === t ? 'bg-[#2563eb] text-white' : 'text-slate-500 hover:bg-slate-100'}`}>
             {t === 'recommended' ? '⭐ Recommended' : '🌐 All External'}
           </button>
         ))}
@@ -96,7 +96,7 @@ export default function ExternalJobs() {
       {loading ? (
         <div className="flex justify-center py-16"><div className="size-8 border-3 border-[#2563eb] border-t-transparent rounded-full " /></div>
       ) : filtered.length === 0 ? (
-        <div className="text-center py-16 bg-white rounded-lg border border-slate-200 shadow-[var(--shadow-sm)]">
+        <div className="text-center py-16 bg-slate-50 rounded-lg border border-slate-300 shadow-[var(--shadow-sm)]">
           <span className="material-symbols-outlined text-4xl text-slate-300 mb-3 block">work_off</span>
           <p className="font-bold text-slate-400">No external jobs found yet.</p>
           <p className="text-xs text-slate-400 mt-1">Try updating your skills to unlock more matches.</p>
@@ -104,20 +104,20 @@ export default function ExternalJobs() {
       ) : (
         <div className="grid md:grid-cols-2 gap-4">
           {filtered.map((job, i) => (
-            <div key={i} className="bg-white border border-slate-200 rounded-lg p-5 shadow-[var(--shadow-sm)] hover:border-blue-200 transition-all group">
+            <div key={i} className="bg-slate-50 border border-slate-300 rounded-lg p-5 shadow-[var(--shadow-sm)] hover:border-blue-200 transition-all group">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex-1">
                   <h3 className="font-bold text-slate-900 group-hover:text-[#2563eb] transition-colors">{job.title || 'Untitled'}</h3>
                   <p className="text-sm text-slate-500">{job.company || 'Unknown'} • {job.location || 'Remote'}</p>
                 </div>
                 {job.match_score > 0 && (
-                  <span className={`text-sm font-black px-2 py-1 rounded-lg ${job.match_score >= 80 ? 'bg-emerald-50 text-emerald-600' : job.match_score >= 60 ? 'bg-amber-50 text-amber-600' : 'bg-slate-50 text-slate-500'}`}>
+                  <span className={`text-sm font-black px-2 py-1 rounded-lg ${job.match_score >= 80 ? 'bg-emerald-50 text-emerald-600' : job.match_score >= 60 ? 'bg-amber-50 text-amber-600' : 'bg-slate-100 text-slate-500'}`}>
                     {job.match_score}%
                   </span>
                 )}
               </div>
               <div className="flex items-center gap-2 mb-3">
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded border ${PLATFORM_COLORS[job.platform] || 'bg-slate-100 text-slate-600 border-slate-200'}`}>
+                <span className={`text-[10px] font-bold px-2 py-0.5 rounded border ${PLATFORM_COLORS[job.platform] || 'bg-slate-100 text-slate-600 border-slate-300'}`}>
                   {job.platform}
                 </span>
                 {job.type && <span className="text-[10px] font-bold text-slate-400 uppercase">{job.type}</span>}

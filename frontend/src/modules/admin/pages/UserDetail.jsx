@@ -141,7 +141,7 @@ export default function UserDetail() {
   }, [id]);
 
   if (loading) return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-black">
+    <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-black">
       <div className="flex flex-col items-center gap-4">
         <div className="size-12 rounded-full border-4 border-blue-600 border-t-transparent animate-spin" />
         <p className="text-sm font-black uppercase tracking-[0.2em] text-slate-400">Syncing Profile Data...</p>
@@ -160,7 +160,7 @@ export default function UserDetail() {
       </button>
 
       {/* HEADER */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-10 shadow-sm flex flex-col md:flex-row items-center gap-10">
+      <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[2.5rem] p-10 shadow-sm flex flex-col md:flex-row items-center gap-10">
         <div className="size-36 bg-blue-600 rounded-[2rem] flex items-center justify-center text-white text-5xl font-black shadow-2xl shadow-blue-500/20 shrink-0">
           {userData.fullName.charAt(0)}
         </div>
@@ -179,7 +179,7 @@ export default function UserDetail() {
             <Briefcase size={16} className="text-blue-500" /> {userData.role}
           </p>
           <div className="flex items-center justify-center md:justify-start gap-6 text-xs font-bold text-slate-400 mt-6">
-            <span className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800 px-4 py-2 rounded-xl border border-slate-100 dark:border-slate-800">
+            <span className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700">
                <Clock size={16} /> Joined {userData.joinedDate}
             </span>
             <span className="flex items-center gap-2 text-blue-600 bg-blue-50 dark:bg-blue-900/20 px-4 py-2 rounded-xl border border-blue-100 dark:border-blue-800">
@@ -191,8 +191,8 @@ export default function UserDetail() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* SECTION 1 — PERSONAL INFO */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-8 shadow-sm space-y-8">
-          <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 border-b border-slate-100 dark:border-slate-800 pb-5">Core Profile Data</h2>
+        <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[2.5rem] p-8 shadow-sm space-y-8">
+          <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 border-b border-slate-200 dark:border-slate-700 pb-5">Core Profile Data</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-1.5">
               <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Full Name</p>
@@ -223,8 +223,8 @@ export default function UserDetail() {
         </div>
 
         {/* SECTION 2 — RESUME DATA */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-8 shadow-sm space-y-8">
-          <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 border-b border-slate-100 dark:border-slate-800 pb-5">ATS AI Analysis</h2>
+        <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[2.5rem] p-8 shadow-sm space-y-8">
+          <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 border-b border-slate-200 dark:border-slate-700 pb-5">ATS AI Analysis</h2>
           <div className="space-y-8">
             <div className="flex items-center justify-between p-6 bg-slate-900 dark:bg-black rounded-3xl border border-slate-800">
               <div className="flex items-center gap-4">
@@ -262,7 +262,7 @@ export default function UserDetail() {
               </div>
             </div>
 
-            <div className="space-y-2 pt-4 border-t border-slate-100 dark:border-slate-800">
+            <div className="space-y-2 pt-4 border-t border-slate-200 dark:border-slate-700">
               <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">System Recommended Role</p>
               <p className="font-black text-slate-900 dark:text-white uppercase tracking-tight text-lg">{userData.preferredRole}</p>
             </div>
@@ -271,12 +271,12 @@ export default function UserDetail() {
       </div>
 
       {/* SECTION 3 — APPLICATION ACTIVITY */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-8 shadow-sm space-y-8">
-        <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 border-b border-slate-100 dark:border-slate-800 pb-5">Application Intelligence</h2>
+      <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-[2.5rem] p-8 shadow-sm space-y-8">
+        <h2 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 border-b border-slate-200 dark:border-slate-700 pb-5">Application Intelligence</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead>
-              <tr className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] border-b border-slate-50 dark:border-slate-800">
+              <tr className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] border-b border-slate-50 dark:border-slate-700">
                 <th className="pb-6 px-4">Job Role</th>
                 <th className="pb-6 px-4">Company Entity</th>
                 <th className="pb-6 px-4">Submission Date</th>
@@ -286,7 +286,7 @@ export default function UserDetail() {
             </thead>
             <tbody className="divide-y divide-slate-50 dark:divide-slate-800">
               {userData.applications.map(app => (
-                <tr key={app.id} className="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all">
+                <tr key={app.id} className="group hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-all">
                   <td className="py-6 px-4 font-black text-slate-900 dark:text-white uppercase tracking-tight text-sm">{app.job}</td>
                   <td className="py-6 px-4 text-sm font-bold text-slate-500 uppercase tracking-widest">{app.company}</td>
                   <td className="py-6 px-4 text-xs font-bold text-slate-400 uppercase tracking-widest">{app.date}</td>
@@ -300,7 +300,7 @@ export default function UserDetail() {
                     </span>
                   </td>
                   <td className="py-6 px-4 text-right">
-                    <button className="size-10 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-all border border-slate-100 dark:border-slate-700 mx-auto mr-0">
+                    <button className="size-10 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-all border border-slate-200 dark:border-slate-700 mx-auto mr-0">
                       <ExternalLink size={16} />
                     </button>
                   </td>
@@ -318,7 +318,7 @@ export default function UserDetail() {
           <p className="text-slate-500 text-xs font-bold uppercase tracking-[0.2em]">Authorized actions for profile management</p>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-6">
-          <Button variant="secondary" className="bg-white/5 border-white/10 text-white hover:bg-white/10 h-14 px-8 gap-3 text-xs font-black uppercase tracking-widest transition-all hover:scale-105 active:scale-95">
+          <Button variant="secondary" className="bg-slate-50/5 border-white/10 text-white hover:bg-slate-50/10 h-14 px-8 gap-3 text-xs font-black uppercase tracking-widest transition-all hover:scale-105 active:scale-95">
             <FileText size={18} /> View Cloud Resume
           </Button>
           <Button variant="secondary" className="border-amber-500/30 text-amber-500 hover:bg-amber-500/10 h-14 px-8 gap-3 text-xs font-black uppercase tracking-widest transition-all">

@@ -44,10 +44,10 @@ const CandidateDetailSlideOut = ({ candidate, onClose, onAction, processingIds }
       
       {/* DRAWER PANEL */}
       <div 
-        className="fixed top-0 right-0 h-full w-full max-w-[700px] bg-white dark:bg-slate-900 shadow-2xl z-[110] transform transition-transform duration-500 ease-out border-l border-slate-200 dark:border-slate-800 flex flex-col translate-x-0"
+        className="fixed top-0 right-0 h-full w-full max-w-[700px] bg-slate-50 dark:bg-slate-900 shadow-2xl z-[110] transform transition-transform duration-500 ease-out border-l border-slate-300 dark:border-slate-700 flex flex-col translate-x-0"
       >
         {/* HEADER */}
-        <div className="flex-shrink-0 px-8 py-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <div className="flex-shrink-0 px-8 py-6 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
           <div className="flex items-center gap-5">
             <div className="size-14 rounded-2xl bg-blue-600 flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-blue-500/20">
               {candidate.name?.charAt(0)}
@@ -63,7 +63,7 @@ const CandidateDetailSlideOut = ({ candidate, onClose, onAction, processingIds }
           </div>
           <button 
             onClick={onClose} 
-            className="size-10 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center justify-center transition-all hover:bg-slate-100"
+            className="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center justify-center transition-all hover:bg-slate-100"
           >
             <X size={20} />
           </button>
@@ -82,7 +82,7 @@ const CandidateDetailSlideOut = ({ candidate, onClose, onAction, processingIds }
                   <div className="h-full bg-blue-600 rounded-full" style={{ width: `${candidate.score}%` }} />
                 </div>
               </div>
-              <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-5 border border-slate-100 dark:border-slate-800 flex flex-col items-center justify-center text-center">
+              <div className="bg-slate-100 dark:bg-slate-800/50 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center text-center">
                 <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-2">ATS Analysis</p>
                 <h3 className="text-2xl font-black text-slate-900 dark:text-white">{Math.round(candidate.score * 0.92)}</h3>
                 <span className="text-[8px] font-bold text-slate-500 uppercase tracking-tighter mt-1">Operational Grade</span>
@@ -135,7 +135,7 @@ const CandidateDetailSlideOut = ({ candidate, onClose, onAction, processingIds }
           {/* RECOMMENDATIONS SECTION */}
           <div className="space-y-4">
             <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Strategic Recommendations</h3>
-            <Card className="border-slate-100 shadow-sm bg-slate-50/50 dark:bg-slate-800/30">
+            <Card className="border-slate-200 shadow-sm bg-slate-100/50 dark:bg-slate-800/30">
               <CardBody className="p-5 space-y-4">
                 <div className="flex items-start gap-4">
                   <div className="size-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
@@ -167,7 +167,7 @@ const CandidateDetailSlideOut = ({ candidate, onClose, onAction, processingIds }
                 <Download size={14} /> Download Original
               </button>
             </div>
-            <div className="aspect-[1/1.4] w-full bg-slate-100 dark:bg-slate-950 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden relative group">
+            <div className="aspect-[1/1.4] w-full bg-slate-100 dark:bg-slate-950 rounded-2xl border border-slate-300 dark:border-slate-700 overflow-hidden relative group">
               {hasResume ? (
                  <iframe 
                    src={`${getResumeFileUrl(candidate.id)}#toolbar=0&navpanes=0`} 
@@ -186,7 +186,7 @@ const CandidateDetailSlideOut = ({ candidate, onClose, onAction, processingIds }
         </div>
 
         {/* FOOTER ACTIONS */}
-        <div className="flex-shrink-0 p-6 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 flex gap-3">
+        <div className="flex-shrink-0 p-6 border-t border-slate-200 dark:border-slate-700 bg-slate-100/50 dark:bg-slate-900/50 flex gap-3">
           <Button 
             disabled={isProcessing}
             onClick={() => onAction(candidate.id, 'shortlisted')}

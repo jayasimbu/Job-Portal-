@@ -9,10 +9,10 @@ import Badge from '../../../components/ui/Badge';
 import { Heading, Text } from '../../../components/ui/Typography';
 
 const MetricCard = ({ icon: Icon, label, value, status, statusColor }) => (
-  <Card className="border-slate-200 shadow-sm">
+  <Card className="border-slate-300 shadow-sm">
     <CardBody className="p-8">
       <div className="flex items-center justify-between mb-6">
-        <div className="size-12 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+        <div className="size-12 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
           <Icon size={24} />
         </div>
         <Badge variant={statusColor} className="text-[10px] px-3 py-1 uppercase font-black">
@@ -63,7 +63,7 @@ export default function SystemMonitoring() {
         <Button 
           variant="secondary" 
           onClick={refreshHealth}
-          className="h-11 px-6 rounded-xl border-slate-200 font-bold text-xs uppercase tracking-widest gap-2"
+          className="h-11 px-6 rounded-xl border-slate-300 font-bold text-xs uppercase tracking-widest gap-2"
         >
           <RefreshCw size={14} className={loading ? 'animate-spin' : ''} />
           Refresh Vitals
@@ -103,7 +103,7 @@ export default function SystemMonitoring() {
       </div>
 
       {/* SYSTEM STATE DETAIL */}
-      <Card className="border-slate-200 shadow-sm overflow-hidden">
+      <Card className="border-slate-300 shadow-sm overflow-hidden">
         <CardBody className="p-0">
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-100 dark:divide-slate-800">
             <div className="p-8 space-y-4">

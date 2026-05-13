@@ -65,13 +65,13 @@ export default function CompanyDetail() {
       </div>
 
       {/* HEADER HERO */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[2rem] p-6 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+      <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[2rem] p-6 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
         <div className="absolute top-0 right-0 p-8 opacity-5">
            <Building2 size={120} />
         </div>
         
         <div className="flex items-center gap-6 relative z-10">
-          <div className="size-24 bg-slate-50 dark:bg-slate-800/50 rounded-2xl flex items-center justify-center text-blue-600 shadow-inner border border-slate-100 dark:border-slate-800 font-black text-3xl">
+          <div className="size-24 bg-slate-100 dark:bg-slate-800/50 rounded-2xl flex items-center justify-center text-blue-600 shadow-inner border border-slate-200 dark:border-slate-700 font-black text-3xl">
             {company.name[0]}
           </div>
           <div className="space-y-2">
@@ -100,13 +100,13 @@ export default function CompanyDetail() {
         {/* MAIN CONTENT AREA (8 Units) */}
         <div className="lg:col-span-8 space-y-5">
           {/* SECTION 1 — OVERVIEW & ABOUT */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl p-7 shadow-sm space-y-8">
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-3xl p-7 shadow-sm space-y-8">
              <div className="space-y-3">
                <h2 className="text-[11px] font-black uppercase tracking-[0.3em] text-blue-600">Executive Summary</h2>
                <p className="text-[16px] text-slate-600 dark:text-slate-400 leading-[1.7] font-medium">{company.overview}</p>
              </div>
              
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-slate-50 dark:border-slate-800">
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-slate-50 dark:border-slate-700">
                <div className="space-y-3">
                  <h2 className="text-[11px] font-black uppercase tracking-[0.3em] text-slate-400">Our Mission</h2>
                  <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">{company.mission}</p>
@@ -119,7 +119,7 @@ export default function CompanyDetail() {
           </div>
 
           {/* SECTION 2 — OPEN POSITIONS (NEW) */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl p-7 shadow-sm space-y-6">
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-3xl p-7 shadow-sm space-y-6">
             <div className="flex items-center justify-between">
               <h2 className="text-[11px] font-black uppercase tracking-[0.3em] text-slate-400">Live Opportunities</h2>
               <span className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/20 text-blue-600 text-[9px] font-black rounded uppercase tracking-widest">{company.activeJobsCount} Positions</span>
@@ -127,7 +127,7 @@ export default function CompanyDetail() {
             
             <div className="space-y-3">
               {company.activeJobs.map((job, idx) => (
-                <div key={job.id} className="group p-4 bg-slate-50/50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-800/50 rounded-2xl flex items-center justify-between hover:border-blue-500/30 transition-all">
+                <div key={job.id} className="group p-4 bg-slate-100/50 dark:bg-slate-800/30 border border-slate-200 dark:border-slate-700/50 rounded-2xl flex items-center justify-between hover:border-blue-500/30 transition-all">
                   <div className="space-y-1.5 flex-1 min-w-0">
                     <h4 className="font-black text-base text-slate-900 dark:text-white uppercase tracking-tight group-hover:text-blue-600 transition-colors truncate">{job.title}</h4>
                     <div className="flex items-center gap-3 text-[9px] font-black text-slate-400 uppercase tracking-[0.1em]">
@@ -139,7 +139,7 @@ export default function CompanyDetail() {
                     </div>
                   </div>
                   <div className="flex items-center gap-3 shrink-0 ml-4">
-                    <Button variant="secondary" className="h-9 px-4 rounded-lg text-[9px] font-black uppercase tracking-widest border-slate-200 dark:border-slate-800">Analyze</Button>
+                    <Button variant="secondary" className="h-9 px-4 rounded-lg text-[9px] font-black uppercase tracking-widest border-slate-300 dark:border-slate-700">Analyze</Button>
                     <Button className="h-9 px-4 rounded-lg text-[9px] font-black uppercase tracking-widest">Apply Now</Button>
                   </div>
                 </div>
@@ -148,11 +148,11 @@ export default function CompanyDetail() {
           </div>
 
           {/* SECTION 3 — TECH STACK */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl p-7 shadow-sm space-y-6">
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-3xl p-7 shadow-sm space-y-6">
              <h2 className="text-[11px] font-black uppercase tracking-[0.3em] text-slate-400">Core Tech Stack</h2>
              <div className="flex flex-wrap gap-2">
                 {company.requiredSkills.map(skill => (
-                  <span key={skill} className="px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-xl text-[10px] font-black text-slate-600 dark:text-slate-300 uppercase tracking-widest hover:text-blue-600 transition-colors cursor-default">
+                  <span key={skill} className="px-4 py-2 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-[10px] font-black text-slate-600 dark:text-slate-300 uppercase tracking-widest hover:text-blue-600 transition-colors cursor-default">
                     {skill}
                   </span>
                 ))}
@@ -195,7 +195,7 @@ export default function CompanyDetail() {
           </div>
           
           {/* RATINGS / SOCIAL */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl p-7 shadow-sm space-y-6">
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-3xl p-7 shadow-sm space-y-6">
              <div className="flex items-center justify-between">
                 <h2 className="text-[11px] font-black uppercase tracking-[0.3em] text-slate-400">Employee Rating</h2>
                 <div className="flex items-center gap-1 text-amber-500">

@@ -56,7 +56,7 @@ export default function CandidateProfile() {
   const [activeTab, setActiveTab] = useState('Resume Analysis');
 
   return (
-    <div className="bg-slate-50 dark:bg-[#0d141b] text-slate-900 dark:text-slate-200 min-h-screen">
+    <div className="bg-slate-100 dark:bg-[#0d141b] text-slate-900 dark:text-slate-200 min-h-screen">
       <div className="layout-container flex flex-col max-w-[1440px] mx-auto w-full px-4 md:px-8 py-6">
 
         {/* Breadcrumbs */}
@@ -69,7 +69,7 @@ export default function CandidateProfile() {
         </div>
 
         {/* Profile Header Card */}
-        <div className="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-6 mb-6">
+        <div className="bg-slate-50 dark:bg-[#1a2632] rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 mb-6">
           <div className="flex flex-col lg:flex-row gap-8 justify-between items-start lg:items-center">
             {/* Avatar + Info */}
             <div className="flex gap-6 items-center flex-1">
@@ -93,7 +93,7 @@ export default function CandidateProfile() {
             </div>
             {/* AI Score + Actions */}
             <div className="flex flex-col sm:flex-row items-center gap-8 w-full lg:w-auto">
-              <div className="flex items-center gap-4 bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
+              <div className="flex items-center gap-4 bg-slate-100 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-200 dark:border-slate-700">
                 <div className="relative size-16">
                   <svg className="size-full -rotate-90" viewBox="0 0 36 36">
                     <path className="text-slate-200 dark:text-slate-700" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3" />
@@ -109,11 +109,11 @@ export default function CandidateProfile() {
                 </div>
               </div>
               <div className="flex gap-3">
-                <button className="flex items-center justify-center gap-2 rounded-xl h-11 px-5 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:hover:bg-slate-700 text-slate-700 dark:text-white text-sm font-bold transition-all shadow-sm">
+                <button className="flex items-center justify-center gap-2 rounded-xl h-11 px-5 bg-slate-50 border border-slate-300 hover:bg-slate-100 dark:bg-slate-800 dark:border-slate-700 dark:hover:bg-slate-700 text-slate-700 dark:text-white text-sm font-bold transition-all shadow-sm">
                   <span className="material-symbols-outlined text-[20px]">close</span>
                   <span className="hidden sm:inline">Reject</span>
                 </button>
-                <button className="flex items-center justify-center gap-2 rounded-xl h-11 px-5 bg-white border border-slate-200 hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:hover:bg-slate-700 text-slate-700 dark:text-white text-sm font-bold transition-all shadow-sm">
+                <button className="flex items-center justify-center gap-2 rounded-xl h-11 px-5 bg-slate-50 border border-slate-300 hover:bg-slate-100 dark:bg-slate-800 dark:border-slate-700 dark:hover:bg-slate-700 text-slate-700 dark:text-white text-sm font-bold transition-all shadow-sm">
                   <span className="material-symbols-outlined text-[20px]">bookmark</span>
                   <span className="hidden sm:inline">Shortlist</span>
                 </button>
@@ -131,7 +131,7 @@ export default function CandidateProfile() {
           {/* Main Content */}
           <div className="lg:col-span-8 flex flex-col gap-6">
             {/* Tabs */}
-            <div className="flex border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-[#1a2632] rounded-t-xl px-2">
+            <div className="flex border-b border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#1a2632] rounded-t-xl px-2">
               {TABS.map((tab) => (
                 <button
                   key={tab}
@@ -144,7 +144,7 @@ export default function CandidateProfile() {
             </div>
 
             {/* Tab Panel */}
-            <div className="bg-white dark:bg-[#1a2632] rounded-b-xl rounded-tr-xl shadow-sm border border-slate-100 dark:border-slate-800 p-6 -mt-6">
+            <div className="bg-slate-50 dark:bg-[#1a2632] rounded-b-xl rounded-tr-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 -mt-6">
               {activeTab === 'Resume Analysis' && (
                 <>
                   {/* AI Summary */}
@@ -164,7 +164,7 @@ export default function CandidateProfile() {
 
                   {/* Experience Timeline */}
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-5">Professional Experience</h3>
-                  <div className="relative pl-4 border-l-2 border-slate-100 dark:border-slate-700 space-y-8 mb-6">
+                  <div className="relative pl-4 border-l-2 border-slate-200 dark:border-slate-700 space-y-8 mb-6">
                     {experiences.map((exp) => (
                       <div key={exp.role} className="relative">
                         <div className={`absolute -left-[21px] top-1.5 size-3 rounded-full border-2 border-white dark:border-[#1a2632] ${exp.current ? 'bg-[#2563eb]' : 'bg-slate-300 dark:bg-slate-600'}`}></div>
@@ -173,7 +173,7 @@ export default function CandidateProfile() {
                             <h4 className="text-base font-bold text-slate-900 dark:text-white">{exp.role}</h4>
                             <p className={`text-sm font-medium ${exp.current ? 'text-[#2563eb]' : 'text-slate-500 dark:text-slate-400'}`}>{exp.company}</p>
                           </div>
-                          <span className="text-xs font-medium text-slate-400 bg-slate-50 dark:bg-slate-800 px-2 py-1 rounded">{exp.dates}</span>
+                          <span className="text-xs font-medium text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">{exp.dates}</span>
                         </div>
                         <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mt-2">{exp.description}</p>
                         {exp.skills.length > 0 && (
@@ -232,7 +232,7 @@ export default function CandidateProfile() {
 
             {/* Skill Breakdown mini-card below tabs */}
             {activeTab === 'Resume Analysis' && (
-              <div className="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-6">
+              <div className="bg-slate-50 dark:bg-[#1a2632] rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
                 <div className="flex justify-between items-center mb-6">
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white">Skill Breakdown</h3>
                   <button onClick={() => setActiveTab('Skill Breakdown')} className="text-[#2563eb] text-sm font-bold hover:underline">View Full Report</button>
@@ -274,7 +274,7 @@ export default function CandidateProfile() {
           {/* Sidebar */}
           <div className="lg:col-span-4 flex flex-col gap-6 lg:sticky lg:top-24">
             {/* Interview Score */}
-            <div className="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-6">
+            <div className="bg-slate-50 dark:bg-[#1a2632] rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white">Interview Score</h3>
                 <div className="flex items-center gap-1 text-orange-400 font-bold">
@@ -284,7 +284,7 @@ export default function CandidateProfile() {
               </div>
               <div className="flex flex-col gap-4">
                 {interviews.map((iv) => (
-                  <div key={iv.stage} className="p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                  <div key={iv.stage} className="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg">
                     <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
                       <span>{iv.stage}</span>
                       <span>{iv.date}</span>
@@ -302,7 +302,7 @@ export default function CandidateProfile() {
             </div>
 
             {/* Learning Attitude */}
-            <div className="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-6">
+            <div className="bg-slate-50 dark:bg-[#1a2632] rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Learning Attitude</h3>
               <div className="flex items-center gap-4 mb-6">
                 <div>
@@ -321,7 +321,7 @@ export default function CandidateProfile() {
             </div>
 
             {/* Contact Info */}
-            <div className="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-6">
+            <div className="bg-slate-50 dark:bg-[#1a2632] rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
               <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">Contact Info</h3>
               <div className="space-y-4">
                 {[

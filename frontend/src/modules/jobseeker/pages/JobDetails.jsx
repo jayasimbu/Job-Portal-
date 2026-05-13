@@ -103,12 +103,12 @@ Key Responsibilities:
         
         {/* COLUMN 1: COMPANY PROFILE (LEFT - 3 Units) */}
         <div className="lg:col-span-3 space-y-4">
-          <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl p-6 shadow-sm overflow-hidden relative">
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 shadow-sm overflow-hidden relative">
             <div className="absolute top-0 right-0 p-4 opacity-5">
                <Building2 size={80} />
             </div>
             
-            <div className="size-20 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 flex items-center justify-center font-black text-3xl text-blue-600 mb-6 shadow-inner">
+            <div className="size-20 bg-slate-100 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 flex items-center justify-center font-black text-3xl text-blue-600 mb-6 shadow-inner">
                {job.company.logo}
             </div>
             
@@ -121,7 +121,7 @@ Key Responsibilities:
                   </div>
                </div>
 
-               <div className="space-y-3 pt-4 border-t border-slate-50 dark:border-slate-800">
+               <div className="space-y-3 pt-4 border-t border-slate-50 dark:border-slate-700">
                   <div className="flex items-center gap-3 text-slate-500">
                      <Briefcase size={16} />
                      <span className="text-[11px] font-bold uppercase tracking-wide">{job.company.industry}</span>
@@ -136,14 +136,14 @@ Key Responsibilities:
                   </div>
                </div>
 
-               <div className="pt-4 border-t border-slate-50 dark:border-slate-800">
+               <div className="pt-4 border-t border-slate-50 dark:border-slate-700">
                   <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">About Company</p>
                   <p className="text-xs font-medium text-slate-600 dark:text-slate-400 leading-relaxed">
                      {job.company.about}
                   </p>
                </div>
 
-               <Button variant="secondary" className="w-full h-11 rounded-xl text-[10px] font-black uppercase tracking-widest border-slate-100 dark:border-slate-800">
+               <Button variant="secondary" className="w-full h-11 rounded-xl text-[10px] font-black uppercase tracking-widest border-slate-200 dark:border-slate-700">
                   View Company Profile
                </Button>
             </div>
@@ -152,19 +152,19 @@ Key Responsibilities:
 
         {/* COLUMN 2: JOB SPECIFICS (CENTER - 6 Units) */}
         <div className="lg:col-span-6 space-y-4">
-          <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[2rem] p-8 shadow-sm space-y-8">
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[2rem] p-8 shadow-sm space-y-8">
              
              {/* Main Title Area */}
              <div className="space-y-4">
                 <div className="flex items-center gap-3">
                    <span className="px-3 py-1 bg-blue-600 text-white text-[9px] font-black rounded uppercase tracking-[0.2em]">Active Role</span>
-                   <span className="px-3 py-1 border border-slate-200 dark:border-slate-800 text-slate-500 text-[9px] font-black rounded uppercase tracking-[0.2em]">{job.workMode}</span>
+                   <span className="px-3 py-1 border border-slate-300 dark:border-slate-700 text-slate-500 text-[9px] font-black rounded uppercase tracking-[0.2em]">{job.workMode}</span>
                 </div>
                 <h1 className="text-4xl font-black text-slate-900 dark:text-white uppercase tracking-tighter leading-none">{job.title}</h1>
              </div>
 
              {/* Quick Specs Grid */}
-             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-700">
+             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 bg-slate-100 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700">
                 <div className="space-y-1">
                    <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Compensation</p>
                    <p className="text-sm font-black text-slate-900 dark:text-white leading-none">{job.salary}</p>
@@ -218,7 +218,7 @@ Key Responsibilities:
                 </h3>
                 <div className="flex flex-wrap gap-2">
                    {job.skills.map(s => (
-                      <span key={s} className="px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-xl text-[10px] font-black text-slate-600 dark:text-slate-300 uppercase tracking-widest">{s}</span>
+                      <span key={s} className="px-4 py-2 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-[10px] font-black text-slate-600 dark:text-slate-300 uppercase tracking-widest">{s}</span>
                    ))}
                 </div>
              </div>

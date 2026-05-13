@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Logo from './Logo';
 const GlobalFooter = () => {
   return (
-    <footer className="w-full bg-slate-50 dark:bg-[#0b1016] border-t border-slate-200 dark:border-slate-800">
+    <footer className="w-full bg-slate-100 dark:bg-[#0b1016] border-t border-slate-300 dark:border-slate-700">
       <div className="mx-auto max-w-7xl px-6 md:px-10 py-12 pb-6">
         {/* 🧠 MAIN FOOTER GRID (5-COLUMN STRUCTURE) */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 mb-8">
@@ -94,7 +94,7 @@ const GlobalFooter = () => {
         </div>
 
         {/* 🔐 LEGAL & TRUST BAR (BOTTOM STRIP) */}
-        <div className="my-6 border-t border-slate-200 dark:border-slate-800/60 pt-6">
+        <div className="my-6 border-t border-slate-300 dark:border-slate-700/60 pt-6">
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs text-slate-400">
             {[
               { name: 'Privacy', path: '/privacy' },
@@ -112,7 +112,7 @@ const GlobalFooter = () => {
         </div>
 
         {/* 🧾 FINAL BRAND LINE */}
-        <div className="my-6 border-t border-slate-200 dark:border-slate-800/60 pt-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+        <div className="my-6 border-t border-slate-300 dark:border-slate-700/60 pt-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-4">
             <div className="shrink-0 cursor-pointer" onClick={(e) => { e.stopPropagation(); window.dispatchEvent(new CustomEvent('open-logo-modal')); }}>
               <Logo variant="light" />

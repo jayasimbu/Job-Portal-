@@ -54,7 +54,7 @@ const LearningRoadmap = () => {
                 <span className="text-sm font-bold">{idx + 1}</span>
               </div>
               {/* Content */}
-              <div className="w-[calc(100%-4rem)] md:w-[45%] p-6 rounded-3xl border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 shadow-sm transition-all hover:border-blue-500">
+              <div className="w-[calc(100%-4rem)] md:w-[45%] p-6 rounded-3xl border border-slate-300 bg-slate-50 dark:bg-slate-900 dark:border-slate-700 shadow-sm transition-all hover:border-blue-500">
                 <div className="flex items-center justify-between space-x-2 mb-2">
                   <div className="font-black text-slate-900 dark:text-white uppercase tracking-widest text-xs">{phase.phase || `Phase ${idx+1}`}</div>
                   <time className="font-bold text-[10px] text-blue-600 bg-blue-50 px-2 py-1 rounded uppercase">{phase.effort || phase.estimated_time || '2-4 Weeks'}</time>
@@ -73,7 +73,7 @@ const LearningRoadmap = () => {
                 </div>
                 <button 
                   onClick={() => navigate('/platform/jobseeker/learning')}
-                  className="w-full h-10 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all flex items-center justify-center gap-2"
+                  className="w-full h-10 bg-slate-900 dark:bg-slate-50 text-white dark:text-slate-900 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all flex items-center justify-center gap-2"
                 >
                   Find Learning Resources
                   <span className="material-symbols-outlined text-sm">arrow_forward</span>
@@ -83,7 +83,7 @@ const LearningRoadmap = () => {
           ))}
         </div>
       ) : (
-        <div className="bg-white border-2 border-dashed border-slate-200 rounded-3xl p-12 text-center">
+        <div className="bg-slate-50 border-2 border-dashed border-slate-300 rounded-3xl p-12 text-center">
            <span className="material-symbols-outlined text-5xl text-slate-300 mb-4">analytics</span>
            <h3 className="text-lg font-bold text-slate-900">Roadmap Not Ready</h3>
            <p className="text-slate-500 mb-6 max-w-sm mx-auto">Upload a new resume to trigger our AI engine and generate your personalized learning roadmap.</p>
@@ -98,7 +98,7 @@ const LearningRoadmap = () => {
               Upon completing this roadmap, your market fit for <strong>Senior Developer</strong> roles is projected to increase by <strong>25-30%</strong>.
            </p>
            <div className="flex items-center gap-4">
-              <div className="h-1.5 flex-1 bg-white/10 rounded-full overflow-hidden">
+              <div className="h-1.5 flex-1 bg-slate-50/10 rounded-full overflow-hidden">
                  <div className="h-full bg-blue-400 w-3/4 rounded-full" />
               </div>
               <span className="font-black text-blue-400">75% -> 95%</span>

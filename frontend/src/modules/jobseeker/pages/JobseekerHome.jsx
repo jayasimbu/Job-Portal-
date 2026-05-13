@@ -58,9 +58,9 @@ const JobseekerHome = () => {
   ];
 
   return (
-    <div className="space-y-16 pb-20">
+    <div className="space-y-10 pb-12">
       {/* ═══ HERO SECTION ═══════════════════════════════════════════════ */}
-      <section className="pt-20 px-4 md:px-8">
+      <section className="pt-10 px-4 md:px-8">
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <div className="space-y-10">
             <div className="space-y-6">
@@ -83,14 +83,14 @@ const JobseekerHome = () => {
               </Button>
               <Button 
                 onClick={() => navigate('/platform/jobseeker/jobs')}
-                className="h-14 px-8 text-base border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
+                className="h-14 px-8 text-base border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
                 variant="outline"
               >
                 Explore Jobs
               </Button>
             </div>
 
-            <div className="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+            <div className="flex items-center gap-4 pt-4 border-t border-slate-200 dark:border-slate-700">
                <div>
                   <p className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-tight">Join 20,000+ Professionals</p>
                   <p className="text-xs text-slate-500 font-medium">Discover your next career move</p>
@@ -100,10 +100,10 @@ const JobseekerHome = () => {
 
           {/* REAL PRODUCT PREVIEW */}
           <div>
-            <Card className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl rounded-3xl overflow-hidden p-8 scale-105 transform transition-all hover:scale-110">
+            <Card className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 shadow-2xl rounded-3xl overflow-hidden p-8 scale-105 transform transition-all hover:scale-110">
               <div className="space-y-8">
                 {/* Header Section */}
-                <div className="flex items-center justify-between pb-6 border-b border-slate-100 dark:border-slate-800">
+                <div className="flex items-center justify-between pb-6 border-b border-slate-200 dark:border-slate-700">
                   <div className="flex items-center gap-4">
                     <div className="size-10 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center text-slate-900 dark:text-white">
                       <BarChart3 size={18} />
@@ -120,7 +120,7 @@ const JobseekerHome = () => {
 
                 {/* Score & Insights */}
                 <div className="grid grid-cols-5 gap-6 items-center">
-                  <div className="col-span-2 flex flex-col items-center justify-center p-6 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
+                  <div className="col-span-2 flex flex-col items-center justify-center p-6 bg-slate-100 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
                     <div className="text-xs font-semibold text-slate-500 mb-2 uppercase tracking-widest">Resume Strength</div>
                     <div className="text-4xl font-black text-blue-600 tracking-tight">82%</div>
                   </div>
@@ -128,7 +128,7 @@ const JobseekerHome = () => {
                     <div className="text-xs font-semibold text-slate-500 uppercase tracking-widest">Matched Expertise</div>
                     <div className="flex flex-wrap gap-2">
                       {['React', 'Tailwind', 'Node.js', 'System Design'].map(s => (
-                        <span key={s} className="px-2.5 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded text-[11px] font-semibold text-slate-700 dark:text-slate-300">
+                        <span key={s} className="px-2.5 py-1 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded text-[11px] font-semibold text-slate-700 dark:text-slate-300">
                           {s}
                         </span>
                       ))}
@@ -147,9 +147,9 @@ const JobseekerHome = () => {
                         { company: 'Zoho', role: 'Frontend Engineer', status: 'Reviewing', match: 87 },
                         { company: 'Stripe', role: 'Product Developer', status: 'Applied', match: 92 }
                       ].map((app, i) => (
-                        <div key={i} className="flex items-center justify-between p-3 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800">
+                        <div key={i} className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-300 dark:border-slate-700">
                           <div className="flex items-center gap-3">
-                             <div className="size-8 bg-slate-100 dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700 flex items-center justify-center font-bold text-[10px] text-slate-700 dark:text-slate-300 uppercase">
+                             <div className="size-8 bg-slate-100 dark:bg-slate-800 rounded border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-[10px] text-slate-700 dark:text-slate-300 uppercase">
                                {app.company[0]}
                              </div>
                              <div>
@@ -183,7 +183,7 @@ const JobseekerHome = () => {
       </section>
 
       {/* ═══ FEATURES SECTION ═══════════════════════════════════════════ */}
-      <section className="px-8 max-w-[1400px] mx-auto space-y-10">
+      <section className="px-8 max-w-[1400px] mx-auto space-y-8">
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight uppercase">
              Where clarity meets <span className="text-blue-600">Opportunity.</span>
@@ -195,8 +195,8 @@ const JobseekerHome = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((f, i) => (
-            <div key={i} className="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1">
-              <div className="size-12 rounded-xl flex items-center justify-center mb-6 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 text-blue-600">
+            <div key={i} className="p-8 rounded-3xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1">
+              <div className="size-12 rounded-xl flex items-center justify-center mb-6 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-blue-600">
                 <f.icon size={24} />
               </div>
               <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-3 tracking-tight uppercase">{f.title}</h4>
@@ -207,8 +207,8 @@ const JobseekerHome = () => {
       </section>
 
       {/* ═══ WORKFLOW SECTION ════════════════════════════════════════════ */}
-      <section className="px-8 bg-slate-50 dark:bg-slate-900/50 py-16 border-y border-slate-200 dark:border-slate-800">
-        <div className="max-w-[1400px] mx-auto space-y-12">
+      <section className="px-8 bg-slate-100 dark:bg-slate-900/50 py-10 border-y border-slate-300 dark:border-slate-700">
+        <div className="max-w-[1400px] mx-auto space-y-8">
           <div className="space-y-4">
             <h3 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight uppercase">
               Engineered for results.
@@ -253,14 +253,14 @@ const JobseekerHome = () => {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Button 
               onClick={() => navigate('/platform/jobseeker/jobs')}
-              className="h-12 px-6 text-sm bg-white text-blue-600 hover:bg-slate-50 shadow-sm"
+              className="h-12 px-6 text-sm bg-slate-50 text-blue-600 hover:bg-slate-100 shadow-sm"
               variant="secondary"
             >
               Explore Jobs
             </Button>
             <Button 
               onClick={() => navigate('/platform/jobseeker/profile')}
-              className="h-12 px-6 text-sm border-white/30 text-white hover:bg-white/10"
+              className="h-12 px-6 text-sm border-white/30 text-white hover:bg-slate-50/10"
               variant="outline"
             >
               Update Profile

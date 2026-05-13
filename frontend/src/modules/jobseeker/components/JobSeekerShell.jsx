@@ -87,7 +87,7 @@ const JobSeekerShell = ({ active, children }) => {
             ))}
           </div>
 
-          <div className="flex items-center gap-4 border-l border-slate-200 pl-6">
+          <div className="flex items-center gap-4 border-l border-slate-300 pl-6">
              <button className="p-2 hover:bg-slate-100 rounded-full transition-colors relative">
                <span className="material-symbols-outlined text-[20px] text-slate-500">notifications</span>
                <div className="absolute top-2 right-2 size-2 bg-rose-500 rounded-full border-2 border-white"></div>

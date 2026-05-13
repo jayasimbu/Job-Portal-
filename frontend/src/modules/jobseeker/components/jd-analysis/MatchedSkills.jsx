@@ -3,7 +3,7 @@ import { CheckCircle2 } from 'lucide-react';
 
 const MatchedSkills = ({ skills }) => {
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 h-full">
+    <div className="bg-slate-50 rounded-2xl shadow-sm border border-slate-300 p-6 h-full">
       <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
         <CheckCircle2 className="size-5 text-emerald-500" />
         Matched Skills

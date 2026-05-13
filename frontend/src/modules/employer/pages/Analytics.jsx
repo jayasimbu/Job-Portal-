@@ -12,10 +12,10 @@ import Card, { CardBody } from '../../../components/ui/Card';
 import Badge from '../../../components/ui/Badge';
 
 const MetricCard = ({ label, value, trend, icon: Icon }) => (
-  <Card className="border-slate-100 shadow-sm">
+  <Card className="border-slate-200 shadow-sm">
     <CardBody className="p-5">
       <div className="flex justify-between items-start mb-4">
-        <div className="size-10 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-blue-600">
+        <div className="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-blue-600">
           <Icon size={20} />
         </div>
         <Badge variant={trend.startsWith('+') ? 'success' : 'danger'} className="text-[9px] font-black">{trend}</Badge>
@@ -27,7 +27,7 @@ const MetricCard = ({ label, value, trend, icon: Icon }) => (
 );
 
 const ChartPlaceholder = ({ title, height = "h-64" }) => (
-  <div className={`flex flex-col items-center justify-center bg-slate-50/50 dark:bg-slate-800/30 rounded-xl border border-dashed border-slate-200 dark:border-slate-700 ${height}`}>
+  <div className={`flex flex-col items-center justify-center bg-slate-100/50 dark:bg-slate-800/30 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 ${height}`}>
     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{title} Visualization</p>
     <p className="text-[9px] text-slate-300 font-bold uppercase mt-1">Operational Data Feed Active</p>
   </div>
@@ -48,7 +48,7 @@ export default function Analytics() {
         </div>
         
         <div className="flex items-center gap-2">
-          <button className="h-9 px-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-[10px] font-black uppercase tracking-widest flex items-center gap-2 hover:bg-slate-50 transition-colors">
+          <button className="h-9 px-4 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-[10px] font-black uppercase tracking-widest flex items-center gap-2 hover:bg-slate-100 transition-colors">
             <Calendar size={14} />
             Last 30 Days
           </button>
@@ -66,8 +66,8 @@ export default function Analytics() {
       {/* CHARTS SECTION */}
       <div className="w-full">
         {/* Applicants Over Time */}
-        <Card className="border-slate-100 shadow-sm w-full">
-          <div className="p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <Card className="border-slate-200 shadow-sm w-full">
+          <div className="p-5 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
             <h3 className="text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-widest">Applicants Over Time</h3>
             <ArrowUpRight size={14} className="text-slate-300" />
           </div>

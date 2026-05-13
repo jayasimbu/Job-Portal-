@@ -132,14 +132,14 @@ export default function ResumeAnalysis() {
 
       {/* TOP SECTION - UPLOAD CARD */}
       {!result && (
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-sm max-w-2xl mx-auto">
+        <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-8 shadow-sm max-w-2xl mx-auto">
           <div
             onDragOver={e => { e.preventDefault(); setDragging(true); }}
             onDragLeave={() => setDragging(false)}
             onDrop={handleDrop}
             onClick={() => inputRef.current?.click()}
             className={`group flex flex-col items-center justify-center gap-4 p-12 rounded-xl border-2 border-dashed cursor-pointer transition-all
-              ${dragging ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 hover:border-blue-400'}`}
+              ${dragging ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/50 hover:border-blue-400'}`}
           >
             <input ref={inputRef} type="file" accept=".pdf,.docx" className="hidden" onChange={handleFile} />
             <div className={`size-16 rounded-2xl flex items-center justify-center transition-all ${file ? 'bg-emerald-50 text-emerald-600' : 'bg-blue-50 text-blue-600'}`}>
@@ -180,12 +180,12 @@ export default function ResumeAnalysis() {
           
           {/* LEFT SIDE: RESUME PREVIEW (col-span-5) */}
           <div className="lg:col-span-5 sticky top-8">
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm flex flex-col h-[700px]">
-              <div className="px-6 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 flex items-center gap-3">
+            <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl overflow-hidden shadow-sm flex flex-col h-[700px]">
+              <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/50 flex items-center gap-3">
                 <FileText size={18} className="text-slate-400" />
                 <h3 className="font-semibold text-slate-700 dark:text-slate-300">Resume Preview</h3>
               </div>
-              <div className="p-6 overflow-y-auto flex-1 bg-slate-50/50 dark:bg-slate-900/50 font-mono text-xs text-slate-600 dark:text-slate-400 whitespace-pre-wrap leading-relaxed">
+              <div className="p-6 overflow-y-auto flex-1 bg-slate-100/50 dark:bg-slate-900/50 font-mono text-xs text-slate-600 dark:text-slate-400 whitespace-pre-wrap leading-relaxed">
                 {result.rawText ? result.rawText : 'Resume text preview not available. Extracted data will be shown in the analysis panels.'}
               </div>
             </div>
@@ -200,7 +200,7 @@ export default function ResumeAnalysis() {
           <div className="lg:col-span-7 space-y-6">
             
             {/* PANEL 1 - RESUME SCORE */}
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-sm flex items-center gap-8">
+            <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-8 shadow-sm flex items-center gap-8">
               <div className="relative size-32 shrink-0">
                  <svg className="size-full -rotate-90 transform" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="40" className="fill-none stroke-slate-100 dark:stroke-slate-800" strokeWidth="12" />
@@ -220,7 +220,7 @@ export default function ResumeAnalysis() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                {/* PANEL 2 - EXTRACTED SKILLS */}
-               <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-4">
+               <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-6 shadow-sm space-y-4">
                   <div className="flex items-center gap-2 text-emerald-600">
                      <CheckCircle2 size={18} />
                      <h3 className="font-bold">Extracted Skills</h3>
@@ -235,7 +235,7 @@ export default function ResumeAnalysis() {
                </div>
 
                {/* PANEL 3 - SKILLS TO IMPROVE */}
-               <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-4">
+               <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-6 shadow-sm space-y-4">
                   <div className="flex items-center gap-2 text-rose-600">
                      <AlertCircle size={18} />
                      <h3 className="font-bold">Skills to Improve</h3>
@@ -262,7 +262,7 @@ export default function ResumeAnalysis() {
             </div>
 
             {/* PANEL 5 - IMPROVEMENT SUGGESTIONS */}
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
+            <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
                <div className="flex items-center gap-2 text-amber-600 mb-4">
                   <Lightbulb size={18} />
                   <h3 className="font-bold text-slate-900 dark:text-white">Improvement Suggestions</h3>
@@ -278,7 +278,7 @@ export default function ResumeAnalysis() {
             </div>
 
             {/* PANEL 6 - LEARNING RECOMMENDATIONS */}
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
+            <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
                <div className="flex items-center gap-2 text-indigo-600 mb-4">
                   <BookOpen size={18} />
                   <h3 className="font-bold text-slate-900 dark:text-white">Learning Recommendations</h3>

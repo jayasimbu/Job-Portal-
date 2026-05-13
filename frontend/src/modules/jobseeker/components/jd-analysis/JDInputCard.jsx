@@ -23,7 +23,7 @@ const JDInputCard = ({ onAnalyze, isAnalyzing, disabled }) => {
   };
 
   return (
-    <div className={`bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden transition-all hover:shadow-md ${disabled ? 'opacity-50 pointer-events-none' : ''}`}>
+    <div className={`bg-slate-50 rounded-2xl shadow-sm border border-slate-300 overflow-hidden transition-all hover:shadow-md ${disabled ? 'opacity-50 pointer-events-none' : ''}`}>
       <div className="p-6">
         <h2 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
           <span className="flex items-center justify-center size-8 rounded-full bg-indigo-100 text-indigo-600 text-sm font-bold">2</span>
@@ -33,14 +33,14 @@ const JDInputCard = ({ onAnalyze, isAnalyzing, disabled }) => {
         <div className="flex p-1 bg-slate-100 rounded-xl mb-6">
           <button
             onClick={() => setActiveTab('paste')}
-            className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-bold transition-all ${activeTab === 'paste' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+            className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-bold transition-all ${activeTab === 'paste' ? 'bg-slate-50 text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
           >
             <Type className="size-4" />
             Paste JD
           </button>
           <button
             onClick={() => setActiveTab('select')}
-            className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-bold transition-all ${activeTab === 'select' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+            className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-bold transition-all ${activeTab === 'select' ? 'bg-slate-50 text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
           >
             <Layout className="size-4" />
             Select Existing Job
@@ -55,7 +55,7 @@ const JDInputCard = ({ onAnalyze, isAnalyzing, disabled }) => {
                 <select
                   value={selectedRole}
                   onChange={handleRoleChange}
-                  className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-800 font-medium"
+                  className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-800 font-medium"
                 >
                   <option value="">-- Choose a template --</option>
                   {jobRoles.map(role => (
@@ -73,7 +73,7 @@ const JDInputCard = ({ onAnalyze, isAnalyzing, disabled }) => {
               value={jdText}
               onChange={(e) => setJdText(e.target.value)}
               placeholder="Paste the job description here to analyze skill gaps..."
-              className="w-full h-40 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-800 transition-all resize-none"
+              className="w-full h-40 bg-slate-100 border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-800 transition-all resize-none"
             />
           </div>
 

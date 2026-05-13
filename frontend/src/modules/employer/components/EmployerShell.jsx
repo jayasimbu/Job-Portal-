@@ -80,7 +80,7 @@ const EmployerShell = ({ active, children }) => {
           />
           <button
             onClick={toggleTheme}
-            className="size-9 rounded-full bg-[var(--bg-page)] dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center transition-all hover:border-blue-500 hover:shadow-md active:scale-95"
+            className="size-9 rounded-full bg-[var(--bg-page)] dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-700 shadow-sm flex items-center justify-center transition-all hover:border-blue-500 hover:shadow-md active:scale-95"
             title="Toggle Theme"
           >
             <span className="material-symbols-outlined text-[18px]">

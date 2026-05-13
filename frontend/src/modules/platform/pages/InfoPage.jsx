@@ -20,9 +20,9 @@ export default function InfoPage() {
   }
 
   return (
-    <div className="min-h-[80vh] bg-slate-50 dark:bg-[#0b1016] py-20 px-6">
+    <div className="min-h-[80vh] bg-slate-100 dark:bg-[#0b1016] py-20 px-6">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white dark:bg-[#0d141b] border border-slate-200 dark:border-slate-800/60 rounded-3xl p-8 md:p-12 shadow-xl">
+        <div className="bg-slate-50 dark:bg-[#0d141b] border border-slate-300 dark:border-slate-700/60 rounded-3xl p-8 md:p-12 shadow-xl">
           <div className="mb-10 text-center">
             <span className="inline-block px-4 py-1.5 rounded-full bg-blue-100/50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] font-black uppercase tracking-widest mb-4">
               LINKUP Platform
@@ -37,7 +37,7 @@ export default function InfoPage() {
 
           <div className="space-y-10">
             {pageData.features && pageData.features.length > 0 && (
-              <div className="bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-6 md:p-8 border border-slate-100 dark:border-slate-800">
+              <div className="bg-slate-100 dark:bg-slate-900/50 rounded-2xl p-6 md:p-8 border border-slate-200 dark:border-slate-700">
                 <h3 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest mb-6 flex items-center gap-2">
                   <span className="material-symbols-outlined text-blue-600 text-xl">star</span>
                   {pageData.featuresListTitle}

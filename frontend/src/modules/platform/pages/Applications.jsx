@@ -64,7 +64,7 @@ export default function Applications() {
             <button
               key={s}
               onClick={() => setFilter(s)}
-              className={`px-4 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest whitespace-nowrap transition-all ${filter === s ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+              className={`px-4 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest whitespace-nowrap transition-all ${filter === s ? 'bg-slate-50 text-blue-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
             >
               {s}
             </button>
@@ -76,7 +76,7 @@ export default function Applications() {
         {loading ? (
           [1, 2, 3].map(i => (
             <Card key={i} className="">
-              <CardBody className="h-24 bg-slate-50/50" />
+              <CardBody className="h-24 bg-slate-100/50" />
             </Card>
           ))
         ) : filtered.length > 0 ? (
@@ -94,7 +94,7 @@ export default function Applications() {
                 <CardBody className="p-6">
                   <div className="flex justify-between items-center">
                     <div className="flex items-center gap-5">
-                      <div className="size-14 bg-slate-50 rounded-2xl flex items-center justify-center font-bold text-xl text-slate-300 border border-slate-100 uppercase">
+                      <div className="size-14 bg-slate-100 rounded-2xl flex items-center justify-center font-bold text-xl text-slate-300 border border-slate-200 uppercase">
                         {(app.company || 'C')[0]}
                       </div>
                       <div className="space-y-1">
@@ -115,7 +115,7 @@ export default function Applications() {
                   </div>
 
                   {isExpanded && (
-                    <div className="mt-8 pt-8 border-t border-slate-100 duration-300 space-y-6">
+                    <div className="mt-8 pt-8 border-t border-slate-200 duration-300 space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-3">
                           <Text variant="small" className="font-bold uppercase tracking-widest text-slate-400">Matched Strengths</Text>
@@ -163,7 +163,7 @@ export default function Applications() {
           <div className="space-y-8">
             <Card className="border-dashed">
               <CardBody className="py-12 flex flex-col items-center justify-center text-center space-y-4">
-                <div className="size-16 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-300">
+                <div className="size-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-300">
                   <span className="material-symbols-outlined text-3xl">work_history</span>
                 </div>
                 <div className="space-y-1">
@@ -186,7 +186,7 @@ export default function Applications() {
                     <Card key={i} className="hover:border-blue-600/30 cursor-pointer p-4 group">
                        <div className="flex justify-between items-center">
                           <div className="flex items-center gap-3">
-                             <div className="size-10 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center font-black text-blue-600 uppercase border border-slate-100 dark:border-slate-700">
+                             <div className="size-10 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center font-black text-blue-600 uppercase border border-slate-200 dark:border-slate-700">
                                 {job.company[0]}
                              </div>
                              <div>
@@ -212,7 +212,7 @@ export default function Applications() {
                         <p className="text-xs text-slate-400 font-medium leading-relaxed">
                            4 recruiters searched for candidates with these skills in your area this week.
                         </p>
-                        <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
+                        <div className="h-1 w-full bg-slate-50/10 rounded-full overflow-hidden">
                            <div className="h-full bg-blue-500 w-3/4" />
                         </div>
                      </div>

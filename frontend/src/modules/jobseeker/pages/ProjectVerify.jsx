@@ -48,9 +48,9 @@ export default function ProjectVerify() {
   }[result.verdict_color] || '#3b82f6' : '#3b82f6';
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0d1117] text-[#0d141b] dark:text-white">
+    <div className="min-h-screen bg-slate-100 dark:bg-[#0d1117] text-[#0d141b] dark:text-white">
       {/* Header */}
-      <div className="bg-white dark:bg-[#1a2632] border-b border-slate-200 dark:border-slate-700 px-6 py-4 flex items-center gap-4">
+      <div className="bg-slate-50 dark:bg-[#1a2632] border-b border-slate-300 dark:border-slate-700 px-6 py-4 flex items-center gap-4">
         <button onClick={() => navigate(-1)} className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
           <span className="material-symbols-outlined">arrow_back</span>
         </button>
@@ -74,12 +74,12 @@ export default function ProjectVerify() {
         </div>
 
         {/* Input form */}
-        <div className="bg-white dark:bg-[#1a2632] rounded-2xl border border-slate-200 dark:border-slate-700 p-6 flex flex-col gap-4">
+        <div className="bg-slate-50 dark:bg-[#1a2632] rounded-2xl border border-slate-300 dark:border-slate-700 p-6 flex flex-col gap-4">
           <div>
             <label className="block text-sm font-bold mb-2 text-slate-700 dark:text-slate-300">
               GitHub Repository URL *
             </label>
-            <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-xl px-4 py-3">
+            <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl px-4 py-3">
               <span className="material-symbols-outlined text-slate-400 text-xl">code</span>
               <input
                 type="url"
@@ -94,7 +94,7 @@ export default function ProjectVerify() {
             <label className="block text-sm font-bold mb-2 text-slate-700 dark:text-slate-300">
               Live Demo URL <span className="font-normal text-slate-400">(optional)</span>
             </label>
-            <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-xl px-4 py-3">
+            <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-xl px-4 py-3">
               <span className="material-symbols-outlined text-slate-400 text-xl">language</span>
               <input
                 type="url"
@@ -138,7 +138,7 @@ export default function ProjectVerify() {
         {result && (
           <div className="flex flex-col gap-6">
             {/* Score + verdict */}
-            <div className="bg-white dark:bg-[#1a2632] rounded-2xl border border-slate-200 dark:border-slate-700 p-6">
+            <div className="bg-slate-50 dark:bg-[#1a2632] rounded-2xl border border-slate-300 dark:border-slate-700 p-6">
               <div className="flex flex-col md:flex-row gap-6 items-center">
                 {/* Gauge */}
                 <div className="flex flex-col items-center gap-3">
@@ -185,7 +185,7 @@ export default function ProjectVerify() {
             </div>
 
             {/* Dimension breakdown */}
-            <div className="bg-white dark:bg-[#1a2632] rounded-2xl border border-slate-200 dark:border-slate-700 p-6">
+            <div className="bg-slate-50 dark:bg-[#1a2632] rounded-2xl border border-slate-300 dark:border-slate-700 p-6">
               <h3 className="font-bold mb-5 flex items-center gap-2">
                 <span className="material-symbols-outlined text-blue-600">bar_chart</span>
                 Dimension Breakdown
@@ -215,7 +215,7 @@ export default function ProjectVerify() {
             <div className="flex gap-3">
               <button
                 onClick={() => { setResult(null); setGithubUrl(''); setLiveUrl(''); }}
-                className="flex-1 flex items-center justify-center gap-2 h-11 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                className="flex-1 flex items-center justify-center gap-2 h-11 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               >
                 Verify Another Project
               </button>

@@ -10,10 +10,10 @@ import { MapPin, Building2, Zap } from 'lucide-react';
  */
 export const StatCard = ({ label, value, icon: Icon, color = 'blue', suffix = '', trend = '' }) => {
   return (
-    <Card className="border-slate-100">
+    <Card className="border-slate-200">
       <CardBody className="p-6">
         <div className="flex items-center gap-4">
-          <div className="size-10 rounded-xl flex items-center justify-center bg-slate-50 dark:bg-slate-800 text-slate-500 border border-slate-100 dark:border-slate-700">
+          <div className="size-10 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-500 border border-slate-200 dark:border-slate-700">
             {Icon && <Icon size={20} />}
           </div>
           <div>
@@ -35,12 +35,12 @@ export const StatCard = ({ label, value, icon: Icon, color = 'blue', suffix = ''
 export const JobCard = ({ job, onClick, onApply, isApplying }) => (
   <Card 
     onClick={onClick}
-    className="group border-slate-100 cursor-pointer relative overflow-hidden bg-white dark:bg-slate-900 shadow-sm"
+    className="group border-slate-200 cursor-pointer relative overflow-hidden bg-slate-50 dark:bg-slate-900 shadow-sm"
   >
     <CardBody className="p-6 space-y-6">
       <div className="flex justify-between items-start">
         <div className="flex items-center gap-4">
-          <div className="size-12 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center text-lg font-black text-blue-600 uppercase border border-slate-100 dark:border-slate-700">
+          <div className="size-12 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center text-lg font-black text-blue-600 uppercase border border-slate-200 dark:border-slate-700">
             {(job.company || 'C')[0]}
           </div>
           <div>
@@ -60,7 +60,7 @@ export const JobCard = ({ job, onClick, onApply, isApplying }) => (
         </div>
       </div>
 
-      <div className="space-y-3 pt-2 border-t border-slate-50 dark:border-slate-800">
+      <div className="space-y-3 pt-2 border-t border-slate-50 dark:border-slate-700">
         <div className="flex items-center justify-between">
            <div className="flex items-center gap-2">
               <div className="size-1.5 bg-emerald-500 rounded-full" />
@@ -159,7 +159,7 @@ export const ProgressBar = ({ value, label, color = 'blue' }) => {
           className={`h-full ${colors[color]} rounded-full transition-all relative`} 
           style={{ width: `${value}%` }}
         >
-          <div className="absolute inset-0 bg-white/20 "></div>
+          <div className="absolute inset-0 bg-slate-50/20 "></div>
         </div>
       </div>
     </div>
@@ -207,8 +207,8 @@ export const FilterDropdown = ({ label, value, options, onChange, icon: Icon }) 
     <div className="relative" ref={dropdownRef}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className={`h-14 px-6 rounded-2xl border flex items-center gap-4 transition-all bg-white dark:bg-slate-900 w-full
-          ${isOpen ? 'border-blue-600 ring-4 ring-blue-50 dark:ring-blue-900/20' : 'border-slate-100 dark:border-slate-800 hover:border-slate-200 dark:hover:border-slate-700'}
+        className={`h-14 px-6 rounded-2xl border flex items-center gap-4 transition-all bg-slate-50 dark:bg-slate-900 w-full
+          ${isOpen ? 'border-blue-600 ring-4 ring-blue-50 dark:ring-blue-900/20' : 'border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-700'}
         `}
       >
         <div className={`${isOpen ? 'text-blue-600' : 'text-slate-400'}`}>
@@ -222,7 +222,7 @@ export const FilterDropdown = ({ label, value, options, onChange, icon: Icon }) 
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 w-full min-w-[220px] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl shadow-premium z-[100] p-2 duration-200">
+        <div className="absolute top-full left-0 mt-2 w-full min-w-[220px] bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-premium z-[100] p-2 duration-200">
           {options.map((opt, i) => {
             const val = typeof opt === 'string' ? opt : opt.value;
             const lbl = typeof opt === 'string' ? opt : opt.label;
@@ -231,7 +231,7 @@ export const FilterDropdown = ({ label, value, options, onChange, icon: Icon }) 
                 key={i}
                 onClick={() => { onChange(val); setIsOpen(false); }}
                 className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all
-                  ${val === value ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'}
+                  ${val === value ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'}
                 `}
               >
                 {lbl}

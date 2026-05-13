@@ -27,7 +27,7 @@ export default function ATSScoreCard({ score = 0, sectionScores = {} }) {
   ];
 
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 w-full">
+    <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-6 shadow-sm border border-slate-300 dark:border-slate-700 w-full">
       <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-6">ATS Compatibility Score</h3>
       
       <div className="flex flex-col md:flex-row items-center gap-8">

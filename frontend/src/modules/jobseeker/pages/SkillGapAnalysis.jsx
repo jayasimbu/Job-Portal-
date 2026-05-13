@@ -30,7 +30,7 @@ export default function SkillGapAnalysis() {
 
   if (loading) {
     return (
-      <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-[#101922] items-center justify-center">
+      <div className="flex h-screen w-full overflow-hidden bg-slate-100 dark:bg-[#101922] items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full "></div>
           <p className="text-slate-600 dark:text-slate-400 font-medium">Quantifying your skills...</p>
@@ -64,12 +64,12 @@ export default function SkillGapAnalysis() {
   });
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-[#101922] text-[#0d141b] dark:text-white transition-colors ">
+    <div className="flex h-screen w-full overflow-hidden bg-slate-100 dark:bg-[#101922] text-[#0d141b] dark:text-white transition-colors ">
       <JobSeekerShell active="dashboard" />
       
       <main className="flex-1 overflow-y-auto px-4 md:px-10 py-8 max-w-[1280px] mx-auto w-full">
         {/* Page Heading & Context */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 bg-white dark:bg-[#1A2633] p-8 rounded-xl shadow-sm border border-slate-200 dark:border-[#2a3b4f] mb-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 bg-slate-50 dark:bg-[#1A2633] p-8 rounded-xl shadow-sm border border-slate-300 dark:border-[#2a3b4f] mb-8">
           <div className="flex flex-col gap-3 max-w-2xl">
             <div className="flex items-center gap-2 mb-1">
               <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold rounded-full uppercase tracking-wider">
@@ -103,14 +103,14 @@ export default function SkillGapAnalysis() {
           <div className="lg:col-span-2 flex flex-col gap-8">
             {/* Stats Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1A2633] border border-slate-200 dark:border-[#2a3b4f] shadow-sm">
+              <div className="flex flex-col gap-2 rounded-xl p-6 bg-slate-50 dark:bg-[#1A2633] border border-slate-300 dark:border-[#2a3b4f] shadow-sm">
                 <div className="flex items-center gap-2 text-slate-500 dark:text-gray-400">
                   <span className="material-symbols-outlined">check_circle</span>
                   <p className="text-sm font-medium">Matched Skills</p>
                 </div>
                 <p className="text-3xl font-bold leading-tight">{insight?.skills_match?.length || 0}</p>
               </div>
-              <div className="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1A2633] border border-orange-200 dark:border-orange-900/40 shadow-sm relative overflow-hidden">
+              <div className="flex flex-col gap-2 rounded-xl p-6 bg-slate-50 dark:bg-[#1A2633] border border-orange-200 dark:border-orange-900/40 shadow-sm relative overflow-hidden">
                 <div className="absolute right-0 top-0 w-16 h-16 bg-orange-100 dark:bg-orange-900/20 rounded-bl-full -mr-4 -mt-4"></div>
                 <div className="flex items-center gap-2 text-orange-600 dark:text-orange-500">
                   <span className="material-symbols-outlined">warning</span>
@@ -118,7 +118,7 @@ export default function SkillGapAnalysis() {
                 </div>
                 <p className="text-3xl font-bold leading-tight">{missingKeywords.length}</p>
               </div>
-              <div className="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1A2633] border border-slate-200 dark:border-[#2a3b4f] shadow-sm">
+              <div className="flex flex-col gap-2 rounded-xl p-6 bg-slate-50 dark:bg-[#1A2633] border border-slate-300 dark:border-[#2a3b4f] shadow-sm">
                 <div className="flex items-center gap-2 text-slate-500 dark:text-gray-400">
                   <span className="material-symbols-outlined">trending_up</span>
                   <p className="text-sm font-medium">In Progress</p>
@@ -135,7 +135,7 @@ export default function SkillGapAnalysis() {
               </h3>
 
               {highPriorityGaps.length > 0 ? highPriorityGaps.map((gap, idx) => (
-                <div key={idx} className="bg-white dark:bg-[#1A2633] rounded-xl border border-slate-200 dark:border-[#2a3b4f] border-l-8 border-l-orange-500 p-5 shadow-sm flex flex-col sm:flex-row gap-5 items-start sm:items-center justify-between">
+                <div key={idx} className="bg-slate-50 dark:bg-[#1A2633] rounded-xl border border-slate-300 dark:border-[#2a3b4f] border-l-8 border-l-orange-500 p-5 shadow-sm flex flex-col sm:flex-row gap-5 items-start sm:items-center justify-between">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
                       <h4 className="font-bold text-lg">{gap.title}</h4>
@@ -156,7 +156,7 @@ export default function SkillGapAnalysis() {
                   {gap.course ? (
                     <div className="flex flex-col gap-2 w-full sm:w-auto">
                       <span className="text-xs font-semibold text-slate-500 dark:text-gray-400 uppercase tracking-wide">Recommended Course</span>
-                      <div className="flex items-center gap-3 p-2 rounded-lg bg-slate-50 dark:bg-[#253241] border border-slate-200 dark:border-[#2a3b4f]">
+                      <div className="flex items-center gap-3 p-2 rounded-lg bg-slate-100 dark:bg-[#253241] border border-slate-300 dark:border-[#2a3b4f]">
                         <div className="size-10 rounded bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                             <span className="material-symbols-outlined text-blue-600 text-xl">{gap.course.imgIcon || 'school'}</span>
                         </div>
@@ -171,14 +171,14 @@ export default function SkillGapAnalysis() {
                     </div>
                   ) : (
                     <div className="flex flex-col gap-2 w-full sm:w-auto">
-                      <button onClick={() => navigate('/jobseeker/learning')} className="w-full bg-white dark:bg-transparent border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 text-slate-900 dark:text-white text-sm font-bold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+                      <button onClick={() => navigate('/jobseeker/learning')} className="w-full bg-slate-50 dark:bg-transparent border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 text-slate-900 dark:text-white text-sm font-bold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
                         Find Courses <span className="material-symbols-outlined text-sm">library_books</span>
                       </button>
                     </div>
                   )}
                 </div>
               )) : (
-                <div className="bg-white dark:bg-[#1A2633] rounded-xl border border-slate-200 dark:border-[#2a3b4f] p-8 text-center">
+                <div className="bg-slate-50 dark:bg-[#1A2633] rounded-xl border border-slate-300 dark:border-[#2a3b4f] p-8 text-center">
                     <p className="text-slate-500 dark:text-gray-400">No high-priority gaps detected. Great job!</p>
                 </div>
               )}
@@ -189,7 +189,7 @@ export default function SkillGapAnalysis() {
               <div className="flex justify-between items-center">
                 <h3 className="text-xl font-bold">Matched Skills Analysis</h3>
               </div>
-              <div className="bg-white dark:bg-[#1A2633] rounded-xl border border-slate-200 dark:border-[#2a3b4f] p-6 shadow-sm">
+              <div className="bg-slate-50 dark:bg-[#1A2633] rounded-xl border border-slate-300 dark:border-[#2a3b4f] p-6 shadow-sm">
                 <div className="flex flex-wrap gap-3">
                   {insight?.skills_match?.length > 0 ? insight.skills_match.map((skill, idx) => (
                     <span key={idx} className="px-4 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 rounded-lg border border-blue-100 dark:border-blue-800 font-medium text-sm">
@@ -206,9 +206,9 @@ export default function SkillGapAnalysis() {
           {/* Right Column: Summary & Actions */}
           <div className="flex flex-col gap-6 lg:mt-0 mt-8">
             {/* Visualizer Chart */}
-            <div className="bg-white dark:bg-[#1A2633] rounded-xl border border-slate-200 dark:border-[#2a3b4f] p-6 shadow-sm flex flex-col gap-4">
+            <div className="bg-slate-50 dark:bg-[#1A2633] rounded-xl border border-slate-300 dark:border-[#2a3b4f] p-6 shadow-sm flex flex-col gap-4">
               <h3 className="text-lg font-bold">Match Overview</h3>
-              <div className="relative h-64 w-full flex items-end justify-center gap-4 px-2 pt-8 border-b border-l border-slate-100 dark:border-slate-800 pb-2 ml-4">
+              <div className="relative h-64 w-full flex items-end justify-center gap-4 px-2 pt-8 border-b border-l border-slate-200 dark:border-slate-700 pb-2 ml-4">
                 {chartData.map((bar, idx) => (
                   <div key={idx} className="flex flex-col items-center gap-2 flex-1 h-full justify-end group cursor-pointer">
                     <div className={`relative w-full rounded-t-lg transition-all bg-blue-600 hover:bg-blue-700`} style={{ height: `${bar.match}%` }}>
@@ -229,7 +229,7 @@ export default function SkillGapAnalysis() {
               <p className="text-slate-300 text-sm mb-4 relative z-10">
                 Bridge your current gaps to reach a 95%+ match score for premium roles.
               </p>
-              <button onClick={() => navigate('/jobseeker/learning')} className="w-full bg-white text-slate-900 font-bold py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors relative z-10 flex justify-between items-center">
+              <button onClick={() => navigate('/jobseeker/learning')} className="w-full bg-slate-50 text-slate-900 font-bold py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors relative z-10 flex justify-between items-center">
                 Open Learning Hub
                 <span className="material-symbols-outlined text-blue-600 dark:text-blue-500">rocket_launch</span>
               </button>

@@ -22,7 +22,7 @@ const RecommendedSkills = ({ matchedSkills }) => {
   const recommendations = getRecommendations();
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+    <div className="bg-slate-50 rounded-2xl shadow-sm border border-slate-300 p-6">
       <h3 className="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
         <Lightbulb className="size-5 text-amber-500" />
         AI Learning Suggestions
@@ -30,14 +30,14 @@ const RecommendedSkills = ({ matchedSkills }) => {
 
       <div className="space-y-4">
         {recommendations.length === 0 ? (
-          <div className="text-center py-8 bg-slate-50 rounded-xl border border-dashed border-slate-200">
+          <div className="text-center py-8 bg-slate-100 rounded-xl border border-dashed border-slate-300">
             <p className="text-sm text-slate-500">Add more skills to get AI-powered learning suggestions.</p>
           </div>
         ) : (
           recommendations.map((item, idx) => {
             const path = learningPaths[item.recommended];
             return (
-              <div key={idx} className="group p-4 bg-slate-50 hover:bg-indigo-50/50 border border-slate-200 hover:border-indigo-200 rounded-xl transition-all">
+              <div key={idx} className="group p-4 bg-slate-100 hover:bg-indigo-50/50 border border-slate-300 hover:border-indigo-200 rounded-xl transition-all">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-bold px-2 py-0.5 bg-slate-200 text-slate-600 rounded">Because you know {item.original}</span>
@@ -60,7 +60,7 @@ const RecommendedSkills = ({ matchedSkills }) => {
         )}
       </div>
 
-      <button className="w-full mt-6 py-2.5 text-sm font-bold text-slate-600 hover:text-indigo-600 border border-slate-200 hover:border-indigo-200 rounded-xl transition-all">
+      <button className="w-full mt-6 py-2.5 text-sm font-bold text-slate-600 hover:text-indigo-600 border border-slate-300 hover:border-indigo-200 rounded-xl transition-all">
         View All Recommendations
       </button>
     </div>

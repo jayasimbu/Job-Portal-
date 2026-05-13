@@ -4,7 +4,7 @@ import { FolderOpen, AlertCircle, RefreshCw, MoveRight } from 'lucide-react';
 const EmptyState = ({ icon: Icon = FolderOpen, title, description, actionText, onAction }) => {
   return (
     <div className="flex flex-col items-center justify-center py-20 text-center">
-      <div className="size-20 bg-slate-50 dark:bg-slate-800 rounded-[2rem] flex items-center justify-center mb-8 border border-slate-100 dark:border-slate-700 shadow-sm transition-transform hover:rotate-6">
+      <div className="size-20 bg-slate-100 dark:bg-slate-800 rounded-[2rem] flex items-center justify-center mb-8 border border-slate-200 dark:border-slate-700 shadow-sm transition-transform hover:rotate-6">
         <Icon size={40} className="text-slate-300 dark:text-slate-600" />
       </div>
       <h3 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight leading-none mb-3">

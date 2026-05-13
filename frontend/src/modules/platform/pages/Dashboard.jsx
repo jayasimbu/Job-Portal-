@@ -159,10 +159,10 @@ const Dashboard = () => {
               <p className="text-[10px] font-black uppercase tracking-widest opacity-80">AI Readiness Score</p>
               <h2 className="text-4xl font-black leading-none mt-1">{Math.round(result.ats?.final_score || 0)}%</h2>
             </div>
-            <div className="h-10 w-px bg-white/20" />
+            <div className="h-10 w-px bg-slate-50/20" />
             <div>
               <p className="text-xs font-bold leading-snug">Strong match for roles</p>
-              <span className="px-2 py-0.5 bg-white/20 rounded-full text-[9px] font-black uppercase tracking-wider mt-1 inline-block">High Fidelity Profile</span>
+              <span className="px-2 py-0.5 bg-slate-50/20 rounded-full text-[9px] font-black uppercase tracking-wider mt-1 inline-block">High Fidelity Profile</span>
             </div>
           </div>
         )}
@@ -175,7 +175,7 @@ const Dashboard = () => {
         <div className="lg:col-span-2 flex flex-col gap-6 min-h-0">
 
           {/* Upload + ATS Section */}
-          <section className="flex-1 min-h-0 p-4 md:p-6 bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-[#020617] border border-slate-200 dark:border-slate-800 rounded-3xl flex flex-col overflow-hidden shadow-sm transition hover:shadow-xl hover:-translate-y-1">
+          <section className="flex-1 min-h-0 p-4 md:p-6 bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-[#020617] border border-slate-300 dark:border-slate-700 rounded-3xl flex flex-col overflow-hidden shadow-sm transition hover:shadow-xl hover:-translate-y-1">
 
             {/* Mode Toggle */}
             <div className="flex items-center justify-between mb-4 flex-shrink-0">
@@ -282,7 +282,7 @@ const Dashboard = () => {
                   )}
 
                   {/* Next Action CTA */}
-                  <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
+                  <div className="pt-4 border-t border-slate-200 dark:border-slate-700 space-y-3">
                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
                       <span className="material-symbols-outlined text-blue-600 text-sm">lightbulb</span>
                       Improve your resume to increase score
@@ -294,7 +294,7 @@ const Dashboard = () => {
                         <span className="material-symbols-outlined text-sm">school</span> View AI Learning Path
                       </button>
                       <button onClick={() => { setResult(null); setFile(null); }}
-                        className="h-10 px-4 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-black uppercase tracking-widest rounded-xl flex items-center justify-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+                        className="h-10 px-4 border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-black uppercase tracking-widest rounded-xl flex items-center justify-center gap-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
                         <span className="material-symbols-outlined text-sm">sync</span> Replace
                       </button>
                     </div>
@@ -328,7 +328,7 @@ const Dashboard = () => {
                     { label: 'Done', icon: 'verified' }
                   ].map((step, idx) => (
                     <div key={idx} className="flex flex-col items-center gap-2">
-                      <div className={`size-10 rounded-2xl flex items-center justify-center transition-all ${statusStep > idx ? 'bg-green-100 dark:bg-green-900/30 text-green-600' : statusStep === idx ? 'bg-blue-600 text-white shadow-xl shadow-blue-500/30 scale-110' : 'bg-slate-50 dark:bg-slate-800 text-slate-400 border border-slate-100 dark:border-slate-700'}`}>
+                      <div className={`size-10 rounded-2xl flex items-center justify-center transition-all ${statusStep > idx ? 'bg-green-100 dark:bg-green-900/30 text-green-600' : statusStep === idx ? 'bg-blue-600 text-white shadow-xl shadow-blue-500/30 scale-110' : 'bg-slate-100 dark:bg-slate-800 text-slate-400 border border-slate-200 dark:border-slate-700'}`}>
                         <span className="material-symbols-outlined text-lg">{statusStep > idx ? 'check' : step.icon}</span>
                       </div>
                       <span className={`text-[8px] font-black uppercase tracking-widest ${statusStep >= idx ? 'text-blue-600' : 'text-slate-400'}`}>{step.label}</span>
@@ -344,7 +344,7 @@ const Dashboard = () => {
                   onDragLeave={() => setDragging(false)}
                   onDrop={handleDrop}
                   onClick={() => inputRef.current?.click()}
-                  className={`w-full min-h-[200px] md:min-h-[250px] lg:min-h-[300px] flex-1 flex flex-col items-center justify-center gap-4 rounded-3xl border-2 border-dashed cursor-pointer transition-all ${dragging ? 'border-blue-500 bg-blue-50/50 dark:bg-blue-900/10 scale-[0.99]' : file ? 'border-green-400 bg-green-50/30 dark:bg-green-900/10' : 'border-slate-200 dark:border-slate-700 hover:border-blue-400 hover:bg-blue-50/20 dark:hover:bg-blue-900/5'}`}
+                  className={`w-full min-h-[200px] md:min-h-[250px] lg:min-h-[300px] flex-1 flex flex-col items-center justify-center gap-4 rounded-3xl border-2 border-dashed cursor-pointer transition-all ${dragging ? 'border-blue-500 bg-blue-50/50 dark:bg-blue-900/10 scale-[0.99]' : file ? 'border-green-400 bg-green-50/30 dark:bg-green-900/10' : 'border-slate-300 dark:border-slate-700 hover:border-blue-400 hover:bg-blue-50/20 dark:hover:bg-blue-900/5'}`}
                 >
                   <input ref={inputRef} type="file" accept=".pdf" className="hidden" onChange={handleFile} />
                   <div className={`size-12 md:size-16 rounded-2xl flex items-center justify-center shadow-sm ${file ? 'bg-green-100 dark:bg-green-900/20' : 'bg-blue-50 dark:bg-blue-900/20'}`}>
@@ -374,7 +374,7 @@ const Dashboard = () => {
                       value={jobDesc}
                       onChange={e => setJobDesc(e.target.value)}
                       placeholder="Paste target job description to match against..."
-                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 text-[13px] font-medium resize-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+                      className="w-full bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-2xl p-4 text-[13px] font-medium resize-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
                     />
                     <div className="absolute right-4 bottom-4 flex items-center gap-1.5 opacity-50 group-focus-within:opacity-100 transition-opacity">
                       <span className="material-symbols-outlined text-sm">info</span>
@@ -404,7 +404,7 @@ const Dashboard = () => {
                   onClick={handleAnalyze}
                   disabled={!file}
                   className={`mt-4 flex-shrink-0 h-12 md:h-14 w-full rounded-2xl text-[10px] md:text-[11px] font-black uppercase tracking-[0.15em] md:tracking-[0.2em] flex items-center justify-center gap-2 md:gap-3 transition-all active:scale-95
-                    ${file ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-blue-600 dark:hover:bg-blue-600 hover:text-white shadow-xl' : 'bg-slate-100 dark:bg-slate-800 text-slate-400 cursor-not-allowed border border-slate-200 dark:border-slate-700'}`}
+                    ${file ? 'bg-slate-900 dark:bg-slate-50 text-white dark:text-slate-900 hover:bg-blue-600 dark:hover:bg-blue-600 hover:text-white shadow-xl' : 'bg-slate-100 dark:bg-slate-800 text-slate-400 cursor-not-allowed border border-slate-300 dark:border-slate-700'}`}
                 >
                   <span className="material-symbols-outlined">auto_awesome</span>
                   {mode === 'jd' ? 'Run Precision Match' : 'Generate Intelligence Report'}
@@ -420,7 +420,7 @@ const Dashboard = () => {
 
           {/* Resume Evolution */}
           <section className="flex-1 min-h-0 p-4 md:p-6 bg-slate-900 dark:bg-blue-600 rounded-3xl text-white flex flex-col shadow-2xl relative overflow-hidden group transition hover:shadow-xl hover:-translate-y-1">
-            <div className="absolute top-0 right-0 size-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-2xl transition-all group-hover:bg-white/10" />
+            <div className="absolute top-0 right-0 size-32 bg-slate-50/5 rounded-full -mr-16 -mt-16 blur-2xl transition-all group-hover:bg-slate-50/10" />
             <h3 className="text-xs md:text-sm font-black flex items-center gap-2 mb-3 md:mb-4 uppercase tracking-widest relative z-10">
               <span className="material-symbols-outlined text-lg">auto_awesome</span>
               Resume Evolution
@@ -431,15 +431,15 @@ const Dashboard = () => {
                 { text: 'Improve Summary', boost: '+8%', icon: 'edit_note', action: 'AI' },
                 { text: 'Add Cloud keywords', boost: '+5%', icon: 'cloud', action: 'Fix' },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2 md:gap-3 p-2.5 md:p-3 bg-white/10 rounded-xl md:rounded-2xl border border-white/10 hover:bg-white/20 transition-all">
-                  <div className="size-8 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
+                <div key={i} className="flex items-center gap-2 md:gap-3 p-2.5 md:p-3 bg-slate-50/10 rounded-xl md:rounded-2xl border border-white/10 hover:bg-slate-50/20 transition-all">
+                  <div className="size-8 bg-slate-50/10 rounded-xl flex items-center justify-center shrink-0">
                     <span className="material-symbols-outlined text-base">{item.icon}</span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-[11px] font-black leading-tight uppercase tracking-tight truncate">{item.text}</p>
                     <span className="text-[10px] font-black text-emerald-300">{item.boost} Boost</span>
                   </div>
-                  <button className="shrink-0 h-7 px-3 bg-white/20 hover:bg-white text-blue-900 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all active:scale-95">
+                  <button className="shrink-0 h-7 px-3 bg-slate-50/20 hover:bg-slate-50 text-blue-900 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all active:scale-95">
                     {item.action}
                   </button>
                 </div>
@@ -447,7 +447,7 @@ const Dashboard = () => {
             </div>
             <button 
               onClick={() => navigate('/platform/learning')}
-              className="w-full mt-4 md:mt-5 h-10 md:h-12 bg-white text-slate-900 font-black rounded-xl md:rounded-2xl text-[9px] md:text-[10px] uppercase tracking-[0.15em] md:tracking-[0.2em] hover:bg-blue-50 transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2 flex-shrink-0 relative z-10">
+              className="w-full mt-4 md:mt-5 h-10 md:h-12 bg-slate-50 text-slate-900 font-black rounded-xl md:rounded-2xl text-[9px] md:text-[10px] uppercase tracking-[0.15em] md:tracking-[0.2em] hover:bg-blue-50 transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2 flex-shrink-0 relative z-10">
               Improve Score Now
               <span className="material-symbols-outlined text-sm">trending_flat</span>
             </button>

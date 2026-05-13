@@ -32,10 +32,10 @@ const Login = ({ onSwitch, onForgot }) => {
     } finally { setLoading(false); }
   };
 
-  const inputBase = 'w-full pl-12 pr-4 py-3.5 rounded-2xl text-sm bg-slate-50 dark:bg-slate-800/50 dark:text-white outline-none transition-all border border-transparent';
+  const inputBase = 'w-full pl-12 pr-4 py-3.5 rounded-2xl text-sm bg-slate-100 dark:bg-slate-800/50 dark:text-white outline-none transition-all border border-transparent';
   const inputBorder = (isError) => isError
     ? '!border-red-400 focus:!shadow-[0_0_0_4px_rgba(239,68,68,0.05)]'
-    : 'focus:border-blue-500 focus:bg-white focus:shadow-[0_0_0_4px_rgba(59,130,246,0.05)]';
+    : 'focus:border-blue-500 focus:bg-slate-50 focus:shadow-[0_0_0_4px_rgba(59,130,246,0.05)]';
 
   return (
     <div className="slide-in-from-bottom-4 ">
@@ -45,7 +45,7 @@ const Login = ({ onSwitch, onForgot }) => {
       </div>
 
       <div className="mb-6">
-        <div className="rounded-2xl overflow-hidden transition-all hover:bg-slate-50 border border-slate-100 dark:border-slate-800">
+        <div className="rounded-2xl overflow-hidden transition-all hover:bg-slate-100 border border-slate-200 dark:border-slate-700">
           <GoogleLoginButton activeTab="login" onSwitch={onSwitch} onError={setError} />
         </div>
         <div className="flex items-center gap-4 my-6">
@@ -98,7 +98,7 @@ const Login = ({ onSwitch, onForgot }) => {
 
         <div className="flex items-center justify-between pt-1">
           <label className="flex items-center gap-2.5 cursor-pointer group">
-            <input type="checkbox" className="size-4.5 rounded-lg border-slate-200 text-blue-600 focus:ring-blue-500/20 transition-all" />
+            <input type="checkbox" className="size-4.5 rounded-lg border-slate-300 text-blue-600 focus:ring-blue-500/20 transition-all" />
             <span className="text-sm font-medium text-slate-500 dark:text-slate-400 group-hover:text-slate-900 transition-colors">Keep me signed in</span>
           </label>
           <button type="button" onClick={onForgot} className="text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors">Reset Password</button>

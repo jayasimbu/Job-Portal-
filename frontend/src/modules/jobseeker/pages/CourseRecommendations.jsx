@@ -76,7 +76,7 @@ export default function CourseRecommendations() {
   ]);
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors ">
+    <div className="flex h-screen w-full overflow-hidden bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors ">
       <JobSeekerShell active="learning" />
       
       <main className="flex-1 overflow-y-auto px-4 lg:px-10 py-8 w-full max-w-[1440px] mx-auto">
@@ -86,7 +86,7 @@ export default function CourseRecommendations() {
           <aside className="lg:col-span-4 xl:col-span-3 flex flex-col gap-6">
             
             {/* Skill Gap Chart Widget */}
-            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5 shadow-sm">
+            <div className="bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-300 dark:border-slate-700 p-5 shadow-sm">
               <div className="flex flex-col gap-2 mb-4">
                 <p className="text-slate-900 dark:text-white text-base font-bold leading-normal flex items-center gap-2">
                   <span className="material-symbols-outlined text-blue-600">analytics</span>
@@ -125,7 +125,7 @@ export default function CourseRecommendations() {
             </div>
 
             {/* Filters Widget */}
-            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5 shadow-sm">
+            <div className="bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-300 dark:border-slate-700 p-5 shadow-sm">
               <h3 className="text-slate-900 dark:text-white text-base font-bold mb-4">
                 Filter Courses
               </h3>
@@ -137,7 +137,7 @@ export default function CourseRecommendations() {
                     {['Coursera', 'Udemy', 'edX'].map((platform, idx) => (
                       <label key={idx} className="flex items-center gap-3 cursor-pointer group">
                         <div className="relative flex items-center">
-                          <input defaultChecked={idx===0 || idx===1} className="peer size-4 appearance-none rounded border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 checked:bg-blue-600 checked:border-blue-600 focus:ring-0 focus:ring-offset-0" type="checkbox" />
+                          <input defaultChecked={idx===0 || idx===1} className="peer size-4 appearance-none rounded border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 checked:bg-blue-600 checked:border-blue-600 focus:ring-0 focus:ring-offset-0" type="checkbox" />
                           <span className="material-symbols-outlined absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-[14px] opacity-0 peer-checked:opacity-100 pointer-events-none">check</span>
                         </div>
                         <span className="text-sm text-slate-900 dark:text-slate-200">{platform}</span>
@@ -176,7 +176,7 @@ export default function CourseRecommendations() {
 
             {/* Warning Panel */}
             <div className="flex flex-col @container">
-              <div className="flex flex-col items-start justify-between gap-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 p-4 md:flex-row md:items-center shadow-sm">
+              <div className="flex flex-col items-start justify-between gap-4 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 p-4 md:flex-row md:items-center shadow-sm">
                 <div className="flex items-start gap-3">
                   <div className="p-2 bg-amber-50 dark:bg-amber-900/20 text-amber-600 rounded-lg shrink-0">
                     <span className="material-symbols-outlined">warning</span>
@@ -189,14 +189,14 @@ export default function CourseRecommendations() {
                   </div>
                 </div>
                 <label className="relative flex h-[31px] w-[51px] shrink-0 cursor-pointer items-center rounded-full border-none bg-slate-200 dark:bg-slate-700 p-0.5 has-[:checked]:justify-end has-[:checked]:bg-blue-600 transition-colors">
-                  <div className="h-full w-[27px] rounded-full bg-white shadow-sm"></div>
+                  <div className="h-full w-[27px] rounded-full bg-slate-50 shadow-sm"></div>
                   <input defaultChecked className="invisible absolute" type="checkbox" />
                 </label>
               </div>
             </div>
 
             {/* Section Header */}
-            <div className="flex items-center justify-between pb-2 pt-2 border-b border-slate-200 dark:border-slate-800">
+            <div className="flex items-center justify-between pb-2 pt-2 border-b border-slate-300 dark:border-slate-700">
               <h3 className="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">
                 We found 12 courses matching your profile
               </h3>
@@ -213,17 +213,17 @@ export default function CourseRecommendations() {
             {/* Course Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {courses.map(course => (
-                <div key={course.id} className="group flex flex-col bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-lg transition-all hover:border-blue-500/50">
+                <div key={course.id} className="group flex flex-col bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-300 dark:border-slate-700 overflow-hidden hover:shadow-lg transition-all hover:border-blue-500/50">
                   
                   {/* Card Image */}
                   <div className={`h-40 w-full bg-gradient-to-br ${course.imageBg} relative flex items-center justify-center text-white`}>
                     <span className="material-symbols-outlined text-5xl opacity-80">{course.icon}</span>
-                    <div className="absolute top-3 right-3 bg-white dark:bg-slate-900/90 backdrop-blur-sm px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow-sm">
+                    <div className="absolute top-3 right-3 bg-slate-50 dark:bg-slate-900/90 backdrop-blur-sm px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow-sm">
                       <span className="material-symbols-outlined text-blue-600 text-[18px]">verified</span>
                       <span className="text-xs font-bold text-slate-900 dark:text-white">{course.matchScore}% Match</span>
                     </div>
                     <div className="absolute bottom-3 left-3">
-                      <div className="bg-white/95 dark:bg-black/80 px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
+                      <div className="bg-slate-50/95 dark:bg-black/80 px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
                         <span className="text-[10px] font-bold uppercase tracking-wider text-slate-900 dark:text-white">{course.provider}</span>
                       </div>
                     </div>
@@ -255,7 +255,7 @@ export default function CourseRecommendations() {
                     </div>
 
                     {/* Meta */}
-                    <div className="flex items-center justify-between pt-3 mt-1 border-t border-slate-200 dark:border-slate-800">
+                    <div className="flex items-center justify-between pt-3 mt-1 border-t border-slate-300 dark:border-slate-700">
                       <div className="flex items-center gap-1">
                         <span className="material-symbols-outlined text-amber-400 text-[16px] fill-1">star</span>
                         <span className="text-xs font-bold text-slate-900 dark:text-white">{course.rating}</span>

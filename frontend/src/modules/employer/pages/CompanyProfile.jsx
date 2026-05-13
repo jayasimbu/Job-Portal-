@@ -56,9 +56,9 @@ const CompanyProfile = () => {
     }
   };
 
-  const inputCls = "w-full h-12 bg-slate-50 border border-slate-200 rounded-xl px-4 text-sm font-medium text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 outline-none transition-all";
+  const inputCls = "w-full h-12 bg-slate-100 border border-slate-300 rounded-xl px-4 text-sm font-medium text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 outline-none transition-all";
   const labelCls = "text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2 block";
-  const sectionCls = "p-8 bg-white border border-slate-200 rounded-2xl space-y-6 shadow-sm";
+  const sectionCls = "p-8 bg-slate-50 border border-slate-300 rounded-2xl space-y-6 shadow-sm";
 
   return (
     <div className="max-w-[1000px] mx-auto space-y-8 pb-8">
@@ -75,13 +75,13 @@ const CompanyProfile = () => {
       <div className="space-y-6">
         {/* Company Info */}
         <section className={sectionCls}>
-          <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+          <div className="flex items-center gap-3 border-b border-slate-200 pb-4">
              <Building2 size={20} className="text-blue-600" />
              <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest">Company Information</h2>
           </div>
           
           <div className="flex flex-col md:flex-row items-start gap-8">
-            <div className="size-24 bg-slate-100 border border-slate-200 rounded-2xl flex flex-col items-center justify-center shrink-0 text-slate-400 gap-1 cursor-pointer hover:bg-slate-50 transition-colors">
+            <div className="size-24 bg-slate-100 border border-slate-300 rounded-2xl flex flex-col items-center justify-center shrink-0 text-slate-400 gap-1 cursor-pointer hover:bg-slate-100 transition-colors">
               <span className="material-symbols-outlined text-2xl">add_photo_alternate</span>
               <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Upload Logo</span>
               <span className="text-[8px] font-bold text-slate-400">PNG or JPG</span>
@@ -144,7 +144,7 @@ const CompanyProfile = () => {
                   value={form.description} 
                   onChange={handleChange} 
                   rows={3} 
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 text-sm font-medium text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 outline-none transition-all resize-none"
+                  className="w-full bg-slate-100 border border-slate-300 rounded-xl p-4 text-sm font-medium text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 outline-none transition-all resize-none"
                   placeholder="Describe your company, culture, and hiring focus..."
                 />
               </div>
@@ -154,7 +154,7 @@ const CompanyProfile = () => {
 
         {/* Recruiter Info */}
         <section className={sectionCls}>
-          <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+          <div className="flex items-center gap-3 border-b border-slate-200 pb-4">
              <User size={20} className="text-blue-600" />
              <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest">Recruiter Information</h2>
           </div>
@@ -181,7 +181,7 @@ const CompanyProfile = () => {
 
         {/* Hiring Preferences */}
         <section className={sectionCls}>
-          <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+          <div className="flex items-center gap-3 border-b border-slate-200 pb-4">
              <Settings size={20} className="text-blue-600" />
              <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest">Hiring Preferences</h2>
           </div>

@@ -1,96 +1,124 @@
 from __future__ import annotations
 import logging
 import asyncio
+import json
+import random
 from typing import Any, Dict, Optional, List
 import openai
 from core.config import settings
 
 log = logging.getLogger(__name__)
 
-class LLMService:
-    """
-    Roadmap Phase 6: LLM Cloud Integration (OpenRouter).
-    Handles all AI-enhanced feedback, summaries, and insights.
-    """
+# FEATURE-MODEL MAPPING
+MODELS = {
+    "ATS_MATCHING": "deepseek-v3.1:671b-cloud",
+    "STRUCTURAL_PARSING": "qwen3-coder:480b-cloud",
+    "HR_SUMMARY": "glm-4.6:cloud",
+    "CERTIFICATE_VISION": "qwen3-vl:235b-cloud",
+    "LEARNING_ROADMAP": "gpt-oss:120b-cloud",
+}
 
+class LLMService:
     def __init__(self) -> None:
-        self.api_key = settings.OPENROUTER_API_KEY
-        self.base_url = settings.OPENROUTER_BASE_URL
-        self.default_model = settings.OPENROUTER_MODEL
+        self._clients = []
+        self._rebuild_clients()
+            
+    def _rebuild_clients(self):
+        self.base_url = settings.OLLAMA_BASE_URL or "http://localhost:11434"
+        if "11434" in self.base_url and not self.base_url.endswith("/v1"):
+            target_url = self.base_url.rstrip("/") + "/v1"
+        else:
+            target_url = self.base_url
+            
+        self.api_keys = settings.get_ollama_api_keys()
+        self._clients = []
         
-        # Initialize OpenRouter Client
-        self.client = openai.OpenAI(
-            base_url=self.base_url,
-            api_key=self.api_key,
-        )
-        log.info(f"[LLMService] Initialized with model: {self.default_model}")
+        if not self.api_keys:
+            client = openai.OpenAI(base_url=target_url, api_key="ollama")
+            self._clients.append({"client": client, "key_id": "LOCAL", "url": target_url})
+        else:
+            for key in self.api_keys:
+                client = openai.OpenAI(base_url=target_url, api_key=key)
+                self._clients.append({"client": client, "key_id": key[:6] + "...", "url": target_url})
+        
+        print(f"\n[AI_DEBUG] Pool Rebuilt: {len(self._clients)} keys | URL: {target_url}")
 
     def generate_with_fallback(
         self,
         prompt: str,
-        system: str = "You are a senior recruitment expert and career coach.",
-        user_id: Optional[int] = None,
-        request_type: str = "llm_generation",
-        request_payload: Optional[Dict[str, Any]] = None,
+        model: str,
+        system: str = "You are a senior recruitment expert.",
+        temperature: float = 0.7,
+        max_tokens: int = 1000,
+        response_format: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
-        """
-        Primary generation function using OpenRouter (Step 24).
-        """
-        if not self.api_key or "placeholder" in self.api_key:
-            log.warning("[LLMService] OPENROUTER_API_KEY is missing or placeholder.")
-            return {"success": False, "result": "AI Service not configured.", "error_message": "Missing API Key"}
+        if not self._clients: self._rebuild_clients()
+        pool = list(self._clients)
+        random.shuffle(pool)
+        
+        last_error = "Unknown"
+        print(f"[AI_CALL] Requesting {model}...")
 
-        try:
-            response = self.client.chat.completions.create(
-                model=self.default_model,
-                messages=[
-                    {"role": "system", "content": system},
-                    {"role": "user", "content": prompt},
-                ],
-                temperature=0.7,
-                max_tokens=800
-            )
-            text = response.choices[0].message.content.strip()
-            return {
-                "success": True,
-                "result": text,
-                "model_used": self.default_model,
-            }
-        except Exception as e:
-            log.error(f"[LLMService] Generation failed: {e}")
-            return {
-                "success": False,
-                "result": None,
-                "error_message": str(e)
-            }
+        for entry in pool:
+            client = entry["client"]
+            key_hint = entry["key_id"]
+            try:
+                params = {
+                    "model": model,
+                    "messages": [
+                        {"role": "system", "content": system},
+                        {"role": "user", "content": prompt},
+                    ],
+                    "temperature": temperature,
+                    "max_tokens": max_tokens,
+                }
+                if response_format: params["response_format"] = response_format
 
-    # ROADMAP STEP 25: AI FUNCTIONS
+                response = client.chat.completions.create(**params)
+                text = response.choices[0].message.content.strip()
+                
+                print(f"[AI_SUCCESS] Key: {key_hint} | Model: {model}")
+                return {"success": True, "result": text}
+            except Exception as e:
+                print(f"[AI_ERROR] Key {key_hint} failed: {e}")
+                last_error = str(e)
+                continue
 
-    def generate_resume_summary(self, resume_text: str) -> str:
-        """Creates a professional 2-3 sentence summary of the candidate."""
-        prompt = f"Create a concise 2-sentence professional summary for this candidate based on their resume:\n\n{resume_text[:2000]}"
-        res = self.generate_with_fallback(prompt)
-        return res.get("result") or "Professional candidate with relevant industry experience."
+        return {"success": False, "result": None, "error_message": last_error}
 
-    def generate_candidate_insights(self, resume_text: str, jd_text: str) -> str:
-        """Generates strategic insights about how the candidate fits a specific role."""
-        prompt = f"Analyze this candidate against the job description. Provide 3 bullet points on 'Why they fit' and 1 'Growth Area':\n\nRESUME:\n{resume_text[:1500]}\n\nJD:\n{jd_text[:1500]}"
-        res = self.generate_with_fallback(prompt)
-        return res.get("result") or "Candidate shows strong alignment with core technical requirements."
+    # ── ADVANCED ANALYTICS ──
 
-    def generate_skill_recommendations(self, missing_skills: List[str]) -> str:
-        """Explains WHY these skills are important for the candidate's career."""
-        if not missing_skills:
-            return "Your profile is highly optimized for current market trends."
-        prompt = f"Explain in 2 sentences why these missing skills are critical for a modern tech career: {', '.join(missing_skills)}"
-        res = self.generate_with_fallback(prompt)
-        return res.get("result") or f"Mastering {', '.join(missing_skills)} will significantly increase your market value."
+    async def parse_resume_structural(self, resume_text: str) -> Dict[str, Any]:
+        system = "Return ONLY JSON: {skills:[], experience_years:float, education:str, projects:[]}"
+        res = self.generate_with_fallback(f"Parse this resume:\n{resume_text[:4000]}", model=MODELS["STRUCTURAL_PARSING"], system=system, response_format={"type": "json_object"})
+        if res["success"] and res["result"]:
+            try: return json.loads(res["result"].replace("```json", "").replace("```", "").strip())
+            except: pass
+        return {}
 
-    def generate_hr_feedback(self, ats_score: float, matched_skills: List[str]) -> str:
-        """Generates a brief 'recruiter note' for the employer dashboard."""
-        prompt = f"Act as an AI recruiter. Write a 1-sentence assessment for a candidate with an ATS score of {ats_score} who matches these skills: {', '.join(matched_skills)}"
-        res = self.generate_with_fallback(prompt)
-        return res.get("result") or "Strong technical profile with high matching accuracy for core requirements."
+    async def generate_skill_gap_analysis(self, current_skills: List[str]) -> Dict[str, Any]:
+        """AI GAP ANALYSIS: Detects missing skills based on current profile."""
+        system = "You are a career strategist. Analyze the skills and find the missing 'Power Skills' for a high-end tech role. Return JSON: {missing_skills:[], recommendations:[]}"
+        prompt = f"Candidate current skills: {', '.join(current_skills)}. What are the 4 most critical missing skills and 4 recommended advanced technologies for this profile?"
+        
+        res = self.generate_with_fallback(prompt, model=MODELS["LEARNING_ROADMAP"], system=system, response_format={"type": "json_object"})
+        if res["success"] and res["result"]:
+            try: return json.loads(res["result"].replace("```json", "").replace("```", "").strip())
+            except: pass
+        return {"missing_skills": [], "recommendations": []}
 
-# Module-level singleton
+    async def generate_hr_summary(self, resume_text: str, ats_score: float) -> str:
+        prompt = f"2-sentence HR summary for candidate (ATS: {ats_score}):\n\n{resume_text[:2000]}"
+        res = self.generate_with_fallback(prompt, model=MODELS["HR_SUMMARY"])
+        return res.get("result") or "Professional candidate."
+
+    async def generate_deep_ats_match(self, resume_text: str, jd_text: str) -> Dict[str, Any]:
+        prompt = f"Match resume to JD. JSON output only.\nRESUME: {resume_text[:2000]}\nJD: {jd_text[:2000]}"
+        res = self.generate_with_fallback(prompt, model=MODELS["ATS_MATCHING"], response_format={"type": "json_object"})
+        if res["success"] and res["result"]:
+            try: return json.loads(res["result"].replace("```json", "").replace("```", "").strip())
+            except: pass
+        return {"match_score": 0, "reasoning": "Matching failed."}
+
+# Singleton
 llm_service = LLMService()

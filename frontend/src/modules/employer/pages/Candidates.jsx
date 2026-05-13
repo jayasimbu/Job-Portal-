@@ -33,7 +33,7 @@ export default function Candidates() {
       </div>
 
       {/* FILTER BAR */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row gap-4">
+      <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row gap-4">
         <div className="flex-1 relative">
           <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
           <input 
@@ -41,7 +41,7 @@ export default function Candidates() {
             placeholder="Search candidates by name or skill..." 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-11 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border-none rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500/20 outline-none"
+            className="w-full pl-11 pr-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-none rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500/20 outline-none"
           />
         </div>
         <div className="flex gap-3">
@@ -49,7 +49,7 @@ export default function Candidates() {
             <select 
               value={roleFilter}
               onChange={(e) => setRoleFilter(e.target.value)}
-              className="w-40 pl-4 pr-8 py-2.5 bg-slate-50 dark:bg-slate-800 border-none rounded-xl text-sm font-medium appearance-none focus:ring-2 focus:ring-blue-500/20 outline-none"
+              className="w-40 pl-4 pr-8 py-2.5 bg-slate-100 dark:bg-slate-800 border-none rounded-xl text-sm font-medium appearance-none focus:ring-2 focus:ring-blue-500/20 outline-none"
             >
               <option value="All">All Roles</option>
               <option value="Frontend Dev">Frontend Dev</option>
@@ -59,18 +59,18 @@ export default function Candidates() {
             </select>
             <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
           </div>
-          <Button variant="secondary" className="h-full px-5 text-slate-600 border-slate-200 gap-2">
+          <Button variant="secondary" className="h-full px-5 text-slate-600 border-slate-300 gap-2">
             <Filter size={16} /> Filters
           </Button>
         </div>
       </div>
 
       {/* CANDIDATES TABLE */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden">
+      <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800 text-[10px] font-black uppercase tracking-widest text-slate-400">
+              <tr className="bg-slate-100 dark:bg-slate-800/50 border-b border-slate-300 dark:border-slate-700 text-[10px] font-black uppercase tracking-widest text-slate-400">
                 <th className="p-4">Candidate</th>
                 <th className="p-4">Role</th>
                 <th className="p-4">Experience</th>
@@ -89,7 +89,7 @@ export default function Candidates() {
                 </tr>
               ) : (
                 filteredCandidates.map(c => (
-                  <tr key={c.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition-colors">
+                  <tr key={c.id} className="hover:bg-slate-100 dark:hover:bg-slate-800/20 transition-colors">
                     <td className="p-4 cursor-pointer" onClick={() => navigate(`/platform/employer/candidates/${c.id}`)}>
                       <div className="flex items-center gap-3">
                         <div className="size-8 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center font-black text-xs">

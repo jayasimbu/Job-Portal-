@@ -100,20 +100,20 @@ export default function Applications() {
             value={search} 
             onChange={e => setSearch(e.target.value)}
             placeholder="Search applications..."
-            className="h-9 pl-9 pr-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs font-medium focus:ring-2 focus:ring-blue-500 outline-none w-64"
+            className="h-9 pl-9 pr-4 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-xs font-medium focus:ring-2 focus:ring-blue-500 outline-none w-64"
           />
         </div>
       </div>
 
       {/* APPLICATIONS LIST */}
-      <Card className="border-slate-100 shadow-sm overflow-hidden">
+      <Card className="border-slate-200 shadow-sm overflow-hidden">
         <div className="divide-y divide-slate-100 dark:divide-slate-800">
           {loading ? (
-            [1,2,3,4].map(i => <div key={i} className="p-8 animate-pulse bg-slate-50/30" />)
+            [1,2,3,4].map(i => <div key={i} className="p-8 animate-pulse bg-slate-100/30" />)
           ) : filteredApps.length === 0 ? (
             <div className="p-20 text-center text-slate-400 font-bold uppercase text-[10px]">No applications found.</div>
           ) : filteredApps.map(app => (
-            <div key={app.id} className="flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+            <div key={app.id} className="flex items-center justify-between p-4 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors">
               <div className="flex items-center gap-4">
                 <div className="size-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
                   <User size={18} />

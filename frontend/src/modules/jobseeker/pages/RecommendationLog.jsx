@@ -83,7 +83,7 @@ export default function RecommendationLog() {
   };
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors ">
+    <div className="flex h-screen w-full overflow-hidden bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors ">
       <JobSeekerShell active="dashboard" />
       
       <main className="flex-1 overflow-y-auto px-4 md:px-10 py-8 max-w-[1400px] mx-auto w-full">
@@ -98,7 +98,7 @@ export default function RecommendationLog() {
             </p>
           </div>
           <div className="flex gap-3">
-            <button className="flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-slate-900 border border-[#e7edf3] dark:border-gray-700 rounded-lg text-sm font-medium shadow-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            <button className="flex items-center gap-2 px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-[#e7edf3] dark:border-gray-700 rounded-lg text-sm font-medium shadow-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
               <span className="material-symbols-outlined text-[20px]">download</span>
               Export Log
             </button>
@@ -106,7 +106,7 @@ export default function RecommendationLog() {
         </div>
 
         {/* Filters & Search Toolbar */}
-        <div className="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-[#e7edf3] dark:border-gray-800 p-4 mb-6">
+        <div className="bg-slate-50 dark:bg-slate-900 rounded-xl shadow-sm border border-[#e7edf3] dark:border-gray-800 p-4 mb-6">
           <div className="flex flex-col lg:flex-row gap-4 justify-between items-center">
             {/* Search Input */}
             <div className="w-full lg:w-96 relative">
@@ -114,7 +114,7 @@ export default function RecommendationLog() {
                 <span className="material-symbols-outlined">search</span>
               </div>
               <input
-                className="w-full h-11 rounded-lg border border-[#e7edf3] dark:border-gray-700 bg-slate-50 dark:bg-slate-950 pl-10 pr-4 text-[#0d141b] dark:text-white placeholder:text-[#4c739a] focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all"
+                className="w-full h-11 rounded-lg border border-[#e7edf3] dark:border-gray-700 bg-slate-100 dark:bg-slate-950 pl-10 pr-4 text-[#0d141b] dark:text-white placeholder:text-[#4c739a] focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all"
                 placeholder="Search by job title or company"
                 type="text"
               />
@@ -142,7 +142,7 @@ export default function RecommendationLog() {
         </div>
 
         {/* Data Table Card */}
-        <div className="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-[#e7edf3] dark:border-gray-800 overflow-hidden flex flex-col">
+        <div className="bg-slate-50 dark:bg-slate-900 rounded-xl shadow-sm border border-[#e7edf3] dark:border-gray-800 overflow-hidden flex flex-col">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
@@ -175,7 +175,7 @@ export default function RecommendationLog() {
                   <tr key={rec.id} className={`group hover:bg-[#f8faff] dark:hover:bg-gray-800/50 transition-colors ${rec.ignored ? 'opacity-60 hover:opacity-100' : ''}`}>
                     <td className="py-4 px-6">
                       <div className="flex items-center gap-4">
-                        <div className="size-12 rounded-lg bg-white border border-gray-100 p-1 flex items-center justify-center shrink-0 shadow-sm">
+                        <div className="size-12 rounded-lg bg-slate-50 border border-gray-100 p-1 flex items-center justify-center shrink-0 shadow-sm">
                           <div className={`w-full h-full bg-gradient-to-br ${rec.logoGradient} rounded flex items-center justify-center text-white font-bold text-lg`}>
                             {rec.logoLetter}
                           </div>

@@ -34,8 +34,8 @@ export default function EditProfileModal({ isOpen, onClose, initialData, onSave 
       />
       
       {/* Modal Content */}
-      <div className="relative bg-white dark:bg-slate-950 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-800 animate-in fade-in zoom-in duration-200">
-        <div className="flex items-center justify-between p-6 border-b border-slate-100 dark:border-slate-800">
+      <div className="relative bg-slate-50 dark:bg-slate-950 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden border border-slate-300 dark:border-slate-700 animate-in fade-in zoom-in duration-200">
+        <div className="flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-700">
           <h2 className="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
             <User className="text-blue-600" size={24} />
             Edit Professional Profile
@@ -59,7 +59,7 @@ export default function EditProfileModal({ isOpen, onClose, initialData, onSave 
                   type="text" 
                   value={formData.name}
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                  className="w-full bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
                   placeholder="Enter full name"
                 />
               </div>
@@ -72,7 +72,7 @@ export default function EditProfileModal({ isOpen, onClose, initialData, onSave 
                   type="text" 
                   value={formData.role}
                   onChange={(e) => setFormData({...formData, role: e.target.value})}
-                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                  className="w-full bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
                   placeholder="e.g. Senior Frontend Developer"
                 />
               </div>
@@ -88,7 +88,7 @@ export default function EditProfileModal({ isOpen, onClose, initialData, onSave 
                   type="text" 
                   value={formData.location}
                   onChange={(e) => setFormData({...formData, location: e.target.value})}
-                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                  className="w-full bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
                   placeholder="e.g. Chennai, India"
                 />
               </div>
@@ -101,7 +101,7 @@ export default function EditProfileModal({ isOpen, onClose, initialData, onSave 
                   type="text" 
                   value={formData.phone}
                   onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                  className="w-full bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
                   placeholder="+91 XXXXX XXXXX"
                 />
               </div>
@@ -115,7 +115,7 @@ export default function EditProfileModal({ isOpen, onClose, initialData, onSave 
               rows={4}
               value={formData.about}
               onChange={(e) => setFormData({...formData, about: e.target.value})}
-              className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all resize-none"
+              className="w-full bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl p-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all resize-none"
               placeholder="Tell us about your professional journey..."
             />
           </div>
@@ -130,7 +130,7 @@ export default function EditProfileModal({ isOpen, onClose, initialData, onSave 
                   type="text" 
                   value={formData.socialLinks.github}
                   onChange={(e) => setFormData({...formData, socialLinks: {...formData.socialLinks, github: e.target.value}})}
-                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                  className="w-full bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
                   placeholder="github.com/username"
                 />
               </div>
@@ -143,7 +143,7 @@ export default function EditProfileModal({ isOpen, onClose, initialData, onSave 
                   type="text" 
                   value={formData.socialLinks.portfolio}
                   onChange={(e) => setFormData({...formData, socialLinks: {...formData.socialLinks, portfolio: e.target.value}})}
-                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                  className="w-full bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
                   placeholder="yourportfolio.com"
                 />
               </div>
@@ -151,7 +151,7 @@ export default function EditProfileModal({ isOpen, onClose, initialData, onSave 
           </div>
         </form>
 
-        <div className="p-6 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end gap-3">
+        <div className="p-6 bg-slate-100 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-700 flex items-center justify-end gap-3">
           <Button variant="ghost" onClick={onClose} type="button">Cancel</Button>
           <Button onClick={handleSubmit} className="gap-2 shadow-lg shadow-blue-500/20">
             <Save size={18} /> Save Changes

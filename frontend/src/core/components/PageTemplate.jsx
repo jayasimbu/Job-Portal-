@@ -20,7 +20,7 @@ const PageTemplate = ({ title, subtitle, features = [], steps = [], benefit }) =
     <div className="mb-24">
 
       {/* 🔥 HERO SECTION (LIKE ZOHO) */}
-      <div className="bg-slate-50 dark:bg-[#0b1016] py-16 md:py-24 border-b border-slate-200 dark:border-slate-800">
+      <div className="bg-slate-100 dark:bg-[#0b1016] py-16 md:py-10 border-b border-slate-300 dark:border-slate-700">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
 
           {/* LEFT TEXT */}
@@ -68,7 +68,7 @@ const PageTemplate = ({ title, subtitle, features = [], steps = [], benefit }) =
 
             <div className="grid md:grid-cols-3 gap-6">
               {features.map((f, i) => (
-                <div key={i} className="p-6 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm hover:shadow-md transition-all flex items-start gap-3">
+                <div key={i} className="p-6 bg-slate-50 dark:bg-slate-900/50 border border-slate-300 dark:border-slate-700 rounded-2xl shadow-sm hover:shadow-md transition-all flex items-start gap-3">
                   <span className="material-symbols-outlined text-blue-600 text-lg shrink-0 mt-0.5">check_circle</span>
                   <span className="text-slate-700 dark:text-slate-300 font-medium leading-relaxed">{f}</span>
                 </div>
@@ -87,7 +87,7 @@ const PageTemplate = ({ title, subtitle, features = [], steps = [], benefit }) =
 
             <ol className="space-y-4">
               {steps.map((s, i) => (
-                <li key={i} className="flex items-center gap-4 p-5 bg-slate-50 dark:bg-slate-900/30 rounded-2xl border border-slate-100 dark:border-slate-800">
+                <li key={i} className="flex items-center gap-4 p-5 bg-slate-100 dark:bg-slate-900/30 rounded-2xl border border-slate-200 dark:border-slate-700">
                   <div className="bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-400 min-w-[32px] w-8 h-8 flex items-center justify-center rounded-full font-black text-sm shrink-0">
                     {i + 1}
                   </div>

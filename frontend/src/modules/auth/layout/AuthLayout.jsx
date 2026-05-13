@@ -45,7 +45,7 @@ const AuthLayout = ({ children, title, subtitle, activeTab, onSwitch, hideLeftPa
                     { label: 'AI Insight', desc: 'Smart feedback', icon: 'psychology' },
                     { label: 'Job Fit',    desc: 'Match analysis', icon: 'target' }
                   ].map((item, i) => (
-                    <div key={i} className="flex flex-col items-center gap-1 p-2 rounded-xl bg-white/5 border border-white/10 transition-transform hover:scale-105">
+                    <div key={i} className="flex flex-col items-center gap-1 p-2 rounded-xl bg-slate-50/5 border border-white/10 transition-transform hover:scale-105">
                       <span className="material-symbols-outlined text-blue-200 text-base">{item.icon}</span>
                       <p className="text-[8px] font-bold uppercase tracking-wider opacity-90">{item.label}</p>
                       <p className="text-[7px] text-blue-200/50 font-medium text-center">{item.desc}</p>
@@ -66,7 +66,7 @@ const AuthLayout = ({ children, title, subtitle, activeTab, onSwitch, hideLeftPa
 
             {/* BOTTOM — Stats + Footer */}
             <div className="relative z-10">
-              <div className="w-full h-px bg-white/10 mb-3" />
+              <div className="w-full h-px bg-slate-50/10 mb-3" />
               <div className="flex items-center mb-3">
                 {stats.map((s, i) => (
                   <div key={i} className={`flex-1 text-center ${i < stats.length - 1 ? 'border-r border-white/10' : ''}`}>
@@ -81,7 +81,7 @@ const AuthLayout = ({ children, title, subtitle, activeTab, onSwitch, hideLeftPa
         )}
 
         {/* ═══ RIGHT PANEL — Form ══════════════════════════════════════ */}
-        <div className={`flex-1 flex flex-col justify-center bg-white dark:bg-[#0a0f14] relative overflow-hidden min-h-0`}
+        <div className={`flex-1 flex flex-col justify-center bg-slate-50 dark:bg-[#0a0f14] relative overflow-hidden min-h-0`}
              style={{ padding: 32, boxShadow: '0 12px 32px rgba(0,0,0,0.08)' }}>
           <div className="flex-1 flex flex-col w-full justify-center min-h-0">
             {hideLeftPanel && (

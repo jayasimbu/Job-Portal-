@@ -23,7 +23,7 @@ const ResetPassword = ({ onBack }) => {
     } finally { setLoading(false); }
   };
 
-  const inputCls = (isErr) => `w-full pl-11 pr-4 py-2.5 rounded-[10px] text-sm bg-white dark:bg-slate-800/30 dark:text-white outline-none transition-all border ${
+  const inputCls = (isErr) => `w-full pl-11 pr-4 py-2.5 rounded-[10px] text-sm bg-slate-50 dark:bg-slate-800/30 dark:text-white outline-none transition-all border ${
     isErr ? 'border-red-400 focus:border-red-500 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.1)]'
           : 'border-[#D1D5DB] dark:border-slate-700 focus:border-[#2563EB] focus:shadow-[0_0_0_3px_rgba(37,99,235,0.1)]'
   }`;
@@ -88,7 +88,7 @@ const ResetPassword = ({ onBack }) => {
           </div>
           <button onClick={onBack}
             style={{ height: 48, fontSize: 15, fontWeight: 600 }}
-            className="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl hover:-translate-y-px active:scale-[0.98] transition-all">
+            className="w-full bg-slate-900 dark:bg-slate-50 text-white dark:text-slate-900 rounded-xl hover:-translate-y-px active:scale-[0.98] transition-all">
             Return to Sign In
           </button>
         </div>

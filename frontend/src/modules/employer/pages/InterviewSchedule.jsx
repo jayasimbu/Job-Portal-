@@ -67,10 +67,10 @@ const InterviewSchedule = () => {
       </header>
 
       <div className="flex-1 overflow-y-auto min-h-0 pr-1 custom-scrollbar">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-sm">
+        <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-3xl overflow-hidden shadow-sm">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50">
+              <tr className="border-b border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/50">
                 <th className="text-left text-[10px] font-black text-slate-400 uppercase tracking-widest px-5 py-4">Candidate</th>
                 <th className="text-left text-[10px] font-black text-slate-400 uppercase tracking-widest px-5 py-4">Role</th>
                 <th className="text-left text-[10px] font-black text-slate-400 uppercase tracking-widest px-5 py-4">Date</th>
@@ -79,7 +79,7 @@ const InterviewSchedule = () => {
             </thead>
             <tbody>
               {interviews.map((i) => (
-                <tr key={`${i.candidate}-${i.date}`} className="border-b border-slate-50 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                <tr key={`${i.candidate}-${i.date}`} className="border-b border-slate-50 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800/30 transition-colors">
                   <td className="px-5 py-4 font-black text-sm text-slate-900 dark:text-white">{i.candidate}</td>
                   <td className="px-5 py-4 text-sm font-bold text-slate-500">{i.role}</td>
                   <td className="px-5 py-4 text-sm font-bold text-slate-500">{i.date}</td>

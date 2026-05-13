@@ -20,7 +20,7 @@ const JobRecommendations = () => {
   }, [resumeData]);
 
   const SkeletonCard = () => (
-    <div className="p-6 bg-white border border-slate-200 rounded-3xl  shadow-sm">
+    <div className="p-6 bg-slate-50 border border-slate-300 rounded-3xl  shadow-sm">
       <div className="flex justify-between items-start gap-6">
         <div className="flex-1 space-y-4">
           <div className="flex gap-4">
@@ -60,18 +60,18 @@ const JobRecommendations = () => {
               <SkeletonCard />
             </div>
           ) : !resumeData ? (
-             <div className="py-12 text-center bg-slate-50 border border-slate-200 border-dashed rounded-3xl">
+             <div className="py-12 text-center bg-slate-100 border border-slate-300 border-dashed rounded-3xl">
                 <span className="material-symbols-outlined text-4xl text-slate-300 mb-4">upload_file</span>
                 <p className="text-sm font-bold text-slate-500">Upload your resume to unlock AI recommendations.</p>
              </div>
           ) : (
             <div className="space-y-4 pb-6">
               {jobs.map(job => (
-                <div key={job.id} className="group p-6 bg-white border border-slate-200 rounded-3xl hover:border-blue-500 transition-all shadow-sm">
+                <div key={job.id} className="group p-6 bg-slate-50 border border-slate-300 rounded-3xl hover:border-blue-500 transition-all shadow-sm">
                   <div className="flex flex-col md:flex-row justify-between gap-6">
                     <div className="space-y-3 flex-1">
                       <div className="flex items-center gap-4">
-                        <div className="size-12 bg-slate-50 rounded-2xl flex items-center justify-center font-black text-lg text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
+                        <div className="size-12 bg-slate-100 rounded-2xl flex items-center justify-center font-black text-lg text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
                           {job.company[0]}
                         </div>
                         <div>
@@ -80,7 +80,7 @@ const JobRecommendations = () => {
                         </div>
                       </div>
                       <div className="flex flex-wrap gap-2">
-                         <span className="px-3 py-1 bg-slate-50 text-slate-600 text-[9px] font-black uppercase rounded-lg border border-slate-100">{job.type}</span>
+                         <span className="px-3 py-1 bg-slate-100 text-slate-600 text-[9px] font-black uppercase rounded-lg border border-slate-200">{job.type}</span>
                          <span className="px-3 py-1 bg-green-50 text-green-600 text-[9px] font-black uppercase rounded-lg border border-green-100">{job.salary}</span>
                       </div>
                       <div className="flex flex-wrap gap-2 items-center pt-1">
@@ -93,7 +93,7 @@ const JobRecommendations = () => {
                       </div>
                     </div>
                     
-                    <div className="flex md:flex-col items-center md:items-end justify-between md:justify-center gap-4 border-t md:border-t-0 md:border-l border-slate-100 pt-4 md:pt-0 md:pl-8">
+                    <div className="flex md:flex-col items-center md:items-end justify-between md:justify-center gap-4 border-t md:border-t-0 md:border-l border-slate-200 pt-4 md:pt-0 md:pl-8">
                        <div className="flex items-center gap-3">
                           <div className="text-right">
                              <span className="block text-2xl font-black text-blue-600 leading-none">{job.match}%</span>

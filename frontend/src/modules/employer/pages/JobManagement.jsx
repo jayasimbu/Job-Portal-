@@ -70,7 +70,7 @@ const mockJobs = [
 ];
 
 const JobCard = ({ job, onApplicants, onEdit }) => (
-  <Card className="border-slate-100 shadow-sm hover:border-blue-200 transition-all overflow-hidden group">
+  <Card className="border-slate-200 shadow-sm hover:border-blue-200 transition-all overflow-hidden group">
     <div className="flex flex-col md:flex-row items-stretch">
       {/* JOB INFO */}
       <div className="flex-1 p-5 flex items-center gap-5">
@@ -90,7 +90,7 @@ const JobCard = ({ job, onApplicants, onEdit }) => (
       </div>
 
       {/* STATS */}
-      <div className="px-5 py-5 md:py-0 flex items-center gap-8 bg-slate-50/50 dark:bg-slate-800/30 border-y md:border-y-0 md:border-x border-slate-100 dark:border-slate-800">
+      <div className="px-5 py-5 md:py-0 flex items-center gap-8 bg-slate-100/50 dark:bg-slate-800/30 border-y md:border-y-0 md:border-x border-slate-200 dark:border-slate-700">
         <div className="flex flex-col">
           <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Applicants</span>
           <p className="text-lg font-black text-slate-900 dark:text-white">{job.applicants}</p>
@@ -103,7 +103,7 @@ const JobCard = ({ job, onApplicants, onEdit }) => (
           <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Core Skills</span>
           <div className="flex gap-1">
             {job.skills.map((s, idx) => (
-              <span key={idx} className="text-[8px] px-1.5 py-0.5 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 font-bold text-slate-500 uppercase tracking-tighter">{s}</span>
+              <span key={idx} className="text-[8px] px-1.5 py-0.5 rounded bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-bold text-slate-500 uppercase tracking-tighter">{s}</span>
             ))}
           </div>
         </div>
@@ -118,10 +118,10 @@ const JobCard = ({ job, onApplicants, onEdit }) => (
           <Button variant="primary" size="sm" className="h-9 px-4 text-[9px] font-black uppercase tracking-widest whitespace-nowrap" onClick={() => onApplicants(job.id)}>
             View Applicants
           </Button>
-          <Button variant="ghost" size="sm" className="h-9 w-9 p-0 text-slate-400 border border-slate-100 hover:border-slate-200" onClick={() => onEdit(job.id)}>
+          <Button variant="ghost" size="sm" className="h-9 w-9 p-0 text-slate-400 border border-slate-200 hover:border-slate-300" onClick={() => onEdit(job.id)}>
             <Edit2 size={14} />
           </Button>
-          <Button variant="ghost" size="sm" className="h-9 w-9 p-0 text-slate-400 border border-slate-100 hover:border-rose-100 hover:text-rose-500">
+          <Button variant="ghost" size="sm" className="h-9 w-9 p-0 text-slate-400 border border-slate-200 hover:border-rose-100 hover:text-rose-500">
             <MoreVertical size={14} />
           </Button>
         </div>
@@ -154,7 +154,7 @@ export default function JobManagement() {
       </div>
 
       {/* FILTER ROW */}
-      <Card className="border-slate-100 shadow-sm p-3">
+      <Card className="border-slate-200 shadow-sm p-3">
         <div className="flex flex-wrap items-center gap-4">
           <div className="relative flex-1 min-w-[240px]">
             <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -163,13 +163,13 @@ export default function JobManagement() {
               value={search} 
               onChange={e => setSearch(e.target.value)}
               placeholder="Search by title, skills..."
-              className="w-full h-10 pl-9 pr-4 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-lg text-xs font-medium focus:ring-2 focus:ring-blue-500 outline-none"
+              className="w-full h-10 pl-9 pr-4 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-medium focus:ring-2 focus:ring-blue-500 outline-none"
             />
           </div>
           
           <div className="flex gap-2">
             {['Status', 'Location', 'Experience', 'Job Type'].map(filter => (
-              <select key={filter} className="h-10 px-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-[10px] font-black uppercase tracking-widest focus:ring-2 focus:ring-blue-500 outline-none cursor-pointer">
+              <select key={filter} className="h-10 px-3 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-[10px] font-black uppercase tracking-widest focus:ring-2 focus:ring-blue-500 outline-none cursor-pointer">
                 <option>{filter}</option>
               </select>
             ))}

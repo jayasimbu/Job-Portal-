@@ -101,7 +101,7 @@ const LearningHub = () => {
         ) : recommendations.length > 0 ? (
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
             {recommendations.map(course => (
-              <div key={course.id} className="group bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[2rem] overflow-hidden flex flex-col shadow-sm hover:border-blue-500/30 transition-all">
+              <div key={course.id} className="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[2rem] overflow-hidden flex flex-col shadow-sm hover:border-blue-500/30 transition-all">
                 <div className="p-8 flex-1 space-y-8">
                   <div className="flex justify-between items-start">
                     <span className={`px-3 py-1 rounded text-[9px] font-black uppercase tracking-widest ${
@@ -109,7 +109,7 @@ const LearningHub = () => {
                     }`}>
                       {course.status}
                     </span>
-                    <div className="flex items-center gap-2 px-3 py-1 bg-slate-50 dark:bg-slate-800 rounded text-[9px] font-black text-slate-500 uppercase tracking-widest border border-slate-100 dark:border-slate-700">
+                    <div className="flex items-center gap-2 px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded text-[9px] font-black text-slate-500 uppercase tracking-widest border border-slate-200 dark:border-slate-700">
                       <BarChart3 size={12} /> {course.impact} Impact
                     </div>
                   </div>
@@ -123,7 +123,7 @@ const LearningHub = () => {
                     </div>
                   </div>
 
-                  <div className="p-5 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-700/50">
+                  <div className="p-5 bg-slate-100 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700/50">
                     <div className="flex items-center gap-2 mb-2">
                       <BrainCircuit size={14} className="text-blue-600" />
                       <span className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em]">AI Rationale</span>
@@ -144,7 +144,7 @@ const LearningHub = () => {
                         {course.videos.map((vid, idx) => (
                           <div 
                             key={idx} 
-                            className="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition-all group/vid cursor-pointer" 
+                            className="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all group/vid cursor-pointer" 
                             onClick={() => setSelectedVideo(vid)}
                           >
                             <div className="w-20 h-12 bg-slate-200 dark:bg-slate-700 rounded-lg overflow-hidden shrink-0 relative shadow-sm">
@@ -175,16 +175,16 @@ const LearningHub = () => {
                     </div>
                   )}
                 </div>
-                <div className="grid grid-cols-2 gap-px bg-slate-100 dark:bg-slate-800 border-t border-slate-100 dark:border-slate-800">
+                <div className="grid grid-cols-2 gap-px bg-slate-100 dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700">
                   <button 
                     onClick={() => course.videos?.length > 0 && setSelectedVideo(course.videos[0])}
-                    className="h-14 bg-white dark:bg-slate-900 text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors"
+                    className="h-14 bg-slate-50 dark:bg-slate-900 text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors"
                   >
                     Preview Curriculum
                   </button>
                   <button 
                     onClick={() => navigate(`/platform/jobseeker/learning/${course.id}`)}
-                    className="h-14 bg-white dark:bg-slate-900 text-[10px] font-black uppercase tracking-widest text-blue-600 hover:bg-blue-50 transition-colors flex items-center justify-center gap-2"
+                    className="h-14 bg-slate-50 dark:bg-slate-900 text-[10px] font-black uppercase tracking-widest text-blue-600 hover:bg-blue-50 transition-colors flex items-center justify-center gap-2"
                   >
                     {course.progress > 0 ? 'Resume Course' : 'Start Curriculum'}
                     <ChevronRight size={14} />
@@ -194,8 +194,8 @@ const LearningHub = () => {
             ))}
           </div>
         ) : (
-          <div className="py-32 text-center bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[3rem]">
-             <div className="size-20 bg-slate-50 dark:bg-slate-800 rounded-[2rem] flex items-center justify-center text-slate-200 mx-auto mb-6">
+          <div className="py-12 text-center bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[3rem]">
+             <div className="size-20 bg-slate-100 dark:bg-slate-800 rounded-[2rem] flex items-center justify-center text-slate-200 mx-auto mb-6">
                 <BrainCircuit size={40} />
              </div>
              <h3 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight mb-2">Recommendations Locked</h3>
@@ -219,7 +219,7 @@ const LearningHub = () => {
               { name: 'LinkedIn', color: 'text-sky-600', icon: Users, bg: 'bg-sky-50' },
               { name: 'Pluralsight', color: 'text-rose-600', icon: Terminal, bg: 'bg-rose-50' }
             ].map(partner => (
-              <div key={partner.name} className="p-6 rounded-[2rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-blue-500/20 transition-all group flex flex-col items-center justify-center gap-4 cursor-pointer shadow-sm">
+              <div key={partner.name} className="p-6 rounded-[2rem] bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:border-blue-500/20 transition-all group flex flex-col items-center justify-center gap-4 cursor-pointer shadow-sm">
                 <div className={`size-12 rounded-2xl ${partner.bg} dark:bg-slate-800 flex items-center justify-center ${partner.color}`}>
                   <partner.icon size={24} className="transition-transform group-hover:scale-110" />
                 </div>

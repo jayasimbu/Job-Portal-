@@ -16,10 +16,10 @@ export default function JobStepper({ steps, currentStep }) {
               <div
                 className={`flex items-center justify-center text-[11px] font-bold transition-all shrink-0 ${
                   completed
-                    ? 'bg-slate-100 text-slate-500 border-slate-200'
+                    ? 'bg-slate-100 text-slate-500 border-slate-300'
                     : active
-                    ? 'bg-white text-[#2563eb] border-[#2563eb] shadow-sm'
-                    : 'bg-white text-slate-300 border-slate-200'
+                    ? 'bg-slate-50 text-[#2563eb] border-[#2563eb] shadow-sm'
+                    : 'bg-slate-50 text-slate-300 border-slate-300'
                 }`}
                 style={{ 
                   width: 24, 

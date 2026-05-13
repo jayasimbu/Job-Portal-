@@ -14,7 +14,7 @@ const RoadmapCard = ({ onOpenRoadmap }) => {
         </p>
         <button 
           onClick={onOpenRoadmap}
-          className="w-full py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl text-[10px] font-black uppercase tracking-widest border border-white/10 transition-all backdrop-blur-sm active:scale-95 flex items-center justify-center gap-2"
+          className="w-full py-3 bg-slate-50/10 hover:bg-slate-50/20 text-white rounded-xl text-[10px] font-black uppercase tracking-widest border border-white/10 transition-all backdrop-blur-sm active:scale-95 flex items-center justify-center gap-2"
         >
           <Map size={14} />
           Open Full Roadmap

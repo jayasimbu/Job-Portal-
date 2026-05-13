@@ -61,9 +61,9 @@ export default function PostJob() {
     navigate('/platform/employer/dashboard');
   };
 
-  const inputCls = "w-full h-11 bg-slate-50 border border-slate-200 rounded-lg px-3 text-sm font-medium text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 outline-none transition-all";
+  const inputCls = "w-full h-11 bg-slate-100 border border-slate-300 rounded-lg px-3 text-sm font-medium text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 outline-none transition-all";
   const labelCls = "text-[11px] font-bold text-slate-500 uppercase tracking-wide mb-1.5 block";
-  const sectionCls = "p-6 bg-white border border-slate-200 rounded-xl space-y-5 shadow-sm";
+  const sectionCls = "p-6 bg-slate-50 border border-slate-300 rounded-xl space-y-5 shadow-sm";
 
   return (
     <div className="max-w-[1000px] mx-auto space-y-6 pb-20">
@@ -75,7 +75,7 @@ export default function PostJob() {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Basic Information */}
         <section className={sectionCls}>
-          <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
+          <div className="flex items-center gap-2 border-b border-slate-200 pb-3">
              <Briefcase size={18} className="text-blue-600" />
              <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest">Basic Information</h2>
           </div>
@@ -116,7 +116,7 @@ export default function PostJob() {
 
         {/* Job Details */}
         <section className={sectionCls}>
-          <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
+          <div className="flex items-center gap-2 border-b border-slate-200 pb-3">
              <Building2 size={18} className="text-blue-600" />
              <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest">Job Details</h2>
           </div>
@@ -198,7 +198,7 @@ export default function PostJob() {
                 value={form.jobDescription} 
                 onChange={handleChange} 
                 rows={8} 
-                className="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm font-medium text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 outline-none transition-all resize-y"
+                className="w-full bg-slate-100 border border-slate-300 rounded-lg p-3 text-sm font-medium text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 outline-none transition-all resize-y"
                 placeholder="Provide a comprehensive job description, including responsibilities, day-to-day tasks, and team structure..."
               />
             </div>
@@ -207,7 +207,7 @@ export default function PostJob() {
 
         {/* Candidate Preferences */}
         <section className={sectionCls}>
-          <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
+          <div className="flex items-center gap-2 border-b border-slate-200 pb-3">
              <UserCircle size={18} className="text-blue-600" />
              <h2 className="text-sm font-bold text-slate-900 uppercase tracking-widest">Candidate Preferences</h2>
           </div>
@@ -225,7 +225,7 @@ export default function PostJob() {
                 />
                 <div className="flex flex-wrap gap-2">
                   {form.skillsRequired.map(skill => (
-                    <div key={skill} className="flex items-center gap-1.5 bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md border border-slate-200">
+                    <div key={skill} className="flex items-center gap-1.5 bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md border border-slate-300">
                       <span className="text-[11px] font-bold">{skill}</span>
                       <button type="button" onClick={() => removeSkill(skill)} className="hover:text-rose-600 transition-colors">
                         <X size={12} />
@@ -256,7 +256,7 @@ export default function PostJob() {
                 value={form.preferredCriteria} 
                 onChange={handleChange} 
                 rows={3} 
-                className="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm font-medium text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 outline-none transition-all resize-none"
+                className="w-full bg-slate-100 border border-slate-300 rounded-lg p-3 text-sm font-medium text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 outline-none transition-all resize-none"
                 placeholder="Any additional preferences (e.g. Local candidates preferred, immediate joiners only)..."
               />
             </div>

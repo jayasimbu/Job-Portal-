@@ -123,7 +123,7 @@ async def upload_resume(
     payload: ResumeUploadPayload,
     service: JobSeekerService = Depends(get_jobseeker_service),
 ) -> Dict[str, Any]:
-    resume = service.upload_resume(
+    resume = await service.upload_resume(
         user_id=payload.user_id,
         file_name=payload.file_name,
         resume_text=payload.resume_text,
@@ -144,7 +144,7 @@ async def upload_resume_file(
     user_email = getattr(user, "email", f"user_{user_id}@example.com")
     actual_user_id = getattr(user, "id", user_id)
     
-    resume = service.upload_resume(
+    resume = await service.upload_resume(
         user_id=actual_user_id,
         file_name=file.filename or "resume.pdf",
         file_bytes=file_bytes,
@@ -330,7 +330,7 @@ async def apply_job(
     user=Depends(get_current_user_db)
 ) -> Dict[str, Any]:
     try:
-        application = service.apply_for_job(getattr(user, "id"), payload.job_id)
+        application = await service.apply_for_job(getattr(user, "id"), payload.job_id)
         return {"message": "application created", "application": application if isinstance(application, dict) else model_to_dict(application)}
     except ValueError as e:
         from fastapi import HTTPException
@@ -344,7 +344,7 @@ async def apply_job_alias(
     user=Depends(get_current_user_db)
 ) -> Dict[str, Any]:
     try:
-        application = service.apply_for_job(getattr(user, "id"), payload.job_id)
+        application = await service.apply_for_job(getattr(user, "id"), payload.job_id)
         return {"message": "application created", "application": application if isinstance(application, dict) else model_to_dict(application)}
     except ValueError as e:
         from fastapi import HTTPException

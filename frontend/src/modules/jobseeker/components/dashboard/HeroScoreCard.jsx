@@ -15,7 +15,7 @@ const HeroScoreCard = ({ score, insight, onUpload, onViewJobs }) => {
   };
 
   return (
-    <div className="bg-white rounded-[12px] p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-slate-100 relative overflow-hidden group">
+    <div className="bg-slate-50 rounded-[12px] p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-slate-200 relative overflow-hidden group">
       <div className="flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
         <div className="flex items-center gap-6">
           <div className={`size-32 rounded-full border-[8px] border-slate-50 flex items-center justify-center relative ${getBgColor(score)} transition-all group-hover:scale-105`}>
@@ -39,7 +39,7 @@ const HeroScoreCard = ({ score, insight, onUpload, onViewJobs }) => {
         <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
           <button 
             onClick={onUpload}
-            className="flex items-center justify-center gap-2 px-6 py-3 bg-white border border-slate-200 rounded-xl text-xs font-black uppercase tracking-widest text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all active:scale-95 shadow-sm"
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-black uppercase tracking-widest text-slate-700 hover:bg-slate-100 hover:border-slate-300 transition-all active:scale-95 shadow-sm"
           >
             <Upload size={16} />
             Replace Resume

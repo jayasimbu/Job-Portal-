@@ -95,7 +95,7 @@ export default function SavedJobs() {
           <input
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-3 h-10 rounded-xl border border-slate-200 bg-white text-sm font-bold text-slate-700 placeholder-slate-400 outline-none focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 transition-all"
+            className="w-full pl-10 pr-3 h-10 rounded-xl border border-slate-300 bg-slate-50 text-sm font-bold text-slate-700 placeholder-slate-400 outline-none focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 transition-all"
             placeholder="Search saved jobs..."
           />
         </div>
@@ -103,19 +103,19 @@ export default function SavedJobs() {
         <div className="relative" ref={sortRef}>
           <button
             onClick={() => { setSortOpen(o => !o); setMatchOpen(false); }}
-            className="flex items-center gap-2 h-10 px-4 rounded-xl bg-white border border-slate-200 text-slate-700 text-[10px] font-black uppercase tracking-widest hover:border-blue-500 transition-all shadow-sm"
+            className="flex items-center gap-2 h-10 px-4 rounded-xl bg-slate-50 border border-slate-300 text-slate-700 text-[10px] font-black uppercase tracking-widest hover:border-blue-500 transition-all shadow-sm"
           >
             {sortBy}
             <span className="material-symbols-outlined text-sm">{sortOpen ? 'expand_less' : 'expand_more'}</span>
           </button>
           {sortOpen && (
-            <div className="absolute top-full right-0 mt-2 z-50 w-48 bg-white border border-slate-200 rounded-xl shadow-xl py-1">
+            <div className="absolute top-full right-0 mt-2 z-50 w-48 bg-slate-50 border border-slate-300 rounded-xl shadow-xl py-1">
               {SORT_OPTIONS.map(opt => (
                 <button
                   key={opt}
                   onClick={() => { setSortBy(opt); setSortOpen(false); }}
                   className={`w-full text-left px-4 py-2 text-[10px] font-black uppercase tracking-widest transition-colors
-                    ${sortBy === opt ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:bg-slate-50'}`}
+                    ${sortBy === opt ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:bg-slate-100'}`}
                 >
                   {opt}
                 </button>
@@ -127,7 +127,7 @@ export default function SavedJobs() {
         <button
           onClick={() => setRemoteOnly(r => !r)}
           className={`h-10 px-4 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-all shadow-sm
-            ${remoteOnly ? 'bg-blue-600 text-white border-blue-600' : 'bg-white border-slate-200 text-slate-700 hover:border-blue-500'}`}
+            ${remoteOnly ? 'bg-blue-600 text-white border-blue-600' : 'bg-slate-50 border-slate-300 text-slate-700 hover:border-blue-500'}`}
         >
           Remote Only
         </button>
@@ -137,7 +137,7 @@ export default function SavedJobs() {
       <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar min-h-0">
         {finalJobs.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
-            <div className="size-20 bg-slate-50 rounded-full flex items-center justify-center mb-4">
+            <div className="size-20 bg-slate-100 rounded-full flex items-center justify-center mb-4">
               <span className="material-symbols-outlined text-4xl text-slate-300">bookmark</span>
             </div>
             <h2 className="text-lg font-black text-slate-900 uppercase tracking-tight">
@@ -155,10 +155,10 @@ export default function SavedJobs() {
         ) : (
           <div className="space-y-4 pb-10">
             {finalJobs.map(job => (
-              <div key={job.id} className="group p-6 bg-white border border-slate-200 rounded-2xl hover:border-blue-500 transition-all shadow-sm">
+              <div key={job.id} className="group p-6 bg-slate-50 border border-slate-300 rounded-2xl hover:border-blue-500 transition-all shadow-sm">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                   <div className="flex items-center gap-4 flex-1">
-                    <div className="size-12 bg-slate-50 flex items-center justify-center rounded-xl font-black text-lg text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors uppercase">
+                    <div className="size-12 bg-slate-100 flex items-center justify-center rounded-xl font-black text-lg text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors uppercase">
                       {job.company?.[0] || 'J'}
                     </div>
                     <div>

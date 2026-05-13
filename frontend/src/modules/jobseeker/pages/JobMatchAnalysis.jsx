@@ -97,11 +97,11 @@ const JobMatchAnalysis = () => {
       </div>
 
       {/* HEADER SECTION */}
-      <header className="card-premium p-10 bg-white dark:bg-slate-900 border-none shadow-premium relative overflow-hidden group">
+      <header className="card-premium p-10 bg-slate-50 dark:bg-slate-900 border-none shadow-premium relative overflow-hidden group">
         <div className="absolute top-0 right-0 size-96 bg-blue-600/5 rounded-full blur-[100px] -mr-48 -mt-48 transition-all group-hover:bg-blue-600/10" />
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-10 relative z-10">
           <div className="flex flex-col md:flex-row items-center gap-10">
-             <div className="size-28 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2.5rem] flex items-center justify-center font-black text-5xl text-blue-600 shadow-inner">
+             <div className="size-28 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-[2.5rem] flex items-center justify-center font-black text-5xl text-blue-600 shadow-inner">
                 {job.company?.[0]}
              </div>
              <div className="space-y-3 text-center md:text-left">
@@ -182,7 +182,7 @@ const JobMatchAnalysis = () => {
 
                     <div className="space-y-6">
                        <Text variant="small" className="font-black uppercase tracking-[0.2em] text-blue-600">Growth Potential</Text>
-                       <Card className="bg-slate-50 dark:bg-slate-800 border-none p-6">
+                       <Card className="bg-slate-100 dark:bg-slate-800 border-none p-6">
                           <div className="space-y-4">
                              <div className="flex items-center gap-3 text-blue-600 font-bold">
                                 <Sparkles size={20} />
@@ -225,12 +225,12 @@ const JobMatchAnalysis = () => {
                           <span className="text-xs font-bold uppercase tracking-widest text-slate-400">Match Probability</span>
                           <span className="text-xl font-black text-blue-400">{Math.round(job.match_score || 72)}%</span>
                        </div>
-                       <div className="h-3 w-full bg-white/5 rounded-full overflow-hidden shadow-inner">
+                       <div className="h-3 w-full bg-slate-50/5 rounded-full overflow-hidden shadow-inner">
                           <div className="h-full bg-gradient-to-r from-blue-600 to-indigo-500 rounded-full transition-all " style={{ width: `${job.match_score || 72}%` }}></div>
                        </div>
                     </div>
 
-                    <div className="p-6 bg-white/5 rounded-2xl border border-white/5">
+                    <div className="p-6 bg-slate-50/5 rounded-2xl border border-white/5">
                        <p className="text-sm font-medium text-slate-300 leading-relaxed italic">
                          "Your profile demonstrates excellent command of {job.title.split(' ')[0]} patterns. The core match is strong, but emphasizing deployment automation would bridge the 12% gap in requirements."
                        </p>
@@ -268,7 +268,7 @@ const JobMatchAnalysis = () => {
                        </div>
                     </div>
 
-                    <div className="pt-6 border-t border-slate-100 dark:border-slate-800 space-y-6">
+                    <div className="pt-6 border-t border-slate-200 dark:border-slate-700 space-y-6">
                        <div className="flex items-center gap-2 text-blue-600">
                           <Sparkles size={18} />
                           <span className="text-[10px] font-black uppercase tracking-widest">AI Strategy</span>

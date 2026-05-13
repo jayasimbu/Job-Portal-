@@ -106,7 +106,7 @@ export default function BiasFreeJobRequirements() {
                   className="bg-purple-600 h-3 rounded-full transition-all ease-out relative overflow-hidden" 
                   style={{ width: `${progress}%` }}
                 >
-                  <div className="absolute inset-0 bg-white/20 w-full h-full animate-[shimmer_2s_infinite]"></div>
+                  <div className="absolute inset-0 bg-slate-50/20 w-full h-full animate-[shimmer_2s_infinite]"></div>
                 </div>
               </div>
 
@@ -117,7 +117,7 @@ export default function BiasFreeJobRequirements() {
                   const isActive = i === currentStep;
                   const isPast = i < currentStep;
                   return (
-                    <div key={step} className="flex flex-col items-center gap-2 bg-slate-50 dark:bg-[#0d141b] px-2">
+                    <div key={step} className="flex flex-col items-center gap-2 bg-slate-100 dark:bg-[#0d141b] px-2">
                       <div 
                         className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black transition-all ${
                           isActive 
@@ -171,7 +171,7 @@ export default function BiasFreeJobRequirements() {
             
             {/* Left Form: 65% */}
             <div className="lg:w-[65%] flex flex-col gap-6">
-              <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 p-8 flex flex-col gap-8">
+              <div className="bg-slate-50 dark:bg-slate-900 rounded-3xl shadow-sm border border-slate-300 dark:border-slate-700 p-8 flex flex-col gap-8">
                 
                 {/* Heading */}
                 <div>
@@ -192,7 +192,7 @@ export default function BiasFreeJobRequirements() {
                       type="text"
                       value={jobTitle}
                       onChange={(e) => setJobTitle(e.target.value)}
-                      className="w-full rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 hover:border-purple-400 border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 h-14 px-4 text-base font-medium transition-all"
+                      className="w-full rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 hover:border-purple-400 border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 h-14 px-4 text-base font-medium transition-all"
                     />
                     <span className="absolute right-4 top-1/2 -translate-y-1/2 text-purple-500 material-symbols-outlined cursor-pointer hover:scale-110 transition-transform" title="Regenerate suggestions">
                       auto_awesome
@@ -206,9 +206,9 @@ export default function BiasFreeJobRequirements() {
                     <label className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Must-Have Skills <span className="text-red-500">*</span></label>
                     <button className="text-[10px] font-black uppercase tracking-widest text-purple-600 hover:text-purple-700 transition-colors">Import from template</button>
                   </div>
-                  <div className="flex flex-wrap gap-2 p-4 min-h-[100px] bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl focus-within:ring-2 focus-within:ring-purple-500 hover:border-purple-400 transition-all">
+                  <div className="flex flex-wrap gap-2 p-4 min-h-[100px] bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl focus-within:ring-2 focus-within:ring-purple-500 hover:border-purple-400 transition-all">
                     {mustHaveSkills.map((skill) => (
-                      <div key={skill} className="inline-flex items-center gap-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 px-3 py-1.5 rounded-full text-xs font-bold shadow-sm">
+                      <div key={skill} className="inline-flex items-center gap-1.5 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 px-3 py-1.5 rounded-full text-xs font-bold shadow-sm">
                         {skill}
                         <button onClick={() => removeMust(skill)} className="text-slate-400 hover:text-red-500 transition-colors flex items-center">
                           <span className="material-symbols-outlined text-[16px]">close</span>
@@ -234,7 +234,7 @@ export default function BiasFreeJobRequirements() {
                       <button
                         key={s}
                         onClick={() => addSuggestion(s)}
-                        className="text-[11px] font-bold bg-white dark:bg-slate-800 hover:bg-purple-50 dark:hover:bg-purple-900/20 text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-800/50 px-3 py-1.5 rounded-full transition-colors flex items-center gap-1 shadow-sm hover:shadow"
+                        className="text-[11px] font-bold bg-slate-50 dark:bg-slate-800 hover:bg-purple-50 dark:hover:bg-purple-900/20 text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-800/50 px-3 py-1.5 rounded-full transition-colors flex items-center gap-1 shadow-sm hover:shadow"
                       >
                         <span className="material-symbols-outlined text-[14px]">add</span>
                         {s}
@@ -246,9 +246,9 @@ export default function BiasFreeJobRequirements() {
                 {/* Nice-to-Have Skills */}
                 <div className="flex flex-col gap-3">
                   <label className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Nice-to-Have Skills</label>
-                  <div className="flex flex-wrap gap-2 p-4 min-h-[100px] bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl focus-within:ring-2 focus-within:ring-purple-500 hover:border-purple-400 transition-all">
+                  <div className="flex flex-wrap gap-2 p-4 min-h-[100px] bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl focus-within:ring-2 focus-within:ring-purple-500 hover:border-purple-400 transition-all">
                     {niceToHaveSkills.map((skill) => (
-                      <div key={skill} className="inline-flex items-center gap-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 px-3 py-1.5 rounded-full text-xs font-bold shadow-sm">
+                      <div key={skill} className="inline-flex items-center gap-1.5 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 px-3 py-1.5 rounded-full text-xs font-bold shadow-sm">
                         {skill}
                         <button onClick={() => removeNice(skill)} className="text-slate-400 hover:text-red-500 transition-colors flex items-center">
                           <span className="material-symbols-outlined text-[16px]">close</span>
@@ -288,10 +288,10 @@ export default function BiasFreeJobRequirements() {
                           <div className={`h-full p-5 rounded-2xl border transition-all flex flex-col gap-2 group-hover:scale-[1.02] ${
                             isSelected 
                               ? 'bg-purple-50 dark:bg-purple-900/20 border-purple-500 ring-1 ring-purple-500 shadow-sm' 
-                              : 'bg-slate-50 dark:bg-slate-800 border-slate-300 dark:border-slate-700 hover:border-purple-400'
+                              : 'bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-slate-700 hover:border-purple-400'
                           }`}>
                             <div className={`size-5 rounded-full border-2 flex items-center justify-center ${isSelected ? 'border-purple-600 bg-purple-600' : 'border-slate-300 dark:border-slate-600'}`}>
-                              {isSelected && <div className="size-2 rounded-full bg-white"></div>}
+                              {isSelected && <div className="size-2 rounded-full bg-slate-50"></div>}
                             </div>
                             <span className="font-bold text-slate-900 dark:text-white">{level.label}</span>
                             <span className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium">{level.desc}</span>
@@ -312,7 +312,7 @@ export default function BiasFreeJobRequirements() {
                   <div className="flex w-full sm:w-auto gap-4">
                     <button
                       onClick={() => navigate(-1)}
-                      className="flex-1 sm:flex-none text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700 rounded-xl px-8 py-3 text-sm font-black hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                      className="flex-1 sm:flex-none text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700 rounded-xl px-8 py-3 text-sm font-black hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                     >
                       Back
                     </button>
@@ -333,7 +333,7 @@ export default function BiasFreeJobRequirements() {
             <div className="lg:w-[35%] flex flex-col gap-6">
               
               {/* Score Card */}
-              <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 shadow-sm border border-slate-200 dark:border-slate-800 sticky top-4 flex flex-col gap-6">
+              <div className="bg-slate-50 dark:bg-slate-900 rounded-3xl p-6 shadow-sm border border-slate-300 dark:border-slate-700 sticky top-4 flex flex-col gap-6">
                 <div className="flex items-center justify-between">
                   <h3 className="font-black text-slate-900 dark:text-white uppercase tracking-tight flex items-center gap-2 text-lg">
                     <span className="material-symbols-outlined text-purple-500">analytics</span>
@@ -343,7 +343,7 @@ export default function BiasFreeJobRequirements() {
                 </div>
 
                 {/* Score Gauge */}
-                <div className="flex items-center gap-6 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
+                <div className="flex items-center gap-6 p-4 bg-slate-100 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700">
                   <div className="relative size-20 shrink-0">
                     <svg className="size-full -rotate-90" viewBox="0 0 36 36">
                       <path className="text-slate-200 dark:text-slate-700" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3" />
@@ -373,7 +373,7 @@ export default function BiasFreeJobRequirements() {
                       <div className="flex items-center gap-2 mt-1 flex-wrap">
                         <span className="text-xs font-bold text-slate-500">Try:</span>
                         {['Proactive', 'Driven'].map((alt) => (
-                          <button key={alt} className="text-[10px] font-black uppercase tracking-widest text-purple-600 bg-white dark:bg-slate-800 border border-purple-200 dark:border-purple-800/50 px-2 py-1 rounded-md shadow-sm hover:shadow hover:bg-purple-50 transition-all">{alt}</button>
+                          <button key={alt} className="text-[10px] font-black uppercase tracking-widest text-purple-600 bg-slate-50 dark:bg-slate-800 border border-purple-200 dark:border-purple-800/50 px-2 py-1 rounded-md shadow-sm hover:shadow hover:bg-purple-50 transition-all">{alt}</button>
                         ))}
                       </div>
                     </div>
@@ -391,7 +391,7 @@ export default function BiasFreeJobRequirements() {
                 </div>
 
                 {/* Focus Balance */}
-                <div className="mt-2 pt-6 border-t border-slate-100 dark:border-slate-800">
+                <div className="mt-2 pt-6 border-t border-slate-200 dark:border-slate-700">
                   <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Focus Balance</h4>
                   <div className="flex flex-col gap-2">
                     <div className="flex justify-between text-xs font-bold text-slate-600 dark:text-slate-400">
@@ -409,9 +409,9 @@ export default function BiasFreeJobRequirements() {
 
               {/* Inclusive Hiring Guide CTA */}
               <div className="bg-gradient-to-br from-purple-600 to-indigo-600 rounded-3xl p-6 text-white shadow-xl shadow-purple-500/20 relative overflow-hidden group cursor-pointer hover:-translate-y-1 transition-all ">
-                <div className="absolute -right-10 -top-10 bg-white/10 size-40 rounded-full blur-2xl group-hover:bg-white/20 transition-all "></div>
+                <div className="absolute -right-10 -top-10 bg-slate-50/10 size-40 rounded-full blur-2xl group-hover:bg-slate-50/20 transition-all "></div>
                 <div className="relative z-10 flex flex-col gap-3">
-                  <div className="size-12 bg-white/20 rounded-2xl flex items-center justify-center mb-1 backdrop-blur-md shadow-inner">
+                  <div className="size-12 bg-slate-50/20 rounded-2xl flex items-center justify-center mb-1 backdrop-blur-md shadow-inner">
                     <span className="material-symbols-outlined text-white">menu_book</span>
                   </div>
                   <h3 className="font-black text-lg tracking-tight">Inclusive Hiring Guide</h3>

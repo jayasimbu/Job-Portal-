@@ -3,7 +3,7 @@ import { Briefcase, MapPin, DollarSign, ArrowUpRight } from 'lucide-react';
 
 const RecommendedJobs = ({ jobs }) => {
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+    <div className="bg-slate-50 rounded-2xl shadow-sm border border-slate-300 p-6">
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
           <Briefcase className="size-5 text-indigo-600" />
@@ -17,10 +17,10 @@ const RecommendedJobs = ({ jobs }) => {
           <p className="text-sm text-slate-500 text-center py-4">No recommendations yet.</p>
         ) : (
           jobs.slice(0, 3).map((job, idx) => (
-            <div key={idx} className="p-4 bg-white border border-slate-100 rounded-xl hover:border-indigo-200 hover:shadow-sm transition-all group cursor-pointer">
+            <div key={idx} className="p-4 bg-slate-50 border border-slate-200 rounded-xl hover:border-indigo-200 hover:shadow-sm transition-all group cursor-pointer">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="size-12 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-all font-bold text-lg">
+                  <div className="size-12 rounded-xl bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-all font-bold text-lg">
                     {job.title.charAt(0)}
                   </div>
                   <div>
@@ -54,7 +54,7 @@ const RecommendedJobs = ({ jobs }) => {
                   </span>
                 ))}
                 {job.skills.length > 3 && (
-                  <span className="text-[10px] font-bold px-2 py-0.5 bg-slate-50 text-slate-400 rounded">
+                  <span className="text-[10px] font-bold px-2 py-0.5 bg-slate-100 text-slate-400 rounded">
                     +{job.skills.length - 3}
                   </span>
                 )}

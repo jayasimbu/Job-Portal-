@@ -40,10 +40,10 @@ const LearningPage = () => {
   };
 
   return (
-    <div className="h-full flex flex-col bg-slate-50 dark:bg-[#0b1016] -m-6 p-6">
+    <div className="h-full flex flex-col bg-slate-100 dark:bg-[#0b1016] -m-6 p-6">
       <header className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-4">
-          <button onClick={() => navigate(-1)} className="w-10 h-10 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+          <button onClick={() => navigate(-1)} className="w-10 h-10 rounded-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 flex items-center justify-center text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
             <span className="material-symbols-outlined">arrow_back</span>
           </button>
           <div>
@@ -51,7 +51,7 @@ const LearningPage = () => {
             <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">AI Curated Learning Path</p>
           </div>
         </div>
-        <div className="flex items-center gap-3 bg-white dark:bg-slate-900 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="flex items-center gap-3 bg-slate-50 dark:bg-slate-900 px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 shadow-sm">
           <div className="text-right">
             <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Course Progress</p>
             <p className="text-sm font-bold text-blue-600">{progress}%</p>
@@ -64,7 +64,7 @@ const LearningPage = () => {
 
       <div className="flex-1 flex flex-col lg:flex-row gap-6 min-h-0 overflow-hidden">
         {/* Left Pane: Video Player */}
-        <div className="flex-[2] flex flex-col bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+        <div className="flex-[2] flex flex-col bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-300 dark:border-slate-700 shadow-sm overflow-hidden">
           {loading ? (
             <div className="w-full aspect-video bg-slate-100 dark:bg-slate-800  flex items-center justify-center">
               <span className="material-symbols-outlined text-4xl text-slate-300 dark:text-slate-600">movie</span>
@@ -92,7 +92,7 @@ const LearningPage = () => {
                     Mark Completed
                   </button>
                 </div>
-                <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
+                <div className="p-4 bg-slate-100 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700">
                   <h4 className="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Description</h4>
                   <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-wrap">{activeVideo.description || 'No description available for this video.'}</p>
                 </div>
@@ -109,8 +109,8 @@ const LearningPage = () => {
         {/* Right Pane: Playlist & Notes */}
         <div className="flex-1 flex flex-col gap-6 overflow-hidden">
           {/* Playlist */}
-          <div className="flex-1 flex flex-col bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden min-h-0">
-            <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/20">
+          <div className="flex-1 flex flex-col bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-300 dark:border-slate-700 shadow-sm overflow-hidden min-h-0">
+            <div className="p-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between bg-slate-100/50 dark:bg-slate-800/20">
               <h3 className="text-xs font-black text-slate-900 dark:text-white uppercase tracking-widest">Curriculum Playlist</h3>
               <span className="text-[10px] font-bold text-slate-500">{videos.length} Modules</span>
             </div>
@@ -123,7 +123,7 @@ const LearningPage = () => {
                 <button
                   key={vid.id}
                   onClick={() => setActiveVideoIndex(idx)}
-                  className={`w-full text-left flex items-start gap-3 p-3 rounded-xl transition-all ${activeVideoIndex === idx ? 'bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20' : 'hover:bg-slate-50 dark:hover:bg-slate-800/50 border border-transparent'}`}
+                  className={`w-full text-left flex items-start gap-3 p-3 rounded-xl transition-all ${activeVideoIndex === idx ? 'bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20' : 'hover:bg-slate-100 dark:hover:bg-slate-800/50 border border-transparent'}`}
                 >
                   <div className="w-20 h-12 bg-black rounded-lg overflow-hidden shrink-0 relative">
                     <img src={vid.thumbnail} alt={vid.title} className="w-full h-full object-cover opacity-80" />
@@ -143,8 +143,8 @@ const LearningPage = () => {
           </div>
 
           {/* Notes */}
-          <div className="h-1/3 min-h-[200px] flex flex-col bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
-             <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex items-center gap-2 bg-slate-50/50 dark:bg-slate-800/20">
+          <div className="h-1/3 min-h-[200px] flex flex-col bg-slate-50 dark:bg-slate-900 rounded-3xl border border-slate-300 dark:border-slate-700 shadow-sm overflow-hidden">
+             <div className="p-4 border-b border-slate-200 dark:border-slate-700 flex items-center gap-2 bg-slate-100/50 dark:bg-slate-800/20">
                <span className="material-symbols-outlined text-amber-500 text-sm">edit_note</span>
                <h3 className="text-xs font-black text-slate-900 dark:text-white uppercase tracking-widest">Personal Notes</h3>
              </div>

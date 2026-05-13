@@ -11,7 +11,7 @@ const ActionPanel = ({ actions, onImproveProfile }) => {
   const displayActions = actions || defaultActions;
 
   return (
-    <div className="bg-white rounded-[12px] p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col h-full">
+    <div className="bg-slate-50 rounded-[12px] p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-slate-200 flex flex-col h-full">
       <h3 className="text-sm font-black text-slate-900 uppercase tracking-tight mb-6">Optimization Path</h3>
       
       <div className="space-y-4 flex-1">

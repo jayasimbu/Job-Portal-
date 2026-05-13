@@ -86,7 +86,7 @@ export default function ProfileMenu({ role = 'jobseeker' }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="absolute right-0 mt-3 w-72 rounded-2xl p-4 bg-white/90 dark:bg-slate-900/95 backdrop-blur-xl border border-slate-200 dark:border-slate-700 shadow-2xl z-[100]"
+            className="absolute right-0 mt-3 w-72 rounded-2xl p-4 bg-slate-50/90 dark:bg-slate-900/95 backdrop-blur-xl border border-slate-300 dark:border-slate-700 shadow-2xl z-[100]"
           >
             {/* Profile Info */}
             <div className="flex items-center gap-3 mb-4">
@@ -100,7 +100,7 @@ export default function ProfileMenu({ role = 'jobseeker' }) {
             </div>
 
             {/* Profile Strength */}
-            <div className="mb-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50">
+            <div className="mb-4 p-3 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50">
               <div className="flex items-center justify-between mb-1.5">
                 <p className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Profile Strength</p>
                 <p className="text-xs font-black text-emerald-600 dark:text-emerald-400">75%</p>
@@ -111,9 +111,9 @@ export default function ProfileMenu({ role = 'jobseeker' }) {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 text-center mb-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50">
+            <div className="grid grid-cols-3 text-center mb-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50">
               {stats.map((s, i) => (
-                <div key={i} className={i > 0 ? 'border-l border-slate-200 dark:border-slate-700' : ''}>
+                <div key={i} className={i > 0 ? 'border-l border-slate-300 dark:border-slate-700' : ''}>
                   <p className="font-black text-lg text-slate-900 dark:text-white leading-tight">{s.value}</p>
                   <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">{s.label}</p>
                 </div>
@@ -121,7 +121,7 @@ export default function ProfileMenu({ role = 'jobseeker' }) {
             </div>
 
             {/* Quick Actions */}
-            <div className="border-t border-slate-100 dark:border-slate-800 pt-3 space-y-1">
+            <div className="border-t border-slate-200 dark:border-slate-700 pt-3 space-y-1">
               {menuItems.map((item, i) => (
                 <button
                   key={i}
@@ -139,7 +139,7 @@ export default function ProfileMenu({ role = 'jobseeker' }) {
             </div>
 
             {/* Logout */}
-            <div className="border-t border-slate-100 dark:border-slate-800 pt-2 mt-2">
+            <div className="border-t border-slate-200 dark:border-slate-700 pt-2 mt-2">
               <button
                 onClick={handleLogout}
                 className="w-full text-left text-sm py-2.5 px-3 rounded-xl font-bold flex items-center gap-3 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors"

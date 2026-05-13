@@ -15,7 +15,7 @@ export default function StatCard({ title, value, icon, change, trend = "up", cla
           {title}
         </span>
 
-        <div className="h-12 w-12 rounded-2xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 flex items-center justify-center text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 group-hover:scale-110 transition-all shadow-sm group-hover:shadow-blue-500/10">
+        <div className="h-12 w-12 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 group-hover:scale-110 transition-all shadow-sm group-hover:shadow-blue-500/10">
           {icon}
         </div>
       </div>

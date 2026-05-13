@@ -51,10 +51,10 @@ const Settings = () => {
       {/* SETTINGS GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {sections.map((section, i) => (
-          <Card key={i} className="border-slate-200 shadow-sm hover:border-blue-500/50 transition-colors group cursor-pointer">
+          <Card key={i} className="border-slate-300 shadow-sm hover:border-blue-500/50 transition-colors group cursor-pointer">
             <CardBody className="p-8">
               <div className="flex items-center justify-between mb-8">
-                <div className="size-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-400 group-hover:text-blue-600 transition-colors">
+                <div className="size-14 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 group-hover:text-blue-600 transition-colors">
                   <section.icon size={24} />
                 </div>
                 <Badge variant="secondary" className="text-[9px] px-2 py-0.5 uppercase font-black">
@@ -67,7 +67,7 @@ const Settings = () => {
                 <p className="text-sm text-slate-500 font-medium leading-relaxed">{section.desc}</p>
               </div>
 
-              <div className="flex items-center justify-between pt-6 border-t border-slate-100 dark:border-slate-800">
+              <div className="flex items-center justify-between pt-6 border-t border-slate-200 dark:border-slate-700">
                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest group-hover:text-blue-600">Configure</span>
                 <ArrowRight size={16} className="text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
               </div>

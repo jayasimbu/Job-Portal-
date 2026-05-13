@@ -112,24 +112,24 @@ export default function CandidateRanking() {
       </div>
 
       {/* CONTROLS */}
-      <div className="flex flex-col lg:flex-row justify-between items-center gap-6 p-4 bg-slate-50/50 dark:bg-slate-900/50 rounded-3xl border border-slate-100 dark:border-slate-800">
+      <div className="flex flex-col lg:flex-row justify-between items-center gap-6 p-4 bg-slate-100/50 dark:bg-slate-900/50 rounded-3xl border border-slate-200 dark:border-slate-700">
         <div className="flex gap-3 flex-wrap">
            <Button className="h-11 px-5 rounded-xl bg-blue-600 text-white border-none text-xs">
               <Zap size={16} />
               Top 10% Match Strength
            </Button>
-           <Button variant="secondary" className="h-11 px-5 rounded-xl text-xs bg-white dark:bg-slate-800">
+           <Button variant="secondary" className="h-11 px-5 rounded-xl text-xs bg-slate-50 dark:bg-slate-800">
               <ShieldCheck size={16} />
               Diversity Matches
            </Button>
-           <Button variant="secondary" className="h-11 px-5 rounded-xl text-xs bg-white dark:bg-slate-800">
+           <Button variant="secondary" className="h-11 px-5 rounded-xl text-xs bg-slate-50 dark:bg-slate-800">
               <EyeOff size={16} />
               Bias-Free Mode
            </Button>
         </div>
         <div className="flex items-center gap-4">
            <span className="text-xs font-black text-slate-400 uppercase tracking-widest">Sort:</span>
-           <select className="h-11 px-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-bold outline-none focus:ring-4 focus:ring-blue-500/10 cursor-pointer">
+           <select className="h-11 px-4 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-xs font-bold outline-none focus:ring-4 focus:ring-blue-500/10 cursor-pointer">
               <option>Highest Match Precision</option>
               <option>Growth Potential</option>
               <option>Latest Applications</option>
@@ -150,11 +150,11 @@ export default function CandidateRanking() {
               <div className="lg:col-span-4 flex items-center gap-6 w-full">
                 <div className="relative shrink-0">
                   <div 
-                    className="size-20 bg-center bg-cover rounded-[1.5rem] border-4 border-white dark:border-slate-800 shadow-xl group-hover:scale-105 transition-all"
+                    className="size-20 bg-center bg-cover rounded-[1.5rem] border-4 border-white dark:border-slate-700 shadow-xl group-hover:scale-105 transition-all"
                     style={{ backgroundImage: `url(${cand.image})` }}
                   ></div>
                   {cand.score > 95 && (
-                    <div className="absolute -bottom-2 -right-2 bg-white dark:bg-slate-900 rounded-full p-1 shadow-lg border border-slate-100 dark:border-slate-700">
+                    <div className="absolute -bottom-2 -right-2 bg-slate-50 dark:bg-slate-900 rounded-full p-1 shadow-lg border border-slate-200 dark:border-slate-700">
                       <CheckCircle2 size={24} className="text-blue-600 fill-blue-50" />
                     </div>
                   )}
@@ -185,7 +185,7 @@ export default function CandidateRanking() {
                     <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Skill Resonance</span>
                     <span className="text-xs font-black text-slate-900 dark:text-white">{cand.match}%</span>
                  </div>
-                 <div className="h-2 w-full bg-slate-50 dark:bg-slate-800 rounded-full overflow-hidden shadow-inner">
+                 <div className="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden shadow-inner">
                     <div className="h-full bg-gradient-to-r from-blue-600 to-indigo-500 rounded-full" style={{ width: `${cand.match}%` }}></div>
                  </div>
                  <div className="flex flex-wrap gap-2">
@@ -225,7 +225,7 @@ export default function CandidateRanking() {
 
       {/* FOOTER */}
       <div className="flex justify-center pt-8">
-        <Button variant="secondary" className="h-14 px-10 rounded-2xl bg-white dark:bg-slate-900">
+        <Button variant="secondary" className="h-14 px-10 rounded-2xl bg-slate-50 dark:bg-slate-900">
            Scan 139 More Candidates
            <ChevronRight size={18} />
         </Button>

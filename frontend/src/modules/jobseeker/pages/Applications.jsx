@@ -21,14 +21,14 @@ export default function Applications() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight uppercase leading-none">Applications</h1>
         <div className="flex items-center gap-2">
-          <div className="flex bg-slate-50 dark:bg-slate-800/50 p-1 rounded-xl">
+          <div className="flex bg-slate-100 dark:bg-slate-800/50 p-1 rounded-xl">
             {['All', 'Under Review', 'Selected', 'Rejected'].map(status => (
               <button
                 key={status}
                 onClick={() => setFilter(status)}
                 className={`px-4 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest whitespace-nowrap transition-all ${
                   filter === status 
-                  ? 'bg-white dark:bg-slate-700 shadow-sm text-blue-600' 
+                  ? 'bg-slate-50 dark:bg-slate-700 shadow-sm text-blue-600' 
                   : 'text-slate-500 hover:text-slate-800 dark:hover:text-white'
                 }`}
               >
@@ -45,16 +45,16 @@ export default function Applications() {
       {/* APPLICATIONS LIST */}
       <div className="space-y-2">
         {filteredApps.length === 0 ? (
-          <div className="py-20 text-center bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl">
+          <div className="py-20 text-center bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl">
              <Send size={28} className="text-slate-200 mx-auto mb-3" />
              <p className="font-bold uppercase tracking-widest text-slate-400 text-xs">No applications found</p>
           </div>
         ) : (
           filteredApps.map(app => (
-            <div key={app.id} className="group bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-4 hover:border-blue-500/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div key={app.id} className="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-4 hover:border-blue-500/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
               
               <div className="flex items-center gap-4 flex-1">
-                <div className="size-10 shrink-0 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700 flex items-center justify-center font-black text-base text-blue-600 transition-transform group-hover:scale-105">
+                <div className="size-10 shrink-0 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center font-black text-base text-blue-600 transition-transform group-hover:scale-105">
                   {app.company[0]}
                 </div>
                 <div className="min-w-0">
@@ -86,7 +86,7 @@ export default function Applications() {
                   </div>
                 </div>
 
-                <Button variant="secondary" className="h-8 px-4 rounded-lg text-[9px] font-bold uppercase tracking-widest border-slate-200 dark:border-slate-800">
+                <Button variant="secondary" className="h-8 px-4 rounded-lg text-[9px] font-bold uppercase tracking-widest border-slate-300 dark:border-slate-700">
                   View Details
                 </Button>
               </div>

@@ -62,7 +62,7 @@ export default function ResumeDropzone({ onFileUploaded }) {
           className={`border-2 border-dashed rounded-xl p-10 flex flex-col items-center justify-center text-center cursor-pointer transition-all ${
             isDragActive 
               ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/10' 
-              : 'border-slate-300 dark:border-slate-700 hover:border-blue-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+              : 'border-slate-300 dark:border-slate-700 hover:border-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800/50'
           }`}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
@@ -84,7 +84,7 @@ export default function ResumeDropzone({ onFileUploaded }) {
           </p>
         </div>
       ) : (
-        <div className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-6 border border-slate-300 dark:border-slate-700 shadow-sm">
           <div className="flex items-center gap-4 mb-4">
             <div className="bg-red-100 dark:bg-red-900/30 p-3 rounded-lg text-red-600 dark:text-red-400 shrink-0">
               <span className="material-symbols-outlined !text-3xl">picture_as_pdf</span>

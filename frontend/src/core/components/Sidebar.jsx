@@ -71,10 +71,10 @@ const Sidebar = ({ role }) => {
 
   return (
     <aside 
-      className={`fixed top-0 left-0 h-full bg-white dark:bg-[#0f172a] border-r border-slate-100 dark:border-slate-800/50 z-50 flex flex-col w-[270px] transition-all`}
+      className={`fixed top-0 left-0 h-full bg-slate-50 dark:bg-[#0f172a] border-r border-slate-200 dark:border-slate-700/50 z-50 flex flex-col w-[270px] transition-all`}
     >
       {/* Sidebar Header */}
-      <div className="h-24 flex items-center px-8 border-b border-slate-50 dark:border-slate-800/50">
+      <div className="h-24 flex items-center px-8 border-b border-slate-50 dark:border-slate-700/50">
           <Logo variant="light" showText={true} />
       </div>
 
@@ -88,7 +88,7 @@ const Sidebar = ({ role }) => {
               `flex items-center gap-[14px] px-5 h-[54px] rounded-2xl text-[16px] font-semibold transition-all group ${
                 isActive 
                   ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' 
-                  : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-400 dark:hover:text-white dark:hover:bg-slate-800/50'
+                  : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-white dark:hover:bg-slate-800/50'
               }`
             }
           >
@@ -99,7 +99,7 @@ const Sidebar = ({ role }) => {
       </nav>
 
       {/* Bottom Utility Section */}
-      <div className="p-4 border-t border-slate-100 dark:border-slate-800/50 space-y-2">
+      <div className="p-4 border-t border-slate-200 dark:border-slate-700/50 space-y-2">
         <button 
           onClick={handleLogout}
           className="w-full h-12 flex items-center gap-3.5 px-5 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/10 rounded-2xl text-[15px] font-bold transition-all"

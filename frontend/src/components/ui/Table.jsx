@@ -2,7 +2,7 @@ import React from 'react';
 
 export function Table({ children, className = "" }) {
   return (
-    <div className={`overflow-x-auto rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm ${className}`}>
+    <div className={`overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 shadow-sm ${className}`}>
       <table className="w-full text-left border-collapse">
         {children}
       </table>
@@ -12,7 +12,7 @@ export function Table({ children, className = "" }) {
 
 export function TableHeader({ children, className = "" }) {
   return (
-    <thead className={`bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 ${className}`}>
+    <thead className={`bg-slate-100/50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700 ${className}`}>
       {children}
     </thead>
   );
@@ -20,7 +20,7 @@ export function TableHeader({ children, className = "" }) {
 
 export function TableRow({ children, className = "" }) {
   return (
-    <tr className={`h-[72px] border-b border-slate-50 dark:border-slate-800 last:border-0 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors ${className}`}>
+    <tr className={`h-[72px] border-b border-slate-50 dark:border-slate-700 last:border-0 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors ${className}`}>
       {children}
     </tr>
   );
@@ -44,13 +44,13 @@ export function TableCell({ children, className = "" }) {
 
 export const DataTable = ({ columns, data, loading, emptyMessage = "No data found" }) => {
   if (loading) return (
-    <div className="w-full h-64 flex items-center justify-center bg-slate-50/50 dark:bg-slate-800/50 rounded-2xl ">
+    <div className="w-full h-64 flex items-center justify-center bg-slate-100/50 dark:bg-slate-800/50 rounded-2xl ">
       <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">Loading records...</p>
     </div>
   );
 
   if (!data || data.length === 0) return (
-    <div className="w-full h-64 flex flex-col items-center justify-center bg-slate-50/50 dark:bg-slate-800/50 rounded-2xl border border-dashed border-slate-200 dark:border-slate-700">
+    <div className="w-full h-64 flex flex-col items-center justify-center bg-slate-100/50 dark:bg-slate-800/50 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700">
       <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">{emptyMessage}</p>
     </div>
   );

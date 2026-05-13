@@ -242,7 +242,7 @@ const DetailView = () => {
             {content.highlights.map((item, idx) => (
               <div 
                 key={idx} 
-                className="p-4 rounded-xl bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 flex items-start gap-3 shadow-sm"
+                className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 flex items-start gap-3 shadow-sm"
               >
                 <span className="material-symbols-outlined text-blue-600 text-sm mt-0.5">check_circle</span>
                 <span className="text-sm font-bold text-slate-700 dark:text-slate-200">{item}</span>
@@ -252,7 +252,7 @@ const DetailView = () => {
         </div>
 
         {/* Placeholder for More Detailed Body Content if needed */}
-        <div className="mt-20 pt-10 border-t border-slate-100 dark:border-slate-800">
+        <div className="mt-20 pt-10 border-t border-slate-200 dark:border-slate-700">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="space-y-4">
               <h4 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight">Intelligence-First Approach</h4>

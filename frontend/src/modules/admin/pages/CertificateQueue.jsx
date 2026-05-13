@@ -45,7 +45,7 @@ const CertificateQueue = () => {
              <div className="h-24 bg-slate-200 dark:bg-slate-800 rounded-xl"></div>
           </div>
         ) : queue.length === 0 ? (
-          <div className="flex flex-col items-center justify-center p-16 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-[#1a2632]">
+          <div className="flex flex-col items-center justify-center p-16 border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-2xl bg-slate-100 dark:bg-[#1a2632]">
              <span className="material-symbols-outlined text-5xl text-slate-300 mb-4">verified</span>
              <h3 className="text-lg font-bold text-slate-700 dark:text-slate-200">No Pending Verifications</h3>
              <p className="text-sm text-slate-500">The verification queue is fully clear.</p>
@@ -53,8 +53,8 @@ const CertificateQueue = () => {
         ) : (
           <div className="grid gap-8">
             {queue.map(cert => (
-              <div key={cert.id} className="bg-white dark:bg-[#1a2632] border border-slate-200 dark:border-slate-800 rounded-3xl shadow-sm hover:shadow-xl hover:shadow-blue-500/5 hover:border-blue-500/50 transition-all overflow-hidden flex flex-col md:flex-row group">
-                <div className="w-full md:w-1/3 p-8 border-b md:border-b-0 md:border-r border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-[#131d26]">
+              <div key={cert.id} className="bg-slate-50 dark:bg-[#1a2632] border border-slate-300 dark:border-slate-700 rounded-3xl shadow-sm hover:shadow-xl hover:shadow-blue-500/5 hover:border-blue-500/50 transition-all overflow-hidden flex flex-col md:flex-row group">
+                <div className="w-full md:w-1/3 p-8 border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-[#131d26]">
                   <div className="flex items-center gap-3 mb-4">
                      <span className="material-symbols-outlined text-blue-600 text-3xl">workspace_premium</span>
                      <div>
@@ -67,7 +67,7 @@ const CertificateQueue = () => {
                      <a href={cert.file_url} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 px-4 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 transition rounded-xl text-sm font-bold text-slate-700 dark:text-slate-300">
                        <span className="material-symbols-outlined text-[18px]">open_in_new</span> View Original Document
                      </a>
-                     <div className="text-xs text-slate-400 font-bold bg-white dark:bg-[#1a2632] p-3 rounded-xl border border-slate-200 dark:border-slate-700">
+                     <div className="text-xs text-slate-400 font-bold bg-slate-50 dark:bg-[#1a2632] p-3 rounded-xl border border-slate-300 dark:border-slate-700">
                         Uploaded: {new Date(cert.created_at).toLocaleString()}
                         <br/>User ID: {cert.user_id}
                      </div>
@@ -79,7 +79,7 @@ const CertificateQueue = () => {
                     <h4 className="text-[10px] uppercase tracking-widest font-black text-slate-400 mb-4 flex items-center gap-2">
                        <span className="material-symbols-outlined text-blue-500 text-[16px]">psychology</span> AI Extraction Data
                     </h4>
-                    <div className="bg-slate-50 dark:bg-[#0d141b] rounded-2xl p-5 border border-slate-100 dark:border-slate-800/50 mb-8 font-mono text-xs text-slate-600 dark:text-slate-400 h-24 overflow-y-auto leading-relaxed">
+                    <div className="bg-slate-100 dark:bg-[#0d141b] rounded-2xl p-5 border border-slate-200 dark:border-slate-700/50 mb-8 font-mono text-xs text-slate-600 dark:text-slate-400 h-24 overflow-y-auto leading-relaxed">
                        {cert.ocr_text || "No text extracted by OCR engine."}
                     </div>
                     
@@ -101,7 +101,7 @@ const CertificateQueue = () => {
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-4 pt-6 border-t border-slate-100 dark:border-slate-800 mt-6">
+                  <div className="flex items-center gap-4 pt-6 border-t border-slate-200 dark:border-slate-700 mt-6">
                     <button onClick={() => handleVerify(cert.id, 'verified')} className="flex-1 px-4 py-4 bg-green-500 hover:bg-green-600 text-white rounded-2xl text-[10px] uppercase tracking-widest font-black flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-[0_8px_20px_rgba(34,197,94,0.3)]">
                       <span className="material-symbols-outlined text-sm">verified</span> Verify Concept
                     </button>

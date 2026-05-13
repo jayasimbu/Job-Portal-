@@ -27,7 +27,7 @@ const LogoModal = () => {
           <span className="material-symbols-outlined text-3xl">close</span>
         </button>
         
-        <div className="bg-white/5 p-8 rounded-3xl border border-white/10 shadow-2xl flex items-center justify-center scale-150 my-10">
+        <div className="bg-slate-50/5 p-8 rounded-3xl border border-white/10 shadow-2xl flex items-center justify-center scale-150 my-10">
           <Logo variant="dark" />
         </div>
         

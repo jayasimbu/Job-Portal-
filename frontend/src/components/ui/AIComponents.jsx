@@ -28,7 +28,7 @@ export const AISummaryCard = ({ summary, score, suggestions = [] }) => (
         <p className="text-xs font-black text-blue-600 uppercase tracking-widest">Key Suggestions</p>
         <div className="grid gap-2">
           {suggestions.map((s, i) => (
-            <div key={i} className="flex items-start gap-3 p-3 bg-white dark:bg-slate-800 rounded-xl border border-blue-50 dark:border-blue-700/50">
+            <div key={i} className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-blue-50 dark:border-blue-700/50">
               <CheckCircle2 size={16} className="text-emerald-500 mt-0.5 shrink-0" />
               <p className="text-sm text-slate-600 dark:text-slate-300 font-medium">{s}</p>
             </div>

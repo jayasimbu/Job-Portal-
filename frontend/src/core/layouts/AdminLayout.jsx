@@ -27,13 +27,13 @@ const AdminLayout = ({ children, title }) => {
   };
 
   return (
-    <div className="h-screen flex overflow-hidden bg-slate-50 dark:bg-[#0a0f14] transition-colors font-sans">
+    <div className="h-screen flex overflow-hidden bg-slate-100 dark:bg-[#0a0f14] transition-colors font-sans">
       <Sidebar role="admin" />
 
       <div className="flex-1 flex flex-col min-w-0 md:pl-[270px]">
         {/* Header */}
         <header className={`h-20 flex-shrink-0 px-8 flex items-center justify-between sticky top-0 z-50 transition-all ${
-          scrolled ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-100 dark:border-slate-800 shadow-sm' : 'bg-transparent'
+          scrolled ? 'bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-700 shadow-sm' : 'bg-transparent'
         }`}>
           <div>
             <div className="flex flex-col">
@@ -58,10 +58,10 @@ const AdminLayout = ({ children, title }) => {
                 </div>
               </div>
               <div className="relative">
-                 <div className="size-11 bg-slate-900 dark:bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-sm shadow-xl shadow-blue-500/10 transition-all group-hover:scale-110 group-hover:rotate-3 border-2 border-white dark:border-slate-800">
+                 <div className="size-11 bg-slate-900 dark:bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-sm shadow-xl shadow-blue-500/10 transition-all group-hover:scale-110 group-hover:rotate-3 border-2 border-white dark:border-slate-700">
                   {user?.full_name?.charAt(0) || 'A'}
                 </div>
-                <div className="absolute -bottom-0.5 -right-0.5 size-3.5 bg-emerald-500 rounded-full border-2 border-white dark:border-slate-900"></div>
+                <div className="absolute -bottom-0.5 -right-0.5 size-3.5 bg-emerald-500 rounded-full border-2 border-white dark:border-slate-800"></div>
               </div>
             </div>
           </div>

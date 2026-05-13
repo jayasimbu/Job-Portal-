@@ -82,8 +82,8 @@ export default function Profile() {
           { label: 'Skills', value: (profile?.skills || []).length, icon: Code, color: 'text-purple-600' },
           { label: 'Visibility', value: 'Active', icon: Eye, color: 'text-emerald-600' }
         ].map((m, idx) => (
-          <div key={idx} className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-4 flex items-center gap-3 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
-            <div className={`size-9 rounded-lg bg-slate-50 dark:bg-slate-800 flex items-center justify-center ${m.color}`}>
+          <div key={idx} className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 flex items-center gap-3 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+            <div className={`size-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center ${m.color}`}>
               <m.icon size={16} />
             </div>
             <div>
@@ -98,7 +98,7 @@ export default function Profile() {
         
         {/* COLUMN 1: IDENTITY CARD (4 Units) */}
         <div className="lg:col-span-4 space-y-4">
-          <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm">
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden shadow-sm">
             <div className="h-20 bg-slate-900 dark:bg-black relative overflow-hidden">
                <div className="absolute inset-0 opacity-10">
                   <div className="absolute -right-10 -top-10 size-32 bg-blue-600 rounded-full blur-3xl"></div>
@@ -108,12 +108,12 @@ export default function Profile() {
             
             <div className="px-6 pb-6 -mt-10 flex flex-col items-center text-center relative z-10">
               <div className="relative">
-                <div className="size-20 rounded-2xl bg-white dark:bg-slate-800 p-0.5 shadow-xl">
-                  <div className="size-full rounded-[14px] bg-slate-50 dark:bg-slate-900 text-blue-600 flex items-center justify-center text-3xl font-black border-2 border-slate-100 dark:border-slate-800">
+                <div className="size-20 rounded-2xl bg-slate-50 dark:bg-slate-800 p-0.5 shadow-xl">
+                  <div className="size-full rounded-[14px] bg-slate-100 dark:bg-slate-900 text-blue-600 flex items-center justify-center text-3xl font-black border-2 border-slate-200 dark:border-slate-700">
                     {name.charAt(0)}
                   </div>
                 </div>
-                <div className="absolute -bottom-1.5 -right-1.5 size-7 bg-emerald-500 text-white rounded-xl border-3 border-white dark:border-slate-900 flex items-center justify-center shadow-lg" title="Verified">
+                <div className="absolute -bottom-1.5 -right-1.5 size-7 bg-emerald-500 text-white rounded-xl border-3 border-white dark:border-slate-800 flex items-center justify-center shadow-lg" title="Verified">
                    <Shield size={14} fill="white" />
                 </div>
               </div>
@@ -135,14 +135,14 @@ export default function Profile() {
               </div>
 
               {/* Contact Info */}
-              <div className="w-full grid grid-cols-1 gap-3 mt-6 pt-5 border-t border-slate-50 dark:border-slate-800">
+              <div className="w-full grid grid-cols-1 gap-3 mt-6 pt-5 border-t border-slate-50 dark:border-slate-700">
                 {[
                   { icon: MapPin, value: profile?.location || 'Chennai, India' },
                   { icon: Mail, value: profile?.email || userSession?.email || 'user@linkup.ai' },
                   { icon: Phone, value: profile?.phone || '+91 98765 43210' }
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-center gap-3 text-[11px] font-bold text-slate-600 dark:text-slate-400 tracking-wide">
-                    <div className="size-8 bg-slate-50 dark:bg-slate-800 rounded-lg flex items-center justify-center shrink-0 border border-slate-100 dark:border-slate-700/50">
+                    <div className="size-8 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center shrink-0 border border-slate-200 dark:border-slate-700/50">
                       <item.icon size={14} className="text-slate-400" />
                     </div>
                     <span className="truncate">{item.value}</span>
@@ -153,7 +153,7 @@ export default function Profile() {
           </div>
 
           {/* Links */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-3">
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm space-y-3">
             <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Links</h3>
             <div className="grid grid-cols-1 gap-2">
               {[
@@ -161,7 +161,7 @@ export default function Profile() {
                 { name: 'LinkedIn', icon: Link2, color: 'text-blue-600' },
                 { name: 'Portfolio', icon: Globe, color: 'text-emerald-500' }
               ].map(social => (
-                <a key={social.name} href="#" className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-transparent hover:border-blue-500/20 transition-all group">
+                <a key={social.name} href="#" className="flex items-center justify-between p-3 bg-slate-100 dark:bg-slate-800/50 rounded-xl border border-transparent hover:border-blue-500/20 transition-all group">
                   <div className="flex items-center gap-3">
                     <social.icon size={16} className={social.color} />
                     <span className="text-[11px] font-bold text-slate-900 dark:text-white uppercase tracking-widest">{social.name}</span>
@@ -176,7 +176,7 @@ export default function Profile() {
         {/* COLUMN 2: DETAILS (8 Units) */}
         <div className="lg:col-span-8 space-y-4">
           {/* About */}
-          <section className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-3">
+          <section className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm space-y-3">
             <div className="flex items-center gap-2">
                <div className="size-7 bg-blue-600 rounded-lg flex items-center justify-center text-white">
                   <User size={14} />
@@ -189,7 +189,7 @@ export default function Profile() {
           </section>
 
           {/* Skills */}
-          <section className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-4">
+          <section className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm space-y-4">
             <div className="flex items-center justify-between">
                <div className="flex items-center gap-2">
                   <div className="size-7 bg-emerald-500 rounded-lg flex items-center justify-center text-white">
@@ -204,7 +204,7 @@ export default function Profile() {
             
             <div className="flex flex-wrap gap-2">
               {(profile?.skills || ['React', 'JavaScript', 'Tailwind CSS', 'Node.js', 'System Design', 'TypeScript']).map(skill => (
-                <span key={skill} className="px-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-xl text-[11px] font-bold text-slate-600 dark:text-slate-300 uppercase tracking-widest hover:border-emerald-500/30 transition-all cursor-default">
+                <span key={skill} className="px-4 py-2 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-[11px] font-bold text-slate-600 dark:text-slate-300 uppercase tracking-widest hover:border-emerald-500/30 transition-all cursor-default">
                   {skill}
                 </span>
               ))}
@@ -212,7 +212,7 @@ export default function Profile() {
           </section>
 
           {/* Experience */}
-          <section className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-5">
+          <section className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm space-y-5">
             <div className="flex items-center gap-2">
                <div className="size-7 bg-purple-600 rounded-lg flex items-center justify-center text-white">
                   <Briefcase size={14} />
@@ -220,13 +220,13 @@ export default function Profile() {
                <h3 className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-[0.2em]">Experience</h3>
             </div>
             
-            <div className="space-y-6 pl-6 border-l-2 border-slate-100 dark:border-slate-800 relative">
+            <div className="space-y-6 pl-6 border-l-2 border-slate-200 dark:border-slate-700 relative">
               {[
                 { role: 'Senior Frontend Engineer', company: 'Tech Solutions Inc', period: '2023 - Present' },
                 { role: 'Software Developer', company: 'Innovation Labs', period: '2021 - 2023' }
               ].map((exp, idx) => (
                 <div key={idx} className="relative group">
-                  <div className="absolute -left-[29px] top-1 size-4 rounded-full bg-white dark:bg-slate-900 border-[3px] border-blue-600 shadow-md group-hover:scale-125 transition-transform" />
+                  <div className="absolute -left-[29px] top-1 size-4 rounded-full bg-slate-50 dark:bg-slate-900 border-[3px] border-blue-600 shadow-md group-hover:scale-125 transition-transform" />
                   <div className="space-y-1">
                     <div className="flex items-center gap-2 flex-wrap">
                        <h4 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight">{exp.role}</h4>

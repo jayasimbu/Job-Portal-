@@ -15,7 +15,7 @@ export const Skeleton = ({ className = '', variant = 'rect' }) => {
 };
 
 export const CardSkeleton = () => (
-  <div className="p-8 border border-slate-100 dark:border-slate-800 rounded-[2rem] bg-white dark:bg-slate-900 space-y-6">
+  <div className="p-8 border border-slate-200 dark:border-slate-700 rounded-[2rem] bg-slate-50 dark:bg-slate-900 space-y-6">
     <div className="flex justify-between items-start">
       <Skeleton className="size-16" />
       <Skeleton className="w-24 h-8" />
@@ -29,7 +29,7 @@ export const CardSkeleton = () => (
 );
 
 export const StatSkeleton = () => (
-  <div className="p-8 border border-slate-100 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 space-y-6">
+  <div className="p-8 border border-slate-200 dark:border-slate-700 rounded-2xl bg-slate-50 dark:bg-slate-900 space-y-6">
     <div className="flex justify-between items-center">
       <Skeleton className="size-12" />
       <Skeleton className="w-16 h-6" />
