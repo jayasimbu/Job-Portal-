@@ -331,30 +331,6 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* RECOMMENDED JOBS */}
-      <div className="space-y-4 pt-4">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-black uppercase tracking-tight">Personalized Matches</h2>
-          <Button onClick={() => navigate('/platform/jobseeker/jobs')} variant="secondary" className="h-8 text-[10px] uppercase font-bold">View All</Button>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {displayJobs.map((job, idx) => (
-            <div key={job.id || idx} className="p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl flex items-center justify-between group hover:border-blue-500 transition-all">
-              <div className="flex items-center gap-4">
-                <div className="size-12 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center font-black text-blue-600">{job.company?.[0] || 'J'}</div>
-                <div>
-                  <h3 className="text-sm font-black uppercase leading-none">{job.title}</h3>
-                  <p className="text-[10px] font-bold text-slate-400 mt-2 uppercase">{job.company}</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="text-lg font-black text-blue-600 leading-none">{Math.round(job.match_score || 0)}%</div>
-                <div className="text-[7px] font-black text-slate-400 uppercase tracking-widest mt-1">Match</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }

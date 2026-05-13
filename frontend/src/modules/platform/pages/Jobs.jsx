@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Search, MapPin, Briefcase, Filter, ChevronDown, CheckCircle2, AlertCircle, Sparkles, LayoutGrid } from 'lucide-react';
 import Button from '../../../components/ui/Button';
@@ -14,18 +14,23 @@ export default function Jobs() {
   const [loading, setLoading] = useState(false);
   const [allJobs, setAllJobs] = useState([]);
   const [recommendedJobs, setRecommendedJobs] = useState([]);
-  const [activeTab, setActiveTab] = useState('recommended'); 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [activeTab, setActiveTab] = useState(() => sessionStorage.getItem('jobs_activeTab') || 'all'); 
+  const [hasResume, setHasResume] = useState(true);
+  const [currentPage, setCurrentPage] = useState(() => parseInt(sessionStorage.getItem('jobs_currentPage')) || 1);
   const JOBS_PER_PAGE = 10;
   const userId = getCurrentUserId();
   const [isApplying, setIsApplying] = useState({});
-  const [activeFilters, setActiveFilters] = useState({
-    remote: false,
-    hybrid: false,
-    fullTime: false,
-    experience: 'All Experience'
+  const [activeFilters, setActiveFilters] = useState(() => {
+    const saved = sessionStorage.getItem('jobs_activeFilters');
+    return saved ? JSON.parse(saved) : { remote: false, hybrid: false, fullTime: false, experience: 'All Experience' };
   });
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(() => sessionStorage.getItem('jobs_searchQuery') || '');
+
+  // Persist state changes
+  useEffect(() => { sessionStorage.setItem('jobs_activeTab', activeTab); }, [activeTab]);
+  useEffect(() => { sessionStorage.setItem('jobs_currentPage', currentPage.toString()); }, [currentPage]);
+  useEffect(() => { sessionStorage.setItem('jobs_activeFilters', JSON.stringify(activeFilters)); }, [activeFilters]);
+  useEffect(() => { sessionStorage.setItem('jobs_searchQuery', searchQuery); }, [searchQuery]);
 
   const toggleFilter = (filter) => {
     setActiveFilters(prev => ({ ...prev, [filter]: !prev[filter] }));
@@ -56,19 +61,31 @@ export default function Jobs() {
         
         setAllJobs(transformedAll);
 
-        // Fetch AI dynamically scored top 5 recommendations
+        // Fetch AI dynamically scored top 5 recommendations AND resume status
         if (userId) {
-           const recRes = await apiClient.get(`/jobseeker/recommendations/${userId}`);
-           const recs = recRes.data?.recommendations || [];
-           
-           // Sort Recommended jobs alphabetically by title as requested
-           recs.sort((a, b) => {
-               const titleA = (a.title || '').toLowerCase();
-               const titleB = (b.title || '').toLowerCase();
-               return titleA.localeCompare(titleB);
-           });
-           
-           setRecommendedJobs(recs);
+           try {
+               const [recRes, insightsRes] = await Promise.all([
+                   apiClient.get(`/jobseeker/recommendations/${userId}`),
+                   apiClient.get('/jobseeker/resume-insights')
+               ]);
+               
+               const recs = recRes.data?.recommendations || [];
+               recs.sort((a, b) => {
+                   const titleA = (a.title || '').toLowerCase();
+                   const titleB = (b.title || '').toLowerCase();
+                   return titleA.localeCompare(titleB);
+               });
+               setRecommendedJobs(recs);
+               setHasResume(insightsRes.data?.has_resume || false);
+               
+               // Default to 'all' if no resume, else 'recommended'
+               if (!insightsRes.data?.has_resume) {
+                   setActiveTab('all');
+               }
+           } catch (e) {
+               console.error("Failed to load user insights/recs", e);
+               setHasResume(false);
+           }
         }
       } catch (err) {
         console.error("Failed to load jobs", err);
@@ -116,12 +133,34 @@ export default function Jobs() {
       if (!remoteMatch && !hybridMatch && !fullTimeMatch) return false;
     }
 
-    // 3. Experience Filter (Simplified)
+    // 3. Experience Filter
     if (activeFilters.experience !== 'All Experience') {
-      const jobTitle = job.title?.toLowerCase() || '';
-      if (activeFilters.experience.includes('Entry') && !jobTitle.includes('junior') && !jobTitle.includes('associate')) return false;
-      if (activeFilters.experience.includes('Senior') && !jobTitle.includes('senior') && !jobTitle.includes('lead')) return false;
-      if (activeFilters.experience.includes('Lead') && !jobTitle.includes('lead') && !jobTitle.includes('manager')) return false;
+      const jobExp = (job.experience || '').toLowerCase();
+      const jobTitle = (job.title || '').toLowerCase();
+      
+      let matches = false;
+      const expMatch = jobExp.match(/(\d+)/);
+      const hasNumber = expMatch !== null;
+      const numExp = hasNumber ? parseInt(expMatch[1], 10) : null;
+      
+      if (activeFilters.experience.includes('Entry')) {
+         if (hasNumber) matches = numExp <= 1;
+         else matches = jobTitle.includes('junior') || jobTitle.includes('entry');
+      } 
+      else if (activeFilters.experience.includes('Mid')) {
+         if (hasNumber) matches = numExp >= 2 && numExp <= 4;
+         else matches = jobTitle.includes('mid');
+      }
+      else if (activeFilters.experience.includes('Senior')) {
+         if (hasNumber) matches = numExp >= 5 && numExp <= 6;
+         else matches = jobTitle.includes('senior');
+      }
+      else if (activeFilters.experience.includes('Lead')) {
+         if (hasNumber) matches = numExp >= 7;
+         else matches = jobTitle.includes('lead') || jobTitle.includes('manager');
+      }
+      
+      if (!matches) return false;
     }
 
     return true;
@@ -136,9 +175,14 @@ export default function Jobs() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Reset to page 1 when filters, tabs, or search changes
+  const isInitialMount = useRef(true);
+  // Reset to page 1 when filters, tabs, or search changes, but NOT on initial mount
   useEffect(() => {
-    setCurrentPage(1);
+    if (isInitialMount.current) {
+        isInitialMount.current = false;
+    } else {
+        setCurrentPage(1);
+    }
   }, [activeTab, activeFilters, searchQuery]);
 
   return (
@@ -253,6 +297,15 @@ export default function Jobs() {
                <div className="animate-spin size-8 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"></div>
                <p className="font-black uppercase tracking-widest text-slate-400 text-xs">Synchronizing Match Engine...</p>
             </div>
+          ) : activeTab === 'recommended' && !hasResume ? (
+             <div className="text-center py-20 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl">
+               <div className="size-16 bg-blue-500/10 rounded-full mx-auto flex items-center justify-center text-blue-500 mb-4">
+                 <Sparkles size={24} />
+               </div>
+               <h3 className="text-lg font-black text-slate-900 dark:text-white uppercase tracking-wider mb-2">Resume Required</h3>
+               <p className="text-slate-500 font-bold uppercase tracking-widest text-[10px] mb-6">Upload your resume in the dashboard to unlock personalized AI job recommendations.</p>
+               <Button onClick={() => navigate('/platform/dashboard')} className="h-10 px-8 text-[10px] uppercase tracking-widest rounded-xl shadow-lg shadow-blue-500/20">Go to Dashboard</Button>
+             </div>
           ) : currentJobs.length === 0 ? (
             <div className="text-center py-20">
                <AlertCircle size={40} className="mx-auto text-slate-300 mb-4" />

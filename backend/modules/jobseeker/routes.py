@@ -303,6 +303,7 @@ async def get_resume_insights(
     if not record:
         # Fallback dummy data if nothing exists
         return {
+            "has_resume": False,
             "ats_score": 0,
             "skills_match": [],
             "missing_keywords": [],
@@ -310,6 +311,7 @@ async def get_resume_insights(
         }
     
     return {
+        "has_resume": True,
         "ats_score": record.get("ats_score", 0),
         "skills_match": record.get("skills_match", []),
         "missing_keywords": record.get("missing_keywords", []),
@@ -426,7 +428,34 @@ async def list_applications(
     user_id: int,
     service: JobSeekerService = Depends(get_jobseeker_service),
 ) -> Dict[str, Any]:
-    return {"applications": models_to_dict(service.list_applications(user_id))}
+    apps = models_to_dict(service.list_applications(user_id))
+    
+    # Enrich with job details from jobs.json
+    import os
+    import json
+    jobs_json_path = os.path.join("database", "jobs", "jobs.json")
+    jobs_map = {}
+    if os.path.exists(jobs_json_path):
+        try:
+            with open(jobs_json_path, "r", encoding="utf-8") as f:
+                jobs_data = json.load(f)
+                jobs_map = {str(j.get("id")): j for j in jobs_data}
+        except Exception as e:
+            log.error(f"Error reading jobs.json for applications: {e}")
+            
+    for app in apps:
+        job_id_str = str(app.get("job_id"))
+        if job_id_str in jobs_map:
+            job_info = jobs_map[job_id_str]
+            app["role"] = job_info.get("title", "Unknown Role")
+            app["company"] = job_info.get("company", "Unknown Company")
+            app["location"] = job_info.get("location", "Remote")
+        else:
+            app["role"] = "Unknown Role"
+            app["company"] = "Unknown Company"
+            app["location"] = "Remote"
+            
+    return {"applications": apps}
 
 
 @router.get("/verify/{user_id}")

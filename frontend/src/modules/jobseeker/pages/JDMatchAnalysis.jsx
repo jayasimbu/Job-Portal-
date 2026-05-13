@@ -21,6 +21,15 @@ const JDMatchAnalysis = () => {
   } = useJDMatch();
 
   const [jdText, setJdText] = useState('');
+  const [hasMasterResume, setHasMasterResume] = useState(true);
+
+  React.useEffect(() => {
+     import('../../../core/api/apiClient').then(module => {
+        module.default.get('/jobseeker/resume-insights').then(res => {
+            setHasMasterResume(res.data?.has_resume || false);
+        }).catch(() => setHasMasterResume(false));
+     });
+  }, []);
 
   const handleAnalyze = () => {
     if (!resumeText || !jdText.trim()) return;
@@ -49,6 +58,16 @@ const JDMatchAnalysis = () => {
       </div>
 
       {/* INPUT SECTION — Side by Side */}
+      {!hasMasterResume ? (
+          <div className="text-center py-24 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl">
+              <div className="size-20 bg-rose-500/10 rounded-full mx-auto flex items-center justify-center text-rose-500 mb-5">
+                  <XCircle size={32} />
+              </div>
+              <h2 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-wider mb-2">Master Resume Required</h2>
+              <p className="text-sm font-bold text-slate-500 uppercase tracking-widest mb-6">You must upload your primary resume in the Dashboard before using the JD Match feature.</p>
+              <Button onClick={() => window.location.href = '/platform/dashboard'} className="h-12 px-8 text-xs uppercase tracking-widest rounded-xl shadow-lg shadow-blue-500/20">Go to Dashboard</Button>
+          </div>
+      ) : (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* LEFT: Resume Upload */}
         <div className="bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-5 space-y-4">
@@ -111,6 +130,7 @@ const JDMatchAnalysis = () => {
           </Button>
         </div>
       </div>
+      )}
 
       {/* RESULTS — Only after analysis */}
       {matchResults && (

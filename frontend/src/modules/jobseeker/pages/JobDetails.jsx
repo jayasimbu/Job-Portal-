@@ -30,6 +30,8 @@ export default function JobDetails() {
   const [loading, setLoading] = useState(true);
   const [isApplying, setIsApplying] = useState(false);
   const [job, setJob] = useState(null);
+  const [hasRunMatch, setHasRunMatch] = useState(false);
+  const [isRunningMatch, setIsRunningMatch] = useState(false);
   const userId = getCurrentUserId();
 
   useEffect(() => {
@@ -47,51 +49,28 @@ export default function JobDetails() {
           return;
         }
 
-        // Fetch user profile for score calculation
-        let userSkills = new Set();
-        try {
-            const profileRes = await apiClient.get(`/jobseeker/profile/${userId}`);
-            userSkills = new Set((profileRes.data?.data?.profile?.skills || []).map(s => s.toLowerCase()));
-        } catch (e) {
-            console.error("Failed to load profile for scoring");
-        }
-
-        const jobTags = (jobData.tags || []).map(t => t.toLowerCase());
-        let score = jobData.matchScore || 60;
-        let matched = [];
-        let missing = [];
-
-        if (userSkills.size > 0) {
-            const matches = jobTags.filter(t => userSkills.has(t));
-            matched = jobData.tags?.filter(t => userSkills.has(t.toLowerCase())) || [];
-            missing = jobData.tags?.filter(t => !userSkills.has(t.toLowerCase())) || [];
-            score = Math.min(98, 60 + (matches.length * 8));
-        } else {
-            matched = jobData.tags || [];
-        }
-
         setJob({
             id: jobData.id,
             title: jobData.title || 'Job Title',
             company: {
                 name: jobData.company || 'Company Name',
                 logo: (jobData.company || 'C')[0],
-                industry: 'Software & AI',
+                industry: jobData.industry || 'Software & AI',
                 location: jobData.location || 'Location',
                 size: '100+ Employees',
-                about: jobData.description || 'No about info available.'
+                about: `Our team is looking for a passionate ${jobData.title} to join ${jobData.company}.`
             },
             salary: jobData.salary || 'Competitive',
-            experience: 'Depends on role',
-            shift: 'Day Shift',
-            bond: 'No Bond',
+            experience: jobData.experience || 'Depends on role',
+            shift: jobData.shift || 'Day Shift',
+            bond: jobData.bond || 'No Bond',
             workMode: jobData.type || 'Full-time',
             skills: jobData.tags || [],
-            matchScore: score,
-            matchedSkills: matched,
-            missingSkills: missing,
+            matchScore: 0,
+            matchedSkills: [],
+            missingSkills: [],
             description: jobData.description || 'No detailed description available.',
-            requirements: jobData.tags || ['Strong problem-solving skills']
+            requirements: jobData.requirements || jobData.tags || []
         });
       } catch (err) {
         console.error("Failed to fetch job details:", err);
@@ -102,7 +81,53 @@ export default function JobDetails() {
     };
 
     fetchJobData();
-  }, [id, userId, navigate, showToast]);
+  }, [id, navigate, showToast]);
+
+  const handleRunMatch = async () => {
+      if (!userId || !job) return;
+      setIsRunningMatch(true);
+      
+      try {
+          // Artificial delay to simulate ATS processing
+          await new Promise(resolve => setTimeout(resolve, 1500));
+          
+          const profileRes = await apiClient.get(`/jobseeker/profile/${userId}`);
+          const profileSkills = profileRes.data?.data?.profile?.skills || [];
+          
+          const insightsRes = await apiClient.get('/jobseeker/resume-insights');
+          const insightsSkills = insightsRes.data?.skills_match || [];
+          
+          const userSkills = new Set([...profileSkills, ...insightsSkills].map(s => s.toLowerCase()));
+          const jobTags = (job.skills || []).map(t => t.toLowerCase());
+          
+          let score = 60;
+          let matched = [];
+          let missing = [];
+
+          if (userSkills.size > 0) {
+              const matches = jobTags.filter(t => userSkills.has(t));
+              matched = job.skills.filter(t => userSkills.has(t.toLowerCase()));
+              missing = job.skills.filter(t => !userSkills.has(t.toLowerCase()));
+              score = Math.min(98, 60 + (matches.length * 6));
+          } else {
+              missing = job.skills;
+          }
+          
+          setJob(prev => ({
+              ...prev,
+              matchScore: score,
+              matchedSkills: matched,
+              missingSkills: missing
+          }));
+          
+          setHasRunMatch(true);
+      } catch (err) {
+          console.error("Failed to run match", err);
+          showToast("Failed to run JD Match ❌");
+      } finally {
+          setIsRunningMatch(false);
+      }
+  };
 
   const handleApply = () => {
     setIsApplying(true);
@@ -260,48 +285,74 @@ export default function JobDetails() {
           </div>
         </div>
 
-        {/* COLUMN 3: MATCH ANALYSIS & ACTION (RIGHT - 3 Units) */}
+         {/* COLUMN 3: MATCH ANALYSIS & ACTION (RIGHT - 3 Units) */}
         <div className="lg:col-span-3 space-y-4 sticky top-[100px]">
           <div className="bg-slate-900 dark:bg-black border border-slate-800 rounded-3xl p-6 shadow-2xl space-y-6">
              <div className="flex items-center gap-3">
                 <div className="size-8 bg-blue-600 rounded-lg flex items-center justify-center text-white">
                    <Sparkles size={16} />
                 </div>
-                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">AI Match Score</h2>
+                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">AI Match Engine</h2>
              </div>
 
-             <div className="flex items-center justify-center py-4">
-                <div className="relative size-32">
-                   <svg className="size-full -rotate-90" viewBox="0 0 36 36">
-                      <path className="text-slate-800" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3" />
-                      <path className="text-blue-500" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeDasharray={`${job.matchScore}, 100`} strokeLinecap="round" strokeWidth="3.5" />
-                   </svg>
-                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <span className="text-4xl font-black text-white tracking-tighter">{job.matchScore}%</span>
-                      <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest">Optimized</span>
-                   </div>
-                </div>
-             </div>
+             {!hasRunMatch ? (
+                 <div className="py-12 text-center space-y-6">
+                    <div className="size-20 bg-blue-500/10 border border-blue-500/20 rounded-full mx-auto flex items-center justify-center text-blue-500">
+                        <Zap size={32} />
+                    </div>
+                    <div>
+                        <p className="text-sm font-black text-white mb-2">Analyze JD Match</p>
+                        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest leading-relaxed">Cross-reference your resume insights with this specific job description.</p>
+                    </div>
+                    <Button 
+                        onClick={handleRunMatch}
+                        disabled={isRunningMatch}
+                        className="w-full h-12 rounded-xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-blue-500/20"
+                    >
+                        {isRunningMatch ? (
+                            <div className="flex items-center gap-2">
+                                <div className="animate-spin size-4 border-2 border-white border-t-transparent rounded-full"></div>
+                                Running ATS Scan...
+                            </div>
+                        ) : 'Run AI Match'}
+                    </Button>
+                 </div>
+             ) : (
+                 <>
+                     <div className="flex items-center justify-center py-4">
+                        <div className="relative size-32">
+                           <svg className="size-full -rotate-90" viewBox="0 0 36 36">
+                              <path className="text-slate-800" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3" />
+                              <path className="text-blue-500" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeDasharray={`${job.matchScore}, 100`} strokeLinecap="round" strokeWidth="3.5" />
+                           </svg>
+                           <div className="absolute inset-0 flex flex-col items-center justify-center">
+                              <span className="text-4xl font-black text-white tracking-tighter">{job.matchScore}%</span>
+                              <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest">Optimized</span>
+                           </div>
+                        </div>
+                     </div>
 
-             <div className="space-y-5">
-                <div className="space-y-3">
-                   <p className="text-[9px] font-black text-emerald-500 uppercase tracking-[0.2em] border-b border-emerald-900/30 pb-2">Matched Skills</p>
-                   <div className="flex flex-wrap gap-1.5">
-                      {job.matchedSkills.map(s => (
-                         <span key={s} className="px-2 py-1 bg-emerald-500/10 text-emerald-400 text-[9px] font-black rounded border border-emerald-500/20 uppercase tracking-widest">{s}</span>
-                      ))}
-                   </div>
-                </div>
+                     <div className="space-y-5">
+                        <div className="space-y-3">
+                           <p className="text-[9px] font-black text-emerald-500 uppercase tracking-[0.2em] border-b border-emerald-900/30 pb-2">Matched Skills</p>
+                           <div className="flex flex-wrap gap-1.5">
+                              {job.matchedSkills.map(s => (
+                                 <span key={s} className="px-2 py-1 bg-emerald-500/10 text-emerald-400 text-[9px] font-black rounded border border-emerald-500/20 uppercase tracking-widest">{s}</span>
+                              ))}
+                           </div>
+                        </div>
 
-                <div className="space-y-3">
-                   <p className="text-[9px] font-black text-rose-500 uppercase tracking-[0.2em] border-b border-rose-900/30 pb-2">Missing Capabilities</p>
-                   <div className="flex flex-wrap gap-1.5">
-                      {job.missingSkills.map(s => (
-                         <span key={s} className="px-2 py-1 bg-rose-500/10 text-rose-400 text-[9px] font-black rounded border border-rose-500/20 uppercase tracking-widest">{s}</span>
-                      ))}
-                   </div>
-                </div>
-             </div>
+                        <div className="space-y-3">
+                           <p className="text-[9px] font-black text-rose-500 uppercase tracking-[0.2em] border-b border-rose-900/30 pb-2">Missing Capabilities</p>
+                           <div className="flex flex-wrap gap-1.5">
+                              {job.missingSkills.map(s => (
+                                 <span key={s} className="px-2 py-1 bg-rose-500/10 text-rose-400 text-[9px] font-black rounded border border-rose-500/20 uppercase tracking-widest">{s}</span>
+                              ))}
+                           </div>
+                        </div>
+                     </div>
+                 </>
+             )}
 
              <div className="pt-6 border-t border-slate-800 space-y-3">
                 <Button 
