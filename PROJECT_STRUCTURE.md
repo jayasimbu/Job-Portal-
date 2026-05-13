@@ -1,78 +1,119 @@
-# Project Structure - Career Auto 1 (LINKUP)
+# LINKUP: Enterprise AI Recruitment Intelligence Ecosystem
+## Platform Architecture & System Design Documentation
 
-This document provides a comprehensive overview of the project structure for the AI-powered Job Portal (LINKUP).
-
-## High-Level Architecture
-
-The project is split into two main components:
-1. **Backend**: A FastAPI-based server providing RESTful APIs, AI services, and database management.
-2. **Frontend**: A React-based single-page application built with Vite and Tailwind CSS.
+> [!IMPORTANT]
+> This document outlines the FAANG-level modular architecture for LINKUP. It prioritizes scalability, AI system separation, and feature-based organization.
 
 ---
 
-## 📂 Root Directory
-- `backend/` - Core FastAPI application source code.
-- `frontend/` - React SPA source code.
-- `database/` - Local file-based storage for JSON snapshots and uploaded files.
-- `docs/` - Documentation and blueprints.
-- `docker-compose.yml` - Docker orchestration for the full stack.
+## 🏗️ 1. Global Project Tree
+
+```text
+LINKUP/
+├── frontend/                # [CORE] React.js Enterprise SPA
+├── backend/                 # [CORE] FastAPI Industry-Level API
+├── database/                # [IMPORTANT] Persistence Layer (JSON/Local Store)
+├── docs/                    # Architecture Blueprints & API Docs
+├── uploads/                 # Storage for Raw User Content (Resumes/Images)
+├── docker-compose.yml       # [CORE] Container Orchestration
+└── .gitignore               # Environment Safety
+```
 
 ---
 
-## 🛠️ Backend Structure (`/backend`)
+## 🎨 2. Frontend Architecture (`/frontend`)
 
-### Core Layers
-- `app.py` - Main entry point with lifespan management (Ollama & DB initialization).
-- `main.py` - FastAPI app configuration, middleware, and router aggregation.
-- `core/`
-    - `config.py` - Pydantic-based configuration management.
-    - `database.py` - MongoDB connection and indexing logic.
-    - `security.py` - Auth logic (JWT, password hashing).
-    - `api_response.py` - Standardized JSON response utilities.
+Scalable React architecture using a **Feature-Based (Modules) Design**.
 
-### Business Logic (Modules)
-- `modules/` - Feature-based vertical slicing.
-    - `auth/` - Signup, login, Google OAuth, and session management.
-    - `jobseeker/` - Profile, resume upload, job applications, and learning.
-    - `employer/` - Job posting, applicant management, and candidate ranking.
-    - `admin/` - Platform analytics and management.
-    - `ai_engine/` - AI specific routes (ATS, Matching).
-    - `mcp/` - Model Context Protocol (Job aggregation and notifications).
+### Source Organization (`src/`)
+| Folder | Status | Purpose |
+| :--- | :--- | :--- |
+| `app/` | [CORE] | Global providers, store setup, and core styles. |
+| `modules/` | [CORE] | **Enterprise Feature Isolation** (Landing, Auth, Jobseeker, etc.). |
+| `components/` | [IMPORTANT] | Global Reusable UI Atomic System (Shadcn/Custom). |
+| `hooks/` | [IMPORTANT] | Cross-feature logic (e.g., useAuth, useMedia). |
+| `services/` | [CORE] | API Communication Layer (Axios Abstractions). |
+| `layouts/` | [IMPORTANT] | Strategic UI shells (Public, Dashboard, Admin). |
+| `lib/` | [OPTIONAL] | Third-party library configurations (Lucide, Framer). |
+| `store/` | [CORE] | Global State Management (Zustand/Redux). |
 
-### Shared Services
-- `services/` - Cross-cutting logic used by multiple modules.
-    - `atsService.py` - Unified ATS scoring engine.
-    - `llmService.py` - Cloud LLM integration (OpenRouter).
-    - `resumeParserService.py` - PDF/Docx text extraction and parsing.
-    - `recommendationService.py` - Job and learning recommendation logic.
-
-### AI Engine internals (`/backend/ai_engine`)
-- `ats_scoring/` - Logic for hybrid ATS formula.
-- `recommendation/` - Job recommendation algorithms.
-- `semantic_matching/` - Vector/Text similarity logic.
-- `prompts.py` - Centralized LLM prompt templates.
+### Feature Modules (`src/modules/`)
+Each module is a self-contained unit following the **Modular Enterprise Pattern**:
+- `jobseeker/`: Dashboard, JD Match, ATS Analysis, Learning Engine.
+- `employer/`: Applicant Management, AI Ranking, Hiring Pipeline.
+- `admin/`: System Health, Recommendation Monitoring, Moderation.
+- `shared/`: Logic/UI shared only between modules.
 
 ---
 
-## 💻 Frontend Structure (`/frontend`)
+## ⚡ 3. Backend Architecture (`/backend`)
 
-### Source Code (`/frontend/src`)
-- `main.jsx` & `App.jsx` - Root application setup and routing.
-- `core/` - Global components (Navbar, Sidebar), hooks, and API utilities.
-- `modules/` - Feature-specific components and pages.
-    - `auth/` - Login/Signup UI.
-    - `jobseeker/` - Dashboard, Job Search, JD Match, Learning.
-    - `employer/` - Post Job, Manage Applicants.
-    - `admin/` - Analytics and Management dashboards.
-    - `platform/` - Shared home page and generic views.
-- `pages/` - Top-level page entry points.
-- `layouts/` - Wrapper layouts (Public, Auth, Dashboard).
-- `index.css` - Global styles and Tailwind configuration.
+Industry-level **Modular FastAPI** structure with clear Separation of Concerns.
+
+### Core Structure (`app/`)
+| Folder | Status | Purpose |
+| :--- | :--- | :--- |
+| `api/` | [CORE] | Versioned Route Definitions (v1/v2). |
+| `ai/` | [CORE] | **AI Orchestration Layer** (Ollama, OpenRouter, Embeddings). |
+| `core/` | [CORE] | Global Config, Security (JWT), Database Connection. |
+| `services/` | [CORE] | Business Logic Layer (ATS Engine, Matching, Ranking). |
+| `schemas/` | [IMPORTANT] | Pydantic Models for Data Validation. |
+| `repositories/` | [OPTIONAL] | Direct Data Access Layer (Abstraction over DB). |
+| `parsers/` | [CORE] | Specialized Resume & JD Extraction Logic. |
+
+### Specialized AI Sub-Systems
+- `ats_scoring/`: Hybrid scoring formula (Skills 35%, Exp 25%, Projects 20%, etc.).
+- `semantic_match/`: Vector similarity logic for Resume-JD mapping.
+- `recommendations/`: Learning Path & Job matching logic.
 
 ---
 
-## 🗄️ Database & Storage (`/database`)
-- `jobseeker/` - Profiles and application snapshots.
-- `employer/` - Job postings and candidate lists.
-- `auth/` - Event logs for security auditing.
-- `reference/` - Static skill and certificate lists for the ATS engine.
+## 🤖 4. AI System Orchestration
+
+### The Hybrid ATS + AI Matching Engine
+**Location**: `backend/services/atsService.py`
+
+#### 🧠 Layer 1: Structured ATS Scoring
+Adaptive weighting based on candidate profile:
+- **Fresher Formula**: `(Skills 40%) + (Exp 10%) + (Projects 35%) + (Edu 10%) + (Certs 5%)`
+- **Experienced Formula**: `(Skills 35%) + (Exp 25%) + (Projects 25%) + (Edu 10%) + (Certs 5%)`
+
+#### 🤖 Layer 2: Semantic AI Matching
+- Uses NLP embeddings to detect contextual relevance.
+- **Final Hybrid Formula**: `Final Score = (ATS_Score * 0.60) + (Semantic_Similarity * 0.40)`
+
+#### ⚡ Key Logic
+- **Project Proof**: GitHub/Portfolio links add significant weight (+50 base).
+- **Fresher Adaptive Exp**: Internships get a base score of 70 even with 0 years.
+- **Education Tiering**: PhD (100) > Masters (85) > Bachelors (70) > Diploma (50).
+
+---
+
+## 💾 5. Database Architecture (MongoDB)
+
+| Collection | Purpose |
+| :--- | :--- |
+| `users` | Role-based credentials & status. |
+| `resumes` | Binary/Path storage and parsing history. |
+| `resume_insights` | AI-extracted data for quick matching. |
+| `jobs` | Rich metadata for smart marketplace. |
+| `applications` | Pipeline state tracking (Applied, Shortlisted, etc.). |
+| `learning_paths` | Personalized AI recommendations. |
+
+---
+
+## 🔄 6. System Flows
+
+### Resume Upload & ATS Flow
+1. **Frontend**: Jobseeker uploads via `modules/jobseeker/components/ResumeUpload`.
+2. **Backend**: `parsers/resume_parser` extracts text.
+3. **AI Layer**: `services/atsService` calculates score.
+4. **Storage**: Data persisted in `database/resume_insights`.
+5. **Dashboard**: Results pushed via `api/v1/jobseeker/resume-insights`.
+
+---
+
+## 🚀 7. Scaling & Maintenance Strategy
+- **Modular Design**: Adding a new feature (e.g., Video Interviews) only requires a new module in `frontend/modules` and `backend/modules`.
+- **Atomic UI**: All components (Buttons, Inputs) are in `frontend/components/ui`, ensuring visual consistency.
+- **AI Decoupling**: AI logic is separated from business routes, allowing easy upgrades from GPT-4 to newer models without touching UI code.

@@ -10,35 +10,39 @@ import {
   CheckCircle2, 
   XCircle, 
   MoreVertical,
-  ArrowRight
+  ArrowRight,
+  Zap,
+  Sparkles,
+  Activity,
+  ArrowUpRight
 } from 'lucide-react';
-import { fetchEmployerJobs, fetchRankedCandidates } from '../services/employerService';
+import { fetchEmployerJobs } from '../services/employerService';
 
-// UI Components
+// Shared Components
+import PageHeader from '../../../components/shared/PageHeader';
+import SectionTitle from '../../../components/shared/SectionTitle';
+import FilterTabs from '../../../components/shared/FilterTabs';
+import SearchBar from '../../../components/shared/SearchBar';
 import Button from '../../../components/ui/Button';
-import Card, { CardBody } from '../../../components/ui/Card';
-import Badge from '../../../components/ui/Badge';
 
 export default function Applications() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState('all');
+  const [activeTab, setActiveTab] = useState('all');
   const [search, setSearch] = useState('');
   const [applications, setApplications] = useState([]);
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        const user = (() => { try { return JSON.parse(localStorage.getItem('currentUser') || '{}'); } catch { return {}; } })();
-        const jobs = await fetchEmployerJobs(user.id);
-        
-        // Mocking application data based on jobs and candidates
+        setLoading(true);
+        // Simulation of fetching real data
         const allApps = [
-          { id: 1, job: 'Frontend Developer', candidate: 'Arjun R', score: 84, date: 'Yesterday', status: 'under_review' },
-          { id: 2, job: 'Backend Developer', candidate: 'Siddharth M', score: 78, date: '2 days ago', status: 'selected' },
-          { id: 3, job: 'UI/UX Designer', candidate: 'Priya M', score: 92, date: '3 days ago', status: 'selected' },
-          { id: 4, job: 'Frontend Developer', candidate: 'Rahul S', score: 65, date: 'Yesterday', status: 'rejected' },
-          { id: 5, job: 'Product Manager', candidate: 'Ananya K', score: 81, date: '4 days ago', status: 'under_review' },
+          { id: 1, job: 'Lead AI Engineer', candidate: 'Arjun R', score: 94, date: '2h ago', status: 'reviewing', skills: ['PyTorch', 'Vector DBs'] },
+          { id: 2, job: 'Senior Backend Engineer', candidate: 'Siddharth M', score: 82, date: '5h ago', status: 'selected', skills: ['Node.js', 'PostgreSQL'] },
+          { id: 3, job: 'UI/UX Designer', candidate: 'Priya M', score: 91, date: '1d ago', status: 'selected', skills: ['Figma', 'A11y'] },
+          { id: 4, job: 'React Developer', candidate: 'Rahul S', score: 68, date: '1d ago', status: 'rejected', skills: ['React', 'CSS'] },
+          { id: 5, job: 'Lead AI Engineer', candidate: 'Ananya K', score: 88, date: '2d ago', status: 'reviewing', skills: ['LLMs', 'Prompt Eng'] },
         ];
         setApplications(allApps);
       } catch (err) {
@@ -51,109 +55,126 @@ export default function Applications() {
   }, []);
 
   const filteredApps = applications.filter(app => {
-    const matchesFilter = filter === 'all' || app.status === filter;
+    const matchesFilter = activeTab === 'all' || app.status === activeTab;
     const matchesSearch = !search || 
       app.candidate.toLowerCase().includes(search.toLowerCase()) || 
       app.job.toLowerCase().includes(search.toLowerCase());
     return matchesFilter && matchesSearch;
   });
 
-  const getStatusBadge = (status) => {
-    switch (status) {
-      case 'under_review': return <Badge variant="secondary" className="bg-amber-50 text-amber-600 border-amber-100 uppercase text-[8px]">Under Review</Badge>;
-      case 'rejected': return <Badge variant="danger" className="uppercase text-[8px]">Rejected</Badge>;
-      case 'selected': return <Badge variant="success" className="uppercase text-[8px]">Selected</Badge>;
-      default: return <Badge variant="secondary" className="uppercase text-[8px]">Applied</Badge>;
-    }
-  };
+  const statusTabs = [
+    { id: 'all', label: 'All Feed' },
+    { id: 'reviewing', label: 'Reviewing' },
+    { id: 'selected', label: 'Shortlisted' },
+    { id: 'rejected', label: 'Archived' }
+  ];
 
   return (
-    <div className="max-w-[1200px] mx-auto space-y-5 pb-16 px-6">
-      {/* HEADER */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pt-4">
-        <div className="space-y-0.5">
-          <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white uppercase">
-            Applications
-          </h1>
+    <div className="space-y-8 pt-4 pb-20 max-w-6xl mx-auto">
+      
+      <PageHeader 
+        title="Application Feed" 
+        subtitle="Real-time stream of incoming talent matched to your active roles."
+        breadcrumbs={["Platform", "Employer", "Applications"]}
+      />
+
+      {/* Controller Area */}
+      <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
+         <div className="w-full md:w-1/3">
+            <SearchBar placeholder="Filter feed..." onSearch={setSearch} />
+         </div>
+         <FilterTabs 
+           tabs={statusTabs}
+           activeTab={activeTab}
+           onTabChange={setActiveTab}
+         />
+      </div>
+
+      {/* Main Feed Grid */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between px-2">
+           <SectionTitle 
+             title={`${filteredApps.length} Recent Interactions`} 
+             description="Live talent stream ordered by neural match score."
+           />
+           <div className="flex items-center gap-2 text-[10px] font-black text-gray-400 uppercase tracking-widest">
+              <Activity size={14} className="text-emerald-500" /> Live Updates
+           </div>
+        </div>
+
+        <div className="card-premium overflow-hidden">
+           <div className="divide-y divide-gray-50 dark:divide-gray-800">
+             {loading ? (
+               [1,2,3,4].map(i => <div key={i} className="p-12 animate-pulse bg-gray-50/20 dark:bg-gray-900/20" />)
+             ) : filteredApps.length === 0 ? (
+               <div className="p-20 text-center space-y-4">
+                  <div className="size-16 bg-gray-50 dark:bg-gray-900 rounded-2xl mx-auto flex items-center justify-center text-gray-300">
+                     <Filter size={32} />
+                  </div>
+                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">Clear filters to see all applications</p>
+               </div>
+             ) : filteredApps.map(app => (
+               <div key={app.id} className="flex items-center justify-between p-6 hover:bg-gray-50 dark:hover:bg-gray-900/40 transition-all group">
+                 
+                 <div className="flex items-center gap-6">
+                    {/* Neural Match Circle */}
+                    <div className="relative shrink-0">
+                       <svg className="size-14 transform -rotate-90">
+                          <circle cx="28" cy="28" r="24" stroke="currentColor" strokeWidth="4" fill="transparent" className="text-gray-100 dark:text-gray-800" />
+                          <circle cx="28" cy="28" r="24" stroke="currentColor" strokeWidth="4" fill="transparent" className="text-primary" strokeDasharray={150.7} strokeDashoffset={150.7 - (150.7 * app.score) / 100} />
+                       </svg>
+                       <span className="absolute inset-0 flex items-center justify-center text-[11px] font-black text-gray-900 dark:text-white">{app.score}%</span>
+                    </div>
+
+                    <div className="space-y-1.5">
+                       <div className="flex items-center gap-3">
+                          <h4 className="text-sm font-black text-gray-900 dark:text-white uppercase tracking-tight">{app.candidate}</h4>
+                          <span className={`px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest ${
+                             app.status === 'selected' ? 'bg-emerald-500/10 text-emerald-500' :
+                             app.status === 'rejected' ? 'bg-rose-500/10 text-rose-500' :
+                             'bg-amber-500/10 text-amber-500'
+                          }`}>
+                             {app.status}
+                          </span>
+                       </div>
+                       <div className="flex items-center gap-3 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                          <span className="flex items-center gap-1.5"><Briefcase size={10} className="text-gray-300" /> {app.job}</span>
+                          <span className="w-px h-3 bg-gray-100 dark:bg-gray-800" />
+                          <span className="flex items-center gap-1.5"><Clock size={10} className="text-gray-300" /> {app.date}</span>
+                       </div>
+                       <div className="flex gap-2 pt-1">
+                          {app.skills.map(s => (
+                            <span key={s} className="text-[9px] font-black text-gray-500 dark:text-gray-400 uppercase tracking-widest border-b border-gray-100 dark:border-gray-800 pb-0.5">{s}</span>
+                          ))}
+                       </div>
+                    </div>
+                 </div>
+
+                 <div className="flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Button 
+                      variant="ghost" 
+                      className="rounded-xl h-10 px-6 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-primary hover:bg-primary/5"
+                      onClick={() => navigate(`/platform/employer/candidates/${app.id}`)}
+                    >
+                      Analyze Profile <ArrowUpRight size={14} className="ml-2" />
+                    </Button>
+                    <button className="p-2 text-gray-300 hover:text-gray-600 transition-colors">
+                       <MoreVertical size={18} />
+                    </button>
+                 </div>
+
+               </div>
+             ))}
+           </div>
         </div>
       </div>
 
-      {/* FILTERS */}
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex gap-1">
-          {['all', 'under_review', 'rejected', 'selected'].map(tab => (
-            <Button 
-              key={tab}
-              variant={filter === tab ? 'primary' : 'ghost'}
-              onClick={() => setFilter(tab)}
-              className="h-8 px-4 rounded-lg text-[9px] font-black uppercase tracking-widest whitespace-nowrap"
-            >
-              {tab.replace('_', ' ')}
-            </Button>
-          ))}
-        </div>
-        
-        <div className="relative">
-          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-          <input 
-            type="text" 
-            value={search} 
-            onChange={e => setSearch(e.target.value)}
-            placeholder="Search applications..."
-            className="h-9 pl-9 pr-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs font-medium focus:ring-2 focus:ring-blue-500 outline-none w-64"
-          />
-        </div>
+      {/* Footer Insight */}
+      <div className="flex items-center justify-center gap-3 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] pt-4">
+         <Sparkles size={14} className="text-primary" />
+         Showing the most relevant interactions from the last 30 days.
       </div>
 
-      {/* APPLICATIONS LIST */}
-      <Card className="border-slate-100 shadow-sm overflow-hidden">
-        <div className="divide-y divide-slate-100 dark:divide-slate-800">
-          {loading ? (
-            [1,2,3,4].map(i => <div key={i} className="p-8 animate-pulse bg-slate-50/30" />)
-          ) : filteredApps.length === 0 ? (
-            <div className="p-20 text-center text-slate-400 font-bold uppercase text-[10px]">No applications found.</div>
-          ) : filteredApps.map(app => (
-            <div key={app.id} className="flex items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
-              <div className="flex items-center gap-4">
-                <div className="size-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
-                  <User size={18} />
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-0.5">
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">{app.job}</h4>
-                    <span className="text-[10px] text-slate-400 font-bold">•</span>
-                    <span className="text-xs font-medium text-slate-600 dark:text-slate-400">{app.candidate}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-[10px] text-slate-400 font-bold uppercase tracking-widest">
-                    <span className="text-blue-600 font-black">{app.score}% Match</span>
-                    <span className="size-1 bg-slate-200 rounded-full" />
-                    <span className="flex items-center gap-1"><Clock size={10} /> Applied {app.date}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-6">
-                <div className="hidden sm:block">
-                  {getStatusBadge(app.status)}
-                </div>
-                <div className="flex gap-1.5">
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className="h-8 px-3 text-[9px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 border border-transparent hover:border-blue-100"
-                    onClick={() => navigate('/platform/employer/candidates')}
-                  >
-                    Open Candidate
-                  </Button>
-                  <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-slate-400 hover:bg-slate-100">
-                    <MoreVertical size={14} />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </Card>
     </div>
   );
 }

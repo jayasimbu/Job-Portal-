@@ -9,88 +9,96 @@ log = logging.getLogger(__name__)
 
 class LLMService:
     """
-    Roadmap Phase 6: LLM Cloud Integration (OpenRouter).
-    Handles all AI-enhanced feedback, summaries, and insights.
+    Unified AI Orchestration Layer.
+    Uses OpenRouter for Cloud AI and Ollama for Local Intelligence.
     """
 
     def __init__(self) -> None:
-        self.api_key = settings.OPENROUTER_API_KEY
-        self.base_url = settings.OPENROUTER_BASE_URL
-        self.default_model = settings.OPENROUTER_MODEL
+        # OpenRouter (Cloud)
+        self.cloud_api_key = settings.OPENROUTER_API_KEY
+        self.cloud_base_url = settings.OPENROUTER_BASE_URL
+        self.cloud_model = settings.OPENROUTER_MODEL
         
-        # Initialize OpenRouter Client
-        self.client = openai.OpenAI(
-            base_url=self.base_url,
-            api_key=self.api_key,
+        # Ollama (Local)
+        self.local_base_url = settings.OLLAMA_BASE_URL
+        self.local_model = settings.OLLAMA_MODEL
+        
+        # Clients
+        self.cloud_client = openai.OpenAI(
+            base_url=self.cloud_base_url,
+            api_key=self.cloud_api_key,
         )
-        log.info(f"[LLMService] Initialized with model: {self.default_model}")
+        # For Ollama, we can use the same OpenAI-compatible API if Ollama supports it, 
+        # or use standard requests. Ollama supports OpenAI-compatible API at /v1.
+        self.local_client = openai.OpenAI(
+            base_url=f"{self.local_base_url.rstrip('/')}/v1",
+            api_key="ollama", # placeholder
+        )
+        
+        log.info(f"[LLMService] Cloud: {self.cloud_model} | Local: {self.local_model}")
 
-    def generate_with_fallback(
-        self,
-        prompt: str,
-        system: str = "You are a senior recruitment expert and career coach.",
-        user_id: Optional[int] = None,
-        request_type: str = "llm_generation",
-        request_payload: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
-        """
-        Primary generation function using OpenRouter (Step 24).
-        """
-        if not self.api_key or "placeholder" in self.api_key:
-            log.warning("[LLMService] OPENROUTER_API_KEY is missing or placeholder.")
-            return {"success": False, "result": "AI Service not configured.", "error_message": "Missing API Key"}
-
+    def generate_with_cloud(self, prompt: str, system: str = "You are a career expert.") -> Dict[str, Any]:
+        if not self.cloud_api_key or "placeholder" in self.cloud_api_key:
+            return {"success": False, "error": "Cloud API Key missing"}
         try:
-            response = self.client.chat.completions.create(
-                model=self.default_model,
-                messages=[
-                    {"role": "system", "content": system},
-                    {"role": "user", "content": prompt},
-                ],
-                temperature=0.7,
+            response = self.cloud_client.chat.completions.create(
+                model=self.cloud_model,
+                messages=[{"role": "system", "content": system}, {"role": "user", "content": prompt}],
+                temperature=0.7, max_tokens=800
+            )
+            return {"success": True, "result": response.choices[0].message.content.strip()}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+
+    def generate_with_local(self, prompt: str, system: str = "You are a local AI assistant.") -> Dict[str, Any]:
+        try:
+            response = self.local_client.chat.completions.create(
+                model=self.local_model,
+                messages=[{"role": "system", "content": system}, {"role": "user", "content": prompt}],
+                temperature=0.4, # Lower temperature for intelligence tasks
                 max_tokens=800
             )
-            text = response.choices[0].message.content.strip()
-            return {
-                "success": True,
-                "result": text,
-                "model_used": self.default_model,
-            }
+            return {"success": True, "result": response.choices[0].message.content.strip()}
         except Exception as e:
-            log.error(f"[LLMService] Generation failed: {e}")
-            return {
-                "success": False,
-                "result": None,
-                "error_message": str(e)
-            }
+            log.error(f"[Ollama] Failed: {e}")
+            return {"success": False, "error": str(e)}
 
-    # ROADMAP STEP 25: AI FUNCTIONS
+    # 🚀 INTELLIGENCE LAYER (PHASE 3)
+
+    def get_missing_skills(self, resume_skills: List[str], jd_skills: List[str]) -> List[str]:
+        """[LOCAL AI] Identify missing skills between resume and JD."""
+        prompt = f"Resume Skills: {', '.join(resume_skills)}\nJD Skills: {', '.join(jd_skills)}\nList only the missing skills as a comma-separated list."
+        res = self.generate_with_local(prompt, system="You are a skill gap analyzer. Output only comma-separated skills.")
+        if res["success"]:
+            return [s.strip() for s in res["result"].split(",") if s.strip()]
+        return []
+
+    def get_learning_recommendations(self, skills: List[str]) -> List[Dict[str, str]]:
+        """[LOCAL AI] Recommend next steps for career growth."""
+        prompt = f"User knows: {', '.join(skills)}. Recommend 3 advanced topics or related tech stacks to learn next."
+        res = self.generate_with_local(prompt, system="You are a career coach. Output exactly 3 lines: Topic: Description")
+        recs = []
+        if res["success"]:
+            for line in res["result"].split("\n"):
+                if ":" in line:
+                    topic, desc = line.split(":", 1)
+                    recs.append({"title": topic.strip(), "description": desc.strip()})
+        return recs
+
+    def get_resume_feedback(self, resume_text: str) -> str:
+        """[LOCAL AI] Provide feedback on resume quality."""
+        prompt = f"Resume Content:\n{resume_text[:2000]}\nProvide 3 bullet points of constructive feedback (Weak areas, formatting, impact)."
+        res = self.generate_with_local(prompt, system="You are a professional resume reviewer.")
+        return res.get("result") or "Focus on quantifiable achievements."
 
     def generate_resume_summary(self, resume_text: str) -> str:
-        """Creates a professional 2-3 sentence summary of the candidate."""
-        prompt = f"Create a concise 2-sentence professional summary for this candidate based on their resume:\n\n{resume_text[:2000]}"
-        res = self.generate_with_fallback(prompt)
-        return res.get("result") or "Professional candidate with relevant industry experience."
+        """[CLOUD AI] High-quality summary."""
+        prompt = f"Summarize this resume in 2 professional sentences:\n\n{resume_text[:2000]}"
+        res = self.generate_with_cloud(prompt)
+        return res.get("result") or "Professional candidate with relevant experience."
 
-    def generate_candidate_insights(self, resume_text: str, jd_text: str) -> str:
-        """Generates strategic insights about how the candidate fits a specific role."""
-        prompt = f"Analyze this candidate against the job description. Provide 3 bullet points on 'Why they fit' and 1 'Growth Area':\n\nRESUME:\n{resume_text[:1500]}\n\nJD:\n{jd_text[:1500]}"
-        res = self.generate_with_fallback(prompt)
-        return res.get("result") or "Candidate shows strong alignment with core technical requirements."
-
-    def generate_skill_recommendations(self, missing_skills: List[str]) -> str:
-        """Explains WHY these skills are important for the candidate's career."""
-        if not missing_skills:
-            return "Your profile is highly optimized for current market trends."
-        prompt = f"Explain in 2 sentences why these missing skills are critical for a modern tech career: {', '.join(missing_skills)}"
-        res = self.generate_with_fallback(prompt)
-        return res.get("result") or f"Mastering {', '.join(missing_skills)} will significantly increase your market value."
-
-    def generate_hr_feedback(self, ats_score: float, matched_skills: List[str]) -> str:
-        """Generates a brief 'recruiter note' for the employer dashboard."""
-        prompt = f"Act as an AI recruiter. Write a 1-sentence assessment for a candidate with an ATS score of {ats_score} who matches these skills: {', '.join(matched_skills)}"
-        res = self.generate_with_fallback(prompt)
-        return res.get("result") or "Strong technical profile with high matching accuracy for core requirements."
+# Module-level singleton
+llm_service = LLMService()
 
 # Module-level singleton
 llm_service = LLMService()

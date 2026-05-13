@@ -1,9 +1,0 @@
-{
-  "_id": "69b24d12e1698c3973bf66cf",
-  "email": "[EMAIL_ADDRESS]",
-  "auth_method": "email",
-  "created_at": "2026-03-12T05:20:18.571026",
-  "name": "TechFlow Inc.",
-  "password": "Password123!",
-  "role": "employer"
-}

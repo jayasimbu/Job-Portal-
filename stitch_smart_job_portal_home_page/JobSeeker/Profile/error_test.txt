@@ -1,9 +1,0 @@
-C:\Users\chenn\AppData\Local\Temp\tmp2nc4bqcw.js:742
-           skillsWrap.innerHTML = (data.skills || []).map(s => \`<span class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-full text-xs font-bold border border-slate-200 dark:border-slate-700">\${s}</span>\`).join('');
-                                                               ^
-
-SyntaxError: Invalid or unexpected token
-    at wrapSafe (node:internal/modules/cjs/loader:1662:18)
-    at checkSyntax (node:internal/main/check_syntax:78:3)
-
-Node.js v22.16.0

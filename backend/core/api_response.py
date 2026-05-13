@@ -62,23 +62,28 @@ def normalize_success_payload(payload: Any) -> Dict[str, Any]:
 def normalize_error_payload(detail: Any, status_code: int) -> Dict[str, Any]:
     detail_text = str(detail) if detail is not None else ""
     mapped = _EXPLICIT_ERROR_MAP.get(detail_text)
+    
+    response = {"success": False}
+    
     if mapped:
         message, error = mapped
-        return {"message": message, "error": error}
+        response.update({"message": message, "error": error})
+        return response
 
     if status_code == 401:
-        return {"message": "Invalid credentials", "error": "AUTH_FAILED"}
-    if status_code == 403:
-        return {"message": detail_text or "Forbidden", "error": "FORBIDDEN"}
-    if status_code == 404:
-        return {"message": detail_text or "Not found", "error": "NOT_FOUND"}
-    if status_code == 422:
-        return {"message": DEFAULT_VALIDATION_MESSAGE, "error": "VALIDATION_ERROR"}
-    if status_code == 503:
-        return {"message": detail_text or "Service unavailable", "error": "SERVICE_UNAVAILABLE"}
-
-    if detail_text:
+        response.update({"message": "Invalid credentials", "error": "AUTH_FAILED"})
+    elif status_code == 403:
+        response.update({"message": detail_text or "Forbidden", "error": "FORBIDDEN"})
+    elif status_code == 404:
+        response.update({"message": detail_text or "Not found", "error": "NOT_FOUND"})
+    elif status_code == 422:
+        response.update({"message": DEFAULT_VALIDATION_MESSAGE, "error": "VALIDATION_ERROR"})
+    elif status_code == 503:
+        response.update({"message": detail_text or "Service unavailable", "error": "SERVICE_UNAVAILABLE"})
+    elif detail_text:
         sanitized_error = detail_text.replace(" ", "_").replace("-", "_").upper()
-        return {"message": detail_text, "error": sanitized_error or "REQUEST_FAILED"}
-
-    return {"message": DEFAULT_INTERNAL_ERROR_MESSAGE, "error": "INTERNAL_SERVER_ERROR"}
+        response.update({"message": detail_text, "error": sanitized_error or "REQUEST_FAILED"})
+    else:
+        response.update({"message": DEFAULT_INTERNAL_ERROR_MESSAGE, "error": "INTERNAL_SERVER_ERROR"})
+        
+    return response

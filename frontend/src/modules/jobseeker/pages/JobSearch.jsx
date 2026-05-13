@@ -1,176 +1,176 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, MapPin, Briefcase, Filter, ChevronDown, CheckCircle2, AlertCircle, Sparkles, LayoutGrid } from 'lucide-react';
+import { 
+  Filter, 
+  MapPin, 
+  Briefcase, 
+  Sparkles, 
+  LayoutGrid, 
+  Search,
+  X
+} from 'lucide-react';
+import { getCurrentUserId } from '../../../core/auth/session';
+import { fetchJobSeekerProfile, fetchRecommendations } from '../services/jobseekerService';
+import apiClient from '../../../core/api/apiClient';
+
+// Shared Components
+import PageHeader from '../../../components/shared/PageHeader';
+import JobCard from '../../../components/shared/JobCard';
+import SearchBar from '../../../components/shared/SearchBar';
+import FilterTabs from '../../../components/shared/FilterTabs';
+import EmptyState from '../../../components/shared/EmptyState';
+import LoadingSkeleton from '../../../components/shared/LoadingSkeleton';
 import Button from '../../../components/ui/Button';
 
 export default function JobSearch() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const userId = getCurrentUserId();
+  
+  const [loading, setLoading] = useState(true);
   const [jobs, setJobs] = useState([]);
-  const [activeTab, setActiveTab] = useState('recommended');
+  const [allJobs, setAllJobs] = useState([]); // Store original list
+  const [activeTab, setActiveTab] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [userProfile, setUserProfile] = useState(null);
 
-  // Mock data for UI demonstration
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setJobs([
-        { id: 1, title: 'Frontend Developer', company: 'Zoho', location: 'Chennai', matchScore: 87, matched: ['React', 'Tailwind'], missing: ['Docker'], salary: '₹6–8 LPA', workMode: 'Hybrid', type: 'Full-time' },
-        { id: 2, title: 'React Engineer', company: 'Freshworks', location: 'Chennai', matchScore: 92, matched: ['React', 'JavaScript', 'CSS'], missing: ['GraphQL'], salary: '₹8–12 LPA', workMode: 'On-site', type: 'Full-time' },
-        { id: 3, title: 'Senior UI Developer', company: 'Chargebee', location: 'Remote', matchScore: 78, matched: ['JavaScript', 'HTML'], missing: ['Vue.js', 'Figma'], salary: '₹12–15 LPA', workMode: 'Remote', type: 'Contract' },
-        { id: 4, title: 'Full Stack Engineer', company: 'TCS', location: 'Bangalore', matchScore: 85, matched: ['Node.js', 'React'], missing: ['AWS'], salary: '₹10–14 LPA', workMode: 'On-site', type: 'Full-time' },
-        { id: 5, title: 'Product Designer', company: 'Cred', location: 'Remote', matchScore: 65, matched: ['Figma', 'UI Design'], missing: ['Prototyping', 'User Research'], salary: '₹15–18 LPA', workMode: 'Remote', type: 'Full-time' }
-      ]);
+  const fetchJobs = useCallback(async () => {
+    try {
+      setLoading(true);
+      
+      // 1. Fetch Profile for match calculation (if logged in)
+      if (userId) {
+        const profileRes = await fetchJobSeekerProfile(userId);
+        setUserProfile(profileRes?.profile);
+      }
+
+      // 2. Fetch Jobs
+      const response = await apiClient.get('/jobseeker/jobs');
+      const jobsData = response.data?.data || response.data || [];
+      
+      // Transform backend jobs to match UI needs if necessary
+      const formattedJobs = jobsData.map(job => ({
+        id: job.id || job._id,
+        title: job.title,
+        company: job.company || "Enterprise Corp",
+        location: job.location || "Remote",
+        type: job.job_type || "Full-time",
+        salary: job.salary || "$80k - $120k",
+        matchScore: job.match_score || 0,
+        matchedSkills: job.required_skills?.slice(0, 3) || [],
+        missingSkills: []
+      }));
+
+      setJobs(formattedJobs);
+      setAllJobs(formattedJobs);
+    } catch (err) {
+      console.error("[JobSearch] Error fetching jobs:", err);
+    } finally {
       setLoading(false);
-    }, 600);
-  }, []);
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    fetchJobs();
+  }, [fetchJobs]);
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    if (!query) {
+      setJobs(allJobs);
+      return;
+    }
+    const filtered = allJobs.filter(job => 
+      job.title.toLowerCase().includes(query.toLowerCase()) ||
+      job.company.toLowerCase().includes(query.toLowerCase())
+    );
+    setJobs(filtered);
+  };
+
+  const tabs = [
+    { id: 'all', label: 'All Jobs', count: allJobs.length },
+    { id: 'recommended', label: 'AI Matches', count: allJobs.filter(j => j.matchScore > 70).length },
+    { id: 'remote', label: 'Remote', count: allJobs.filter(j => j.location?.toLowerCase().includes('remote')).length }
+  ];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0d1117]">
-      {/* STICKY SEARCH & TABS CONTAINER */}
-      <div className="sticky top-0 z-30 bg-slate-50/80 dark:bg-[#0d1117]/80 backdrop-blur-md pt-4 pb-3 px-6 border-b border-slate-200 dark:border-slate-800">
-        <div className="max-w-[1200px] mx-auto space-y-3">
-          
-          {/* TOP SEARCH ROW */}
-          <div className="flex flex-col lg:flex-row gap-3">
-            {/* TABS */}
-            <div className="flex bg-white dark:bg-slate-900 p-1 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm w-fit shrink-0">
-              <button 
-                onClick={() => setActiveTab('recommended')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${
-                  activeTab === 'recommended' 
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-500/30' 
-                  : 'text-slate-500 hover:text-slate-800 dark:hover:text-white'
-                }`}
-              >
-                <Sparkles size={13} />
-                Recommended
-              </button>
-              <button 
-                onClick={() => setActiveTab('all')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${
-                  activeTab === 'all' 
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-500/30' 
-                  : 'text-slate-500 hover:text-slate-800 dark:hover:text-white'
-                }`}
-              >
-                <LayoutGrid size={13} />
-                All Jobs
-              </button>
-            </div>
+    <div className="space-y-8 pt-4 pb-20">
+      <PageHeader 
+        title="Explore Opportunities" 
+        subtitle="Find your next career move with AI-matched precision."
+        breadcrumbs={["Platform", "Jobseeker", "Jobs"]}
+      />
 
-            {/* SEARCH INPUT */}
-            <div className="flex-1 flex gap-3">
-              <div className="flex-1 relative group">
-                <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors" />
-                <input 
-                  type="text" 
-                  placeholder="Search roles, skills, or companies..." 
-                  className="w-full h-11 pl-11 pr-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all shadow-sm"
+      {/* Global Filter Bar */}
+      <div className="flex flex-col lg:flex-row gap-4 items-center">
+        <SearchBar 
+          onSearch={handleSearch} 
+          className="flex-grow"
+          placeholder="Search by title, company, or tech stack..."
+        />
+        <FilterTabs 
+          tabs={tabs} 
+          activeTab={activeTab} 
+          onChange={setActiveTab} 
+        />
+      </div>
+
+      {/* Active Filters Row */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
+        <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-lg text-[10px] font-bold text-primary uppercase tracking-widest whitespace-nowrap">
+          <MapPin size={12} /> Any Location <X size={10} className="ml-1 cursor-pointer" />
+        </div>
+        <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 border border-gray-100 rounded-lg text-[10px] font-bold text-gray-500 uppercase tracking-widest whitespace-nowrap">
+          <Briefcase size={12} /> Full-time <X size={10} className="ml-1 cursor-pointer" />
+        </div>
+        <Button variant="ghost" className="text-[10px] uppercase font-black text-gray-400">
+          Clear All
+        </Button>
+      </div>
+
+      {/* Results Section */}
+      <div className="space-y-6">
+        {loading ? (
+          <LoadingSkeleton type="card" count={5} />
+        ) : jobs.length > 0 ? (
+          <div className="grid grid-cols-1 gap-4">
+            {jobs
+              .filter(job => {
+                if (activeTab === 'recommended') return job.matchScore > 70;
+                if (activeTab === 'remote') return job.location?.toLowerCase().includes('remote');
+                return true;
+              })
+              .map(job => (
+                <JobCard 
+                  key={job.id} 
+                  job={job}
+                  matchScore={job.matchScore}
+                  onApply={() => navigate(`/platform/jobseeker/jobs/${job.id}`)}
+                  onSave={() => console.log("Save job:", job.id)}
                 />
-              </div>
-              <Button className="h-11 px-6 rounded-xl shadow-lg shadow-blue-500/20 text-[11px] font-bold uppercase tracking-widest">
-                Search
+              ))
+            }
+          </div>
+        ) : (
+          <EmptyState 
+            title="No jobs matching your search" 
+            description="Try expanding your search criteria or removing filters to see more results."
+            action={
+              <Button variant="secondary" onClick={() => handleSearch('')}>
+                Reset Search
               </Button>
-            </div>
-          </div>
-
-          {/* FILTER ROW */}
-          <div className="flex flex-wrap items-center gap-2">
-            {[
-              { icon: MapPin, options: ['Location', 'Remote', 'Chennai', 'Bangalore'] },
-              { icon: Briefcase, options: ['Work Mode', 'On-site', 'Hybrid', 'Remote'] },
-              { icon: Sparkles, options: ['Experience', 'Entry Level', 'Intermediate', 'Senior'] }
-            ].map((filter, idx) => (
-              <div key={idx} className="relative">
-                <filter.icon size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-                <select className="pl-9 pr-8 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-[10px] font-bold uppercase tracking-widest appearance-none focus:ring-2 focus:ring-blue-500/20 outline-none hover:border-slate-300 transition-colors shadow-sm">
-                  {filter.options.map(opt => <option key={opt}>{opt}</option>)}
-                </select>
-                <ChevronDown size={12} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
-              </div>
-            ))}
-            <Button variant="ghost" className="h-8 px-3 gap-1.5 text-slate-400 text-[10px] font-bold uppercase tracking-widest ml-auto">
-              <Filter size={12} /> Clear
-            </Button>
-          </div>
-        </div>
+            }
+          />
+        )}
       </div>
 
-      {/* JOB LIST */}
-      <div className="max-w-[1200px] mx-auto px-6 py-5">
-        <div className="space-y-2.5">
-          {loading ? (
-            <div className="flex flex-col items-center justify-center py-20 gap-3">
-              <div className="size-10 rounded-full border-4 border-blue-600 border-t-transparent animate-spin" />
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Finding the best roles...</p>
-            </div>
-          ) : jobs.length === 0 ? (
-            <div className="text-center py-20 text-slate-500 font-medium">No matching jobs found.</div>
-          ) : (
-            jobs.map((job) => (
-              <div 
-                key={job.id} 
-                className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 hover:shadow-lg hover:-translate-y-0.5 hover:border-blue-500/30 transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4"
-              >
-                {/* Left: Logo + Info */}
-                <div className="flex items-center gap-4 flex-1 min-w-0">
-                  <div className="size-10 shrink-0 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-100 dark:border-slate-700 flex items-center justify-center font-black text-base text-blue-600">
-                    {job.company[0]}
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-blue-600 transition-colors">{job.title}</h3>
-                    <div className="flex items-center gap-2 text-[10px] font-bold text-slate-500 mt-0.5">
-                      <span 
-                        className="text-slate-700 dark:text-slate-300 uppercase tracking-wide cursor-pointer hover:text-blue-600 transition-colors"
-                        onClick={() => navigate(`/platform/jobseeker/companies/${job.companyId || job.id}`)}
-                      >
-                        {job.company}
-                      </span>
-                      <span className="size-0.5 bg-slate-300 rounded-full" />
-                      <span className="flex items-center gap-1"><MapPin size={11} /> {job.location}</span>
-                      <span className="size-0.5 bg-slate-300 rounded-full hidden sm:block" />
-                      <span className="hidden sm:inline">{job.salary}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Center: Match + Skills */}
-                <div className="flex items-center gap-4">
-                  <span className={`text-lg font-black tracking-tighter ${job.matchScore >= 80 ? 'text-emerald-500' : job.matchScore >= 60 ? 'text-amber-500' : 'text-rose-500'}`}>
-                    {job.matchScore}%
-                  </span>
-                  
-                  <div className="hidden lg:flex items-center gap-1.5">
-                    {job.matched.slice(0, 2).map(s => (
-                      <span key={s} className="flex items-center gap-0.5 text-[9px] font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-900/20 px-1.5 py-0.5 rounded border border-emerald-100 dark:border-emerald-800/30">
-                        <CheckCircle2 size={9} /> {s}
-                      </span>
-                    ))}
-                    {job.missing.slice(0, 1).map(s => (
-                      <span key={s} className="flex items-center gap-0.5 text-[9px] font-bold text-rose-500 bg-rose-50 dark:bg-rose-900/20 px-1.5 py-0.5 rounded border border-rose-100 dark:border-rose-800/30">
-                        <AlertCircle size={9} /> {s}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <Button 
-                      variant="secondary" 
-                      className="h-8 px-4 text-[10px] font-bold uppercase tracking-widest rounded-lg border-slate-200"
-                      onClick={() => navigate(`/platform/jobseeker/jobs/${job.id}`)}
-                    >
-                      Details
-                    </Button>
-                    <Button className="h-8 px-4 text-[10px] font-bold uppercase tracking-widest rounded-lg shadow-sm">
-                      Apply
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            ))
-          )}
+      {/* Pagination / Load More */}
+      {jobs.length > 0 && (
+        <div className="flex justify-center pt-8">
+          <Button variant="secondary" className="px-12 rounded-xl text-xs uppercase font-bold tracking-widest">
+            Load More Opportunities
+          </Button>
         </div>
-      </div>
+      )}
     </div>
   );
 }

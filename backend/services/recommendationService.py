@@ -11,13 +11,22 @@ Used by:
     modules/jobseeker/service.py — recommendations, insights, learning
 """
 from __future__ import annotations
-import logging
-from typing import Any, Dict, List
-
-from ai_engine.recommendation.recommender import JobRecommender
-from ai_engine.semantic_matching.matcher import SemanticMatcher
+import json
+from pathlib import Path
 
 log = logging.getLogger(__name__)
+
+# ── Reference Data Path ──────────────────────────────────────────────────────
+_REF_DIR = Path(__file__).resolve().parents[2] / "database" / "reference"
+
+def _load_skills_list() -> Dict[str, List[str]]:
+    path = _REF_DIR / "skills_list.json"
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as exc:
+        log.warning("[RecommendationService] Could not load skills_list.json: %s", exc)
+        return {}
 
 
 class RecommendationService:
@@ -26,7 +35,8 @@ class RecommendationService:
     def __init__(self):
         self._recommender = JobRecommender()
         self._matcher = SemanticMatcher()
-        log.info("[RecommendationService] Initialized.")
+        self._skills_list = _load_skills_list()
+        log.info("[RecommendationService] Initialized with skills_list integration.")
 
     def recommend_jobs(
         self, profile: Dict[str, Any], jobs: list
@@ -107,7 +117,28 @@ class RecommendationService:
 
         recommendations, seen = [], set()
         for skill in missing_keywords:
-            normalized_skill = next((k for k in skill_db if k.lower() in skill.lower()), None)
+            skill_lower = skill.lower()
+            normalized_skill = None
+            
+            # 1. Direct match in skill_db
+            if skill in skill_db:
+                normalized_skill = skill
+            else:
+                # 2. Search through aliases in skills_list.json
+                for canonical, aliases in self._skills_list.items():
+                    all_variants = [canonical.lower()] + [a.lower() for a in aliases]
+                    if any(v in skill_lower or skill_lower in v for v in all_variants):
+                        # Found a canonical skill, now check if it maps to our skill_db
+                        for db_key in skill_db:
+                            if db_key.lower() in canonical.lower() or canonical.lower() in db_key.lower():
+                                normalized_skill = db_key
+                                break
+                    if normalized_skill: break
+
+            # 3. Last resort: simple substring match in skill_db
+            if not normalized_skill:
+                normalized_skill = next((k for k in skill_db if k.lower() in skill_lower), None)
+            
             if normalized_skill:
                 data = skill_db[normalized_skill]
                 for c in data["courses"]:
