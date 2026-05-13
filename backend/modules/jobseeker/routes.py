@@ -1,4 +1,6 @@
 import asyncio
+import json
+from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from typing import Any, Dict, List, Optional
 
@@ -319,8 +321,76 @@ async def get_recommendations(
     user_id: int,
     service: JobSeekerService = Depends(get_jobseeker_service),
 ) -> Dict[str, Any]:
-    jobs = service.list_recommended_jobs(user_id)
-    return {"recommendations": jobs}
+    """Get dynamic job recommendations based on profile and AI resume insights."""
+    try:
+        # 1. Load user profile and latest resume insights
+        profile = service.get_profile(user_id)
+        user_skills = set(getattr(profile, "skills", [])) if profile else set()
+        
+        # Merge in AI-extracted skills from their latest resume upload
+        try:
+            insight = service.db["resume_insights"].find_one(
+                {"user_id": user_id}, 
+                sort=[("_id", -1)]
+            )
+            if insight and insight.get("skills_match"):
+                user_skills.update([s.lower() for s in insight.get("skills_match", [])])
+        except Exception as e:
+            log.warning(f"Could not load resume insights for recommendations: {e}")
+            
+        # Convert all to lowercase for case-insensitive matching
+        user_skills_lower = {s.lower() for s in user_skills}
+        
+        # 2. Load jobs from JSON
+        jobs_path = Path(__file__).resolve().parents[3] / "database" / "jobs" / "jobs.json"
+        if not jobs_path.exists():
+            return {"recommendations": []}
+            
+        with open(jobs_path, "r", encoding="utf-8") as f:
+            all_jobs = json.load(f)
+            
+        # 3. Dynamic matching logic against all jobs
+        scored_jobs = []
+        for job in all_jobs:
+            job_tags_raw = job.get("tags", [])
+            job_tags_lower = {t.lower() for t in job_tags_raw}
+            
+            # Intersection & Difference
+            matched_tags = job_tags_lower.intersection(user_skills_lower)
+            missing_tags = job_tags_lower - user_skills_lower
+            
+            # Map back to original case for display
+            display_matched = [t for t in job_tags_raw if t.lower() in matched_tags]
+            display_missing = [t for t in job_tags_raw if t.lower() in missing_tags]
+            
+            match_count = len(matched_tags)
+            
+            # Base score logic: 60% if no skills match, +6% per matching skill
+            score = min(98, 60 + (match_count * 6)) if user_skills_lower else job.get("matchScore", 60)
+            
+            scored_jobs.append({
+                "id": job.get("id"),
+                "title": job.get("title"),
+                "company": job.get("company"),
+                "location": job.get("location"),
+                "matchScore": score,
+                "salary": job.get("salary", "Competitive"),
+                "type": job.get("type", "Full-time"),
+                "postedTime": job.get("postedTime", "2D AGO"),
+                "tags": job_tags_raw,
+                "matched": display_matched,
+                "missing": display_missing
+            })
+        
+        # 4. Sort by match score and return exactly TOP 5 as requested
+        scored_jobs.sort(key=lambda x: x["matchScore"], reverse=True)
+        top_5_recommendations = scored_jobs[:5]
+        
+        return {"recommendations": top_5_recommendations}
+        
+    except Exception as e:
+        log.error(f"Error getting recommendations: {e}")
+        return {"recommendations": []}
 
 
 @router.post("/applications")
@@ -446,3 +516,52 @@ async def add_search_history(
 ) -> Dict[str, Any]:
     history = service.add_search_history(payload.user_id, payload.query)
     return {"message": "history updated", "history": history}
+@router.get("/resume/{resume_id}/download")
+async def download_resume(
+    resume_id: int,
+    user=Depends(get_current_user_db),
+    service: JobSeekerService = Depends(get_jobseeker_service),
+):
+    from fastapi.responses import FileResponse
+    resume = service.db["resumes"].find_one({"id": resume_id, "user_id": user.id})
+    if not resume:
+        raise HTTPException(status_code=404, detail="Resume not found")
+    
+    file_path = resume.get("stored_path")
+    if not file_path or not Path(file_path).exists():
+        raise HTTPException(status_code=404, detail="File not found on disk")
+    
+    return FileResponse(
+        path=file_path,
+        filename=resume.get("file_name", "resume.pdf"),
+        media_type="application/pdf"
+    )
+
+@router.delete("/resume/{resume_id}")
+async def delete_resume(
+    resume_id: int,
+    user=Depends(get_current_user_db),
+    service: JobSeekerService = Depends(get_jobseeker_service),
+) -> Dict[str, Any]:
+    success = service.delete_resume(user.id, resume_id)
+    if not success:
+        raise HTTPException(status_code=404, detail="Resume not found")
+    return {"message": "Resume deleted successfully"}
+
+@router.get("/jobs")
+async def list_jobs(
+    service: JobSeekerService = Depends(get_jobseeker_service),
+) -> Dict[str, Any]:
+    """Fetch jobs from the local JSON database."""
+    try:
+        jobs_path = Path(__file__).resolve().parents[3] / "database" / "jobs" / "jobs.json"
+        if not jobs_path.exists():
+            return {"jobs": []}
+        
+        with open(jobs_path, "r", encoding="utf-8") as f:
+            jobs = json.load(f)
+        
+        return {"jobs": jobs}
+    except Exception as e:
+        log.error(f"Error loading jobs: {e}")
+        return {"jobs": []}

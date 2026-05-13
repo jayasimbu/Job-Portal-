@@ -7,8 +7,6 @@ import Button from '../../../components/ui/Button';
 const JDMatchAnalysis = () => {
   const { 
     resumeText, 
-    resumeSkills, 
-    atsScore, 
     isParsing, 
     resumeFile, 
     analyzeResume 
@@ -64,28 +62,9 @@ const JDMatchAnalysis = () => {
                 <CheckCircle2 size={16} />
                 <span className="text-sm font-bold">{resumeFile?.name || 'Resume parsed successfully'}</span>
               </div>
-              {atsScore > 0 && (
-                <div className="flex items-center gap-3">
-                  <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">ATS Score:</span>
-                  <span className={`text-lg font-black ${atsScore >= 70 ? 'text-emerald-600' : atsScore >= 40 ? 'text-amber-600' : 'text-rose-600'}`}>{atsScore}%</span>
-                </div>
-              )}
-              {resumeSkills?.length > 0 && (
-                <div>
-                  <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-2">Skills ({resumeSkills.length})</p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {resumeSkills.slice(0, 8).map(s => (
-                      <span key={s} className="text-[9px] font-bold text-blue-600 bg-blue-50 dark:bg-blue-900/20 px-2 py-0.5 rounded uppercase tracking-wider border border-blue-100 dark:border-blue-800/30">{s}</span>
-                    ))}
-                    {resumeSkills.length > 8 && (
-                      <span className="text-[9px] font-bold text-slate-400 px-1">+{resumeSkills.length - 8}</span>
-                    )}
-                  </div>
-                </div>
-              )}
               <button 
                 onClick={() => document.getElementById('resume-upload-input').click()}
-                className="text-[10px] font-bold text-blue-600 hover:text-blue-700 uppercase tracking-widest"
+                className="text-[10px] font-bold text-blue-600 hover:text-blue-700 uppercase tracking-widest block"
               >
                 Re-upload
               </button>
@@ -116,24 +95,22 @@ const JDMatchAnalysis = () => {
             placeholder="Paste the full job description here..."
             className="w-full h-40 p-4 bg-slate-100 dark:bg-slate-800/50 border border-slate-300 dark:border-slate-700 rounded-xl resize-none outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-600 transition-all text-sm font-medium leading-relaxed"
           />
+          <Button 
+            onClick={handleAnalyze}
+            disabled={isAnalyzing || !jdText.trim() || !hasResume}
+            className="w-full h-10 rounded-xl text-[11px] font-black uppercase tracking-widest shadow-lg shadow-blue-500/10"
+          >
+            {isAnalyzing ? (
+               <>
+                  <Loader size={14} className="animate-spin mr-2" />
+                  Analyzing...
+               </>
+            ) : (
+               'Analyze Match'
+            )}
+          </Button>
         </div>
       </div>
-
-      {/* ANALYZE BUTTON */}
-      <Button 
-        onClick={handleAnalyze}
-        disabled={isAnalyzing || !jdText.trim() || !hasResume}
-        className="w-full h-12 rounded-xl text-sm font-black uppercase tracking-widest shadow-lg shadow-blue-500/20"
-      >
-        {isAnalyzing ? (
-           <>
-              <Loader size={16} className="animate-spin mr-2" />
-              Analyzing...
-           </>
-        ) : (
-           'Analyze Match'
-        )}
-      </Button>
 
       {/* RESULTS — Only after analysis */}
       {matchResults && (

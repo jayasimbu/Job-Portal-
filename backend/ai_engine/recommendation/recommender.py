@@ -1,7 +1,5 @@
 from typing import Any, Dict, List
-
 from ai_engine.semantic_matching.matcher import SemanticMatcher
-
 
 class JobRecommender:
     def __init__(self):
@@ -17,6 +15,7 @@ class JobRecommender:
             job_desc = getattr(job, "description", "")
             job_skills = getattr(job, "required_skills", [])
             job_text = f"{job_title} {job_desc} {' '.join(job_skills or [])}"
+            
             semantic = self.matcher.match_score(skills_text, job_text)
             experience_bonus = min(10, years * 1.5)
             recommendation_score = round(min(100, semantic * 0.9 + experience_bonus), 2)
@@ -33,5 +32,6 @@ class JobRecommender:
                 }
             )
 
-        scored.sort(key=lambda item: item["recommendation_score"], reverse=True)
+        # Fix: Sort by 'match_score' which is the key we actually use
+        scored.sort(key=lambda item: item["match_score"], reverse=True)
         return scored[:10]

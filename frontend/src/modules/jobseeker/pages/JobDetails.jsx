@@ -20,6 +20,9 @@ import {
 import Button from '../../../components/ui/Button';
 import { useToast } from '../../../core/context/ToastContext';
 
+import apiClient from '../../../core/api/apiClient';
+import { getCurrentUserId } from '../../../core/auth/session';
+
 export default function JobDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -27,47 +30,79 @@ export default function JobDetails() {
   const [loading, setLoading] = useState(true);
   const [isApplying, setIsApplying] = useState(false);
   const [job, setJob] = useState(null);
+  const userId = getCurrentUserId();
 
   useEffect(() => {
-    // Mock data for high-fidelity demonstration
-    setTimeout(() => {
-      setJob({
-        id,
-        title: 'Senior Frontend Engineer',
-        company: {
-          name: 'Tech Corp Systems',
-          logo: 'T',
-          industry: 'Software & AI',
-          location: 'Chennai, India (Hybrid)',
-          size: '500+ Employees',
-          about: 'Tech Corp Systems is a global leader in AI-driven enterprise solutions, powering the next generation of digital transformation.'
-        },
-        salary: '₹18–24 LPA',
-        experience: '5+ Years',
-        shift: 'Day Shift',
-        bond: 'No Bond',
-        workMode: 'Hybrid',
-        skills: ['React', 'TypeScript', 'Tailwind CSS', 'Redux', 'Node.js', 'System Design'],
-        matchScore: 85,
-        matchedSkills: ['React', 'TypeScript', 'Tailwind CSS', 'System Design'],
-        missingSkills: ['Node.js', 'Redux'],
-        description: `We are looking for a Senior Frontend Engineer to lead our core UI team. You will be responsible for building high-performance, scalable web applications using React and TypeScript. 
+    const fetchJobData = async () => {
+      try {
+        const response = await apiClient.get('/jobseeker/jobs');
+        const rawJobs = response.data?.data?.jobs || response.data?.jobs || [];
+        
+        // Find the specific job. Ensure type matching (id from params is string, id in json might be number)
+        const jobData = rawJobs.find(j => j.id.toString() === id.toString());
 
-Key Responsibilities:
-• Lead the architectural design of complex frontend systems.
-• Optimize application performance for maximum speed and scalability.
-• Collaborate with backend engineers to integrate APIs.
-• Mentor junior developers and conduct code reviews.`,
-        requirements: [
-          'Strong proficiency in React and TypeScript.',
-          'Experience with modern frontend tooling (Vite, Webpack).',
-          'Deep understanding of state management patterns.',
-          'Excellent problem-solving and communication skills.'
-        ]
-      });
-      setLoading(false);
-    }, 400);
-  }, [id]);
+        if (!jobData) {
+          showToast("Job not found ❌");
+          navigate('/platform/jobseeker/jobs');
+          return;
+        }
+
+        // Fetch user profile for score calculation
+        let userSkills = new Set();
+        try {
+            const profileRes = await apiClient.get(`/jobseeker/profile/${userId}`);
+            userSkills = new Set((profileRes.data?.data?.profile?.skills || []).map(s => s.toLowerCase()));
+        } catch (e) {
+            console.error("Failed to load profile for scoring");
+        }
+
+        const jobTags = (jobData.tags || []).map(t => t.toLowerCase());
+        let score = jobData.matchScore || 60;
+        let matched = [];
+        let missing = [];
+
+        if (userSkills.size > 0) {
+            const matches = jobTags.filter(t => userSkills.has(t));
+            matched = jobData.tags?.filter(t => userSkills.has(t.toLowerCase())) || [];
+            missing = jobData.tags?.filter(t => !userSkills.has(t.toLowerCase())) || [];
+            score = Math.min(98, 60 + (matches.length * 8));
+        } else {
+            matched = jobData.tags || [];
+        }
+
+        setJob({
+            id: jobData.id,
+            title: jobData.title || 'Job Title',
+            company: {
+                name: jobData.company || 'Company Name',
+                logo: (jobData.company || 'C')[0],
+                industry: 'Software & AI',
+                location: jobData.location || 'Location',
+                size: '100+ Employees',
+                about: jobData.description || 'No about info available.'
+            },
+            salary: jobData.salary || 'Competitive',
+            experience: 'Depends on role',
+            shift: 'Day Shift',
+            bond: 'No Bond',
+            workMode: jobData.type || 'Full-time',
+            skills: jobData.tags || [],
+            matchScore: score,
+            matchedSkills: matched,
+            missingSkills: missing,
+            description: jobData.description || 'No detailed description available.',
+            requirements: jobData.tags || ['Strong problem-solving skills']
+        });
+      } catch (err) {
+        console.error("Failed to fetch job details:", err);
+        showToast("Error loading job details ❌");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchJobData();
+  }, [id, userId, navigate, showToast]);
 
   const handleApply = () => {
     setIsApplying(true);

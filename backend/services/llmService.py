@@ -48,7 +48,7 @@ class LLMService:
         prompt: str,
         model: str,
         system: str = "You are a senior recruitment expert.",
-        temperature: float = 0.7,
+        temperature: float = 0.2, # Lower temperature for STRICTOR extraction
         max_tokens: int = 1000,
         response_format: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
@@ -89,10 +89,24 @@ class LLMService:
     # ── ADVANCED ANALYTICS ──
 
     async def parse_resume_structural(self, resume_text: str) -> Dict[str, Any]:
-        system = "Return ONLY JSON: {skills:[], experience_years:float, education:str, projects:[]}"
-        res = self.generate_with_fallback(f"Parse this resume:\n{resume_text[:4000]}", model=MODELS["STRUCTURAL_PARSING"], system=system, response_format={"type": "json_object"})
+        """STRICT PARSING: Only extract what is explicitly written."""
+        system = (
+            "You are a strict data extractor. ONLY extract information that is EXPLICITLY written in the text. "
+            "DO NOT assume or add generic skills like 'Communication', 'Teamwork', or 'Leadership' unless they are literally in the text. "
+            "Return ONLY JSON: {skills:[], experience_years:float, education:str, projects:[]}"
+        )
+        prompt = f"Extract EXPLICIT data from this resume text. Do not hallucinate:\n\n{resume_text[:4000]}"
+        
+        res = self.generate_with_fallback(
+            prompt, model=MODELS["STRUCTURAL_PARSING"], system=system, response_format={"type": "json_object"}
+        )
+        
         if res["success"] and res["result"]:
-            try: return json.loads(res["result"].replace("```json", "").replace("```", "").strip())
+            try: 
+                data = json.loads(res["result"].replace("```json", "").replace("```", "").strip())
+                # Clean keys
+                data["skills"] = [s.strip().upper() for s in data.get("skills", []) if s.strip()]
+                return data
             except: pass
         return {}
 
@@ -108,17 +122,17 @@ class LLMService:
         return {"missing_skills": [], "recommendations": []}
 
     async def generate_hr_summary(self, resume_text: str, ats_score: float) -> str:
-        prompt = f"2-sentence HR summary for candidate (ATS: {ats_score}):\n\n{resume_text[:2000]}"
+        prompt = f"Write a 2-sentence professional HR assessment for a candidate with an ATS score of {ats_score}/100. Be realistic."
         res = self.generate_with_fallback(prompt, model=MODELS["HR_SUMMARY"])
         return res.get("result") or "Professional candidate."
 
     async def generate_deep_ats_match(self, resume_text: str, jd_text: str) -> Dict[str, Any]:
-        prompt = f"Match resume to JD. JSON output only.\nRESUME: {resume_text[:2000]}\nJD: {jd_text[:2000]}"
+        prompt = f"Deep match resume to JD. Return JSON: {match_score:int, reasoning:str, matched_skills:[], missing_skills:[]}"
         res = self.generate_with_fallback(prompt, model=MODELS["ATS_MATCHING"], response_format={"type": "json_object"})
         if res["success"] and res["result"]:
             try: return json.loads(res["result"].replace("```json", "").replace("```", "").strip())
             except: pass
-        return {"match_score": 0, "reasoning": "Matching failed."}
+        return {"match_score": 0, "reasoning": "AI Matching failed."}
 
 # Singleton
 llm_service = LLMService()

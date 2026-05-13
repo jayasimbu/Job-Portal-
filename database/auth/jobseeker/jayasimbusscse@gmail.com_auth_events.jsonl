@@ -1,6 +1,0 @@
-{"action": "signup", "timestamp": "2026-04-17T06:06:33.045756", "email": "jayasimbusscse@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbusscse@gmail.com", "auth_method": "email"}}
-{"action": "login", "timestamp": "2026-04-25T07:51:39.827921", "email": "jayasimbusscse@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbusscse@gmail.com"}}
-{"action": "login", "timestamp": "2026-04-26T14:19:42.949074", "email": "jayasimbusscse@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbusscse@gmail.com"}}
-{"action": "logout", "timestamp": "2026-04-26T14:19:57.838816", "email": "jayasimbusscse@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbusscse@gmail.com"}}
-{"action": "login", "timestamp": "2026-04-26T14:20:11.667784", "email": "jayasimbusscse@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbusscse@gmail.com"}}
-{"action": "logout", "timestamp": "2026-04-26T14:49:37.384680", "email": "jayasimbusscse@gmail.com", "role": "jobseeker", "payload": {"email": "jayasimbusscse@gmail.com"}}
