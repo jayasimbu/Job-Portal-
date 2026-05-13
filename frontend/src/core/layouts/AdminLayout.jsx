@@ -68,7 +68,7 @@ const AdminLayout = ({ children, title }) => {
         </header>
 
         {/* Main Content Area - Only this scrolls */}
-        <main id="admin-main-content" className="flex-1 overflow-y-auto px-4 md:px-6 lg:px-8 pb-10 scroll-smooth">
+        <main id="admin-main-content" className="flex-1 overflow-y-auto px-4 md:px-6 lg:px-6 pb-10 scroll-smooth">
           <div className="max-w-[1440px] mx-auto">
             {children}
           </div>

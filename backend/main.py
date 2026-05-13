@@ -168,13 +168,15 @@ async def http_exception_handler(_: Request, exc: HTTPException):
 
 
 @app.exception_handler(RequestValidationError)
-async def validation_exception_handler(_: Request, exc: RequestValidationError):
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    print(f"[VALIDATION_ERROR] Path: {request.url.path} | Errors: {exc.errors()}")
     return JSONResponse(
         status_code=422,
         content={
             "success": False,
             "message": "Validation failed",
             "error": "VALIDATION_ERROR",
+            "detail": exc.errors()
         },
     )
 

@@ -25,8 +25,11 @@ class JobRecommender:
                 {
                     "id": getattr(job, "id", None),
                     "title": job_title,
+                    "company": getattr(job, "company", "Confidential"),
                     "location": getattr(job, "location", "Remote"),
-                    "recommendation_score": recommendation_score,
+                    "match_score": recommendation_score,
+                    "required_skills": job_skills,
+                    "description": job_desc
                 }
             )
 

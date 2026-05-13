@@ -95,7 +95,50 @@ class JobSeekerService:
         profile_doc["uploadedResumes"] = resumes
         profile_doc["hasResume"] = len(resumes) > 0
         
+        # Add dynamic skill recommendations based on profile
+        profile_doc["recommended_skills"] = self.get_skill_recommendations(user_id)
+        
         return doc_to_entity(profile_doc)
+
+    def get_skill_recommendations(self, user_id: int) -> List[str]:
+        profile_doc = self.profiles.find_one({"user_id": int(user_id)})
+        if not profile_doc: return ["Docker", "AWS", "TypeScript"]
+        
+        skills = profile_doc.get("skills", [])
+        recommendations = set()
+        lower_skills = [s.lower() for s in skills]
+        
+        mapping = {
+            "java": ["Spring Boot", "Hibernate"],
+            "react": ["Next.js", "Redux"],
+            "python": ["Django", "FastAPI"],
+            "node.js": ["Express", "MongoDB"],
+            "node": ["Express", "MongoDB"],
+            "javascript": ["TypeScript", "Node.js"],
+            "js": ["TypeScript", "Node.js"],
+            "sql": ["PostgreSQL", "Redis"],
+            "html": ["React", "Tailwind CSS"],
+            "css": ["React", "Tailwind CSS"],
+            "cloud": ["AWS", "Azure", "Docker"],
+            "frontend": ["Next.js", "Tailwind CSS"],
+            "backend": ["Docker", "Redis", "Microservices"]
+        }
+        
+        for s in lower_skills:
+            for key, recs in mapping.items():
+                if key in s:
+                    for r in recs:
+                        if r.lower() not in lower_skills:
+                            recommendations.add(r)
+                            
+        # If no specific matches, provide high-value tech defaults
+        if not recommendations:
+            defaults = ["Docker", "AWS", "TypeScript", "System Design"]
+            for d in defaults:
+                if d.lower() not in lower_skills:
+                    recommendations.add(d)
+            
+        return list(recommendations)[:4]
 
     def update_profile(self, user_id: int, update_data: Dict[str, Any]):
         now = datetime.utcnow()
@@ -359,148 +402,25 @@ class JobSeekerService:
         experience_years = profile.experience_years if profile else 0
         return self.recommender.get_insights(skills, ats_score, experience_years)
 
-    def get_learning_recommendations(self, user_id: int) -> List[Dict[str, Any]]:
-        # 1. Fetch latest resume insights for this user
-        insights_collection = self.db["resume_insights"]
-        latest_insight = insights_collection.find_one({"user_id": int(user_id)}, sort=[("id", -1)])
+    def get_learning_recommendations(self, user_id: int) -> Dict[str, Any]:
+        # 1. Fetch missing keywords from profile or latest resume insights
+        profile = self.profiles.find_one({"user_id": int(user_id)})
+        missing_keywords = profile.get("missing_skills", []) if profile else []
         
-        missing_keywords = latest_insight.get("missing_keywords", []) if latest_insight else []
+        if not missing_keywords:
+            insights_collection = self.db["resume_insights"]
+            latest_insight = insights_collection.find_one({"user_id": int(user_id)}, sort=[("id", -1)])
+            missing_keywords = latest_insight.get("missing_keywords", []) if latest_insight else []
         
-        # 2. Define a heuristic mapping for common skills to courses
-        skill_to_course = {
-            "React": {
-                "title": "Advanced React Patterns",
-                "provider": "Frontend Masters",
-                "gap": "Frontend Architecture",
-                "impact": "+12% Role Match",
-                "duration": "6 Hours",
-                "level": "Advanced",
-                "imgGradient": "from-blue-800 to-blue-600",
-                "imgIcon": "code"
-            },
-            "Node.js": {
-                "title": "Node.js Backend Architecture",
-                "provider": "Udemy",
-                "gap": "Backend Engineering",
-                "impact": "+15% Role Match",
-                "duration": "12 Hours",
-                "level": "Intermediate",
-                "imgGradient": "from-green-800 to-green-600",
-                "imgIcon": "dns"
-            },
-            "AWS": {
-                "title": "Cloud Native Infrastructure with AWS",
-                "provider": "Coursera",
-                "gap": "Cloud / DevOps",
-                "impact": "+10% Role Match",
-                "duration": "8 Hours",
-                "level": "Intermediate",
-                "imgGradient": "from-orange-800 to-orange-600",
-                "imgIcon": "cloud"
-            },
-            "Python": {
-                "title": "Applied Data Science with Python Specialization",
-                "provider": "Coursera",
-                "gap": "Data Manipulation",
-                "impact": "+20% Role Match",
-                "duration": "34 Hours",
-                "level": "Intermediate",
-                "imgGradient": "from-blue-800 to-blue-600",
-                "imgIcon": "data_object"
-            },
-            "SQL": {
-                "title": "The Complete SQL Bootcamp: Go from Zero to Hero",
-                "provider": "Udemy",
-                "gap": "Database Querying",
-                "impact": "+15% Role Match",
-                "duration": "22 Hours",
-                "level": "Beginner",
-                "imgGradient": "from-purple-800 to-purple-600",
-                "imgIcon": "storage"
-            },
-            "Machine Learning": {
-                "title": "Machine Learning Specialization",
-                "provider": "Coursera",
-                "gap": "ML Algorithms",
-                "impact": "+12% Role Match",
-                "duration": "40 Hours",
-                "level": "Advanced",
-                "imgGradient": "from-blue-800 to-blue-600",
-                "imgIcon": "psychology"
-            },
-            "Docker": {
-                "title": "Docker & Kubernetes: The Practical Guide",
-                "provider": "Udemy",
-                "gap": "Containerization",
-                "impact": "+12% Role Match",
-                "duration": "18 Hours",
-                "level": "Advanced",
-                "imgGradient": "from-blue-500 to-cyan-500",
-                "imgIcon": "box"
-            },
-            "MongoDB": {
-                "title": "MongoDB University: Data Modeling",
-                "provider": "MongoDB",
-                "gap": "NoSQL Database Design",
-                "impact": "+7% Role Match",
-                "duration": "4 Hours",
-                "level": "Intermediate",
-                "imgGradient": "from-green-700 to-emerald-500",
-                "imgIcon": "database"
-            }
+        # 2. Delegate to centralized recommendation service
+        recs = self.recommender.get_learning_recommendations(missing_keywords)
+        
+        # 3. Format into the structure expected by the frontend
+        return {
+            "courses": [r for r in recs if r.get("type") == "Course"],
+            "roadmap": [r for r in recs if r.get("type") == "Project"],
+            "certifications": [r for r in recs if r.get("type") == "Certification"]
         }
-
-        recommendations = []
-        seen_courses = set()
-
-        # 3. Match missing keywords to courses
-        for skill in missing_keywords:
-            # Check for direct or partial match
-            for key, course in skill_to_course.items():
-                if key.lower() in skill.lower() and course["title"] not in seen_courses:
-                    recommendations.append({
-                        **course,
-                        "matchReason": f"Detected '{skill}' as a missing keyword in your profile. This course directly addresses that gap.",
-                        "status": "Recommended",
-                        "progress": 0,
-                        "url": "#"
-                    })
-                    seen_courses.add(course["title"])
-
-        # 4. Fallback/Default recommendations if no missing keywords or too few recommendations
-        if len(recommendations) < 2:
-            defaults = [
-                {
-                    "title": "System Design for Product Engineers",
-                    "provider": "Educative",
-                    "gap": "Software Architecture",
-                    "impact": "+10% ATS Score",
-                    "duration": "15 hours",
-                    "level": "Advanced",
-                    "matchReason": "Recommended based on industry trends for your target role.",
-                    "status": "Recommended",
-                    "progress": 0,
-                    "url": "#"
-                },
-                {
-                    "title": "Professional Communication for Tech",
-                    "provider": "LinkedIn Learning",
-                    "gap": "Soft Skills",
-                    "impact": "+5% ATS Score",
-                    "duration": "3 hours",
-                    "level": "Beginner",
-                    "matchReason": "Essential for high-impact technical roles.",
-                    "status": "Recommended",
-                    "progress": 0,
-                    "url": "#"
-                }
-            ]
-            for d in defaults:
-                if d["title"] not in seen_courses and len(recommendations) < 4:
-                    recommendations.append(d)
-                    seen_courses.add(d["title"])
-
-        return recommendations
 
     def get_notifications(self, user_id: int) -> List[Dict[str, Any]]:
         # Pull real notifications pushed by employer status changes

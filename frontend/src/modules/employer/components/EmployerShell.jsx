@@ -37,7 +37,7 @@ const styles = {
     transition: '0.2s',
   },
   sideLinkActive: { background: 'rgba(15, 23, 42, 0.08)', color: '#0f172a' },
-  main: { flex: 1, padding: '32px', maxWidth: '1600px', margin: '0 auto', width: '100%' },
+  main: { flex: 1, padding: '24px', maxWidth: '1440px', margin: '0 auto', width: '100%' },
   badge: { fontSize: '10px', fontWeight: 700, color: '#f97316', background: '#fff7ed', padding: '2px 8px', borderRadius: '9999px', textTransform: 'uppercase', letterSpacing: '0.05em', marginLeft: '4px' },
 };
 

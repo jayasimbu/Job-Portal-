@@ -87,6 +87,21 @@ class RecommendationService:
                 "courses": [{"title": "Python for Data Science", "provider": "Coursera"}],
                 "projects": [{"title": "Automated Web Scraper with BeautifulSoup", "difficulty": "Easy"}],
                 "certifications": [{"title": "PCEP – Certified Entry-Level Python Programmer"}]
+            },
+            "Java": {
+                "courses": [{"title": "Java Programming and Software Engineering", "provider": "Coursera"}],
+                "projects": [{"title": "Build a Banking System with Spring Boot", "difficulty": "Hard"}],
+                "certifications": [{"title": "Oracle Certified Professional: Java SE Developer"}]
+            },
+            "SQL": {
+                "courses": [{"title": "The Complete SQL Bootcamp", "provider": "Udemy"}],
+                "projects": [{"title": "Analyze E-commerce Data with PostgreSQL", "difficulty": "Medium"}],
+                "certifications": [{"title": "Microsoft Certified: Azure Data Fundamentals"}]
+            },
+            "Machine Learning": {
+                "courses": [{"title": "Machine Learning Specialization", "provider": "Coursera"}],
+                "projects": [{"title": "Predict Housing Prices with Scikit-Learn", "difficulty": "Hard"}],
+                "certifications": [{"title": "Google Professional Machine Learning Engineer"}]
             }
         }
 
@@ -121,11 +136,11 @@ class RecommendationService:
             defaults = [
                 {"title":"System Design for Product Engineers","provider":"Educative",
                  "gap":"Software Architecture","impact":"+10% ATS Score",
-                 "duration":"15 hours","level":"Advanced",
+                 "duration":"15 hours","level":"Advanced", "type": "Course",
                  "matchReason":"Industry trends.","status":"Recommended","progress":0,"url":"#"},
                 {"title":"Professional Communication for Tech","provider":"LinkedIn Learning",
                  "gap":"Soft Skills","impact":"+5% ATS Score",
-                 "duration":"3 hours","level":"Beginner",
+                 "duration":"3 hours","level":"Beginner", "type": "Course",
                  "matchReason":"Essential for tech roles.","status":"Recommended","progress":0,"url":"#"},
             ]
             for d in defaults:

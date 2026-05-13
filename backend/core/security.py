@@ -9,6 +9,11 @@ from core.config import settings
 from core.database import doc_to_entity, get_db
 
 # Password hashing context
+import bcrypt
+# Monkeypatch bcrypt for passlib compatibility (bcrypt >= 4.0.0)
+if not hasattr(bcrypt, "__about__"):
+    bcrypt.__about__ = type('About', (), {'__version__': bcrypt.__version__})
+
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
 
@@ -17,8 +22,9 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     return pwd_context.verify(plain_password, hashed_password)
 
 def get_password_hash(password: str) -> str:
-    """Hash a plain password"""
-    return pwd_context.hash(password)
+    """Hash a plain password. Truncated to 72 bytes for bcrypt compatibility."""
+    # Bcrypt has a 72-byte limit. We truncate to prevent ValueErrors.
+    return pwd_context.hash(password[:72])
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
     """Create a JWT access token"""

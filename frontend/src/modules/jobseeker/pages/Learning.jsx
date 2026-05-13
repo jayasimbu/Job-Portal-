@@ -1,91 +1,110 @@
-import React from 'react';
-import { BookOpen, Award, Code, ExternalLink, PlayCircle } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { BookOpen, Award, Code, ExternalLink, PlayCircle, ArrowRight, Loader } from 'lucide-react';
 import Button from '../../../components/ui/Button';
+import { getCurrentUserId } from '../../../core/auth/session';
+import { fetchLearningRecommendations } from '../services/jobseekerService';
 
 export default function Learning() {
-  const courses = [
-    { id: 1, title: 'Docker for Frontend Developers', platform: 'Coursera', duration: '4 weeks', level: 'Beginner' },
-    { id: 2, title: 'AWS Cloud Practitioner Essentials', platform: 'AWS Training', duration: '6 hours', level: 'Beginner' },
-    { id: 3, title: 'Advanced React Patterns', platform: 'Frontend Masters', duration: '10 hours', level: 'Advanced' }
-  ];
+  const userId = getCurrentUserId();
+  const [data, setData] = useState({ courses: [], roadmap: [], certifications: [] });
+  const [loading, setLoading] = useState(true);
 
-  const projects = [
-    { id: 1, title: 'Full-stack E-commerce with CI/CD', description: 'Build a React app and deploy it using Docker and AWS.', skills: ['Docker', 'AWS', 'React'] },
-    { id: 2, title: 'System Design Mock Architecture', description: 'Design a scalable system handling 1M users.', skills: ['System Design', 'Architecture'] }
-  ];
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        setLoading(true);
+        if (userId) {
+          const res = await fetchLearningRecommendations(userId);
+          setData(res.learning || { courses: [], roadmap: [], certifications: [] });
+        }
+      } catch (err) {
+        console.error("Failed to fetch learning recommendations:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadData();
+  }, [userId]);
 
-  const certs = [
-    { id: 1, title: 'AWS Certified Cloud Practitioner', provider: 'Amazon Web Services' },
-    { id: 2, title: 'Docker Certified Associate', provider: 'Docker Inc' }
-  ];
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[400px] gap-3">
+        <Loader className="animate-spin text-blue-600" size={32} />
+        <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Tailoring your curriculum...</p>
+      </div>
+    );
+  }
+
+  const { courses, roadmap, certifications } = data;
 
   return (
-    <div className="max-w-[1200px] mx-auto space-y-12 pb-20 px-8">
+    <div className="space-y-6 pb-16 pt-2">
       {/* HEADER */}
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Learning</h1>
-        <p className="text-slate-500 font-medium text-base">
-          Skill improvement recommendations based on your missing requirements.
-        </p>
+      <div>
+        <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight uppercase leading-none">Learning</h1>
+        <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">Recommendations based on your skill gaps</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* LEFT COLUMN: Courses & Projects */}
-        <div className="lg:col-span-8 space-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+        {/* LEFT COLUMN: Courses & Roadmap */}
+        <div className="lg:col-span-8 space-y-5">
           
           {/* COURSES */}
-          <section className="space-y-4">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="size-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
-                <PlayCircle size={20} />
+          <section className="space-y-3">
+            <div className="flex items-center gap-2">
+              <div className="size-8 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-lg flex items-center justify-center">
+                <PlayCircle size={16} />
               </div>
-              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Recommended Courses</h2>
+              <h2 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest">Recommended Courses</h2>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {courses.map(course => (
-                <div key={course.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all group flex flex-col h-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {courses.map((course, idx) => (
+                <div key={idx} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group flex flex-col h-full">
                   <div className="flex-1">
-                     <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{course.platform}</p>
-                     <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-tight mb-4">{course.title}</h3>
-                     <div className="flex flex-wrap gap-2 text-xs font-semibold">
-                        <span className="bg-slate-50 dark:bg-slate-800 px-2 py-1 rounded text-slate-600 dark:text-slate-400">{course.duration}</span>
-                        <span className="bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 px-2 py-1 rounded">{course.level}</span>
+                     <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{course.provider || 'Online Course'}</p>
+                     <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight mb-3">{course.title}</h3>
+                     <div className="flex flex-wrap gap-1.5 text-[10px] font-bold">
+                        <span className="bg-slate-50 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400">{course.duration || 'Flexible'}</span>
+                        <span className="bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded">{course.level || 'Intermediate'}</span>
                      </div>
                   </div>
-                  <Button variant="ghost" className="mt-6 w-full justify-center gap-2 group-hover:bg-slate-50 dark:group-hover:bg-slate-800 transition-colors">
-                    View Course <ExternalLink size={14} />
-                  </Button>
+                  <a href={course.url || "#"} target="_blank" rel="noreferrer" className="mt-4 w-full flex items-center justify-center gap-2 py-2 text-[10px] font-bold text-slate-500 hover:text-blue-600 uppercase tracking-widest rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                    View Course <ExternalLink size={12} />
+                  </a>
                 </div>
               ))}
             </div>
           </section>
 
-          {/* PROJECTS */}
-          <section className="space-y-4 pt-6 border-t border-slate-100 dark:border-slate-800/50">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="size-10 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center">
-                <Code size={20} />
+          {/* SKILL ROADMAP */}
+          <section className="space-y-3 pt-4 border-t border-slate-100 dark:border-slate-800/50">
+            <div className="flex items-center gap-2">
+              <div className="size-8 bg-purple-50 dark:bg-purple-900/20 text-purple-600 rounded-lg flex items-center justify-center">
+                <Code size={16} />
               </div>
-              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Project Suggestions</h2>
+              <h2 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest">Skill Roadmap</h2>
             </div>
             
-            <div className="space-y-4">
-              {projects.map(proj => (
-                <div key={proj.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-                   <div className="space-y-2">
-                      <h3 className="text-lg font-bold text-slate-900 dark:text-white">{proj.title}</h3>
-                      <p className="text-sm font-medium text-slate-500 leading-relaxed">{proj.description}</p>
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        {proj.skills.map(s => (
-                          <span key={s} className="px-2 py-1 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 rounded text-xs font-bold border border-purple-100 dark:border-purple-800/50">
+            <div className="space-y-3">
+              {roadmap.map((item, idx) => (
+                <div key={idx} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                   <div className="space-y-1.5 flex-1">
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-sm font-bold text-slate-900 dark:text-white">{item.title}</h3>
+                        <span className="text-[9px] font-bold text-purple-600 bg-purple-50 dark:bg-purple-900/20 px-2 py-0.5 rounded uppercase tracking-widest">{item.milestone || 'Upcoming'}</span>
+                      </div>
+                      <p className="text-[12px] font-medium text-slate-500 leading-relaxed">{item.description}</p>
+                      <div className="flex flex-wrap gap-1.5 mt-1">
+                        {(item.skills || []).map(s => (
+                          <span key={s} className="px-2 py-0.5 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 rounded text-[10px] font-bold border border-purple-100 dark:border-purple-800/50">
                             {s}
                           </span>
                         ))}
                       </div>
                    </div>
-                   <Button variant="secondary" className="shrink-0 h-10 px-6">
-                     Start Project
+                   <Button variant="secondary" className="shrink-0 h-8 px-4 text-[10px] font-bold uppercase tracking-widest rounded-lg">
+                     Start
                    </Button>
                 </div>
               ))}
@@ -95,23 +114,23 @@ export default function Learning() {
         </div>
 
         {/* RIGHT COLUMN: Certifications */}
-        <div className="lg:col-span-4 space-y-6">
-           <div className="bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
-             <div className="flex items-center gap-3 mb-6">
-               <div className="size-10 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center">
-                 <Award size={20} />
+        <div className="lg:col-span-4 space-y-4">
+           <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+             <div className="flex items-center gap-2 mb-4">
+               <div className="size-8 bg-amber-50 dark:bg-amber-900/20 text-amber-600 rounded-lg flex items-center justify-center">
+                 <Award size={16} />
                </div>
-               <h2 className="text-xl font-bold text-slate-900 dark:text-white">Certifications</h2>
+               <h2 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest">Certifications</h2>
              </div>
              
-             <div className="space-y-4">
-               {certs.map(cert => (
-                 <div key={cert.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-4 flex flex-col gap-2">
-                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">{cert.title}</h3>
-                    <p className="text-xs font-semibold text-slate-500">{cert.provider}</p>
-                    <Button variant="ghost" className="mt-2 w-fit h-8 px-0 text-amber-600 hover:text-amber-700 hover:bg-transparent">
-                      Explore Cert <ExternalLink size={14} className="ml-1" />
-                    </Button>
+             <div className="space-y-3">
+               {certifications.map((cert, idx) => (
+                 <div key={idx} className="bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-xl p-3 flex flex-col gap-1.5 hover:border-amber-300/50 transition-colors">
+                    <h3 className="text-[12px] font-bold text-slate-900 dark:text-white">{cert.title}</h3>
+                    <p className="text-[10px] font-bold text-slate-500">{cert.provider || cert.skill}</p>
+                    <button className="mt-1 w-fit text-[10px] font-bold text-amber-600 hover:text-amber-700 uppercase tracking-widest flex items-center gap-1">
+                      Explore <ExternalLink size={11} />
+                    </button>
                  </div>
                ))}
              </div>

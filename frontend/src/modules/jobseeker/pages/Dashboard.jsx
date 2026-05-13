@@ -82,32 +82,26 @@ export default function Dashboard() {
       }
       
       const uploadData = await uploadResp.json();
-      const resume = uploadData.resume || uploadData.data?.resume || {};
+      const resume = uploadData.resume || uploadData.data?.resume || uploadData.data || {};
       
-      // Call ATS endpoint for detailed scoring
-      const atsResp = await apiClient.post('/jobseeker/ats/resume', {
-        resume_text: resume.raw_text || resume.resume_text || '',
-        skills: resume.parsed_data?.skills || resume.skills || [],
-        experience_years: resume.parsed_data?.experience_years || resume.experience_years || 0,
-        projects: resume.parsed_data?.projects || [],
-        education: resume.parsed_data?.education || []
-      });
-
-      const atsData = atsResp.data?.data || atsResp.data || {};
-
+      // Use the analysis already performed by the backend during upload
       const finalData = {
-        optimizationScore: Math.round(atsData.ats_score || atsData.final_score || resume.ats_score || 0),
+        optimizationScore: Math.round(resume.ats_score || 0),
         parsedData: {
           skills: resume.parsed_data?.skills || resume.skills || [],
           experienceYears: resume.parsed_data?.experience_years || resume.experience_years || 0,
           projects: resume.parsed_data?.projects || [],
           education: resume.parsed_data?.education || []
         },
-        atsDetails: atsData,
-        atsBreakdown: atsData.breakdown || {},
-        missingSkills: atsData.missing_keywords || resume.missing_skills || [],
-        matchedSkills: atsData.matched_keywords || [],
-        rawText: resume.raw_text || resume.resume_text || ''
+        atsDetails: {
+          ats_score: resume.ats_score,
+          breakdown: resume.ats_breakdown || {},
+          missing_keywords: resume.missing_skills || []
+        },
+        atsBreakdown: resume.ats_breakdown || {},
+        missingSkills: resume.missing_skills || [],
+        matchedSkills: resume.matched_skills || [],
+        rawText: resume.raw_text || ''
       };
 
       if (updateResumeData) {
@@ -122,7 +116,15 @@ export default function Dashboard() {
       }
     } catch (err) {
       console.error("Resume Upload Error:", err);
-      const errMsg = err.response?.data?.message || err.response?.data?.detail || err.message || "Unknown error";
+      const errorData = err.response?.data || (err instanceof Error ? null : err);
+      let errMsg = errorData?.message || errorData?.error || errorData?.detail || err.message || "Unknown error";
+      
+      // If detail is an array of errors (FastAPI style), extract the first one
+      if (Array.isArray(errorData?.detail) && errorData.detail.length > 0) {
+        const firstError = errorData.detail[0];
+        errMsg = `${firstError.msg || 'Invalid data'} in ${firstError.loc?.join(' > ') || 'request'}`;
+      }
+      
       showToast(`Resume processing failed: ${errMsg} ❌`, "error");
     } finally {
       setIsUploading(false);
@@ -176,7 +178,9 @@ export default function Dashboard() {
     return Array.from(recommendations).slice(0, 4);
   };
 
-  const recommendedSkills = getSkillRecommendations(userSkills);
+  const recommendedSkills = (profile?.recommended_skills?.length > 0)
+    ? profile.recommended_skills 
+    : getSkillRecommendations(userSkills);
   const displayJobs = jobs.length > 0 ? jobs.slice(0, 4) : [];
 
   // ATS metrics — keys match backend scorer: skills, experience, projects, education, certifications
@@ -189,21 +193,21 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="space-y-6 pt-6">
+    <div className="space-y-5 pt-4">
       <input type="file" ref={fileInputRef} onChange={handleResumeUpload} accept=".pdf,.docx" className="hidden" />
 
       {/* 1. TOP HEADER */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight uppercase leading-none">Career Intelligence</h1>
-          <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.3em] mt-2">Real-time ATS & Match Analytics Hub</p>
+          <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight uppercase leading-none">Dashboard</h1>
+          <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">Your resume score & job matches</p>
         </div>
         <div className="flex items-center gap-3">
-          <Button variant="secondary" className="h-11 px-5 rounded-xl bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 font-black text-[11px] uppercase tracking-widest hover:bg-slate-50 shadow-sm">
-            <Search size={15} /> Search Jobs
+          <Button variant="secondary" className="h-10 px-4 rounded-xl bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 font-bold text-[11px] uppercase tracking-widest hover:bg-slate-50 shadow-sm">
+            <Search size={14} /> Search Jobs
           </Button>
-          <Button onClick={() => fileInputRef.current?.click()} disabled={isUploading} className="h-11 px-6 rounded-xl font-black text-[11px] uppercase tracking-widest shadow-lg shadow-blue-500/20">
-            {isUploading ? <Loader size={15} className="animate-spin" /> : <UploadCloud size={15} />}
+          <Button onClick={() => fileInputRef.current?.click()} disabled={isUploading} className="h-10 px-5 rounded-xl font-bold text-[11px] uppercase tracking-widest shadow-lg shadow-blue-500/20">
+            {isUploading ? <Loader size={14} className="animate-spin" /> : <UploadCloud size={14} />}
             {isUploading ? 'Analyzing...' : 'Update Resume'}
           </Button>
         </div>
@@ -211,16 +215,16 @@ export default function Dashboard() {
 
       {/* NO RESUME UPLOADED — PROMPT */}
       {!hasData && !loading && (
-        <div className="bg-gradient-to-br from-slate-900 to-slate-800 dark:from-black dark:to-slate-900 border border-slate-700 rounded-[2rem] p-10 text-white text-center shadow-xl">
-          <div className="size-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-            <UploadCloud size={32} className="text-blue-400" />
+        <div className="bg-gradient-to-br from-slate-900 to-slate-800 dark:from-black dark:to-slate-900 border border-slate-700 rounded-2xl p-8 text-white text-center shadow-xl">
+          <div className="size-14 bg-blue-600/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <UploadCloud size={28} className="text-blue-400" />
           </div>
-          <h2 className="text-2xl font-black uppercase tracking-tight mb-2">Upload Your Resume</h2>
-          <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] max-w-md mx-auto leading-relaxed mb-6">
+          <h2 className="text-xl font-black uppercase tracking-tight mb-2">Upload Your Resume</h2>
+          <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.15em] max-w-md mx-auto leading-relaxed mb-5">
             Upload your resume to get a real ATS score, skill gap analysis, and personalized job recommendations.
           </p>
-          <Button onClick={() => fileInputRef.current?.click()} disabled={isUploading} className="h-12 px-8 rounded-xl font-black text-[11px] uppercase tracking-widest shadow-lg shadow-blue-500/30 mx-auto">
-            {isUploading ? <Loader size={15} className="animate-spin" /> : <UploadCloud size={15} />}
+          <Button onClick={() => fileInputRef.current?.click()} disabled={isUploading} className="h-11 px-7 rounded-xl font-bold text-[11px] uppercase tracking-widest shadow-lg shadow-blue-500/30 mx-auto">
+            {isUploading ? <Loader size={14} className="animate-spin" /> : <UploadCloud size={14} />}
             {isUploading ? 'Analyzing...' : 'Upload Resume Now'}
           </Button>
         </div>
@@ -228,30 +232,30 @@ export default function Dashboard() {
 
       {/* 2. ATS ANALYSIS CARD — REAL DATA */}
       {hasData && (
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2rem] shadow-sm overflow-hidden flex flex-col xl:flex-row">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden flex flex-col xl:flex-row">
           
           {/* SECTION 1: ATS OVERVIEW */}
-          <div className="xl:w-[42%] p-8 border-b xl:border-b-0 xl:border-r border-slate-100 dark:border-slate-800 space-y-6 bg-slate-50/30 dark:bg-slate-800/10">
+          <div className="xl:w-[42%] p-5 border-b xl:border-b-0 xl:border-r border-slate-100 dark:border-slate-800 space-y-5 bg-slate-50/30 dark:bg-slate-800/10">
             <div className="flex items-center gap-3">
-               <div className="size-9 bg-blue-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-blue-500/10">
-                  <Star size={18} />
+               <div className="size-8 bg-blue-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-blue-500/10">
+                  <Star size={16} />
                </div>
-               <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">ATS Overview</h2>
+               <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">ATS Score</h2>
             </div>
 
-            <div className="flex items-center gap-6">
-              <div className="relative size-28 shrink-0">
+            <div className="flex items-center gap-5">
+              <div className="relative size-24 shrink-0">
                 <svg className="size-full -rotate-90" viewBox="0 0 36 36">
                   <path className="text-slate-200 dark:text-slate-800" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="2.5" />
                   <path className={score >= 70 ? "text-emerald-500" : score >= 40 ? "text-amber-500" : "text-rose-500"} d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeDasharray={`${score}, 100`} strokeLinecap="round" strokeWidth="3" />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter">{Math.round(score)}%</span>
+                  <span className="text-2xl font-black text-slate-900 dark:text-white tracking-tighter">{Math.round(score)}%</span>
                   <span className="text-[7px] font-black text-slate-400 uppercase tracking-widest">Score</span>
                 </div>
               </div>
               <div className="space-y-1">
-                <p className="text-base font-black text-slate-900 dark:text-white uppercase leading-tight tracking-tight">
+                <p className="text-sm font-black text-slate-900 dark:text-white uppercase leading-tight tracking-tight">
                   {score >= 70 ? 'Strong Profile' : score >= 40 ? 'Needs Improvement' : 'Optimization Required'}
                 </p>
                 <p className="text-[9px] font-bold text-emerald-500 uppercase tracking-widest">Target: 95% for Elite Rank</p>
@@ -261,7 +265,7 @@ export default function Dashboard() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-x-6 gap-y-4">
+            <div className="grid grid-cols-2 gap-x-5 gap-y-3">
               {atsMetrics.map(m => (
                 <div key={m.label} className="space-y-1">
                   <div className="flex justify-between items-center text-[8px] font-black uppercase tracking-widest">
@@ -277,21 +281,21 @@ export default function Dashboard() {
           </div>
 
           {/* SECTION 2: SKILL INSIGHTS — REAL DATA */}
-          <div className="xl:w-[58%] p-8 space-y-6">
+          <div className="xl:w-[58%] p-5 space-y-5">
             <div className="flex items-center gap-3">
-               <div className="size-9 bg-rose-500 rounded-lg flex items-center justify-center text-white shadow-lg shadow-rose-500/10">
-                  <Sparkles size={18} />
+               <div className="size-8 bg-rose-500 rounded-lg flex items-center justify-center text-white shadow-lg shadow-rose-500/10">
+                  <Sparkles size={16} />
                </div>
-               <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Intelligence Insights</h2>
+               <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Skill Analysis</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {/* Part A: Missing Skills — REAL */}
               <div className="space-y-3">
                 <p className="text-[9px] font-black text-rose-500 uppercase tracking-[0.3em] border-b border-rose-100 dark:border-rose-900/30 pb-2">
-                  Missing Capabilities {missingSkills.length > 0 && `(${missingSkills.length})`}
+                  Missing Skills {missingSkills.length > 0 && `(${missingSkills.length})`}
                 </p>
-                <div className="space-y-2.5">
+                <div className="space-y-2">
                   {missingSkills.length > 0 ? (
                     missingSkills.slice(0, 5).map(skill => (
                       <div key={skill} className="flex items-center gap-2.5 group">
@@ -307,8 +311,8 @@ export default function Dashboard() {
 
               {/* Part B: Recommended Skills — COMPUTED */}
               <div className="space-y-3">
-                <p className="text-[9px] font-black text-blue-500 uppercase tracking-[0.3em] border-b border-blue-100 dark:border-blue-900/30 pb-2">Growth Recommendations</p>
-                <div className="space-y-2.5">
+                <p className="text-[9px] font-black text-blue-500 uppercase tracking-[0.3em] border-b border-blue-100 dark:border-blue-900/30 pb-2">Recommended Skills</p>
+                <div className="space-y-2">
                   {recommendedSkills.map(skill => (
                     <div key={skill} className="flex items-center gap-2.5 group">
                       <div className="animate-pulse">
@@ -323,8 +327,8 @@ export default function Dashboard() {
 
             {/* Detected Skills Preview */}
             {userSkills.length > 0 && (
-              <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
-                <p className="text-[8px] font-black text-slate-400 uppercase tracking-[0.3em] mb-3">Your Skills ({userSkills.length})</p>
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800">
+                <p className="text-[8px] font-black text-slate-400 uppercase tracking-[0.3em] mb-2">Your Skills ({userSkills.length})</p>
                 <div className="flex flex-wrap gap-1.5">
                   {userSkills.slice(0, 12).map(skill => (
                     <span key={skill} className="text-[9px] font-bold text-blue-600 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 px-2.5 py-1 rounded-md uppercase tracking-wider border border-blue-100 dark:border-blue-800/30">
@@ -338,9 +342,9 @@ export default function Dashboard() {
               </div>
             )}
 
-            <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
-              <Button onClick={() => navigate('/platform/jobseeker/learning')} className="w-full h-11 gap-2 text-[9px] font-black uppercase tracking-[0.2em] bg-slate-900 dark:bg-black text-white hover:bg-slate-800 rounded-xl transition-all">
-                Launch Learning Roadmap <ArrowRight size={13} />
+            <div className="pt-3 border-t border-slate-100 dark:border-slate-800">
+              <Button onClick={() => navigate('/platform/jobseeker/learning')} className="w-full h-10 gap-2 text-[9px] font-black uppercase tracking-[0.2em] bg-slate-900 dark:bg-black text-white hover:bg-slate-800 rounded-xl transition-all">
+                View Learning <ArrowRight size={13} />
               </Button>
             </div>
           </div>
@@ -348,18 +352,18 @@ export default function Dashboard() {
       )}
 
       {/* 4. RECOMMENDED JOBS — VERTICAL LIST FEED */}
-      <div className="space-y-4">
+      <div className="space-y-3">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-lg font-black text-slate-900 dark:text-white uppercase tracking-tight">Top Match Opportunities</h2>
-            <div className="h-0.5 w-8 bg-blue-600 rounded-full mt-1.5"></div>
+            <h2 className="text-base font-black text-slate-900 dark:text-white uppercase tracking-tight">Recommended Jobs</h2>
+            <div className="h-0.5 w-8 bg-blue-600 rounded-full mt-1"></div>
           </div>
-          <Button onClick={() => navigate('/platform/jobseeker/jobs')} variant="secondary" className="h-9 px-4 gap-2 text-[10px] font-black uppercase tracking-widest border-slate-200 dark:border-slate-800 rounded-lg">
-            Explore All <ArrowRight size={12} />
+          <Button onClick={() => navigate('/platform/jobseeker/jobs')} variant="secondary" className="h-8 px-4 gap-2 text-[10px] font-bold uppercase tracking-widest border-slate-200 dark:border-slate-800 rounded-lg">
+            View All <ArrowRight size={12} />
           </Button>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-2.5">
           {displayJobs.length > 0 ? displayJobs.map((job, idx) => {
             const match = job.matchScore || job.match_score || 0;
             const jobSkills = job.required_skills || job.skills || [];
@@ -368,59 +372,59 @@ export default function Dashboard() {
             return (
               <div 
                 key={job.id || idx} 
-                className="group bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800/50 rounded-2xl p-5 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-6"
+                className="group bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800/50 rounded-xl p-4 hover:border-blue-500/50 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4"
               >
-                <div className="flex items-center gap-5 flex-1">
-                  <div className="size-14 shrink-0 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 flex items-center justify-center font-black text-xl text-blue-600 transition-transform group-hover:scale-105">
+                <div className="flex items-center gap-4 flex-1">
+                  <div className="size-11 shrink-0 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 flex items-center justify-center font-black text-lg text-blue-600 transition-transform group-hover:scale-105">
                     {job.company?.[0] || 'T'}
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-base font-black text-slate-900 dark:text-white leading-tight truncate group-hover:text-blue-600 transition-colors">{job.title}</h3>
-                    <div className="flex items-center gap-3 mt-1.5">
+                    <h3 className="text-sm font-black text-slate-900 dark:text-white leading-tight truncate group-hover:text-blue-600 transition-colors">{job.title}</h3>
+                    <div className="flex items-center gap-2 mt-1">
                        <span className="text-xs font-bold text-slate-500 uppercase tracking-wide">{job.company || 'Company'}</span>
                        <span className="text-slate-300">•</span>
-                       <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
-                         <MapPin size={12} className="text-slate-400" /> {job.location || 'Remote'}
+                       <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1">
+                         <MapPin size={11} className="text-slate-400" /> {job.location || 'Remote'}
                        </span>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-6">
+                <div className="flex flex-wrap items-center gap-4">
                   {/* Match Info */}
-                  <div className="flex flex-col items-center px-6 border-x border-slate-50 dark:border-slate-800">
-                    <span className={`text-xl font-black tracking-tighter ${match >= 70 ? 'text-emerald-600' : match >= 40 ? 'text-amber-600' : 'text-rose-600'}`}>{Math.round(match)}%</span>
-                    <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest mt-0.5">Match Score</span>
+                  <div className="flex flex-col items-center px-4 border-x border-slate-50 dark:border-slate-800">
+                    <span className={`text-lg font-black tracking-tighter ${match >= 70 ? 'text-emerald-600' : match >= 40 ? 'text-amber-600' : 'text-rose-600'}`}>{Math.round(match)}%</span>
+                    <span className="text-[7px] font-black text-slate-400 uppercase tracking-widest">Match</span>
                   </div>
 
                   {/* Tech Stack Hints — REAL */}
-                  <div className="hidden lg:flex items-center gap-2">
+                  <div className="hidden lg:flex items-center gap-1.5">
                     {matchedJobSkills.length > 0 && (
-                      <span className="text-[8px] font-black text-emerald-500 bg-emerald-50 dark:bg-emerald-500/10 px-2 py-1 rounded-md uppercase tracking-widest border border-emerald-100 dark:border-emerald-500/20">
-                        Matched: {matchedJobSkills.slice(0, 3).join(', ')}
+                      <span className="text-[8px] font-bold text-emerald-500 bg-emerald-50 dark:bg-emerald-500/10 px-2 py-0.5 rounded-md uppercase tracking-widest border border-emerald-100 dark:border-emerald-500/20">
+                        ✓ {matchedJobSkills.slice(0, 3).join(', ')}
                       </span>
                     )}
                     {missingJobSkills.length > 0 && (
-                      <span className="text-[8px] font-black text-rose-500 bg-rose-50 dark:bg-rose-500/10 px-2 py-1 rounded-md uppercase tracking-widest border border-rose-100 dark:border-rose-500/20">
-                        Missing: {missingJobSkills.slice(0, 2).join(', ')}
+                      <span className="text-[8px] font-bold text-rose-500 bg-rose-50 dark:bg-rose-500/10 px-2 py-0.5 rounded-md uppercase tracking-widest border border-rose-100 dark:border-rose-500/20">
+                        ✗ {missingJobSkills.slice(0, 2).join(', ')}
                       </span>
                     )}
                   </div>
 
                   {/* Actions */}
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2">
                     <Button 
                       variant="secondary" 
                       onClick={() => navigate(`/platform/jobseeker/companies/${job.id}`)} 
-                      className="h-10 px-5 rounded-xl font-black text-[10px] uppercase tracking-widest border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800"
+                      className="h-9 px-4 rounded-xl font-bold text-[10px] uppercase tracking-widest border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800"
                     >
                       Details
                     </Button>
                     <Button 
                       onClick={() => navigate(`/platform/jobseeker/jobs/${job.id}`)} 
-                      className="h-10 px-6 rounded-xl font-black text-[10px] uppercase tracking-widest shadow-blue-500/10 hover:shadow-blue-500/20"
+                      className="h-9 px-5 rounded-xl font-bold text-[10px] uppercase tracking-widest shadow-blue-500/10 hover:shadow-blue-500/20"
                     >
-                      Apply Now
+                      Apply
                     </Button>
                   </div>
                 </div>
@@ -428,9 +432,9 @@ export default function Dashboard() {
             );
           }) : (
             !loading && (
-              <div className="text-center py-12 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800">
-                <Briefcase size={32} className="text-slate-200 mx-auto mb-4" />
-                <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest">
+              <div className="text-center py-10 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800">
+                <Briefcase size={28} className="text-slate-200 mx-auto mb-3" />
+                <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">
                   {hasData ? 'No matching jobs found yet' : 'Upload resume to see matched jobs'}
                 </p>
               </div>

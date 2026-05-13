@@ -48,8 +48,8 @@ class ATSResumePayload(BaseModel):
     resume_text: str
     skills: List[str] = []
     experience_years: float = 0
-    projects: List[str] = []
-    education: List[str] = []
+    projects: List[Any] = []
+    education: Any = None
 
 
 class ATSJDPayload(BaseModel):
@@ -95,7 +95,7 @@ async def upsert_profile(
     payload: ProfilePayload,
     service: JobSeekerService = Depends(get_jobseeker_service),
 ) -> Dict[str, Any]:
-    profile = service.upsert_profile(user_id, payload.model_dump())
+    profile = service.update_profile(user_id, payload.model_dump())
     return {"message": "profile updated", "profile": model_to_dict(profile)}
 
 

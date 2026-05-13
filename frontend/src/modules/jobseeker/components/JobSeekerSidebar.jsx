@@ -5,7 +5,7 @@ import Logo from '../../../core/components/Logo';
 
 const NAV_ITEMS = [
   { icon: 'grid_view', label: 'Dashboard', to: '/platform/jobseeker/dashboard', end: true },
-  { icon: 'analytics', label: 'JD Match', to: '/platform/jobseeker/jd-match-analysis', end: true },
+  { icon: 'analytics', label: 'Resume Match', to: '/platform/jobseeker/jd-match-analysis', end: true },
   { icon: 'search', label: 'Jobs', to: '/platform/jobseeker/jobs', end: false },
   { icon: 'work_outline', label: 'Applications', to: '/platform/jobseeker/applications', end: false },
   { icon: 'school', label: 'Learning', to: '/platform/jobseeker/learning', end: false },

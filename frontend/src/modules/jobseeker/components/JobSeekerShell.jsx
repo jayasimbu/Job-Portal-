@@ -24,7 +24,7 @@ const styles = {
   subText: { fontWeight: 800, fontSize: '9px', color: '#64748b', textTransform: 'uppercase', letterSpacing: '1px', marginTop: '2px' },
   topNav: { display: 'flex', gap: '24px', alignItems: 'center' },
   body: { display: 'block' },
-  main: { padding: '40px', maxWidth: '1400px', margin: '0 auto', width: '100%' },
+  main: { padding: '24px', maxWidth: '1440px', margin: '0 auto', width: '100%' },
   search: {
     width: '240px',
     border: '1px solid var(--border)',

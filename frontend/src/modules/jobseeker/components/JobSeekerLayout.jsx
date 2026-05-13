@@ -12,8 +12,8 @@ const JobSeekerLayout = ({ children }) => {
 
       {/* Main Content Area */}
       <main className="jobseeker-content-area flex flex-col min-h-screen">
-        <div className="flex-1 p-4 lg:p-8">
-          <div className="max-w-[1600px] mx-auto">
+        <div className="flex-1 p-4 lg:p-6">
+          <div className="max-w-[1440px] mx-auto">
             {children}
           </div>
         </div>

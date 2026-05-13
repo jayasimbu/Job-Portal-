@@ -2,21 +2,8 @@ import React, { useState } from 'react';
 import { useResume } from '../context/ResumeContext';
 import { matchJd, fetchLearningRecommendations } from '../services/jobseekerService';
 import { useToast } from '../../../core/context/ToastContext';
-
-// Import Global UI Components
 import Button from '../../../components/ui/Button';
-import Card, { CardBody, CardHeader, CardFooter } from '../../../components/ui/Card';
-import Badge from '../../../components/ui/Badge';
-import { Heading, Text } from '../../../components/ui/Typography';
-
-// Import Jobseeker Specific Components
-import { 
-  StatCard, 
-  SkillChip, 
-  ATSCircle, 
-  SectionHeader, 
-  ProgressBar 
-} from '../components/DesignSystem';
+import { CheckCircle2, XCircle, Zap, ArrowRight, Loader, FileText, ClipboardList } from 'lucide-react';
 
 const JDMatch = () => {
   const { resumeData } = useResume();
@@ -56,7 +43,7 @@ const JDMatch = () => {
         setRecommendations(recs);
       }
 
-      showToast("Intelligence analysis complete! 🎯");
+      showToast("Analysis complete! 🎯");
     } catch (err) {
       console.error("Match analysis failed", err);
       showToast("Analysis failed ❌");
@@ -65,184 +52,177 @@ const JDMatch = () => {
     }
   };
 
+  const hasResume = !!resumeData?.rawText;
+
   return (
-    <div className="max-w-7xl mx-auto space-y-8 pb-20 px-4 sm:px-6">
+    <div className="max-w-5xl mx-auto space-y-5 pb-16 px-4 sm:px-6 pt-2">
       {/* HEADER */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div className="space-y-1">
-          <Heading level={1}>Targeted JD Match</Heading>
-          <Text variant="lead">Precision AI analysis against specific job requirements.</Text>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight uppercase leading-none">Resume Match</h1>
+          <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">Compare your resume against a job description</p>
         </div>
-        <Badge variant={resumeData?.rawText ? 'success' : 'danger'} className="h-fit">
-          {resumeData?.rawText ? 'Resume Loaded' : 'Resume Missing'}
-        </Badge>
+        <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest ${hasResume ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600' : 'bg-rose-50 dark:bg-rose-900/20 text-rose-500'}`}>
+          <FileText size={13} />
+          {hasResume ? 'Resume Loaded' : 'Resume Missing'}
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 min-h-[600px]">
-        {/* LEFT: JOB DESCRIPTION */}
-        <Card className="flex flex-col">
-          <CardHeader>
-            <SectionHeader title="Job Description" icon="description" />
-          </CardHeader>
-          <CardBody className="flex-1 flex flex-col space-y-6">
-            <textarea 
-              value={jdText}
-              onChange={(e) => setJdText(e.target.value)}
-              placeholder="Paste the full job description here (Responsibilities, Requirements, Skills)..."
-              className="flex-1 w-full p-6 bg-slate-50 border border-slate-200 rounded-2xl resize-none outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-600 transition-all text-sm font-medium leading-relaxed"
-            />
-            <Button 
-              onClick={handleAnalyze}
-              disabled={analyzing || !jdText}
-              size="lg"
-              className="w-full"
-            >
-              {analyzing ? (
-                 <>
-                    <div className="size-5 rounded-full border-2 border-white/30 border-t-white  mr-3"></div>
-                    Running AI Match Engine...
-                 </>
-              ) : (
-                 <>
-                    <span className="material-symbols-outlined mr-2">auto_awesome</span>
-                    Start Intelligence Match
-                 </>
-              )}
-            </Button>
-          </CardBody>
-        </Card>
-
-        {/* RIGHT: RESUME ANALYSIS / QUEUE */}
-        <Card className="flex flex-col">
-          <CardHeader>
-            <SectionHeader title="Intelligence Output" icon="psychology" />
-          </CardHeader>
-          <CardBody className="flex-1 overflow-y-auto custom-scrollbar">
-            {matchResult ? (
-              <div className="space-y-8">
-                {/* Score Summary */}
-                <div className="flex items-center justify-between p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                  <div className="space-y-1">
-                    <Text variant="small" className="font-bold uppercase tracking-wider text-slate-500">Match Percentage</Text>
-                    <Heading level={2} className="text-blue-600">{matchResult.matchPercentage}%</Heading>
-                  </div>
-                  <ATSCircle value={matchResult.matchPercentage} size={100} />
-                </div>
-
-                {/* AI Feedback */}
-                <div className="space-y-3">
-                   <Text variant="small" className="font-bold uppercase tracking-widest text-slate-400">AI Strategic Feedback</Text>
-                   <div className="p-6 bg-blue-50 border border-blue-100 rounded-2xl">
-                      <Text className="text-slate-700 italic font-medium leading-relaxed">
-                        "{matchResult.feedback || "Your profile shows strong alignment with the core requirements. Focus on highlighting your technical leadership to stand out."}"
-                      </Text>
-                   </div>
-                </div>
-
-                {/* Skills Analysis */}
-                <div className="grid grid-cols-1 gap-6">
-                  <div className="space-y-3">
-                    <Text variant="small" className="font-bold uppercase tracking-widest text-slate-400">Matched Skills</Text>
-                    <div className="flex flex-wrap gap-2">
-                      {matchResult.matchedSkills.map((s, i) => <SkillChip key={i} label={s} variant="success" />)}
-                    </div>
-                  </div>
-                  <div className="space-y-3">
-                    <Text variant="small" className="font-bold uppercase tracking-widest text-slate-400">Missing Skills</Text>
-                    <div className="flex flex-wrap gap-2">
-                      {matchResult.missingSkills.map((s, i) => <SkillChip key={i} label={s} variant="danger" />)}
-                    </div>
-                  </div>
-                </div>
+      {/* INPUT SECTION — Side by Side */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* LEFT: Resume Status */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4">
+          <div className="flex items-center gap-2">
+            <FileText size={16} className="text-blue-600" />
+            <h3 className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-widest">Your Resume</h3>
+          </div>
+          {hasResume ? (
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 text-emerald-600">
+                <CheckCircle2 size={16} />
+                <span className="text-sm font-bold">Resume loaded from Dashboard</span>
               </div>
-            ) : (
-              <div className="h-full flex flex-col items-center justify-center text-center space-y-6">
-                <div className="size-20 bg-slate-50 rounded-3xl flex items-center justify-center text-slate-300 border border-dashed border-slate-200">
-                  <span className="material-symbols-outlined text-4xl">analytics</span>
-                </div>
-                <div className="space-y-2">
-                  <Heading level={4}>Awaiting Input</Heading>
-                  <Text variant="small" className="max-w-[240px]">Paste a job description on the left to begin the semantic analysis engine.</Text>
-                </div>
-              </div>
-            )}
-          </CardBody>
-          {matchResult && (
-            <CardFooter>
-              <Button variant="secondary" className="w-full" onClick={() => window.print()}>
-                <span className="material-symbols-outlined mr-2 text-sm">download</span>
-                Export Report
-              </Button>
-            </CardFooter>
-          )}
-        </Card>
-      </div>
-
-      {/* LEARNING RECOMMENDATIONS */}
-      {matchResult && matchResult.missingSkills.length > 0 && (
-        <Card className="slide-in-from-bottom-6 ">
-          <CardHeader>
-            <SectionHeader title="Bridge the Gap: Learning Recommendations" icon="school" />
-          </CardHeader>
-          <CardBody>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {recommendations.length > 0 ? (
-                recommendations.map((rec, i) => (
-                  <div key={i} className="p-6 bg-slate-50 border border-slate-100 rounded-2xl hover:border-blue-200 transition-all group">
-                    <div className="flex justify-between items-start mb-4">
-                      <div className="size-10 bg-white rounded-xl flex items-center justify-center text-blue-600 shadow-sm border border-slate-100">
-                        <span className="material-symbols-outlined">library_books</span>
-                      </div>
-                      <Badge variant="info">{rec.level || 'Intermediate'}</Badge>
-                    </div>
-                    <Heading level={4} className="group-hover:text-blue-600 transition-colors mb-2 line-clamp-1">{rec.title}</Heading>
-                    <Text variant="small" className="text-slate-500 font-bold mb-4">{rec.provider} • {rec.duration || '8 hours'}</Text>
-                    
-                    <div className="space-y-3 mb-6">
-                       <div className="flex items-center gap-2">
-                          <span className="material-symbols-outlined text-xs text-emerald-500">trending_up</span>
-                          <span className="text-[10px] font-black uppercase tracking-widest text-emerald-600">{rec.impact || '+10% Match'}</span>
-                       </div>
-                       <Text variant="small" className="italic text-slate-500">"{rec.matchReason}"</Text>
-                    </div>
-                    
-                    <Button variant="outline" size="sm" className="w-full">
-                      Start Learning
-                      <span className="material-symbols-outlined text-sm ml-2">open_in_new</span>
-                    </Button>
+              {resumeData?.parsedData?.skills?.length > 0 && (
+                <div>
+                  <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-2">Detected Skills ({resumeData.parsedData.skills.length})</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {resumeData.parsedData.skills.slice(0, 8).map(s => (
+                      <span key={s} className="text-[9px] font-bold text-blue-600 bg-blue-50 dark:bg-blue-900/20 px-2 py-0.5 rounded uppercase tracking-wider border border-blue-100 dark:border-blue-800/30">{s}</span>
+                    ))}
+                    {resumeData.parsedData.skills.length > 8 && (
+                      <span className="text-[9px] font-bold text-slate-400 px-1">+{resumeData.parsedData.skills.length - 8}</span>
+                    )}
                   </div>
-                ))
-              ) : (
-                <div className="col-span-full py-12 text-center text-slate-400 font-bold italic">
-                  Generating custom learning path...
                 </div>
               )}
             </div>
-          </CardBody>
-        </Card>
-      )}
+          ) : (
+            <div className="text-center py-6">
+              <FileText size={32} className="text-slate-200 mx-auto mb-3" />
+              <p className="text-sm font-bold text-slate-500">Upload your resume in the Dashboard first</p>
+              <p className="text-[10px] text-slate-400 mt-1">Go to Dashboard → Update Resume</p>
+            </div>
+          )}
+        </div>
 
-      {/* BOTTOM: ANALYTICS GRID */}
+        {/* RIGHT: JD Input */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4">
+          <div className="flex items-center gap-2">
+            <ClipboardList size={16} className="text-indigo-600" />
+            <h3 className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-widest">Job Description</h3>
+          </div>
+          <textarea 
+            value={jdText}
+            onChange={(e) => setJdText(e.target.value)}
+            placeholder="Paste the full job description here (Responsibilities, Requirements, Skills)..."
+            className="w-full h-40 p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl resize-none outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-600 transition-all text-sm font-medium leading-relaxed"
+          />
+        </div>
+      </div>
+
+      {/* ANALYZE BUTTON */}
+      <Button 
+        onClick={handleAnalyze}
+        disabled={analyzing || !jdText || !hasResume}
+        className="w-full h-12 rounded-xl text-sm font-black uppercase tracking-widest shadow-lg shadow-blue-500/20"
+      >
+        {analyzing ? (
+           <>
+              <Loader size={16} className="animate-spin mr-2" />
+              Analyzing...
+           </>
+        ) : (
+           'Analyze Match'
+        )}
+      </Button>
+
+      {/* RESULTS — Only after analysis */}
       {matchResult && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 duration-500">
-          <Card>
-            <CardBody className="space-y-6">
-              <StatCard label="Technical Fit" value={matchResult.matchPercentage} suffix="%" />
-              <ProgressBar value={matchResult.matchPercentage} />
-            </CardBody>
-          </Card>
-          <Card>
-            <CardBody className="space-y-6">
-              <StatCard label="Market Relevance" value={85} suffix="%" color="text-emerald-600" />
-              <ProgressBar value={85} />
-            </CardBody>
-          </Card>
-          <Card>
-            <CardBody className="space-y-6">
-              <StatCard label="Skill Density" value={Math.min(matchResult.matchedSkills.length * 12, 100)} suffix="%" color="text-blue-600" />
-              <ProgressBar value={Math.min(matchResult.matchedSkills.length * 12, 100)} />
-            </CardBody>
-          </Card>
+        <div className="space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          
+          {/* Score + Skills Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* ATS Score */}
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 text-center">
+              <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-3">ATS Score</p>
+              <div className="relative size-20 mx-auto">
+                <svg className="size-full -rotate-90" viewBox="0 0 36 36">
+                  <path className="text-slate-200 dark:text-slate-800" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3" />
+                  <path className={matchResult.matchPercentage >= 70 ? "text-emerald-500" : matchResult.matchPercentage >= 40 ? "text-amber-500" : "text-rose-500"} d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeDasharray={`${matchResult.matchPercentage}, 100`} strokeLinecap="round" strokeWidth="3.5" />
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-2xl font-black text-slate-900 dark:text-white tracking-tighter">{matchResult.matchPercentage}%</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Matched Skills */}
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+              <p className="text-[9px] font-black text-emerald-500 uppercase tracking-widest mb-3">Matched Skills ({matchResult.matchedSkills.length})</p>
+              <div className="flex flex-wrap gap-1.5">
+                {matchResult.matchedSkills.map((s, i) => (
+                  <span key={i} className="flex items-center gap-1 text-[10px] font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-900/20 px-2 py-0.5 rounded border border-emerald-100 dark:border-emerald-800/30">
+                    <CheckCircle2 size={10} /> {s}
+                  </span>
+                ))}
+                {matchResult.matchedSkills.length === 0 && <p className="text-[10px] text-slate-400 italic">None detected</p>}
+              </div>
+            </div>
+
+            {/* Missing Skills */}
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+              <p className="text-[9px] font-black text-rose-500 uppercase tracking-widest mb-3">Missing Skills ({matchResult.missingSkills.length})</p>
+              <div className="flex flex-wrap gap-1.5">
+                {matchResult.missingSkills.map((s, i) => (
+                  <span key={i} className="flex items-center gap-1 text-[10px] font-bold text-rose-500 bg-rose-50 dark:bg-rose-900/20 px-2 py-0.5 rounded border border-rose-100 dark:border-rose-800/30">
+                    <XCircle size={10} /> {s}
+                  </span>
+                ))}
+                {matchResult.missingSkills.length === 0 && <p className="text-[10px] text-slate-400 italic">All skills matched!</p>}
+              </div>
+            </div>
+
+            {/* Recommendations */}
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+              <p className="text-[9px] font-black text-blue-500 uppercase tracking-widest mb-3">Recommended</p>
+              {recommendations.length > 0 ? (
+                <div className="space-y-2">
+                  {recommendations.slice(0, 3).map((rec, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <Zap size={11} className="text-amber-500 fill-amber-500 shrink-0" />
+                      <span className="text-[10px] font-bold text-slate-700 dark:text-slate-300 truncate">{rec.title}</span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  {matchResult.missingSkills.slice(0, 3).map((s, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <Zap size={11} className="text-amber-500 fill-amber-500 shrink-0" />
+                      <span className="text-[10px] font-bold text-slate-700 dark:text-slate-300">Learn {s}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* AI Feedback */}
+          {matchResult.feedback && (
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+              <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">Feedback</p>
+              <p className="text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                "{matchResult.feedback}"
+              </p>
+            </div>
+          )}
+
+          {/* Export */}
+          <div className="flex justify-end">
+            <Button variant="secondary" onClick={() => window.print()} className="h-9 px-5 rounded-xl text-[10px] font-bold uppercase tracking-widest">
+              Export Report
+            </Button>
+          </div>
         </div>
       )}
     </div>
@@ -250,6 +230,3 @@ const JDMatch = () => {
 };
 
 export default JDMatch;
-
-
-
