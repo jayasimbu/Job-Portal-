@@ -109,26 +109,51 @@ class EmployerService:
     def upsert_company_profile(self, user_id: int, payload: Dict[str, Any]):
         now = datetime.utcnow()
         existing = self.profiles.find_one({"user_id": user_id})
+        
+        # Define fields to capture from the UI
+        fields = {
+            "company_name", "company_type", "domain", "industry", "website", 
+            "linkedin", "location", "size", "description", "hr_name", 
+            "designation", "email", "phone", "preferred_skills", 
+            "job_categories", "hiring_mode", "hiring_locations", "hiring_frequency",
+            "logo_url"
+        }
+        
+        profile_data = {k: payload.get(k) for k in fields if payload.get(k) is not None}
+        profile_data["updated_at"] = now
+        profile_data["user_id"] = user_id
+        
         if not existing:
-            doc = {
-                "id": get_next_sequence(self.db, "employer_profiles"),
-                "user_id": user_id,
-                "company_name": payload.get("company_name", ""),
-                "website": payload.get("website"),
-                "description": payload.get("description"),
-                "verified": bool(payload.get("verified", False)),
-                "created_at": now,
-                "updated_at": now,
-            }
-            self.profiles.insert_one(doc)
-            profile = doc_to_entity(doc)
+            profile_data["id"] = get_next_sequence(self.db, "employer_profiles")
+            profile_data["created_at"] = now
+            self.profiles.insert_one(profile_data)
         else:
-            update = {k: v for k, v in payload.items() if k in {"company_name", "website", "description", "verified"}}
-            update["updated_at"] = now
-            self.profiles.update_one({"user_id": user_id}, {"$set": update})
-            profile = doc_to_entity(self.profiles.find_one({"user_id": user_id}))
+            self.profiles.update_one({"user_id": user_id}, {"$set": profile_data})
+
+            
+        profile = doc_to_entity(self.profiles.find_one({"user_id": user_id}))
         self._sync_domain_snapshot(user_id)
         return profile
+
+    def save_company_logo(self, user_id: int, logo_url: str):
+        """Update or create the logo URL for a company profile."""
+        now = datetime.utcnow()
+        # We use update_one with upsert=True to ensure it works even if profile doesn't exist
+        # But we need an 'id' if we're creating a new one. 
+        # So we check first or use a more complex $setOnInsert
+        
+        self.profiles.update_one(
+            {"user_id": int(user_id)},
+            {
+                "$set": {"logo_url": logo_url, "updated_at": now},
+                "$setOnInsert": {"id": get_next_sequence(self.db, "employer_profiles"), "created_at": now}
+            },
+            upsert=True
+        )
+        self._sync_domain_snapshot(user_id)
+        return logo_url
+
+
 
     def create_job_posting(self, payload: Dict[str, Any]):
         now = datetime.utcnow()

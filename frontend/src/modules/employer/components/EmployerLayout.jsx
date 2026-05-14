@@ -6,6 +6,8 @@ import { getCurrentUser } from '../../../core/auth/session';
 import Sidebar from '../../../core/components/Sidebar';
 import ProfileDropdown from '../../../core/components/ProfileDropdown';
 import Logo from '../../../core/components/Logo';
+import { fetchCompanyProfile } from '../services/employerService';
+import appConfig from '../../../core/config/appConfig';
 
 const EmployerLayout = ({ children, title }) => {
   const { isDark, toggleTheme } = useTheme();
@@ -15,15 +17,38 @@ const EmployerLayout = ({ children, title }) => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [companyLogo, setCompanyLogo] = useState(null);
+
+  const loadLogo = async () => {
+    try {
+      const data = await fetchCompanyProfile(user.id);
+      if (data?.profile?.logo_url) {
+        const baseUrl = appConfig.api.baseUrl.replace('/api', '');
+        setCompanyLogo(`${baseUrl}${data.profile.logo_url}?t=${Date.now()}`);
+      } else {
+        setCompanyLogo(null);
+      }
+    } catch (err) {
+
+      setCompanyLogo(null);
+    }
+  };
 
   useEffect(() => {
+    loadLogo();
+    window.addEventListener('logoUpdated', loadLogo);
+    
     const mainContent = document.getElementById('employer-main-content');
     const handleScroll = () => {
       setScrolled(mainContent?.scrollTop > 20);
     };
     mainContent?.addEventListener('scroll', handleScroll);
-    return () => mainContent?.removeEventListener('scroll', handleScroll);
+    return () => {
+      mainContent?.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('logoUpdated', loadLogo);
+    };
   }, []);
+
 
   const isHome = location.pathname === '/platform/employer/home';
 
@@ -65,9 +90,14 @@ const EmployerLayout = ({ children, title }) => {
                   </div>
                 </div>
                 <div className="relative">
-                   <div className="size-11 bg-slate-900 dark:bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-sm shadow-xl shadow-blue-500/10 transition-all group-hover:scale-110 group-hover:rotate-3 border-2 border-white dark:border-slate-700">
-                    {(user?.full_name || user?.email || 'E')[0].toUpperCase()}
+                   <div className="size-11 bg-slate-900 dark:bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-sm shadow-xl shadow-blue-500/10 transition-all group-hover:scale-110 group-hover:rotate-3 border-2 border-white dark:border-slate-700 overflow-hidden">
+                    {companyLogo ? (
+                      <img src={companyLogo} alt="Logo" className="size-full object-cover" />
+                    ) : (
+                      (user?.full_name || user?.email || 'E')[0].toUpperCase()
+                    )}
                   </div>
+
                   <div className="absolute -bottom-0.5 -right-0.5 size-3.5 bg-emerald-500 rounded-full border-2 border-white dark:border-slate-800"></div>
                 </div>
               </div>

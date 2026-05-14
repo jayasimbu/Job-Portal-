@@ -1,7 +1,10 @@
 from typing import Any, Dict, List, Optional
+from fastapi import APIRouter, Depends, HTTPException, Query, File, UploadFile
 
-from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field
+import os
+from pathlib import Path
+
 
 from core.security import require_roles, get_current_user_db
 from core.serialization import model_to_dict, models_to_dict
@@ -10,8 +13,25 @@ from modules.employer.service import EmployerService, get_employer_service
 
 class CompanyPayload(BaseModel):
     company_name: str
+    company_type: Optional[str] = None
+    domain: Optional[str] = None
+    industry: Optional[str] = None
     website: Optional[str] = None
+    linkedin: Optional[str] = None
+    location: Optional[str] = None
+    size: Optional[str] = None
     description: Optional[str] = None
+    logo_url: Optional[str] = None
+    hr_name: Optional[str] = None
+    designation: Optional[str] = None
+    email: Optional[str] = None
+    phone: Optional[str] = None
+    preferred_skills: Optional[str] = None
+    job_categories: Optional[str] = None
+    hiring_mode: Optional[str] = None
+    hiring_locations: Optional[str] = None
+    hiring_frequency: Optional[str] = None
+
 
 
 class JobPayload(BaseModel):
@@ -50,14 +70,59 @@ class HiringPolicyPayload(BaseModel):
 router = APIRouter(dependencies=[Depends(require_roles("employer", "admin"))])
 
 
+
+
+@router.get("/company/{user_id}")
+def get_company(
+    user_id: int,
+    service: EmployerService = Depends(get_employer_service),
+) -> Dict[str, Any]:
+    profile = service.profiles.find_one({"user_id": user_id})
+    if not profile:
+        raise HTTPException(status_code=404, detail="Profile not found")
+    return {"profile": model_to_dict(profile)}
+
+
 @router.put("/company/{user_id}")
-async def upsert_company(
+
+def upsert_company(
     user_id: int,
     payload: CompanyPayload,
     service: EmployerService = Depends(get_employer_service),
 ) -> Dict[str, Any]:
     profile = service.upsert_company_profile(user_id, payload.model_dump())
     return {"message": "company profile updated", "profile": model_to_dict(profile)}
+
+
+@router.post("/company/logo/{user_id}")
+async def upload_logo(
+    user_id: int,
+    file: UploadFile = File(...),
+    service: EmployerService = Depends(get_employer_service),
+) -> Dict[str, Any]:
+    # Ensure it is an image
+    if not file.content_type.startswith("image/"):
+        raise HTTPException(status_code=400, detail="Only image files are allowed")
+    
+    # Save file
+    file_ext = os.path.splitext(file.filename)[1] or ".png"
+    # For simplicity, we use .png as extension or keep original
+    filename = f"logo_{user_id}{file_ext}"
+    
+    # Define storage path
+    storage_dir = Path(__file__).resolve().parents[3] / "database" / "employer" / "logos"
+    storage_dir.mkdir(parents=True, exist_ok=True)
+    file_path = storage_dir / filename
+    
+    with open(file_path, "wb") as f:
+        f.write(await file.read())
+        
+    # Update profile in DB
+    logo_url = f"/database/employer/logos/{filename}"
+    service.save_company_logo(user_id, logo_url)
+    
+    return {"message": "logo uploaded", "logo_url": logo_url}
+
 
 
 @router.post("/jobs")

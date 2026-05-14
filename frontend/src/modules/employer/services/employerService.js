@@ -1,9 +1,25 @@
 import apiClient from '../../../core/api/apiClient';
 
+export const fetchCompanyProfile = async (userId) => {
+  const response = await apiClient.get(`/employer/company/${userId}`);
+  return response.data;
+};
+
+
 export const upsertCompanyProfile = async (userId, payload) => {
   const response = await apiClient.put(`/employer/company/${userId}`, payload);
   return response.data;
 };
+
+export const uploadCompanyLogo = async (userId, file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  const response = await apiClient.post(`/employer/company/logo/${userId}`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  });
+  return response.data;
+};
+
 
 export const createJobPosting = async (payload) => {
   const response = await apiClient.post('/employer/jobs', payload);
