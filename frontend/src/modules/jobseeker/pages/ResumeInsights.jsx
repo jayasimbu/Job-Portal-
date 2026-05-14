@@ -23,8 +23,8 @@ export default function ResumeInsights() {
     const loadProfile = async () => {
       try {
         const res = await fetchJobSeekerProfile(userId);
-        if (res?.profile) {
-          const profile = res.profile;
+        const profile = res?.data?.profile || res?.profile;
+        if (profile) {
           setUserProfile(profile);
           setStats({
             atsScore: profile.ats_score || 0,

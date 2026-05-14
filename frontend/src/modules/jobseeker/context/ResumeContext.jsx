@@ -39,7 +39,7 @@ export const ResumeProvider = ({ children }) => {
     try {
       setIsLoading(true);
       const res = await fetchJobSeekerProfile(userId);
-      const profile = res?.profile;
+      const profile = res?.data?.profile || res?.profile;
       
       if (profile && profile.hasResume) {
         // Adapt API response to shared format — include ALL real data

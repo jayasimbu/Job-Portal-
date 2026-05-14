@@ -87,7 +87,7 @@ export default function Dashboard() {
       
       // Refresh profile to get NEW AI-generated gaps & recs
       const profileRes = await fetchJobSeekerProfile(userId);
-      const updatedProfile = profileRes?.profile || {};
+      const updatedProfile = profileRes?.data?.profile || profileRes?.profile || {};
       setProfile(updatedProfile);
 
       const finalData = {

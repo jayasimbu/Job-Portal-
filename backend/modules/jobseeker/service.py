@@ -152,6 +152,8 @@ class JobSeekerService:
             "id": get_next_sequence(self.db, "job_applications"),
             "user_id": int(user_id),
             "job_id": int(job_id),
+            "job_title": job_doc.get("title", "Unknown Role"),
+            "company": job_doc.get("company", "Unknown Company"),
             "status": "applied",
             "ats_match_score": ats_score,
             "created_at": datetime.utcnow(),

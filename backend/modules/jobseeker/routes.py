@@ -445,15 +445,14 @@ async def list_applications(
             
     for app in apps:
         job_id_str = str(app.get("job_id"))
-        if job_id_str in jobs_map:
-            job_info = jobs_map[job_id_str]
-            app["role"] = job_info.get("title", "Unknown Role")
+        job_info = jobs_map.get(job_id_str, {})
+        
+        if not app.get("job_title"):
+            app["job_title"] = job_info.get("title", "Unknown Role")
+        if not app.get("company"):
             app["company"] = job_info.get("company", "Unknown Company")
-            app["location"] = job_info.get("location", "Remote")
-        else:
-            app["role"] = "Unknown Role"
-            app["company"] = "Unknown Company"
-            app["location"] = "Remote"
+            
+        app["location"] = app.get("location") or job_info.get("location", "Remote")
             
     return {"applications": apps}
 

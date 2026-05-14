@@ -23,7 +23,7 @@ export default function Profile() {
         setLoading(true);
         if (userId) {
           const res = await fetchJobSeekerProfile(userId);
-          setProfile(res?.profile || null);
+          setProfile(res?.data?.profile || res?.profile || null);
         }
       } catch (err) {
         console.error("Failed to load profile", err);
