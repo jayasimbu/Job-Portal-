@@ -200,7 +200,7 @@ const LearningHub = () => {
              </div>
              <h3 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight mb-2">Recommendations Locked</h3>
              <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] max-w-sm mx-auto mb-8 leading-relaxed">Complete your profile to unlock a personalized skill-acquisition roadmap.</p>
-             <Button onClick={() => navigate('/platform/jobseeker/dashboard')} className="h-12 px-8 rounded-2xl font-black text-[10px] uppercase tracking-widest">
+             <Button onClick={() => navigate('/platform/jobseeker/profile')} className="h-12 px-8 rounded-2xl font-black text-[10px] uppercase tracking-widest">
                 Optimize Profile
              </Button>
           </div>

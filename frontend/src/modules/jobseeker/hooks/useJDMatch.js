@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import jdMatchService from '../services/jdMatchService';
+import { matchJd } from '../services/jobseekerService';
 import recommendationService from '../services/recommendationService';
 
 export const useJDMatch = () => {
@@ -7,13 +7,22 @@ export const useJDMatch = () => {
   const [recommendedJobs, setRecommendedJobs] = useState([]);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
 
-  const runMatchAnalysis = useCallback((resumeText, jdText) => {
+  const runMatchAnalysis = useCallback(async (resumeText, jdText) => {
     setIsAnalyzing(true);
     try {
-      const results = jdMatchService.analyzeMatch(resumeText, jdText);
-      const jobs = recommendationService.getRecommendations(results.resumeSkills);
+      const data = await matchJd({ resume_text: resumeText, jd_text: jdText });
+      const results = data.match || {};
       
-      setMatchResults(results);
+      const mappedResults = {
+        matchPercentage: results.match_score || 0,
+        matchedSkills: results.matched_skills || [],
+        missingSkills: results.missing_skills || [],
+        feedback: results.reasoning || "Analysis complete."
+      };
+      
+      const jobs = recommendationService.getRecommendations(mappedResults.matchedSkills);
+      
+      setMatchResults(mappedResults);
       setRecommendedJobs(jobs);
     } catch (error) {
       console.error('Error running match analysis:', error);

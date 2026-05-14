@@ -127,7 +127,13 @@ class LLMService:
         return res.get("result") or "Professional candidate."
 
     async def generate_deep_ats_match(self, resume_text: str, jd_text: str) -> Dict[str, Any]:
-        prompt = f"Deep match resume to JD. Return JSON: {match_score:int, reasoning:str, matched_skills:[], missing_skills:[]}"
+        prompt = (
+            f"You are an ATS Matcher. Extract 'matched_skills' and 'missing_skills' by comparing the resume to the JD. "
+            f"Then, calculate the 'match_score' STRICTLY using this formula: "
+            f"(number of matched_skills / total skills required by JD) * 100. Round to nearest integer.\n"
+            f"Resume:\n{resume_text[:2000]}\n\nJD:\n{jd_text[:2000]}\n\n"
+            f"Return JSON: {{'match_score':int, 'reasoning':str, 'matched_skills':[], 'missing_skills':[]}}"
+        )
         res = self.generate_with_fallback(prompt, model=MODELS["ATS_MATCHING"], response_format={"type": "json_object"})
         if res["success"] and res["result"]:
             try: return json.loads(res["result"].replace("```json", "").replace("```", "").strip())

@@ -88,36 +88,27 @@ export default function JobDetails() {
       setIsRunningMatch(true);
       
       try {
-          // Artificial delay to simulate ATS processing
-          await new Promise(resolve => setTimeout(resolve, 1500));
-          
-          const profileRes = await apiClient.get(`/jobseeker/profile/${userId}`);
-          const profileSkills = profileRes.data?.data?.profile?.skills || [];
-          
           const insightsRes = await apiClient.get('/jobseeker/resume-insights');
-          const insightsSkills = insightsRes.data?.skills_match || [];
+          const resumeText = insightsRes.data?.parsed_data?.parsed_text || "";
           
-          const userSkills = new Set([...profileSkills, ...insightsSkills].map(s => s.toLowerCase()));
-          const jobTags = (job.skills || []).map(t => t.toLowerCase());
-          
-          let score = 60;
-          let matched = [];
-          let missing = [];
-
-          if (userSkills.size > 0) {
-              const matches = jobTags.filter(t => userSkills.has(t));
-              matched = job.skills.filter(t => userSkills.has(t.toLowerCase()));
-              missing = job.skills.filter(t => !userSkills.has(t.toLowerCase()));
-              score = Math.min(98, 60 + (matches.length * 6));
-          } else {
-              missing = job.skills;
+          if (!resumeText) {
+             showToast("Please upload a resume first to run AI match! ❌");
+             setIsRunningMatch(false);
+             return;
           }
+
+          const response = await apiClient.post('/jobseeker/ats/jd', {
+              resume_text: resumeText,
+              jd_text: job.description
+          });
           
+          const aiResult = response.data?.match || {};
+
           setJob(prev => ({
               ...prev,
-              matchScore: score,
-              matchedSkills: matched,
-              missingSkills: missing
+              matchScore: aiResult.match_score || 0,
+              matchedSkills: aiResult.matched_skills || [],
+              missingSkills: aiResult.missing_skills || []
           }));
           
           setHasRunMatch(true);

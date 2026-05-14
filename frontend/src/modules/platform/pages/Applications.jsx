@@ -64,7 +64,7 @@ export default function Applications() {
             <button
               key={s}
               onClick={() => setFilter(s)}
-              className={`px-4 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest whitespace-nowrap transition-all ${filter === s ? 'bg-slate-50 text-blue-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+              className={`px-4 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest whitespace-nowrap transition-all ${filter === s ? 'bg-slate-900 text-white shadow-xl scale-[1.02]' : 'text-slate-500 hover:text-slate-700'}`}
             >
               {s}
             </button>
@@ -175,50 +175,6 @@ export default function Applications() {
                 </Button>
               </CardBody>
             </Card>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-               <div className="space-y-4">
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] px-2">Suggested for You</p>
-                  {[
-                    { title: 'Lead React Developer', company: 'Stripe', match: 92 },
-                    { title: 'Frontend Engineer', company: 'Linear', match: 88 }
-                  ].map((job, i) => (
-                    <Card key={i} className="hover:border-blue-600/30 cursor-pointer p-4 group">
-                       <div className="flex justify-between items-center">
-                          <div className="flex items-center gap-3">
-                             <div className="size-10 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center font-black text-blue-600 uppercase border border-slate-200 dark:border-slate-700">
-                                {job.company[0]}
-                             </div>
-                             <div>
-                                <p className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-blue-600">{job.title}</p>
-                                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{job.company}</p>
-                             </div>
-                          </div>
-                          <Badge variant="primary" className="text-[9px] px-2">{job.match}% Match</Badge>
-                       </div>
-                    </Card>
-                  ))}
-               </div>
-
-               <div className="space-y-4">
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] px-2">Market Insights</p>
-                  <Card className="p-6 bg-slate-900 border-none text-white relative overflow-hidden group">
-                     <div className="absolute top-0 right-0 size-32 bg-blue-600/20 rounded-full blur-3xl -mr-16 -mt-16" />
-                     <div className="relative z-10 space-y-4">
-                        <div className="space-y-1">
-                           <p className="text-xs font-bold text-blue-400 uppercase tracking-widest">Trending Skill</p>
-                           <p className="text-lg font-black tracking-tight">Docker & K8s</p>
-                        </div>
-                        <p className="text-xs text-slate-400 font-medium leading-relaxed">
-                           4 recruiters searched for candidates with these skills in your area this week.
-                        </p>
-                        <div className="h-1 w-full bg-slate-50/10 rounded-full overflow-hidden">
-                           <div className="h-full bg-blue-500 w-3/4" />
-                        </div>
-                     </div>
-                  </Card>
-               </div>
-            </div>
           </div>
         )}
       </div>

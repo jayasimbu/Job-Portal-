@@ -359,6 +359,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme), auth_service: Au
             status_code=status.HTTP_404_NOT_FOUND,
             detail="User not found"
         )
+    auth_service.ensure_profile_exists(user)
     return user
 
 @router.put("/profile/{user_id}", response_model=UserResponse)

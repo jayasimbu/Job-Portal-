@@ -129,10 +129,23 @@ class JobSeekerService:
         if existing: return doc_to_entity(existing)
         
         job_doc = self.jobs.find_one({"id": int(job_id)})
+        if not job_doc:
+            # Fallback to jobs.json if not in database
+            jobs_path = Path(__file__).resolve().parents[3] / "database" / "jobs" / "jobs.json"
+            if jobs_path.exists():
+                with open(jobs_path, "r", encoding="utf-8") as f:
+                    all_jobs = json.load(f)
+                    job_doc = next((j for j in all_jobs if j.get("id") == int(job_id)), None)
+                    
+        if not job_doc:
+            raise ValueError(f"Job {job_id} not found")
+            
         resume_doc = self.resumes.find_one({"user_id": int(user_id)}, sort=[("id", -1)])
+        resume_text = resume_doc.get("parsed_data", {}).get("parsed_text", "") if resume_doc else ""
+        job_desc = job_doc.get("description", "")
         
         from services.llmService import llm_service
-        match_result = await llm_service.generate_deep_ats_match(resume_doc.get("parsed_data", {}).get("parsed_text", ""), job_doc.get("description", ""))
+        match_result = await llm_service.generate_deep_ats_match(resume_text, job_desc)
         ats_score = match_result.get("match_score", 0)
 
         application_doc = {
