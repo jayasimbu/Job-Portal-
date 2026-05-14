@@ -19,13 +19,13 @@ export const mapJob = (j) => ({
  */
 export const mapApplication = (app) => ({
   id: app.id,
-  jobId: app.job_id || app.job?.id,
-  title: app.job?.title || 'Unknown Job',
-  company: app.job?.company_name || 'Confidential Company',
-  status: app.status || 'applied', // 'applied', 'shortlisted', 'interview', 'rejected'
+  jobId: app.job_id,
+  title: app.job_title || app.job?.title || 'Unknown Job',
+  company: app.company || app.job?.company_name || 'Confidential Company',
+  status: app.status || 'applied', 
   appliedDate: app.created_at ? new Date(app.created_at).toLocaleDateString() : 'Recently',
   lastUpdated: app.updated_at ? new Date(app.updated_at).toLocaleDateString() : 'Recently',
-  matchScore: app.match_score || 0,
+  matchScore: app.ats_match_score || app.match_score || 0,
 });
 
 /**

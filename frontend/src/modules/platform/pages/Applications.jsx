@@ -88,8 +88,7 @@ export default function Applications() {
             return (
               <Card 
                 key={app.id}
-                className={`transition-all hover:border-blue-300 cursor-pointer ${isExpanded ? 'ring-2 ring-blue-500/10 border-blue-500' : ''}`}
-                onClick={() => setExpandedAppId(isExpanded ? null : app.id)}
+                className="transition-all hover:border-blue-300 shadow-sm"
               >
                 <CardBody className="p-6">
                   <div className="flex justify-between items-center">
@@ -101,60 +100,25 @@ export default function Applications() {
                         <Heading level={4} className="leading-tight">{app.job_title || 'Software Role'}</Heading>
                         <div className="flex items-center gap-2">
                           <Text variant="small" className="font-semibold text-slate-500">{app.company || 'Enterprise Corp'}</Text>
-                          <span className="size-1 bg-slate-300 rounded-full" />
-                          <Text variant="small" className="font-bold text-blue-600 uppercase tracking-widest">{atsScore}% AI Score</Text>
                         </div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-3 mr-4">
+                        <Button 
+                          variant="secondary" 
+                          size="sm" 
+                          className="h-9 px-4 rounded-xl text-[10px] font-black uppercase tracking-widest"
+                          onClick={(e) => { e.stopPropagation(); navigate(`/platform/jobseeker/jobs/${app.job_id}`) }}
+                        >
+                          Job Details
+                        </Button>
+                      </div>
                       <Badge variant={cfg.variant}>
                         {cfg.label}
                       </Badge>
-                      <span className={`material-symbols-outlined text-slate-300 transition-transform ${isExpanded ? 'rotate-180' : ''}`}>expand_more</span>
                     </div>
                   </div>
-
-                  {isExpanded && (
-                    <div className="mt-8 pt-8 border-t border-slate-200 duration-300 space-y-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-3">
-                          <Text variant="small" className="font-bold uppercase tracking-widest text-slate-400">Matched Strengths</Text>
-                          <div className="flex flex-wrap gap-2">
-                            {(app.skills_match?.matched_keywords || ['Verified Skills']).map((s, i) => (
-                              <Badge key={i} variant="success" className="px-2 py-1 text-[10px]">{s}</Badge>
-                            ))}
-                          </div>
-                        </div>
-                        <div className="space-y-3">
-                          <Text variant="small" className="font-bold uppercase tracking-widest text-slate-400">Skill Gaps</Text>
-                          <div className="flex flex-wrap gap-2">
-                            {(app.missing_keywords || []).length > 0 ? app.missing_keywords.map((s, i) => (
-                              <Badge key={i} variant="danger" className="px-2 py-1 text-[10px]">{s}</Badge>
-                            )) : <Text variant="small" className="text-emerald-600 font-bold">Optimal Coverage!</Text>}
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="p-6 bg-blue-50 border border-blue-100 rounded-2xl">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="material-symbols-outlined text-blue-600 text-sm">psychology</span>
-                          <Text variant="small" className="font-bold text-blue-600 uppercase tracking-widest">AI Strategic Forecast</Text>
-                        </div>
-                        <Text variant="small" className="text-slate-700 font-medium leading-relaxed">
-                          {atsScore >= 75 ? "Your profile is a top-tier match for this role. We recommend preparing for technical discussions focused on your core stack." : "To improve visibility, consider bridging the skill gaps highlighted above for future applications in this category."}
-                        </Text>
-                      </div>
-
-                      <div className="flex justify-end gap-3 pt-2">
-                        <Button variant="outline" size="sm" onClick={(e) => { e.stopPropagation(); navigate(`/platform/jobseeker/jobs/${app.job_id || 1}/analysis`) }}>
-                          Job Details
-                        </Button>
-                        <Button variant="secondary" size="sm" onClick={(e) => { e.stopPropagation(); navigate('/platform/jobseeker/profile') }}>
-                          Update Profile
-                        </Button>
-                      </div>
-                    </div>
-                  )}
                 </CardBody>
               </Card>
             );

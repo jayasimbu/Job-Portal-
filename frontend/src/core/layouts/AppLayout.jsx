@@ -7,6 +7,7 @@ import { ResumeProvider } from '../../modules/jobseeker/context/ResumeContext';
 import Sidebar from '../components/Sidebar';
 import ProfileDropdown from '../components/ProfileDropdown';
 import Logo from '../components/Logo';
+import appConfig from '../config/appConfig';
 
 const AppLayout = ({ children, title }) => {
   const { isDark, toggleTheme } = useTheme();
@@ -92,8 +93,16 @@ const AppLayout = ({ children, title }) => {
                     </div>
                   </div>
                   <div className="relative">
-                    <div className="size-11 bg-slate-900 dark:bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-sm shadow-xl shadow-blue-500/10 transition-all group-hover:scale-110 group-hover:rotate-3 border-2 border-white dark:border-slate-700">
-                      {user?.full_name?.charAt(0) || 'J'}
+                    <div className="size-11 bg-slate-900 dark:bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-sm shadow-xl shadow-blue-500/10 transition-all group-hover:scale-110 group-hover:rotate-3 border-2 border-white dark:border-slate-700 overflow-hidden">
+                      {user?.avatar_url ? (
+                        <img 
+                          src={`${appConfig.api.baseUrl.replace('/api', '')}${user.avatar_url}`} 
+                          alt="Avatar" 
+                          className="size-full object-cover"
+                        />
+                      ) : (
+                        user?.full_name?.charAt(0) || 'J'
+                      )}
                     </div>
                     <div className="absolute -bottom-0.5 -right-0.5 size-3.5 bg-emerald-500 rounded-full border-2 border-white dark:border-slate-800"></div>
                   </div>

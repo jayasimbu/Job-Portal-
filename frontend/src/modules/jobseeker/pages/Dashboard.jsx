@@ -45,8 +45,9 @@ export default function Dashboard() {
         if (userId) {
           const profileRes = await fetchJobSeekerProfile(userId);
           const recsRes = await fetchRecommendations(userId);
-          setProfile(profileRes?.data?.profile || {});
-          setJobs(recsRes?.data?.recommendations || []);
+          const profileData = profileRes?.profile || profileRes?.data?.profile || {};
+          setProfile(profileData);
+          setJobs(recsRes?.recommendations || recsRes?.data?.recommendations || []);
         }
       } catch (err) {
         console.error("Dashboard data load error:", err);
@@ -86,8 +87,8 @@ export default function Dashboard() {
       const resume = uploadData.resume || uploadData.data?.resume || uploadData.data || {};
       
       // Refresh profile to get NEW AI-generated gaps & recs
-      const profileRes = await fetchJobSeekerProfile(userId);
-      const updatedProfile = profileRes?.data?.profile || profileRes?.profile || {};
+      const res = await fetchJobSeekerProfile(userId);
+      const updatedProfile = res?.profile || {};
       setProfile(updatedProfile);
 
       const finalData = {

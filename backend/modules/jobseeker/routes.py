@@ -1,5 +1,6 @@
 import asyncio
 import json
+from datetime import datetime
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from typing import Any, Dict, List, Optional
@@ -154,6 +155,53 @@ async def upload_resume_file(
         job_description=job_description,
     )
     return {"message": "resume processed", "resume": model_to_dict(resume)}
+
+
+@router.post("/profile/upload-image")
+async def upload_profile_image(
+    user_id: int = Form(...),
+    file: UploadFile = File(...),
+    service: JobSeekerService = Depends(get_jobseeker_service),
+    user=Depends(get_current_user_db),
+) -> Dict[str, Any]:
+    file_bytes = await file.read()
+    user_email = getattr(user, "email", f"user_{user_id}@example.com")
+    actual_user_id = getattr(user, "id", user_id)
+    
+    # Simple save to a 'avatars' folder
+    timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+    safe_file_name = f"avatar_{timestamp}_{file.filename}"
+    
+    # Sanitize email for folder name (remove invalid chars for OS compatibility)
+    safe_email = "".join([c if c.isalnum() or c in ".-_@" else "_" for c in user_email])
+    
+    db_base = Path(__file__).resolve().parents[3] / "database" / "jobseeker" / "Files" / safe_email / "avatars"
+    db_base.mkdir(parents=True, exist_ok=True)
+    file_path = db_base / safe_file_name
+    file_path.write_bytes(file_bytes)
+    
+    # Update profile in DB
+    avatar_url = f"/database/jobseeker/Files/{safe_email}/avatars/{safe_file_name}"
+    service.profiles.update_one(
+        {"user_id": int(actual_user_id)},
+        {"$set": {"avatar_url": avatar_url}}
+    )
+    
+    return {"message": "image uploaded", "avatar_url": avatar_url}
+
+
+@router.delete("/profile/delete-image")
+async def delete_profile_image(
+    user_id: int,
+    service: JobSeekerService = Depends(get_jobseeker_service),
+    user=Depends(get_current_user_db),
+) -> Dict[str, Any]:
+    actual_user_id = getattr(user, "id", user_id)
+    service.profiles.update_one(
+        {"user_id": int(actual_user_id)},
+        {"$set": {"avatar_url": None}}
+    )
+    return {"message": "image deleted"}
 
 
 @router.post("/resume/parse")

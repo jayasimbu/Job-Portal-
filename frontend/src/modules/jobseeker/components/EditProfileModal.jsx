@@ -9,19 +9,35 @@ export default function EditProfileModal({ isOpen, onClose, initialData, onSave 
     location: '',
     phone: '',
     about: '',
-    skills: [],
-    socialLinks: {
-      github: '',
-      linkedin: '',
-      portfolio: ''
-    }
+    socialLinks: { github: '', linkedin: '', portfolio: '' }
   });
+  
+  const [skillsText, setSkillsText] = useState((initialData?.skills || []).join(', '));
+  const [experience, setExperience] = useState(initialData?.experience || []);
 
   if (!isOpen) return null;
 
+  const handleAddExperience = () => {
+    setExperience([{ role: '', company: '', period: '', desc: '' }, ...experience]);
+  };
+
+  const handleRemoveExperience = (index) => {
+    setExperience(experience.filter((_, i) => i !== index));
+  };
+
+  const handleExperienceChange = (index, field, value) => {
+    const updated = [...experience];
+    updated[index] = { ...updated[index], [field]: value };
+    setExperience(updated);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave(formData);
+    onSave({
+      ...formData,
+      skills: skillsText.split(',').map(s => s.trim()).filter(Boolean),
+      experience: experience
+    });
     onClose();
   };
 
@@ -118,6 +134,65 @@ export default function EditProfileModal({ isOpen, onClose, initialData, onSave 
               className="w-full bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl p-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all resize-none"
               placeholder="Tell us about your professional journey..."
             />
+          </div>
+
+          {/* Section: Skills */}
+          <div className="space-y-1.5">
+            <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Skills (Comma separated)</label>
+            <textarea 
+              rows={2}
+              value={skillsText}
+              onChange={(e) => setSkillsText(e.target.value)}
+              className="w-full bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl p-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all resize-none"
+              placeholder="e.g. React, Node.js, Python"
+            />
+          </div>
+
+          {/* Section: Experience */}
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+               <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Experience</label>
+               <Button type="button" onClick={handleAddExperience} variant="ghost" className="h-6 text-[10px] px-2 py-0 border border-blue-500/20 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                 + Add Role
+               </Button>
+            </div>
+            {experience.map((exp, index) => (
+              <div key={index} className="p-4 bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl space-y-3 relative">
+                 <button type="button" onClick={() => handleRemoveExperience(index)} className="absolute top-3 right-3 text-rose-500 hover:text-rose-600 bg-rose-50 dark:bg-rose-900/20 p-1 rounded-md">
+                    <X size={14} />
+                 </button>
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                    <input 
+                      type="text" 
+                      value={exp.role || exp.name || ''} 
+                      onChange={(e) => handleExperienceChange(index, 'role', e.target.value)}
+                      placeholder="Role (e.g. Frontend Developer)"
+                      className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg py-2 px-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                    />
+                    <input 
+                      type="text" 
+                      value={exp.company || ''} 
+                      onChange={(e) => handleExperienceChange(index, 'company', e.target.value)}
+                      placeholder="Company"
+                      className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg py-2 px-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                    />
+                    <input 
+                      type="text" 
+                      value={exp.period || exp.date || ''} 
+                      onChange={(e) => handleExperienceChange(index, 'period', e.target.value)}
+                      placeholder="Period (e.g. 2021 - Present)"
+                      className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg py-2 px-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none md:col-span-2"
+                    />
+                    <textarea 
+                      value={exp.desc || exp.description || ''} 
+                      onChange={(e) => handleExperienceChange(index, 'desc', e.target.value)}
+                      placeholder="Description"
+                      rows={2}
+                      className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg py-2 px-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none md:col-span-2 resize-none"
+                    />
+                 </div>
+              </div>
+            ))}
           </div>
 
           {/* Section: Social Links */}

@@ -39,7 +39,7 @@ export const ResumeProvider = ({ children }) => {
     try {
       setIsLoading(true);
       const res = await fetchJobSeekerProfile(userId);
-      const profile = res?.data?.profile || res?.profile;
+      const profile = res?.profile || res?.data?.profile;
       
       if (profile && profile.hasResume) {
         // Adapt API response to shared format — include ALL real data
@@ -49,13 +49,13 @@ export const ResumeProvider = ({ children }) => {
           parsedData: {
             skills: profile.skills || [],
             experienceYears: profile.experience_years || 0,
-            projects: profile.resume_data?.projects || [],
-            education: profile.resume_data?.education || []
+            projects: profile.uploadedResumes?.[0]?.parsed_data?.projects || [],
+            education: profile.uploadedResumes?.[0]?.parsed_data?.education || []
           },
           atsBreakdown: profile.ats_breakdown || {},
           missingSkills: profile.missing_skills || [],
           matchedSkills: profile.matched_skills || [],
-          rawText: profile.resume_data?.parsed_text || profile.resume_text || ''
+          rawText: profile.uploadedResumes?.[0]?.parsed_data?.parsed_text || profile.resume_text || ''
         };
         updateResumeData(adapted);
       }

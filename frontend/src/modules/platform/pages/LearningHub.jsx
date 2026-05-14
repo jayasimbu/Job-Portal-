@@ -44,24 +44,35 @@ const LearningHub = () => {
         }
         
         const response = await apiClient.get(`/jobseeker/learning/${user.id}`);
-        const backendRecs = response.data.learning || [];
+        const data = response.data.learning || {};
         
-        if (backendRecs.length === 0) {
+        // Combine all learning types into a flat list
+        const allItems = [
+          ...(data.courses || []),
+          ...(data.roadmap || []),
+          ...(data.certifications || [])
+        ];
+        
+        if (allItems.length === 0) {
           setRecommendations([]);
           setLoading(false);
           return;
         }
 
-        const coursesWithVideos = await Promise.all(backendRecs.map(async (course, idx) => {
-          const query = `${course.title} tutorial`;
-          const videos = await searchVideos(query, 3);
-          return { 
-            id: idx + 1,
-            ...course, 
-            videos 
-          };
+        const itemsWithVideos = await Promise.all(allItems.map(async (item, idx) => {
+          const query = `${item.title} ${item.type || 'course'} tutorial`;
+          try {
+            const videos = await searchVideos(query, 2);
+            return { 
+              id: idx + 1,
+              ...item, 
+              videos 
+            };
+          } catch (e) {
+            return { id: idx + 1, ...item, videos: [] };
+          }
         }));
-        setRecommendations(coursesWithVideos);
+        setRecommendations(itemsWithVideos);
       } catch (err) {
         console.error('Failed to fetch learning recommendations:', err);
       } finally {

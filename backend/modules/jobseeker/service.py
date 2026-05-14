@@ -103,6 +103,14 @@ class JobSeekerService:
         }
         self.resumes.insert_one(resume_doc)
 
+        # Generate persistent learning recommendations
+        learning_recs = self.recommender.get_learning_recommendations(missing_skills)
+        learning_data = {
+            "courses": [r for r in learning_recs if r.get("type") == "Course"],
+            "roadmap": [r for r in learning_recs if r.get("type") == "Project"],
+            "certifications": [r for r in learning_recs if r.get("type") == "Certification"]
+        }
+
         # Update Profile
         self.profiles.update_one(
             {"user_id": int(user_id)},
@@ -115,6 +123,7 @@ class JobSeekerService:
                     "hr_summary": hr_summary,
                     "missing_skills": missing_skills,
                     "recommended_skills": recommended_skills,
+                    "learning_recommendations": learning_data,
                     "hasResume": True,
                     "updated_at": now,
                 }
@@ -257,6 +266,12 @@ class JobSeekerService:
 
     def get_learning_recommendations(self, user_id: int) -> Dict[str, Any]:
         profile = self.profiles.find_one({"user_id": int(user_id)})
+        
+        # If we already have stored recommendations, return them (Persistent)
+        if profile and profile.get("learning_recommendations"):
+            return profile["learning_recommendations"]
+            
+        # Fallback for old profiles or first time
         missing = profile.get("missing_skills", []) if profile else []
         recs = self.recommender.get_learning_recommendations(missing)
         return {
