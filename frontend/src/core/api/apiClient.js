@@ -103,16 +103,30 @@ apiClient.interceptors.response.use(
     }
 
     if (!error.response) {
-      // Distinguish timeout from backend-unreachable
       const isTimeout = error.code === 'ECONNABORTED' || error.message?.includes('timeout');
       return Promise.reject({
         message: isTimeout
-          ? 'Request timed out. The server is busy — please try again.'
+          ? 'The request timed out. Please check your connection or try again.'
           : 'Cannot reach server. Make sure the backend is running on port 8000.',
         networkError: true,
         isTimeout,
       });
     }
+
+    if (error.response.status === 401) {
+      return Promise.reject({
+        message: 'Your session has expired. Please log out and sign in again.',
+        authError: true
+      });
+    }
+
+    if (error.response.status === 403) {
+      return Promise.reject({
+        message: 'Access Denied: You do not have permission to view this page.',
+        authError: true
+      });
+    }
+
 
     return Promise.reject(error);
   }

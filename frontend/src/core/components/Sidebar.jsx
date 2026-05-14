@@ -50,10 +50,10 @@ const Sidebar = ({ role }) => {
           { label: 'Dashboard', to: '/platform/employer/dashboard', icon: BarChart3 },
           { label: 'Post Job', to: '/platform/employer/post-job', icon: Briefcase },
           { label: 'Candidates', to: '/platform/employer/candidates', icon: Users },
-          { label: 'Applications', to: '/platform/employer/applications', icon: Send },
           { label: 'Company Profile', to: '/platform/employer/profile', icon: Building2 },
           { label: 'Analytics', to: '/platform/employer/analytics', icon: BarChart3 },
         ];
+
       case 'admin':
         return [
           { label: 'Dashboard', to: '/platform/admin/dashboard', icon: LayoutDashboard },

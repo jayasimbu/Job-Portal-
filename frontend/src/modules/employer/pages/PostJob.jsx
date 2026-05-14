@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Briefcase, Building2, UserCircle, Save, CheckCircle2, X } from 'lucide-react';
+import { Briefcase, Building2, UserCircle, Save, CheckCircle2, X, Loader2 } from 'lucide-react';
 import Button from '../../../components/ui/Button';
+import { createJobPosting } from '../services/employerService';
+import { getCurrentUserId } from '../../../core/auth/session';
 
 export default function PostJob() {
   const navigate = useNavigate();
+  const employerId = getCurrentUserId();
   const [skillInput, setSkillInput] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   
   const [form, setForm] = useState({
     // Basic Info
@@ -54,11 +59,52 @@ export default function PostJob() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const mapExperienceToMin = (level) => {
+    if (level.includes('0-2')) return 0;
+    if (level.includes('3-5')) return 3;
+    if (level.includes('5-8')) return 5;
+    if (level.includes('8+')) return 8;
+    return 0;
+  };
+
+  const mapExperienceToShort = (level) => {
+    if (level.includes('Entry')) return 'Entry';
+    if (level.includes('Mid')) return 'Mid';
+    if (level.includes('Senior')) return 'Senior';
+    if (level.includes('Expert')) return 'Senior';
+    return 'Entry';
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In a real app, this would submit the form payload to the backend
-    console.log("Submitting structured job:", form);
-    navigate('/platform/employer/dashboard');
+    if (!employerId) return;
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      // Map frontend form to Backend JobPayload
+      const payload = {
+        employer_id: parseInt(employerId),
+        title: form.title,
+        description: form.jobDescription,
+        required_skills: form.skillsRequired,
+        experience_level: mapExperienceToShort(form.experienceLevel),
+        min_experience: mapExperienceToMin(form.experienceLevel),
+        salary: form.salary,
+        education_required: form.education,
+        location: form.location,
+        job_type: form.employmentType
+      };
+
+      await createJobPosting(payload);
+      navigate('/platform/employer/dashboard');
+    } catch (err) {
+      console.error('Failed to post job:', err);
+      setError('Failed to publish job posting. Please check your inputs and try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const inputCls = "w-full h-11 bg-slate-100 border border-slate-300 rounded-lg px-3 text-sm font-medium text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-600 outline-none transition-all";
@@ -263,14 +309,30 @@ export default function PostJob() {
           </div>
         </section>
 
+        {error && (
+          <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 flex items-center gap-3">
+             <X size={18} />
+             <p className="text-sm font-bold">{error}</p>
+          </div>
+        )}
+
         {/* Actions */}
         <div className="flex items-center justify-end gap-3 pt-2">
-          <Button type="button" variant="ghost" onClick={() => navigate('/platform/employer/dashboard')}>
+          <Button type="button" variant="ghost" onClick={() => navigate('/platform/employer/dashboard')} disabled={loading}>
             Cancel
           </Button>
-          <Button type="submit" variant="primary" className="px-8">
-            <CheckCircle2 size={16} className="mr-2" />
-            Publish Job Post
+          <Button type="submit" variant="primary" className="px-8" disabled={loading}>
+            {loading ? (
+              <>
+                <Loader2 size={16} className="mr-2 animate-spin" />
+                Publishing...
+              </>
+            ) : (
+              <>
+                <CheckCircle2 size={16} className="mr-2" />
+                Publish Job Post
+              </>
+            )}
           </Button>
         </div>
       </form>

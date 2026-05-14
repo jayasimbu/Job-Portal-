@@ -38,6 +38,17 @@ class EmployerService:
         job_ids = [job.id for job in jobs]
         applications = docs_to_entities(self.applications.find({"job_id": {"$in": job_ids}})) if job_ids else []
 
+        # ── Count candidates per job ───────────────────────────────────────
+        candidates_per_job: Dict[int, int] = {}
+        for app in applications:
+            jid = getattr(app, "job_id", None)
+            if jid is not None:
+                candidates_per_job[jid] = candidates_per_job.get(jid, 0) + 1
+
+        # ── Scores ────────────────────────────────────────────────────────
+        scores = [getattr(app, "ats_score", 0) for app in applications]
+        avg_score = round(sum(scores) / len(scores), 1) if scores else 0
+
         snapshot = {
             "updated_at": datetime.utcnow().isoformat(),
             "employer_id": employer_id,
@@ -45,6 +56,15 @@ class EmployerService:
                 "company_name": profile.company_name if profile else None,
                 "website": profile.website if profile else None,
                 "description": profile.description if profile else None,
+            },
+            "analytics": {
+                "active_jobs": len([j for j in jobs if j.active]),
+                "total_jobs": len(jobs),
+                "total_applicants": len(applications),
+                "new_applicants": len([a for a in applications if (getattr(a, 'status', '') or '').lower() == 'applied']),
+                "shortlisted": len([a for a in applications if (getattr(a, 'status', '') or '').lower() in {'shortlisted', 'interview_scheduled'}]),
+                "interviews": len(interview_store.get(employer_id, [])),
+                "avg_ats_score": avg_score,
             },
             "jobs": [
                 {
@@ -54,6 +74,7 @@ class EmployerService:
                     "job_type": getattr(job, "job_type", "Full-time"),
                     "experience_level": getattr(job, "experience_level", "Entry"),
                     "salary": getattr(job, "salary", None),
+                    "candidates": candidates_per_job.get(getattr(job, "id", None), 0),
                 }
                 for job in jobs
             ],
@@ -63,6 +84,7 @@ class EmployerService:
                     "job_id": getattr(app, "job_id", None),
                     "user_id": getattr(app, "user_id", None),
                     "status": getattr(app, "status", "applied"),
+                    "ats_score": getattr(app, "ats_score", 0),
                 }
                 for app in applications
             ],
@@ -70,8 +92,19 @@ class EmployerService:
             "interviews": interview_store.get(employer_id, []),
         }
 
-        file_path = self._domain_dir() / f"employer_{employer_id}_domain.json"
-        file_path.write_text(json.dumps(snapshot, ensure_ascii=True, indent=2), encoding="utf-8")
+        # ── Write legacy global file ─────────────────────────────────────
+        legacy_path = self._domain_dir() / f"employer_{employer_id}_domain.json"
+        legacy_path.write_text(json.dumps(snapshot, ensure_ascii=True, indent=2), encoding="utf-8")
+
+        # ── Write per-user file: database/employer/Files/{email}/employer_data.json ──
+        user_doc = self.db["users"].find_one({"id": int(employer_id)})
+        if user_doc:
+            email = user_doc.get("email", f"user_{employer_id}")
+            user_dir = self._domain_dir() / "Files" / email
+            user_dir.mkdir(parents=True, exist_ok=True)
+            user_file = user_dir / "employer_data.json"
+            user_file.write_text(json.dumps(snapshot, ensure_ascii=True, indent=2), encoding="utf-8")
+            log.info(f"[EMPLOYER] Synced data for employer {employer_id} -> {user_file}")
 
     def upsert_company_profile(self, user_id: int, payload: Dict[str, Any]):
         now = datetime.utcnow()
@@ -122,6 +155,23 @@ class EmployerService:
 
     def list_job_postings(self, employer_id: int) -> List[Any]:
         return docs_to_entities(self.jobs.find({"employer_id": int(employer_id)}).sort("id", 1))
+
+    def delete_job_posting(self, job_id: int, employer_id: int) -> bool:
+        """Delete a job posting (only if owned by the requesting employer)."""
+        job_doc = self.jobs.find_one({"id": int(job_id)})
+        if not job_doc:
+            return False
+        job = doc_to_entity(job_doc)
+        if int(job.employer_id) != int(employer_id):
+            raise ValueError("Unauthorized: Employer does not own this job")
+        # Remove job
+        self.jobs.delete_one({"id": int(job_id)})
+        # Remove all associated applications
+        self.applications.delete_many({"job_id": int(job_id)})
+        log.info(f"[JOB] Employer {employer_id} deleted job {job_id} and its applications")
+        # Re-sync snapshot
+        self._sync_domain_snapshot(employer_id)
+        return True
 
     def rank_applicants(self, job_id: int) -> List[Dict[str, Any]]:
         job = doc_to_entity(self.jobs.find_one({"id": int(job_id)}))
@@ -195,22 +245,61 @@ class EmployerService:
         jobs = self.list_job_postings(employer_id)
         job_ids = [job.id for job in jobs]
         applications = docs_to_entities(self.applications.find({"job_id": {"$in": job_ids}})) if job_ids else []
-        
-        shortlisted = [app for app in applications if (app.status or "").lower() in {"shortlisted", "interview_scheduled"}]
-        
+
+        shortlisted = [app for app in applications if (getattr(app, 'status', '') or '').lower() in {"shortlisted", "interview_scheduled"}]
+        new_applicants = [app for app in applications if (getattr(app, 'status', '') or '').lower() == "applied"]
+
         # Calculate score metrics
         scores = [getattr(app, "ats_score", 0) for app in applications]
         avg_score = round(sum(scores) / len(scores), 1) if scores else 0
         top_score = max(scores) if scores else 0
-        
+
+        # ── Per-job candidate counts (for pipeline snapshot) ──────────────
+        candidates_per_job: Dict[int, int] = {}
+        for app in applications:
+            jid = getattr(app, "job_id", None)
+            if jid is not None:
+                candidates_per_job[jid] = candidates_per_job.get(jid, 0) + 1
+
+        # ── Top 3 recent active jobs (for pipeline snapshot) ──────────────
+        active_jobs_sorted = sorted(
+            [j for j in jobs if getattr(j, 'active', True)],
+            key=lambda j: getattr(j, 'id', 0),
+            reverse=True
+        )[:3]
+
+        pipeline = [
+            {
+                "id": getattr(j, "id", None),
+                "title": getattr(j, "title", "Untitled Job"),
+                "job_type": getattr(j, "job_type", "Full-time"),
+                "status": "active",
+                "candidates": candidates_per_job.get(getattr(j, "id", None), 0),
+            }
+            for j in active_jobs_sorted
+        ]
+
+        # ── Smart AI insight: find job with most candidates ───────────────
+        top_job = None
+        if jobs:
+            top_job_obj = max(jobs, key=lambda j: candidates_per_job.get(getattr(j, 'id', 0), 0), default=None)
+            if top_job_obj:
+                top_job = {
+                    "title": getattr(top_job_obj, "title", ""),
+                    "candidates": candidates_per_job.get(getattr(top_job_obj, 'id', 0), 0),
+                }
+
         return {
-            "active_jobs": len([job for job in jobs if job.active]),
+            "active_jobs": len([job for job in jobs if getattr(job, 'active', True)]),
             "total_jobs": len(jobs),
             "total_applicants": len(applications),
+            "new_applicants": len(new_applicants),
             "shortlisted": len(shortlisted),
             "interviews": len(interview_store.get(employer_id, [])),
             "avg_ats_score": avg_score,
             "top_ats_score": top_score,
+            "pipeline": pipeline,
+            "top_job": top_job,
         }
 
     def get_top_candidates(self, employer_id: int, limit: int = 5) -> List[Dict[str, Any]]:
@@ -227,6 +316,60 @@ class EmployerService:
         # Sort by score descending and take top N
         all_candidates.sort(key=lambda x: x.get("score", 0), reverse=True)
         return all_candidates[:limit]
+
+    def get_all_applications(self, employer_id: int) -> List[Dict[str, Any]]:
+        """Fetch all applicants across all jobs for an employer, enriched with job context."""
+        try:
+            jobs = self.list_job_postings(employer_id)
+            
+            # Use safe mapping to avoid crashing on missing or non-int IDs
+            job_map = {}
+            active_job_ids = []
+            for j in jobs:
+                try:
+                    jid = int(getattr(j, "id", 0))
+                    if jid:
+                        job_map[jid] = getattr(j, "title", "Unknown Role")
+                        active_job_ids.append(jid)
+                except (ValueError, TypeError):
+                    continue
+            
+            if not active_job_ids:
+                return []
+
+                
+            # Fetch applications for these jobs
+            apps_cursor = self.applications.find({"job_id": {"$in": active_job_ids}}).sort("id", -1)
+            results = []
+            for app in apps_cursor:
+                try:
+                    # Map application to a candidate view
+                    user = self.db["users"].find_one({"id": int(app["user_id"])})
+                    
+                    # Handle date serialization safely
+                    applied_at = app.get("applied_at") or app.get("created_at")
+                    if isinstance(applied_at, datetime):
+                        applied_at = applied_at.isoformat()
+                    
+                    results.append({
+                        "application_id": int(app.get("id", 0)),
+                        "candidate_name": user.get("full_name", "Unknown Candidate") if user else "Unknown",
+                        "role": job_map.get(int(app.get("job_id", 0)), "Unknown Role"),
+                        "job_id": int(app.get("job_id", 0)),
+                        "status": app.get("status", "Applied").capitalize(),
+                        "applied_at": applied_at,
+                        "score": app.get("ats_match_score") or app.get("ats_score") or 0,
+                        "skills": app.get("matched_skills") or app.get("skills") or []
+                    })
+                except Exception as inner_e:
+                    log.error(f"Error processing single application {app.get('id')}: {inner_e}")
+                    continue
+
+            return results
+        except Exception as e:
+            log.error(f"Failed to fetch all applications for employer {employer_id}: {e}")
+            raise e
+
 
     def update_candidate_status(self, application_id: int, status: str, employer_id: int = None):
         app_doc = self.applications.find_one({"id": int(application_id)})

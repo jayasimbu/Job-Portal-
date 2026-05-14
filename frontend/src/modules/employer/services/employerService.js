@@ -30,6 +30,12 @@ export const fetchTopCandidates = async (employerId) => {
   return response.data;
 };
 
+export const fetchAllCandidates = async (employerId) => {
+  const response = await apiClient.get(`/employer/all-candidates/${employerId}`);
+  return response.data;
+};
+
+
 export const updateCandidateStatus = async (applicationId, status) => {
   const response = await apiClient.post('/employer/candidates/status', { application_id: applicationId, status });
   return response.data;
@@ -39,6 +45,12 @@ export const updateApplicationStatus = async (applicationId, status) => {
   const response = await apiClient.post(`/employer/applications/${applicationId}/status`, { status });
   return response.data;
 };
+
+export const deleteJobPosting = async (jobId) => {
+  const response = await apiClient.delete(`/employer/jobs/${jobId}`);
+  return response.data;
+};
+
 
 export const fetchInterviews = async (employerId) => {
   const response = await apiClient.get(`/employer/interviews/${employerId}`);

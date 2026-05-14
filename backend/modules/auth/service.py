@@ -100,18 +100,42 @@ class AuthService:
         files_path = base_db / role_dir / "Files" / email
         files_path.mkdir(parents=True, exist_ok=True)
         
-        initial_profile = {
-            "user_id": user_doc["id"],
-            "email": email,
-            "first_name": first_name,
-            "last_name": last_name,
-            "role": role,
-            "created_at": user_doc["created_at"].isoformat(),
-            "bio": "",
-            "skills": [],
-            "experience": [],
-            "education": []
-        }
+        if role == "employer":
+            initial_profile = {
+                "user_id": user_doc["id"],
+                "email": email,
+                "first_name": first_name,
+                "last_name": last_name,
+                "role": role,
+                "created_at": user_doc["created_at"].isoformat(),
+                "company_name": "",
+                "company_website": "",
+                "company_description": "",
+                "jobs": [],
+                "analytics": {
+                    "active_jobs": 0,
+                    "total_applicants": 0,
+                    "new_applicants": 0,
+                    "shortlisted": 0,
+                    "interviews": 0,
+                    "avg_ats_score": 0,
+                },
+                "applications": [],
+                "interviews": [],
+            }
+        else:
+            initial_profile = {
+                "user_id": user_doc["id"],
+                "email": email,
+                "first_name": first_name,
+                "last_name": last_name,
+                "role": role,
+                "created_at": user_doc["created_at"].isoformat(),
+                "bio": "",
+                "skills": [],
+                "experience": [],
+                "education": []
+            }
         with profile_path.open("w", encoding="utf-8") as f:
             json.dump(initial_profile, f, indent=2)
             
@@ -130,18 +154,42 @@ class AuthService:
         if not profile_path.exists():
             print(f"[AUTH_DEBUG] Profile missing for user {user.id}. Initializing at {profile_path}")
             profile_path.parent.mkdir(parents=True, exist_ok=True)
-            initial_profile = {
-                "user_id": user.id,
-                "email": user.email,
-                "first_name": user.first_name,
-                "last_name": user.last_name,
-                "role": user.role,
-                "created_at": datetime.utcnow().isoformat(),
-                "bio": "",
-                "skills": [],
-                "experience": [],
-                "education": []
-            }
+            if user.role == "employer":
+                initial_profile = {
+                    "user_id": user.id,
+                    "email": user.email,
+                    "first_name": user.first_name,
+                    "last_name": user.last_name,
+                    "role": user.role,
+                    "created_at": datetime.utcnow().isoformat(),
+                    "company_name": "",
+                    "company_website": "",
+                    "company_description": "",
+                    "jobs": [],
+                    "analytics": {
+                        "active_jobs": 0,
+                        "total_applicants": 0,
+                        "new_applicants": 0,
+                        "shortlisted": 0,
+                        "interviews": 0,
+                        "avg_ats_score": 0,
+                    },
+                    "applications": [],
+                    "interviews": [],
+                }
+            else:
+                initial_profile = {
+                    "user_id": user.id,
+                    "email": user.email,
+                    "first_name": user.first_name,
+                    "last_name": user.last_name,
+                    "role": user.role,
+                    "created_at": datetime.utcnow().isoformat(),
+                    "bio": "",
+                    "skills": [],
+                    "experience": [],
+                    "education": []
+                }
             with profile_path.open("w", encoding="utf-8") as f:
                 json.dump(initial_profile, f, indent=2)
 

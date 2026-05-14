@@ -366,81 +366,44 @@ async def get_resume_insights(
         "breakdown": record.get("breakdown", {"skills": 0, "experience": 0, "education": 0})
     }
 
-@router.get("/recommendations/{user_id}")
-async def get_recommendations(
-    user_id: int,
+
+@router.get("/jobs")
+
+async def list_jobs(
     service: JobSeekerService = Depends(get_jobseeker_service),
 ) -> Dict[str, Any]:
-    """Get dynamic job recommendations based on profile and AI resume insights."""
+    """Fetch jobs from both Live MongoDB and static JSON database."""
     try:
-        # 1. Load user profile and latest resume insights
-        profile = service.get_profile(user_id)
-        user_skills = set(getattr(profile, "skills", [])) if profile else set()
-        
-        # Merge in AI-extracted skills from their latest resume upload
-        try:
-            insight = service.db["resume_insights"].find_one(
-                {"user_id": user_id}, 
-                sort=[("_id", -1)]
-            )
-            if insight and insight.get("skills_match"):
-                user_skills.update([s.lower() for s in insight.get("skills_match", [])])
-        except Exception as e:
-            log.warning(f"Could not load resume insights for recommendations: {e}")
-            
-        # Convert all to lowercase for case-insensitive matching
-        user_skills_lower = {s.lower() for s in user_skills}
-        
-        # 2. Load jobs from JSON
-        jobs_path = Path(__file__).resolve().parents[3] / "database" / "jobs" / "jobs.json"
-        if not jobs_path.exists():
-            return {"recommendations": []}
-            
-        with open(jobs_path, "r", encoding="utf-8") as f:
-            all_jobs = json.load(f)
-            
-        # 3. Dynamic matching logic against all jobs
-        scored_jobs = []
-        for job in all_jobs:
-            job_tags_raw = job.get("tags", [])
-            job_tags_lower = {t.lower() for t in job_tags_raw}
-            
-            # Intersection & Difference
-            matched_tags = job_tags_lower.intersection(user_skills_lower)
-            missing_tags = job_tags_lower - user_skills_lower
-            
-            # Map back to original case for display
-            display_matched = [t for t in job_tags_raw if t.lower() in matched_tags]
-            display_missing = [t for t in job_tags_raw if t.lower() in missing_tags]
-            
-            match_count = len(matched_tags)
-            
-            # Base score logic: 60% if no skills match, +6% per matching skill
-            score = min(98, 60 + (match_count * 6)) if user_skills_lower else job.get("matchScore", 60)
-            
-            scored_jobs.append({
+        # 1. Fetch live jobs from MongoDB
+        live_jobs_cursor = service.db["job_postings"].find({"active": True})
+        live_jobs = []
+        for job in live_jobs_cursor:
+            # Format to match frontend expectations
+            live_jobs.append({
                 "id": job.get("id"),
                 "title": job.get("title"),
-                "company": job.get("company"),
-                "location": job.get("location"),
-                "matchScore": score,
+                "company": "Live Hiring", # Can be enriched with employer profile later
+                "location": job.get("location", "Remote"),
                 "salary": job.get("salary", "Competitive"),
-                "type": job.get("type", "Full-time"),
-                "postedTime": job.get("postedTime", "2D AGO"),
-                "tags": job_tags_raw,
-                "matched": display_matched,
-                "missing": display_missing
+                "type": job.get("job_type", "Full-time"),
+                "postedTime": "JUST NOW",
+                "tags": job.get("required_skills", []),
+                "description": job.get("description", ""),
+                "is_live": True
             })
+
+        # 2. Fetch static platform jobs
+        jobs_path = Path(__file__).resolve().parents[3] / "database" / "jobs" / "jobs.json"
+        static_jobs = []
+        if jobs_path.exists():
+            with open(jobs_path, "r", encoding="utf-8") as f:
+                static_jobs = json.load(f)
         
-        # 4. Sort by match score and return exactly TOP 5 as requested
-        scored_jobs.sort(key=lambda x: x["matchScore"], reverse=True)
-        top_5_recommendations = scored_jobs[:5]
-        
-        return {"recommendations": top_5_recommendations}
-        
+        # Combine: Live jobs first, then static ones
+        return {"jobs": live_jobs + static_jobs}
     except Exception as e:
-        log.error(f"Error getting recommendations: {e}")
-        return {"recommendations": []}
+        log.error(f"Error loading jobs: {e}")
+        return {"jobs": []}
 
 
 @router.post("/applications")
@@ -624,20 +587,88 @@ async def delete_resume(
         raise HTTPException(status_code=404, detail="Resume not found")
     return {"message": "Resume deleted successfully"}
 
-@router.get("/jobs")
-async def list_jobs(
+@router.get("/recommendations/{user_id}")
+async def get_recommendations(
+    user_id: int,
     service: JobSeekerService = Depends(get_jobseeker_service),
 ) -> Dict[str, Any]:
-    """Fetch jobs from the local JSON database."""
+    """Get dynamic job recommendations based on profile and AI resume insights."""
     try:
+        # 1. Load user profile and latest resume insights
+        profile = service.get_profile(user_id)
+        user_skills = set(getattr(profile, "skills", [])) if profile else set()
+        
+        # Merge in AI-extracted skills from their latest resume upload
+        try:
+            insight = service.db["resume_insights"].find_one(
+                {"user_id": user_id}, 
+                sort=[("_id", -1)]
+            )
+            if insight and insight.get("skills_match"):
+                user_skills.update([s.lower() for s in insight.get("skills_match", [])])
+        except Exception as e:
+            log.warning(f"Could not load resume insights for recommendations: {e}")
+            
+        # Convert all to lowercase for case-insensitive matching
+        user_skills_lower = {s.lower() for s in user_skills}
+        
+        # 2. Fetch all jobs (Live MongoDB + static JSON)
+        # 2a. Live jobs
+        live_jobs_cursor = service.db["job_postings"].find({"active": True})
+        all_jobs = []
+        for job in live_jobs_cursor:
+            all_jobs.append({
+                "id": job.get("id"),
+                "title": job.get("title"),
+                "company": "Live Hiring",
+                "location": job.get("location", "Remote"),
+                "salary": job.get("salary", "Competitive"),
+                "type": job.get("job_type", "Full-time"),
+                "postedTime": "JUST NOW",
+                "tags": job.get("required_skills", []),
+                "description": job.get("description", ""),
+                "is_live": True
+            })
+            
+        # 2b. Static jobs
         jobs_path = Path(__file__).resolve().parents[3] / "database" / "jobs" / "jobs.json"
-        if not jobs_path.exists():
-            return {"jobs": []}
+        if jobs_path.exists():
+            with open(jobs_path, "r", encoding="utf-8") as f:
+                all_jobs.extend(json.load(f))
+            
+        # 3. Dynamic matching logic against all jobs
+        scored_jobs = []
+        for job in all_jobs:
+            job_tags_raw = job.get("tags", [])
+            job_tags_lower = {t.lower() for t in job_tags_raw}
+            
+            # Intersection & Difference
+            matched_tags = job_tags_lower.intersection(user_skills_lower)
+            missing_tags = job_tags_lower - user_skills_lower
+            
+            # Map back to original case for display
+            display_matched = [t for t in job_tags_raw if t.lower() in matched_tags]
+            display_missing = [t for t in job_tags_raw if t.lower() in missing_tags]
+            
+            match_count = len(matched_tags)
+            
+            # Base score logic: 60% if no skills match, +6% per matching skill
+            score = min(98, 60 + (match_count * 6)) if user_skills_lower else 60
+            
+            scored_jobs.append({
+                **job,
+                "matchScore": score,
+                "matched": display_matched,
+                "missing": display_missing
+            })
         
-        with open(jobs_path, "r", encoding="utf-8") as f:
-            jobs = json.load(f)
+        # 4. Sort by match score and return exactly TOP 5 as requested
+        scored_jobs.sort(key=lambda x: x.get("matchScore", 0), reverse=True)
+        top_5_recommendations = scored_jobs[:5]
         
-        return {"jobs": jobs}
+        return {"recommendations": top_5_recommendations}
+        
     except Exception as e:
-        log.error(f"Error loading jobs: {e}")
-        return {"jobs": []}
+        log.error(f"Error getting recommendations: {e}")
+        return {"recommendations": []}
+

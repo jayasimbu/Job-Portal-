@@ -73,8 +73,9 @@ async def create_job(
 
 
 @router.get("/jobs/{employer_id}")
-async def list_jobs(employer_id: int, service: EmployerService = Depends(get_employer_service)) -> Dict[str, Any]:
+def list_jobs(employer_id: int, service: EmployerService = Depends(get_employer_service)) -> Dict[str, Any]:
     return {"jobs": models_to_dict(service.list_job_postings(employer_id))}
+
 
 
 @router.get("/jobs")
@@ -83,6 +84,24 @@ async def list_jobs_alias(
     service: EmployerService = Depends(get_employer_service),
 ) -> Dict[str, Any]:
     return {"jobs": models_to_dict(service.list_job_postings(employer_id))}
+
+
+@router.delete("/jobs/{job_id}")
+async def delete_job(
+    job_id: int,
+    service: EmployerService = Depends(get_employer_service),
+    user=Depends(get_current_user_db),
+) -> Dict[str, Any]:
+    employer_id = getattr(user, 'id', None)
+    if not employer_id:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    try:
+        deleted = service.delete_job_posting(job_id, employer_id)
+        if not deleted:
+            raise HTTPException(status_code=404, detail="Job not found")
+        return {"message": f"Job {job_id} deleted successfully"}
+    except ValueError as e:
+        raise HTTPException(status_code=403, detail=str(e))
 
 
 @router.get("/jobs/{job_id}/ranked-candidates")
@@ -103,9 +122,18 @@ async def analytics(employer_id: int, service: EmployerService = Depends(get_emp
 
 
 @router.get("/top-candidates/{employer_id}")
-async def top_candidates(employer_id: int, service: EmployerService = Depends(get_employer_service)) -> Dict[str, Any]:
+def top_candidates(employer_id: int, service: EmployerService = Depends(get_employer_service)) -> Dict[str, Any]:
     candidates = service.get_top_candidates(employer_id)
     return {"top_candidates": candidates}
+
+
+
+@router.get("/all-candidates/{employer_id}")
+def all_candidates(employer_id: int, service: EmployerService = Depends(get_employer_service)) -> Dict[str, Any]:
+    candidates = service.get_all_applications(employer_id)
+    return {"candidates": candidates}
+
+
 
 
 @router.post("/candidates/status")
