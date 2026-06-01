@@ -1,18 +1,26 @@
-from core.database import get_database
+from pymongo import MongoClient
 import json
+from bson import ObjectId
 
-def check_db():
-    db = get_database()
-    
-    print("--- Jobseeker Profiles ---")
-    profiles = list(db["jobseeker_profiles"].find().limit(5))
-    for p in profiles:
-        print(p)
-        
-    print("\n--- Resume Insights ---")
-    insights = list(db["resume_insights"].find().limit(5))
-    for i in insights:
-        print(i)
+class CustomEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, ObjectId):
+            return str(obj)
+        return super().default(obj)
 
-if __name__ == "__main__":
-    check_db()
+client = MongoClient("mongodb://localhost:27017")
+db = client["career_auto1"]
+
+print("--- LATEST 3 RESUMES ---")
+resumes = list(db["resumes"].find().sort("_id", -1).limit(3))
+for r in resumes:
+    print(json.dumps(r, indent=2, cls=CustomEncoder, default=str))
+
+print("\n--- JOBSEEKER PROFILE FOR USER 4 ---")
+profile = db["jobseeker_profiles"].find_one({"user_id": 4})
+print(json.dumps(profile, indent=2, cls=CustomEncoder, default=str))
+
+print("\n--- COUNTERS ---")
+counters = list(db["counters"].find())
+for c in counters:
+    print(c)

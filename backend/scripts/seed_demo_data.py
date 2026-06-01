@@ -78,13 +78,13 @@ def _ensure_jobseeker_profile(jobseeker_service: JobSeekerService, user_id: int)
         jobseeker_service.update_profile(user_id, payload)
 
 
-def _ensure_resume(jobseeker_service: JobSeekerService, user_id: int) -> Optional[int]:
+async def _ensure_resume(jobseeker_service: JobSeekerService, user_id: int) -> Optional[int]:
     resumes = jobseeker_service.resumes
     existing = resumes.find_one({"user_id": int(user_id)}, sort=[("id", -1)])
     if existing:
         return int(existing["id"])
 
-    resume = jobseeker_service.upload_resume(
+    resume = await jobseeker_service.upload_resume(
         user_id=user_id,
         file_name="demo_resume.txt",
         resume_text=(
@@ -128,14 +128,14 @@ def _ensure_job(employer_service: EmployerService, employer_id: int) -> int:
     return int(job.id)
 
 
-def _ensure_application(jobseeker_service: JobSeekerService, user_id: int, job_id: int) -> None:
+async def _ensure_application(jobseeker_service: JobSeekerService, user_id: int, job_id: int) -> None:
     existing = jobseeker_service.applications.find_one({"user_id": int(user_id), "job_id": int(job_id)})
     if existing:
         return
-    jobseeker_service.apply_for_job(user_id=user_id, job_id=job_id)
+    await jobseeker_service.apply_for_job(user_id=user_id, job_id=job_id)
 
 
-def seed() -> None:
+async def seed() -> None:
     create_db_and_tables()
     db = get_database()
 
@@ -168,10 +168,10 @@ def seed() -> None:
     employer_id = int(employer["id"])
 
     _ensure_jobseeker_profile(jobseeker_service, jobseeker_id)
-    _ensure_resume(jobseeker_service, jobseeker_id)
+    await _ensure_resume(jobseeker_service, jobseeker_id)
     _ensure_employer_profile(employer_service, employer_id)
     job_id = _ensure_job(employer_service, employer_id)
-    _ensure_application(jobseeker_service, jobseeker_id, job_id)
+    await _ensure_application(jobseeker_service, jobseeker_id, job_id)
 
     print("Demo data seeded successfully.")
     print("Credentials (all users):")
@@ -183,4 +183,5 @@ def seed() -> None:
 
 
 if __name__ == "__main__":
-    seed()
+    import asyncio
+    asyncio.run(seed())

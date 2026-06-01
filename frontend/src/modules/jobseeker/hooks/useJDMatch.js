@@ -10,14 +10,13 @@ export const useJDMatch = () => {
   const runMatchAnalysis = useCallback(async (resumeText, jdText) => {
     setIsAnalyzing(true);
     try {
-      const data = await matchJd({ resume_text: resumeText, jd_text: jdText });
-      const results = data.match || {};
+      const data = await matchJd({ resume_text: resumeText, job_description: jdText });
       
       const mappedResults = {
-        matchPercentage: results.match_score || 0,
-        matchedSkills: results.matched_skills || [],
-        missingSkills: results.missing_skills || [],
-        feedback: results.reasoning || "Analysis complete."
+        matchPercentage: Math.round(data.ats_score || data.final_score || data.matchScore || 0),
+        matchedSkills: data.matched_keywords || data.matchedSkills || [],
+        missingSkills: data.missing_keywords || data.missingSkills || [],
+        feedback: data.llm_enhanced_feedback || data.feedback || "Analysis complete."
       };
       
       const jobs = recommendationService.getRecommendations(mappedResults.matchedSkills);

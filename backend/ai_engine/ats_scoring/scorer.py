@@ -56,17 +56,29 @@ def _calculate_skill_score(resume_skills: List[str], required_skills: List[str])
     """
     Skill Score = (Skills Found / len(Required Skills)) * 100
     """
+    if not resume_skills:
+        return 0.0
+
     if not required_skills:
-        # If no JD skills provided, calculate score based on total number of recognized skills
-        recognized = [s for s in resume_skills if s.lower() in _SKILLS_LOOKUP]
-        return min(100.0, (len(recognized) / 10.0) * 100) # 10 recognized skills = 100% baseline
+        # Baseline mode: count all non-empty skills extracted by the LLM
+        valid_skills = [s for s in resume_skills if len(s.strip()) > 1]
+        # 8 or more skills = 100%
+        return min(100.0, (len(valid_skills) / 8.0) * 100)
     
-    resume_lower = {s.lower() for s in resume_skills}
-    required_lower = [s.lower() for s in required_skills]
-    matched = sum(1 for s in required_lower if s in resume_lower)
+    resume_lower = {s.lower().strip() for s in resume_skills}
+    required_lower = [s.lower().strip() for s in required_skills]
     
+    matched = 0
+    for req in required_lower:
+        # Check for exact match, or if req is a substring of any resume skill, or vice versa
+        if req in resume_lower:
+            matched += 1
+        elif any(req in res or res in req for res in resume_lower):
+            matched += 1
+            
     score = (matched / len(required_lower)) * 100
     return min(100.0, score)
+
 
 
 def _calculate_experience_score(resume_data: Dict[str, Any], is_fresher: bool, required_years: float = 0) -> float:
@@ -149,6 +161,7 @@ def score_job_description_ats(resume_data: Dict[str, Any], jd_data: Dict[str, An
     
     return {
         "ats_score": round(ats_score, 1),
+        "final_score": round(ats_score, 1),
         "mode": "Hybrid Scoring Engine v2",
         "breakdown": {
             "skills": round(s_score, 1),

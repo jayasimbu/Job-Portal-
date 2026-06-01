@@ -30,7 +30,7 @@ import Button from '../../../components/ui/Button';
 export default function Dashboard() {
   const navigate = useNavigate();
   const userId = getCurrentUserId();
-  const { resumeData, updateResumeData } = useResume();
+  const { resumeData, updateResumeData, clearResumeData } = useResume();
   const { showToast } = useToast();
   const [profile, setProfile] = useState(null);
   const [jobs, setJobs] = useState([]);
@@ -96,8 +96,10 @@ export default function Dashboard() {
         optimizationScore: Math.round(resume.ats_score || 0),
         missingSkills: updatedProfile.missing_skills || resume.missing_skills || [],
         recommendedSkills: updatedProfile.recommended_skills || resume.recommended_skills || [],
+        atsBreakdown: updatedProfile.ats_breakdown || {},
         parsedData: {
           skills: updatedProfile.skills || resume.skills || [],
+          experienceYears: updatedProfile.experience_years || resume.experience_years || 0,
           experience_years: updatedProfile.experience_years || resume.experience_years || 0,
         },
       };
@@ -126,8 +128,8 @@ export default function Dashboard() {
       const profileRes = await fetchJobSeekerProfile(userId);
       setProfile(profileRes?.profile || {});
       
-      if (updateResumeData) {
-        updateResumeData({ hasResume: false });
+      if (clearResumeData) {
+        clearResumeData();
       }
       showToast("Resume deleted successfully! 🗑️");
     } catch (err) {
@@ -165,8 +167,12 @@ export default function Dashboard() {
       {/* HEADER */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight uppercase leading-none">Dashboard</h1>
-          <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">AI-Powered Career Intelligence</p>
+          <h1 className="text-3xl font-black tracking-tight uppercase leading-none bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-600 dark:from-white dark:via-slate-200 dark:to-blue-400 bg-clip-text text-transparent inline-block">
+            Dashboard
+          </h1>
+          <p className="text-[11px] font-extrabold bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent uppercase tracking-[0.25em] mt-1.5">
+            AI-Powered Career Intelligence
+          </p>
         </div>
         <div className="flex items-center gap-3">
           <Button onClick={() => fileInputRef.current?.click()} disabled={isUploading} className="h-10 px-5 rounded-xl font-bold text-[11px] uppercase tracking-widest shadow-lg shadow-blue-500/20">
@@ -177,13 +183,21 @@ export default function Dashboard() {
       </div>
 
       {!hasData && !loading && (
-        <div className="bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl p-8 text-white text-center shadow-xl">
-          <div className="size-14 bg-blue-600/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-            <Sparkles size={28} className="text-blue-400" />
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-10 text-center shadow-premium relative overflow-hidden group">
+          {/* Subtle background glow effect using theme colors */}
+          <div className="absolute -top-24 -left-24 size-48 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none group-hover:bg-primary/10 transition-all duration-700" />
+          <div className="absolute -bottom-24 -right-24 size-48 bg-secondary/5 dark:bg-secondary/10 rounded-full blur-3xl pointer-events-none group-hover:bg-secondary/10 transition-all duration-700" />
+
+          <div className="size-16 bg-gradient-to-tr from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-primary/20 transition-transform duration-500 group-hover:scale-110">
+            <Sparkles size={32} className="text-white" />
           </div>
-          <h2 className="text-xl font-black uppercase tracking-tight mb-2">Initialize Your Profile</h2>
-          <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.15em] mb-5">Upload your resume to activate Cloud AI Analysis.</p>
-          <Button onClick={() => fileInputRef.current?.click()} disabled={isUploading} className="mx-auto h-11 px-7 rounded-xl font-bold text-[11px] uppercase tracking-widest">
+          <h2 className="text-2xl font-black uppercase tracking-tight mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent inline-block">
+            Activate Your Career Co-Pilot
+          </h2>
+          <p className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-[0.15em] mb-7 max-w-md mx-auto leading-relaxed">
+            Upload your resume to unlock real-time ATS scoring, automatic skill-gap analysis, and AI job recommendations.
+          </p>
+          <Button onClick={() => fileInputRef.current?.click()} disabled={isUploading} className="mx-auto h-12 px-8 rounded-xl font-bold text-[11px] uppercase tracking-widest shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:scale-102 active:scale-98 transition-all duration-200">
             {isUploading ? 'Analyzing...' : 'Get Started'}
           </Button>
         </div>
@@ -214,15 +228,13 @@ export default function Dashboard() {
                
                <div className="flex items-center gap-1.5">
                  <button onClick={() => fileInputRef.current?.click()} className="h-8 px-3 rounded-lg text-[9px] font-black text-blue-600 uppercase tracking-widest hover:bg-blue-600/10 transition-colors">Replace</button>
-                 {profile?.uploadedResumes?.[0]?.id && (
-                    <button 
-                      onClick={() => handleResumeDelete(profile.uploadedResumes[0].id)}
-                      className="size-8 rounded-lg flex items-center justify-center text-rose-500 hover:bg-rose-500/10 transition-colors"
-                      title="Delete Resume"
-                    >
-                      <Trash2 size={14} />
-                    </button>
-                 )}
+                 <div className="h-4 w-px bg-slate-200 dark:bg-slate-700 mx-1" />
+                 <button 
+                   onClick={() => handleResumeDelete(profile?.uploadedResumes?.[0]?.id || "active")}
+                   className="h-8 px-3 rounded-lg text-[9px] font-black text-rose-500 uppercase tracking-widest hover:bg-rose-500/10 transition-colors"
+                 >
+                   Delete
+                 </button>
                </div>
             </div>
           </div>

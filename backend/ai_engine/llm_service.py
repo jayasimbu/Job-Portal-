@@ -30,10 +30,8 @@ class AI_Engine_LLMService:
         # Forward to the centralized service
         result = self.cloud_llm.generate_with_fallback(
             prompt=prompt,
-            system=system,
-            user_id=user_id,
-            request_type=request_type,
-            request_payload=request_payload
+            model=settings.OLLAMA_MODEL,
+            system=system
         )
         
         # Add 'queued' flag as expected by ai_engine components
@@ -63,7 +61,7 @@ def generate_ai_response(prompt: str, system: str = "You are a helpful AI assist
     if format == "json":
         system += " Respond ONLY with valid JSON."
         
-    result = cloud_llm.generate_with_fallback(prompt, system=system)
+    result = cloud_llm.generate_with_fallback(prompt, model=settings.OLLAMA_MODEL, system=system)
     if result.get("success"):
         return result.get("result", "")
     return "{}" if format == "json" else ""

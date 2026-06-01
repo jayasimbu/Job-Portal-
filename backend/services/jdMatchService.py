@@ -73,8 +73,12 @@ class JDMatchService:
 
         return {
             "matchScore": ats_score,
+            "ats_score": ats_score,
+            "final_score": rank_score,
             "matchedSkills": ats_result.get("matched_keywords", []),
             "missingSkills": ats_result.get("missing_keywords", []),
+            "matched_keywords": ats_result.get("matched_keywords", []),
+            "missing_keywords": ats_result.get("missing_keywords", []),
             "semantic_score": round(semantic_raw, 2),
             "rank_score": rank_score,
             "mode": ats_result.get("mode"),
@@ -89,20 +93,58 @@ class JDMatchService:
         resume_data: Dict[str, Any],
         jd_data: Dict[str, Any],
         user_id: Optional[int] = None,
-        llm_timeout: int = 10,
+        llm_timeout: int = 25,
     ) -> Dict[str, Any]:
         """
         Async match pipeline including LLM-enhanced explanation.
-        The ATS + Semantic scores are computed instantly;
-        the LLM call runs in a thread-pool with a timeout.
-
-        Returns:
-            Full match result + llm_enhanced_feedback, queued, error fields
+        Attempts deep AI matching using Ollama/Cloud provider first,
+        falling back to deterministic keyword match if it fails.
         """
-        # Step 1: Deterministic scoring (instant)
+        resume_text = resume_data.get("parsed_text", "")
+        jd_text = jd_data.get("description", "")
+
+        # Step 1: Deep AI matching using Ollama/Cloud provider
+        if resume_text.strip() and jd_text.strip():
+            try:
+                ai_match = await asyncio.wait_for(
+                    llm_service.generate_deep_ats_match(resume_text, jd_text),
+                    timeout=float(llm_timeout)
+                )
+                if ai_match and ai_match.get("match_score", 0) > 0:
+                    match_score = ai_match.get("match_score", 0)
+                    return {
+                        "matchScore": match_score,
+                        "ats_score": match_score,
+                        "final_score": match_score,
+                        "matchedSkills": ai_match.get("matched_skills", []),
+                        "missingSkills": ai_match.get("missing_skills", []),
+                        "matched_keywords": ai_match.get("matched_skills", []),
+                        "missing_keywords": ai_match.get("missing_skills", []),
+                        "semantic_score": match_score,
+                        "rank_score": match_score,
+                        "mode": "Ollama Deep AI Matching",
+                        "breakdown": {
+                            "skills": match_score,
+                            "experience": match_score,
+                            "projects": match_score,
+                            "education": match_score,
+                            "certifications": match_score
+                        },
+                        "suggestions": [f"Focus on learning these missing skills: {', '.join(ai_match.get('missing_skills', []))}"] if ai_match.get("missing_skills") else [],
+                        "llm_enhanced_feedback": ai_match.get("reasoning", "Analysis complete."),
+                        "queued": False,
+                        "queue_id": None,
+                        "error_code": None,
+                        "error_message": None,
+                        "attempted_models": ["deepseek-v3.1:671b-cloud"]
+                    }
+            except Exception as exc:
+                log.warning("[JDMatchService] Deep AI matching failed, falling back to deterministic: %s", exc)
+
+        # Step 2: Fallback to deterministic scoring (instant)
         result = self.match(resume_data, jd_data)
 
-        # Step 2: LLM explanation (async, non-blocking)
+        # Step 3: Local LLM explanation fallback (async, non-blocking)
         explain_prompt = (
             f"{JD_MATCH_EXPLANATION_PROMPT}\n\n"
             f"SCORE: {result.get('ats_score')}\n"
@@ -116,15 +158,11 @@ class JDMatchService:
                     _llm_executor,
                     lambda: llm_service.generate_with_fallback(
                         explain_prompt,
-                        user_id=user_id,
-                        request_type="jd_match_explain",
-                        request_payload={
-                            "resume_text": resume_data.get("parsed_text", "")[:1200],
-                            "job_description": jd_data.get("description", "")[:1200],
-                        },
+                        model=settings.OLLAMA_MODEL,
+                        system="You are a senior recruitment expert."
                     ),
                 ),
-                timeout=llm_timeout,
+                timeout=10,
             )
         except asyncio.TimeoutError:
             enhanced = {

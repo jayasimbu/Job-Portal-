@@ -314,18 +314,46 @@ class EmployerService:
                     "candidates": candidates_per_job.get(getattr(top_job_obj, 'id', 0), 0),
                 }
 
+        # ── Calculate Hiring Rate (Shortlisted / Total) ───────────────
+        hiring_rate = 0
+        if applications:
+            hiring_rate = round((len(shortlisted) / len(applications)) * 100, 1)
+
+        # ── Applicants Over Time (Last 30 Days) ────────────────────────
+        from datetime import timedelta
+        thirty_days_ago = datetime.utcnow() - timedelta(days=30)
+        
+        # Initialize trend map with zeros for last 30 days
+        trend_data = {}
+        for i in range(31):
+            date_key = (thirty_days_ago + timedelta(days=i)).strftime("%Y-%m-%d")
+            trend_data[date_key] = 0
+            
+        for app in applications:
+            created_at = getattr(app, "created_at", None)
+            if created_at and created_at >= thirty_days_ago:
+                date_key = created_at.strftime("%Y-%m-%d")
+                if date_key in trend_data:
+                    trend_data[date_key] += 1
+        
+        applicants_over_time = [
+            {"date": k, "count": v} for k, v in sorted(trend_data.items())
+        ]
+
         return {
             "active_jobs": len([job for job in jobs if getattr(job, 'active', True)]),
             "total_jobs": len(jobs),
             "total_applicants": len(applications),
             "new_applicants": len(new_applicants),
             "shortlisted": len(shortlisted),
-            "interviews": len(interview_store.get(employer_id, [])),
+            "hiring_rate": hiring_rate,
             "avg_ats_score": avg_score,
             "top_ats_score": top_score,
+            "applicants_over_time": applicants_over_time,
             "pipeline": pipeline,
             "top_job": top_job,
         }
+
 
     def get_top_candidates(self, employer_id: int, limit: int = 5) -> List[Dict[str, Any]]:
         jobs = self.list_job_postings(employer_id)

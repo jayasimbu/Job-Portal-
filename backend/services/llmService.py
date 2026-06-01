@@ -11,7 +11,7 @@ log = logging.getLogger(__name__)
 
 # FEATURE-MODEL MAPPING
 MODELS = {
-    "ATS_MATCHING": "deepseek-v3.1:671b-cloud",
+    "ATS_MATCHING": "qwen3-coder:480b-cloud",
     "STRUCTURAL_PARSING": "qwen3-coder:480b-cloud",
     "HR_SUMMARY": "glm-4.6:cloud",
     "CERTIFICATE_VISION": "qwen3-vl:235b-cloud",

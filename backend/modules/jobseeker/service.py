@@ -30,11 +30,54 @@ class JobSeekerService:
         profile_doc = self.profiles.find_one({"user_id": int(user_id)})
         if not profile_doc: return None
         resumes = list(self.resumes.find({"user_id": int(user_id)}).sort("id", -1))
+        
+        # Dynamically recalculate the ATS score and breakdown if a resume exists,
+        # ensuring that updates to the scoring formula are applied instantly upon refresh.
+        if resumes:
+            latest = resumes[0]
+            resume_data = latest.get("parsed_data", {})
+            if resume_data:
+                ats_result = self.ats_scorer.score_resume(resume_data)
+                ats_score = ats_result.get("ats_score", 0)
+                ats_breakdown = ats_result.get("breakdown", {})
+                
+                # Update in-memory for instant response
+                profile_doc["ats_score"] = float(ats_score)
+                profile_doc["ats_breakdown"] = ats_breakdown
+                
+                # Sync back to profiles collection
+                self.profiles.update_one(
+                    {"user_id": int(user_id)},
+                    {"$set": {
+                        "ats_score": float(ats_score),
+                        "ats_breakdown": ats_breakdown
+                    }}
+                )
+                
         profile_doc["uploadedResumes"] = resumes
         profile_doc["hasResume"] = len(resumes) > 0
         return doc_to_entity(profile_doc)
 
-    async def upload_resume(self, user_id: int, file_name: str, file_bytes: bytes, user_email: str, job_description: str = ""):
+    async def upload_resume(
+        self,
+        user_id: int,
+        file_name: str,
+        file_bytes: Optional[bytes] = None,
+        user_email: Optional[str] = None,
+        resume_text: Optional[str] = None,
+        job_description: str = "",
+    ):
+        if not user_email:
+            user_doc = self.db["users"].find_one({"id": int(user_id)})
+            user_email = user_doc.get("email", f"user_{user_id}@example.com") if user_doc else f"user_{user_id}@example.com"
+
+        if file_bytes is None and resume_text is not None:
+            file_bytes = resume_text.encode("utf-8")
+        elif file_bytes is not None and resume_text is None:
+            resume_text = self.parser.extract_text_from_bytes(file_bytes, file_name)
+        elif file_bytes is None and resume_text is None:
+            raise ValueError("Either file_bytes or resume_text must be provided")
+
         # 1. Save file (with collision avoidance)
         timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
         safe_file_name = f"{timestamp}_{file_name}"
@@ -42,9 +85,6 @@ class JobSeekerService:
         db_base.mkdir(parents=True, exist_ok=True)
         file_path = db_base / safe_file_name
         file_path.write_bytes(file_bytes)
-
-        # 2. Extract text
-        resume_text = self.parser.extract_text_from_bytes(file_bytes, file_name)
 
         # 3. AI STRUCTURAL PARSING (STRICT MODE)
         from services.llmService import llm_service
@@ -126,6 +166,10 @@ class JobSeekerService:
                     "learning_recommendations": learning_data,
                     "hasResume": True,
                     "updated_at": now,
+                },
+                "$setOnInsert": {
+                    "id": get_next_sequence(self.db, "jobseeker_profiles"),
+                    "created_at": now,
                 }
             },
             upsert=True
@@ -194,7 +238,13 @@ class JobSeekerService:
         data["updated_at"] = now
         self.profiles.update_one(
             {"user_id": int(user_id)},
-            {"$set": data},
+            {
+                "$set": data,
+                "$setOnInsert": {
+                    "id": get_next_sequence(self.db, "jobseeker_profiles"),
+                    "created_at": now,
+                }
+            },
             upsert=True
         )
         return self.get_profile(user_id)
@@ -281,52 +331,36 @@ class JobSeekerService:
         }
 
     def delete_resume(self, user_id: int, resume_id: int) -> bool:
-        resume = self.resumes.find_one({"id": int(resume_id), "user_id": int(user_id)})
-        if not resume:
-            return False
-        
-        # 1. Delete file if exists
-        stored_path = resume.get("stored_path")
-        if stored_path:
-            try:
-                p = Path(stored_path)
-                if p.exists():
-                    p.unlink()
-            except Exception as e:
-                log.warning(f"Failed to delete resume file: {e}")
+        # 1. Find all resumes for this user and delete their stored files from disk
+        user_resumes = list(self.resumes.find({"user_id": int(user_id)}))
+        for resume in user_resumes:
+            stored_path = resume.get("stored_path")
+            if stored_path:
+                try:
+                    p = Path(stored_path)
+                    if p.exists():
+                        p.unlink()
+                except Exception as e:
+                    log.warning(f"Failed to delete resume file: {e}")
 
-        # 2. Delete from DB
-        self.resumes.delete_one({"id": int(resume_id)})
+        # 2. Delete all resumes of the user from DB
+        self.resumes.delete_many({"user_id": int(user_id)})
 
-        # 3. Update profile (clear if no resumes left)
-        remaining = list(self.resumes.find({"user_id": int(user_id)}).sort("id", -1))
-        if not remaining:
-            self.profiles.update_one(
-                {"user_id": int(user_id)},
-                {"$set": {
-                    "hasResume": False,
-                    "ats_score": 0,
-                    "skills": [],
-                    "experience_years": 0,
-                    "hr_summary": None,
-                    "missing_skills": [],
-                    "recommended_skills": []
-                }}
-            )
-        else:
-            latest = remaining[0]
-            self.profiles.update_one(
-                {"user_id": int(user_id)},
-                {"$set": {
-                    "skills": latest.get("parsed_data", {}).get("skills", []),
-                    "experience_years": latest.get("parsed_data", {}).get("experience_years", 0),
-                    "ats_score": latest.get("ats_score", 0),
-                    "hr_summary": latest.get("hr_summary"),
-                    "missing_skills": latest.get("missing_skills", []),
-                    "recommended_skills": latest.get("recommended_skills", []),
-                    "hasResume": True
-                }}
-            )
+        # 3. Completely clear all resume and analysis fields on the user profile
+        self.profiles.update_one(
+            {"user_id": int(user_id)},
+            {"$set": {
+                "hasResume": False,
+                "ats_score": 0,
+                "ats_breakdown": {},
+                "skills": [],
+                "experience_years": 0,
+                "hr_summary": None,
+                "missing_skills": [],
+                "recommended_skills": [],
+                "learning_recommendations": {}
+            }}
+        )
         return True
 
 def get_jobseeker_service(db=Depends(get_db)) -> JobSeekerService:

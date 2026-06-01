@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   BarChart3, 
   Users, 
   Target, 
   TrendingUp, 
   ArrowUpRight,
-  Calendar
+  Calendar,
+  Loader2
 } from 'lucide-react';
 
 import Card, { CardBody } from '../../../components/ui/Card';
 import Badge from '../../../components/ui/Badge';
+import { fetchEmployerAnalytics } from '../services/employerService';
+import { getCurrentUserId } from '../../../core/auth/session';
 
 const MetricCard = ({ label, value, trend, icon: Icon }) => (
   <Card className="border-slate-200 shadow-sm">
@@ -18,7 +21,7 @@ const MetricCard = ({ label, value, trend, icon: Icon }) => (
         <div className="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-blue-600">
           <Icon size={20} />
         </div>
-        <Badge variant={trend.startsWith('+') ? 'success' : 'danger'} className="text-[9px] font-black">{trend}</Badge>
+        <Badge variant={trend?.startsWith('+') ? 'success' : 'danger'} className="text-[9px] font-black">{trend || '0%'}</Badge>
       </div>
       <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-tight mb-1">{label}</p>
       <h4 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">{value}</h4>
@@ -34,6 +37,40 @@ const ChartPlaceholder = ({ title, height = "h-64" }) => (
 );
 
 export default function Analytics() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const employerId = getCurrentUserId();
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const res = await fetchEmployerAnalytics(employerId);
+        setData(res.analytics);
+      } catch (err) {
+        console.error("Failed to fetch analytics:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadData();
+  }, [employerId]);
+
+  if (loading) {
+    return (
+      <div className="h-[60vh] flex flex-col items-center justify-center gap-4">
+        <Loader2 size={40} className="text-blue-600 animate-spin" />
+        <p className="text-xs font-black text-slate-400 uppercase tracking-widest leading-tight">Syncing Recruitment Data...</p>
+      </div>
+    );
+  }
+
+  const metrics = {
+    total_applicants: data?.total_applicants || 0,
+    avg_ats_score: data?.avg_ats_score || 0,
+    active_jobs: data?.active_jobs || 0,
+    hiring_rate: data?.hiring_rate || 0,
+  };
+
   return (
     <div className="max-w-[1200px] mx-auto space-y-6 pb-16 px-6">
       {/* HEADER */}
@@ -57,10 +94,10 @@ export default function Analytics() {
 
       {/* TOP METRICS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <MetricCard label="Total Applicants" value="320" trend="+12.5%" icon={Users} />
-        <MetricCard label="Avg ATS Score" value="78%" trend="+2.4%" icon={Target} />
-        <MetricCard label="Active Jobs" value="12" trend="+1" icon={BarChart3} />
-        <MetricCard label="Hiring Rate" value="18%" trend="-1.2%" icon={TrendingUp} />
+        <MetricCard label="Total Applicants" value={metrics.total_applicants} trend="+0%" icon={Users} />
+        <MetricCard label="Avg ATS Score" value={`${metrics.avg_ats_score}%`} trend="+0%" icon={Target} />
+        <MetricCard label="Active Jobs" value={metrics.active_jobs} trend="+0" icon={BarChart3} />
+        <MetricCard label="Hiring Rate" value={`${metrics.hiring_rate}%`} trend="+0%" icon={TrendingUp} />
       </div>
 
       {/* CHARTS SECTION */}
@@ -79,3 +116,4 @@ export default function Analytics() {
     </div>
   );
 }
+

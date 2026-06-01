@@ -6,7 +6,7 @@ from concurrent.futures import ThreadPoolExecutor
 from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, UploadFile, File, Form
-from pydantic import BaseModel
+from pydantic import BaseModel, model_validator
 
 # ── Centralized Services Layer (Phase 1 refactor) ──
 from services.atsService import ats_service
@@ -58,6 +58,14 @@ class ATSResumePayload(BaseModel):
 class ATSJDPayload(BaseModel):
     resume_text: str
     job_description: str
+
+    @model_validator(mode='before')
+    @classmethod
+    def populate_job_description(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            if "jd_text" in data and "job_description" not in data:
+                data["job_description"] = data.pop("jd_text")
+        return data
 
 
 class ApplyPayload(BaseModel):
@@ -155,6 +163,15 @@ async def upload_resume_file(
         job_description=job_description,
     )
     return {"message": "resume processed", "resume": model_to_dict(resume)}
+
+
+@router.post("/resume/extract-text")
+async def extract_resume_text(
+    file: UploadFile = File(...),
+) -> Dict[str, Any]:
+    file_bytes = await file.read()
+    text = resume_parser_service.extract_text_from_bytes(file_bytes, file.filename or "resume.pdf")
+    return {"text": text}
 
 
 @router.post("/profile/upload-image")
@@ -289,10 +306,28 @@ async def run_jd_ats(
     user=Depends(get_current_user_db),
     service: JobSeekerService = Depends(get_jobseeker_service),
 ) -> Dict[str, Any]:
+    # Pre-parse resume text to extract skills, experience years, education, and projects
+    resume_data = resume_parser_service.parse_text(payload.resume_text)
+    
+    # Pre-parse job description to extract required skills and required experience
+    jd_parsed = resume_parser_service.parse_text(payload.job_description)
+    jd_data = {
+        "description": payload.job_description,
+        "required_skills": jd_parsed.get("skills", []),
+        "required_experience_years": jd_parsed.get("experience_years", 0)
+    }
+
+    print("=== DEBUG ATS JD ===")
+    print("Resume text length:", len(payload.resume_text))
+    print("Resume parsed skills:", resume_data.get("skills"))
+    print("Resume parsed experience:", resume_data.get("experience_years"))
+    print("JD parsed skills:", jd_data.get("required_skills"))
+    print("====================")
+
     # Full JD match pipeline via centralized service (ATS + Semantic + LLM)
     result = await jd_match_service.match_with_llm(
-        resume_data={"parsed_text": payload.resume_text},
-        jd_data={"description": payload.job_description},
+        resume_data=resume_data,
+        jd_data=jd_data,
         user_id=getattr(user, "id", None),
         llm_timeout=10,
     )
@@ -578,11 +613,15 @@ async def download_resume(
 
 @router.delete("/resume/{resume_id}")
 async def delete_resume(
-    resume_id: int,
+    resume_id: str,
     user=Depends(get_current_user_db),
     service: JobSeekerService = Depends(get_jobseeker_service),
 ) -> Dict[str, Any]:
-    success = service.delete_resume(user.id, resume_id)
+    try:
+        r_id = int(resume_id)
+    except ValueError:
+        r_id = 0
+    success = service.delete_resume(user.id, r_id)
     if not success:
         raise HTTPException(status_code=404, detail="Resume not found")
     return {"message": "Resume deleted successfully"}
