@@ -120,12 +120,22 @@ export default function JobDetails() {
       }
   };
 
-  const handleApply = () => {
+  const handleApply = async () => {
+    if (!userId) {
+       showToast("Please log in to apply for this job. ❌");
+       return;
+    }
     setIsApplying(true);
-    setTimeout(() => {
+    try {
+      await apiClient.post('/jobseeker/applications', { job_id: job.id });
       showToast(`Application successfully sent to ${job.company.name}! 🚀`);
+    } catch (err) {
+      console.error("Application failed:", err);
+      const errMsg = err.response?.data?.detail || "Failed to submit application. Please try again.";
+      showToast(errMsg + " ❌");
+    } finally {
       setIsApplying(false);
-    }, 1500);
+    }
   };
 
   if (loading) return (

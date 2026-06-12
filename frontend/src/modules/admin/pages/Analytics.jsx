@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import apiClient from '@/core/api/apiClient';
-import { useTheme } from '@/core/context/ThemeContext';
+import apiClient from "../../../core/api/apiClient";
+import { useTheme } from "../../../core/context/ThemeContext";
 
 export default function AdminAnalytics() {
   const [data, setData] = useState(null);

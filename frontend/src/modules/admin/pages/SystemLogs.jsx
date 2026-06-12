@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Activity, Database, Zap, Clock, ShieldCheck, Server, RefreshCw } from 'lucide-react';
-import apiClient from '@/core/api/apiClient';
+import apiClient from "../../../core/api/apiClient";
 
 // UI Components
 import Button from '../../../components/ui/Button';

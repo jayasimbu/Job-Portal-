@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Search, ShieldAlert, CheckCircle2, XCircle, Eye, AlertTriangle, Clock, UserCheck } from 'lucide-react';
-import apiClient from '@/core/api/apiClient';
+import apiClient from "../../../core/api/apiClient";
 
 // UI Components
 import Button from '../../../components/ui/Button';

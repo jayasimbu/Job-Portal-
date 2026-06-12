@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Search, Building2, CheckCircle2, XCircle, Eye, MoreVertical, Briefcase, Users } from 'lucide-react';
-import apiClient from '@/core/api/apiClient';
+import apiClient from "../../../core/api/apiClient";
 
 // UI Components
 import Button from '../../../components/ui/Button';

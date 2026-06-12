@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Search, Filter, MoreVertical, Shield, User, Building2, Trash2, Ban, Eye } from 'lucide-react';
-import apiClient from '@/core/api/apiClient';
+import apiClient from "../../../core/api/apiClient";
 
 // UI Components
 import Button from '../../../components/ui/Button';
